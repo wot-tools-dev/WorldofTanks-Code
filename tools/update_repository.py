@@ -5,12 +5,15 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import gettext
 import hashlib
+import io
 import json
 import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+import struct
 import subprocess
 import sys
 import xml.etree.ElementTree as ET
@@ -41,7 +44,7 @@ load_local_env(Path(__file__).resolve().parents[1] / ".env")
 
 MANIFEST_NAME = ".wot-repository-manifest.json"
 MANIFEST_FORMAT = 1
-RECOVERY_FORMAT = 1
+RECOVERY_FORMAT = 2
 RECOVERY_STATE_NAME = "recovery-state.json"
 DEFAULT_CLIENT = os.environ.get("WOT_CLIENT_ROOT")
 DEFAULT_UNDEC = os.environ.get("WOT_UNDEC_EXE")
@@ -132,6 +135,125 @@ def sha256_file(path: Path) -> str:
     return digest.hexdigest()
 
 
+def parse_mo_catalog(data: bytes, source: str) -> dict:
+    try:
+        translations = gettext.GNUTranslations(io.BytesIO(data))
+    except (OSError, EOFError, UnicodeError, ValueError, IndexError, struct.error):
+        return parse_mo_catalog_fallback(data, source)
+    catalog = translations._catalog
+    header = catalog.get("", "")
+    entries = []
+    for message_id, translated in catalog.items():
+        if message_id == "":
+            continue
+        if isinstance(message_id, tuple):
+            singular, plural = message_id
+            if isinstance(translated, (tuple, list)):
+                plural_values = {
+                    str(index): value for index, value in enumerate(translated)
+                }
+            else:
+                plural_values = {"0": translated}
+            entries.append(
+                {
+                    "msgid": singular,
+                    "msgid_plural": plural,
+                    "msgstr": "",
+                    "msgstr_plural": plural_values,
+                }
+            )
+        else:
+            entries.append(
+                {
+                    "msgid": message_id,
+                    "msgid_plural": None,
+                    "msgstr": translated,
+                    "msgstr_plural": None,
+                }
+            )
+    return {"headers": header, "entries": entries}
+
+
+def parse_mo_catalog_fallback(data: bytes, source: str) -> dict:
+    if len(data) < 28:
+        raise UpdateError("MO catalog is too short: %s" % source)
+    if data[:4] == b"\xde\x12\x04\x95":
+        byte_order = "<"
+    elif data[:4] == b"\x95\x04\x12\xde":
+        byte_order = ">"
+    else:
+        raise UpdateError("Invalid MO magic in %s" % source)
+    try:
+        _magic, version, count, original_offset, translated_offset, _hash_size, _hash_offset = (
+            struct.unpack_from(byte_order + "7I", data, 0)
+        )
+    except struct.error as exc:
+        raise UpdateError("Cannot read MO header in %s: %s" % (source, exc))
+    if version >> 16 not in (0, 1):
+        raise UpdateError("Unsupported MO version %d in %s" % (version, source))
+    if max(original_offset, translated_offset) + count * 8 > len(data):
+        raise UpdateError("MO string table is outside the file: %s" % source)
+    pairs = []
+    for index in range(count):
+        original_length, original_start = struct.unpack_from(
+            byte_order + "2I", data, original_offset + index * 8
+        )
+        translated_length, translated_start = struct.unpack_from(
+            byte_order + "2I", data, translated_offset + index * 8
+        )
+        if max(
+            original_start + original_length,
+            translated_start + translated_length,
+        ) > len(data):
+            raise UpdateError("MO string data is outside the file: %s" % source)
+        pairs.append(
+            (
+                data[original_start:original_start + original_length],
+                data[translated_start:translated_start + translated_length],
+            )
+        )
+    header_bytes = next((translated for original, translated in pairs if not original), b"")
+    header_ascii = header_bytes.decode("ascii", "replace")
+    charset_match = re.search(r"charset=([^\s;]+)", header_ascii, re.IGNORECASE)
+    charset = charset_match.group(1) if charset_match else "utf-8"
+    try:
+        header = header_bytes.decode(charset)
+    except (LookupError, UnicodeDecodeError) as exc:
+        raise UpdateError("Cannot decode MO header in %s: %s" % (source, exc))
+    entries = []
+    for original_bytes, translated_bytes in pairs:
+        if not original_bytes:
+            continue
+        try:
+            original = original_bytes.decode(charset)
+            translated = translated_bytes.decode(charset)
+        except (LookupError, UnicodeDecodeError) as exc:
+            raise UpdateError("Cannot decode MO message in %s: %s" % (source, exc))
+        original_forms = original.split("\x00", 1)
+        if len(original_forms) == 2:
+            entries.append(
+                {
+                    "msgid": original_forms[0],
+                    "msgid_plural": original_forms[1],
+                    "msgstr": "",
+                    "msgstr_plural": {
+                        str(index): value
+                        for index, value in enumerate(translated.split("\x00"))
+                    },
+                }
+            )
+        else:
+            entries.append(
+                {
+                    "msgid": original,
+                    "msgid_plural": None,
+                    "msgstr": translated,
+                    "msgstr_plural": None,
+                }
+            )
+    return {"headers": header, "entries": entries}
+
+
 def recovery_workspace_path(repository: Path) -> Path:
     return repository.parent / (".%s-recovery" % repository.name)
 
@@ -177,7 +299,7 @@ def save_recovery_state(workspace: Path, state: dict) -> None:
 def valid_recovery_state(state: dict, identity: dict) -> bool:
     phases = {
         "new", "extracted", "pjorion_pending", "pjorion_ran",
-        "python", "flash_pending", "processed",
+        "python", "catalogs", "flash_pending", "processed",
     }
     if (
         not isinstance(state, dict)
@@ -192,7 +314,7 @@ def valid_recovery_state(state: dict, identity: dict) -> bool:
         return False
     if state["phase"] != "new" and not all(
         isinstance(state["extracted"].get(key), dict)
-        for key in ("counts", "bytecode", "swf")
+        for key in ("counts", "bytecode", "mo", "swf")
     ):
         return False
     return True
@@ -343,8 +465,11 @@ def extract_packages(client: Path, stage: Path, flash: Path) -> dict:
     owners: dict[str, tuple[str, str]] = {}
     case_paths: dict[str, str] = {}
     bytecode_inputs: dict[str, str] = {}
+    mo_inputs: dict[str, str] = {}
     swf_inputs: dict[str, str] = {}
-    counts = {"packages": len(packages), "files": 0, "bytecode": 0, "swf": 0}
+    counts = {
+        "packages": len(packages), "files": 0, "bytecode": 0, "mo": 0, "swf": 0,
+    }
 
     for index, package in enumerate(packages, 1):
         print("[%d/%d] scanning %s" % (index, len(packages), package.name), flush=True)
@@ -391,7 +516,13 @@ def extract_packages(client: Path, stage: Path, flash: Path) -> dict:
                     if suffix in (".pyc", ".pyo"):
                         bytecode_inputs[relative_text] = digest
                         counts["bytecode"] += 1
-    return {"counts": counts, "bytecode": bytecode_inputs, "swf": swf_inputs}
+                    elif suffix == ".mo":
+                        mo_inputs[relative_text] = digest
+                        counts["mo"] += 1
+    return {
+        "counts": counts, "bytecode": bytecode_inputs, "mo": mo_inputs,
+        "swf": swf_inputs,
+    }
 
 
 def copy_loose_resources(client: Path, stage: Path) -> None:
@@ -435,18 +566,32 @@ def run_pjorion(stage: Path, undec: Path | None, decompile_pyc: bool = True) -> 
         held_files.append((held, source))
         print("Preserving unsupported packed XML without conversion: %s" % relative, flush=True)
 
+    root_xml_files = []
+    root_xml_workspace = stage.parent / ".root-xml-unpack"
+    if root_xml_workspace.exists():
+        raise UpdateError("Root XML staging path already exists: %s" % root_xml_workspace)
+    for source in sorted(stage.glob("*.xml")):
+        held = root_xml_workspace / source.name
+        held.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(source), str(held))
+        root_xml_files.append((held, source))
+
     roots = sorted(path.name for path in stage.iterdir() if path.is_dir())
+    targets = []
+    if root_xml_files:
+        targets.append(("root XML files", root_xml_workspace, False))
+    targets.extend((root, stage / root, decompile_pyc) for root in roots)
     argument_file = stage / "WOT-UnDec.arg"
     local_undec = stage / "WOT-UnDec.exe"
     if argument_file.exists() or local_undec.exists():
         raise UpdateError("XML unpacker staging filenames collide with client files")
     shutil.copyfile(str(undec), str(local_undec))
     try:
-        for index, root in enumerate(roots, 1):
-            print("[%d/%d] unpacking XML in %s" % (index, len(roots), root), flush=True)
+        for index, (label, target, target_decompile_pyc) in enumerate(targets, 1):
+            print("[%d/%d] unpacking XML in %s" % (index, len(targets), label), flush=True)
             executable_value = str(pjorion).replace('"', "")
-            target_root = (stage / root).resolve(strict=True)
-            if stage.resolve() not in target_root.parents:
+            target_root = target.resolve(strict=True)
+            if target_root != root_xml_workspace.resolve() and stage.resolve() not in target_root.parents:
                 raise UpdateError("XML unpack target escaped staging: %s" % target_root)
             path_value = str(target_root).replace('"', "")
             overrides = ",\n                    ".join(
@@ -463,7 +608,7 @@ files_in_group_min_count = 10
 decompiler_default = \"uncompyle6\"
 decompiler_extra = [%s]
 unpacker_separately = []
-""" % (executable_value, path_value, str(decompile_pyc).lower(), overrides)
+""" % (executable_value, path_value, str(target_decompile_pyc).lower(), overrides)
             argument_file.write_text(config, encoding="utf-8", newline="\n")
             # The unpacker resolves WOT-UnDec.arg beside its own executable.
             # Run an isolated copy so no existing project configuration can be read.
@@ -480,6 +625,14 @@ unpacker_separately = []
                 raise UpdateError("Cannot restore excluded packed XML over existing file: %s" % destination)
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(str(held), str(destination))
+        for held, destination in root_xml_files:
+            if not held.is_file():
+                raise UpdateError("PjOrion removed a root XML file: %s" % destination.name)
+            if destination.exists():
+                raise UpdateError("Cannot restore root XML over existing file: %s" % destination)
+            shutil.move(str(held), str(destination))
+        if root_xml_workspace.exists():
+            root_xml_workspace.rmdir()
 
 
 def reusable_outputs(
@@ -500,6 +653,62 @@ def reusable_outputs(
                 shutil.copyfile(str(existing), str(target))
                 outputs.append(relative)
     return outputs
+
+
+def convert_mo_catalogs(
+    repository: Path,
+    stage: Path,
+    inputs: dict[str, str],
+    old_manifest: dict,
+    generated: dict[str, dict] | None = None,
+) -> dict[str, dict]:
+    if generated is None:
+        generated = {}
+    for relative, digest in sorted(inputs.items()):
+        output_relative = relative + ".json"
+        mo_path = stage.joinpath(*PurePosixPath(relative).parts)
+        json_path = stage.joinpath(*PurePosixPath(output_relative).parts)
+        recorded = generated.get(output_relative, {})
+        if (
+            recorded.get("type") == "mo"
+            and recorded.get("source") == relative
+            and recorded.get("sha256") == digest
+            and json_path.is_file()
+        ):
+            if mo_path.exists():
+                mo_path.unlink()
+            continue
+        if json_path.exists():
+            raise UpdateError(
+                "MO JSON output collides with a packaged file: %s" % output_relative
+            )
+        reused = reusable_outputs(repository, stage, old_manifest, "mo", relative, digest)
+        if output_relative in reused:
+            generated[output_relative] = {
+                "type": "mo", "source": relative, "sha256": digest,
+                "engine": "gnu-mo",
+            }
+            if mo_path.exists():
+                mo_path.unlink()
+            continue
+        try:
+            catalog = parse_mo_catalog(mo_path.read_bytes(), relative)
+        except OSError as exc:
+            raise UpdateError("Cannot read MO catalog %s: %s" % (relative, exc))
+        json_path.parent.mkdir(parents=True, exist_ok=True)
+        json_path.write_text(
+            json.dumps(catalog, ensure_ascii=False, indent=2) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+        mo_path.unlink()
+        generated[output_relative] = {
+            "type": "mo", "source": relative, "sha256": digest,
+            "engine": "gnu-mo",
+        }
+    if inputs:
+        print("Processed %d MO localization catalogs as JSON" % len(inputs), flush=True)
+    return generated
 
 
 def prepare_bytecode(
@@ -921,7 +1130,16 @@ def main(argv=None) -> int:
                 workspace, recovery, phase, extracted, generated,
                 pending_bytecode, flash_without_source,
             )
-        if phase in ("python", "flash_pending"):
+        if phase == "python":
+            generated = convert_mo_catalogs(
+                repository, stage, extracted["mo"], old_manifest, generated
+            )
+            phase = "catalogs"
+            checkpoint_recovery_state(
+                workspace, recovery, phase, extracted, generated,
+                pending_bytecode, flash_without_source,
+            )
+        if phase in ("catalogs", "flash_pending"):
             phase = "flash_pending"
             checkpoint_recovery_state(
                 workspace, recovery, phase, extracted, generated,

@@ -1,6 +1,7 @@
 import importlib.util
 import json
 from pathlib import Path
+import struct
 import tempfile
 import unittest
 from unittest import mock
@@ -11,6 +12,36 @@ MODULE_PATH = Path(__file__).resolve().parents[1] / "tools" / "update_repository
 SPEC = importlib.util.spec_from_file_location("update_repository", MODULE_PATH)
 update_repository = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(update_repository)
+
+
+def build_mo(messages):
+    items = sorted(
+        (original.encode("utf-8"), translated.encode("utf-8"))
+        for original, translated in messages
+    )
+    count = len(items)
+    original_offset = 28
+    translated_offset = original_offset + count * 8
+    string_offset = translated_offset + count * 8
+    originals = bytearray()
+    translations = bytearray()
+    original_table = []
+    translated_table = []
+    for original, _translated in items:
+        original_table.append((len(original), string_offset + len(originals)))
+        originals.extend(original + b"\x00")
+    translation_start = string_offset + len(originals)
+    for _original, translated in items:
+        translated_table.append((len(translated), translation_start + len(translations)))
+        translations.extend(translated + b"\x00")
+    result = bytearray(
+        struct.pack("<7I", 0x950412DE, 0, count, original_offset, translated_offset, 0, 0)
+    )
+    for entry in original_table + translated_table:
+        result.extend(struct.pack("<2I", *entry))
+    result.extend(originals)
+    result.extend(translations)
+    return bytes(result)
 
 class UpdateRepositoryTests(unittest.TestCase):
     def test_decompiler_banner_is_removed_without_removing_source_comments(self):
@@ -57,6 +88,7 @@ VALUE = 1
             with zipfile.ZipFile(packages / "scripts.pkg", "w") as archive:
                 archive.writestr("scripts/example.pyc", b"bytecode")
                 archive.writestr("scripts/config.xml", b"<root />")
+                archive.writestr("text/example.mo", b"catalog")
                 archive.writestr("gui/example.swf", b"FWS")
                 archive.writestr("gui/library.swc", b"PK")
                 archive.writestr("gui/image.png", b"not retained")
@@ -67,11 +99,107 @@ VALUE = 1
             result = update_repository.extract_packages(root / "client", stage, flash)
             self.assertTrue((stage / "scripts" / "example.pyc").is_file())
             self.assertTrue((stage / "scripts" / "config.xml").is_file())
+            self.assertTrue((stage / "text" / "example.mo").is_file())
             self.assertTrue((flash / "gui" / "example.swf").is_file())
             self.assertTrue((flash / "gui" / "library.swc").is_file())
             self.assertFalse((stage / "gui" / "image.png").exists())
             self.assertEqual(1, result["counts"]["bytecode"])
+            self.assertEqual(1, result["counts"]["mo"])
+            self.assertIn("text/example.mo", result["mo"])
             self.assertEqual(2, result["counts"]["swf"])
+
+    def test_mo_catalog_uses_existing_clean_repository_json_format(self):
+        header = "Content-Type: text/plain; charset=utf-8\nLanguage: en\n"
+        data = build_mo(
+            [
+                ("", header),
+                ("simple", "Simple text"),
+                ("one\x00many", "One item\x00Many items"),
+                ("menu\x04close", "Close"),
+            ]
+        )
+        catalog = update_repository.parse_mo_catalog(data, "text/example.mo")
+        self.assertEqual(header, catalog["headers"])
+        plural_entries = [entry for entry in catalog["entries"] if entry["msgid"] == "one"]
+        self.assertEqual(
+            [
+                {
+                    "msgid": "one", "msgid_plural": 0, "msgstr": "",
+                    "msgstr_plural": {"0": "One item"},
+                },
+                {
+                    "msgid": "one", "msgid_plural": 1, "msgstr": "",
+                    "msgstr_plural": {"0": "Many items"},
+                },
+            ],
+            plural_entries,
+        )
+        self.assertEqual(
+            "Close",
+            next(
+                entry for entry in catalog["entries"]
+                if entry["msgid"] == "menu\x04close"
+            )["msgstr"],
+        )
+
+    def test_mo_conversion_writes_dot_mo_json_and_removes_binary(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
+            root = Path(folder)
+            repository = root / "repository"
+            stage = root / "stage"
+            repository.mkdir()
+            source = stage / "text" / "example.mo"
+            source.parent.mkdir(parents=True)
+            source.write_bytes(
+                build_mo(
+                    [("", "Content-Type: text/plain; charset=utf-8\n"), ("hello", "Hello")]
+                )
+            )
+            digest = update_repository.sha256_file(source)
+            generated = update_repository.convert_mo_catalogs(
+                repository,
+                stage,
+                {"text/example.mo": digest},
+                {"format": 1, "files": {}, "inputs": {}},
+            )
+            output = stage / "text" / "example.mo.json"
+            self.assertFalse(source.exists())
+            self.assertTrue(output.is_file())
+            self.assertEqual("Hello", json.loads(output.read_text(encoding="utf-8"))["entries"][0]["msgstr"])
+            self.assertEqual("text/example.mo", generated["text/example.mo.json"]["source"])
+
+    def test_mo_without_charset_uses_utf8_fallback(self):
+        catalog = update_repository.parse_mo_catalog(
+            build_mo([("", "Language: en\n"), ("currency", "Crédit")]),
+            "text/no_charset.mo",
+        )
+        self.assertEqual("Crédit", catalog["entries"][0]["msgstr"])
+
+    def test_completed_mo_output_is_reused_from_recovery_workspace(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
+            root = Path(folder)
+            repository = root / "repository"
+            stage = root / "stage"
+            repository.mkdir()
+            output = stage / "text" / "example.mo.json"
+            output.parent.mkdir(parents=True)
+            output.write_text('{"headers": "", "entries": []}\n', encoding="utf-8")
+            digest = "a" * 64
+            generated = {
+                "text/example.mo.json": {
+                    "type": "mo", "source": "text/example.mo", "sha256": digest,
+                    "engine": "gnu-mo",
+                }
+            }
+            result = update_repository.convert_mo_catalogs(
+                repository,
+                stage,
+                {"text/example.mo": digest},
+                {"format": 1, "files": {}, "inputs": {}},
+                generated,
+            )
+            self.assertIs(generated, result)
+            self.assertTrue(output.is_file())
 
     def test_sync_deletes_only_files_owned_by_old_manifest(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
@@ -183,6 +311,46 @@ VALUE = 1
             self.assertIn("decompile_pyc = true", observed["config"])
             self.assertFalse((stage / "WOT-UnDec.exe").exists())
             self.assertFalse((stage / "WOT-UnDec.arg").exists())
+
+    def test_root_level_xml_is_processed_in_an_isolated_pjorion_pass(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
+            root = Path(folder)
+            stage = root / "stage"
+            stage.mkdir()
+            packed = stage / "engine_config.xml"
+            packed.write_bytes(b"EN\xa1\x62packed")
+            tools = root / "external"
+            (tools / "PjOrion").mkdir(parents=True)
+            undec = tools / "WOT-UnDec.fixture"
+            undec.write_bytes(b"tool")
+            (tools / "PjOrion" / "PjOrion.exe").write_bytes(b"helper")
+            observed = {}
+            original_run = update_repository.run
+
+            def fake_run(_command, cwd=None, **_kwargs):
+                config = (stage / "WOT-UnDec.arg").read_text(encoding="utf-8")
+                observed["config"] = config
+                observed["cwd"] = Path(cwd)
+                held = root / ".root-xml-unpack" / "engine_config.xml"
+                self.assertTrue(held.is_file())
+                self.assertFalse(packed.exists())
+                held.write_text("<root />\n", encoding="utf-8")
+
+            update_repository.run = fake_run
+            try:
+                with mock.patch.object(Path, "resolve", lambda self, strict=False: self.absolute()):
+                    update_repository.run_pjorion(stage, undec)
+            finally:
+                update_repository.run = original_run
+
+            self.assertEqual(stage, observed["cwd"])
+            self.assertIn(
+                'path = "%s"' % (root / ".root-xml-unpack").resolve(),
+                observed["config"],
+            )
+            self.assertIn("decompile_pyc = false", observed["config"])
+            self.assertEqual("<root />\n", packed.read_text(encoding="utf-8"))
+            self.assertFalse((root / ".root-xml-unpack").exists())
 
     def test_unsupported_zeppelin_xml_is_preserved_outside_unpacker_scan(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
@@ -323,7 +491,7 @@ VALUE = 1
                 workspace,
                 state,
                 "processed",
-                {"counts": {}, "bytecode": {}, "swf": {}},
+                {"counts": {}, "bytecode": {}, "mo": {}, "swf": {}},
                 {},
                 {},
                 set(),
