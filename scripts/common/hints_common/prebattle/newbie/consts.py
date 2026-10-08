@@ -1,0 +1,4 @@
+from __future__ import absolute_import
+from constants import ARENA_BONUS_TYPE
+BATTLES_TYPES = {ARENA_BONUS_TYPE.REGULAR, ARENA_BONUS_TYPE.RANDOM_NP2, ARENA_BONUS_TYPE.WINBACK}
+HINT_TYPE_PREFIX = 'newbie_hint_'

@@ -1,0 +1,1 @@
+(()=>{"use strict";var r={7363:r=>{r.exports=React}},t={};function o(s){var e=t[s];if(void 0!==e)return e.exports;var i=t[s]={exports:{}};return r[s](i,i.exports,o),i.exports}(()=>{o(7363);R.strings.veh_post_progression.tooltips.notEnoughCredits})()})();

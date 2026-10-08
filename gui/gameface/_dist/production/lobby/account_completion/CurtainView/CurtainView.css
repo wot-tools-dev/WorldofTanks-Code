@@ -1,0 +1,247 @@
+.SceneWrapper_base_bfde2 {
+    width: 100%;
+    height: 100vh;
+    cursor: grab;
+}
+
+.SceneWrapper_grab_df8f9 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.SceneWrapper_grab__down_dea5d {
+        cursor: all-scroll;
+    }
+
+.Spinner_base_c591d {
+    width: 260rem;
+    height: 260rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.Spinner_caption_a27b6 {
+    color: #8C8C7E;
+    font-size: 12rem;
+    text-align: center;
+    white-space: pre;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    transform: translateY(48rem);
+}
+
+.Spinner_gear_bc6f3 {
+    width: 260rem;
+    height: 260rem;
+    margin-top: 2rem;
+    background: url('R.images.gui.maps.icons.components.spinner.spinner') 0 0;
+    background-size: 260rem 520rem;
+    position: absolute;
+    top: -4rem;
+    left: 0;
+    animation: Spinner_spin_a092a .28s linear infinite;
+}
+
+.Spinner_logo_a5cfa {
+    width: 260rem;
+    height: 260rem;
+    background: url('R.images.gui.maps.icons.components.spinner.spinner') 0 -260rem no-repeat;
+    background-size: 260rem 520rem;
+    position: absolute;
+    top: -4rem;
+    left: 0;
+}
+
+@keyframes Spinner_spin_a092a {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(20deg);
+    }
+}
+
+.SubView_base_aaf70 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+@keyframes SubViewContainer_showIn_bbed6 {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes SubViewContainer_showOut_a7d33 {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes SubViewContainer_fadeIn_c0fb3 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes SubViewContainer_fadeOut_bab80 {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes SubViewContainer_windowIn_cf18f {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.SubViewContainer_base_da4ef {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.SubViewContainer_subView_f5e15 {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation-fill-mode: forwards;
+}
+
+.SubViewContainer_subView__showing_e8f27 {
+        animation-name: SubViewContainer_fadeIn_c0fb3;
+    }
+
+.SubViewContainer_subView__hiding_a6e22 {
+        animation-name: SubViewContainer_fade2Out_a2de1;
+    }
+
+@keyframes CurtainViewApp_showIn_f3700 {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes CurtainViewApp_showOut_dac6a {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes CurtainViewApp_fadeIn_f4a48 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes CurtainViewApp_fadeOut_e2d0a {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes CurtainViewApp_windowIn_dd4e7 {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.CurtainViewApp_base_c26c4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 580rem;
+    height: 100vh;
+    background: url('R.images.gui.maps.icons.account_completion.curtain_bg') no-repeat 50% / cover;
+    position: relative;
+    animation-fill-mode: forwards;
+    cursor: auto;
+}
+
+.CurtainViewApp_base__hidden_dda2c {
+        transform: translateX(-100%);
+    }
+
+.CurtainViewApp_base__opening_df678 {
+        animation-name: CurtainViewApp_showIn_f3700;
+    }
+
+.CurtainViewApp_base__opened_c7257 {
+        transform: translateX(0%);
+    }
+
+.CurtainViewApp_base__hiding_dcb60 {
+        animation-name: CurtainViewApp_showOut_dac6a;
+    }
+
+.CurtainViewApp_base__small_d68ec,
+    .CurtainViewApp_base__extraSmall_fa30c {
+        width: 386rem;
+    }
+
+.CurtainViewApp_waiting_be437 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #0f0d0d;
+    opacity: .8;
+    z-index: 1;
+}
+

@@ -1,0 +1,68 @@
+(def element VehicleBtn(name:str) layout=true
+    (name = "name")
+    (macro VehicleBtnModel)
+    (bind visible "visible")
+    (button 
+        (macro ButtonStylePrimaryGhost "{height : 34px, fontSize : 14px}")
+        (bind visible "visible")
+        (content
+            (style
+                (width = 162)
+                (height = 34)
+            )
+            (image
+                (style
+                    (position = absolute)
+                    (height = 32)
+                    (left = 1px)
+                    (top = 1px)
+                )
+                (bind source "R.images.gui.maps.icons.tradeIn.nations[flag]()" (bind enabled "flag != ''"))
+            )
+            (image
+                (style
+                    (position = absolute)
+                    (right = -38%)
+                    (top = 1px)
+                )
+                (bind source "vehIcon")
+            )
+            (image
+                (style
+                    (position = absolute)
+                    (left = 3%)
+                    (top = 13%)
+                )
+                (bind source "vehType")
+            )
+            (image
+                (style
+                    (position = absolute)
+                    (left = 19%)
+                    (top = 25%)
+                )
+                (bind source "vehLvl")
+            )
+            (tf
+                (style
+                    (position = absolute)
+                    (left = 32%)
+                    (top = 18%)
+                )
+                (bind text "vehName")
+                (class VehicleStatusSimpleTextStyle)
+            )
+        )
+        (block
+            (name = 'hitElement')
+            (style
+                (position = "absolute")
+                (width = 100%)
+                (height = 100%)
+                (backgroundColor=0xFF000000)
+                (alpha = 0)
+            )
+        )
+        (hitArea = "$target.hitElement")
+    )
+)

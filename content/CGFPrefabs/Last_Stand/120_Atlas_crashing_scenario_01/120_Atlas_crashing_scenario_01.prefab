@@ -1,0 +1,151 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": 64.18080139160156,
+					"cgf::TransformComponent/position/y": 68.35440063476563,
+					"cgf::TransformComponent/position/z": 23.039100646972656
+				},
+				"name": "120_Atlas_crashing_complete_01.prefab",
+				"prefab": "content/CGFPrefabs/Last_Stand/120_Atlas_crashing_scenario_01/120_Atlas_crashing_complete_01.prefab",
+				"uuid": "385929ec-9f5e-4393-9306-abdfe6ea2642"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "ev_gp_bot_atlas_explosion",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "ev_gp_bot_atlas_explosion",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "ev_gp_bot_atlas_explosion",
+				"uuid": "c0b352ba-301e-47ec-8a2a-a6d0d71517ef"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 13.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 13.0,
+								"object": "385929ec-9f5e-4393-9306-abdfe6ea2642",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 13.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 13.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 13.0,
+								"object": "c0b352ba-301e-47ec-8a2a-a6d0d71517ef",
+								"parameters": [],
+								"startTime": 0.0010000000474974513
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"path": "last_stand/vscript/plans/last_stand/120_atlas_crashing.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::SequenceNetworkSync": {
+				"timeCorrection": {
+					"__ctype__": "float",
+					"__cvalue__": 0.30000001192092896
+				}
+			}
+		},
+		"name": "120_Atlas_crashing_scenario_01",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,12 @@
+from gui.Scaleform.framework.entities.BaseDAAPIComponent import BaseDAAPIComponent
+
+class RankedBattlesRewardsMeta(BaseDAAPIComponent):
+
+    def onTabChanged(self, viewId):
+        self._printOverrideError('onTabChanged')
+
+    def as_setTabsDataS(self, tabs):
+        return self.flashObject.as_setTabsData(tabs) if self._isDAAPIInited() else None
+
+    def as_setCountersS(self, countersData):
+        return self.flashObject.as_setCounters(countersData) if self._isDAAPIInited() else None

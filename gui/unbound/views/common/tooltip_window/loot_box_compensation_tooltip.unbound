@@ -1,0 +1,239 @@
+(def macro LootBoxCompensationTooltipBase()
+    (macro TooltipDefaultConstraints)
+    (macro LootBoxCompensationTooltipTypes)
+    
+    (scope
+        (const WIDTH:number = 340)
+    )
+    (style
+        (width = "WIDTH")
+        (paddingLeft = 3px)
+    )
+
+    (macro TooltipTextBlock "R.strings.tooltips.awardItem[bonusName].header()" HighTitleTextStyle 1px 340px)
+    (macro TooltipTextBlock "R.strings.lootboxes.compensationTooltip[tooltipType].header()" MainTextStyle 5px 340px 15px)
+    (element TooltipSplitter
+        (name = 'topSplitter')
+        (style
+            (width = "WIDTH")
+        )
+    )
+
+    (hblock
+        (name = 'centerBlock')
+        (style
+            (width = "WIDTH")
+            (height = 165px)
+            (align = "center|middle")
+            (gap = 30px)
+        )
+
+        (image
+            (name = 'bgImg')
+            (style
+                (width = 100%)
+                (height = 100%)
+                (position = "absolute")
+                (vcenter = 0px)
+                (hcenter = 0px)
+            )
+            (source = "R.images.gui.maps.icons.library.white_bg()")
+        )
+
+        (block
+            (name = 'leftBlock')
+            (style
+                (align = "center|middle")
+                (height = 165px)
+            )
+
+            (tf
+                (style
+                    (position = "absolute")
+                    (top = 15px)
+                    (hcenter = 0px)
+                )
+                (class MainTextStyle)
+                (bind text "TextFormat(R.strings.lootboxes.compensationTooltip.before.header(), {count:countBefore})")
+            )
+
+            (block
+                (name = 'iconLabelBlock')
+                (style
+                    (position = "absolute")
+                    (hcenter = 0px)
+                    (top = 45px)
+                    (align = "center")
+                )
+
+                (view_holder 'iconBeforeBlock'
+                )
+                (view_holder 'leftLabel'
+                )
+            )
+        )
+
+        (image
+            (source = "R.images.gui.maps.icons.library.changeArrow()")
+        )
+
+        (block
+            (name = 'rightBlock')
+            (style
+                (align = "center|middle")
+                (height = 165px)
+            )
+
+            (tf
+                (style
+                    (position = "absolute")
+                    (top = 15px)
+                    (hcenter = 0px)
+                )
+                (class MainTextStyle)
+                (bind text "R.strings.lootboxes.compensationTooltip.after.header()")
+            )
+
+            (block
+                (name = 'iconLabelBlock')
+                (style
+                    (position = "absolute")
+                    (hcenter = 0px)
+                    (top = 45px)
+                    (align = "center")
+                )
+                (image
+                    (bind source "iconAfter")
+                )
+
+                (tf
+                    (bind htmlText "labelAfter")
+                )
+            )
+        )
+    )
+
+    (view_holder 'footer'
+    )
+)
+
+(def layout LootBoxCompensationTooltipContent() entrance=true
+    (macro LootBoxCompensationTooltipModel)
+    (macro LootBoxCompensationTooltipBase)
+
+    (style
+        (marginBottom = -14px)
+    )
+
+    (view_holder_content 'iconBeforeBlock'
+        (macro CompensationTooltipIconBeforeMacro)
+    )
+
+    (view_holder_content 'leftLabel'
+        (tf
+            (bind htmlText "labelBefore")
+        )
+    )
+)
+
+(def layout CrewSkinsCompensationTooltipContent() entrance=true
+    (macro LootBoxCompensationTooltipModel)
+    (macro LootBoxCompensationTooltipBase)
+
+    (style
+        (marginBottom = -14px)
+    )
+
+    (view_holder_content 'iconBeforeBlock'
+        (block
+            (style
+                (paddingTop = 3px)
+                (paddingBottom = 11px)
+            )
+            (image
+                (style
+                    (width = 87px)
+                    (height = 65px)
+                )
+                (bind source "iconBefore")
+            )
+        )
+    )
+
+    (view_holder_content 'leftLabel'
+        (tf
+            (class StatsTextStyle)
+            (style
+                (textAlign = "center")
+            )
+            (bind text "labelBefore")
+        )
+    )
+)
+
+(def layout LootBoxVehicleCompensationTooltipContent() entrance=true
+    (macro LootBoxVehicleCompensationTooltipModel)
+    (macro LootBoxCompensationTooltipBase)
+
+    (view_holder_content 'iconBeforeBlock'
+        (macro CompensationTooltipIconBeforeMacro)
+    )
+
+    (view_holder_content 'leftLabel'
+        (hblock
+            (name = 'vehicleNameBlock')
+            (style
+                (align="middle")
+            )
+            (tf
+                (name = 'tankLevelTF')
+                (class MainTextStyle)
+                (bind text "vehicleLvl")
+            )
+            (image
+                (name = 'vehicleTypeImg')
+               (bind source "vehicleType != '' ? R.images.gui.maps.icons.filters.tanks[vehicleType]() : ''" init=false)
+            )
+            (tf
+                (name = 'tankNameTF')
+                (class MainTextStyle)
+                (bind text "vehicleName")
+            )
+        )
+    )
+
+    (view_holder_content 'footer'
+        (element TooltipSplitter
+            (name = 'bottomSplitter')
+            (style
+                (width = "WIDTH")
+            )
+        )
+
+        (hblock
+            (name = 'bottomBlock')
+            (style
+                (marginTop = 15px)
+                (marginBottom = 10px)
+            )
+            (image
+                (name = 'changeTankImg')
+                (style
+                    (marginRight = 5px)
+                )
+                (source = "R.images.gui.maps.icons.library.changeTank()")
+            )
+            (macro TooltipTextBlock "R.strings.lootboxes.compensationTooltip.vehicle.bottomText()" MainTextStyle 0px 340px)
+        )
+    )
+)
+
+(def macro CompensationTooltipIconBeforeMacro()
+    (image
+        (style
+            (width = 120px)
+            (height = 80px)
+        )
+        (bind source "iconBefore")
+    )
+)

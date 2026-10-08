@@ -1,0 +1,1 @@
+import{G as e}from"./lib.js";const r=e=>e.replace(/\s+/g,"").replace(",","").replace(".",""),s=(s,a)=>{if(void 0===s)return s;switch(a){case e.MULTI:return s.substring(1);case e.CURRENCY:case e.NUMBER:return r(s);default:return s}};export{s as a,r as g};

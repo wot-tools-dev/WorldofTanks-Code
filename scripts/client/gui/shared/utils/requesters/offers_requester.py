@@ -1,0 +1,18 @@
+from __future__ import absolute_import
+import BigWorld
+from gui.shared.utils.requesters.abstract import AbstractSyncDataRequester
+from skeletons.gui.shared.utils.requesters import IOffersRequester
+
+class OffersRequester(AbstractSyncDataRequester, IOffersRequester):
+
+    def getReceivedGifts(self, offerID):
+        return self.__getOffer(offerID).get('gifts', {})
+
+    def isBannerSeen(self, offerID):
+        return self.__getOffer(offerID).get('bannerSeen', False)
+
+    def _requestCache(self, callback=None):
+        BigWorld.player().offers.getCache(lambda resID, value: self._response(resID, value, callback))
+
+    def __getOffer(self, offerID):
+        return self.getCacheValue('offersData', {}).get(offerID, {})

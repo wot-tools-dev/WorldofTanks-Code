@@ -1,0 +1,132 @@
+(def layout FragmentsBalanceContent() entrance=true
+    (macro BlueprintBalanceContentModel)
+    (macro BlueprintScreenTooltips)
+    (style
+        (flow = "Flow.HORIZONTAL")
+        (gap = 6px)
+        (align = "middle|right")
+        (height = 38px)
+        (paddingRight = 8px)
+        (paddingLeft = 25px)
+    )
+
+    (hblock
+        (name = 'bg')
+        (class AbsPositionFullSizeStyle)
+        (image
+            (name = 'left')
+            (source = "R.images.gui.maps.icons.blueprints.fragment.conversion.storage_widget_gradient()")
+        )
+        (block
+            (name = 'fill')
+            (style
+                (width = 100%)
+                (height = 100%)
+
+                (backgroundImage = "R.images.gui.maps.icons.blueprints.fragment.conversion.storage_widget_fill()")
+                (backgroundSize = "repeat")
+            )
+        )
+    )
+
+    (hblock
+        (name = 'intelligenceBlock')
+        (style
+            (gap = 6px)
+            (paddingTop = 1px)
+        )
+
+        (tf
+            (name = 'label')
+            (class MainTextStyle)
+            (text = "R.strings.blueprints.blueprintsBalance.intelligenceBlueprints()")
+        )
+
+        (element FragmentItem name='intelligenceBalance')
+
+        (macro FullSizeHitArea)
+        
+        (controller $ToolTip
+            (delay = 0.4)
+            (args tooltipId="TOOLTIP_BLUEPRINT" fragmentCD=3)
+            (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+            (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+        )
+    )
+
+    (block
+        (name = 'delim')
+        (style
+            (paddingLeft = 4px)
+            (paddingRight = 5px)
+        )
+        (image
+            (source = "R.images.gui.maps.icons.library.dash_straight_small()")
+        )
+    )
+    
+    (hblock
+        (name = 'allianceBlock')
+        (style
+            (gap = 6px)
+            (paddingTop = 1px)
+        )
+
+        (tf
+            (name = 'allianceLabel')
+            (bind htmlText "htmlTextStyle(TextFormat(
+                R.strings.blueprints.blueprintsBalance.allianceLabel(), 
+                {
+                    allianceIcon: R.images.gui.maps.icons.blueprints.fragment.conversion.gray[allianceName].tag(13, 16, -4),
+                    allianceName: R.strings.blueprints.blueprintsBalance.alliance[allianceName]()
+                }
+                ),
+                'MainTextStyle',
+                leading = -1px
+            )")
+        )
+    
+        (group name='currency'
+            (renderer = 'FragmentItem')
+            (container
+                (style
+                    (flow = "Flow.HORIZONTAL")
+                    (gap = 12px)
+                )
+            )
+        )
+        
+        (macro FullSizeHitArea)
+
+        (controller $ToolTip
+            (delay = 0.4)
+            (args tooltipId='BlueprintsAlliancesTooltipView')
+            (content = "R.views.lobby.blueprints.tooltips.BlueprintsAlliancesTooltipView.resId")
+        )
+    )
+)
+
+(def layout FragmentItem()
+    (macro FragmentItemModel)
+    (style
+        (gap = 3)
+        (flow = "Flow.HORIZONTAL")
+        (align = "middle")
+    )
+    
+    (image
+        (name = 'icon')
+        (bind source "icon" init=false)
+    )
+
+    (tf
+        (name = 'value')
+        (class MiddleTitleTextStyle)
+        (style
+            (marginBottom = 1px)
+        )
+        (bind text "value == '' ? '---' : value")
+    )
+
+    (macro NoTabAndMouse)
+)

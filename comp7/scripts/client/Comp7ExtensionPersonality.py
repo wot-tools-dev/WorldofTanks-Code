@@ -1,0 +1,371 @@
+from __future__ import absolute_import
+from future.utils import viewitems
+from comp7.gui import comp7_constants
+from comp7_core.gui import initCoreGuiTypes
+from comp7.gui.Scaleform import registerComp7Scaleform
+from comp7.gui.comp7_constants import PREBATTLE_ACTION_NAME, COMP7_ENTRY_POINT_ALIAS
+from comp7.gui.impl.battle import registerComp7Battle
+from comp7.gui.impl.lobby import registerComp7Lobby
+from comp7.gui.prb_control import registerComp7OthersPrbParams
+from comp7_common import comp7_constants as comp7_common_constants
+from comp7_common import injectConsts, injectSquadConsts
+from comp7_common.comp7_battle_mode import Comp7BattleMode
+from gui.Scaleform.daapi.settings.views import VIEW_ALIAS
+from gui.game_control.wotlda.constants import SupportedWotldaLoadoutType
+from gui.override_scaleform_views_manager import g_overrideScaleFormViewsConfig
+from gui.prb_control.prb_utils import initGuiTypes, initRequestType
+_LOBBY_EXT_PACKAGES = ['comp7.gui.Scaleform.daapi.view.lobby.profile',
+ 'comp7.gui.Scaleform.daapi.view.lobby.missions.regular',
+ 'comp7.gui.impl.lobby.hangar',
+ 'comp7.gui.impl.lobby.battle_results']
+_BATTLE_EXT_PACKAGES = ['comp7.gui.Scaleform.daapi.view.battle.shared']
+
+class ClientComp7BattleMode(Comp7BattleMode):
+    _CLIENT_BATTLE_PAGE = VIEW_ALIAS.COMP7_BATTLE_PAGE
+    _CLIENT_PRB_ACTION_NAME = PREBATTLE_ACTION_NAME.COMP7
+    _CLIENT_PRB_ACTION_NAME_SQUAD = PREBATTLE_ACTION_NAME.COMP7_SQUAD
+    _CLIENT_REPLAY_MODE_TAG = 'Onslaught'
+    _CLIENT_GAME_SEASON_TYPE = comp7_common_constants.GameSeasonType.COMP7
+    _CLIENT_BANNER_ENTRY_POINT_ALIAS = COMP7_ENTRY_POINT_ALIAS
+
+    @property
+    def _client_prbEntityClass(self):
+        from comp7.gui.prb_control.entities.pre_queue.entity import Comp7Entity
+        return Comp7Entity
+
+    @property
+    def _client_canSelectPrbEntity(self):
+
+        def canSelectComp7PrbEntity():
+            return True
+
+        return canSelectComp7PrbEntity
+
+    @property
+    def _client_prbEntryPointClass(self):
+        from comp7.gui.prb_control.entities.pre_queue.entity import Comp7EntryPoint
+        return Comp7EntryPoint
+
+    @property
+    def _client_providerBattleQueue(self):
+        from comp7.gui.Scaleform.daapi.view.lobby.battle_queue import Comp7QueueProvider
+        return Comp7QueueProvider
+
+    @property
+    def _client_selectorColumn(self):
+        from gui.impl.gen.view_models.views.lobby.mode_selector.mode_selector_columns import ModeSelectorColumns
+        return (ModeSelectorColumns.COLUMN_2, 10)
+
+    @property
+    def _client_selectorItemsCreator(self):
+        from comp7.gui.Scaleform.daapi.view.lobby.header.battle_selector_items import addComp7BattleType
+        return addComp7BattleType
+
+    @property
+    def _client_modeSelectorItemsClass(self):
+        from comp7.gui.impl.lobby.mode_selector.items.comp7_mode_selector_item import Comp7ModeSelectorItem
+        return Comp7ModeSelectorItem
+
+    @property
+    def _client_bannerEntryPointValidatorMethod(self):
+        from comp7.gui.impl.lobby.comp7_event_banner import Comp7EventBanner
+        return Comp7EventBanner.isEntryPointAvailable
+
+    @property
+    def _client_hangarEventBannerType(self):
+        from comp7.gui.impl.lobby.comp7_event_banner import Comp7EventBanner
+        return Comp7EventBanner
+
+    @property
+    def _client_prbSquadEntityClass(self):
+        from comp7.gui.prb_control.entities.squad.entity import Comp7SquadEntity
+        return Comp7SquadEntity
+
+    @property
+    def _client_prbSquadEntryPointClass(self):
+        from comp7.gui.prb_control.entities.squad.entity import Comp7SquadEntryPoint
+        return Comp7SquadEntryPoint
+
+    @property
+    def _client_selectorSquadItemsCreator(self):
+        from comp7.gui.Scaleform.daapi.view.lobby.header.battle_selector_items import addComp7SquadType
+        return addComp7SquadType
+
+    @property
+    def _client_squadFinderClass(self):
+        from comp7.gui.battle_control.arena_info.squad_finder import Comp7TeamScopeNumberingFinder
+        return Comp7TeamScopeNumberingFinder
+
+    @property
+    def _client_arenaDescrClass(self):
+        from comp7.gui.battle_control.arena_info.arena_descrs import Comp7BattlesDescription
+        return Comp7BattlesDescription
+
+    @property
+    def _client_platoonLayouts(self):
+        from gui.impl.gen import R
+        from gui.impl.lobby.platoon.platoon_config import EPlatoonLayout, MembersWindow, PlatoonLayout
+        from gui.impl.lobby.platoon.view.platoon_selection_view import SelectionWindow
+        return [(EPlatoonLayout.MEMBER, PlatoonLayout(R.views.comp7.lobby.MembersWindow(), MembersWindow)), (EPlatoonLayout.WELCOME, PlatoonLayout(R.views.comp7.lobby.PlatoonDropdown(), SelectionWindow))]
+
+    @property
+    def _client_platoonViewClass(self):
+        from comp7.gui.impl.lobby.platoon.view.platoon_members_view import Comp7MembersView
+        return Comp7MembersView
+
+    @property
+    def _client_unitMembersOrderKey(self):
+        from gui.game_control.platoon_controller import _unitMembersDisplayOrder
+        return _unitMembersDisplayOrder
+
+    @property
+    def _client_platoonWelcomeViewClass(self):
+        from comp7.gui.impl.lobby.platoon.view.comp7_platoon_welcome_view import Comp7WelcomeView
+        return Comp7WelcomeView
+
+    @property
+    def _client_notificationActionHandlers(self):
+        from comp7.notification.actions_handlers import OpenComp7ShopHandler, OpenBondEquipmentSelection
+        return (OpenComp7ShopHandler, OpenBondEquipmentSelection)
+
+    @property
+    def _client_tokenQuestsSubFormatters(self):
+        from comp7.messenger.formatters.token_quest_subformatters import Comp7RewardsFormatter
+        return (Comp7RewardsFormatter(),)
+
+    @property
+    def _client_gameControllers(self):
+        from skeletons.gui.game_control import IComp7Controller
+        from comp7.skeletons.gui.game_control import IComp7ShopController, IComp7WeeklyQuestsController
+        from comp7.gui.game_control.comp7_controller import Comp7Controller
+        from comp7.gui.game_control.comp7_shop_controller import Comp7ShopController
+        from comp7.gui.game_control.comp7_weekly_quests_controller import Comp7WeeklyQuestsController
+        return ((IComp7Controller, Comp7Controller, True), (IComp7ShopController, Comp7ShopController, False), (IComp7WeeklyQuestsController, Comp7WeeklyQuestsController, False))
+
+    @property
+    def _client_battleResultStatsCtrlClass(self):
+        from comp7.gui.battle_results.composer import Comp7StatsComposer
+        return Comp7StatsComposer
+
+    @property
+    def _client_battleResultsEntryState(self):
+        from comp7.gui.impl.lobby.battle_results.states import Comp7PostBattleResultsEntryState
+        return Comp7PostBattleResultsEntryState
+
+    @property
+    def _client_battleResultsReusables(self):
+        from gui.battle_results.reusable.extension_utils import ReusableInfoFactory
+        from comp7_core.gui.battle_results.reusable.shared import Comp7CoreVehicleDetailedInfo, Comp7CoreVehicleSummarizeInfo
+        from comp7.gui.battle_results.reusable.common import Comp7CommonInfo
+        return {ReusableInfoFactory.Keys.VEHICLE_DETAILED: Comp7CoreVehicleDetailedInfo,
+         ReusableInfoFactory.Keys.VEHICLE_SUMMARIZED: Comp7CoreVehicleSummarizeInfo,
+         ReusableInfoFactory.Keys.COMMON: Comp7CommonInfo}
+
+    @property
+    def _client_battleControllersRepository(self):
+        from comp7.gui.battle_control.controllers.repositories import Comp7ControllerRepository
+        return Comp7ControllerRepository
+
+    @property
+    def _client_ammunitionPanelViews(self):
+        from comp7.gui.impl.lobby.tank_setup.ammunition_panel import Comp7AmmunitionPanelView
+        return (Comp7AmmunitionPanelView,)
+
+    @property
+    def _client_messengerServerFormatters(self):
+        from chat_shared import SYS_MESSAGE_TYPE
+        from comp7.messenger.formatters.service_channel import Comp7BattleResultsFormatter
+        return {SYS_MESSAGE_TYPE.comp7BattleResults.index(): Comp7BattleResultsFormatter()}
+
+    @property
+    def _client_LobbyContextMenuOptions(self):
+        from comp7.gui.Scaleform.daapi.view.lobby.user_cm_handlers import createComp7Squad, addComp7SquadInfo
+        from comp7.gui.Scaleform.daapi.view.lobby.lobby_constants import USER
+        return ((USER.CREATE_COMP7_SQUAD, addComp7SquadInfo, createComp7Squad),)
+
+    @property
+    def _client_hangarDynamicGuiProvider(self):
+        from comp7.gui.hangar_presets.comp7_dynamic_gui_provider import Comp7HangarDynamicGuiProvider
+        return Comp7HangarDynamicGuiProvider
+
+    @property
+    def _client_DynamicObjectCacheClass(self):
+        from comp7_core.comp7_dyn_objects_cache import Comp7DynObjects
+        return Comp7DynObjects
+
+    @property
+    def _client_seasonControllerHandler(self):
+        from comp7.gui.game_control.comp7_controller import Comp7Controller
+        return Comp7Controller
+
+    @property
+    def _client_battleRequiredLibraries(self):
+        return ['comp7|comp7_battle.swf', 'comp7_core|minimapEntriesLibrary.swf']
+
+    @property
+    def _client_lobbyRequiredLibraries(self):
+        return ['comp7|comp7_lobby.swf']
+
+    @property
+    def _client_bonusTokens(self):
+        from comp7.gui.server_events.bonuses import isComp7WeeklyQuestToken, Comp7TokenWeeklyRewardBonus
+        return [(isComp7WeeklyQuestToken, Comp7TokenWeeklyRewardBonus)]
+
+    @property
+    def _client_viewsForMonitoring(self):
+        from comp7.gui.Scaleform.genConsts.COMP7_HANGAR_ALIASES import COMP7_HANGAR_ALIASES
+        return [COMP7_HANGAR_ALIASES.COMP7_LOBBY_HANGAR]
+
+    @property
+    def _client_dynamicViewsForMonitoring(self):
+        from gui.impl.gen import R
+        return [R.views.comp7.mono.lobby.tournaments.ols_view(), R.views.comp7.mono.lobby.tournaments.wci_view()]
+
+    @property
+    def _client_prebattleCtrlMode(self):
+        from AvatarInputHandler import _CTRL_MODE
+        return (_CTRL_MODE.VEHICLES_SELECTION, _CTRL_MODE.POSTMORTEM)
+
+    def registerAdditionalScaleformRequiredLibraries(self):
+        from comp7_common.comp7_constants import ARENA_GUI_TYPE
+        from gui.Scaleform.required_libraries_config import addBattleRequiredLibraries
+        for guiType in (ARENA_GUI_TYPE.TOURNAMENT_COMP7, ARENA_GUI_TYPE.TRAINING_COMP7):
+            addBattleRequiredLibraries(self._client_battleRequiredLibraries, guiType, self._personality)
+
+    def registerAdditionalBattleResultsCtrl(self):
+        from constants import ARENA_BONUS_TYPE
+        from gui.shared.system_factory import registerBattleResultStatsCtrl
+        from comp7.gui.battle_results.composer import TournamentComp7StatsComposer, TrainingComp7StatsComposer
+        registerBattleResultStatsCtrl(ARENA_BONUS_TYPE.TOURNAMENT_COMP7, TournamentComp7StatsComposer)
+        registerBattleResultStatsCtrl(ARENA_BONUS_TYPE.TRAINING_COMP7, TrainingComp7StatsComposer)
+
+    def registerAdditionalBattleResultsEntryState(self):
+        from constants import ARENA_BONUS_TYPE
+        from gui.shared.system_factory import registerBattleResultsEntryState
+        registerBattleResultsEntryState(ARENA_BONUS_TYPE.TOURNAMENT_COMP7, self._client_battleResultsEntryState)
+        registerBattleResultsEntryState(ARENA_BONUS_TYPE.TRAINING_COMP7, self._client_battleResultsEntryState)
+
+    def registerAdditionalBattleRepository(self):
+        from comp7_common.comp7_constants import ARENA_GUI_TYPE
+        from gui.shared.system_factory import registerBattleControllerRepo
+        for guiType in (ARENA_GUI_TYPE.TOURNAMENT_COMP7, ARENA_GUI_TYPE.TRAINING_COMP7):
+            registerBattleControllerRepo(guiType, self._client_battleControllersRepository)
+
+    def registerAdditionalBattleResultReusabled(self):
+        from constants import ARENA_BONUS_TYPE
+        from gui.battle_results.reusable import ReusableInfoFactory
+        for bonusType in (ARENA_BONUS_TYPE.TOURNAMENT_COMP7, ARENA_BONUS_TYPE.TRAINING_COMP7):
+            for key, infoCls in viewitems(self._client_battleResultsReusables):
+                ReusableInfoFactory.addForBonusType(bonusType, key, infoCls)
+
+    def registerAdditionalDynamicCache(self):
+        from comp7_common.comp7_constants import ARENA_GUI_TYPE
+        from gui.shared.system_factory import registerDynObjCache
+        for guiType in (ARENA_GUI_TYPE.TOURNAMENT_COMP7, ARENA_GUI_TYPE.TRAINING_COMP7):
+            registerDynObjCache(guiType, self._client_DynamicObjectCacheClass)
+
+    def registerAdditionalGuiType(self):
+        from gui.prb_control import prb_utils
+        from comp7_common.comp7_constants import ARENA_GUI_TYPE
+        from gui.Scaleform.daapi.settings.views import addViewBattlePageAliasByArenaGUIType
+        for guiType in (ARENA_GUI_TYPE.TOURNAMENT_COMP7, ARENA_GUI_TYPE.TRAINING_COMP7):
+            prb_utils.addArenaDescrs(guiType, self._client_arenaDescrClass, self._personality)
+            addViewBattlePageAliasByArenaGUIType(guiType, self._CLIENT_BATTLE_PAGE, self._personality)
+
+    def registerWCITournamentEntryPointValidator(self):
+        from gui.prb_control import prb_utils
+        from comp7.gui.Scaleform.genConsts.COMP7_HANGAR_ALIASES import COMP7_HANGAR_ALIASES
+        from comp7.gui.impl.lobby.user_missions.hangar_widget.event_banners.comp7_wci_entry_point import Comp7WCIEntryPoint
+        prb_utils.addBannerEntryPointValidatorMethod(COMP7_HANGAR_ALIASES.COMP7_WCI_ENTRY_POINT, Comp7WCIEntryPoint.isTournamentEntryPointAvailable, self._personality)
+
+    def registerOLSTournamentEntryPointValidator(self):
+        from gui.prb_control import prb_utils
+        from comp7.gui.Scaleform.genConsts.COMP7_HANGAR_ALIASES import COMP7_HANGAR_ALIASES
+        from comp7.gui.impl.lobby.user_missions.hangar_widget.event_banners.comp7_ols_entry_point import Comp7OLSEntryPoint
+        prb_utils.addBannerEntryPointValidatorMethod(COMP7_HANGAR_ALIASES.COMP7_OLS_ENTRY_POINT, Comp7OLSEntryPoint.isTournamentEntryPointAvailable, self._personality)
+
+    def registerTrainingRoomHandler(self):
+        from comp7_common.comp7_constants import ARENA_GUI_TYPE
+        from comp7.gui.training_room_external_handlers import Comp7TrainingRoomHandler
+        from gui.shared.system_factory import registerTrainingRoomExternalHandler
+        for guiType in (ARENA_GUI_TYPE.COMP7, ARENA_GUI_TYPE.TRAINING_COMP7):
+            registerTrainingRoomExternalHandler(guiType, Comp7TrainingRoomHandler)
+
+    def registerAdditionalPrebattleCtrlMode(self):
+        from constants import ARENA_BONUS_TYPE
+        from gui.shared.system_factory import registerPrebattleCtrlMode
+        for bonusType in (ARENA_BONUS_TYPE.TOURNAMENT_COMP7, ARENA_BONUS_TYPE.TRAINING_COMP7):
+            registerPrebattleCtrlMode(bonusType, self._client_prebattleCtrlMode)
+
+
+def preInit():
+    injectConsts(__name__)
+    injectSquadConsts(__name__)
+    initCoreGuiTypes(__name__)
+    initGuiTypes(comp7_constants, __name__)
+    initRequestType(comp7_constants, __name__)
+    battleMode = ClientComp7BattleMode(__name__)
+    battleMode.registerCommon()
+    battleMode.registerClient()
+    battleMode.registerAdditionalGuiType()
+    battleMode.registerClientSelector()
+    battleMode.registerClientHangarPresets()
+    battleMode.registerBannerEntryPointValidatorMethod()
+    battleMode.registerWCITournamentEntryPointValidator()
+    battleMode.registerOLSTournamentEntryPointValidator()
+    battleMode.registerHangarEventBanner()
+    battleMode.registerProviderBattleQueue()
+    battleMode.registerClientBonusTokens()
+    battleMode.registerClientViewsForMonitoring()
+    battleMode.registerClientDynamicViewsForMonitoring()
+    battleMode.registerSquadTypes()
+    battleMode.registerClientPlatoon()
+    battleMode.registerClientSquadSelector()
+    battleMode.registerClientReplay()
+    battleMode.registerSystemMessagesTypes()
+    battleMode.registerBattleResultSysMsgType()
+    battleMode.registerAdditionalBattleResultSysMsgType()
+    battleMode.registerBattleResultsConfig()
+    battleMode.registerBattleResultsEntryState()
+    battleMode.registerAdditionalBattleResultsEntryState()
+    battleMode.registerAdditionalBattleResultsConfig()
+    battleMode.registerClientBattleResultsCtrl()
+    battleMode.registerAdditionalBattleResultsCtrl()
+    battleMode.registerClientBattleResultReusabled()
+    battleMode.registerAdditionalBattleResultReusabled()
+    battleMode.registerGameControllers()
+    battleMode.registerScaleformRequiredLibraries()
+    battleMode.registerAdditionalScaleformRequiredLibraries()
+    battleMode.registerBattleControllersRepository()
+    battleMode.registerAdditionalBattleRepository()
+    battleMode.registerDynamicObjectCache()
+    battleMode.registerAdditionalDynamicCache()
+    battleMode.registerClientNotificationHandlers()
+    battleMode.registerClientTokenQuestsSubFormatters()
+    battleMode.registerMessengerServerFormatters()
+    battleMode.registerAmmunitionPanelViews()
+    battleMode.registerLobbyContextMenuOptions()
+    battleMode.registerClientSeasonType(comp7_common_constants)
+    battleMode.registerTrainingRoomHandler()
+    battleMode.registerPrbTypeForWotPlusAssistant(SupportedWotldaLoadoutType.ONSLAUGHT)
+    battleMode.registerPrebattleCtrlMode()
+    battleMode.registerAdditionalPrebattleCtrlMode()
+    registerComp7Scaleform()
+    registerComp7OthersPrbParams()
+    registerComp7Lobby()
+    registerComp7Battle()
+
+
+def init():
+    from comp7_common.comp7_constants import ARENA_GUI_TYPE
+    g_overrideScaleFormViewsConfig.initExtensionLobbyPackages(__name__, _LOBBY_EXT_PACKAGES)
+    for guiType in (ARENA_GUI_TYPE.COMP7, ARENA_GUI_TYPE.TOURNAMENT_COMP7, ARENA_GUI_TYPE.TRAINING_COMP7):
+        g_overrideScaleFormViewsConfig.initExtensionBattlePackages(__name__, _BATTLE_EXT_PACKAGES, guiType)
+
+
+def start():
+    pass
+
+
+def fini():
+    pass

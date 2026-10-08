@@ -1,0 +1,401 @@
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Tournament_base_d36cc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 438rem;
+}
+
+    .Tournament_base__extraSmall_a86d0 {
+        width: 309rem;
+        margin: 0 73rem;
+    }
+
+    .Tournament_base__small_e6990 {
+        width: 336rem;
+        margin: 0 117rem;
+    }
+
+    .Tournament_base__medium_f4f06 {
+        width: 396rem;
+        margin: 0 117rem;
+    }
+
+    .Tournament_base__large_ae49f {
+        width: 466rem;
+        margin: 0 132rem;
+    }
+
+    .Tournament_base__extraLarge_cd248 {
+        width: 476rem;
+        margin: 0 138rem;
+    }
+
+.Tournament_icon_dc435 {
+    width: 136rem;
+    height: 136rem;
+    background: no-repeat 50% / contain;
+}
+
+.Tournament_title_a1f6e {
+    width: 100%;
+    height: 70rem;
+    margin: -30rem 0 1rem;
+    position: relative;
+}
+
+.Tournament_title__extraSmall_efe24,
+    .Tournament_title__small_fd6f9 {
+        color: #E9E2BF;
+        font-size: 22rem;
+        font-weight: 700;
+        line-height: 1.2;
+        height: 88rem;
+    }
+
+.Tournament_title__medium_b9c96 {
+        color: #E9E2BF;
+        font-size: 24rem;
+        font-weight: 700;
+        line-height: 1.2;
+        height: 88rem;
+    }
+
+.Tournament_title__large_cde08,
+    .Tournament_title__extraLarge_d3cab {
+        color: #E9E2BF;
+        font-size: 28rem;
+        font-weight: 700;
+        line-height: 1.1;
+        height: 98rem;
+    }
+
+.Tournament_titleText_e7a00 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.Tournament_description_b0d7c {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-top: 21rem;
+    text-align: center;
+}
+
+.BattleSessionViewApp_base_a74a0 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.mode_selector.battleSessionWindow.background') no-repeat 50% / 1920rem 1080rem;
+}
+
+    .BattleSessionViewApp_base__extraLargeHeight_f6e09,
+    .BattleSessionViewApp_base__extraLargeWidth_a0627,
+    .BattleSessionViewApp_base__largeHeight_fc317,
+    .BattleSessionViewApp_base__largeWidth_b0fea {
+        background-size: cover;
+    }
+
+.BattleSessionViewApp_title_a73bd {
+    position: absolute;
+    top: auto;
+    bottom: auto;
+}
+
+.BattleSessionViewApp_title__extraSmall_ded5d,
+    .BattleSessionViewApp_title__small_c58bc {
+        color: #F2F2F7;
+        font-size: 36rem;
+        font-weight: 700;
+        line-height: 1.1;
+        top: 63rem;
+    }
+
+.BattleSessionViewApp_title__medium_b5056 {
+        color: #F2F2F7;
+        font-size: 56rem;
+        font-weight: 700;
+        line-height: 1.1;
+        top: 54rem;
+    }
+
+.BattleSessionViewApp_title__large_db04a {
+        color: #F2F2F7;
+        font-size: 56rem;
+        font-weight: 700;
+        line-height: 1.1;
+        top: 76rem;
+    }
+
+.BattleSessionViewApp_title__extraLarge_a02a7 {
+        color: #F2F2F7;
+        font-size: 73rem;
+        font-weight: 700;
+        line-height: 1.1;
+        top: 60rem;
+    }
+
+.BattleSessionViewApp_tournaments_aac6e {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    margin-top: 16rem;
+}
+
+.BattleSessionViewApp_button_e8b0d {
+    margin: 0 5rem;
+}
+
+.BattleSessionViewApp_clanButton_f8703 {
+    display: flex;
+    justify-content: center;
+    min-width: 100rem;
+    margin-top: 2rem;
+    font-weight: 400;
+}
+
+.BattleSessionViewApp_enterClanButton_b52dc {
+    font-weight: 400;
+}
+
+.BattleSessionViewApp_buttons_fe370 {
+    display: flex;
+}
+
+.BattleSessionViewApp_webButton_a1af9 {
+    margin: 0 3rem;
+    font-weight: 400;
+    position: relative;
+}
+
+.BattleSessionViewApp_clanIcon_e7111 {
+    width: 20rem;
+    height: 20rem;
+    margin-right: 4rem;
+    background: no-repeat 50% / contain;
+}
+
+.BattleSessionViewApp_gotoWebIcon_bc388 {
+    width: 12rem;
+    height: 12rem;
+    background: url('R.images.gui.maps.icons.library.buyInWeb') no-repeat 50% / contain;
+    position: absolute;
+    top: 3rem;
+    right: -16rem;
+}
+

@@ -1,0 +1,200 @@
+from __future__ import absolute_import
+import functools
+import logging
+import time
+import typing
+from future.utils import iteritems, viewitems, viewvalues
+import BigWorld
+from account_helpers.AccountSettings import QUEST_DELTAS_TOKENS_PROGRESS
+from constants import LOOTBOX_TOKEN_PREFIX
+from gui.shared.utils.requesters.abstract import AbstractSyncDataRequester
+from gui.shared.utils.requesters.common import BaseDelta
+from gui.shared.utils.requesters.quest_deltas_settings import QuestDeltasSettings
+from gui.shared.utils.requesters.token import Token
+from helpers import dependency
+from skeletons.gui.lobby_context import ILobbyContext
+from skeletons.gui.shared.gui_items import IGuiItemsFactory
+from skeletons.gui.shared.utils.requesters import ITokensRequester
+from wg_async import wg_async, await_callback
+if typing.TYPE_CHECKING:
+    from typing import Dict, Tuple
+_logger = logging.getLogger(__name__)
+TOTAL_KEY = 'total'
+
+class TokensRequester(AbstractSyncDataRequester, ITokensRequester):
+    itemsFactory = dependency.descriptor(IGuiItemsFactory)
+    lobbyContext = dependency.descriptor(ILobbyContext)
+
+    def __init__(self):
+        self.__lootBoxCache = {}
+        self.__tokensProgressDelta = TokensProgressDelta(functools.partial(QuestDeltasSettings, QUEST_DELTAS_TOKENS_PROGRESS))
+        super(TokensRequester, self).__init__()
+
+    def clear(self):
+        self.__lootBoxCache.clear()
+        super(TokensRequester, self).clear()
+
+    def onDisconnected(self):
+        self.__tokensProgressDelta.clear()
+
+    def getTokens(self):
+        return self.getCacheValue('tokens', {})
+
+    def getToken(self, tokenID):
+        return self.getTokens().get(tokenID)
+
+    def getTokenInfo(self, tokenID):
+        token = self.getToken(tokenID)
+        return token or (0, 0)
+
+    def getTokenCount(self, tokenID):
+        _, count = self.getTokenInfo(tokenID)
+        return count
+
+    def getTokenExpiryTime(self, tokenID):
+        expireTime, _ = self.getTokenInfo(tokenID)
+        return expireTime
+
+    def isTokenAvailable(self, tokenID):
+        curTime = int(time.time())
+        expireTime, count = self.getTokenInfo(tokenID)
+        return count > 0 and expireTime > curTime
+
+    def getLootBoxes(self):
+        return self.__lootBoxCache.copy()
+
+    def getFreeLootBoxes(self):
+        result = {}
+        for boxTokenID, box in viewitems(self.__lootBoxCache):
+            if box.isFree():
+                result[boxTokenID] = box
+
+        return result
+
+    def getLootBoxesCountByType(self):
+        result = {}
+        for box in viewvalues(self.__lootBoxCache):
+            boxType = box.getType()
+            boxCount = box.getInventoryCount()
+            boxCategory = box.getCategory()
+            boxResult = result.setdefault(boxType, {TOTAL_KEY: 0,
+             'categories': {}})
+            boxResult[TOTAL_KEY] += boxCount
+            categories = boxResult['categories']
+            categories[boxCategory] = categories.get(boxCategory, 0) + boxCount
+
+        return result
+
+    def updateAllLootBoxes(self, data):
+        lootBoxTokensList = self.__createLootBoxes(data)
+        self.__clearLootBoxes(lootBoxTokensList, isRemove=True)
+        self.__updateLootBoxes(self.getTokens(), self.getLootBoxRerollHistory())
+
+    def getLootBoxByTokenID(self, tokenID):
+        return self.__lootBoxCache.get(tokenID)
+
+    def getLootBoxByID(self, boxID):
+        return self.__lootBoxCache.get(LOOTBOX_TOKEN_PREFIX + str(boxID))
+
+    def getAttemptsAfterGuaranteedRewards(self, box):
+        boxesHistory = self.getCacheValue('lootBoxes', {}).get('history', {})
+        historyName, guaranteedFrequencyName = box.getHistoryName(), box.getGuaranteedFrequencyName()
+        if historyName not in boxesHistory:
+            return 0
+        else:
+            _, limits, _ = boxesHistory[historyName]
+            return 0 if limits is None or guaranteedFrequencyName not in limits else limits[guaranteedFrequencyName][1]
+
+    def getLootBoxesStats(self):
+        return self.getCacheValue('lootBoxes', {}).get('stats')
+
+    def getLootBoxRerollHistory(self):
+        return self.getCacheValue('lootBoxes', {}).get('rerollHistory', {})
+
+    def getAttemptsAfterRewardsWithBonusProbability(self, box):
+        boxesHistory = self.getCacheValue('lootBoxes').get('history', {})
+        historyName, probabilityBonusLimitName = box.getHistoryName(), box.getProbabilityBonusLimitName()
+        if historyName not in boxesHistory:
+            return 0
+        else:
+            _, limits, _ = boxesHistory[historyName]
+            return 0 if limits is None or probabilityBonusLimitName not in limits else limits[probabilityBonusLimitName][2]
+
+    def getRerollState(self, boxID):
+        rerollHistory = self.getLootBoxRerollHistory()
+        history = rerollHistory.get(boxID)
+        if history is None:
+            return (0, None)
+        else:
+            attempts = len(history)
+            return (attempts, history[attempts - 1].get('rewards', {}))
+
+    def getLastViewedProgress(self, tokenId):
+        return self.__tokensProgressDelta.getPrevValue(tokenId)
+
+    def markTokenProgressAsViewed(self, tokenId):
+        self.__tokensProgressDelta.updatePrevValueToCurrentValue(tokenId)
+
+    def hasTokenCountChanged(self, tokenId):
+        return self.__tokensProgressDelta.hasDiff(tokenId)
+
+    def getTokensByPrefixAndPostfix(self, prefix='', postfix=''):
+        tokens = self.getTokens()
+        return {k:v for k, v in viewitems(tokens) if k.startswith(prefix) and k.endswith(postfix)}
+
+    def _preprocessValidData(self, data):
+        self.__tokensProgressDelta.update(data)
+        return data
+
+    @wg_async
+    def _requestCache(self, callback=None):
+        result = yield await_callback(self.__requestTokensCache)()
+        if 'tokens' in result:
+            if not self.__lootBoxCache:
+                self.__createLootBoxes(self.lobbyContext.getServerSettings().getLootBoxConfig())
+            self.__updateLootBoxes(result['tokens'], result.get('lootBoxes', {}).get('rerollHistory', {}))
+        callback(result)
+
+    def __requestTokensCache(self, callback=None):
+        BigWorld.player().tokens.getCache(lambda resID, value: self._response(resID, value, callback))
+
+    def __createLootBoxes(self, data):
+        lootBoxTokensList = []
+        for lootBoxID, lootBoxData in iteritems(data):
+            lootBoxTokenID = LOOTBOX_TOKEN_PREFIX + str(lootBoxID)
+            lootBoxTokensList.append(lootBoxTokenID)
+            if lootBoxTokenID not in self.__lootBoxCache:
+                item = self.itemsFactory.createLootBox(lootBoxID, lootBoxData, 0)
+                self.__lootBoxCache[lootBoxTokenID] = item
+            self.__lootBoxCache[lootBoxTokenID].update(lootBoxData)
+
+        return lootBoxTokensList
+
+    def __updateLootBoxes(self, tokensCache, rerollHistory):
+        for lootBoxTokenID, (_, count) in tokensCache.items():
+            if lootBoxTokenID in self.__lootBoxCache:
+                item = self.__lootBoxCache[lootBoxTokenID]
+                if item.isRerollable() and item.getID() in rerollHistory:
+                    count -= 1
+                item.updateCount(count)
+
+        self.__clearLootBoxes(tokensCache)
+
+    def __clearLootBoxes(self, data, isRemove=False):
+        for lootBoxID in list(self.__lootBoxCache):
+            if lootBoxID not in data:
+                item = self.__lootBoxCache[lootBoxID]
+                if not isRemove:
+                    item.updateCount(invCount=0)
+                else:
+                    del self.__lootBoxCache[lootBoxID]
+
+
+class TokensProgressDelta(BaseDelta):
+
+    def _getDataIterator(self, data):
+        for tokenId, value in iteritems(data.get('tokens', {})):
+            yield (tokenId, Token(*value).count)
+
+    def _getDefaultValue(self):
+        pass

@@ -1,0 +1,996 @@
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBar_base_c37bf {
+    width: 100%;
+    height: var(--progress-bg-height);
+    position: relative;
+}
+.ProgressBar_base__small_af6d6 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_background_a4e18 {
+    width: 100%;
+    max-width: 8001px;
+    height: 100%;
+    background-image: var(--progress-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ProgressBar_background__small_e2b95 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_lineWrapper_e670c {
+    display: flex;
+    flex: 1;
+}
+
+
+.ProgressBarBlink_base_d7125 {
+    width: var(--progress-glow-width);
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    pointer-events: none;
+}
+
+    .ProgressBarBlink_base__small_b92f8 {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressLineImpose_base_a3558 {
+    max-width: 8001px;
+    height: 100%;
+    background-color: var(--progress-line-base);
+    filter: var(--progress-line-filter);
+    position: relative;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressLineImpose_base__disabled_a9e8e {
+        background-color: var(--progress-line-disabled);
+    }
+.ProgressLineImpose_base__finished_f889e {
+        background-color: var(--progress-line-finished);
+    }
+.ProgressLineImpose_base__withoutBounce_c0ff9 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressLineImpose_pattern_a4023 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: var(--progress-pattern-border-size);
+    bottom: var(--progress-pattern-border-size);
+    left: var(--progress-pattern-border-size);
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_pattern_a4023 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-disabled);
+        left: 0;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-finished);
+    }
+.ProgressLineImpose_gradient_f73c0 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-gradient);
+    mix-blend-mode: var(--progress-pattern-gradient-mixBlendMode);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: 0;
+    bottom: var(--progress-pattern-border-size);
+    left: 0;
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_gradient_f73c0 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_gradient_f73c0 {
+        display: none;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_gradient_f73c0 {
+        background-image: var(--progress-pattern-gradient-finished);
+    }
+.ProgressLineImpose_glow_f237a {
+    width: var(--progress-glow-width);
+    max-width: 8001px;
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.ProgressLineImpose_glow__left_b7ffa {
+        left: var(--progress-pattern-border-size);
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_glow_f237a,
+    .ProgressLineImpose_base__finished_f889e .ProgressLineImpose_glow_f237a {
+        display: none;
+    }
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_glow_f237a {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaGrow_base_f4d46 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressBarDeltaGrow_glow_c912d {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 .ProgressBarDeltaGrow_glow_c912d {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaSimple_base_cfcd3 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.ProgressBarDeltaSimple_delta_dc2b6 {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1), cubic-bezier(.21, .61, .35, 1);
+    transition-property: width, transform;
+}
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.FormatTextWithColorTags_blackReal_ae104 {
+    color: #000000;
+}
+
+.FormatTextWithColorTags_whiteReal_c12a8 {
+    color: #FFFFFF;
+}
+
+.FormatTextWithColorTags_white_c5665 {
+    color: #F2F2F7;
+}
+
+.FormatTextWithColorTags_whiteOrange_fff65 {
+    color: #FEFEEC;
+}
+
+.FormatTextWithColorTags_whiteSpanish_d24b3 {
+    color: #E9E2BF;
+}
+
+.FormatTextWithColorTags_par_ee7d9 {
+    color: #8C8C7E;
+}
+
+.FormatTextWithColorTags_parSecondary_a5b8c {
+    color: #595950;
+}
+
+.FormatTextWithColorTags_parTertiary_a0c09 {
+    color: #37362E;
+}
+
+.FormatTextWithColorTags_red_ad70c {
+    color: #FF2717;
+}
+
+.FormatTextWithColorTags_redDark_afb30 {
+    color: #B70000;
+}
+
+.FormatTextWithColorTags_yellow_e47d1 {
+    color: #FEAB34;
+}
+
+.FormatTextWithColorTags_orange_e08c4 {
+    color: #EE7000;
+}
+
+.FormatTextWithColorTags_cream_f2e96 {
+    color: #FFDD99;
+}
+
+.FormatTextWithColorTags_brown_ed7be {
+    color: #CBAC77;
+}
+
+.FormatTextWithColorTags_greenBright_b0875 {
+    color: #80D43A;
+}
+
+.FormatTextWithColorTags_green_d0263 {
+    color: #7AB300;
+}
+
+.FormatTextWithColorTags_greenDark_f19b8 {
+    color: #497212;
+}
+
+.FormatTextWithColorTags_blueBooster_fd3be {
+    color: #CCFFFF;
+}
+
+.FormatTextWithColorTags_blueTeamkiller_fd915 {
+    color: #09E2FF;
+}
+
+.FormatTextWithColorTags_cred_fdafa {
+    color: #CED9D9;
+}
+
+.FormatTextWithColorTags_gold_ab90e {
+    color: #FFC363;
+}
+
+.FormatTextWithColorTags_bond_e83f5 {
+    color: #C9C9B6;
+}
+
+.FormatTextWithColorTags_prom_aa30c {
+    color: #A29B70;
+}
+
+/* This specific rule is used to fix https://jira.wargaming.net/browse/WOTPRG-9871 */
+
+.FormatTextWithColorTags_parNoWidth_bf7ac {
+    width: 0;
+    color: #8C8C7E;
+}
+
+.Progress_base_fa8c3 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Progress_label_fb0bf {
+    color: #FEFEEC;
+    font-size: 20rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin: 12rem 0 18rem;
+}
+
+.mediaSmall .Progress_label_fb0bf {
+        margin-top: 25rem;
+}
+
+.mediaExtraLarge .Progress_label_fb0bf {
+        margin-top: 33rem;
+}
+
+.Progress_xpIcon_a1bf0 {
+    width: 21rem;
+    height: 20rem;
+    margin: 3rem 0 0 4rem;
+    background: url('R.images.gui.maps.icons.library.XpIconBig') no-repeat center / contain;
+}
+
+.Progress_progressBar_d70ce {
+    width: 100%;
+}
+
+.Progress_warning_e53d3 {
+    display: flex;
+    margin-top: 28rem;
+}
+
+.mediaSmall .Progress_warning_e53d3 {
+        margin-top: 44rem;
+}
+
+.mediaExtraLarge .Progress_warning_e53d3 {
+        margin-top: 46rem;
+}
+
+.Progress_warningIcon_e8be5 {
+    width: 24rem;
+    height: 24rem;
+    margin-right: 6rem;
+    background: url('R.images.gui.maps.icons.library.alertBigIcon') no-repeat center / contain;
+}
+
+.Progress_warningLabel_c2f9b {
+    color: #EE7000;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    max-width: 430rem;
+}
+
+.mediaSmall .Progress_warningLabel_c2f9b {
+        max-width: 546rem;
+        font-size: 16rem;
+}
+
+.mediaExtraLarge .Progress_warningLabel_c2f9b {
+        color: #EE7000;
+        font-size: 20rem;
+        font-weight: 400;
+        line-height: 1.2;
+        max-width: 670rem;
+}
+
+.Info_base_b5e47 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Info_title_a1799 {
+    color: #FEFEEC;
+    font-size: 28rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.mediaSmall .Info_title_a1799 {
+        margin-top: 7rem;
+        font-size: 36rem;
+}
+
+.mediaExtraLarge .Info_title_a1799 {
+        margin-top: 8rem;
+        font-size: 56rem;
+}
+
+.Info_description_eb255 {
+    color: #FFFFFF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    width: 100%;
+    margin: 14rem 0 12rem;
+    opacity: .6;
+}
+
+.mediaSmall .Info_description_eb255 {
+        margin-bottom: 25rem;
+        font-size: 16rem;
+}
+
+.mediaExtraLarge .Info_description_eb255 {
+        color: #FEFEEC;
+        font-size: 20rem;
+        font-weight: 400;
+        line-height: 1.2;
+        margin-top: 16rem;
+}
+
+.Info_tip_b2582 {
+    display: flex;
+    align-items: center;
+}
+
+.Info_icon_ea5f3 {
+    width: 80rem;
+    height: 80rem;
+    background: no-repeat center / cover;
+}
+
+.Info_tipDescr_e6506 {
+    color: #FFFFFF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    max-width: 350rem;
+    margin-left: 15rem;
+    opacity: .6;
+}
+
+.mediaSmall .Info_tipDescr_e6506 {
+        max-width: 400rem;
+        font-size: 16rem;
+}
+
+.mediaExtraLarge .Info_tipDescr_e6506 {
+        color: #FEFEEC;
+        font-size: 20rem;
+        font-weight: 400;
+        line-height: 1.2;
+        max-width: 580rem;
+}
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Reward_base_a2782 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.Reward_box_e86eb {
+    display: flex;
+    width: 400rem;
+    height: 300rem;
+    margin-top: 29rem;
+    position: relative;
+}
+
+.mediaSmall .Reward_box_e86eb {
+        width: 600rem;
+        height: 450rem;
+        margin-top: 0;
+}
+
+.mediaExtraLarge .Reward_box_e86eb {
+        margin-top: 24rem;
+}
+
+.Reward_glow_c02eb {
+    width: 528rem;
+    height: 528rem;
+    background: no-repeat center / contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.mediaSmall .Reward_glow_c02eb {
+        width: 720rem;
+        height: 720rem;
+}
+
+.Reward_glow__static_dbfca {
+        background-image: url('R.images.gui.maps.icons.crew.postProgression.rays');
+    }
+
+.Reward_glow__animated_a315a {
+        background-image: url('swf://gui/flash/animations/glows/rays.swf');
+        mix-blend-mode: screen;
+    }
+
+.mediaLarge .Reward_glow__animated_a315a {
+            width: 1000rem;
+            height: 1000rem;
+}
+
+.Reward_icon_c1c6e {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / cover;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Reward_count_f5b30 {
+    color: #F2F2F7;
+    font-size: 22rem;
+    font-weight: 700;
+    line-height: 1.2;
+    position: absolute;
+    right: 80rem;
+    bottom: 26rem;
+}
+
+.mediaSmall .Reward_count_f5b30 {
+        font-size: 28rem;
+        right: 140rem;
+        bottom: 50rem;
+}
+
+.mediaLarge .Reward_count_f5b30 {
+        right: 150rem;
+        bottom: 48rem;
+}
+
+.Reward_bottomBlock_f2e62 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: -38rem;
+}
+
+.Reward_title_ad4d6 {
+    color: #E9E2BF;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 9rem;
+}
+
+.mediaSmall .Reward_title_ad4d6 {
+        margin-top: -35rem;
+}
+
+.mediaExtraLarge .Reward_title_ad4d6 {
+        margin-top: -19rem;
+        font-size: 22rem;
+}
+
+.Reward_button_e035a {
+    width: 160rem;
+    margin-top: 36rem;
+    border: 1rem solid #FFDD99;
+    box-shadow: inset 0 0 15rem 0 rgba(238, 85, 34, 0.4), 0 0 4rem 0 rgba(255, 127, 0, 0.25);
+}
+
+.mediaSmall .Reward_button_e035a {
+        margin-top: 51rem;
+}
+
+.mediaMedium .Reward_button_e035a {
+        margin-top: 61rem;
+}
+
+.mediaLarge .Reward_button_e035a {
+        margin-top: 70rem;
+}
+
+.CrewPostProgressionApp_base_b92b9 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.windows.background') no-repeat center / cover;
+    position: relative;
+}
+
+.CrewPostProgressionApp_closeButton_db216 {
+    position: absolute;
+    top: 30rem;
+    right: 28rem;
+}
+
+.mediaLarge .CrewPostProgressionApp_closeButton_db216 {
+        right: 38rem;
+}
+
+.CrewPostProgressionApp_content_fabed {
+    display: flex;
+    height: 520rem;
+    margin: 80rem 0 0 -46rem;
+}
+
+.mediaSmall .CrewPostProgressionApp_content_fabed {
+        height: 600rem;
+        margin: 128rem 0 0 -82rem;
+}
+
+.mediaMedium .CrewPostProgressionApp_content_fabed {
+        margin: 110rem 0 0 -170rem;
+}
+
+.mediaLarge .CrewPostProgressionApp_content_fabed {
+        margin: 70rem 0 0 -264rem;
+}
+
+.mediaExtraLarge .CrewPostProgressionApp_content_fabed {
+        margin: 24rem 0 0 -210rem;
+}
+
+.CrewPostProgressionApp_infoBlock_cbc23 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 460rem;
+    margin-left: -9rem;
+    position: relative;
+}
+
+.mediaSmall .CrewPostProgressionApp_infoBlock_cbc23 {
+        width: 576rem;
+        margin-left: -66rem;
+}
+
+.mediaMedium .CrewPostProgressionApp_infoBlock_cbc23 {
+        margin-left: -16rem;
+}
+
+.mediaLarge .CrewPostProgressionApp_infoBlock_cbc23 {
+        margin-left: 25rem;
+}
+
+.mediaExtraLarge .CrewPostProgressionApp_infoBlock_cbc23 {
+        width: 700rem;
+}
+

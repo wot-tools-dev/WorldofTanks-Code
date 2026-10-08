@@ -1,0 +1,1 @@
+var e=(e=>(e.DISABLED="disabled",e.ACTIVE_FINAL="activeFinal",e.ACTIVE_RESETTABLE="activeResettable",e.COMPLETED_FINAL="completedFinal",e.COMPLETED_RESETTABLE="completedResettable",e.ACTIVE_INFINITE_RESETTABLE="activeInfiniteResettable",e.ACTIVE_INFINITE_FINAL="activeInfiniteFinal",e))(e||{});export{e as F};

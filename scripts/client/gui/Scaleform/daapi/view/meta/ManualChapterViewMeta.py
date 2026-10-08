@@ -1,0 +1,27 @@
+from gui.Scaleform.framework.entities.View import View
+
+class ManualChapterViewMeta(View):
+
+    def closeView(self):
+        self._printOverrideError('closeView')
+
+    def pageButtonClicked(self, pageType):
+        self._printOverrideError('pageButtonClicked')
+
+    def buttonHighlighted(self):
+        self._printOverrideError('buttonHighlighted')
+
+    def onPreviewClicked(self, videoUrl):
+        self._printOverrideError('onPreviewClicked')
+
+    def onPageChanged(self, id):
+        self._printOverrideError('onPageChanged')
+
+    def as_setInitDataS(self, data):
+        return self.flashObject.as_setInitData(data) if self._isDAAPIInited() else None
+
+    def as_setPagesS(self, pages):
+        return self.flashObject.as_setPages(pages) if self._isDAAPIInited() else None
+
+    def as_showPageS(self, index):
+        return self.flashObject.as_showPage(index) if self._isDAAPIInited() else None

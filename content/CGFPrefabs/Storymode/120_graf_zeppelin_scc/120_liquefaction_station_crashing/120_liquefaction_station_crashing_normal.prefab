@@ -1,0 +1,126 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_UNI_211_LiquefactionStation/normal/lod0/hd_env_UNI_211_LiquefactionStation_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/hd_env_UNI_211_LiquefactionStation/normal/lod0/hd_env_UNI_211_LiquefactionStation_01.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": -142.4201202392578,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "adaca73a-7abf-4dbf-9867-d3f139641bf4",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "hd_env_UNI_211_LiquefactionStation_01",
+				"uuid": "adaca73a-7abf-4dbf-9867-d3f139641bf4"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "amb_map_127_cistern",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "amb_map_127_cistern",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 4.461309909820557,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "amb_map_127_cistern",
+				"uuid": "c6f6d595-e88b-4e62-984f-494e3db3f318"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 5.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 5.0,
+								"object": "adaca73a-7abf-4dbf-9867-d3f139641bf4",
+								"parameters": [],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "120_liquefaction_station_crashing_normal",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

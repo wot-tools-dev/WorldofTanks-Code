@@ -1,0 +1,266 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Buildings/hd_bld_EU_086_BWalls/normal/lod0/hd_bld_EU_086_BWalls_03.model",
+											"moduleName": "default"
+										}
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Buildings/hd_bld_EU_086_BWalls/normal/lod0/hd_bld_EU_086_BWalls_03.model"
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"cgf::TransformComponent": {},
+							"script::ShootingObstacle": {
+								"colliders": "44453b52-5868-4331-ab54-4b65930f02d9",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "00000000-0000-0000-0000-000000000000"
+							}
+						},
+						"name": "wall",
+						"uuid": "44453b52-5868-4331-ab54-4b65930f02d9"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"modelName": "content/Environment/hd_env_EU_088_RaftersCrush/normal/lod0/hd_env_EU_088_RaftersCrush_02.model"
+							},
+							"cgf::TransformComponent": {
+								"position/x": -3.406,
+								"position/y": 15.224,
+								"position/z": -9.804,
+								"rotation/x": 12.48,
+								"rotation/y": -96.93,
+								"rotation/z": -5.43
+							}
+						},
+						"name": "roof",
+						"uuid": "572692aa-5abc-4a25-bd82-a858a684392e"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": 0,
+							"y": 90,
+							"z": 0
+						}
+					}
+				},
+				"name": "normal",
+				"uuid": "8f5f914c-3fb0-4d63-83d3-ad0c71387787"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "fbx",
+										"lodScale": 1,
+										"path": "content/Buildings/hd_bld_EU_086_BWalls/normal/lod0/hd_bld_EU_086_BWalls_skinned_anim_03.fbx",
+										"properties": {
+											"delay": "0",
+											"loop": "0",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Buildings/hd_bld_EU_086_BWalls/normal/lod0/hd_bld_EU_086_BWalls_skinned_03.model"
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 0,
+									"y": 90,
+									"z": 0
+								}
+							}
+						},
+						"name": "anim_wall",
+						"uuid": "a53b62fe-ab38-4b4e-84a5-d68181163f2d"
+					},
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "0",
+										"lodScale": 1,
+										"path": "content/Environment/hd_env_EU_088_RaftersCrush_anim/animation/hd_env_EU_088_RaftersCrush_02_anim.fbx",
+										"properties": {
+											"delay": "0",
+											"loop": "0",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_EU_088_RaftersCrush_anim/normal/lod0/hd_env_EU_088_RaftersCrush_02_anim.model"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -10.609,
+									"y": 3.0332,
+									"z": 0.49463
+								},
+								"rotation": {
+									"x": 12.482,
+									"y": -7.9886,
+									"z": -5.4281
+								}
+							}
+						},
+						"name": "anim_roof",
+						"uuid": "3b313e75-b0c0-4cd7-8a48-24b0b8de2ee8"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "effects",
+				"uuid": "a0ef2b80-9be9-4a1b-a51d-27be43c93a22"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1,
+								"path": "particles/eff_sequence/Onboarding/14_siegfried_line_wallscrash.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 2.2256,
+							"y": 5.2036,
+							"z": 2.2517
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "particles_wall",
+				"uuid": "8e50b329-e160-42a0-b6f3-95035a4307fb"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"effect": "particles/Environment/Onboarding/14_siegfried_bc_wall_debris_sparks.eff"
+					},
+					"cgf::TransformComponent": {
+						"position/x": -9.009,
+						"position/y": 5.28,
+						"position/z": 2.088,
+						"rotation/x": 15
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "particles_roof",
+				"uuid": "5adbb7d7-ee67-48b2-b2b0-e14d1d76a460"
+			}
+		],
+		"components": {
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"path": "story_mode/vscript/plans/Onboarding_vfx_scenarios/14_07b_BWalls_crash_01.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "14_07b_BWalls_crash_01",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

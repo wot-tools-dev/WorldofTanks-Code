@@ -1,0 +1,31 @@
+from gui.impl.gen.view_models.views.lobby.achievements.advanced_achievement_model import AdvancedAchievementModel
+
+class SubcategoryAdvancedAchievementModel(AdvancedAchievementModel):
+    __slots__ = ()
+
+    def __init__(self, properties=18, commands=0):
+        super(SubcategoryAdvancedAchievementModel, self).__init__(properties=properties, commands=commands)
+
+    def getPrevValue(self):
+        return self._getNumber(15)
+
+    def setPrevValue(self, value):
+        self._setNumber(15, value)
+
+    def getPrevAchievementScore(self):
+        return self._getNumber(16)
+
+    def setPrevAchievementScore(self, value):
+        self._setNumber(16, value)
+
+    def getBubbles(self):
+        return self._getNumber(17)
+
+    def setBubbles(self, value):
+        self._setNumber(17, value)
+
+    def _initialize(self):
+        super(SubcategoryAdvancedAchievementModel, self)._initialize()
+        self._addNumberProperty('prevValue', 0)
+        self._addNumberProperty('prevAchievementScore', 0)
+        self._addNumberProperty('bubbles', 0)

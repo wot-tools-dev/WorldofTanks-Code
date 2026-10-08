@@ -1,0 +1,567 @@
+<Hint_Manager.xml>
+  <info>
+    <name>	Hint_Manager	</name>
+    <isMacro>	true	</isMacro>
+    <version>	0	</version>
+    <aspect>
+      <compatibles>	CLIENT	</compatibles>
+    </aspect>
+    <blocks>
+      <block>
+        <class>	If	</class>
+        <id>	If_1	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	MacroInput	</class>
+        <id>	MacroInput_2	</id>
+        <params>
+          <param>	Show_Hint	  <name>	Input Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	EventT	  <name>	Input Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	Default	  <name>	Input Editor	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_6	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_2	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	IsVehicleValid	</class>
+        <id>	IsVehicleValid_5	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	Get Player Vehicle	</class>
+        <id>	Get Player Vehicle_2	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	GetVehicleHealth	</class>
+        <id>	GetVehicleHealth_2	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	CompareFloats	</class>
+        <id>	CompareFloats_2	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	b	</name>
+            <const>	\1.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	MacroInput	</class>
+        <id>	MacroInput_3	</id>
+        <params>
+          <param>	Show_only_if_vehicle_is_alive	  <name>	Input Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	BoolT	  <name>	Input Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	Default	  <name>	Input Editor	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	required	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	IsControlModeActive	</class>
+        <id>	IsControlModeActive_2	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	control mode	</name>
+            <const>	\killcam\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	IsControlModeActive	</class>
+        <id>	IsControlModeActive_4	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	control mode	</name>
+            <const>	\respawn\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	Or	</class>
+        <id>	Or_1	</id>
+        <params>
+          <param>	6	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	IsControlModeActive	</class>
+        <id>	IsControlModeActive_6	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	control mode	</name>
+            <const>	\deathfreecam\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	IsControlModeActive	</class>
+        <id>	IsControlModeActive_8	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	control mode	</name>
+            <const>	\lookAtKiller\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	IsControlModeActive	</class>
+        <id>	IsControlModeActive_10	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	control mode	</name>
+            <const>	\postmortem\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	FlowGate	</class>
+        <id>	FlowGate_1	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	openAtStart	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	Sequence	</class>
+        <id>	Sequence_1	</id>
+        <params>
+          <param>	2	  <name>	Output Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	OnBattleRoundFinished	</class>
+        <id>	OnBattleRoundFinished_1	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_4	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	OnAnyVehicleDestroyed	</class>
+        <id>	OnAnyVehicleDestroyed_3	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	IsVehicleValid	</class>
+        <id>	IsVehicleValid_2	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_5	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	MacroOutput	</class>
+        <id>	MacroOutput_1	</id>
+        <params>
+          <param>	ShowHintOutput	  <name>	Output Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	EventT	  <name>	Output Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	IsPlayerVehicle	</class>
+        <id>	IsPlayerVehicle_1	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	ShowHint	</class>
+        <id>	ShowHint_4	</id>
+        <params>
+          <param>
+            <name>	Parameters names separated by " ". Example: magic test	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	immediately	</name>
+            <const>	\false\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	CanShowHint	</class>
+        <id>	CanShowHint_1	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_3	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	MacroInput	</class>
+        <id>	MacroInput_5	</id>
+        <params>
+          <param>	Hide_on_vehicle_destruction	  <name>	Input Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	BoolT	  <name>	Input Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	Default	  <name>	Input Editor	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	required	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	MacroInput	</class>
+        <id>	MacroInput_1	</id>
+        <params>
+          <param>	HintID	  <name>	Input Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	StringT	  <name>	Input Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	Default	  <name>	Input Editor	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	required	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	MacroInput	</class>
+        <id>	MacroInput_4	</id>
+        <params>
+          <param>	Hide_Hint	  <name>	Input Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	EventT	  <name>	Input Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	Default	  <name>	Input Editor	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	MacroOutput	</class>
+        <id>	MacroOutput_2	</id>
+        <params>
+          <param>	RemoveHintOutput	  <name>	Output Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	EventT	  <name>	Output Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	RemoveHint	</class>
+        <id>	RemoveHint_2	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	hide	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+    </blocks>
+    <connections>
+      <connection>
+        <from>	If_6	</from>
+        <input>	input	</input>
+        <to>	If_1	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	Or_1	</from>
+        <input>	value	</input>
+        <to>	If_1	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	If_2	</from>
+        <input>	input	</input>
+        <to>	If_6	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	IsVehicleValid_5	</from>
+        <input>	value	</input>
+        <to>	If_6	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MacroInput_2	</from>
+        <input>	input	</input>
+        <to>	If_2	</to>
+        <output>	Show_Hint	</output>
+      </connection>
+      <connection>
+        <from>	MacroInput_3	</from>
+        <input>	value	</input>
+        <to>	If_2	</to>
+        <output>	Show_only_if_vehicle_is_alive	</output>
+      </connection>
+      <connection>
+        <from>	Get Player Vehicle_2	</from>
+        <input>	vehicle	</input>
+        <to>	IsVehicleValid_5	</to>
+        <output>	vehicle	</output>
+      </connection>
+      <connection>
+        <from>	Get Player Vehicle_2	</from>
+        <input>	vehicle	</input>
+        <to>	GetVehicleHealth_2	</to>
+        <output>	vehicle	</output>
+      </connection>
+      <connection>
+        <from>	GetVehicleHealth_2	</from>
+        <input>	a	</input>
+        <to>	CompareFloats_2	</to>
+        <output>	health	</output>
+      </connection>
+      <connection>
+        <from>	CompareFloats_2	</from>
+        <input>	i1	</input>
+        <to>	Or_1	</to>
+        <output>	less	</output>
+      </connection>
+      <connection>
+        <from>	IsControlModeActive_2	</from>
+        <input>	i2	</input>
+        <to>	Or_1	</to>
+        <output>	active	</output>
+      </connection>
+      <connection>
+        <from>	IsControlModeActive_4	</from>
+        <input>	i3	</input>
+        <to>	Or_1	</to>
+        <output>	active	</output>
+      </connection>
+      <connection>
+        <from>	IsControlModeActive_6	</from>
+        <input>	i4	</input>
+        <to>	Or_1	</to>
+        <output>	active	</output>
+      </connection>
+      <connection>
+        <from>	IsControlModeActive_8	</from>
+        <input>	i5	</input>
+        <to>	Or_1	</to>
+        <output>	active	</output>
+      </connection>
+      <connection>
+        <from>	IsControlModeActive_10	</from>
+        <input>	i6	</input>
+        <to>	Or_1	</to>
+        <output>	active	</output>
+      </connection>
+      <connection>
+        <from>	If_2	</from>
+        <input>	input	</input>
+        <to>	FlowGate_1	</to>
+        <output>	false	</output>
+      </connection>
+      <connection>
+        <from>	If_1	</from>
+        <input>	input	</input>
+        <to>	FlowGate_1	</to>
+        <output>	false	</output>
+      </connection>
+      <connection>
+        <from>	Sequence_1	</from>
+        <input>	close	</input>
+        <to>	FlowGate_1	</to>
+        <output>	o0	</output>
+      </connection>
+      <connection>
+        <from>	OnBattleRoundFinished_1	</from>
+        <input>	input	</input>
+        <to>	Sequence_1	</to>
+        <output>	onFinished	</output>
+      </connection>
+      <connection>
+        <from>	OnAnyVehicleDestroyed_3	</from>
+        <input>	input	</input>
+        <to>	If_4	</to>
+        <output>	onDestroyed	</output>
+      </connection>
+      <connection>
+        <from>	IsVehicleValid_2	</from>
+        <input>	value	</input>
+        <to>	If_4	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	CanShowHint_1	</from>
+        <input>	active	</input>
+        <to>	OnAnyVehicleDestroyed_3	</to>
+        <output>	result	</output>
+      </connection>
+      <connection>
+        <from>	OnAnyVehicleDestroyed_3	</from>
+        <input>	vehicle	</input>
+        <to>	IsVehicleValid_2	</to>
+        <output>	target	</output>
+      </connection>
+      <connection>
+        <from>	If_4	</from>
+        <input>	input	</input>
+        <to>	If_5	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	IsPlayerVehicle_1	</from>
+        <input>	value	</input>
+        <to>	If_5	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	ShowHint_4	</from>
+        <input>	ShowHintOutput	</input>
+        <to>	MacroOutput_1	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	OnAnyVehicleDestroyed_3	</from>
+        <input>	vehicle	</input>
+        <to>	IsPlayerVehicle_1	</to>
+        <output>	target	</output>
+      </connection>
+      <connection>
+        <from>	FlowGate_1	</from>
+        <input>	in	</input>
+        <to>	ShowHint_4	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	MacroInput_1	</from>
+        <input>	hintId	</input>
+        <to>	ShowHint_4	</to>
+        <output>	HintID	</output>
+      </connection>
+      <connection>
+        <from>	MacroInput_1	</from>
+        <input>	hintId	</input>
+        <to>	CanShowHint_1	</to>
+        <output>	HintID	</output>
+      </connection>
+      <connection>
+        <from>	If_5	</from>
+        <input>	input	</input>
+        <to>	If_3	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	MacroInput_5	</from>
+        <input>	value	</input>
+        <to>	If_3	</to>
+        <output>	Hide_on_vehicle_destruction	</output>
+      </connection>
+      <connection>
+        <from>	RemoveHint_2	</from>
+        <input>	RemoveHintOutput	</input>
+        <to>	MacroOutput_2	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	MacroInput_4	</from>
+        <input>	in	</input>
+        <to>	RemoveHint_2	</to>
+        <output>	Hide_Hint	</output>
+      </connection>
+      <connection>
+        <from>	If_3	</from>
+        <input>	in	</input>
+        <to>	RemoveHint_2	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	Sequence_1	</from>
+        <input>	in	</input>
+        <to>	RemoveHint_2	</to>
+        <output>	o1	</output>
+      </connection>
+      <connection>
+        <from>	MacroInput_1	</from>
+        <input>	hintId	</input>
+        <to>	RemoveHint_2	</to>
+        <output>	HintID	</output>
+      </connection>
+    </connections>
+    <macros></macros>
+    <curves></curves>
+  </info>
+</Hint_Manager.xml>

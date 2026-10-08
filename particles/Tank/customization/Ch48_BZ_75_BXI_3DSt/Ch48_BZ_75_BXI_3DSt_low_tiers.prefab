@@ -1,0 +1,81 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {},
+						"name": "Ch48_BZ_75_Rocket.prefab",
+						"prefab": "particles/Tank/rocket_accelerator/Ch48_BZ_75_Rocket.prefab",
+						"uuid": "6b500ade-8864-4084-9288-8567c5624989"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": -0.18700000643730164
+						}
+					}
+				},
+				"name": "RocketLauncher",
+				"uuid": "4e0c4c74-11f4-4b52-8449-95f9ad3602c1"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "Receive_Hit",
+						"lodScale": 1.0,
+						"path": "particles/Tank/customization/BXI_3DSt_Uni/receive_hit.ssm",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/chinese/Ch48_BZ_75/_skins/Ch48_BZ_75_BXI_3DSt/normal/lod0/Hull.model"
+			},
+			"BW::ProjectileHitsReceivedAnimatorTriggerComponent": {
+				"ignorePeriod": 2.6700000762939453,
+				"triggerName": "Hit",
+				"triggerSource": "00000000-0000-0000-0000-000000000000"
+			},
+			"cgf::TransformComponent": {},
+			"script::VehicleCustomEffectsSettings": {
+				"additionalEngineSoundNPC": "style_cust__Ch48_BZ_75_BXI_NPC",
+				"additionalEngineSoundPC": "style_cust__Ch48_BZ_75_BXI_PC",
+				"disableDefaultChassis": "0",
+				"disableDefaultHull": "0",
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			}
+		},
+		"name": "Ch48_BZ_75_BXI_3DSt",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

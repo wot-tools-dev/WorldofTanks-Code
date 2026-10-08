@@ -1,0 +1,184 @@
+from __future__ import absolute_import
+import logging
+from typing import TYPE_CHECKING
+from future.utils import viewitems
+from battle_pass_common import BattlePassConsts, BattlePassTankmenSource, FinalReward
+from gui.battle_pass.battle_pass_award import BattlePassAwardsManager
+from gui.battle_pass.battle_pass_bonuses_packers import packBonusModelAndTooltipData
+from gui.battle_pass.battle_pass_constants import ChapterState
+from gui.battle_pass.battle_pass_helpers import getAllFinalRewards, getReceivedTankmenCount, getTankmenShopPackages, getVehicleInfoForChapter, isSeasonEndingSoon, showFinalRewardPreviewBattlePassState
+from gui.impl.gen import R
+from gui.impl.gen.view_models.views.lobby.battle_pass.holiday_final_view_model import FinalRewardTypes, HolidayFinalViewModel, ChapterStates
+from gui.impl.pub.view_component import ViewComponent
+from gui.impl.wrappers.function_helpers import replaceNoneKwargsModel
+from gui.shared import events
+from gui.shared.event_bus import EVENT_BUS_SCOPE
+from gui.shared.event_dispatcher import selectVehicleInHangar, showBattlePassTankmenVoiceover, showHangar
+from helpers import dependency
+from skeletons.gui.game_control import IBattlePassController
+from skeletons.gui.shared import IItemsCache
+if TYPE_CHECKING:
+    from typing import List
+    from gui.server_events.bonuses import SimpleBonus
+_logger = logging.getLogger(__name__)
+_CHAPTER_STATES = {ChapterState.ACTIVE: ChapterStates.ACTIVE,
+ ChapterState.COMPLETED: ChapterStates.COMPLETED,
+ ChapterState.PAUSED: ChapterStates.PAUSED,
+ ChapterState.NOT_STARTED: ChapterStates.NOTSTARTED}
+
+class HolidayFinalPresenter(ViewComponent[HolidayFinalViewModel]):
+    __battlePass = dependency.descriptor(IBattlePassController)
+    __itemsCache = dependency.descriptor(IItemsCache)
+
+    def __init__(self, *args, **kwargs):
+        super(HolidayFinalPresenter, self).__init__(R.aliases.battle_pass.HolidayFinal(), HolidayFinalViewModel)
+        self.__chapterID = None
+        self.__tooltipItems = {}
+        return
+
+    @property
+    def viewModel(self):
+        return super(HolidayFinalPresenter, self).getViewModel()
+
+    def getTooltipData(self, event):
+        tooltipId = event.getArgument('tooltipId')
+        return None if tooltipId is None else self.__tooltipItems.get(tooltipId)
+
+    def updateInitialData(self, **kwargs):
+        self.__updateState()
+
+    def _onLoading(self, *args, **kwargs):
+        super(HolidayFinalPresenter, self)._onLoading(*args, **kwargs)
+        self.__battlePass.tankmenCacheUpdate()
+        self.__chapterID = self.__battlePass.getHolidayChapterID()
+        self.__updateState()
+        self.__fillModel()
+
+    def _finalize(self):
+        self.__chapterID = None
+        self.__tooltipItems = None
+        super(HolidayFinalPresenter, self)._finalize()
+        return
+
+    def _getEvents(self):
+        return ((self.viewModel.awardsWidget.onTakeRewardsClick, self.__takeAllRewards),
+         (self.viewModel.awardsWidget.showTankmen, self.__showTankmen),
+         (self.viewModel.onTakeRewardsClick, self.__takeAllRewards),
+         (self.viewModel.showTankmen, self.__showTankmen),
+         (self.viewModel.onPreviewVehicle, self.__onPreview),
+         (self.viewModel.showHangar, self.__showHangar),
+         (self.__battlePass.onBattlePassSettingsChange, self.__onBattlePassSettingsChanged),
+         (self.__battlePass.onSeasonStateChanged, self.__onBattlePassSettingsChanged),
+         (self.__battlePass.onEntitlementCacheUpdated, self.__updateState))
+
+    def _getListeners(self):
+        return ((events.BattlePassEvent.AWARD_VIEW_CLOSE, self.__onAwardViewClose, EVENT_BUS_SCOPE.LOBBY),)
+
+    def __fillModel(self):
+        self.__setChapter()
+        self.__updateDetailRewards()
+        with self.viewModel.transaction() as model:
+            model.awardsWidget.setIsTalerEnabled(not self.__battlePass.isHoliday())
+            model.awardsWidget.setIsBpCoinEnabled(not self.__battlePass.isHoliday())
+            model.awardsWidget.setTankmenScreenID(self.__battlePass.getTankmenScreenID(self.__chapterID))
+            model.setIsSeasonEndingSoon(isSeasonEndingSoon())
+            model.setFinalRewardType(self.__getFinalRewardType())
+            self.__updateRewardChoice(model=model)
+
+    def __setChapter(self):
+        with self.viewModel.transaction() as tx:
+            tx.setChapterID(self.__chapterID)
+            tx.setChapterState(_CHAPTER_STATES.get(self.__battlePass.getChapterState(self.__chapterID)))
+            tx.setCurrentLevel(self.__battlePass.getLevelInChapter(self.__chapterID) + 1)
+
+    def __isTankmenReceived(self, shopPackages):
+        for tankman, packageCount in viewitems(shopPackages):
+            if packageCount - getReceivedTankmenCount(tankman) != 0:
+                return False
+
+        for tankman, info in viewitems(self.__battlePass.getSpecialTankmen()):
+            if info.get('source') == BattlePassTankmenSource.PROGRESSION and info.get('availableCount', 0) - getReceivedTankmenCount(tankman) != 0:
+                return False
+
+        return True
+
+    def __update(self):
+        self.__fillModel()
+        self.__updateState()
+
+    def __onBattlePassSettingsChanged(self, *_):
+        self.__update()
+
+    @replaceNoneKwargsModel
+    def __updateRewardChoice(self, model=None):
+        model.awardsWidget.setNotChosenRewardCount(self.__battlePass.getNotChosenRewardCount())
+        model.awardsWidget.setIsChooseRewardsEnabled(self.__battlePass.canChooseAnyReward())
+
+    def __updateDetailRewards(self):
+        fromLevel = 1
+        toLevel = self.__battlePass.getLevelInChapter(self.__chapterID)
+        with self.viewModel.rewards.transaction() as tx:
+            tx.nowRewards.clearItems()
+            tx.futureRewards.clearItems()
+            tx.setFromLevel(fromLevel)
+            tx.setToLevel(toLevel)
+            tx.setChapterID(self.__chapterID)
+        packBonusModelAndTooltipData(self.__getRewards(), self.viewModel.rewards.nowRewards, self.__tooltipItems)
+
+    def __getRewards(self):
+        fromLevel = 1
+        curLevel = self.__battlePass.getLevelInChapter(self.__chapterID)
+        bonuses = []
+        if not self.__battlePass.isBought(self.__chapterID):
+            bonuses.extend(self.__battlePass.getPackedAwardsInterval(self.__chapterID, fromLevel, curLevel, awardType=BattlePassConsts.REWARD_PAID))
+        bonuses = BattlePassAwardsManager.uniteTokenBonuses(bonuses)
+        return BattlePassAwardsManager.sortBonuses(bonuses)
+
+    def __showRewards(self):
+        self.viewModel.setState(self.viewModel.REWARDS_STATE)
+
+    def __updateState(self):
+        if not self.__battlePass.isBought(self.__chapterID):
+            state = self.viewModel.BUY_STATE
+        elif self.__battlePass.getTankmenScreenID(self.__chapterID) and not self.__isTankmenReceived(getTankmenShopPackages()):
+            state = self.viewModel.TANKMEN_STATE
+        elif self.__battlePass.getNotChosenRewardCount() > 0:
+            state = self.viewModel.SELECTABLE_REWARDS_STATE
+        else:
+            state = self.viewModel.FINAL_STATE
+        self.viewModel.setState(state)
+
+    def __getFinalRewardType(self):
+        rewardTypes = getAllFinalRewards(self.__chapterID, battlePass=self.__battlePass)
+        if FinalReward.VEHICLE in rewardTypes:
+            return FinalRewardTypes.VEHICLE
+        elif FinalReward.STYLE in rewardTypes or FinalReward.PROGRESSIVE_STYLE in rewardTypes:
+            return FinalRewardTypes.STYLE
+        elif FinalReward.TANKMAN in rewardTypes:
+            return FinalRewardTypes.TANKMAN
+        else:
+            _logger.error('Final reward types for chapter <%s> do not contain any supported types', self.__chapterID)
+            return None
+
+    def __onPreview(self):
+        showFinalRewardPreviewBattlePassState(chapterID=self.__chapterID)
+
+    def __takeAllRewards(self):
+        self.__battlePass.takeAllRewards()
+
+    def __showTankmen(self):
+        showBattlePassTankmenVoiceover(self.__battlePass.getTankmenScreenID(self.__chapterID))
+
+    def __showHangar(self):
+        finalRewardType = self.__getFinalRewardType()
+        if finalRewardType is not None and finalRewardType.value == FinalReward.VEHICLE:
+            vehicle, _ = getVehicleInfoForChapter(self.__chapterID, awardSource=BattlePassConsts.REWARD_BOTH)
+            if vehicle.isInInventory:
+                selectVehicleInHangar(vehicle.intCD)
+        else:
+            showHangar()
+        return
+
+    def __onAwardViewClose(self, *_):
+        self.__updateState()
+        self.__fillModel()

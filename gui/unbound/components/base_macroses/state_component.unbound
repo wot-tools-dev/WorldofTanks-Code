@@ -1,0 +1,166 @@
+(def macro SimpleComponentEvents()
+    (scope
+        (event evBtnUpEvent)
+        (event evBtnDownEvent)
+        (event evBtnOverEvent)
+        (event evBtnOutEvent)
+        
+        (var eventsEnabled:bool = true)
+    )
+    (dispatch evBtnUpEvent on='mouseUp' dir=1 (enabled="eventsEnabled && $event.buttonIdx == MOUSE.LEFT"))
+    (dispatch evBtnDownEvent on='mouseDown' dir=1 (enabled="eventsEnabled && $event.buttonIdx == MOUSE.LEFT"))
+    (dispatch evBtnOverEvent on='rollOver' dir=1 (enabled="eventsEnabled"))
+    (dispatch evBtnOutEvent on='rollOut' dir=1 (enabled="eventsEnabled"))
+)
+
+(def macro ExtendedComponentEvents()
+    (macro SimpleComponentEvents)
+    (scope
+        (event evBtnLeftClickEvent)
+        (event evBtnRightClickEvent)
+        (event evBtnFocusChange)
+        (event evStageMouseUp)
+        (event evLmbUpEvent)
+    )
+    (dispatch evBtnLeftClickEvent on='click' dir=1 (enabled="eventsEnabled && $event.buttonIdx == MOUSE.LEFT"))
+    (dispatch evBtnRightClickEvent on='click' dir=1 (enabled="eventsEnabled && $event.buttonIdx == MOUSE.RIGHT"))
+    (dispatch evBtnFocusChange on='focusChanged' (enabled="eventsEnabled"))
+    (dispatch evStageMouseUp on='stageMouseUp' dir=1) 
+    (dispatch evLmbUpEvent on='mouseUp' dir=1 (enabled="eventsEnabled && $event.buttonIdx == MOUSE.LEFT"))
+)
+
+(def macro ComponentStateBaseLogic(statesDict:expression)
+    (macro ExtendedComponentEvents)
+    (scope
+        (event evBtnEnabledEvent)
+        (event evBtnSelectedChange)
+
+        (var selected:bool = false
+            (dispatch evBtnSelectedChange on='evChanged')
+        )
+        (var _isEnabled:bool = true
+            (dispatch evBtnEnabledEvent args="{value:_isEnabled} "on='evChanged')
+        )
+        (var allowMouseEventsOnDisabled:bool = false)
+        (var states:dict = "statesDict")
+        (var selectable:bool = false)
+        
+        (var allowDeselect:bool = false)
+        (var currStateClass:dict = "states['up']" watch=true)
+        (var currState:str = 'up')
+        (var isFocused:bool = false)
+        (var _isPressed:bool = false)
+
+        (bind eventsEnabled "_isEnabled")
+        (bind isFocused "$event.newValue" init=false (event "evBtnFocusChange"))
+        (bind isFocused "_isEnabled" (bind enabled "_isEnabled == false"))
+        
+        (bind currState "_isEnabled ? (selected ? 'upSelected' : 'up') : 'disabled'" init=false (event "evBtnOutEvent"))
+        (bind currState "_isEnabled ? (isFocused ? (selected ? 'hoverSelected' : 'hover') : (selected ? 'upSelected' : 'up')) : 'disabled'" init=false (event "evBtnUpEvent"))
+        (bind currState "selected ? 'downSelected' : 'down'" watch=false init=false (event "evBtnDownEvent"))
+        (bind currState "_isPressed ? (selected ? 'downSelected' : 'down') : (selected ? 'hoverSelected' : 'hover')" watch=false init=false (event "evBtnOverEvent"))
+        (bind currState "'disabled'" watch=false init=false (bind enabled "!$event.value" init=false) (event "evBtnEnabledEvent"))
+        (bind currState "_isEnabled ? (selected ? 'upSelected' : 'up') : 'disabled'" watch=false init=false (event "evBtnSelectedChange"))
+        (bind currStateClass "states[currState]")
+
+        (bind selected "!selected" init=false watch=false 
+            (enabled = "selectable && (!selected || (selected && allowDeselect))")
+            (event "evBtnLeftClickEvent")
+        )
+
+        (bind _isPressed "true" init=false (event "evBtnDownEvent"))
+        (bind _isPressed "false" init=false (event "evStageMouseUp"))
+        (bind _isPressed "false" init=false (event "evBtnUpEvent"))
+
+        # Properties for animations
+        (var backgroundAlpha:number = 1)
+        (exec "playSound(currStateClass['sound'])" init=false (event "evBtnOverEvent") (enabled = "currStateClass && currStateClass['sound'] && _isEnabled"))
+        (exec "playSound(currStateClass['sound'])" init=false (event "evBtnDownEvent") (enabled = "currStateClass && currStateClass['sound'] && _isEnabled"))
+    )
+
+    (bind mouseEnabled "_isEnabled || allowMouseEventsOnDisabled")
+    (tabEnabled = "_isEnabled")
+    (mouseChildren = false)
+    
+    # Process Enter and Space keys
+    (dispatch evBtnUpEvent on='stageKeyUp' dir=1 (enabled="_isEnabled && isFocused && ($event.keyCode == KEYBOARD.ENTER || $event.keyCode == KEYBOARD.SPACE)"))
+    (dispatch evBtnLeftClickEvent on='stageKeyUp' dir=1 (enabled="_isEnabled && isFocused && ($event.keyCode == KEYBOARD.ENTER || $event.keyCode == KEYBOARD.SPACE)"))
+    (dispatch evBtnDownEvent on='stageKeyDown' dir=1 (enabled="_isEnabled && isFocused && ($event.keyCode == KEYBOARD.ENTER || $event.keyCode == KEYBOARD.SPACE)"))
+)
+
+(def macro ComponentStateBaseContent()
+    (block
+        (name = 'BtnBg')
+        (class AbsPositionFullSizeStyle)
+        (bind class "currStateClass ? currStateClass['style'] ? currStateClass.style : [] : []")
+    )
+    
+    (block
+        (style
+            (macro AbsPositionFullSize)
+            (bind padding "currStateClass && currStateClass['padding'] ? currStateClass.padding : 0" (enabled = "currStateClass && currStateClass['padding']"))
+        )
+        (image
+            (name = 'BtnBg image')
+            (style
+                (width = 100%)
+                (height = 100%)
+                (bind scale9grid "currStateClass ? currStateClass['image'] ? currStateClass['image']['scale9'] : null : null")
+                (bind alpha "backgroundAlpha")
+            )
+            (bind class "currStateClass ? currStateClass['image'] ? currStateClass['image']['style'] ? currStateClass['image'].style : [] : [] : []")
+            (bind source "currStateClass ? currStateClass['image'] ? currStateClass['image']['source'] : null : null")
+        )
+    )
+
+    (element ComponentStateBaseFocusOverlay "states['focusOverlay'] ? states.focusOverlay : {}"
+        (style
+            (alpha = 0)
+        )
+        (controller $Animation
+            (bindcall play duration=0.3 to={alpha:1,visible:1} from={alpha:0,visible:0} init=false reverse="!isFocused" (bind trigger "isFocused"))
+        )
+        (block
+            (style
+                (position = "absolute")
+                (width = 0px)
+                (height = 0px)
+            )
+            (name = 'hitElement')
+        )
+        (hitArea = "$target.hitElement")
+    )
+)
+
+(def macro ComponentStateBase (statesDict:expression)
+    (macro ComponentStateBaseLogic "statesDict")
+    (macro ComponentStateBaseContent)
+)
+
+(def element ComponentStateBaseDisabledOverlay(classStyle:str) layout=true
+    (name = 'Disabled overlay')
+    (class AbsPositionFullSizeStyle)
+    (block
+        (class = "classStyle")
+        (style
+            (width = 100%)
+            (height = 100%)
+        )
+    )
+)
+
+(def element ComponentStateBaseFocusOverlay(state:dict) layout=true
+    (name = 'Focus overlay')
+    (class = "state['style'] ? state.style : []")
+    (class AbsPositionFullSizeStyle)
+
+    (image
+        (name = 'Focus image')
+        (style
+            (width = 100%)
+            (height = 100%)
+            (bind scale9grid "state['image'] ? state['image']['scale9'] : null")
+        )
+        (bind source "state['image'] ? state['image']['source'] : null")
+    )
+)

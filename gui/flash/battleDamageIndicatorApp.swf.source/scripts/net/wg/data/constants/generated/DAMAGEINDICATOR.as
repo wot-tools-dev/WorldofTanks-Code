@@ -1,0 +1,158 @@
+package net.wg.data.constants.generated
+{
+   public class DAMAGEINDICATOR
+   {
+      
+      public static const ALLY_AT_SPG:String = "ally_AT-SPG";
+      
+      public static const ALLY_AT_SPG_ELITE:String = "ally_AT-SPG_elite";
+      
+      public static const ALLY_BOSS:String = "ally_boss";
+      
+      public static const ALLY_HEAVY_TANK:String = "ally_heavyTank";
+      
+      public static const ALLY_HEAVY_TANK_ELITE:String = "ally_heavyTank_elite";
+      
+      public static const ALLY_LIGHT_TANK:String = "ally_lightTank";
+      
+      public static const ALLY_LIGHT_TANK_ELITE:String = "ally_lightTank_elite";
+      
+      public static const ALLY_MEDIUM_TANK:String = "ally_mediumTank";
+      
+      public static const ALLY_MEDIUM_TANK_ELITE:String = "ally_mediumTank_elite";
+      
+      public static const ALLY_SPG:String = "ally_SPG";
+      
+      public static const ALLY_SPG_ELITE:String = "ally_SPG_elite";
+      
+      public static const ARTILLERY:String = "artillery";
+      
+      public static const AT_SPG:String = "AT-SPG";
+      
+      public static const AT_SPG_ELITE:String = "AT-SPG_elite";
+      
+      public static const BLOCK_CIRCLE:String = "blockCircle";
+      
+      public static const BLOCKED_BIG:String = "blockedBig";
+      
+      public static const BLOCKED_MEDIUM:String = "blockedMedium";
+      
+      public static const BLOCKED_SMALL:String = "blockedSmall";
+      
+      public static const BLOCKED_STANDARD:String = "blockedStandard";
+      
+      public static const BOMBER:String = "bomber";
+      
+      public static const BOSS:String = "boss";
+      
+      public static const BUNKER_TURRET:String = "bunkerTurret";
+      
+      public static const CRIT:String = "crit";
+      
+      public static const CRIT_BLIND:String = "critBlind";
+      
+      public static const CRIT_CIRCLE:String = "critCircle";
+      
+      public static const CRIT_CIRCLE_BLIND:String = "critCircleBlind";
+      
+      public static const DAMAGE_BIG:String = "damageBig";
+      
+      public static const DAMAGE_BIG_BLIND:String = "damageBigBlind";
+      
+      public static const DAMAGE_CIRCLE:String = "damageCircle";
+      
+      public static const DAMAGE_CIRCLE_BLIND:String = "damageCircleBlind";
+      
+      public static const DAMAGE_MEDIUM:String = "damageMedium";
+      
+      public static const DAMAGE_MEDIUM_BLIND:String = "damageMediumBlind";
+      
+      public static const DAMAGE_SMALL:String = "damageSmall";
+      
+      public static const DAMAGE_SMALL_BLIND:String = "damageSmallBlind";
+      
+      public static const DAMAGE_STANDARD:String = "damageStandard";
+      
+      public static const DAMAGE_STANDARD_BLIND:String = "damageStandardBlind";
+      
+      public static const HEAVY_TANK:String = "heavyTank";
+      
+      public static const HEAVY_TANK_ELITE:String = "heavyTank_elite";
+      
+      public static const LIGHT_TANK:String = "lightTank";
+      
+      public static const LIGHT_TANK_ELITE:String = "lightTank_elite";
+      
+      public static const MEDIUM_TANK:String = "mediumTank";
+      
+      public static const MEDIUM_TANK_ELITE:String = "mediumTank_elite";
+      
+      public static const SPG:String = "SPG";
+      
+      public static const SPG_ELITE:String = "SPG_elite";
+      
+      public static const AMMO_CIRCLE:String = "ammoCircle";
+      
+      public static const COMMANDER_CIRCLE:String = "commanderCircle";
+      
+      public static const DRIVER_CIRCLE:String = "driverCircle";
+      
+      public static const ENGINE_CIRCLE:String = "engineCircle";
+      
+      public static const GUN_CIRCLE:String = "gunCircle";
+      
+      public static const GUNNER_CIRCLE:String = "gunnerCircle";
+      
+      public static const RADIO_CIRCLE:String = "radioCircle";
+      
+      public static const RADIOMAN_CIRCLE:String = "radiomanCircle";
+      
+      public static const RELOADER_CIRCLE:String = "reloaderCircle";
+      
+      public static const TANKS_CIRCLE:String = "tanksCircle";
+      
+      public static const TRACKS_CIRCLE:String = "tracksCircle";
+      
+      public static const TRIPLEX_CIRCLE:String = "triplexCircle";
+      
+      public static const TURRET_CIRCLE:String = "turretCircle";
+      
+      public static const WHEEL_CIRCLE:String = "wheelCircle";
+      
+      public static const LS_ALPHA:String = "ls_alpha";
+      
+      public static const LS_ARCHER:String = "ls_archer";
+      
+      public static const LS_BASTION:String = "ls_bastion";
+      
+      public static const LS_BOMBER:String = "ls_bomber";
+      
+      public static const LS_BOMBER_ALPHA:String = "ls_bomber_alpha";
+      
+      public static const LS_BOSS:String = "ls_boss";
+      
+      public static const LS_CATCHER:String = "ls_catcher";
+      
+      public static const LS_CHARGER:String = "ls_charger";
+      
+      public static const LS_DETONATOR:String = "ls_detonator";
+      
+      public static const LS_HUNTER:String = "ls_hunter";
+      
+      public static const LS_OBELISK:String = "ls_obelisk";
+      
+      public static const LS_RIPPER:String = "ls_ripper";
+      
+      public static const LS_RUNNER:String = "ls_runner";
+      
+      public static const LS_SENTRY:String = "ls_sentry";
+      
+      public static const LS_TURRET:String = "ls_turret";
+      
+      public function DAMAGEINDICATOR()
+      {
+         super();
+      }
+   }
+}
+

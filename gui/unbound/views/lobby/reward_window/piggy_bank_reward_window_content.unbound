@@ -1,0 +1,8 @@
+(def layout PiggyBankRewardWindowContent() entrance=true
+    (macro PiggyBankRewardWindowContentModel)
+    (scope
+        (var link:str = "TextFormat(LINK_TEMPLATE, {content: R.images.gui.maps.icons.library.button_link.tag(20, 20, -6)})")
+        (var descTxt:str = "R.strings.ingame_gui.rewardWindow[eventName].descText()")        
+    )
+    (macro RewardWindowBase descText="showDescription ? descTxt + ' ' + link : ''" rendererName='PiggyBankRewardRenderer')
+)

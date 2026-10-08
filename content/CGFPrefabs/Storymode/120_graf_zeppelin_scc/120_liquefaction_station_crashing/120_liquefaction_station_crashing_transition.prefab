@@ -1,0 +1,524 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Animation",
+								"lodScale": 1.0,
+								"path": "content/Environment/hd_env_UNI_211_LiquefactionStation/animation/hd_env_UNI_211_LiquefactionStation_anim_01.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/hd_env_UNI_211_LiquefactionStation/normal/lod0/hd_env_UNI_211_LiquefactionStation_anim_01.model"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": -142.4201202392578,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "hd_env_UNI_211_LiquefactionStation_anim_01",
+				"uuid": "78fb368a-cfa5-4f3b-9f40-c185c424b14b"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_explosion_large",
+						"Fade time": 3.0,
+						"Fade type": 4,
+						"Object name": "dstrct_explosion_large",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Explosion_01_sfx",
+				"uuid": "fa5cec76-b8f6-463b-a409-4584c3fd36f8"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/environment/storymode/120_graf_zeppelin_liquefaction_station_explosion_01.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 12.0,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Explosion",
+				"uuid": "46210232-0536-4505-9966-f04e30c662e6"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::SphereColliderDesc",
+								"__cvalue__": {
+									"transform": "((      20,       0,       0,       0), (       0,      20,       0,       0), (       0,       0,      20,       0), (       0,       0,       0,       1))"
+								}
+							}
+						]
+					},
+					"BW::DamageOnCollisionComponent": {
+						"cameraName": "",
+						"destroyingTime": -1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"isDestroying": false,
+						"killResolveType": "Push",
+						"killSpeed": 1.0,
+						"onBodyCollision": false,
+						"onSimulationObjectCollision": false,
+						"onVehicleCollision": false
+					},
+					"BW::RigidBodyComponent": {
+						"bodiesFrictionFactor": 0.30000001192092896,
+						"centerOfMass": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"collideWithBodies": false,
+						"collideWithDestructibles": true,
+						"collideWithOnlyLeavesTrees": false,
+						"collideWithSimulationObjects": false,
+						"collideWithStatics": true,
+						"collideWithTerrain": false,
+						"collideWithVehicles": false,
+						"destructiblesFrictionFactor": 1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"generateVelocities": false,
+						"inertiaFactors": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						},
+						"isTrigger": false,
+						"mass": 1.0,
+						"simulationObjectsFrictionFactor": 0.30000001192092896,
+						"state": "Kinematic",
+						"staticsFrictionFactor": 1.0,
+						"terrainFrictionFactor": 1.0,
+						"vehiclesFrictionFactors": 0.30000001192092896
+					},
+					"BW::TrajectoryComponent": {
+						"positionCurve": {
+							"data": [
+								{
+									"inTangent": {
+										"x": 0.0,
+										"y": -13.63659954071045,
+										"z": 0.0
+									},
+									"outTangent": {
+										"x": 0.0,
+										"y": -13.63659954071045,
+										"z": 0.0
+									},
+									"tangentMode": "0",
+									"time": 0.0,
+									"value": {
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0
+									}
+								},
+								{
+									"inTangent": {
+										"x": -0.0,
+										"y": -53.636600494384766,
+										"z": -0.0
+									},
+									"outTangent": {
+										"x": -0.0,
+										"y": -53.636600494384766,
+										"z": -0.0
+									},
+									"tangentMode": "0",
+									"time": 0.5,
+									"value": {
+										"x": 0.0,
+										"y": -53.636600494384766,
+										"z": 0.0
+									}
+								}
+							]
+						},
+						"rotationCurve": {
+							"data": []
+						},
+						"scaleCurve": {
+							"data": []
+						},
+						"shift": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"BW::TrajectoryMoverComponent": {
+						"autoStart": false,
+						"looped": false,
+						"serverTime": false
+					},
+					"BW::TrajectoryTimeSyncComponent": {},
+					"BW::VisibilityObstacleComponent": {
+						"collidersLink": "d11b21c4-3dc7-3b45-ad5d-4c1a75738db4",
+						"disabledDomains": [
+							"Client"
+						],
+						"prismAreaLink": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -12.376999855041504,
+							"y": 20.0,
+							"z": 9.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "d11b21c4-3dc7-3b45-ad5d-4c1a75738db4",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"name": "Colliders_01",
+				"uuid": "d11b21c4-3dc7-3b45-ad5d-4c1a75738db4"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::SphereColliderDesc",
+								"__cvalue__": {
+									"transform": "((       8,       0,       0,       0), (       0,       8,       0,       0), (       0,       0,       8,       0), (       0,       0,       0,       1))"
+								}
+							}
+						]
+					},
+					"BW::DamageOnCollisionComponent": {
+						"cameraName": "",
+						"destroyingTime": -1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"isDestroying": false,
+						"killResolveType": "Push",
+						"killSpeed": 1.0,
+						"onBodyCollision": false,
+						"onSimulationObjectCollision": false,
+						"onVehicleCollision": false
+					},
+					"BW::RigidBodyComponent": {
+						"bodiesFrictionFactor": 0.30000001192092896,
+						"centerOfMass": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"collideWithBodies": false,
+						"collideWithDestructibles": true,
+						"collideWithOnlyLeavesTrees": false,
+						"collideWithSimulationObjects": false,
+						"collideWithStatics": true,
+						"collideWithTerrain": false,
+						"collideWithVehicles": false,
+						"destructiblesFrictionFactor": 1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"generateVelocities": false,
+						"inertiaFactors": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						},
+						"isTrigger": false,
+						"mass": 1.0,
+						"simulationObjectsFrictionFactor": 0.30000001192092896,
+						"state": "Kinematic",
+						"staticsFrictionFactor": 1.0,
+						"terrainFrictionFactor": 1.0,
+						"vehiclesFrictionFactors": 0.30000001192092896
+					},
+					"BW::TrajectoryComponent": {
+						"positionCurve": {
+							"data": [
+								{
+									"inTangent": {
+										"x": 0.7407990097999573,
+										"y": -7.748410224914551,
+										"z": 9.317569732666016
+									},
+									"outTangent": {
+										"x": 0.7407990097999573,
+										"y": -7.748410224914551,
+										"z": 9.317569732666016
+									},
+									"tangentMode": "0",
+									"time": 0.0,
+									"value": {
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0
+									}
+								},
+								{
+									"inTangent": {
+										"x": 0.7407990097999573,
+										"y": -7.748410224914551,
+										"z": 9.317569732666016
+									},
+									"outTangent": {
+										"x": 0.7407990097999573,
+										"y": -7.748410224914551,
+										"z": 9.317569732666016
+									},
+									"tangentMode": "0",
+									"time": 1.5,
+									"value": {
+										"x": 1.481600046157837,
+										"y": -15.496800422668457,
+										"z": 18.635099411010742
+									}
+								}
+							]
+						},
+						"rotationCurve": {
+							"data": []
+						},
+						"scaleCurve": {
+							"data": []
+						},
+						"shift": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"BW::TrajectoryMoverComponent": {
+						"autoStart": false,
+						"looped": false,
+						"serverTime": false
+					},
+					"BW::TrajectoryTimeSyncComponent": {},
+					"BW::VisibilityObstacleComponent": {
+						"collidersLink": "cdc66825-aa66-3e32-a587-d748aea3d83b",
+						"disabledDomains": [
+							"Client"
+						],
+						"prismAreaLink": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 11.616999626159668,
+							"y": 7.968510150909424,
+							"z": 18.312000274658203
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 14.999978065490723,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "cdc66825-aa66-3e32-a587-d748aea3d83b",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"name": "Colliders_02",
+				"uuid": "cdc66825-aa66-3e32-a587-d748aea3d83b"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_metal_small",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "dstrct_metal_small",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Explosion_02_sfx",
+				"uuid": "05658ff7-3605-4b14-bb56-6b3bf8073c98"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 6.5,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 6.5,
+								"object": "78fb368a-cfa5-4f3b-9f40-c185c424b14b",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 2.5,
+								"object": "d11b21c4-3dc7-3b45-ad5d-4c1a75738db4",
+								"parameters": [],
+								"startTime": 0.20000000298023224
+							},
+							{
+								"endTime": 4.0,
+								"object": "cdc66825-aa66-3e32-a587-d748aea3d83b",
+								"parameters": [],
+								"startTime": 2.0
+							},
+							{
+								"endTime": 6.5,
+								"object": "fa5cec76-b8f6-463b-a409-4584c3fd36f8",
+								"parameters": [
+									{
+										"component": "BW::Sound3DComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 2.990000009536743,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Fade Activated"
+											}
+										]
+									}
+								],
+								"startTime": 0.009999999776482582
+							},
+							{
+								"endTime": 6.5,
+								"object": "05658ff7-3605-4b14-bb56-6b3bf8073c98",
+								"parameters": [],
+								"startTime": 0.009999999776482582
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "120_liquefaction_station_crashing_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

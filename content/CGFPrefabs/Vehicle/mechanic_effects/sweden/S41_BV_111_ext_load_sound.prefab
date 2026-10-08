@@ -1,0 +1,103 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Gun::AuditionComponent": {
+						"activationSoundNPC": "gp_abl_swmt_load_NPC",
+						"activationSoundPC": "gp_abl_swmt_load_PC",
+						"deactivationSoundNPC": "gp_abl_swmt_load_NPC_stop_utility",
+						"deactivationSoundPC": "gp_abl_swmt_load_PC_stop_utility"
+					},
+					"BW::variables::GameObjectOnChangeActivatorComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::ChooseExpression",
+							"__cvalue__": {
+								"choices": [
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "vehicle/bustleFeed/side"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantBoolExpression",
+											"__cvalue__": {
+												"boolValue": true
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "vehicle/bustleFeed/side"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 1
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantBoolExpression",
+											"__cvalue__": {
+												"boolValue": true
+											}
+										}
+									}
+								],
+								"defaultResult/expression": {
+									"__ctype__": "BW::variables::ConstantBoolExpression",
+									"__cvalue__": {}
+								}
+							}
+						}
+					},
+					"cgf::TransformComponent": {}
+				},
+				"disableDomains": [
+					"Server"
+				],
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "bustle_sound",
+				"uuid": "be479990-17c1-4a32-b1da-1b4aee454c7e"
+			}
+		],
+		"components": {
+			"BW::SoundObject3DComponent": {},
+			"BW::VSEComponent": {
+				"disabledDomains": [
+					"Editor",
+					"Server"
+				],
+				"path": "vscript/plans/vehicles/mechanic_effects/sweden/S41_BV_111_bustle_feed_vfx.xml"
+			},
+			"cgf::TransformComponent": {},
+			"script::BustleFeedEffects": {}
+		},
+		"name": "S41_BV_111_ext_load_sound",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

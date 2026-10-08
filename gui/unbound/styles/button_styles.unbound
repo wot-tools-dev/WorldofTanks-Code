@@ -1,0 +1,414 @@
+
+#-----------------------------------------------#
+#                   ABSTRACT_BUTTON             #
+#-----------------------------------------------#
+(def constant BUTTON_BACKGROUND_RECT "Rect(4,4,152,16)")
+
+
+
+(def css BtnAbstractDisabledOverlayStyle()
+    (backgroundImage = 'bitmap:BtnDisableTexture')
+    (backgroundSize = "repeat")
+    (width = 100%)
+    (height = 100%)
+)
+
+(def constant ABSTRACT_BTN {
+    down : {font: ButtonTextStyle, image: {source: "R.atlases.components.indicator_down()", scale9: "Rect(4, 4, 152, 16)"}},
+    focusOverlay : {image: {source: "R.atlases.components.indicator_focus()", scale9: "Rect(15, 7, 135, 5)"}},
+    disabledOverlay : {style: 'BtnAbstractDisabledOverlayStyle'}
+    }
+)
+
+(def constant TEXT_BTN {
+    focusOverlay : {image: {source: "R.atlases.components.botton_back_shine()"}}
+    }
+)
+
+(def constant ButtonStyles
+    {
+        Main : {
+            background: "R.atlases.components.back_main()",
+            textClass: 'ZuricStyleMain'
+        },
+        Primary : {
+            background: "R.atlases.components.back_primary()",
+            textClass: 'ZuricStylePrimary'
+        },
+        Secondary : {
+            background: "R.atlases.components.back_secondary()",
+            textClass: 'ZuricStyleSecondary'
+        },
+        PrimaryRed : {
+            background: "R.atlases.components.back_primary_red()",
+            textClass: 'ZuricStyleSecondary'
+        },
+        PrimaryGreen : {
+            background: "R.atlases.components.back_primary_green()",
+            textClass: 'ZuricStyleSecondary'
+        },
+        PrimaryGold : {
+            background: "R.atlases.components.back_primary_gold()",
+            textClass: 'ZuricStyleSecondary'
+        }
+    }
+)
+
+(def macro ButtonStyle(styleName:str)
+    (scope
+        (background = "ButtonStyles[styleName].background")
+        (textClass = "ButtonStyles[styleName].textClass")
+    )
+)
+
+(def macro Main()
+    (macro ButtonStyle 'Main')
+)
+
+(def macro Primary()
+    (macro ButtonStyle 'Primary')
+)
+
+(def macro Secondary()
+    (macro ButtonStyle 'Secondary')
+)
+
+(def macro PrimaryRed()
+    (macro ButtonStyle 'PrimaryRed')
+)
+
+(def macro PrimaryGreen()
+    (macro ButtonStyle 'PrimaryGreen')
+)
+
+(def macro PrimaryGold()
+    (macro ButtonStyle 'PrimaryGold')
+)
+
+(def macro PrimaryGhost()
+    (scope
+        (background = "R.atlases.components.back_ghost()")
+        (textClass = 'ZuricStyleSecondary')
+        (texture = 'url:')
+    )
+)
+
+(def macro Small()
+    (scope
+        (_fontSize = 12)
+    )
+    (style
+        (height = 16)
+    )
+)
+
+(def macro Medium()
+    (scope
+        (_fontSize = 14)
+    )
+    (style
+        (height = 24px)
+    )
+)
+
+(def macro Large()
+    (scope
+        (_fontSize = 16)
+    )
+    (style
+        (height = 32px)
+    )
+)
+
+(def macro ExtraLarge()
+    (scope
+        (_fontSize = 14)
+    )
+    (style
+        (height = 64px)
+    )
+)
+
+# TestingStyles
+
+(def css ZuricStyleMain()
+    (fontFamily = $TitleFont)
+    (textColor = 0xfefeec)
+    (filters
+        (dropShadow
+            (angle = 270)
+            (blurX = 1)
+            (blurY = 1)
+            (strength = 1)
+            (distance = 1)
+            (color = 0x660000)
+            (quality = 0)
+        )
+    )
+)
+
+(def css ZuricStylePrimary()
+    (fontFamily = $TitleFont)
+    (textColor = 0xfefeec)
+    (filters
+        (dropShadow
+            (angle = 270)
+            (blurX = 1)
+            (blurY = 1)
+            (strength =1)
+            (distance = 1)
+            (color = 0x000000)
+            (quality = 0)
+        )
+    )
+)
+
+(def css ZuricStyleSecondary()
+    (fontFamily = $TitleFont)
+    (textColor = 0xfefeec)
+    (filters
+        (dropShadow
+            (angle = 270)
+            (blurX = 1)
+            (blurY = 1)
+            (strength =1)
+            (distance = 1)
+            (color = 0x000000)
+            (quality = 0)
+        )
+    )
+)
+
+(def css TextButtonMainTextStyle()
+    (fontFamily = $FieldFont)
+    (fontSize = 12)
+    (textColor = 0xffdd99)
+    (filters
+        (dropShadow
+            (blurX = 10)
+            (blurY = 10)
+            (strength = 1.5)
+            (distance = 1)
+            (color = 0xff0000)
+            (quality = 0)
+        )
+    )
+)
+
+(def css TextButtonDisabledTextStyle()
+    (fontFamily = $FieldFont)
+    (fontSize = 12)
+    (textColor = 0x8C8C7C)
+    (alpha = 0.6)
+)
+
+(def css TextButtonAdditionalTextStyle()
+    (fontFamily = $FieldFont)
+    (fontSize = 12)
+    (textColor = 0x8C8C7C)
+    (alpha = 0.6)
+)
+
+#-----------------------------------------------#
+#               BTN_ORANGE_BIG                  #
+#-----------------------------------------------#
+
+(def css BtnOrangeBigDisabledOverlayStyle()
+    (backgroundImage = 'bitmap:channel_disable_fill')
+    (backgroundSize = "repeat")
+)
+
+(def constant BTN_ORANGE_BIG {
+        up : {font: $ButtonTextStyle, alpha: 0.8, image: {source: "R.atlases.components.orange_big_normal()", scale9: "Rect(6, 6, 145, 21)"}},
+        hover : {font: $ButtonTextStyle, alpha: 1, image: {source: "R.atlases.components.orange_big_normal()", scale9: "Rect(6, 6, 145, 21)"}, sound: "R.sounds.highlight()"},
+        down : {font: $ButtonTextStyle, alpha: 0.6, image: {source: "R.atlases.components.orange_big_normal()", scale9: "Rect(6, 6, 145, 21)"}, sound: "R.sounds.play()"},
+        disabled : {font: $ButtonTextDisabledStyle, alpha: 1, image: {source: "R.atlases.components.orange_big_normal()", scale9: "Rect(6, 6, 145, 21)"}},
+        disabledOverlay : {style: 'BtnOrangeBigDisabledOverlayStyle'},
+        focusOverlay : {image: {source: 'bitmap:button_normal_focus', scale9: "Rect(15, 7, 135, 5)"}},
+        upSelected : {font: $ButtonTextStyle, alpha: 0.8, image: {source: "R.atlases.components.orange_big_normal()", scale9: "Rect(6, 6, 145, 21)"}},
+        hoverSelected : {font: $ButtonTextStyle, alpha: 1, image: {source: "R.atlases.components.orange_big_normal()", scale9: "Rect(6, 6, 145, 21)"}, sound: "R.sounds.highlight()"},
+        downSelected : {font: $ButtonTextStyle, alpha: 0.6, image: {source: "R.atlases.components.orange_big_normal()", scale9: "Rect(6, 6, 145, 21)"}, sound: "R.sounds.play()"}
+    }
+)
+
+(def macro ButtonSounds()
+    (exec "playSound(R.sounds.play())" (event "evBtnDownEvent"))
+    (exec "playSound(R.sounds.highlight())" (event "evBtnOverEvent"))
+)
+
+#---------------------------------------------------------------------#
+#               Button over state component styles presets            #
+#---------------------------------------------------------------------#
+
+(def constant BUTTON_SIZE_SMALL {height : 16px, fontSize : 12px})
+(def constant BUTTON_SIZE_MEDIUM {height : 24px, fontSize : 14px})
+(def constant BUTTON_SIZE_LARGE {height : 32px, fontSize : 15px})
+(def constant BUTTON_SIZE_EXTRA_LARGE {height : 64px, fontSize : 24px})
+
+# This macro is used inside other button specific macroses
+(def macro ButtonSimpleStyles(size:expression, background:expression)
+    (style
+        (height = "size['height']")
+    )
+
+    # background texture (usually sharpness)
+    (backgroundTexture = 'bitmap:BtnTextureStandard')
+
+    # texture tiled over button at disabled state
+    (disableOverlay source='bitmap:BtnDisableTexture' padding=1px)
+
+    # textture shown at hover state on the top layer
+    (hover source="R.atlases.components.indicator_over()" scale9grid="BUTTON_BACKGROUND_RECT" blend='add' offsets=null)
+
+    # stroke texture
+    (stroke source="R.atlases.components.stroke()" scale9grid="BUTTON_BACKGROUND_RECT" offsets=null)
+
+    # main background button texture
+    (background source="background" scale9grid="BUTTON_BACKGROUND_RECT" offsets=null)
+
+    (down source="R.atlases.components.indicator_down()" scale9grid="BUTTON_BACKGROUND_RECT" offsets=null)
+
+    # set focus image
+    (setFocusImage source="R.atlases.components.indicator_focus()" scale9grid="Rect(15, 7, 135, 5)" offsets=null)
+
+    (soundDown = "R.sounds.play()")       # sound for 'down' state
+    (soundOver = "R.sounds.highlight()")  # sound fo 'hover' state
+)
+
+# Style for set up button with icon and text
+(def macro ButtonIconTextStyles(size:expression)
+    (label
+        (style
+            (fontSize = "size['fontSize']")
+        )
+    )
+
+    # id of a simple tooltip
+    (tooltipContent = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+    (tooltipDecorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+
+    (padding = 16px)            # side paddings (px/%)
+    (iconAlign = "left")        # icon align ("left"|"right")
+    (iconPadding = 4px)         # gap between icon and text (in pixels)
+    (truncateText = false)      # use to allow text truncation (if true you need to specify button width style)
+)
+
+# Insert this macro if you want to use 'selectable' property : (selectable = true) (allowDeselect = true)
+(def macro ButtonToggleStyles()
+    (toggleIndicator source="R.atlases.components.indicator_selected()"
+        scale9grid="Rect(20, 20, 140, 6)" 
+        offsets=[-10px, -10px, -10px, -10px]
+    )
+    (toggleIcon
+        sourceToggleOn="R.atlases.components.icon_selected_on()"
+        sourceToggleOff="R.atlases.components.icon_selected_off()"
+        scale9grid=null
+        offsets="[auto, auto, auto, -23px, 0px]"
+    )
+)
+
+# Insert this macro if you want to use 'waiting' property : (waiting = true)
+(def macro ButtonWaitingStyles(label:str)
+    (waitingText label="label" styleClass='ZuricStyleSecondary')
+    (waitingIcon source="R.atlases.components.icon_loading()" gap=2px)
+    (waitingBackground source="R.atlases.components.back_ghost()" scale9grid="BUTTON_BACKGROUND_RECT" offsets=null)
+)
+
+# Insert this macro if you want to use 'alert' property : (alert = true)
+(def macro ButtonAlertStyles()
+    (alertIndicator source="R.atlases.components.indicator_alert()"
+        scale9grid="BUTTON_BACKGROUND_RECT" offsets=null
+    )
+)
+
+# Simple button styles. Insert one of them to change your button look and feel
+# 'size' property should be on of 'BUTTON_SIZE_*' dicts
+
+# Main
+(def macro ButtonSimpleStyleMain(size:expression)
+    (macro ButtonSimpleStyles "size" "R.atlases.components.back_main()")
+)
+
+(def macro ButtonStyleMain(size:expression)
+    (label (class ZuricStyleMain) )
+    (macro ButtonSimpleStyleMain "size")
+    (macro ButtonIconTextStyles "size")
+)
+# --
+
+# Primary
+(def macro ButtonSimpleStylePrimary(size:expression)
+    (macro ButtonSimpleStyles "size" "R.atlases.components.back_primary()")
+)
+
+(def macro ButtonStylePrimary(size:expression)
+    (label
+        (class ZuricStylePrimary)
+    )
+    (macro ButtonSimpleStylePrimary "size")
+    (macro ButtonIconTextStyles "size")
+)
+# --
+
+# Secondary
+(def macro ButtonSimpleStyleSecondary(size:expression)
+    (macro ButtonSimpleStyles "size" "R.atlases.components.back_secondary()")
+)
+
+(def macro ButtonStyleSecondary(size:expression)
+    (label (class ZuricStyleSecondary) )
+    (macro ButtonSimpleStyleSecondary "size")
+    (macro ButtonIconTextStyles "size")
+)
+# --
+
+# PrimaryRed
+(def macro ButtonSimpleStylePrimaryRed(size:expression)
+    (macro ButtonSimpleStyles "size" "R.atlases.components.back_primary_red()")
+)
+
+(def macro ButtonStylePrimaryRed(size:expression)
+    (label (class ZuricStyleSecondary) )
+    (macro ButtonSimpleStylePrimaryRed "size")
+    (macro ButtonIconTextStyles "size")
+)
+# --
+
+# PrimaryGreen
+(def macro ButtonSimpleStylePrimaryGreen(size:expression)
+    (macro ButtonSimpleStyles "size" "R.atlases.components.back_primary_green()")
+)
+
+(def macro ButtonStylePrimaryGreen(size:expression)
+    (label (class ZuricStyleSecondary) )
+    (macro ButtonSimpleStylePrimaryGreen "size")
+    (macro ButtonIconTextStyles "size")
+)
+# --
+
+# PrimaryGold
+(def macro ButtonSimpleStylePrimaryGold(size:expression)
+    (macro ButtonSimpleStyles "size" "R.atlases.components.back_primary_gold()")
+)
+
+(def macro ButtonStylePrimaryGold(size:expression)
+    (label (class ZuricStyleSecondary) )
+    (macro ButtonSimpleStylePrimaryGold "size")
+    (macro ButtonIconTextStyles "size")
+)
+# --
+
+# PrimaryGhost
+(def macro ButtonSimpleStylePrimaryGhost(size:expression)
+    (label (class ZuricStyleSecondary) )
+    (macro ButtonSimpleStyles "size" "R.atlases.components.back_ghost()")
+    (stroke source=null scale9grid="Rect(5, 5, 150, 14)" offsets=null)
+)
+
+(def macro ButtonStylePrimaryGhost(size:expression)
+    (macro ButtonSimpleStylePrimaryGhost "size")
+    (macro ButtonIconTextStyles "size")
+)
+# --
+
+#---------

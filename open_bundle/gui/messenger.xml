@@ -1,0 +1,50 @@
+<messenger.xml>
+  <htmlTemplatesSimple>
+    <openBundleTankman>	&lt;font color='#8C8C7E'&gt;%(text)s&lt;/font&gt;	</openBundleTankman>
+    <openBundleFixedReward>	&lt;font color="#8C8C7E"&gt;_(#open_bundle.open_bundle_lobby_default:serviceChannelMessages/fixedReward)&lt;/font&gt;&lt;br/&gt;%(text)s	</openBundleFixedReward>
+    <openBundleCellRewards>	&lt;font color="#8C8C7E"&gt;_(#open_bundle.open_bundle_lobby_default:serviceChannelMessages/cellRewards)&lt;/font&gt;&lt;br/&gt;%(text)s	</openBundleCellRewards>
+    <openBundlePriceInCredits>	&lt;font color='#8C8C7E'&gt;_(#open_bundle.open_bundle:formatter/credits) &lt;font color='#D6D7D4'&gt;%(amount)s&lt;/font&gt;&lt;/font&gt;	</openBundlePriceInCredits>
+    <openBundlePriceInGold>	&lt;font color='#8C8C7E'&gt;_(#open_bundle.open_bundle:formatter/gold) &lt;font color='#FFC363'&gt;%(amount)s&lt;/font&gt;&lt;/font&gt;	</openBundlePriceInGold>
+    <openBundlePriceInCrystal>	&lt;font color='#8C8C7E'&gt;_(#open_bundle.open_bundle:formatter/crystal) &lt;font color='#C9C9B6'&gt;%(amount)s&lt;/font&gt;&lt;/font&gt;	</openBundlePriceInCrystal>
+    <openBundlePriceInEventCoin>	&lt;font color='#8C8C7E'&gt;_(#open_bundle.open_bundle:formatter/eventCoin) &lt;font color='#C9C9B6'&gt;%(amount)s&lt;/font&gt;&lt;/font&gt;	</openBundlePriceInEventCoin>
+  </htmlTemplatesSimple>
+  <htmlTemplates>
+    <StartNotification>
+      <groupID>	info	</groupID>
+      <priority>	high	</priority>
+      <gfViewName>	StartNotification	</gfViewName>
+      <linkage>	GamefaceNotification	</linkage>
+    </StartNotification>
+    <SpecialRewardsNotification>
+      <groupID>	info	</groupID>
+      <priority>	high	</priority>
+      <gfViewName>	SpecialRewardsNotification	</gfViewName>
+      <linkage>	GamefaceNotification	</linkage>
+    </SpecialRewardsNotification>
+    <OpenBundleReminderSysMessage>
+      <type>	grey	</type>
+      <priority>	medium	</priority>
+      <icon>	InformationIcon	</icon>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;%(header)s&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;&lt;font color='#8C8C7E'&gt;%(text)s&lt;/font&gt;	</message>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#open_bundle.open_bundle_lobby_default:serviceChannelMessages/reminder/button)	</label>
+          <action>	openBundle	</action>
+        </button>
+      </buttonsLayout>
+    </OpenBundleReminderSysMessage>
+    <OpenBundleFinishSysMessage>
+      <type>	grey	</type>
+      <priority>	medium	</priority>
+      <icon>	InformationIcon	</icon>
+      <message>	&lt;font color='#8C8C7E'&gt;%(text)s&lt;/font&gt;	</message>
+    </OpenBundleFinishSysMessage>
+    <OpenBundleRewardsSysMessage>
+      <type>	grey	</type>
+      <priority>	medium	</priority>
+      <icon>	InformationIcon	</icon>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;%(header)s&lt;/font&gt;&lt;br/&gt;&lt;br/&gt;%(time)s&lt;br/&gt;%(text)s&lt;br/&gt;%(spentCurrency)s	</message>
+    </OpenBundleRewardsSysMessage>
+  </htmlTemplates>
+</messenger.xml>

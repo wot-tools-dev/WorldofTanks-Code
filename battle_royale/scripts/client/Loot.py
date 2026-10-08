@@ -1,0 +1,30 @@
+from __future__ import absolute_import
+import BigWorld
+import CGF
+import Math
+from battleground.loot_object import loadLootById
+from gui.shared import g_eventBus, EVENT_BUS_SCOPE
+from battle_royale.gui.shared.events import LootEvent
+
+class Loot(BigWorld.Entity):
+
+    def __init__(self, *args, **kwargs):
+        super(Loot, self).__init__(*args, **kwargs)
+        self.__lootDescr = None
+        return
+
+    def onEnterWorld(self, *args):
+        self.__lootDescr = loadLootById(self.typeID)
+        if self.__lootDescr is not None:
+            CGF.loadAndCreatePrefabWithParent(self.__lootDescr.prefab, self.entityGameObject, Math.Vector3())
+        return
+
+    def onLeaveWorld(self):
+        self.__lootDescr = None
+        return
+
+    def set_pickedUpBy(self, prev=None):
+        g_eventBus.handleEvent(LootEvent(LootEvent.LOOT_PICKED_UP, ctx={'id': self.id}), scope=EVENT_BUS_SCOPE.BATTLE)
+        if self.__lootDescr is not None:
+            CGF.loadAndCreatePrefab(self.__lootDescr.prefabPickup, self.spaceID, self.position)
+        return

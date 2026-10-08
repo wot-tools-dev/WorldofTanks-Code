@@ -1,0 +1,1 @@
+import{j as e,h as s}from"./vendor.js";import{r}from"./lib.js";const a="Breed_7533cf8b",l="Breed_animal_d884042f",{toUpperCase:i}=r.resolve("intl");function n({petType:r,breedName:n,className:o}){return r||n?e.jsxs("div",{className:s(a,o),children:[r&&e.jsx("div",{className:l,children:i(r)}),n&&i(n)]}):null}export{n as B};

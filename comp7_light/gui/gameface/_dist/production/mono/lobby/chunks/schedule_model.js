@@ -1,0 +1,1 @@
+import{i as e}from"./lib.js";import"./vendor.js";const[s,a]=e()(({observableModel:e})=>({root:e.object(),season:e.primitives(["startTimestamp","endTimestamp","serverTimestamp","state","name","hasTentativeDates"],"season"),year:e.primitives(["state"],"year")}),({externalModel:e})=>({pollServerTime:e.createCallbackNoArgs("season.pollServerTime")}));export{s as S,a as u};

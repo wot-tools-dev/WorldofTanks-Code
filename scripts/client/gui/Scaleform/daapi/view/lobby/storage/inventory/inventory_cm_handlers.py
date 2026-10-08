@@ -1,0 +1,254 @@
+from __future__ import absolute_import
+from adisp import adisp_process
+from gui import shop
+from gui.Scaleform.daapi.view.lobby.shared.cm_handlers import ContextMenu, option, CMLabel
+from gui.Scaleform.framework.managers.context_menu import CM_BUY_COLOR
+from gui.shared import event_dispatcher as shared_events
+from gui.shared.event_dispatcher import showBattleBoosterSellDialog
+from gui.shared.gui_items import GUI_ITEM_TYPE
+from gui.shared.gui_items.items_actions import factory as ItemsActionsFactory
+from helpers import dependency
+from ids_generators import SequenceIDGenerator
+from items import UNDEFINED_ITEM_CD
+from skeletons.gui.shared import IItemsCache
+from skeletons.gui.lobby_context import ILobbyContext
+from gui.shared.event_dispatcher import showSellDialog
+_SOURCE = shop.Source.EXTERNAL
+_ORIGIN = shop.Origin.STORAGE
+
+class ModulesShellsCMHandler(ContextMenu):
+    __sqGen = SequenceIDGenerator()
+    _itemsCache = dependency.descriptor(IItemsCache)
+
+    @option(__sqGen.nextSequenceID, CMLabel.INFORMATION)
+    def showInfo(self):
+        shared_events.showStorageModuleInfo(self._id)
+
+    @option(__sqGen.nextSequenceID, CMLabel.SELL)
+    def sell(self):
+        showSellDialog(self._id)
+
+    def _getOptionCustomData(self, label):
+        optionData = super(ModulesShellsCMHandler, self)._getOptionCustomData(label)
+        if label == CMLabel.BUY_MORE:
+            optionData.textColor = CM_BUY_COLOR
+        return optionData
+
+
+class ModulesShellsNoSaleCMHandler(ContextMenu):
+    _sqGen = SequenceIDGenerator()
+    _itemsCache = dependency.descriptor(IItemsCache)
+
+    @option(_sqGen.nextSequenceID, CMLabel.INFORMATION)
+    def showInfo(self):
+        shared_events.showStorageModuleInfo(self._id)
+
+    def _getOptionCustomData(self, label):
+        optionData = super(ModulesShellsNoSaleCMHandler, self)._getOptionCustomData(label)
+        if label == CMLabel.BUY_MORE:
+            optionData.textColor = CM_BUY_COLOR
+        return optionData
+
+
+class _ArmingCMHandler(ContextMenu):
+    _sqGen = SequenceIDGenerator()
+    _itemsCache = dependency.descriptor(IItemsCache)
+
+    @option(_sqGen.nextSequenceID, CMLabel.INFORMATION)
+    def showInfo(self):
+        shared_events.showStorageModuleInfo(self._id)
+
+    @option(_sqGen.nextSequenceID, CMLabel.SELL)
+    def sell(self):
+        showSellDialog(self._id)
+
+    def buy(self):
+        shared_events.showShop()
+
+    def _getHighlightedLabels(self):
+        return tuple()
+
+    def _generateOptions(self, ctx=None):
+        options = super(_ArmingCMHandler, self)._generateOptions(ctx)
+        module = self._itemsCache.items.getItemByCD(int(self._id))
+        if module.isHidden:
+            return [ item for item in options if item['id'] != CMLabel.BUY_MORE ]
+        return options
+
+    def _getOptionCustomData(self, label):
+        optionData = super(_ArmingCMHandler, self)._getOptionCustomData(label)
+        if label in self._getHighlightedLabels():
+            optionData.textColor = CM_BUY_COLOR
+        return optionData
+
+
+class EquipmentCMHandler(_ArmingCMHandler):
+
+    @option(_ArmingCMHandler._sqGen.nextSequenceID, CMLabel.BUY_MORE)
+    def buy(self):
+        typeID = self._itemsCache.items.getItemByCD(self._id).itemTypeID if self._id else UNDEFINED_ITEM_CD
+        if typeID == GUI_ITEM_TYPE.EQUIPMENT:
+            shop.showBuyEquipment(self._id, source=_SOURCE, origin=_ORIGIN)
+        else:
+            super(EquipmentCMHandler, self).buy()
+
+    def _initFlashValues(self, ctx):
+        super(EquipmentCMHandler, self)._initFlashValues(ctx)
+        self._enabled = bool(ctx.enabled)
+
+    def _getHighlightedLabels(self):
+        return (CMLabel.BUY_MORE,)
+
+    def _getOptionCustomData(self, label):
+        optionData = super(EquipmentCMHandler, self)._getOptionCustomData(label)
+        if label == CMLabel.SELL:
+            optionData.enabled = self._enabled
+        return optionData
+
+
+class OptionalDeviceCMHandler(_ArmingCMHandler):
+    __lobbyContext = dependency.descriptor(ILobbyContext)
+
+    @option(_ArmingCMHandler._sqGen.nextSequenceID, CMLabel.BUY_MORE)
+    def buy(self):
+        shop.showBuyOptionalDevice(self._id, source=_SOURCE, origin=_ORIGIN)
+
+    @option(_ArmingCMHandler._sqGen.nextSequenceID, CMLabel.UPGRADE)
+    def upgrade(self):
+        module = self._itemsCache.items.getItemByCD(int(self._id))
+        ItemsActionsFactory.doAction(ItemsActionsFactory.UPGRADE_OPT_DEVICE, module, None, None, None)
+        return
+
+    def _generateOptions(self, ctx=None):
+        options = super(OptionalDeviceCMHandler, self)._generateOptions(ctx)
+        module = self._itemsCache.items.getItemByCD(int(self._id))
+        if not module.isUpgradable or not self.__lobbyContext.getServerSettings().isTrophyDevicesEnabled():
+            options = [ item for item in options if item['id'] != CMLabel.UPGRADE ]
+        return options
+
+    def _getHighlightedLabels(self):
+        return (CMLabel.BUY_MORE, CMLabel.UPGRADE)
+
+
+class OptionalModernizedDeviceCMHandler(OptionalDeviceCMHandler):
+    _itemsCache = dependency.descriptor(IItemsCache)
+
+    @option(2, CMLabel.DECONSTRUCT)
+    def sell(self):
+        module = self._itemsCache.items.getItemByCD(self._id)
+        ItemsActionsFactory.doAction(ItemsActionsFactory.DECONSTRUCT_OPT_DEVICE, module, None, None, None)
+        return
+
+    def _getOptionCustomData(self, label):
+        optionData = super(OptionalModernizedDeviceCMHandler, self)._getOptionCustomData(label)
+        if label == CMLabel.UPGRADE:
+            optionData.textColor = CM_BUY_COLOR
+            return optionData
+        module = self._itemsCache.items.getItemByCD(int(self._id))
+        if label == CMLabel.DECONSTRUCT and not module.isUpgradable:
+            optionData.textColor = CM_BUY_COLOR
+            return optionData
+        return optionData
+
+
+class BattleBoostersCMHandler(ContextMenu):
+    __sqGen = SequenceIDGenerator()
+    _itemsCache = dependency.descriptor(IItemsCache)
+
+    def _initFlashValues(self, ctx):
+        super(BattleBoostersCMHandler, self)._initFlashValues(ctx)
+        self._enabled = bool(ctx.enabled)
+
+    @option(__sqGen.nextSequenceID, CMLabel.INFORMATION)
+    def showInfo(self):
+        shared_events.showStorageModuleInfo(self._id)
+
+    @option(__sqGen.nextSequenceID, CMLabel.SELL)
+    def sell(self):
+        showBattleBoosterSellDialog(self._id)
+
+    @option(__sqGen.nextSequenceID, CMLabel.BUY_MORE)
+    def buy(self):
+        shop.showBattleBooster(self._id, source=_SOURCE, origin=_ORIGIN)
+
+    def _getOptionCustomData(self, label):
+        optionData = super(BattleBoostersCMHandler, self)._getOptionCustomData(label)
+        if label == CMLabel.INFORMATION:
+            optionData.enabled = False
+        elif label == CMLabel.SELL:
+            optionData.enabled = self._enabled
+        elif label == CMLabel.BUY_MORE:
+            optionData.textColor = CM_BUY_COLOR
+        return optionData
+
+    def _isVisible(self, label):
+        return not self._itemsCache.items.getItemByCD(self._id).isHidden if label == CMLabel.BUY_MORE else super(BattleBoostersCMHandler, self)._isVisible(label)
+
+
+class DemountKitsCMHandler(ContextMenu):
+    __sqGen = SequenceIDGenerator()
+
+    @option(__sqGen.nextSequenceID, CMLabel.INFORMATION)
+    def showInfo(self):
+        shared_events.showGoodieInfo(self._id)
+
+    @option(__sqGen.nextSequenceID, CMLabel.SELL)
+    @adisp_process
+    def sell(self):
+        raise NotImplementedError
+
+    @option(__sqGen.nextSequenceID, CMLabel.BUY_MORE)
+    def buy(self):
+        raise NotImplementedError
+
+    def _getOptionCustomData(self, label):
+        optionData = super(DemountKitsCMHandler, self)._getOptionCustomData(label)
+        if label in (CMLabel.SELL, CMLabel.BUY_MORE):
+            optionData.enabled = False
+        return optionData
+
+
+class RecertificationFormsCMHandler(ContextMenu):
+    __sqGen = SequenceIDGenerator()
+
+    @option(__sqGen.nextSequenceID, CMLabel.INFORMATION)
+    def showInfo(self):
+        shared_events.showGoodieInfo(self._id)
+
+    @option(__sqGen.nextSequenceID, CMLabel.SELL)
+    @adisp_process
+    def sell(self):
+        raise NotImplementedError
+
+    @option(__sqGen.nextSequenceID, CMLabel.BUY_MORE)
+    def buy(self):
+        raise NotImplementedError
+
+    def _getOptionCustomData(self, label):
+        optionData = super(RecertificationFormsCMHandler, self)._getOptionCustomData(label)
+        if label in (CMLabel.SELL, CMLabel.BUY_MORE):
+            optionData.enabled = False
+        return optionData
+
+
+class MentoringLicensesCMHandler(ContextMenu):
+    __sqGen = SequenceIDGenerator()
+
+    @option(__sqGen.nextSequenceID, CMLabel.INFORMATION)
+    def showInfo(self):
+        shared_events.showGoodieInfo(self._id)
+
+    @option(__sqGen.nextSequenceID, CMLabel.SELL)
+    @adisp_process
+    def sell(self):
+        raise NotImplementedError
+
+    @option(__sqGen.nextSequenceID, CMLabel.BUY_MORE)
+    def buy(self):
+        raise NotImplementedError
+
+    def _getOptionCustomData(self, label):
+        optionData = super(MentoringLicensesCMHandler, self)._getOptionCustomData(label)
+        if label in (CMLabel.SELL, CMLabel.BUY_MORE):
+            optionData.enabled = False
+        return optionData

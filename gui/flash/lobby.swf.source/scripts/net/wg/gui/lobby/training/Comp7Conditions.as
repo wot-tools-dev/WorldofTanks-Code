@@ -1,0 +1,170 @@
+package net.wg.gui.lobby.training
+{
+   import flash.display.Sprite;
+   import flash.events.MouseEvent;
+   import flash.text.TextField;
+   import net.wg.infrastructure.managers.ITooltipMgr;
+   import net.wg.utils.ICommons;
+   
+   public class Comp7Conditions extends AdditionalInfoContent
+   {
+      
+      private static const SEPARATOR_OFFSET_X:uint = 5;
+      
+      private static const TEXT_OFFSET_X:uint = 2;
+      
+      private static const LAYOUT_SMALL_WITH_TEXT_AND_SEPARATOR_MAX_WIDTH:uint = 260;
+      
+      private static const DOTS:String = "...";
+      
+      public var freeConsumablesTf:TextField;
+      
+      public var tierTf:TextField;
+      
+      public var vehiclesRequiredTf:TextField;
+      
+      public var tierIcon:Sprite;
+      
+      public var freeConsumablesIcon:Sprite;
+      
+      public var vehiclesRequiredIcon:Sprite;
+      
+      public var separatorIcon1:Sprite;
+      
+      public var separatorIcon2:Sprite;
+      
+      private var _currentLayout:uint = 0;
+      
+      private var _tooltipMgr:ITooltipMgr = App.toolTipMgr;
+      
+      private var _separatorIconOriginalX:int = 0;
+      
+      private var _freeConsumablesIconOriginalX:int = 0;
+      
+      private var _vehicleRequired3IconOriginalX:int = 0;
+      
+      private var _commons:ICommons = App.utils.commons;
+      
+      public function Comp7Conditions()
+      {
+         super();
+         this.initialize();
+      }
+      
+      override public function setLayout(param1:uint) : void
+      {
+         var _loc2_:Number = NaN;
+         if(this._currentLayout == param1)
+         {
+            return;
+         }
+         this._currentLayout = param1;
+         this.freeConsumablesTf.visible = this.tierTf.visible = this.vehiclesRequiredTf.visible = this._currentLayout != LAYOUT_SMALL;
+         this.separatorIcon2.visible = this._currentLayout == LAYOUT_SMALL;
+         if(this._currentLayout == LAYOUT_SMALL_WITH_TEXT_AND_SEPARATOR)
+         {
+            this.tierTf.x = this.tierIcon.width + TEXT_OFFSET_X | 0;
+            this.separatorIcon1.x = this.tierTf.x + this.tierTf.textWidth + TEXT_OFFSET_X + SEPARATOR_OFFSET_X + SEPARATOR_OFFSET_X | 0;
+            this.freeConsumablesIcon.x = this.separatorIcon1.x + TEXT_OFFSET_X + SEPARATOR_OFFSET_X | 0;
+            this.freeConsumablesTf.x = this.freeConsumablesIcon.x + this.freeConsumablesIcon.width + TEXT_OFFSET_X | 0;
+            this.vehiclesRequiredIcon.x = this.tierIcon.x;
+            this.vehiclesRequiredIcon.y = this.tierIcon.y + this.tierIcon.height;
+            this.vehiclesRequiredTf.x = this.tierTf.x + TEXT_OFFSET_X | 0;
+            this.vehiclesRequiredTf.y = this.vehiclesRequiredIcon.y;
+            if(this.freeConsumablesTf.x + this.freeConsumablesTf.textWidth > LAYOUT_SMALL_WITH_TEXT_AND_SEPARATOR_MAX_WIDTH)
+            {
+               _loc2_ = this.width - LAYOUT_SMALL_WITH_TEXT_AND_SEPARATOR_MAX_WIDTH | 0;
+               this.freeConsumablesTf.width -= _loc2_;
+               this._commons.truncateTextFieldText(this.freeConsumablesTf,this.freeConsumablesTf.text,true,false,DOTS);
+            }
+         }
+         else if(this._currentLayout == LAYOUT_BIG)
+         {
+            this.tierTf.x = this.tierIcon.width;
+            this.separatorIcon1.x = this.tierTf.x + this.tierTf.textWidth + TEXT_OFFSET_X + SEPARATOR_OFFSET_X + SEPARATOR_OFFSET_X | 0;
+            this.freeConsumablesIcon.x = this.separatorIcon1.x + TEXT_OFFSET_X + SEPARATOR_OFFSET_X | 0;
+            this.freeConsumablesTf.x = this.freeConsumablesIcon.x + this.freeConsumablesIcon.width | 0;
+            this.vehiclesRequiredIcon.x = this.tierIcon.x;
+            this.vehiclesRequiredIcon.y = this.tierIcon.y + this.tierIcon.height;
+            this.vehiclesRequiredTf.x = this.tierTf.x;
+            this.vehiclesRequiredTf.y = this.vehiclesRequiredIcon.y;
+         }
+         else
+         {
+            this.separatorIcon1.x = this._separatorIconOriginalX;
+            this.freeConsumablesIcon.x = this._freeConsumablesIconOriginalX;
+            this.vehiclesRequiredIcon.x = this._vehicleRequired3IconOriginalX;
+         }
+      }
+      
+      override protected function onDispose() : void
+      {
+         this.freeConsumablesIcon.removeEventListener(MouseEvent.ROLL_OVER,this.onRollOverFreeConsumablesHandler);
+         this.freeConsumablesIcon.removeEventListener(MouseEvent.ROLL_OUT,this.onRollOutHandler);
+         this.freeConsumablesTf.removeEventListener(MouseEvent.ROLL_OVER,this.onRollOverFreeConsumablesHandler);
+         this.freeConsumablesTf.removeEventListener(MouseEvent.ROLL_OUT,this.onRollOutHandler);
+         this.vehiclesRequiredIcon.removeEventListener(MouseEvent.ROLL_OVER,this.onRollOverVehiclesRequiredHandler);
+         this.vehiclesRequiredIcon.removeEventListener(MouseEvent.ROLL_OUT,this.onRollOutHandler);
+         this.vehiclesRequiredTf.removeEventListener(MouseEvent.ROLL_OVER,this.onRollOverVehiclesRequiredHandler);
+         this.vehiclesRequiredTf.removeEventListener(MouseEvent.ROLL_OUT,this.onRollOutHandler);
+         this.freeConsumablesTf = null;
+         this.tierTf = null;
+         this.vehiclesRequiredTf = null;
+         this.tierIcon = null;
+         this.freeConsumablesIcon = null;
+         this.vehiclesRequiredIcon = null;
+         this.separatorIcon1 = null;
+         this.separatorIcon2 = null;
+         this._tooltipMgr = null;
+         this._commons = null;
+         super.onDispose();
+      }
+      
+      protected function initialize() : void
+      {
+         this.freeConsumablesTf.text = MENU.TRAINING_NOTIFICATIONTEXT_FREESUPPLIES;
+         this.tierTf.text = MENU.TRAINING_NOTIFICATIONTEXT_ONLYTIERX;
+         this.vehiclesRequiredTf.text = MENU.TRAINING_NOTIFICATIONTEXT_VEHICLEREQUIRED3;
+         App.utils.commons.updateTextFieldSize(this.freeConsumablesTf,true,true);
+         App.utils.commons.updateTextFieldSize(this.tierTf,true,true);
+         App.utils.commons.updateTextFieldSize(this.vehiclesRequiredTf,true,true);
+         this.freeConsumablesTf.visible = this.tierTf.visible = this.vehiclesRequiredTf.visible = false;
+         this._separatorIconOriginalX = this.separatorIcon1.x;
+         this._freeConsumablesIconOriginalX = this.freeConsumablesIcon.x;
+         this._vehicleRequired3IconOriginalX = this.vehiclesRequiredIcon.x;
+         this.freeConsumablesIcon.addEventListener(MouseEvent.ROLL_OVER,this.onRollOverFreeConsumablesHandler);
+         this.freeConsumablesIcon.addEventListener(MouseEvent.ROLL_OUT,this.onRollOutHandler);
+         this.freeConsumablesTf.addEventListener(MouseEvent.ROLL_OVER,this.onRollOverFreeConsumablesHandler);
+         this.freeConsumablesTf.addEventListener(MouseEvent.ROLL_OUT,this.onRollOutHandler);
+         this.vehiclesRequiredIcon.addEventListener(MouseEvent.ROLL_OVER,this.onRollOverVehiclesRequiredHandler);
+         this.vehiclesRequiredIcon.addEventListener(MouseEvent.ROLL_OUT,this.onRollOutHandler);
+         this.vehiclesRequiredTf.addEventListener(MouseEvent.ROLL_OVER,this.onRollOverVehiclesRequiredHandler);
+         this.vehiclesRequiredTf.addEventListener(MouseEvent.ROLL_OUT,this.onRollOutHandler);
+      }
+      
+      override public function get width() : Number
+      {
+         if(this._currentLayout == LAYOUT_BIG || this._currentLayout == LAYOUT_SMALL_WITH_TEXT_AND_SEPARATOR)
+         {
+            return this.freeConsumablesTf.x + this.freeConsumablesTf.textWidth;
+         }
+         return this.freeConsumablesIcon.x + this.freeConsumablesIcon.width;
+      }
+      
+      private function onRollOverVehiclesRequiredHandler(param1:MouseEvent) : void
+      {
+         this._tooltipMgr.show(MENU.TRAINING_ADDITIONALINFO_VEHICLEREQUIRED3);
+      }
+      
+      private function onRollOverFreeConsumablesHandler(param1:MouseEvent) : void
+      {
+         this._tooltipMgr.show(MENU.TRAINING_ADDITIONALINFO_FREESUPPLIESCOMP7);
+      }
+      
+      private function onRollOutHandler(param1:MouseEvent) : void
+      {
+         this._tooltipMgr.hide();
+      }
+   }
+}
+

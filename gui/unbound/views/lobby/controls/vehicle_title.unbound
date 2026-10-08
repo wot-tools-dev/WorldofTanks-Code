@@ -1,0 +1,39 @@
+(def element VehicleTitle(txt_style:str = 'PromoSubTitleTextStyle', atlasIcon:bool = true) layout=true
+    (scope
+        (var vehLvlTxt:str = '')
+        (var vehType:str = '')
+        (var vehNameTxt:str = '')
+        (var isElite:bool = false)
+        (var txtStyle:str = "txt_style")
+        
+        (const __VEH_ICON_ELITE_MARGIN:number = -13)
+        (const __VEH_ICON_MARGIN:number = -26)
+    )
+    (style
+        (flow = "Flow.HORIZONTAL")
+        (align="middle")
+    )
+    (tf
+        (name = 'vehName')
+        (style 
+            (bind marginRight "isElite ? __VEH_ICON_ELITE_MARGIN : __VEH_ICON_MARGIN")
+        )
+        (bind class "txtStyle")
+        (bind text "vehLvlTxt" init=false)
+    )
+    (image
+        (style
+            (marginTop = 6px)
+        )
+        (bind source "R.atlases.components[vehType]()" init=false (bind enabled "atlasIcon"))
+        (bind source "vehType" init=false (bind enabled "!atlasIcon"))
+    )
+    (tf
+        (bind name "vehNameTxt")
+        (style 
+            (bind marginLeft "isElite ? __VEH_ICON_ELITE_MARGIN : __VEH_ICON_MARGIN")
+        )
+        (bind class "txtStyle")
+        (bind text "vehNameTxt" init=false)
+    )
+)

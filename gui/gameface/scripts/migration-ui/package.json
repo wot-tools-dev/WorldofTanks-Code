@@ -1,0 +1,36 @@
+{
+    "name": "migration-cli",
+    "version": "1.4.0",
+    "description": "",
+    "scripts": {
+        "cli": "tsx ./src/index.ts",
+        "migrate": "tsx ./src/index.ts \"../../src\" \"../../mono/packages/legacy\"",
+        "migrate:unpretty": "tsx ./src/index.ts --unpretty \"../../src\" \"../../mono/packages/legacy\"",
+        "smoke": "tsx ./smoke/index.ts"
+    },
+    "engines": {
+        "node": ">=20.13"
+    },
+    "keywords": [],
+    "author": "a_avsenin & a_dushkov",
+    "dependencies": {
+        "@effect/cli": "0.40.1",
+        "@effect/experimental": "0.21.2",
+        "@effect/platform-node": "0.56.1",
+        "@effect/schema": "0.70.0",
+        "effect": "3.6.0",
+        "fast-glob": "3.3.2",
+        "fs-extra": "11.2.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "9.21.0",
+        "@trivago/prettier-plugin-sort-imports": "4.3.0",
+        "@types/fs-extra": "11.0.4",
+        "@types/node": "22.0.0",
+        "eslint": "9.21.0",
+        "globals": "16.0.0",
+        "tsx": "4.16.3",
+        "typescript": "5.5.4",
+        "typescript-eslint": "8.25.0"
+    }
+}

@@ -1,0 +1,88 @@
+#This test element was create for perf test (cut version can have only text)
+(def element ButtonWithText(name:str = '') layout=true
+    (macro AbstractComponent)
+    (macro ButtonInner)
+    (macro ButtonWithTextContent)
+)
+
+(def macro ButtonWithTextContent()
+    (view_holder_content 'contentTop'
+        (style
+            (position = "absolute")
+            (align = "middle|center")
+            (marginTop = -1px)
+        )
+        (tf
+            (name = 'textfield')
+            (class ZuricStyleSecondary)
+            (bind text "label")
+        )
+    )
+)
+
+(def macro ButtonInner()
+    (scope
+        (var backgroundTextBtn:str = "R.atlases.components.back_primary()")
+        (var backgroundRectTextBtn:gfx = "Rect(4,4,152,16)")
+        (var overIndicatorTextBtn:str = "R.atlases.components.indicator_over()")
+        (var strokeTextBtn:str = "R.atlases.components.stroke()")
+        (var textureTextBtn:str = 'bitmap:BtnTextureStandard')
+        (bind isEnabled "isEnabled")
+        (dispatch onClicked args="{}" on='evBtnLeftClickEvent')
+    )
+    (style
+        (width = 160px)
+        (height  = 22px)
+    )
+    (view_holder_content 'background'
+        (image
+            (name = 'background image')
+            (style
+                (macro AbsPositionFullSize)
+                (bind scale9grid "backgroundRectTextBtn")
+            )
+            (bind source "backgroundTextBtn")
+        )
+        (block
+            (name = 'texture block')
+            (style
+                (macro AbsPositionFullSize)
+                (bind backgroundImage "textureTextBtn")
+                (bind backgroundSize "repeat")
+            )
+        )
+    )
+
+    (view_holder_content 'indicator'
+        (block
+            (name = 'indicator block')
+            (class AbsPositionFullSizeStyle)
+            (alpha = 0)
+            (image
+                (name = 'indicator image')
+                (style
+                    (width = 100%)
+                    (height = 100%)
+                    (scale9grid = "Rect(4,4,152,16)")
+                    (blendMode = 'add')
+                )
+                (bind visible "!_isPressed")
+                (bind source "overIndicatorTextBtn")
+            )
+            (controller $Animation
+                (bindcall play duration=0.2 to={alpha:1} (event "evBtnOverEvent"))
+                (bindcall play duration=0.2 to={alpha:0} (event "evBtnOutEvent"))
+                (bindcall play duration=0.1 to={alpha:0} (event "evBtnDownEvent")(bind enabled "!_isPressed"))
+                (bindcall play duration=0.1 to={alpha:1} (event "evBtnUpEvent"))
+            )
+        )
+        (image
+            (name = 'stroke')
+            (style
+                (macro AbsPositionFullSize)
+                (scale9grid = "Rect(5,5,150,14)")
+            )
+            (bind source "strokeTextBtn")
+        )
+    )
+)

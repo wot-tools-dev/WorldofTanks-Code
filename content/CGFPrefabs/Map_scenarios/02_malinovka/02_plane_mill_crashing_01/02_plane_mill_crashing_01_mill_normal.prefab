@@ -1,0 +1,105 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Buildings/hd_bld_EU_223_PMill/normal/lod0/hd_bld_EU_223_PMill_03.model",
+											"moduleName": "default"
+										}
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Buildings/hd_bld_EU_223_PMill/normal/lod0/hd_bld_EU_223_PMill_03.model"
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": -0.0,
+									"y": -133.0001220703125,
+									"z": 0.0
+								}
+							},
+							"script::ShootingObstacle": {
+								"colliders": "2df76e7d-3343-384c-a558-221fe889ba2c",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "00000000-0000-0000-0000-000000000000"
+							}
+						},
+						"flags": [
+							"Static"
+						],
+						"name": "hd_bld_EU_223_PMill_03",
+						"uuid": "2df76e7d-3343-384c-a558-221fe889ba2c"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "mill_normal_base",
+				"uuid": "538b565f-a9c8-31e9-9238-0641fb8097ec"
+			}
+		],
+		"components": {
+			"BW::Sound3DComponent": {
+				"AutoStart": true,
+				"Event name": "amb_map_02_malinovka_mill",
+				"Fade time": 0.0,
+				"Fade type": 4,
+				"Object name": "02_malinovka_mill",
+				"Volume": 1.0,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "02_plane_mill_crashing_01_mill_normal",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

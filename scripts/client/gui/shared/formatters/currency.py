@@ -1,0 +1,42 @@
+from __future__ import absolute_import, division
+import logging
+from past.builtins import unicode
+from gui.impl import backport
+from gui.shared.formatters import text_styles
+from gui.shared.money import Currency
+_logger = logging.getLogger(__name__)
+_CURRENCY_TO_BW_FORMATTER = {Currency.CREDITS: backport.getIntegralFormat,
+ Currency.GOLD: backport.getGoldFormat,
+ Currency.CRYSTAL: backport.getIntegralFormat,
+ Currency.EVENT_COIN: backport.getIntegralFormat,
+ Currency.BPCOIN: backport.getIntegralFormat,
+ Currency.BRCOIN: backport.getIntegralFormat,
+ Currency.FREE_XP: backport.getIntegralFormat,
+ Currency.EQUIP_COIN: backport.getIntegralFormat}
+_CURRENCY_TO_TEXT_STYLE = {Currency.CREDITS: text_styles.credits,
+ Currency.GOLD: text_styles.gold,
+ Currency.CRYSTAL: text_styles.crystal,
+ Currency.EVENT_COIN: text_styles.eventCoin,
+ Currency.BPCOIN: text_styles.bpcoin,
+ Currency.BRCOIN: text_styles.brcoin,
+ Currency.STPCOIN: text_styles.stpcoin,
+ Currency.FREE_XP: text_styles.expText,
+ Currency.EQUIP_COIN: text_styles.equipCoin}
+
+def getBWFormatter(currency):
+    if currency in _CURRENCY_TO_BW_FORMATTER:
+        return _CURRENCY_TO_BW_FORMATTER[currency]
+    _logger.info('BW formatter is not set for the following currency: %r', currency)
+    return backport.getIntegralFormat
+
+
+def getStyle(currency):
+    if currency in _CURRENCY_TO_TEXT_STYLE:
+        return _CURRENCY_TO_TEXT_STYLE[currency]
+    _logger.info('Text style is not set for the following currency: %r', currency)
+    return unicode
+
+
+def applyAll(currency, value):
+    style = getStyle(currency)
+    return style(getBWFormatter(currency)(value))

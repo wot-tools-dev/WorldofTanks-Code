@@ -1,0 +1,562 @@
+<fastRecharge_client.xml>
+  <info>
+    <name>	comp7Abilities/fastRecharge_client	</name>
+    <isMacro>	false	</isMacro>
+    <version>	0	</version>
+    <aspect>
+      <compatibles>	CLIENT	</compatibles>
+    </aspect>
+    <blocks>
+      <block>
+        <class>	If	</class>
+        <id>	If_3	</id>
+      </block>
+      <block>
+        <class>	ContextPropertySet	</class>
+        <id>	ContextPropertySet_1	</id>
+        <params>
+          <param>	AbilityContextClient	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	setCanActivate	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	value	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	BitMask	</class>
+        <id>	BitMask_1	</id>
+        <params>
+          <param>	1	  <name>	Flags Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	Equipment ErrorStates	  <name>	BitMask type	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	f0	</name>
+            <const>	\CAN_BE_ACTIVATED\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	BitwiseEqual	</class>
+        <id>	BitwiseEQUAL_1	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	2	  <name>	Masks Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	ContextEventReceive	</class>
+        <id>	ContextEventReceive_1	</id>
+        <params>
+          <param>	AbilityContextClient	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	onSetErrorState	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	active	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	ContextGetSelf	</class>
+        <id>	ContextGetSelf_1	</id>
+        <params>
+          <param>	AbilityContextClient	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	getSelf	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	ContextPropertySet	</class>
+        <id>	ContextPropertySet_3	</id>
+        <params>
+          <param>	AbilityContextClient	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	setErrorKey	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	value	</name>
+            <const>	\comp7FastRechargeVehicleIsOnFastRecharge\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_1	</id>
+      </block>
+      <block>
+        <class>	BitwiseAnd	</class>
+        <id>	BitwiseAND_1	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	2	  <name>	Masks Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	CompareIntegers	</class>
+        <id>	CompareIntegers_1	</id>
+        <slots>
+          <slot>
+            <name>	b	</name>
+            <const>	\0\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	BitMask	</class>
+        <id>	BitMask_2	</id>
+        <params>
+          <param>	1	  <name>	Flags Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	Equipment ErrorStates	  <name>	BitMask type	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	f0	</name>
+            <const>	\ALREADY_ACTIVATED\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_2	</id>
+      </block>
+      <block>
+        <class>	BitwiseAnd	</class>
+        <id>	BitwiseAND_2	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	2	  <name>	Masks Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	ContextPropertySet	</class>
+        <id>	ContextPropertySet_5	</id>
+        <params>
+          <param>	AbilityContextClient	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	setErrorKey	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	value	</name>
+            <const>	\comp7RoleSkillUnavailable\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	ContextPropertySet	</class>
+        <id>	ContextPropertySet_4	</id>
+        <params>
+          <param>	AbilityContextClient	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	setCanActivate	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	value	</name>
+            <const>	\false\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	CompareIntegers	</class>
+        <id>	CompareIntegers_2	</id>
+        <slots>
+          <slot>
+            <name>	b	</name>
+            <const>	\0\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	BitMask	</class>
+        <id>	BitMask_3	</id>
+        <params>
+          <param>	1	  <name>	Flags Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	Equipment ErrorStates	  <name>	BitMask type	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	f0	</name>
+            <const>	\CANNOT_BE_ACTIVATED\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	ContextPropertySet	</class>
+        <id>	ContextPropertySet_2	</id>
+        <params>
+          <param>	AbilityContextClient	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	setErrorKey	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	value	</name>
+            <const>	\comp7FastRechargeVehicleIsNotRecharged\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_4	</id>
+      </block>
+      <block>
+        <class>	BitwiseAnd	</class>
+        <id>	BitwiseAND_3	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	2	  <name>	Masks Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	CompareIntegers	</class>
+        <id>	CompareIntegers_3	</id>
+        <slots>
+          <slot>
+            <name>	b	</name>
+            <const>	\0\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	BitMask	</class>
+        <id>	BitMask_4	</id>
+        <params>
+          <param>	1	  <name>	Flags Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	Equipment ErrorStates	  <name>	BitMask type	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	f0	</name>
+            <const>	\NOT_SUITABLE_LOADING_STATE\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_5	</id>
+      </block>
+      <block>
+        <class>	ContextPropertySet	</class>
+        <id>	ContextPropertySet_6	</id>
+        <params>
+          <param>	AbilityContextClient	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	setErrorKey	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	value	</name>
+            <const>	\comp7FastRechargeGunTemperatureLow\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	BitwiseAnd	</class>
+        <id>	BitwiseAND_4	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	2	  <name>	Masks Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	CompareIntegers	</class>
+        <id>	CompareIntegers_4	</id>
+        <slots>
+          <slot>
+            <name>	b	</name>
+            <const>	\0\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	BitMask	</class>
+        <id>	BitMask_5	</id>
+        <params>
+          <param>	1	  <name>	Flags Count	</name>
+            <type>	IntT	</type>
+          </param>
+          <param>	Equipment ErrorStates	  <name>	BitMask type	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	f0	</name>
+            <const>	\GUN_TEMPERATURE_LOW\	</const>
+          </slot>
+        </slots>
+      </block>
+    </blocks>
+    <connections>
+      <connection>
+        <from>	ContextEventReceive_1	</from>
+        <input>	input	</input>
+        <to>	If_3	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	BitwiseEQUAL_1	</from>
+        <input>	value	</input>
+        <to>	If_3	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	If_3	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_1	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	BitMask_1	</from>
+        <input>	i1	</input>
+        <to>	BitwiseEQUAL_1	</to>
+        <output>	Equipment ErrorStates	</output>
+      </connection>
+      <connection>
+        <from>	ContextEventReceive_1	</from>
+        <input>	i2	</input>
+        <to>	BitwiseEQUAL_1	</to>
+        <output>	errorState	</output>
+      </connection>
+      <connection>
+        <from>	If_1	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_3	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	If_3	</from>
+        <input>	input	</input>
+        <to>	If_1	</to>
+        <output>	false	</output>
+      </connection>
+      <connection>
+        <from>	CompareIntegers_1	</from>
+        <input>	value	</input>
+        <to>	If_1	</to>
+        <output>	greater	</output>
+      </connection>
+      <connection>
+        <from>	ContextEventReceive_1	</from>
+        <input>	i1	</input>
+        <to>	BitwiseAND_1	</to>
+        <output>	errorState	</output>
+      </connection>
+      <connection>
+        <from>	BitMask_2	</from>
+        <input>	i2	</input>
+        <to>	BitwiseAND_1	</to>
+        <output>	Equipment ErrorStates	</output>
+      </connection>
+      <connection>
+        <from>	BitwiseAND_1	</from>
+        <input>	a	</input>
+        <to>	CompareIntegers_1	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	If_1	</from>
+        <input>	input	</input>
+        <to>	If_2	</to>
+        <output>	false	</output>
+      </connection>
+      <connection>
+        <from>	CompareIntegers_2	</from>
+        <input>	value	</input>
+        <to>	If_2	</to>
+        <output>	greater	</output>
+      </connection>
+      <connection>
+        <from>	ContextEventReceive_1	</from>
+        <input>	i1	</input>
+        <to>	BitwiseAND_2	</to>
+        <output>	errorState	</output>
+      </connection>
+      <connection>
+        <from>	BitMask_3	</from>
+        <input>	i2	</input>
+        <to>	BitwiseAND_2	</to>
+        <output>	Equipment ErrorStates	</output>
+      </connection>
+      <connection>
+        <from>	If_2	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_5	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	ContextPropertySet_2	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_4	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	ContextPropertySet_3	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_4	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	ContextPropertySet_5	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_4	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	ContextPropertySet_6	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_4	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	BitwiseAND_2	</from>
+        <input>	a	</input>
+        <to>	CompareIntegers_2	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	If_4	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_2	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	If_2	</from>
+        <input>	input	</input>
+        <to>	If_4	</to>
+        <output>	false	</output>
+      </connection>
+      <connection>
+        <from>	CompareIntegers_3	</from>
+        <input>	value	</input>
+        <to>	If_4	</to>
+        <output>	greater	</output>
+      </connection>
+      <connection>
+        <from>	ContextEventReceive_1	</from>
+        <input>	i1	</input>
+        <to>	BitwiseAND_3	</to>
+        <output>	errorState	</output>
+      </connection>
+      <connection>
+        <from>	BitMask_4	</from>
+        <input>	i2	</input>
+        <to>	BitwiseAND_3	</to>
+        <output>	Equipment ErrorStates	</output>
+      </connection>
+      <connection>
+        <from>	BitwiseAND_3	</from>
+        <input>	a	</input>
+        <to>	CompareIntegers_3	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	If_4	</from>
+        <input>	input	</input>
+        <to>	If_5	</to>
+        <output>	false	</output>
+      </connection>
+      <connection>
+        <from>	CompareIntegers_4	</from>
+        <input>	value	</input>
+        <to>	If_5	</to>
+        <output>	greater	</output>
+      </connection>
+      <connection>
+        <from>	If_5	</from>
+        <input>	in	</input>
+        <to>	ContextPropertySet_6	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	ContextEventReceive_1	</from>
+        <input>	i1	</input>
+        <to>	BitwiseAND_4	</to>
+        <output>	errorState	</output>
+      </connection>
+      <connection>
+        <from>	BitMask_5	</from>
+        <input>	i2	</input>
+        <to>	BitwiseAND_4	</to>
+        <output>	Equipment ErrorStates	</output>
+      </connection>
+      <connection>
+        <from>	BitwiseAND_4	</from>
+        <input>	a	</input>
+        <to>	CompareIntegers_4	</to>
+        <output>	res	</output>
+      </connection>
+    </connections>
+    <macros></macros>
+    <curves></curves>
+  </info>
+</fastRecharge_client.xml>

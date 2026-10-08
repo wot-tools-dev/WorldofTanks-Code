@@ -1,0 +1,269 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "FBX",
+								"lodScale": 1.0,
+								"path": "content/Buildings/hd_bld_EU_088_CrashWall/normal/lod0/hd_bld_EU_088_CrashWall_01_anim.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "dithering",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/random_events/08_ruinberg/dithering_hd_bld_EU_088_CrashWall_01_anim.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_088_CrashWall/normal/lod0/hd_bld_EU_088_CrashWall_01_anim.model"
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/random_events/08_ruinberg_hd_bld_EU_088_CrashWall_01_Destruction_01.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": -0.4490000009536743,
+							"z": 0.0
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -150.65008544921875,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "08_bigCityBombing_crashingWall_01_transition",
+				"uuid": "c01f4fe3-7643-4605-a17c-c062d76c8780"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_building",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "wall_1_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "08_bigCityBombing_crashingWall_01_transition_sfx",
+				"uuid": "1b088509-47b8-494b-95a1-7cb195264c40"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_explosion_small",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "wall1_expl_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "08_bigCityBombing_crashingWall_01_transition_expl_sfx",
+				"uuid": "4d6e043a-85e1-4798-b743-b181644916c9"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_stone_small",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "wall_1_debri_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "08_bigCityBombing_crashingWall_01_transition_debri_sfx",
+				"uuid": "6538f65e-3287-478a-94aa-14bb22d29583"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 13.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 10.0,
+								"object": "c01f4fe3-7643-4605-a17c-c062d76c8780",
+								"parameters": [
+									{
+										"component": "BW::Animator",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.99899959564209,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									}
+								],
+								"startTime": 0.0010000000474974513
+							},
+							{
+								"endTime": 13.0,
+								"object": "1b088509-47b8-494b-95a1-7cb195264c40",
+								"parameters": [],
+								"startTime": 1.0
+							},
+							{
+								"endTime": 13.0,
+								"object": "6538f65e-3287-478a-94aa-14bb22d29583",
+								"parameters": [],
+								"startTime": 3.0
+							},
+							{
+								"endTime": 13.0,
+								"object": "4d6e043a-85e1-4798-b743-b181644916c9",
+								"parameters": [],
+								"startTime": 0.20000000298023224
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "08_bigCityBombing_crashingWall_01_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

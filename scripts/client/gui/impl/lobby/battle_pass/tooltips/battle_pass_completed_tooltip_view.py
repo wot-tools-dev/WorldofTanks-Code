@@ -1,0 +1,34 @@
+from __future__ import absolute_import
+from future.utils import viewitems
+from frameworks.wulf import ViewSettings
+from gui.battle_pass.battle_pass_helpers import getChapterType, getReceivedTankmenCount, getTankmenShopPackages
+from gui.impl.gen import R
+from gui.impl.gen.view_models.views.lobby.battle_pass.tooltips.battle_pass_completed_tooltip_view_model import BattlePassCompletedTooltipViewModel, ChapterType
+from gui.impl.pub import ViewImpl
+from helpers import dependency
+from skeletons.gui.game_control import IBattlePassController
+
+class BattlePassCompletedTooltipView(ViewImpl):
+    __battlePass = dependency.descriptor(IBattlePassController)
+    __slots__ = ()
+
+    def __init__(self):
+        settings = ViewSettings(R.views.mono.battle_pass.tooltips.completed())
+        settings.model = BattlePassCompletedTooltipViewModel()
+        super(BattlePassCompletedTooltipView, self).__init__(settings)
+
+    @property
+    def viewModel(self):
+        return super(BattlePassCompletedTooltipView, self).getViewModel()
+
+    def _onLoading(self, *args, **kwargs):
+        super(BattlePassCompletedTooltipView, self)._onLoading(*args, **kwargs)
+        isBought = self.__battlePass.isAllMainChaptersBought()
+        with self.getViewModel().transaction() as model:
+            model.setIsBattlePassPurchased(isBought)
+            model.setNotChosenRewardCount(self.__battlePass.getNotChosenRewardCount())
+            model.setChapterType(ChapterType(getChapterType(self.__battlePass.getCurrentChapterID())))
+            model.setIsAvailableTankmen(self.__isAvailableTankmen(getTankmenShopPackages()))
+
+    def __isAvailableTankmen(self, shopPackages):
+        return any((packageCount - getReceivedTankmenCount(tankman) != 0 for tankman, packageCount in viewitems(shopPackages)))

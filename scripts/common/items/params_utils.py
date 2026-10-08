@@ -1,0 +1,57 @@
+from __future__ import absolute_import, division
+import typing
+from collections import namedtuple
+from constants import IS_CLIENT, IS_WEB, IS_CGF_DUMP, IS_LOAD_GLOSSARY, IS_EDITOR
+from items.components.shared_components import TemperatureGunParams, OverheatGunParams
+from math_common import round_py2_style
+if typing.TYPE_CHECKING:
+    from items.vehicles import VehicleDescriptor
+AttributeModifier = namedtuple('AttributeModifier', ('name', 'value', 'opType'))
+
+def convertModifiersList(modifiersList):
+    return [ AttributeModifier(attrName, value, opType) for opType, _, attrName, value, __ in modifiersList ]
+
+
+def extractModifier(modifiers, name):
+    return next((m for m in modifiers if m.name == name), None)
+
+
+if IS_CLIENT or IS_WEB or IS_LOAD_GLOSSARY or IS_CGF_DUMP or IS_EDITOR:
+
+    def getTemperatureModifier(descr, modifierName):
+        mechanicParams = descr.mechanicsParams.get(TemperatureGunParams.MECHANICS_NAME)
+        if mechanicParams is None:
+            return
+        else:
+            state = mechanicParams.thermalStates.states[-1]
+            modifiers = convertModifiersList(state.modifiers)
+            return extractModifier(modifiers, modifierName)
+
+
+    def getHeatedAimingTime(aimingTime, descr):
+        modifier = getTemperatureModifier(descr, 'gun/aimingTime')
+        return aimingTime * modifier.value if modifier is not None else aimingTime
+
+
+    def getHeatedShotDispersion(shotDispersion, descr):
+        modifier = getTemperatureModifier(descr, 'multShotDispersionFactor')
+        return shotDispersion * modifier.value if modifier is not None else shotDispersion
+
+
+    def getTemperatureRateOfFire(descr, isVehicle=True):
+        mechanicsParams = descr.mechanicsParams
+        tempMechanicParams = mechanicsParams.get(TemperatureGunParams.MECHANICS_NAME)
+        overheatMechanicParams = mechanicsParams.get(OverheatGunParams.MECHANICS_NAME)
+        if tempMechanicParams is None or overheatMechanicParams is None:
+            return
+        else:
+            heatingPerShot = tempMechanicParams.heatingPerShot
+            thermalScoreLimit = tempMechanicParams.maxTemperature
+            coolingPerSecFactor = overheatMechanicParams.coolingPerSecFactor
+            coolingTime = thermalScoreLimit / (tempMechanicParams.coolingPerSec * coolingPerSecFactor)
+            gunDescr = descr.gun if isVehicle else descr
+            clipRate = round_py2_style(60.0 / gunDescr.clip[1])
+            burstTime = thermalScoreLimit * 60 / (heatingPerShot * clipRate)
+            shootingCyclesPerMinute = 60 / (burstTime + tempMechanicParams.coolingDelay + coolingTime)
+            shellsPerCycle = thermalScoreLimit / heatingPerShot
+            return shootingCyclesPerMinute * shellsPerCycle

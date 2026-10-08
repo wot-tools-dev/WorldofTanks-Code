@@ -1,0 +1,68 @@
+(def layout NationChangeDevice()
+    (macro NationChangeDeviceModel)
+    (macro NationChangeTooltips)
+    (style
+        (width = 45px)
+        (height = 45px)
+    )
+
+    (block
+        (style
+            (position="absolute")
+            (width = 100%) 
+            (height = 100%)
+            (align = "center|middle")
+        )
+        (image
+            (style
+                (width = 100%)
+                (height = 100%)
+            )
+            (bind source "image")
+        )
+    )
+    (block 
+        (bind visible "isImproved")
+        (style
+            (position = "absolute")
+            (center = 3)
+            (middle = -5)
+        )
+        (image
+            (source = "R.images.gui.maps.icons.quests.bonuses.small.equipmentPlus_overlay()") 
+        )
+    )
+    (block
+        (bind visible "isTrophyBasic && !isModernized")
+        (style
+            (position = "absolute")
+            (center = 3)
+            (middle = 0)
+        )
+        (image
+            (source = "R.images.gui.maps.icons.quests.bonuses.small.equipmentTrophyBasic_overlay()")
+        )
+    )
+    (block
+        (bind visible "isTrophyUpgraded && !isModernized")
+        (style
+            (position = "absolute")
+            (center = 3)
+            (middle = 0)
+        )
+        (image
+            (source = "R.images.gui.maps.icons.quests.bonuses.small.equipmentTrophyUpgraded_overlay()")
+        )
+    )
+    (block
+        (bind visible "isModernized")
+        (style
+            (position = "absolute")
+            (center = 3)
+            (middle = 0)
+        )
+        (image
+            (bind source "level > 0 ? R.images.gui.maps.icons.quests.bonuses.small['equipmentModernized_' + level +'_overlay']() : null")
+        )
+    )
+)

@@ -1,0 +1,68 @@
+<messenger.xml>
+  <htmlTemplates>
+    <wtTicketTokenWithdrawn>
+      <icon>	InformationIcon	</icon>
+      <priority>	medium	</priority>
+      <message>	&lt;font color='#8C8C7E'&gt;%(text)s&lt;/font&gt;	</message>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#white_tiger.white_tiger_lobby:notifications/ticketToken/withdrawn/openQuestsBtn)	</label>
+          <action>	openWTEventQuests	</action>
+          <width>	107	</width>
+        </button>
+        <button>
+          <type>	cancel	</type>
+          <label>	_(#white_tiger.white_tiger_lobby:notifications/ticketToken/withdrawn/openPurchasingBtn)	</label>
+          <action>	openWTEventTicketPurchasing	</action>
+          <width>	107	</width>
+        </button>
+      </buttonsLayout>
+    </wtTicketTokenWithdrawn>
+    <WTEventProgressionSysMessage>
+      <icon>	InformationIcon	</icon>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;_(#white_tiger.white_tiger_lobby:notifications/progression/header)&lt;/font&gt;&lt;br/&gt;&lt;font color='#8C8C7E'&gt;%(text)s&lt;/font&gt;	</message>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#white_tiger.white_tiger_lobby:notifications/progression/openBtnLabel)	</label>
+          <action>	openWTEventCollection	</action>
+          <width>	107	</width>
+        </button>
+      </buttonsLayout>
+    </WTEventProgressionSysMessage>
+    <WTEventStartSysMessage>
+      <icon>	InformationIcon	</icon>
+      <priority>	medium	</priority>
+      <message>	&lt;font color='#8C8C7E'&gt;%(text)s&lt;/font&gt;	</message>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#white_tiger.white_tiger_lobby:notifications/eventStart/openBtnLabel)	</label>
+          <action>	openWTEvent	</action>
+          <width>	107	</width>
+        </button>
+      </buttonsLayout>
+    </WTEventStartSysMessage>
+    <WTBattleResult>
+      <icon>	BattleResultIcon	</icon>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#white_tiger.white_tiger_lobby:notifications/battleResults/buttonLabel)	</label>
+          <action>	showBattleResults	</action>
+        </button>
+      </buttonsLayout>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;%(mainResultName)s&lt;/font&gt;
+&lt;font color='#8C8C7E'&gt;_(#white_tiger.white_tiger_lobby:notifications/battleResults/event): %(eventName)s&lt;/font&gt;
+&lt;font color='#8C8C7E'&gt;_(#white_tiger.white_tiger_lobby:notifications/battleResults/battle): %(arenaName)s&lt;/font&gt;
+&lt;font color='#8C8C7E'&gt;_(#white_tiger.white_tiger_lobby:notifications/battleResults/team): &lt;font color='#C9C9B6'&gt;%(teamName)s&lt;/font&gt;%(achieves)s%(quests)s%(stamps)s%(lootboxes)s	</message>
+    </WTBattleResult>
+    <SpecialMissionCompletedNotification>
+      <priority>	medium	</priority>
+      <groupID>	info	</groupID>
+      <gfViewName>	SpecialMissionCompletedNotification	</gfViewName>
+      <linkage>	GamefaceNotification	</linkage>
+    </SpecialMissionCompletedNotification>
+  </htmlTemplates>
+</messenger.xml>

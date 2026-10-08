@@ -1,0 +1,1260 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Gun::Effects::EffectComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"effectMask": "1"
+									},
+									"BW::Gun::ShotImpulseComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"impulse": 0.4
+									},
+									"BW::variables::PropertyOnChangeCalculatorComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ChooseExpression",
+													"__cvalue__": {
+														"choices": [
+															{
+																"condition/expression": {
+																	"__ctype__": "BW::variables::EqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "vehicle/gun/lowChargeShot/fullShot"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::ConstantBoolExpression",
+																			"__cvalue__": {
+																				"boolValue": false
+																			}
+																		}
+																	}
+																},
+																"result/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 0.2
+																	}
+																}
+															}
+														],
+														"defaultResult/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.7
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Gun::ShotImpulseComponent",
+												"componentPropertyDest/propertyPath": "impulse"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "single_shot_impulse",
+								"uuid": "3aa9cac7-5411-0eaf-3326-86aa1c3958bc"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {}
+						},
+						"name": "impulse",
+						"uuid": "6c52b153-11ba-0b4d-0162-562d5b04d142"
+					},
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"components": {
+											"BW::Gun::AuditionComponent": {
+												"activationSoundNPC": "gp_abl_lcs_mech_off_start_npc",
+												"deactivationSoundNPC": "gp_abl_lcs_mech_off_stop_npc",
+												"disabledDomains": [
+													"Server"
+												],
+												"isPlayer": "0"
+											}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "closing",
+										"uuid": "1f16d1ff-9094-0af1-2739-3ab4f68dac31"
+									},
+									{
+										"components": {
+											"BW::Gun::AuditionComponent": {
+												"activationSoundNPC": "gp_abl_lcs_mech_on_start_npc",
+												"deactivationSoundNPC": "gp_abl_lcs_mech_on_stop_npc",
+												"disabledDomains": [
+													"Server"
+												],
+												"isPlayer": "0"
+											}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "opening",
+										"uuid": "bc85b290-91bb-0ff4-24a0-4fb6c3cfc733"
+									}
+								],
+								"components": {
+									"BW::SoundObject3DComponent": {
+										"aux": "1",
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "spring_animation_sounds",
+								"uuid": "762e5abe-fb32-0de5-3514-8bcdda6b7ba8"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"BW::Gun::RecoilComponent": {
+												"amplitude": -0.25,
+												"backoffTime": 0.1,
+												"disabledDomains": [
+													"Server"
+												],
+												"loop": "0",
+												"returnTime": 0.5,
+												"started": "0"
+											},
+											"BW::NodeLeaderComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "spring"
+											},
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "spring"
+											},
+											"BW::variables::PropertyOnChangeCalculatorComponent": {
+												"calcs": [
+													{
+														"componentPropertyCalcExpr/expression": {
+															"__ctype__": "BW::variables::ChooseExpression",
+															"__cvalue__": {
+																"choices": [
+																	{
+																		"condition/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "vehicle/gun/lowChargeShot/fullShot"
+																			}
+																		},
+																		"result/expression": {
+																			"__ctype__": "BW::variables::ConstantFloatExpression",
+																			"__cvalue__": {
+																				"floatValue": 0
+																			}
+																		}
+																	}
+																],
+																"defaultResult/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": -0.25
+																	}
+																}
+															}
+														},
+														"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+														"componentPropertyDest/propertyPath": "startupAmplitude"
+													},
+													{
+														"componentPropertyCalcExpr/expression": {
+															"__ctype__": "BW::variables::ChooseExpression",
+															"__cvalue__": {
+																"choices": [
+																	{
+																		"condition/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "vehicle/gun/lowChargeShot/fullShot"
+																			}
+																		},
+																		"result/expression": {
+																			"__ctype__": "BW::variables::ConstantFloatExpression",
+																			"__cvalue__": {
+																				"floatValue": 0
+																			}
+																		}
+																	}
+																],
+																"defaultResult/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 0.1
+																	}
+																}
+															}
+														},
+														"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+														"componentPropertyDest/propertyPath": "startupBackoffTime"
+													},
+													{
+														"componentPropertyCalcExpr/expression": {
+															"__ctype__": "BW::variables::ChooseExpression",
+															"__cvalue__": {
+																"choices": [
+																	{
+																		"condition/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "vehicle/gun/lowChargeShot/fullShot"
+																			}
+																		},
+																		"result/expression": {
+																			"__ctype__": "BW::variables::ConstantFloatExpression",
+																			"__cvalue__": {
+																				"floatValue": 0
+																			}
+																		}
+																	}
+																],
+																"defaultResult/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 0.5
+																	}
+																}
+															}
+														},
+														"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+														"componentPropertyDest/propertyPath": "startupReturnTime"
+													}
+												],
+												"disabledDomains": [
+													"Server"
+												]
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0,
+													"y": 0,
+													"z": -1.37
+												}
+											}
+										},
+										"name": "spring",
+										"uuid": "5e5f4234-36c7-0875-0e16-f49de7fe7cf5"
+									},
+									{
+										"components": {
+											"BW::NodeLeaderComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve"
+											},
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0,
+													"y": 0,
+													"z": -0.74251
+												}
+											}
+										},
+										"name": "valve",
+										"uuid": "227c3028-3818-06b4-3320-f5e29e69d705"
+									}
+								],
+								"components": {
+									"BW::NodeLeaderComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "joint1"
+									},
+									"BW::StartAtNodeTransformComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "joint1"
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 0,
+											"y": 0,
+											"z": -2.448
+										}
+									}
+								},
+								"name": "joint1",
+								"uuid": "40650ee1-0281-0e00-1810-5c53419521de"
+							},
+							{
+								"children": [
+									{
+										"name": "fall_tanks_particle__155mm_MPCS_SEG.prefab",
+										"prefab": "fall_tanks/content/CGFPrefabs/Vehicle/fall_tanks_gun_effects/particles/fall_tanks_particle__155mm_MPCS_SEG.prefab",
+										"uuid": "64ef7271-bde2-0f2b-33af-56f729fbd0e6"
+									},
+									{
+										"name": "fall_tanks_sound_155mm_MPCS_SEG.prefab",
+										"prefab": "fall_tanks/content/CGFPrefabs/Vehicle/fall_tanks_gun_effects/sounds/fall_tanks_sound_155mm_MPCS_SEG.prefab",
+										"uuid": "397e483d-3630-0139-3b60-6b8d904d71a4"
+									},
+									{
+										"name": "groundwave__155mm_MPCS_SEG.prefab",
+										"prefab": "content/CGFPrefabs/Vehicle/gun_effects/groundwaves/groundwave__155mm_MPCS_SEG.prefab",
+										"uuid": "ea9d7373-b60e-01f6-2bc2-0d3ade7a6b7e"
+									},
+									{
+										"name": "light__155mm_MPCS_SEG.prefab",
+										"prefab": "content/CGFPrefabs/Vehicle/gun_effects/lights/light__155mm_MPCS_SEG.prefab",
+										"uuid": "cf90977d-6b10-019b-1309-f00cc3d993be"
+									}
+								],
+								"components": {
+									"BW::StartAtNodeTransformComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "HP_gunFire"
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 0,
+											"y": 5.4e-05,
+											"z": 2.2433
+										}
+									}
+								},
+								"name": "HP_gunFire",
+								"uuid": "c3efef14-2c57-0345-0671-84b65115d125"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"cgf::TransformComponent/position/z": -0.025467
+										},
+										"name": "fall_tanks_particle__155mm_MPCS_SEG_secondary_smoke.prefab",
+										"prefab": "fall_tanks/content/CGFPrefabs/Vehicle/fall_tanks_gun_effects/particles/fall_tanks_particle__155mm_MPCS_SEG_secondary_smoke.prefab",
+										"uuid": "f8ff4465-45c9-0d13-3c0f-9a0555252564"
+									}
+								],
+								"components": {
+									"BW::StartAtNodeTransformComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "HP_gunEffect"
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 0,
+											"y": 5.4e-05,
+											"z": -0.79035
+										}
+									}
+								},
+								"name": "HP_gunEffect",
+								"uuid": "b92b78a3-5821-0a9d-2c16-b8b102b3119e"
+							}
+						],
+						"components": {
+							"BW::Gun::Effects::CollectorComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::Gun::GroupComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"firingOrder": "0"
+							},
+							"BW::Gun::RecoilComponent": {
+								"amplitude": 0.4,
+								"backoffTime": 0.15,
+								"disabledDomains": [
+									"Server"
+								],
+								"loop": "0",
+								"returnTime": 1.3,
+								"started": "0"
+							},
+							"BW::Gun::SingleComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::NodeLeaderComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"nodeName": "G"
+							},
+							"BW::SequenceComponent": {
+								"activeLayer": 1,
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"alwaysEnabled": true,
+										"duration": 0.1,
+										"loop": false,
+										"pauseOnEnd": true,
+										"tracks": []
+									},
+									{
+										"alwaysEnabled": true,
+										"duration": 3.25,
+										"loop": false,
+										"name": "opening",
+										"pauseOnEnd": true,
+										"tracks": [
+											{
+												"endTime": 3.25,
+												"object": "40650ee1-0281-0e00-1810-5c53419521de",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 0,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": -0.484
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 1.45,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": -0.484
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 3.25,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": -1.104
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "z"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											},
+											{
+												"endTime": 3.25,
+												"object": "227c3028-3818-06b4-3320-f5e29e69d705",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	}
+																},
+																"time": 0,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	}
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	}
+																},
+																"time": 1.45,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	}
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 20.14
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 20.14
+																	}
+																},
+																"time": 1.6,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 4.5
+																	}
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 20.996
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 20.996
+																	}
+																},
+																"time": 2,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 21
+																	}
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 29.297
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 29.297
+																	}
+																},
+																"time": 2.65,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 40
+																	}
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	}
+																},
+																"time": 3.25,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 55
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											},
+											{
+												"endTime": 3.25,
+												"object": "5e5f4234-36c7-0875-0e16-f49de7fe7cf5",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 2e-06,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": -1.37
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "z"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											},
+											{
+												"endTime": 3.15,
+												"object": "bc85b290-91bb-0ff4-24a0-4fb6c3cfc733",
+												"parameters": [],
+												"startTime": 1.05
+											}
+										]
+									},
+									{
+										"alwaysEnabled": true,
+										"duration": 1.8,
+										"loop": false,
+										"name": "closing",
+										"pauseOnEnd": true,
+										"tracks": [
+											{
+												"endTime": 1.8,
+												"object": "40650ee1-0281-0e00-1810-5c53419521de",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 2e-06,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": -1.104
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 1.8,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": -0.484
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "z"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											},
+											{
+												"endTime": 1.8,
+												"object": "227c3028-3818-06b4-3320-f5e29e69d705",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	}
+																},
+																"time": 2e-06,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 55
+																	}
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": -20.996
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": -20.996
+																	}
+																},
+																"time": 0.50976,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 40
+																	}
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": -34.18
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": -34.18
+																	}
+																},
+																"time": 1.2034,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 18.5
+																	}
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	},
+																	"right": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	}
+																},
+																"time": 1.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 0,
+																		"y": 0,
+																		"z": 0
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											},
+											{
+												"endTime": 1.8,
+												"object": "5e5f4234-36c7-0875-0e16-f49de7fe7cf5",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 0,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": -1.37
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "z"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											},
+											{
+												"endTime": 1.7,
+												"object": "1f16d1ff-9094-0af1-2739-3ab4f68dac31",
+												"parameters": [],
+												"startTime": 0.1
+											}
+										]
+									}
+								],
+								"speed": "1"
+							},
+							"BW::SequenceLayerSwitcherComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"layerIdx": "-1",
+								"transitionTime": "0"
+							},
+							"BW::StartAtNodeTransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"nodeName": "G"
+							},
+							"BW::variables::PropertyOnChangeCalculatorComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/lowChargeShot/quickShot"
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.25
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.4
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+										"componentPropertyDest/propertyPath": "startupAmplitude"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/lowChargeShot/quickShot"
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.1
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.15
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+										"componentPropertyDest/propertyPath": "startupBackoffTime"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/lowChargeShot/quickShot"
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.5
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1.3
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+										"componentPropertyDest/propertyPath": "startupReturnTime"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/lowChargeShot/fullShot"
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantIntExpression",
+															"__cvalue__": {
+																"intValue": 3
+															}
+														}
+													},
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::NotExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "vehicle/gun/lowChargeShot/fullShot"
+																	}
+																}
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantIntExpression",
+															"__cvalue__": {
+																"intValue": 2
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::SequenceLayerSwitcherComponent",
+										"componentPropertyDest/propertyPath": "layerIdx"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "vehicle/gun/lowChargeShot/fullShotChangeTime"
+											}
+										},
+										"componentPropertyDest/component": "BW::SequenceLayerSwitcherComponent",
+										"componentPropertyDest/propertyPath": "startTimestamp"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::variables::VariableStorageComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"varInitialValues": []
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0,
+									"y": 0,
+									"z": 3.0014
+								}
+							}
+						},
+						"name": "G",
+						"uuid": "b106b785-9637-0618-089c-2d9970f8fbb5"
+					}
+				],
+				"components": {
+					"BW::Gun::Effects::CollectorComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::Gun::InstallationComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"shotsPerMinute": "3"
+					},
+					"BW::LocalTransformNodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "Gun"
+					},
+					"BW::StartAtNodeTransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "Gun"
+					},
+					"BW::variables::VariableStorageComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"varInitialValues": [
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 155
+									}
+								},
+								"var/variableName": "vehicle/gun/caliber"
+							},
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 5
+									}
+								},
+								"var/variableName": "vehicle/gun/gunLength"
+							},
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": -10
+									}
+								},
+								"var/variableName": "vehicle/gun/lowChargeShot/fullShotChangeTime"
+							}
+						]
+					},
+					"cgf::TransformComponent": {},
+					"cgf::network::ReplicableComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "normal",
+				"uuid": "567dfa3d-393f-0799-3a30-6067adc11ed8"
+			}
+		],
+		"components": {
+			"BW::StateSwitcherComponent": {
+				"critical": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"damaged": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"disabledDomains": [
+					"Server"
+				],
+				"normal": "567dfa3d-393f-0799-3a30-6067adc11ed8",
+				"preview": 1
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::ReplicableComponent": {},
+			"script::VehicleHealthObserverComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"state": "1"
+			}
+		},
+		"name": "gun_155mm_MPCS_SEG",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

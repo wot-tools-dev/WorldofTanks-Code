@@ -1,0 +1,209 @@
+.Timer_base_de1c9 {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 35rem;
+    font-weight: 700;
+    line-height: 1;
+    position: relative;
+}
+
+.Timer_mask_b001f {
+    display: flex;
+    align-items: center;
+    height: 200%;
+    pointer-events: none;
+    mask-image: linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, 0.52) 40%, #000 63%, transparent 73%);
+    mask-repeat: no-repeat;
+}
+
+.Timer_inner_de7d3 {
+    position: relative;
+}
+
+.Timer_newDigits_e0c44 {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.Timer_currentDigits_d62de {
+    display: flex;
+}
+
+.Timer_newValue_db36c {
+    opacity: 0;
+}
+
+.Timer_newValue__animated_c57ba {
+        opacity: 1;
+        animation: Timer_flip-new-value_c899c 0.7s cubic-bezier(0.24, 0, 0, 1.1) forwards;
+    }
+
+.Timer_currentValue__animated_d196f {
+        transform: translateY(100%);
+        animation: Timer_flip-current-value_ed26a 0.7s cubic-bezier(0.24, 0, 0, 1.1);
+    }
+
+@keyframes Timer_flip-new-value_c899c {
+    0% {
+        transform: translateY(-90%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes Timer_flip-current-value_ed26a {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(100%);
+    }
+}
+
+body {
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-size: 16rem;
+}
+
+.TimerExamples_boxWrapper_b1be5 {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 30rem;
+    font-size: 25rem;
+    overflow: auto;
+}
+
+.TimerExamples_inner_bbd2d {
+    margin-right: 40rem;
+    padding-right: 25rem;
+    border-right: 1rem solid #fff;
+}
+
+.TimerExamples_row_e6de5 {
+    display: flex;
+    margin-bottom: 20rem;
+}
+
+.TimerExamples_holder_ba55f {
+    padding: 20rem;
+}
+
+.TimerExamples_caption_f4874 {
+    margin-bottom: 10rem;
+    color: #fff;
+    font-size: 25rem;
+}
+
+/**
+================ EXAMPLES ================
+ */
+
+.TimerExamples_example1_c3658 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 196rem;
+    height: 28rem;
+    padding: 0 14rem 3rem 0;
+    background: linear-gradient(270deg, #dd5353 0%, rgba(218, 84, 84, 0) 100%);
+    text-align: right;
+}
+
+.TimerExamples_example1_timer_f619c {
+        color: #ffe3d5;
+        font-size: 21rem;
+    }
+
+.TimerExamples_example2_timer_b2824 {
+        color: #ff6c00;
+        font-size: 30rem;
+        font-weight: 400;
+        line-height: 38rem;
+        text-shadow: 0 0 4rem #c70000;
+    }
+
+.TimerExamples_example3_timer_cc855 {
+        color: #fad895;
+        font-size: 14rem;
+        font-weight: 400;
+        line-height: 18rem;
+        text-shadow: 0 0 12rem #ff6b00, 0 0 12rem #ff6b00, 0 0 10rem #ff6b00;
+    }
+
+.TimerExamples_example4_c4822 {
+    justify-content: center;
+    text-align: center;
+}
+
+.TimerExamples_example4_timer_c92a3 {
+        width: 145rem;
+        font-size: 144rem;
+    }
+
+.TimerExamples_example4_text_f364c {
+        margin-top: -50rem;
+        font-size: 36rem;
+        font-weight: 700;
+    }
+
+.TimerExamples_example5_aec01 {
+    text-align: center;
+    position: relative;
+}
+
+.TimerExamples_example5_timer_a6619 {
+        font-size: 73rem;
+    }
+
+.TimerExamples_example5_text_c3e87 {
+        font-size: 24rem;
+    }
+
+.TimerExamples_example5_glow_ce732 {
+        width: 800rem;
+        height: 512rem;
+        background: url('R.images.gui.maps.icons.battle.timer.glow') no-repeat center / cover;
+        mix-blend-mode: screen;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+    }
+
+.TimerExamples_example6_e3e2f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 380rem;
+    height: 86rem;
+    background-color: rgba(255, 0, 0, .3);
+}
+
+.TimerExamples_example6_circle_b407c {
+        width: 50rem;
+        height: 50rem;
+        margin-right: 15rem;
+        border-radius: 50%;
+        background-color: #fff;
+    }
+
+.TimerExamples_example6_text_c1417 {
+        font-size: 15rem;
+    }
+
+.TimerExamples_example6_timer_eb03f {
+        font-size: 25rem;
+    }
+

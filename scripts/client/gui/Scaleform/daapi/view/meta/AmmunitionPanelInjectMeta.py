@@ -1,0 +1,12 @@
+from gui.Scaleform.framework.entities.inject_component_adaptor import InjectComponentAdaptor
+
+class AmmunitionPanelInjectMeta(InjectComponentAdaptor):
+
+    def onHangarSwitchAnimComplete(self, isComplete):
+        self._printOverrideError('onHangarSwitchAnimComplete')
+
+    def as_setHelpLayoutS(self, helpLayoutData):
+        return self.flashObject.as_setHelpLayout(helpLayoutData) if self._isDAAPIInited() else None
+
+    def as_clearHelpLayoutS(self):
+        return self.flashObject.as_clearHelpLayout() if self._isDAAPIInited() else None

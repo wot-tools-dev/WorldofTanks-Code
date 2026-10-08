@@ -1,0 +1,12 @@
+from gui.Scaleform.framework.entities.BaseDAAPIComponent import BaseDAAPIComponent
+
+class ModulesPanelMeta(BaseDAAPIComponent):
+
+    def showModuleInfo(self, moduleId):
+        self._printOverrideError('showModuleInfo')
+
+    def as_setDataS(self, data):
+        return self.flashObject.as_setData(data) if self._isDAAPIInited() else None
+
+    def as_setVehicleHasTurretS(self, hasTurret):
+        return self.flashObject.as_setVehicleHasTurret(hasTurret) if self._isDAAPIInited() else None

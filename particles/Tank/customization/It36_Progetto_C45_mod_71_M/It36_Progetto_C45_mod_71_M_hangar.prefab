@@ -1,0 +1,339 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_DEFERRED_SHADING",
+										"layerName": "light_def",
+										"lodScale": 1.0,
+										"path": "particles/Tank/customization/It36_Progetto_C45_mod_71_M/It36_head_light.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -0.6522250175476074,
+									"y": 0.048836901783943176,
+									"z": 1.3644700050354004
+								},
+								"scale": {
+									"x": 1.0,
+									"y": 0.800000011920929,
+									"z": 1.0
+								}
+							}
+						},
+						"name": "Left_light",
+						"uuid": "bc8cb373-43c7-3d5f-ad8f-c762a943b337"
+					},
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_DEFERRED_SHADING",
+										"layerName": "light_def",
+										"lodScale": 1.0,
+										"path": "particles/Tank/customization/It36_Progetto_C45_mod_71_M/It36_head_light.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.5613099932670593,
+									"y": 0.05700000002980232,
+									"z": 1.4199999570846558
+								},
+								"rotation": {
+									"x": -2.031490708986894e-07,
+									"y": -0.14999976754188538,
+									"z": -1.1557704482356712e-07
+								},
+								"scale": {
+									"x": 0.800000011920929,
+									"y": 0.699999988079071,
+									"z": 1.0
+								}
+							}
+						},
+						"name": "Right_light",
+						"uuid": "4289aa57-e25b-3fc9-9fa0-e5747eab06f9"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_It36_Attachment_turret"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "lights",
+				"uuid": "b85f6352-fa40-3bce-86d8-360db49c7168"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "vfx_turret_idle_hit",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/It36_Progetto_C45_mod_71_M/It36_turret_idle_hit.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "vfx_turret_idle",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/It36_Progetto_C45_mod_71_M/It36_turret_idle.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_It36_Attachment_turret"
+					},
+					"BW::ProjectileHitsReceivedAnimatorTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"ignorePeriod": "3",
+						"triggerName": "Hit",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Turret",
+				"uuid": "d131f6c1-043c-4f99-b927-a83a0b43f20f"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "vfx_hull_idle",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/It36_Progetto_C45_mod_71_M/It36_hull_idle.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "vfx_hull_hit",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/It36_Progetto_C45_mod_71_M/It36_hull_idle_hit.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_It36_Attachment_hull"
+					},
+					"BW::ProjectileHitsReceivedAnimatorTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"ignorePeriod": "3",
+						"triggerName": "Hit",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Hull",
+				"uuid": "51792855-29fb-4b14-9688-a5b6a3e6415a"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "vfx_gun idle",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/It36_Progetto_C45_mod_71_M/It36_gun_idle_shot.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_It36_Attachment_gun"
+					},
+					"BW::ShotsAnimatorTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"ignorePeriod": "0",
+						"triggerName": "Shot",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Gun_idle_shot",
+				"uuid": "4db2b9ff-d033-46d8-a333-ae8e26740d89"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "vfx_hole",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/It36_Progetto_C45_mod_71_M/It36_gun_idle_not_animate.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_It36_Attachment_not_animate_gun"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Gun_idle_not_animate",
+				"uuid": "2ce1c02e-5721-49fe-976f-85526a567b5b"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/italy/It18_Progetto_C45_mod_71/_skins/It36_Progetto_C45_mod_71_M/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "It36_Progetto_C45_mod_71_M",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

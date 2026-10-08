@@ -1,0 +1,219 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"components": {
+											"BW::DynamicModel": {
+												"castShadows": false,
+												"decorType": "0",
+												"disabledDomains": [
+													"Server"
+												],
+												"modelName": "content/Hangars/h_newyear/customization/Tableful/Kitchen/normal/lod0/NY22_Kitchen_01_Outline.model"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "outline",
+										"uuid": "3c037be3-d767-4270-88e7-c32d7434216d"
+									}
+								],
+								"components": {
+									"BW::Animator": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"layers": [
+											{
+												"autoStart": true,
+												"clip": "<Default Clip>",
+												"graphicsPreset": "TYPE_NULL_SHADING",
+												"layerName": "0",
+												"lodScale": 1.0,
+												"path": "particles/eff_sequence/New_Year/ny_kitchen_01.seq",
+												"properties": {
+													"delay": "0",
+													"loop": "1",
+													"loopCount": "-1",
+													"speed": "1"
+												},
+												"weight": 1.0
+											}
+										]
+									},
+									"BW::Colliders": {
+										"colliders": [
+											{
+												"__ctype__": "BW::MeshColliderDesc",
+												"__cvalue__": {
+													"modelName": "content/Hangars/h_newyear/customization/Tableful/Kitchen/normal/lod0/NY22_Kitchen_01_Outline.model",
+													"moduleName": "default"
+												}
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::DynamicModel": {
+										"castShadows": true,
+										"decorType": "0",
+										"disabledDomains": [
+											"Server"
+										],
+										"modelName": "content/Hangars/h_newyear/customization/Tableful/Kitchen/normal/lod0/NY22_Kitchen_01.model"
+									},
+									"BW::VSEComponent": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server",
+											"Editor"
+										],
+										"path": "holiday_ops/vscript/plans/holiday_ops/FieldKitchen.xml"
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"script::HighlightComponent": {
+										"color": {
+											"w": 1.0,
+											"x": 0.21199999749660492,
+											"y": 0.8429999947547913,
+											"z": 1.0
+										},
+										"colorIndex": "4",
+										"disabledDomains": [
+											"Server"
+										],
+										"drawerMode": "0",
+										"groupName": "Fair",
+										"overridenHighlightModel": "3c037be3-d767-4270-88e7-c32d7434216d"
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "appearance",
+								"uuid": "27fdaafa-570e-41da-b9ab-9d2fb9ad714c"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::AppearanceDelayComponent": {
+								"delay": 0.5,
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "appearanceDelayOwner",
+						"uuid": "7cf0c773-d399-45c0-91a3-3a2549fa3fe8"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Environment/hangar/new_year_cust_kitchen_g5.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "hangEffect",
+								"uuid": "201e6bc8-a7d0-4513-bab2-589977bf445c"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::HangEffectsOwner": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "hangEffectOwner",
+						"uuid": "b7725b8f-9f0f-40fc-987a-88506d2b8bdc"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": 0.11900299787521362,
+							"y": 0.06009669974446297,
+							"z": 1.245360016822815
+						},
+						"rotation": {
+							"x": -4.847532181884162e-06,
+							"y": 7.8829827308654785,
+							"z": -5.8774585340870544e-06
+						}
+					}
+				},
+				"name": "Transform",
+				"uuid": "5130c752-9baa-4e50-af76-e7dee47b3180"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

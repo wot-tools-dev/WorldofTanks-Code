@@ -1,0 +1,455 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/environment/storymode/105_germany_reichstag_missile_trail.eff",
+								"emissionRate": 1.0
+							},
+							"cgf::TransformComponent": {}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Trail_Rocket_1",
+						"uuid": "c97f0da6-3657-4993-bfbc-1e5368c58de9"
+					}
+				],
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "motion_blur",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/Storymode/105_germany/105_Reichstag_crashing/105_germany_rocket_motion_blur.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/MilitaryEnvironment/hd_mle_UNI_830_FAB250/normal/lod0/hd_mle_UNI_830_FAB250_bigger.model"
+					},
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_drop_bomb",
+						"Object name": "105_ReichstagCrash01_rocketLaunch_01_sfx",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::TrajectoryComponent": {
+						"positionCurve": {
+							"data": [
+								{
+									"inTangent": {
+										"x": 54.308799743652344,
+										"y": -38.650699615478516,
+										"z": -96.03359985351563
+									},
+									"outTangent": {
+										"x": 75.42169952392578,
+										"y": -42.3302001953125,
+										"z": -148.35400390625
+									},
+									"tangentMode": "257",
+									"time": 0.0,
+									"value": {
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0
+									}
+								},
+								{
+									"inTangent": {
+										"x": 75.42169952392578,
+										"y": -42.3302001953125,
+										"z": -148.35400390625
+									},
+									"outTangent": {
+										"x": 103.25599670410156,
+										"y": -81.69860076904297,
+										"z": -187.63299560546875
+									},
+									"tangentMode": "257",
+									"time": 1.466670036315918,
+									"value": {
+										"x": 110.61900329589844,
+										"y": -62.08430099487305,
+										"z": -217.58599853515625
+									}
+								}
+							]
+						},
+						"rotationCurve": {
+							"data": [
+								{
+									"inTangent": {
+										"x": -1.2372000217437744,
+										"y": 0.6037229895591736,
+										"z": -0.6997280120849609
+									},
+									"outTangent": {
+										"x": -1.2372000217437744,
+										"y": 0.6037229895591736,
+										"z": -0.6997280120849609
+									},
+									"tangentMode": "0",
+									"time": 0.0,
+									"value": {
+										"x": -1.9999999949504854e-06,
+										"y": 61.551700592041016,
+										"z": -16.325300216674805
+									}
+								},
+								{
+									"inTangent": {
+										"x": -0.9351720213890076,
+										"y": 0.45664799213409424,
+										"z": -0.5257120132446289
+									},
+									"outTangent": {
+										"x": -0.9351720213890076,
+										"y": 0.45664799213409424,
+										"z": -0.5257120132446289
+									},
+									"tangentMode": "0",
+									"time": 0.7333329916000366,
+									"value": {
+										"x": -0.9072819948196411,
+										"y": 61.99449920654297,
+										"z": -16.83839988708496
+									}
+								},
+								{
+									"inTangent": {
+										"x": -0.6331449747085571,
+										"y": 0.3095729947090149,
+										"z": -0.3516950011253357
+									},
+									"outTangent": {
+										"x": -0.6331449747085571,
+										"y": 0.3095729947090149,
+										"z": -0.3516950011253357
+									},
+									"tangentMode": "0",
+									"time": 1.466670036315918,
+									"value": {
+										"x": -1.3715900182724,
+										"y": 62.221500396728516,
+										"z": -17.09630012512207
+									}
+								}
+							]
+						},
+						"scaleCurve": {
+							"data": []
+						},
+						"shift": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"BW::TrajectoryMoverComponent": {
+						"autoStart": false,
+						"looped": false,
+						"serverTime": false
+					},
+					"BW::TrajectoryTimeSyncComponent": {},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -1.3715921640396118,
+							"y": 62.221500396728516,
+							"z": -17.096315383911133
+						},
+						"scale": {
+							"x": 0.699999988079071,
+							"y": 0.699999988079071,
+							"z": 0.699999988079071
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "Rocket_1",
+				"uuid": "24c8c349-da11-4e71-8fc6-51a4099d158a"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/environment/storymode/105_germany_reichstag_missile_trail.eff",
+								"emissionRate": 1.0
+							},
+							"cgf::TransformComponent": {}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Trail_Rocket_2",
+						"uuid": "f10d0a60-9357-413f-9926-2c82d831376a"
+					}
+				],
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "motion_blur",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/Storymode/105_germany/105_Reichstag_crashing/105_germany_rocket_motion_blur.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/MilitaryEnvironment/hd_mle_UNI_830_FAB250/normal/lod0/hd_mle_UNI_830_FAB250_bigger.model"
+					},
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_drop_bomb",
+						"Object name": "105_ReichstagCrash01_rocketLaunch_02_sfx",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::TrajectoryComponent": {
+						"positionCurve": {
+							"data": [
+								{
+									"inTangent": {
+										"x": 61.472999572753906,
+										"y": -39.7599983215332,
+										"z": -100.54199981689453
+									},
+									"outTangent": {
+										"x": 79.4009017944336,
+										"y": -47.500099182128906,
+										"z": -158.33700561523438
+									},
+									"tangentMode": "257",
+									"time": 0.0,
+									"value": {
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0
+									}
+								},
+								{
+									"inTangent": {
+										"x": 79.4009017944336,
+										"y": -47.500099182128906,
+										"z": -158.33700561523438
+									},
+									"outTangent": {
+										"x": 112.15299987792969,
+										"y": -75.33070373535156,
+										"z": -252.87600708007813
+									},
+									"tangentMode": "257",
+									"time": 1.2666699886322021,
+									"value": {
+										"x": 100.57499694824219,
+										"y": -60.16680145263672,
+										"z": -200.55999755859375
+									}
+								}
+							]
+						},
+						"rotationCurve": {
+							"data": [
+								{
+									"inTangent": {
+										"x": 3.446690082550049,
+										"y": -1.7208199501037598,
+										"z": 1.9049700498580933
+									},
+									"outTangent": {
+										"x": 3.446690082550049,
+										"y": -1.7208199501037598,
+										"z": 1.9049700498580933
+									},
+									"tangentMode": "0",
+									"time": 0.0,
+									"value": {
+										"x": -1.9999999949504854e-06,
+										"y": 61.08580017089844,
+										"z": -19.178699493408203
+									}
+								},
+								{
+									"inTangent": {
+										"x": 2.4811201095581055,
+										"y": -1.2398200035095215,
+										"z": 1.3915599584579468
+									},
+									"outTangent": {
+										"x": 2.4811201095581055,
+										"y": -1.2398200035095215,
+										"z": 1.3915599584579468
+									},
+									"tangentMode": "0",
+									"time": 0.6666669845581055,
+									"value": {
+										"x": 2.297790050506592,
+										"y": 59.938499450683594,
+										"z": -17.908700942993164
+									}
+								},
+								{
+									"inTangent": {
+										"x": 1.5155500173568726,
+										"y": -0.7588130235671997,
+										"z": 0.8781589865684509
+									},
+									"outTangent": {
+										"x": 1.5155500173568726,
+										"y": -0.7588130235671997,
+										"z": 0.8781589865684509
+									},
+									"tangentMode": "0",
+									"time": 1.2666699886322021,
+									"value": {
+										"x": 3.207119941711426,
+										"y": 59.483299255371094,
+										"z": -17.381799697875977
+									}
+								}
+							]
+						},
+						"scaleCurve": {
+							"data": []
+						},
+						"shift": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"BW::TrajectoryMoverComponent": {
+						"autoStart": false,
+						"looped": false,
+						"serverTime": false
+					},
+					"BW::TrajectoryTimeSyncComponent": {},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 15.378800392150879,
+							"y": -4.84119987487793,
+							"z": -18.416000366210938
+						},
+						"rotation": {
+							"x": 3.207119941711426,
+							"y": 59.483333587646484,
+							"z": -17.381820678710938
+						},
+						"scale": {
+							"x": 0.699999988079071,
+							"y": 0.699999988079071,
+							"z": 0.699999988079071
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "Rocket_2",
+				"uuid": "2777d0a4-cb74-43e8-b81c-bdc670cb6476"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 2.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 1.5,
+								"object": "24c8c349-da11-4e71-8fc6-51a4099d158a",
+								"parameters": [],
+								"startTime": 0.0010000000474974513
+							},
+							{
+								"endTime": 1.600000023841858,
+								"object": "2777d0a4-cb74-43e8-b81c-bdc670cb6476",
+								"parameters": [],
+								"startTime": 0.30000001192092896
+							},
+							{
+								"endTime": 1.5,
+								"object": "c97f0da6-3657-4993-bfbc-1e5368c58de9",
+								"parameters": [],
+								"startTime": 0.0010000000474974513
+							},
+							{
+								"endTime": 1.600000023841858,
+								"object": "f10d0a60-9357-413f-9926-2c82d831376a",
+								"parameters": [],
+								"startTime": 0.30000001192092896
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "105_ReichstagCrash01_rocketLaunch",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

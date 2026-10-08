@@ -1,0 +1,316 @@
+(def constant LINK_TEMPLATE '<a href="event:hyperLink">{content}</a>')
+
+(def layout HitArea(name:str='hitElement')
+    (name = "name")
+    (style
+        (position = "absolute")
+        (width = 100%)
+        (height = 100%)
+        (backgroundColor = 0x00ff0000)
+    )
+)
+
+(def element DrawBoundRect(x:number, y:number, width:number, height:number, color:number, line:number = 1, alpha:number = 1, fill:bool = true)
+	(.graphics
+		(lineStyle "line" "color")
+		(beginFill "color" "alpha" $enabled="fill")
+		(drawRect "x" "y" "width" "height")
+		(endFill  $enabled="fill")
+	)
+)
+
+(def macro EmptyHitAreaMacro()
+    # using HitArea from common.unbound
+    (element HitArea
+        (name = 'hit')
+        (style
+            (width = 0px)
+            (height = 0px)
+        )
+    )
+    (hitArea = "$target.hit")
+)
+
+(def macro FullSizeHitArea()
+    (element HitArea)
+    (hitArea = "$target.hitElement")
+    (mouseChildren = false)
+)
+
+(def layout VideoChangeBtn(name:str = '')
+    (macro AbstractComponent "TEXT_BTN")
+    (macro ButtonSounds)
+    (scope
+        (var isVideoOff:bool = false)
+        (var labelOff:str="R.strings.lootboxes.buttonLabel.videoOff()")
+        (var labelOn:str="R.strings.lootboxes.buttonLabel.videoOn()")
+    )
+    (style
+        (align = "middle")
+        (flow = "Flow.HORIZONTAL")
+        (position = "absolute")
+        (left = 20px)
+        (bottom = 28px)
+    )
+
+    (block
+        (name = 'imgBlock')
+        (style
+            (position = "absolute")
+            (alpha = 0.7)
+        )
+
+        (image
+            (name = 'videoOffImg')
+            (style
+                (position = "absolute")
+                (left = -20px)
+                (top = -30px)
+            )
+            (visible = "isVideoOff")
+            (bind source "R.images.gui.maps.icons.library.iconVideoOff()")
+
+            (controller $Animation
+                (bindcall play duration=0.1 to={alpha:1,visible:1} from={alpha:0,visible:0} init=false reverse="!isVideoOff"
+                    (bind trigger "isVideoOff")
+                )
+            )
+        )
+        (image
+            (name = 'videoOnImg')
+            (style
+                (position = "absolute")
+                (left = -20px)
+                (top = -30px)
+            )
+            (visible = "!isVideoOff")
+            (bind source "R.images.gui.maps.icons.library.iconVideoOn()")
+
+            (controller $Animation
+                (bindcall play duration=0.1 to={alpha:1,visible:1} from={alpha:0,visible:0} init=false reverse="isVideoOff"
+                    (bind trigger "isVideoOff")
+                )
+            )
+        )
+        (block
+            (name = 'hitImage')
+            (style
+                (width = 45px)
+                (height = 40px)
+                (position = "absolute")
+                (top = -10px)
+                (backgroundColor = 0x0000ff00)
+            )
+            (visible = false)
+        )
+        (controller $Animation
+            (bindcall stop
+                (event "evBtnOutEvent")
+            )
+            (bindcall play duration=0.2 to={alpha:1}
+                (event "evBtnOverEvent")
+            )
+            (bindcall play duration=0.2 to={alpha:0.7}
+                (event "evBtnOutEvent")
+            )
+            (bindcall play duration=0.1 to={alpha:1}
+                (event "evBtnUpEvent")
+            )
+            (bindcall play duration=0.1 to={alpha:0.7}
+                (event "evBtnDownEvent")
+            )
+        )
+
+        (hitArea = "$target.hitImage")
+    )
+
+    (block
+        (name = 'labelBlock')
+        (style
+            (marginLeft = 40px)
+        )
+        (image
+            (name = 'backShine')
+            (style
+                (position = "absolute")
+                (height = 25px)
+                (width = "100%")
+            )
+            (alpha = 0)
+            (bind source "R.atlases.components.botton_back_shine()")
+            (controller $Animation
+                (bindcall stop
+                    (event "evBtnOutEvent")
+                )
+                (bindcall play duration=0.2 to={alpha:1}
+                    (event "evBtnOverEvent")
+                )
+                (bindcall play duration=0.2 to={alpha:0}
+                    (event "evBtnOutEvent")
+                )
+                (bindcall play duration=0.2 to={alpha:0}
+                    (event "evBtnDownEvent")
+                )
+                (bindcall play duration=0.2 to={alpha:1}
+                    (event "evBtnUpEvent")
+                )
+            )
+        )
+
+        (tf
+            (name = 'videoOffTF')
+            (class TextButtonMainTextStyle)
+            (bind text "labelOff")
+            (bind visible "isVideoOff")
+
+            (controller $Animation
+                (bindcall play duration=0.1 to={alpha:1,visible:1} from={alpha:0,visible:0} init=false reverse="!isVideoOff"
+                    (bind trigger "isVideoOff")
+                )
+            )
+        )
+
+        (tf
+            (name = 'videoOnTF')
+            (class TextButtonMainTextStyle)
+            (bind text "labelOn")
+            (bind visible "!isVideoOff")
+
+            (controller $Animation
+                (bindcall play duration=0.1 to={alpha:1,visible:1} from={alpha:0,visible:0} init=false reverse="isVideoOff"
+                    (bind trigger "isVideoOff")
+                )
+            )
+        )
+    )
+
+    (tabEnabled = false)
+    (tabChildren = false)
+)
+
+(def layout VignetteBlock()
+    (name = 'vignette')
+    (style
+        (position = "absolute")
+        (width = 100%)
+        (height = 100%)
+        (backgroundImage = "R.images.gui.maps.icons.library.vignette()")
+        (backgroundSize = "fill")
+        (alpha = 0.8)
+    )
+    (macro EmptyHitAreaMacro)
+)
+
+(def macro NoTabAndMouse()
+    (mouseChildren = false)
+    (mouseEnabled = false)
+    (tabChildren = false)
+    (tabEnabled = false)
+)
+
+(def layout EntrySlotSeparator(width:expression="360px", marginTop:expression="120px", marginLeft:expression="-10px",
+                                sourceImg:expression="R.images.gui.maps.icons.library.divider()")
+    (mouseChildren = false)
+    (mouseEnabled = false)
+    (block
+        (style
+            (width = 0px)
+            (height = 0px)
+        )
+        (name = 'hit')
+    )
+    (image
+        (name = 'separator')
+        (style
+            (position = "absolute")
+            (marginTop = "marginTop")
+            (marginLeft = "marginLeft")
+            (width = "width")
+        )
+        (bind source "sourceImg")
+    )
+    (hitArea = "$target.hit")
+
+)
+
+(def macro BgAspectRatioHelper(evBgLoadedTrigger:expression, deltaW:number=0, deltaH:number=0)
+    (var viewRatio:number = 0)
+    (bind viewRatio "viewSize.width/viewSize.height"
+        (event "viewResized")
+    )
+
+    (var bgAspectRatio:number = 0)
+    (bind bgAspectRatio "$event.width/$event.height" init=false
+        (event "evBgLoadedTrigger")
+    )
+
+    (var bgW:number = 0)
+    (var bgH:number = 0)
+    (bind bgW "(viewRatio > bgAspectRatio ? viewSize.width : bgAspectRatio * viewSize.height) + deltaW" init=false
+        (event "viewResized")
+        (bind enabled "bgAspectRatio > 0 && viewRatio > 0")
+    )
+    (bind bgH "(viewRatio > bgAspectRatio ? viewSize.width / bgAspectRatio : viewSize.height) + deltaH" init=false
+        (event "viewResized")
+        (bind enabled "bgAspectRatio > 0 && viewRatio > 0")
+    )
+)
+
+(def layout VehicleNameBlock()
+    (name = 'vehicleNameBlock')
+    (style
+        (align = "center|middle")
+        (flow = "Flow.HORIZONTAL")
+    )
+    (scope
+        (var isElite:bool = false)
+        (var type:str = '')
+        (var level:str = '')
+        (var name:str = '')
+        (var cssClass:str = 'GrandTitleTextStyle')
+        (var letterSpacing:number = 2)
+    )
+
+    (tf
+        (name = 'tankLevelTF')
+        (bind class "cssClass")
+        (style
+            (letterSpacing = 2)
+            (bind marginRight "isElite ? VEH_ICON_ELITE_MARGIN : VEH_ICON_MARGIN"
+                (bind enabled "type != ''")
+            )
+        )
+        (bind text "level")
+    )
+    (image
+        (name = 'vehicleTypeImg')
+        (bind source "R.atlases.components[type]()" init=false
+            (bind enabled "type != '' && type != null")
+        )
+    )
+    (tf
+        (name = 'tankNameTF')
+        (bind class "cssClass")
+        (style
+            (bind letterSpacing "letterSpacing")
+            (bind marginLeft "isElite ? VEH_ICON_ELITE_MARGIN : VEH_ICON_MARGIN"
+                (bind enabled "type != ''")
+            )
+        )
+        (bind text "name")
+    )
+)
+
+(def macro ViewTransparentBg()
+    (block
+        (name = 'viewTransparentBg')
+        (style
+            (position = "absolute")
+            (backgroundColor = 0xFF000000)
+            (bind width "viewSize.width")
+            (bind height "viewSize.height")
+            (alpha = 0)
+        )
+        (tabEnabled = true)
+    )
+)

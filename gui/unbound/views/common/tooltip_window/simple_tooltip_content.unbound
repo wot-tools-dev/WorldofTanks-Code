@@ -1,0 +1,17 @@
+(def macro  SimpleTooltipContentMacro(useHtml:bool)
+    (macro SimpleTooltipContentModel)
+    (macro TooltipDefaultConstraints)
+
+    (macro TooltipTextBlock "header" MiddleTitleTextStyle 0px useHtml="useHtml")
+    (macro TooltipTextBlock "body" MainTextStyle 0px useHtml="useHtml")
+    (macro TooltipTextBlock "note" MainTextStyle 15px useHtml="useHtml")
+    (macro TooltipTextBlock "alert" AlertTextStyle 15px useHtml="useHtml")
+)
+
+(def layout SimpleTooltipContent() entrance=true
+    (macro SimpleTooltipContentMacro false)
+)
+
+(def layout SimpleTooltipHtmlContent() entrance=true
+    (macro SimpleTooltipContentMacro true)
+)

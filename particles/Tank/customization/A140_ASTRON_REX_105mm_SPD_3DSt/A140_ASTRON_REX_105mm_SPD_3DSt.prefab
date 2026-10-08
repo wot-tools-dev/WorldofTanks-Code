@@ -1,0 +1,174 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Sound3DComponent": {
+								"AutoStart": true,
+								"Event name": "style_cust_A140_stove",
+								"Object name": "style_cust_A140_stove",
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 2.1546900272369385
+								}
+							}
+						},
+						"name": "style_cust_A140_stove",
+						"uuid": "64e40cd5-6f17-47cc-9bef-aa3cdd164992"
+					}
+				],
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "oven_light",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A140_ASTRON_REX_105mm_SPD_3DSt/oven_lighting.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "0",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_A140_attachment_hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "86cb9571-ded3-46f2-8762-f03722a59f2d"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "turret_seq",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A140_ASTRON_REX_105mm_SPD_3DSt/arrow_anim.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "turret_steam_seq",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A140_ASTRON_REX_105mm_SPD_3DSt/turret_steam_fx.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_A140_attachment_turret"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Turret",
+				"uuid": "e668a2b6-d70a-4c6e-8467-abaf2573bca6"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": false,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "base_anim",
+						"lodScale": 1.0,
+						"path": "vehicles/american/A140_ASTRON_REX_105mm/_skins/A140_ASTRON_REX_105mm_SPD_3DSt/normal/lod0/Hull_anim.fbx",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/american/A140_ASTRON_REX_105mm/_skins/A140_ASTRON_REX_105mm_SPD_3DSt/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {},
+			"script::VehicleCustomEffectsSettings": {
+				"additionalEngineSoundNPC": "style_cust_A140_boiler_npc",
+				"additionalEngineSoundPC": "style_cust_A140_boiler_pc",
+				"disableDefaultChassis": "0",
+				"disableDefaultHull": "0",
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			}
+		},
+		"name": "A140_ASTRON_REX_105mm_SPD_3DSt",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

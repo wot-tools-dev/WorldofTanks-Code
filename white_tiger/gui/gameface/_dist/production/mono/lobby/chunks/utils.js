@@ -1,0 +1,1 @@
+const s=4,t=(s,{poFileName:t,assetsPointer:e,isSubMode:o}={})=>{const r=t?R.strings.$dyn(t):R.strings.white_tiger_lobby;if(!r||"string"==typeof r)throw Error("Incorrect 'poFileName' argument");const n=o?"sub_modes":"modes",i=(e?r.$dyn(n)[e]:r)||r.$dyn(n)[void 0];return{staticTexts:r,dynamicTexts:i}};export{s as M,t as g};

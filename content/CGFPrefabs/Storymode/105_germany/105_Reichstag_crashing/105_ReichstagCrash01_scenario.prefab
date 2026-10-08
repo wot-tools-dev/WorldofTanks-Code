@@ -1,0 +1,141 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": 75.63240051269531,
+					"cgf::TransformComponent/position/y": 97.3405990600586,
+					"cgf::TransformComponent/position/z": 152.67300415039063
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_ReichstagCrash01_rocketLaunch.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_Reichstag_crashing/105_ReichstagCrash01_rocketLaunch.prefab",
+				"uuid": "2b715b75-e51b-42ce-8ca3-584116f14bee"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": 188.74099731445313,
+					"cgf::TransformComponent/position/y": -0.01899999938905239,
+					"cgf::TransformComponent/position/z": -66.41600036621094,
+					"cgf::TransformComponent/rotation/y": 90.00020599365234
+				},
+				"name": "105_ReichstagCrash01_Reichstag_complete.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_Reichstag_crashing/105_ReichstagCrash01_Reichstag_complete.prefab",
+				"uuid": "21a5272b-c135-4f45-9c08-6d354821e3fd"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": 288.7409973144531,
+					"cgf::TransformComponent/position/y": 82.3281021118164,
+					"cgf::TransformComponent/position/z": 1238.3699951171875
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_ReichstagCrash01_planeFlight.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_Reichstag_crashing/105_ReichstagCrash01_planeFlight.prefab",
+				"uuid": "ff98ae6c-1d85-4d54-8ca6-dcff2b362f8f"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 36.20000076293945,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 36.20000076293945,
+								"object": "ff98ae6c-1d85-4d54-8ca6-dcff2b362f8f",
+								"parameters": [],
+								"startTime": 0.009999999776482582
+							},
+							{
+								"endTime": 18.5,
+								"object": "2b715b75-e51b-42ce-8ca3-584116f14bee",
+								"parameters": [],
+								"startTime": 15.760000228881836
+							},
+							{
+								"endTime": 36.20000076293945,
+								"object": "21a5272b-c135-4f45-9c08-6d354821e3fd",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.009999999776482582,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Client",
+					"Editor"
+				],
+				"path": "story_mode/vscript/plans/Onboarding_vfx_scenarios/105_ReichstagCrash.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::SequenceNetworkSync": {}
+		},
+		"name": "105_ReichstagCrash01_scenario",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

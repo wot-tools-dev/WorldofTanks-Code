@@ -1,0 +1,90 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::RemoveGoDelayedComponent": {
+						"delay": 16.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::VSEComponent": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"path": "battle_royale/vscript/plans/VFX/Fire_ring/fire_ring_lights.xml"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Scaled_center",
+				"uuid": "6e54f18f-7c55-4c49-9c61-13bdcd08e06a"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "sound",
+						"lodScale": 1.0,
+						"path": "particles/Environment/Battle_Royal/Fire_Ring/fire_ring_sound.seq",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::LifecycleEffectSpawner": {
+				"EndEffect": "particles/Environment/Battle_Royal/Fire_Ring/fire_ring_end.seq",
+				"EndLifetime": "3",
+				"SpawnIntoThis": "1",
+				"StartLifetime": "1",
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::InfluenceZoneMultiVisualizer": {
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"influencePrefab": "content/CGFPrefabs/steel_hunter/abilities/fire_ring/fire_ring_segment.prefab",
+				"rotateFromCenter": "1"
+			},
+			"script::InfluenceZoneTerrainArea": {
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"dropOffset": "1000",
+				"fullZoneVisual": "content/Interface/TargetPoint/firering_decal.visual"
+			}
+		},
+		"name": "Fire_Ring",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

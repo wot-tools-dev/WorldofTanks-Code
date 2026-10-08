@@ -1,0 +1,203 @@
+# Default drop down menu item.
+# If you want to create and customize your own drop down item, create new element and insert (macro DropDownMenuItem)
+# before your content (if you want a standard logic and appearence for the item)
+(def element DefaultDropDownMenuItem() layout=true
+    (macro DropDownMenuItem) # aggregates StateComponent
+    (macro DropDownMenuItemModel)
+    (style
+        (width = 100%)
+        (height = 20px)
+        (paddingLeft = 6px)
+    )
+    (scope
+        (event onSelectChange)
+        (bind _isEnabled "isEnabled")
+        (bind selected "$event" init=false (event "onSelectChange"))
+    )
+
+    (tf
+        (name = 'label')
+        (style
+            (elideMode = true)
+            (width = 100%)
+        )
+        (bind class "_isEnabled ? currStateClass.font : states.disabled.font" $enabled = "(_isEnabled ? currStateClass.font : states.disabled.font) != null")
+        (bind text "label == '' ? label : label")
+    )
+)
+
+# States and logic for drop down item
+(def macro DropDownMenuItem()
+    (macro ComponentStateBaseLogic "DROP_DOWN_MENU_ITEM")
+    (macro DropDownMenuItemHover)
+
+    (scope
+        (selectable = true)
+    )
+
+    (buttonMode = true)
+    (mouseChildren = false)
+    (style
+        (width = 100%)
+    )
+)
+
+# Hover animations for drop down item
+(def macro DropDownMenuItemHover()
+    (scope
+        (var offset:number = -80)
+        (var multiplier:number = 1.0)
+
+        (controller $Animation
+            (bindcall stop (event "evBtnOutEvent"))
+            (bindcall stop (event "evBtnFocusChange"))
+            (bindcall play duration=0.3 to="{offset:isFocused ? 0 : -80}" easing="Easing.cubic_in" (event "evBtnOutEvent"))
+            (bindcall play duration=0.2 to={offset:0} easing="Easing.cubic_out" (event "evBtnOverEvent"))
+            (bindcall play duration=0.2 to={offset:-80} easing="Easing.cubic_in" (event "evBtnDownEvent"))
+            (bindcall play duration=0.2 to={offset:0} easing="Easing.cubic_in" (event "evBtnUpEvent"))
+            (bindcall play duration=0.2 to="{offset:isFocused ? 0 : -80}" easing="Easing.cubic_out" (event "evBtnFocusChange"))
+        )
+    )
+    (block
+        (style
+            (position = "absolute")
+            (width = 100%)
+            (height = 100%)
+        )
+        (block
+            (style
+                (backgroundColor = 0xFF5B5B44)
+                (width = 100%)
+                (height = 1px)
+            )
+        )
+        (block
+            (style
+                (backgroundColor = 0xFF424231)
+                (width = 100%)
+                (height = 100%)
+            )
+        )
+        (block
+            (style
+                (backgroundColor = 0xFF2B2B20)
+                (width = 100%)
+                (height = 1px)
+            )
+        )
+
+        (bind colorTransform "{
+            redMultiplier:multiplier, greenMultiplier:multiplier, blueMultiplier:multiplier, alphaMultiplier:0.7,
+            redOffset:offset, greenOffset:offset, blueOffset:offset, alphaOffset:0}"
+        )
+    )
+)
+
+# Default drop down button with label and arrow button
+(def layout DefaultDropDownButton()
+    (macro AbstractComponent "DROP_DOWN_BTN")
+    (macro InputBaseScope)
+    (scope
+        # Animate color transform for arrow button
+        (var multiplier:number = 1.0)
+        (var offset:number = 1.0)
+        # Item data of a currently seletcted item (is updated from a drop down)
+        (var itemData:dict = {})
+        (var componentHeight:number= "NUMERIC_STEPPER_BTN_HEIGHT_BREAK_POINT")
+
+        (controller $Animation
+            (bindcall stop (event "evBtnOutEvent"))
+            (bindcall play duration=0.2 to={multiplier:1, offset:0} easing="Easing.cubic_in" (event "evBtnOutEvent"))
+            (bindcall play duration=0.3 to={multiplier:1, offset:20} easing="Easing.cubic_out" (event "evBtnOverEvent"))
+            (bindcall play duration=0.2 to={multiplier:1, offset:-15} easing="Easing.cubic_in" (event "evBtnDownEvent"))
+            (bindcall play duration=0.2 to={multiplier:1, offset:0} easing="Easing.cubic_in" (event "evBtnUpEvent"))
+            (bindcall play duration=0.2 to="{multiplier: $event.value ? 1 : 0.5}" easing="Easing.cubic_in" init=false (event "evBtnEnabledEvent"))
+        )
+    )
+    (style
+        # height of the button
+        (width = 100%)
+        (height = 23px)
+    )
+
+    (buttonMode = true)
+    (mouseChildren = false)
+
+    (macro InputBackground)
+
+    (view_holder_content 'contentTop'
+        (style
+            (flow = "Flow.HORIZONTAL")
+            (width = 100%)
+            (paddingLeft = 10px)
+            (paddingRight = 0px)
+        )
+
+        (block
+            (style
+                (position = "absolute")
+                (top = -2px)
+                (bottom = -3px)
+                (left = -2px)
+                (right = -2px)
+            )
+            (image
+                (name = 'Hover')
+                (style
+                    (position = "absolute")
+                    (width = 100%)
+                    (height = 100%)
+                    (scale9grid = "Rect(10, 10, 110, 5)")
+                    (alpha = 0)
+                )
+                (source = 'bitmap:input_focus')
+                (controller $Animation
+                    (bindcall stop (event "evBtnOutEvent"))
+                    (bindcall play duration=0.2 to={alpha:0} easing="Easing.cubic_in" (event "evBtnOutEvent"))
+                    (bindcall play duration=0.3 to={alpha:1} easing="Easing.cubic_out" (event "evBtnOverEvent"))
+                    (bindcall play duration=0.2 to={alpha:0} easing="Easing.cubic_in" (event "evBtnDownEvent"))
+                    (bindcall play duration=0.2 to={alpha:0} easing="Easing.cubic_in" (event "evBtnFocusChange"))
+                ) 
+            )
+        )
+
+        (block
+            (style
+                (width = 100%)
+                (paddingTop = 1px)
+            )
+            (tf
+                (class DropDownMenuStyle)
+                (style
+                    (elideMode = true)
+                    (width = 100%)
+                )
+                (name = 'Label')
+                (bind class "_isEnabled ? 'DropDownMenuStyle' : 'DropDownMenuItemDisabledStyle'")
+                (bind text "itemData.label" init=false)
+            )
+        )
+
+        (block
+            (style
+               (height = 100%)
+               (paddingTop = 2px)
+               (paddingBottom = 2px)
+               (paddingRight = 2px)
+            )
+            (element Button 'ArrowBtn'
+                (macro NumericStepperBtn)
+                (style
+                    (width = "NUMERIC_STEPPER_BTN_HEIGHT_BREAK_POINT")
+                )
+                (bind colorTransform "{
+                    redMultiplier:multiplier, greenMultiplier:multiplier, blueMultiplier:multiplier, alphaMultiplier:multiplier,
+                    redOffset:offset, greenOffset:offset, blueOffset:offset, alphaOffset:0}"
+                )
+                (scope
+                    (bind _isEnabled "_isEnabled")
+                )
+            )
+        )
+    )
+)

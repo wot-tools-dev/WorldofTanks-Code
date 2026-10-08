@@ -1,0 +1,74 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"disabledDomains": [
+									"Server"
+								],
+								"visibleInArcadeMode": "1",
+								"visibleInArtyMode": "1",
+								"visibleInDeathFreeCamMode": "1",
+								"visibleInDualGunMode": "1",
+								"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+								"visibleInMapCaseArcadeMode": "1",
+								"visibleInMapCaseMode": "1",
+								"visibleInPostmortemMode": "1",
+								"visibleInRespawnDeathMode": "1",
+								"visibleInSniperMode": "0",
+								"visibleInStrategicMode": "1"
+							},
+							"cgf::TransformComponent": {},
+							"script::CorrodingShotPreparingNodeComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								],
+								"effectPathTemplate": "particles/Environment/Battle_Royal/CorrodedHit/Gun_{}.seq"
+							}
+						},
+						"name": "Gun",
+						"uuid": "10d3e5df-d831-4a6b-9017-bbc90cca438f"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "Gun"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"uuid": "a6b9d73d-9c29-4ec5-b76f-db998718f9eb"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": ""
+			},
+			"cgf::TransformComponent": {},
+			"script::CorrodingShotPreparingComponent": {
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"gunNode": "10d3e5df-d831-4a6b-9017-bbc90cca438f"
+			}
+		},
+		"name": "corrodingShot",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

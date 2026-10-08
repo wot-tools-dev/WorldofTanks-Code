@@ -1,0 +1,21 @@
+package crosshairControls_fla
+{
+   import flash.display.MovieClip;
+   
+   [Embed(source="/_assets/assets.swf", symbol="symbol135")]
+   public dynamic class O_simple_57 extends MovieClip
+   {
+      
+      public function O_simple_57()
+      {
+         super();
+         addFrameScript(0,this.frame1);
+      }
+      
+      internal function frame1() : *
+      {
+         stop();
+      }
+   }
+}
+

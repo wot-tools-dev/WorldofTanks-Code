@@ -1,0 +1,138 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"dynamicModelLinkType": "Self",
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "flags",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/G191_StuG_IIIF_CFE_AF_3Dst/FlagStates.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::CameraCollideComponent": {
+						"becomeTransparent": "1",
+						"disabledDomains": [
+							"Server"
+						],
+						"distance": 5.800000190734863,
+						"stopAnimator": "0"
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "particles/Tank/customization/G191_StuG_IIIF_CFE_AF_3Dst/normal/lod0/gup_flags.model"
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "V"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 1.0524200201034546,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "animFlags",
+				"uuid": "1bd49544-a7ec-495c-b50a-2ef90ebbf101"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"decorType": "0",
+								"disabledDomains": [
+									"Client",
+									"Server"
+								],
+								"isOverlayEnabled": "0",
+								"modelName": "vehicles/german/G191_StuG_IIIF_CFE_A/_skins/G191_StuG_IIIF_AF_3Dst/normal/lod0/Hull.model"
+							},
+							"BW::NodeFollowerComponent": {
+								"modelLink": "1d23978d-673c-484a-a8d1-278cc07d3180",
+								"nodeName": "V"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": 1.0524200201034546,
+									"z": 0.0
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "hull_helper",
+						"uuid": "da248238-33bf-49ad-ad05-dd0004afa9c4"
+					}
+				],
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Client",
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "vehicles/german/G191_StuG_IIIF_CFE_A/_skins/G191_StuG_IIIF_AF_3Dst/normal/lod0/Chassis.model"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "chassis_helper",
+				"uuid": "1d23978d-673c-484a-a8d1-278cc07d3180"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"decorType": "0",
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"isOverlayEnabled": "0",
+				"modelName": "vehicles/german/G191_StuG_IIIF_CFE_A/_skins/G191_StuG_IIIF_AF_3Dst/normal/lod0/Chassis.model"
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"path": "vscript/plans/VFX/G191_StuG_IIIF_CFE_AF_3Dst/flag_control.xml"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "G191_StuG_IIIF_CFE_AF_3Dst",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,578 @@
+from __future__ import absolute_import
+import logging
+import typing
+from collections import namedtuple
+from future.utils import viewvalues, viewitems
+import BigWorld
+import CGF
+import resource_helper
+from constants import ARENA_GUI_TYPE
+from gui.shared.system_factory import registerDynObjCache, collectDynObjCache
+from gui.shared.utils.graphics import isRendererPipelineDeferred
+from items.components.component_constants import ZERO_FLOAT
+from shared_utils import first
+from skeletons.dynamic_objects_cache import IBattleDynamicObjectsCache
+from vehicle_systems.stricted_loading import makeCallbackWeak
+_CONFIG_PATH = 'scripts/dynamic_objects.xml'
+_logger = logging.getLogger(__name__)
+_ScenariosEffect = namedtuple('_ScenariosEffect', ('path', 'rate', 'offset', 'scaleRatio'))
+_DropPlane = namedtuple('_DropPlane', ('model', 'flyAnimation', 'sound'))
+_AirDrop = namedtuple('_AirDrop', ('model', 'dropAnimation'))
+_Loot = namedtuple('_Loot', ('prefab', 'prefabPickup'))
+_MinesEffects = namedtuple('_MinesEffects', ('plantEffect', 'idleEffect', 'destroyEffect', 'placeMinesEffect', 'blowUpEffectName', 'activationEffect'))
+_BerserkerEffects = namedtuple('_BerserkerEffects', ('turretEffect', 'hullEffect', 'transformPath'))
+MIN_OVER_TERRAIN_HEIGHT = 0
+MIN_UPDATE_INTERVAL = 0
+_TerrainCircleSettings = namedtuple('_TerrainCircleSettings', ('modelPath', 'color', 'enableAccurateCollision', 'enableWaterCollision', 'maxUpdateInterval', 'overTerrainHeight', 'cutOffDistance', 'cutOffAngle', 'minHeight', 'maxHeight'))
+
+def _createScenarioEffect(section, path):
+    return _ScenariosEffect(section.readString(path, ''), section.readFloat('rate', ZERO_FLOAT), section.readVector3('offset', (ZERO_FLOAT, ZERO_FLOAT, ZERO_FLOAT)), section.readFloat('scaleRatio', ZERO_FLOAT))
+
+
+def _addPrecacheCandidate(prerequisites, modelName):
+    prerequisites.add(modelName)
+
+
+def _createDropPlane(section, prerequisites):
+    modelName = section.readString('model')
+    _addPrecacheCandidate(prerequisites, modelName)
+    flyAnimation = section.readString('flyAnimation')
+    dropPlane = _DropPlane(modelName, flyAnimation, section.readString('sound'))
+    return dropPlane
+
+
+def _createAirDrop(section, prerequisites):
+    modelName = section.readString('model')
+    _addPrecacheCandidate(prerequisites, modelName)
+    dropAnimation = section.readString('dropAnimation')
+    airDrop = _AirDrop(modelName, dropAnimation)
+    return airDrop
+
+
+def _createLoots(dataSection, typeSection):
+    loots = {}
+    for lootType in typeSection.items():
+        typeName = lootType[1]['name'].asString.strip()
+        typeID = lootType[1]['id'].asInt
+        loot = dataSection[typeName]
+        prefab = loot.readString('prefab')
+        prefabPickup = loot.readString('prefabPickup')
+        loots[typeID] = _Loot(prefab, prefabPickup)
+
+    return loots
+
+
+def createTerrainCircleSettings(section):
+    sectionKeys = ('ally', 'enemy')
+    result = dict.fromkeys(sectionKeys)
+
+    def readFloatOrNone(subSection, key):
+        return subSection.readFloat(key, default=None) if subSection.has_key(key) else None
+
+    for sectionKey in sectionKeys:
+        subSection = section[sectionKey]
+        if subSection is not None:
+            result[sectionKey] = _TerrainCircleSettings(subSection.readString('visual'), int(subSection.readString('color'), 0), subSection.readBool('enableAccurateCollision'), subSection.readBool('enableWaterCollision', default=False), max(MIN_UPDATE_INTERVAL, subSection.readFloat('maxUpdateInterval')), max(MIN_OVER_TERRAIN_HEIGHT, subSection.readFloat('overTerrainHeight')), readFloatOrNone(subSection, 'cutOffDistance'), readFloatOrNone(subSection, 'cutOffAngle'), readFloatOrNone(subSection, 'minHeight'), readFloatOrNone(subSection, 'maxHeight'))
+
+    return result
+
+
+def _parseEffectSubsection(dataSection, sectionKey):
+    if dataSection is not None:
+        effectSection = dataSection[sectionKey]
+        if effectSection is not None:
+            effPathPropName = 'path' if isRendererPipelineDeferred() else 'path_fwd'
+            return _createScenarioEffect(effectSection, effPathPropName)
+    return
+
+
+class _SimpleEffect(object):
+    _SECTION_NAME = None
+
+    def __init__(self, dataSection):
+        super(_SimpleEffect, self).__init__()
+        self.effectDescr = _parseEffectSubsection(dataSection[self._SECTION_NAME], 'effect')
+
+
+class _TeamRelatedEffect(object):
+    _ENEMY_SUB_NAME = 'enemy'
+    _ALLY_SUB_NAME = 'ally'
+    _SECTION_NAME = None
+
+    def __init__(self, dataSection):
+        super(_TeamRelatedEffect, self).__init__()
+        tpSection = dataSection[self._SECTION_NAME]
+        self.ally = _parseEffectSubsection(tpSection[self._ALLY_SUB_NAME], 'effect')
+        self.enemy = _parseEffectSubsection(tpSection[self._ENEMY_SUB_NAME], 'effect')
+
+
+class _BattleRoyaleTrapPointEffect(object):
+    _SECTION_NAME = 'TrapPoint'
+
+    def __init__(self, dataSection):
+        tpSection = dataSection[self._SECTION_NAME]
+        self.vehicleEffect = _parseEffectSubsection(tpSection, 'vehicleEffect')
+
+
+class _BattleRoyaleRepairPointEffect(_TeamRelatedEffect):
+    _SECTION_NAME = 'RepairPoint'
+
+
+class _BattleRoyaleBotDeliveryEffect(_TeamRelatedEffect):
+    _SECTION_NAME = 'BotDeliveryEffect'
+
+
+class _BattleRoyaleBotClingDeliveryEffect(_TeamRelatedEffect):
+    _SECTION_NAME = 'BotClingDeliveryEffect'
+
+
+class _BattleRoyaleBotDeliveryMarkerArea(_TeamRelatedEffect):
+    _SECTION_NAME = 'BotDeliveryArea'
+
+
+class _MinesPlantEffect(_SimpleEffect):
+    _SECTION_NAME = 'minesPlantEffect'
+
+
+class _MinesIdleEffect(_TeamRelatedEffect):
+    _SECTION_NAME = 'minesIdleEffect'
+
+
+class _EpicMinesIdleEffect(_TeamRelatedEffect):
+    _SECTION_NAME = 'epicMinesIdleEffect'
+
+
+class _MinesDestroyEffect(_SimpleEffect):
+    _SECTION_NAME = 'minesDestroyEffect'
+
+
+class _VehicleUpgradeEffect(_SimpleEffect):
+    _SECTION_NAME = 'VehicleUpgrade'
+
+
+class _KamikazeActivatedEffect(_SimpleEffect):
+    _SECTION_NAME = 'KamikazeActivated'
+
+
+class _BerserkerHullEffect(_SimpleEffect):
+    _SECTION_NAME = 'berserkerHullEffect'
+
+
+class _BerserkerTurretEffect(_SimpleEffect):
+    _SECTION_NAME = 'berserkerTurretEffect'
+
+
+class _PrefabsReader(object):
+    _SECTION_NAME = None
+    prefabs = property(lambda self: self.__prefabs)
+
+    def __init__(self, dataSection):
+        super(_PrefabsReader, self).__init__()
+        self.__prefabs = dataSection[self._SECTION_NAME].readStrings('prefab')
+
+
+class _VehicleRespawnEffects(_PrefabsReader):
+    _SECTION_NAME = 'VehicleRespawn'
+
+
+class _StPatrickLootEffect(_PrefabsReader):
+    _SECTION_NAME = 'StPatrickLootEffect'
+
+
+class _FireCircleEffects(_PrefabsReader):
+    _SECTION_NAME = 'FireCircleEffect'
+
+
+class DynObjectsBase(object):
+
+    def __init__(self):
+        super(DynObjectsBase, self).__init__()
+        self._initialized = False
+
+    def init(self, dataSection):
+        self._initialized = True
+
+    def clear(self):
+        pass
+
+    def destroy(self):
+        pass
+
+    def getInspiringEffect(self):
+        return {}
+
+    def getHealPointEffect(self):
+        return {}
+
+    def getAimingCircleRestrictionEffect(self, equipment):
+        return {}
+
+
+class _CommonForBattleRoyaleAndEpicBattleDynObjects(DynObjectsBase):
+
+    def __init__(self):
+        super(_CommonForBattleRoyaleAndEpicBattleDynObjects, self).__init__()
+        self.__inspiringEffect = None
+        self.__healPointEffect = None
+        return
+
+    def init(self, dataSection):
+        if not self._initialized:
+            self.__inspiringEffect = createTerrainCircleSettings(dataSection['InspireAreaVisual'])
+            self.__healPointEffect = createTerrainCircleSettings(dataSection[self._healPointKey])
+            super(_CommonForBattleRoyaleAndEpicBattleDynObjects, self).init(dataSection)
+
+    def getInspiringEffect(self):
+        return self.__inspiringEffect
+
+    def getHealPointEffect(self):
+        return self.__healPointEffect
+
+    @property
+    def _healPointKey(self):
+        pass
+
+    def clear(self):
+        pass
+
+    def destroy(self):
+        pass
+
+
+class _StrongholdDynObjects(DynObjectsBase):
+
+    def __init__(self):
+        super(_StrongholdDynObjects, self).__init__()
+        self.__inspiringEffect = None
+        return
+
+    def init(self, dataSection):
+        if not self._initialized:
+            self.__inspiringEffect = createTerrainCircleSettings(dataSection['InspireAreaVisual'])
+            super(_StrongholdDynObjects, self).init(dataSection)
+
+    def getInspiringEffect(self):
+        return self.__inspiringEffect
+
+
+class _EpicBattleDynObjects(_CommonForBattleRoyaleAndEpicBattleDynObjects):
+
+    def __init__(self):
+        super(_EpicBattleDynObjects, self).__init__()
+        self.__minesEffects = None
+        return
+
+    def init(self, dataSection):
+        if not self._initialized:
+            self.__minesEffects = _MinesEffects(plantEffect=_MinesPlantEffect(dataSection), idleEffect=_EpicMinesIdleEffect(dataSection), destroyEffect=_MinesDestroyEffect(dataSection), placeMinesEffect='epicMinesDecalEffect', blowUpEffectName='epicMinesBlowUpEffect', activationEffect='epicMinesActivationDecalEffect')
+            super(_EpicBattleDynObjects, self).init(dataSection)
+
+    def getMinesEffect(self):
+        return self.__minesEffects
+
+
+class _BattleRoyaleDynObjects(_CommonForBattleRoyaleAndEpicBattleDynObjects):
+
+    def __init__(self):
+        super(_BattleRoyaleDynObjects, self).__init__()
+        self.__vehicleUpgradeEffect = None
+        self.__kamikazeActivatedEffect = None
+        self.__trapPoint = None
+        self.__repairPoint = None
+        self.__botDeliveryEffect = None
+        self.__botClingDeliveryEffect = None
+        self.__vehicleRespawnEffects = None
+        self.__stPatrickLootEffect = None
+        self.__botDeliveryMarker = None
+        self.__dropPlane = None
+        self.__airDrop = None
+        self.__loots = {}
+        self.__minesEffects = None
+        self.__berserkerEffects = None
+        self.__fireCircleEffects = None
+        self.__resourcesCache = None
+        return
+
+    def init(self, dataSection):
+        if not self._initialized:
+            self.__vehicleUpgradeEffect = _VehicleUpgradeEffect(dataSection)
+            self.__kamikazeActivatedEffect = _KamikazeActivatedEffect(dataSection)
+            self.__trapPoint = _BattleRoyaleTrapPointEffect(dataSection)
+            self.__repairPoint = _BattleRoyaleRepairPointEffect(dataSection)
+            self.__botDeliveryEffect = _BattleRoyaleBotDeliveryEffect(dataSection)
+            self.__botClingDeliveryEffect = _BattleRoyaleBotClingDeliveryEffect(dataSection)
+            self.__botDeliveryMarker = _BattleRoyaleBotDeliveryMarkerArea(dataSection)
+            self.__minesEffects = _MinesEffects(plantEffect=_MinesPlantEffect(dataSection), idleEffect=_MinesIdleEffect(dataSection), destroyEffect=_MinesDestroyEffect(dataSection), placeMinesEffect='minesDecalEffect', blowUpEffectName='minesBlowUpEffect', activationEffect=None)
+            self.__berserkerEffects = _BerserkerEffects(turretEffect=_BerserkerTurretEffect(dataSection), hullEffect=_BerserkerHullEffect(dataSection), transformPath=dataSection.readString('berserkerTransformPath'))
+            self.__fireCircleEffects = _FireCircleEffects(dataSection)
+            self.__vehicleRespawnEffects = _VehicleRespawnEffects(dataSection)
+            self.__stPatrickLootEffect = _StPatrickLootEffect(dataSection)
+            precacheCandidates = set()
+            precacheCandidates.update(self.__fireCircleEffects.prefabs)
+            precacheCandidates.update(self.__vehicleRespawnEffects.prefabs)
+            precacheCandidates.update(self.__stPatrickLootEffect.prefabs)
+            CGF.cachePrefabs(list(precacheCandidates))
+            prerequisites = set()
+            self.__dropPlane = _createDropPlane(dataSection['dropPlane'], prerequisites)
+            self.__airDrop = _createAirDrop(dataSection['airDrop'], prerequisites)
+            self.__loots = _createLoots(dataSection, dataSection['lootTypes'])
+            BigWorld.loadResourceListBG(list(prerequisites), makeCallbackWeak(self.__onResourcesLoaded))
+            super(_BattleRoyaleDynObjects, self).init(dataSection)
+        return
+
+    def getVehicleUpgradeEffect(self):
+        return self.__vehicleUpgradeEffect
+
+    def getKamikazeActivatedEffect(self):
+        return self.__kamikazeActivatedEffect
+
+    def getTrapPointEffect(self):
+        return self.__trapPoint
+
+    def getRepairPointEffect(self):
+        return self.__repairPoint
+
+    def getBotDeliveryEffect(self):
+        return self.__botDeliveryEffect
+
+    def getBotClingDeliveryEffect(self):
+        return self.__botClingDeliveryEffect
+
+    def getBotDeliveryMarker(self):
+        return self.__botDeliveryMarker
+
+    def getDropPlane(self):
+        return self.__dropPlane
+
+    def getAirDrop(self):
+        return self.__airDrop
+
+    def getLoots(self):
+        return self.__loots
+
+    def getMinesEffect(self):
+        return self.__minesEffects
+
+    def getBerserkerEffects(self):
+        return self.__berserkerEffects
+
+    def getVehicleRespawnEffect(self):
+        paths = self.__vehicleRespawnEffects.prefabs
+        return str() if not paths else paths[0]
+
+    def getStPatrickLootEffect(self):
+        return self.__stPatrickLootEffect
+
+    def clear(self):
+        pass
+
+    def destroy(self):
+        self.__vehicleUpgradeEffect = None
+        self.__kamikazeActivatedEffect = None
+        self.__trapPoint = None
+        self.__repairPoint = None
+        self.__resourcesCache = None
+        self.__minesEffects = None
+        return
+
+    @property
+    def _healPointKey(self):
+        pass
+
+    def __onResourcesLoaded(self, resourceRefs):
+        self.__resourcesCache = resourceRefs
+
+
+class _SpawnPointsConfig(object):
+
+    def __init__(self, size, visualsPath, colors, overTerrainHeight):
+        self.__size = size
+        self.__visualsPath = visualsPath
+        self.__colors = colors
+        self.__overTerrainHeight = overTerrainHeight
+
+    @property
+    def size(self):
+        return self.__size
+
+    @property
+    def overTerrainHeight(self):
+        return self.__overTerrainHeight
+
+    def getColor(self, isMyOwn, isConfirmed):
+        ownageKey = 'own' if isMyOwn else 'ally'
+        confirmationKey = 'confirmed' if isConfirmed else 'notConfirmed'
+        return self.__colors[ownageKey][confirmationKey]
+
+    def getVisualPath(self, positionNumber):
+        positionName = 'position{}'.format(positionNumber)
+        return self.__visualsPath.get(positionName)
+
+    @classmethod
+    def createFromXML(cls, section):
+        return cls(size=section.readVector2('areaSize'), visualsPath=cls.__readVisualsPath(section['visualsPath']), colors=cls.__readColors(section['colors']), overTerrainHeight=section.readFloat('overTerrainHeight'))
+
+    @staticmethod
+    def __readVisualsPath(section):
+        return {key:section.readString(key) for key in section.keys()}
+
+    @staticmethod
+    def __readColors(section):
+        colors = {}
+        renderKey = 'deferred' if isRendererPipelineDeferred() else 'forward'
+        for ownageType, colorsConfig in section[renderKey].items():
+            colors[ownageType] = {'confirmed': int(colorsConfig.readString('confirmed'), 16),
+             'notConfirmed': int(colorsConfig.readString('notConfirmed'), 16)}
+
+        return colors
+
+
+class _PointsOfInterestConfig(object):
+
+    def __init__(self, prefabs):
+        self.__prefabs = prefabs
+
+    def getPointOfInterestPrefab(self, radius):
+        for (minRange, maxRange), path in viewitems(self.__prefabs):
+            if minRange <= radius < maxRange:
+                return path
+
+        _logger.error('Failed to get prefab for PointOfInterest (radius=%d)', radius)
+        return first(viewvalues(self.__prefabs))
+
+    def getPrefabs(self):
+        return self.__prefabs.values()
+
+    @classmethod
+    def createFromXML(cls, section):
+        points = {}
+        for _, prefab in section.items():
+            radiusRange = prefab.readVector2('radiusRange')
+            path = prefab.readString('path')
+            points[radiusRange.x, radiusRange.y] = path
+
+        return cls(points)
+
+
+class _FeatureDynObjects(DynObjectsBase):
+    _ROOT_SECTION_NAME = ''
+
+    def __init__(self):
+        super(_FeatureDynObjects, self).__init__()
+        self.__cachedPrefabs = set()
+
+    def init(self, dataSection):
+        if self._initialized:
+            return
+        else:
+            section = dataSection[self._ROOT_SECTION_NAME]
+            if section is None:
+                return
+            toCache = self._init(dataSection=section)
+            self.__cachedPrefabs.update(toCache)
+            CGF.cachePrefabs(list(self.__cachedPrefabs))
+            super(_FeatureDynObjects, self).init(dataSection)
+            return
+
+    def _init(self, dataSection):
+        return set()
+
+    def clear(self):
+        if self.__cachedPrefabs:
+            CGF.removePrefabsFromCache(list(self.__cachedPrefabs))
+            self.__cachedPrefabs.clear()
+
+    def destroy(self):
+        self.clear()
+        super(_FeatureDynObjects, self).destroy()
+
+
+class _KillCamEffectDynObjects(_FeatureDynObjects):
+    CONFIG_NAME = 'KillCamEffectDynObjects'
+    _ROOT_SECTION_NAME = 'killCameraVisualEffects'
+
+    def __init__(self):
+        super(_KillCamEffectDynObjects, self).__init__()
+        self.emptyGO = None
+        self.cone = None
+        self.impactPoint = None
+        self.spacedArmorLinePoint = None
+        self.explosionSphere = None
+        self.spacedArmorImpactPoint = None
+        self.trajectoryRed = None
+        self.trajectoryGradient = None
+        return
+
+    def _init(self, dataSection):
+        self.emptyGO = dataSection['emptyGO']['path'].asString
+        self.cone = dataSection['cone']['path'].asString
+        self.impactPoint = dataSection['impactPoint']['path'].asString
+        self.spacedArmorLinePoint = dataSection['spacedArmorLinePoint']['path'].asString
+        self.explosionSphere = dataSection['explosionSphere']['path'].asString
+        self.spacedArmorImpactPoint = dataSection['spacedArmorImpactPoint']['path'].asString
+        self.trajectoryRed = dataSection['trajectoryRed']['path'].asString
+        self.trajectoryGradient = dataSection['trajectoryGradient']['path'].asString
+        return {self.emptyGO,
+         self.cone,
+         self.impactPoint,
+         self.spacedArmorLinePoint,
+         self.explosionSphere,
+         self.spacedArmorImpactPoint,
+         self.trajectoryRed,
+         self.trajectoryGradient}
+
+
+registerDynObjCache(ARENA_GUI_TYPE.SORTIE_2, _StrongholdDynObjects)
+registerDynObjCache(ARENA_GUI_TYPE.FORT_BATTLE_2, _StrongholdDynObjects)
+registerDynObjCache(ARENA_GUI_TYPE.BATTLE_ROYALE, _BattleRoyaleDynObjects)
+registerDynObjCache(ARENA_GUI_TYPE.EPIC_BATTLE, _EpicBattleDynObjects)
+registerDynObjCache(ARENA_GUI_TYPE.EPIC_TRAINING, _EpicBattleDynObjects)
+registerDynObjCache(ARENA_GUI_TYPE.EVENT_BATTLES, _EpicBattleDynObjects)
+_COMMON_FEATURES_CONF_STORAGES = (_KillCamEffectDynObjects,)
+
+class BattleDynamicObjectsCache(IBattleDynamicObjectsCache):
+
+    def __init__(self):
+        super(BattleDynamicObjectsCache, self).__init__()
+        self.__gameModeConfigStorage = {}
+        self.__featuresConfigStorage = {}
+
+    def getConfig(self, arenaType):
+        return self.__gameModeConfigStorage.get(arenaType)
+
+    def getFeaturesConfig(self, feature):
+        return self.__featuresConfigStorage.get(feature)
+
+    def load(self, arenaType):
+        _logger.info('Trying to load resources for arenaType = %s', arenaType)
+        _, section = resource_helper.getRoot(_CONFIG_PATH)
+        if arenaType in self.__gameModeConfigStorage:
+            self.__gameModeConfigStorage[arenaType].init(section)
+        else:
+            cache = collectDynObjCache(arenaType)
+            if cache:
+                confStorage = cache()
+                self.__gameModeConfigStorage[arenaType] = confStorage
+                confStorage.init(section)
+                resource_helper.purgeResource(_CONFIG_PATH)
+        for featureStorageCls in _COMMON_FEATURES_CONF_STORAGES:
+            fstorage = featureStorageCls()
+            self.__featuresConfigStorage[fstorage.CONFIG_NAME] = fstorage
+            fstorage.init(dataSection=section)
+
+    def unload(self, arenaType):
+        for cV in viewvalues(self.__gameModeConfigStorage):
+            cV.clear()
+
+    def destroy(self):
+        if self.__gameModeConfigStorage is not None:
+            for cV in viewvalues(self.__gameModeConfigStorage):
+                cV.destroy()
+
+            self.__gameModeConfigStorage = None
+        if self.__featuresConfigStorage is not None:
+            for cV in viewvalues(self.__featuresConfigStorage):
+                cV.destroy()
+
+            self.__featuresConfigStorage = None
+        return

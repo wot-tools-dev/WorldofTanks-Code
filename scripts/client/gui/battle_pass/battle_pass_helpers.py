@@ -1,0 +1,463 @@
+from __future__ import absolute_import
+import copy
+import itertools
+import logging
+from collections import namedtuple
+from future.utils import viewvalues, viewitems
+import nations
+import typing
+from battle_pass_common import BattlePassConsts, BattlePassTankmenSource, HOLIDAY_SEASON_OFFSET, isPostProgressionChapter, FinalReward
+from constants import ARENA_BONUS_TYPE, QUEUE_TYPE
+from enum import Enum
+from items.tankmen import getNationGroups
+from nations import INDICES
+from shared_utils import findFirst, first
+from account_helpers.AccountSettings import AccountSettings, IS_BATTLE_PASS_COLLECTION_SEEN, IS_BATTLE_PASS_EXTRA_START_NOTIFICATION_SEEN, EXTRA_CHAPTERS_VIDEO_SHOWN, BUY_ANIMATIONS_WAS_SHOWN, IS_BATTLE_PASS_START_ANIMATION_SEEN, IS_BATTLE_PASS_START_NOTIFICATION_SEEN, LAST_BATTLE_PASS_CYCLES_SEEN, LAST_BATTLE_PASS_POINTS_SEEN
+from account_helpers.settings_core.settings_constants import BattlePassStorageKeys
+from gui import GUI_SETTINGS
+from gui.Scaleform.genConsts.VEHPREVIEW_CONSTANTS import VEHPREVIEW_CONSTANTS
+from gui.impl.gen import R
+from gui.impl.gen.view_models.common.price_model import PriceModel
+from gui.impl.wrappers.user_compound_price_model import PriceModelBuilder
+from gui.impl.gen.view_models.views.lobby.vehicle_preview.top_panel.top_panel_tabs_model import TabID
+from gui.prb_control.dispatcher import g_prbLoader
+from gui.server_events.bonuses import VehiclesBonus, parseAttachmentsSetToken, AttachmentsSetTokenBonus
+from gui.server_events.recruit_helper import getRecruitInfo
+from gui.shared.formatters import time_formatters
+from gui.shared.gui_items import GUI_ITEM_TYPE
+from gui.shared.money import Currency
+from gui.shared.event_dispatcher import showBattlePassStyleProgressionPreview, showStylePreview, showVehicleHubOverview, showAttachmentsSetPreview
+from helpers import dependency, time_utils
+from helpers.dependency import replace_none_kwargs
+from skeletons.gui.shared import IItemsCache
+from skeletons.gui.customization import ICustomizationService
+from skeletons.gui.game_control import IBattlePassController
+from web.web_client_api.common import ItemPackEntry, ItemPackType
+if typing.TYPE_CHECKING:
+    from typing import Dict, List, Optional, Tuple
+    from gui.impl.wrappers.user_compound_price_model import UserCompoundPriceModel
+    from gui.server_events.bonuses import TmanTemplateTokensBonus
+_logger = logging.getLogger(__name__)
+_CUSTOMIZATION_BONUS_NAME = 'customizations'
+TANKMAN_BONUS_NAME = 'tmanToken'
+TokenPositions = namedtuple('TokenPositions', ['free', 'paid'])
+
+class BattlePassMediaPatterns(str, Enum):
+    STYLE = 'style'
+    MEDIA = 'media'
+    CHAPTER = 'ch'
+    LEVEL = 'lvl'
+    PART = 'pt'
+
+
+class ChapterType(str, Enum):
+    COMMON = 'common'
+    EXTRA = 'extra'
+    HOLIDAY = 'holiday'
+    POST_PROGRESSION = 'postProgression'
+
+
+_BATTLE_PASS_PRICE_CURRENCY_PRIORITY = (Currency.GOLD,)
+
+@dependency.replace_none_kwargs(battlePass=IBattlePassController)
+def getChapterType(chapterID, battlePass=None):
+    if battlePass.isHoliday():
+        return ChapterType.HOLIDAY
+    if battlePass.isExtraChapter(chapterID):
+        return ChapterType.EXTRA
+    return ChapterType.POST_PROGRESSION if isPostProgressionChapter(chapterID) else ChapterType.COMMON
+
+
+def isBattlePassActiveSeason():
+    battlePassController = dependency.instance(IBattlePassController)
+    return battlePassController.isVisible()
+
+
+def getPointsInfoStringID(gameMode=ARENA_BONUS_TYPE.REGULAR):
+    points = R.strings.battle_pass.points.top()
+    if gameMode in (ARENA_BONUS_TYPE.COMP7, ARENA_BONUS_TYPE.COMP7_LIGHT):
+        points = R.strings.battle_pass.prestige.top()
+    return points
+
+
+def isSeasonEndingSoon():
+    battlePassController = dependency.instance(IBattlePassController)
+    return battlePassController.getFinalOfferTime() <= time_utils.getServerUTCTime()
+
+
+def getFormattedTimeLeft(seconds):
+    return time_formatters.getTillTimeByResource(seconds, R.strings.battle_pass.status.timeLeft, removeLeadingZeros=True)
+
+
+def getBattlePassUrl(urlPathName):
+    return ''.join((GUI_SETTINGS.baseUrls['webBridgeRootURL'], getBattlePassSetting(urlPathName).get('url')))
+
+
+def getInfoPageURL():
+    return getBattlePassUrl('infoPage')
+
+
+def getExtraInfoPageURL():
+    return getBattlePassUrl('extraInfoPage')
+
+
+def getIntroVideoURL():
+    return getBattlePassUrl('introVideo')
+
+
+def getExtraVideoURL():
+    return getBattlePassUrl('extraIntroVideo')
+
+
+def getIntroSlidesNames():
+    return getBattlePassSetting('intro').get('slides') or []
+
+
+def isIntroEnabled():
+    return getBattlePassSetting('intro').get('isEnabled', False)
+
+
+def isIntroVideoEnabled():
+    return getBattlePassSetting('introVideo').get('isEnabled', False)
+
+
+def isExtraIntroVideoEnabled():
+    return getBattlePassSetting('extraIntroVideo').get('isEnabled', False)
+
+
+def getBattlePassSetting(settingName):
+    if settingName in GUI_SETTINGS.battlePass:
+        return GUI_SETTINGS.battlePass[settingName]
+    _logger.warning('Setting %s is absent in GUI_SETTINGS.battlePass', settingName)
+    return {}
+
+
+@dependency.replace_none_kwargs(battlePass=IBattlePassController)
+def getMainChaptersNumbers(battlePass=None):
+    return {chapterID:chapterNum for chapterNum, chapterID in enumerate(sorted(battlePass.getMainChapterIDs()), 1)}
+
+
+def getSupportedArenaBonusTypeFor(queueType, isInUnit):
+    if queueType == QUEUE_TYPE.BATTLE_ROYALE:
+        arenaBonusType = ARENA_BONUS_TYPE.BATTLE_ROYALE_SQUAD if isInUnit else ARENA_BONUS_TYPE.BATTLE_ROYALE_SOLO
+    else:
+        arenaBonusTypeByQueueType = {QUEUE_TYPE.RANDOMS: ARENA_BONUS_TYPE.REGULAR,
+         QUEUE_TYPE.RANKED: ARENA_BONUS_TYPE.RANKED,
+         QUEUE_TYPE.MAPBOX: ARENA_BONUS_TYPE.MAPBOX,
+         QUEUE_TYPE.EPIC: ARENA_BONUS_TYPE.EPIC_BATTLE,
+         QUEUE_TYPE.COMP7: ARENA_BONUS_TYPE.COMP7,
+         QUEUE_TYPE.COMP7_LIGHT: ARENA_BONUS_TYPE.COMP7_LIGHT,
+         QUEUE_TYPE.WINBACK: ARENA_BONUS_TYPE.WINBACK}
+        arenaBonusType = arenaBonusTypeByQueueType.get(queueType, ARENA_BONUS_TYPE.UNKNOWN)
+    return arenaBonusType
+
+
+def getSupportedCurrentArenaBonusType(queueType=None):
+    dispatcher = g_prbLoader.getDispatcher()
+    isInUnit = False
+    if dispatcher:
+        state = dispatcher.getFunctionalState()
+        isInUnit = state.isInUnit(state.entityTypeID)
+        if queueType is None:
+            queueType = dispatcher.getEntity().getQueueType()
+    return getSupportedArenaBonusTypeFor(queueType, isInUnit)
+
+
+def getTankmanFirstNationGroup(tankmanGroupName):
+    for nationID in nations.MAP:
+        group = findFirst(lambda nationGroup: nationGroup.name == tankmanGroupName, itertools.chain(viewvalues(getNationGroups(nationID, True)), viewvalues(getNationGroups(nationID, False))))
+        if group is not None:
+            return group
+
+    return
+
+
+def makeProgressionStyleMediaName(chapterID, styleLevel):
+    return '{}_{}{}_{}{}'.format(BattlePassMediaPatterns.STYLE, BattlePassMediaPatterns.CHAPTER, getMainChaptersNumbers()[chapterID], BattlePassMediaPatterns.LEVEL, styleLevel)
+
+
+def makeChapterMediaName(chapterID, part=''):
+    mediaName = '{}_{}{}'.format(BattlePassMediaPatterns.MEDIA, BattlePassMediaPatterns.CHAPTER, getMainChaptersNumbers().get(chapterID, 0))
+    return '{}_{}{}'.format(mediaName, BattlePassMediaPatterns.PART, part) if part else mediaName
+
+
+def asBPVideoName(filename):
+    return '.'.join(('battle_pass', filename))
+
+
+def showBPFullscreenVideo(videoName, audioName, onVideoClosed=None):
+    from gui.impl.lobby.battle_pass.fullscreen_video_view import FullscreenVideoWindow
+    window = FullscreenVideoWindow(videoName, audioName, onVideoClosed=onVideoClosed)
+    window.load()
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getAllFinalRewards(chapterID, battlePass=None):
+    return battlePass.getFreeFinalRewardTypes(chapterID).union(battlePass.getPaidFinalRewardTypes(chapterID))
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getRewardSourceByType(reward, chapter, battlePass=None):
+    freeRewards = battlePass.getRewardTypes(chapter).get(BattlePassConsts.REWARD_FREE)
+    paidRewards = battlePass.getRewardTypes(chapter).get(BattlePassConsts.REWARD_PAID)
+    if reward in freeRewards:
+        if reward in paidRewards:
+            return BattlePassConsts.REWARD_BOTH
+        return BattlePassConsts.REWARD_FREE
+    else:
+        return BattlePassConsts.REWARD_PAID if reward in paidRewards else None
+
+
+@replace_none_kwargs(battlePass=IBattlePassController, c11nService=ICustomizationService)
+def getStyleForChapter(chapter, battlePass=None, c11nService=None):
+    stylesConfig = battlePass.getStylesConfig()
+    if chapter not in stylesConfig:
+        _logger.error('Invalid chapterID: %s', chapter)
+        return None
+    else:
+        styleID = stylesConfig[chapter]
+        return c11nService.getItemByID(GUI_ITEM_TYPE.STYLE, styleID) if styleID is not None else None
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getStyleInfoForChapter(chapter, battlePass=None):
+    style = getStyleForChapter(chapter, battlePass=battlePass)
+    return (style.intCD, style.getProgressionLevel()) if style is not None else (None, None)
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getAttachmentsSetInfoForChapter(chapter, battlePass=None, awardSource=BattlePassConsts.REWARD_FREE):
+    tokenID = getAttachmentsSetTokenForChapter(chapter=chapter, battlePass=battlePass, awardSource=awardSource)
+    return ('', []) if tokenID is None else parseAttachmentsSetToken(tokenID)
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getAttachmentsSetTokenForChapter(chapter, battlePass=None, awardSource=BattlePassConsts.REWARD_FREE):
+    rewards = battlePass.getSingleAward(chapter, battlePass.getMaxLevelInChapter(chapter), awardType=awardSource)
+    for bonus in rewards:
+        if bonus.getName() == AttachmentsSetTokenBonus.NAME:
+            return first(bonus.getTokens().keys())
+
+    _logger.warning('%s chapter does not have attachment set token at final level!', chapter)
+    return None
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getTimeExpirations(chapterID, battlePass=None):
+    if battlePass.isExtraChapter(chapterID):
+        endTimestamp = battlePass.getChapterExpiration(chapterID)
+        timeLeft = battlePass.getChapterRemainingTime(chapterID)
+    else:
+        endTimestamp = battlePass.getSeasonFinishTime()
+        timeLeft = battlePass.getSeasonTimeLeft()
+    return (time_utils.makeLocalServerTime(endTimestamp), timeLeft)
+
+
+@replace_none_kwargs(battlePass=IBattlePassController, c11nService=ICustomizationService)
+def getVehicleInfoForChapter(chapter, battlePass=None, c11nService=None, awardSource=BattlePassConsts.REWARD_PAID):
+    rewards = battlePass.getSingleAward(chapter, battlePass.getMaxLevelInChapter(chapter), awardType=awardSource)
+    for bonus in rewards:
+        if bonus.getName() == VehiclesBonus.VEHICLES_BONUS:
+            vehicle, vehInfo = bonus.getVehicles()[0]
+            styleId = vehInfo.get('customization', {}).get('styleId')
+            style = c11nService.getItemByID(GUI_ITEM_TYPE.STYLE, styleId) if styleId is not None else None
+            return (vehicle, style)
+
+    _logger.error("In chapterID: %s in final level doesn't have vehicle", chapter)
+    return (None, None)
+
+
+def getRecruitNation(recruitInfo):
+    nation = first(recruitInfo.getNations())
+    return INDICES.get(nation, 0)
+
+
+def getTankmanInfo(bonus):
+    if bonus is None:
+        return
+    elif bonus.getName() != TANKMAN_BONUS_NAME:
+        return
+    else:
+        tmanToken = first(bonus.getValue().keys())
+        return None if tmanToken is None else getRecruitInfo(tmanToken)
+
+
+def getDataByTankman(tankman):
+    nation = getRecruitNation(tankman)
+    iconName = tankman.getIconByNation(nation)
+    tankmanName = tankman.getFullUserNameByNation(nation).strip()
+    freeSkills = tankman.getFreeSkills()
+    earnedSkills = tankman.getEarnedSkills(True)
+    groupName = tankman.getGroupName()
+    return (iconName,
+     tankmanName,
+     freeSkills,
+     earnedSkills,
+     groupName)
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getReceivedTankmenCount(tankman, tankmanPostfix='', battlePass=None):
+    tankmanInfo = getRecruitInfo(tankman)
+    groupName = tankmanInfo.getGroupName() + tankmanPostfix if tankmanInfo is not None else ''
+    entitlement = battlePass.getTankmenEntitlements().get(groupName)
+    return entitlement.amount if entitlement is not None else 0
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getTankmenShopPackages(battlePass=None):
+    shopPackages = {}
+    tankmen = battlePass.getSpecialTankmen()
+    for tankman, tankmanInfo in viewitems(tankmen):
+        source = tankmanInfo.get('source')
+        if source == BattlePassTankmenSource.SHOP:
+            shopPackages[tankman] = tankmanInfo.get('availableCount', 0)
+
+    return shopPackages
+
+
+def getOfferTokenByGift(tokenID):
+    return tokenID.replace('_gift', '')
+
+
+def fillBattlePassCompoundPrice(compoundPriceModel, compoundPrice):
+    prices = compoundPriceModel.getPrices()
+    prices.clear()
+    pricesData = compoundPrice.items()
+    prices.reserve(len(pricesData))
+    for priceID, price in pricesData:
+        priceModel = PriceModel()
+        PriceModelBuilder.fillPriceModel(priceModel, price, None, None, False, priceID)
+        prices.addViewModel(priceModel)
+
+    prices.invalidate()
+    return
+
+
+def getCompoundPriceDefaultID(compoundPrice):
+    return next((priceID for currency in _BATTLE_PASS_PRICE_CURRENCY_PRIORITY for priceID, priceData in viewitems(compoundPrice) if currency in priceData and priceData[currency]))
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getFinalTankmen(chapterID, awardType, battlePass=None):
+    maxLevel = battlePass.getMaxLevelInChapter(chapterID)
+    rewards = battlePass.getSingleAward(chapterID, maxLevel, awardType=awardType)
+    characterBonuses = [ reward for reward in rewards if reward.getName() == TANKMAN_BONUS_NAME ]
+    if not characterBonuses:
+        _logger.warning('%s chapter does not have tankman at final level!', chapterID)
+    return [ getTankmanInfo(bonus) for bonus in characterBonuses ]
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def getChapterForTankmenScreen(screenID, battlePass=None):
+    chapters = set((k for k, v in viewitems(battlePass.getChapterToTankmenScreen()) if v == screenID))
+    if len(chapters) == 1:
+        return first(chapters)
+    else:
+        _logger.info('There is no unique chapter for tankmen screen: %s', screenID)
+        return None
+
+
+def updateBuyAnimationFlag(chapterID):
+    settings = AccountSettings.getSettings(BUY_ANIMATIONS_WAS_SHOWN)
+    if chapterID not in settings:
+        settings.add(chapterID)
+        AccountSettings.setSettings(BUY_ANIMATIONS_WAS_SHOWN, settings)
+        return True
+    return False
+
+
+def extractCompensationMoney(data):
+    dataCopy = copy.deepcopy(data)
+    vehicles = dataCopy.get('vehicles')
+    if not vehicles:
+        return dataCopy
+    else:
+        creditsCompensation = 0
+        goldCompensation = 0
+        if isinstance(vehicles, dict):
+            vehicles = [vehicles]
+        for vehicleDict in vehicles:
+            for vehicleInfo in viewvalues(vehicleDict):
+                if not vehicleInfo.get('compensatedNumber', 0):
+                    continue
+                compensation = vehicleInfo.get('customCompensation')
+                if compensation is not None:
+                    creditsCompensation += compensation[0]
+                    goldCompensation += compensation[1]
+
+        if 'credits' in dataCopy:
+            dataCopy['credits'] -= creditsCompensation
+            if not dataCopy['credits']:
+                dataCopy.pop('credits')
+        if 'gold' in dataCopy:
+            dataCopy['gold'] -= goldCompensation
+            if not dataCopy['gold']:
+                dataCopy.pop('gold')
+        return dataCopy
+
+
+@replace_none_kwargs(battlePass=IBattlePassController)
+def updateBattlePassSettings(data, battlePass=None):
+    version = battlePass.getSeasonNum()
+    versionStorageKey = BattlePassStorageKeys.FLAGS_VERSION
+    if battlePass.isHoliday():
+        version -= HOLIDAY_SEASON_OFFSET
+        versionStorageKey = BattlePassStorageKeys.FLAGS_VERSION_HOLIDAY
+    if data[versionStorageKey] != version:
+        _updateClientSettings()
+        _updateServerSettings(data)
+        data[versionStorageKey] = version
+        return True
+    return False
+
+
+def _updateClientSettings():
+    AccountSettings.setSettings(LAST_BATTLE_PASS_POINTS_SEEN, {})
+    AccountSettings.setSettings(IS_BATTLE_PASS_EXTRA_START_NOTIFICATION_SEEN, set())
+    AccountSettings.setSettings(IS_BATTLE_PASS_COLLECTION_SEEN, False)
+    AccountSettings.setSettings(IS_BATTLE_PASS_START_NOTIFICATION_SEEN, False)
+    AccountSettings.setSettings(LAST_BATTLE_PASS_CYCLES_SEEN, 0)
+    AccountSettings.setSettings(EXTRA_CHAPTERS_VIDEO_SHOWN, set())
+    AccountSettings.setSettings(BUY_ANIMATIONS_WAS_SHOWN, set())
+    AccountSettings.setSettings(IS_BATTLE_PASS_START_ANIMATION_SEEN, False)
+
+
+def _updateServerSettings(data):
+    data[BattlePassStorageKeys.INTRO_SHOWN] = False
+    data[BattlePassStorageKeys.INTRO_VIDEO_SHOWN] = False
+
+
+@dependency.replace_none_kwargs(itemsCache=IItemsCache)
+def showFinalRewardPreviewBattlePassState(chapterID, bonusID=None, level=None, itemsCache=None):
+    from gui.Scaleform.daapi.view.lobby.storage.storage_helpers import getVehicleCDForStyle
+    if bonusID is not None:
+        styleInfo = itemsCache.items.getItemByCD(bonusID)
+        vehicleCD = getVehicleCDForStyle(styleInfo) if styleInfo is not None else None
+        showStylePreview(vehicleCD, style=styleInfo, itemsPack=(ItemPackEntry(type=ItemPackType.CREW_100, groupID=1),))
+        return
+    else:
+        allRewardTypes = getAllFinalRewards(chapterID)
+        if FinalReward.ATTACHMENTS_SET in allRewardTypes:
+            attachmentsSetToken = getAttachmentsSetTokenForChapter(chapterID)
+            showAttachmentsSetPreview(attachmentsSetToken)
+            return
+        styleInfo = getStyleForChapter(chapterID)
+        vehicleCD = getVehicleCDForStyle(styleInfo) if styleInfo is not None else None
+        if FinalReward.PROGRESSIVE_STYLE in allRewardTypes:
+            level = level or styleInfo.getMaxProgressionLevel()
+            showBattlePassStyleProgressionPreview(vehicleCD, styleInfo, styleInfo.getDescription(), chapterId=chapterID, styleLevel=int(level))
+            return
+        previewItemPack = (ItemPackEntry(type=ItemPackType.CREW_100, groupID=1),)
+        if FinalReward.VEHICLE in allRewardTypes:
+            vehicle, style = getVehicleInfoForChapter(chapterID, awardSource=BattlePassConsts.REWARD_BOTH)
+            if styleInfo is not None:
+                showStylePreview(vehicle.intCD, style=styleInfo, topPanelData={'linkage': VEHPREVIEW_CONSTANTS.TOP_PANEL_TABS_LINKAGE,
+                 'tabIDs': (TabID.VEHICLE, TabID.STYLE),
+                 'currentTabID': TabID.STYLE,
+                 'style': styleInfo}, itemsPack=previewItemPack)
+            else:
+                showVehicleHubOverview(vehicle.intCD, style=style)
+        else:
+            showStylePreview(vehicleCD, style=styleInfo, itemsPack=previewItemPack)
+        return

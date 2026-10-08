@@ -1,0 +1,597 @@
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Content_base_d3ab1 {
+    color: #F2F2F7;
+}
+
+.Content_title_ec652 {
+    display: flex;
+    align-self: center;
+    margin-bottom: 11rem;
+    font-size: 40rem;
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: Content_appear_e2ac6 .3s ease-out .3s forwards;
+}
+
+.Content_title__medium_c2dc3 {
+        margin-bottom: 20rem;
+        font-size: 55rem;
+    }
+
+.Content_title__large_bbd3e,
+    .Content_title__extraLarge_c44fe {
+        margin-bottom: 22rem;
+        font-size: 75rem;
+    }
+
+.Content_timer_ff98c {
+    opacity: 0;
+    animation: Content_appear_e2ac6 .3s ease-out .3s forwards;
+}
+
+.Content_line_e068f {
+    height: 2rem;
+    background-image: linear-gradient(90deg, transparent, rgba(204, 255, 255, .1) 40%, rgba(204, 255, 255, .1) 60%, transparent);
+    opacity: 0;
+    animation: Content_opacity_b7a2c .3s ease-out .3s forwards;
+}
+
+.Content_content_f6a00 {
+    width: 530rem;
+    padding: 15rem 27rem 15rem 50rem;
+    background-image: linear-gradient(90deg, transparent, rgba(0,0,0, .4) 37%, rgba(0,0,0, .4) 63%, transparent 96%);
+    opacity: 0;
+    animation: Content_opacity_b7a2c .3s ease-out .3s forwards;
+}
+
+.Content_content__medium_f2f89 {
+        width: 620rem;
+        padding: 15rem 90rem 15rem 80rem;
+    }
+
+.Content_content__large_b28bb,
+    .Content_content__extraLarge_bb549 {
+        width: 732rem;
+        padding: 15rem 90rem 15rem 95rem;
+    }
+
+.Content_buttonWrapper_fe027 {
+    display: flex;
+    justify-content: center;
+    padding-top: 28rem;
+}
+
+.Content_button_e97ea {
+    width: 160rem;
+}
+
+.Content_button__medium_d4cdf,
+    .Content_button__large_e62c1,
+    .Content_button__extraLarge_d3526 {
+        height: 31rem;
+    }
+
+.Content_appear_e2ac6 {
+    opacity: 0;
+    animation: Content_appear_e2ac6 .15s ease-out forwards;
+}
+
+.Content_appear__1_eb4a6 {
+            animation-delay: 0.75s; /* stylelint-disable-line */
+        }
+
+.Content_appear__2_b387b {
+            animation-delay: 0.9s; /* stylelint-disable-line */
+        }
+
+.Content_appear__3_c2b2b {
+            animation-delay: 1.05s; /* stylelint-disable-line */
+        }
+
+.Content_appear__4_f5a47 {
+            animation-delay: 1.2s; /* stylelint-disable-line */
+        }
+
+@keyframes Content_appear_e2ac6 {
+    0% {
+        opacity: 0;
+        transform: translateX(20rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes Content_opacity_b7a2c {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.Info_base_c0ade {
+    display: flex;
+    padding: 10rem 0;
+}
+
+.Info_icon_c64ab {
+    width: 64rem;
+    height: 64rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.Info_icon__medium_ccc26,
+    .Info_icon__large_fd9ee,
+    .Info_icon__extraLarge_c085e {
+        width: 96rem;
+        height: 96rem;
+    }
+
+.Info_infoWrapper_f4f90 {
+    display: flex;
+    flex-direction: column;
+    flex: 1 2 100%;
+    padding-left: 10rem;
+}
+
+.Info_infoTitle_ef43a {
+    margin-bottom: 12rem;
+    font-size: 20rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.Info_infoTitle__medium_c13bb,
+    .Info_infoTitle__large_d2975,
+    .Info_infoTitle__extraLarge_f48c4 {
+        font-size: 24rem;
+    }
+
+.Info_infoDescription_b82a1 {
+    color: #b7babe;
+    font-size: 16rem;
+    line-height: 1.1;
+}
+
+.Info_infoDescription__medium_b439b,
+    .Info_infoDescription__large_ff602,
+    .Info_infoDescription__extraLarge_be3c9 {
+        font-size: 18rem;
+    }
+
+.Timer_base_b1819 {
+    color: #FFC363;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40rem;
+    margin: -10rem 0 10rem;
+    text-align: center;
+    text-shadow: 0 0 10rem #b92e00;
+}
+
+.Timer_clockIcon_c3456 {
+    width: 38rem;
+    height: 38rem;
+    margin-top: 4rem;
+    background: url('R.images.gui.maps.icons.library.ClockIcon_1') no-repeat 50% / contain;
+}
+
+.MapBoxIntroApp_base_a482f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-top: 20rem;
+    background-image: radial-gradient(50% 50% at 50% 50%, transparent, rgba(0, 0, 0, .5)),
+        url('R.images.gui.maps.icons.mapbox.bg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.MapBoxIntroApp_closeButton_c0554 {
+    position: absolute;
+    top: 50rem;
+    right: 40rem;
+}
+
+.MapBoxIntroApp_closeButton__large_eea55,
+    .MapBoxIntroApp_closeButton__extraLarge_b96b0 {
+        top: 40rem;
+    }
+
+.MapBoxIntroApp_maps_c468e {
+    width: 410rem;
+    height: 347rem;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: relative;
+    animation: MapBoxIntroApp_show_b5a4b .3s ease-out .3s forwards;
+}
+
+.MapBoxIntroApp_maps__medium_ed019 {
+        width: 550rem;
+        height: 465rem;
+    }
+
+.MapBoxIntroApp_maps__large_cc440,
+    .MapBoxIntroApp_maps__extraLarge_f234b {
+        width: 650rem;
+        height: 550rem;
+    }
+
+@keyframes MapBoxIntroApp_show_b5a4b {
+    0% {
+        opacity: 0;
+        transform: translateX(-20rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.MapBoxIntroApp_leftButton_a24ae {
+    position: absolute;
+    top: 50rem;
+    left: 0;
+}
+
+.MapBoxIntroApp_leftButton__large_b207b,
+    .MapBoxIntroApp_leftButton__extraLarge_f198e {
+        top: 40rem;
+    }
+

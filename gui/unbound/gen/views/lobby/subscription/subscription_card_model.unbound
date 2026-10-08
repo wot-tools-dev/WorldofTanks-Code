@@ -1,0 +1,19 @@
+# This file was generated using wgpygen
+#   template: configs/templates/view_model.unbound.jinja2
+#   source: configs/definitions/views/lobby/subscription/subscription_card_model.yaml
+# Please, don't edit this file manually.
+(def macro SubscriptionCardModel()
+    (scope
+        (var SUBSCRIPTIONCARDSTATE:dict = {
+            'Available': 'available',
+            'Active': 'active',
+            'Disable': 'disable'
+        })
+
+        (event onCardClick)
+        (event onInfoButtonClik)
+
+        (var state:str = '')
+        (var nextCharge:str = '')
+    )
+)

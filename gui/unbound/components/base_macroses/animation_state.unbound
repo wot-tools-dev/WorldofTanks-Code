@@ -1,0 +1,12 @@
+(def macro AnimationStateBasic ()
+    (macro SimpleComponentEvents)
+    (macro ButtonSounds)
+    (scope
+        (var stateFrame:str = 'up')
+
+        (bind stateFrame 'up' (event "evBtnUpEvent"))
+        (bind stateFrame 'down' (event "evBtnDownEvent"))
+        (bind stateFrame 'over' (event "evBtnOverEvent"))
+        (bind stateFrame 'out' (event "evBtnOutEvent"))
+    )
+)

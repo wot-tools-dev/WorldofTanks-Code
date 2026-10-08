@@ -1,0 +1,265 @@
+(def constant MENU_ANIMATION_TIME 0.3)
+(def constant MENU_HALF_ANIMATION_TIME 0.15)
+
+(def constant SIDE_TAB_BTN_CONTENT {
+        up : {}, 
+        hover : {sound: "R.sounds.highlight()"}, 
+        down : {sound:"R.sounds.tabs()"},
+        disabled : {},
+        upSelected : {}, 
+        hoverSelected : {}, 
+        downSelected : {}
+    }
+)
+
+(def constant MENU_ITEM_SIZE {
+        widthSmall : 67, 
+        widthBig : 100, 
+        heightSmall :  53,
+        heightBig : 78
+    }
+)
+
+(def layout SideTabBar(rendererName:str, rendererSelectionName:str = '', itemSize:dict = null)
+    (name = 'tabBarObj')
+    (scope
+        (event evTabBarIndexChanged)
+        (event evTabBarDisabledEvent)
+        (event evTabBarMenuAnimStart)
+        (event evTabBarMenuAnimComplete)
+        (event __evSelectedIndexChanged)
+        (event __evAnimComplete)
+        (event __evAnimStart)
+        (var horizontal:bool = true)
+        (var selectedIndex:number = -1
+            (dispatch evTabBarIndexChanged args="{index:selectedIndex}" on='evChanged')
+        )
+        (var isSmall:bool = false)
+        (bind selectedIndex "$event.index" init=false
+            (event "__evSelectedIndexChanged")
+        )
+
+        (var renderers:array = [])
+        (var isEnabled:bool = true
+            (dispatch evTabBarDisabledEvent on='evChanged' 
+                (enabled="!isEnabled")
+            )
+        )
+        (var selected:bool = true)
+        (var itemWidth:number = "rendererSelectionName != '' ? (isSmall ? itemSize.widthSmall : itemSize.widthBig) : 0")
+        (var itemHeight:number = "rendererSelectionName != '' ? (isSmall ? itemSize.heightSmall : itemSize.heightBig) : 0")
+        (var offsetTop:number = "horizontal ? 0 : itemHeight")
+        (var offsetLeft:number = "horizontal ? itemWidth : 0")
+        (var paddingRenderers:number = 10)
+        (dispatch evTabBarMenuAnimStart dir=2 on='__evAnimStart')
+        (dispatch evTabBarMenuAnimComplete dir=2 on='__evAnimComplete')
+        
+    )
+    (style
+        (bind flow "horizontal ? Flow.HORIZONTAL : Flow.VERTICAL")
+        (bind paddingTop "horizontal ?  0 : paddingRenderers")
+        (bind paddingBottom "horizontal ?  0 : paddingRenderers")
+        (bind paddingLeft "horizontal ?  paddingRenderers : 0")
+        (bind paddingRight "horizontal ?  paddingRenderers : 0")
+    )
+    (element "rendererSelectionName"
+        (name = 'selectedBlock')
+        (style
+            (position = "absolute")
+            (bind width "itemWidth")
+            (bind height "itemHeight")
+            (bind top "selectedIndex * offsetTop" init=false watch=false
+                (enabled="!horizontal")
+                (event "evTabBarIndexChanged")
+            )
+            (bind left "selectedIndex * offsetLeft" init=false watch=false
+                (enabled="horizontal")
+                (event "evTabBarIndexChanged")
+            )
+        )
+        (scope
+            (bind isEnabled "isEnabled" 
+                (event "evTabBarDisabledEvent")
+            )
+            (bind horizontal "horizontal")
+            (bind isSmall "isSmall")
+        )
+        (controller $Animation
+            (bindcall stop
+                (event "evTabBarIndexChanged")
+            )
+            (bindcall play 
+                duration="MENU_ANIMATION_TIME" 
+                to="{top: selectedIndex * offsetTop + paddingRenderers}"
+                callbacks="{onStart:__evAnimStart, onComplete:__evAnimComplete}" 
+                easing="Easing.cubic_out"
+                (event "evTabBarIndexChanged")
+                (enabled="!horizontal")
+            )
+            (bindcall play 
+                duration="MENU_ANIMATION_TIME" 
+                to="{left: selectedIndex * offsetLeft + paddingRenderers}" 
+                callbacks="{onStart:__evAnimStart, onComplete:__evAnimComplete}" 
+                easing="Easing.cubic_out"
+                (event "evTabBarIndexChanged")
+                (enabled="horizontal")
+            )
+        )
+    )
+    (controller $Repeat renderer="rendererName"
+        (bind count "renderers.length")
+        (exprs
+            (name = "'tabRenderer_' + $index")
+            (scope
+                (dispatch __evSelectedIndexChanged args="{index:$index}" on='evBtnLeftClickEvent')
+                (bind selected "$index == selectedIndex")
+                (bind isEnabled "isEnabled" 
+                    (event "evTabBarDisabledEvent")
+                )
+                (bind horizontal "horizontal")
+                (bind tabModel "renderers[$index]")
+                (bind isSmall "isSmall")
+            )
+            (style
+                (bind width "itemWidth")
+                (bind height "itemHeight")
+            )
+        )
+    )
+)
+
+(def element SideTabBarRenderer() layout=true
+    (macro ComponentStateBase "SIDE_TAB_BTN_CONTENT")
+    (scope
+        (var tabModel:dict = {})
+        (var isEnabled:bool = true)
+        (var horizontal:bool = true)
+        (var isSmall:bool = false)
+        (dispatch evPreSwitchContent dir=1 args="{view:tabModel.alias}" on='evBtnLeftClickEvent'
+            (enabled = "!selected")
+        )
+    )
+    (bind buttonMode "!selected")
+    
+    (style
+        (align = "center | middle")
+    )
+       
+    (image
+        (name = 'icon')
+        (style
+            (bind alpha "currState == 'down' ? 0.6 : 1")
+        )
+        (bind source "tabModel['icon'] != null ? 
+            R.images.gui.maps.icons.components.tab_bar[isSmall ? 'c_32x32': 'c_64x64'][tabModel.icon + (currState != 'up' ? '_active' : '')]() :
+            null" 
+            init=false)
+    )
+
+    (macro SetSimpleToolTip
+        header="tabModel.tooltipHeader"
+        body="tabModel.tooltipBody"
+    )
+    
+    (element SmallBubble
+        (scope
+            (bind value "tabModel.unseenCount > 0" init=false)
+        )
+        (style
+            (position = "absolute")
+            (top = 13px)
+            (bind right "isSmall ? 13px: 25px")
+        )
+    )
+
+    (element HitArea)
+    (hitArea = "$target.hitElement")
+)
+
+(def layout TabBarSelectedBlockRenderer()
+    (scope
+        (event evTabBarMenuAnimStart)
+        (event evTabBarMenuAnimComplete)
+        (var horizontal:bool = false)
+        (var selected:bool = true)
+        (var isEnabled:bool = false)
+        (var isSmall:bool = false)
+        (var arrowRightPos:number = "horizontal ? 42px : -15px")
+    )
+    (bind visible "selected && isEnabled")
+    (macro EmptyHitAreaMacro)
+
+    (image
+        (name = 'background')
+        (style
+            (width = 100%)
+            (height = 100%)
+        )
+        (source = "R.atlases.components.item_active_background()")
+    )
+    
+    (image
+        (name = 'arrow')
+        (style
+            (position = "absolute")
+            (vcenter = 0px)
+        )
+        (bind source "R.atlases.components[horizontal ? 'item_active_arrow_down' : 'item_active_arrow']()")
+
+        (controller $Animation
+            (bindcall play duration="MENU_HALF_ANIMATION_TIME" from="{alpha:1}" to="{alpha: 0, right: arrowRightPos + 10}" easing="Easing.cubic_out"
+                (event "evTabBarMenuAnimStart")
+            )
+            (bindcall play duration="MENU_HALF_ANIMATION_TIME" from="{alpha:0}" to="{alpha: 1, right: arrowRightPos}" easing="Easing.cubic_out"
+                (event "evTabBarMenuAnimComplete")
+            )
+        )
+    )
+
+    (image
+        (name = 'shine')
+        (class AbsPositionCenterStyle)
+        (source = "R.atlases.components.item_active_shine()")
+        (style
+            (pivotX = 50%)
+            (pivotY = 50%)
+        )
+        (controller $Animation
+            (bindcall play duration="MENU_HALF_ANIMATION_TIME" from="{alpha: 1, scaleX: 1}" to="{alpha: 0, scaleX: 0.5}" easing="Easing.cubic_out"
+                (event "evTabBarMenuAnimStart")
+            )
+            (bindcall play duration="MENU_HALF_ANIMATION_TIME" from="{alpha: 0, scaleX: 0.5}" to="{alpha: 1, scaleX: 1}" easing="Easing.cubic_out"
+                (event "evTabBarMenuAnimComplete")
+            )
+        )
+    )
+
+    (image
+        (name = 'highlight')
+        (class AbsPositionCenterStyle)
+        (source = "R.atlases.components.item_active_highlight()")
+        (controller $Animation
+            (bindcall play duration="MENU_HALF_ANIMATION_TIME" from="{alpha: 1}" to="{alpha: 0}" easing="Easing.cubic_out"
+                (event "evTabBarMenuAnimStart")
+            )
+            (bindcall play duration="MENU_HALF_ANIMATION_TIME" from="{alpha: 0}" to="{alpha: 1}" easing="Easing.cubic_out"
+                (event "evTabBarMenuAnimComplete")
+            )
+        )
+    )
+)
+
+(def element SmallBubble() layout=true
+    (scope
+        (var value:number = 0)
+    )
+    (image
+        (source = "R.images.gui.maps.icons.components.tab_bar.bubble_x05()")
+        (style
+            (marginTop = -18px)
+            (marginRight = -18px)
+        )
+    )
+
+    (bind visible "value != 0")
+)

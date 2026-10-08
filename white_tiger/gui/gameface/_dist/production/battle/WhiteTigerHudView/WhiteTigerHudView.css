@@ -1,0 +1,569 @@
+.App_base_ce488 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    font-size: 12rem;
+    position: relative;
+}
+
+.BossHeader_base_dc718 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+}
+
+.BattleStatus_base_f5b75 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 3rem;
+    position: relative;
+}
+
+.BattleStatus_content_bb1c2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 405rem;
+    height: 30rem;
+    position: relative;
+}
+
+.BattleStatus_status_efc0b {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 120rem;
+
+    /* Using parents flexbox to align it to the horizontal center */
+    position: absolute;
+    top: -6rem;
+}
+
+.BattleStatus_base__shieldDown_fc690 .BattleStatus_status_efc0b {
+        justify-content: center;
+    }
+
+.BattleStatus_base__shieldDownColorblind_e7a89 .BattleStatus_status_efc0b {
+        justify-content: center;
+    }
+
+.BattleStatus_damageTimer_ab2e9 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: -4rem;
+    font-size: 60rem;
+    font-weight: 700;
+    line-height: 55rem;
+}
+
+.BattleStatus_base__shieldDown_fc690 .BattleStatus_damageTimer_ab2e9 {
+        text-shadow: 0 0 10rem #e22c2c, 0 0 4rem #b70000;
+    }
+
+.BattleStatus_base__shieldDownColorblind_e7a89 .BattleStatus_damageTimer_ab2e9 {
+        text-shadow: 0 0 10rem #766cf2, 0 0 4rem #7b00ff;
+    }
+
+.BattleStatus_endgame_b5d3b {
+    width: 64rem;
+    height: 36rem;
+}
+
+.BattleStatus_base__shieldDown_fc690 .BattleStatus_endgame_b5d3b {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.endgame') center / contain no-repeat;
+    }
+
+.BattleStatus_base__shieldDownColorblind_e7a89 .BattleStatus_endgame_b5d3b {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.endgame_colorblind') center / contain no-repeat;
+    }
+
+.Generator_base_f362a {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 36rem;
+    height: 36rem;
+    position: relative;
+}
+
+.Generator_generatorName_d0fa2 {
+    color: #FEFEEC;
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1.15;
+    text-shadow: 0 0 6rem #000, 0 0 6rem #000, 0 0 6rem #000;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.Generator_mask_ebe12 {
+    display: block;
+    width: 36rem;
+    height: 36rem;
+    position: absolute;
+    transform: rotate(-45deg);
+    animation: Generator_loading_f7192 100s paused linear infinite;
+}
+
+.Generator_icon_e1582 {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.white_tiger.gui.maps.icons.bossWidget.generator_online') center / contain no-repeat;
+    transform: rotate(45deg);
+}
+
+.Generator_base__locked_b0509 .Generator_icon_e1582 {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.generator_locked') center / contain no-repeat;
+    }
+
+.Generator_base__lockedColorblind_d4d9a .Generator_icon_e1582 {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.generator_locked_colorblind') center / contain no-repeat;
+    }
+
+.Generator_base__destroyed_b976c .Generator_icon_e1582 {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.generator_destroyed') center / contain no-repeat;
+    }
+
+.Generator_icon__foreground_d2c71 {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.generator_online_progress') center / contain no-repeat;
+        position: absolute;
+        transform: rotate(0);
+    }
+
+@keyframes Generator_loading_f7192 {
+    0% {
+        clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 50% 50%, 100% 0%, 100% 100%);
+    }
+
+    25% {
+        clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 50% 50%, 100% 100%, 100% 100%);
+    }
+
+    50% {
+        clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 50% 50%, 0% 100%, 0% 100%);
+    }
+
+    75% {
+        clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 50% 50%, 0% 0%, 0% 0%);
+    }
+
+    100% {
+        clip-path: polygon(0% 100%, 0% 0%, 100% 0%, 50% 50%, 100% 0%, 0% 0%);
+    }
+}
+
+.Miniboss_base_b94eb {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Miniboss_container_b0a33 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.Miniboss_tankIcon_f6e5b {
+    width: 72rem;
+    height: 34rem;
+    background: url('R.images.white_tiger.gui.maps.icons.bossWidget.miniboss_ally') center / cover no-repeat;
+    position: absolute;
+    left: -66rem;
+}
+
+.Miniboss_base__enemy_feb45 .Miniboss_tankIcon_f6e5b {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.miniboss_enemy') center / contain no-repeat;
+    }
+
+.Miniboss_base__enemyColorblind_f3967 .Miniboss_tankIcon_f6e5b {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.miniboss_enemy_colorblind') center / contain no-repeat;
+    }
+
+.Miniboss_base__destroyed_f461b .Miniboss_tankIcon_f6e5b {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.miniboss_destroyed') center / contain no-repeat;
+    }
+
+.Miniboss_progressionContainer_b1fce {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 136rem;
+    height: 22rem;
+    margin: 0 5rem;
+    background: url('R.images.white_tiger.gui.maps.icons.bossWidget.miniboss_background') left / contain no-repeat;
+    position: relative;
+}
+
+.BossInfo_base_fe8f2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+    margin-bottom: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    color: #FEFEEC;
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+    .BossInfo_base_fe8f2.BossInfo_base__small_fde80 {
+        margin-bottom: -2rem;
+    }
+
+.BossInfo_nameContainer_a911f {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.BossInfo_nameContainer_a911f .BossInfo_nameWrapper_cfc73 {
+        display: flex;
+        margin-right: 5rem;
+    }
+
+.BossInfo_nameContainer_a911f .BossInfo_nameWrapper_name__big_c2c44 {
+                max-width: 75rem;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+.BossInfo_nameContainer_a911f .BossInfo_nameWrapper_clan_e49c9 {
+            flex: 0 0 auto;
+        }
+
+.BossInfo_nameContainer_a911f .BossInfo_anonymizer_e61de {
+        width: 20rem;
+        height: 16rem;
+    }
+
+.BossInfo_nameContainer_a911f.BossInfo_nameContainer__destroyed_f319f {
+        color: #8c8c7e;
+    }
+
+.BossInfo_base__small_fde80 .BossInfo_healthContainer_d850e {
+        color: #FEFEEC;
+        font-size: 14rem;
+        font-weight: 700;
+        line-height: 1.15;
+        transform: scale(0.8);
+        transform-origin: right;
+    }
+
+.BossInfo_healthContainer_d850e.BossInfo_healthContainer__destroyed_f7878 {
+        color: #8c8c7e;
+    }
+
+.BossInfo_killCounter_f75ae {
+    margin-left: 8rem;
+    padding-left: 30rem;
+    background: url('R.images.white_tiger.gui.maps.icons.bossWidget.kill_icon') left / contain no-repeat;
+}
+
+.BossInfo_base__small_fde80 .BossInfo_killCounter_f75ae {
+        display: none;
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBar_base_c37bf {
+    width: 100%;
+    height: var(--progress-bg-height);
+    position: relative;
+}
+.ProgressBar_base__small_af6d6 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_background_a4e18 {
+    width: 100%;
+    max-width: 8001px;
+    height: 100%;
+    background-image: var(--progress-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ProgressBar_background__small_e2b95 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_lineWrapper_e670c {
+    display: flex;
+    flex: 1;
+}
+
+
+.ProgressBarBlink_base_d7125 {
+    width: var(--progress-glow-width);
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    pointer-events: none;
+}
+
+    .ProgressBarBlink_base__small_b92f8 {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressLineImpose_base_a3558 {
+    max-width: 8001px;
+    height: 100%;
+    background-color: var(--progress-line-base);
+    filter: var(--progress-line-filter);
+    position: relative;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressLineImpose_base__disabled_a9e8e {
+        background-color: var(--progress-line-disabled);
+    }
+.ProgressLineImpose_base__finished_f889e {
+        background-color: var(--progress-line-finished);
+    }
+.ProgressLineImpose_base__withoutBounce_c0ff9 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressLineImpose_pattern_a4023 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: var(--progress-pattern-border-size);
+    bottom: var(--progress-pattern-border-size);
+    left: var(--progress-pattern-border-size);
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_pattern_a4023 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-disabled);
+        left: 0;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-finished);
+    }
+.ProgressLineImpose_gradient_f73c0 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-gradient);
+    mix-blend-mode: var(--progress-pattern-gradient-mixBlendMode);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: 0;
+    bottom: var(--progress-pattern-border-size);
+    left: 0;
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_gradient_f73c0 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_gradient_f73c0 {
+        display: none;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_gradient_f73c0 {
+        background-image: var(--progress-pattern-gradient-finished);
+    }
+.ProgressLineImpose_glow_f237a {
+    width: var(--progress-glow-width);
+    max-width: 8001px;
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.ProgressLineImpose_glow__left_b7ffa {
+        left: var(--progress-pattern-border-size);
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_glow_f237a,
+    .ProgressLineImpose_base__finished_f889e .ProgressLineImpose_glow_f237a {
+        display: none;
+    }
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_glow_f237a {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaGrow_base_f4d46 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressBarDeltaGrow_glow_c912d {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 .ProgressBarDeltaGrow_glow_c912d {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaSimple_base_cfcd3 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.ProgressBarDeltaSimple_delta_dc2b6 {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1), cubic-bezier(.21, .61, .35, 1);
+    transition-property: width, transform;
+}
+
+.BossStatus_base_e8d7f {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 21rem;
+    position: relative;
+}
+.BossStatus_healthbar_a42fa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 405rem;
+    position: relative;
+}
+.BossStatus_progressionContainer_af647 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 22rem;
+    margin: 0 5rem;
+    background: url('R.images.white_tiger.gui.maps.icons.bossWidget.boss_background') left / contain no-repeat;
+    position: relative;
+}
+.BossStatus_tankIcon_c37e1 {
+    width: 76rem;
+    height: 48rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+
+    /* Using parents flexbox to align it to the vertical center */
+    left: -70rem;
+}
+.BossStatus_statusIcons_c15a7 {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+
+    /* Using parents flexbox to align it to the vertical center */
+    right: -72rem;
+}
+.BossStatus_bg_f022d {
+    width: 960rem;
+    height: 48rem;
+    background: url('R.images.white_tiger.gui.maps.icons.bossWidget.boss_bg') bottom / contain no-repeat;
+    content: ' ';
+    position: absolute;
+    z-index: -1;
+}
+.BossStatus_base__shieldDown_b4ab2 .BossStatus_bg_f022d {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.boss_bg_off') bottom / contain no-repeat;
+    }
+.BossStatus_base__shieldDownColorblind_e3ab6 .BossStatus_bg_f022d {
+        background: url('R.images.white_tiger.gui.maps.icons.bossWidget.boss_bg_off_colorblind') bottom / contain no-repeat;
+    }
+.BossStatus_progressWrapper_dd7d4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.BossStatus_statusIcon_d8bcc {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 36rem;
+    height: 36rem;
+    background: no-repeat center/cover;
+    position: relative;
+}
+.BossStatus_hyperionCharge_bf61e {
+    font-size: 12rem;
+    font-weight: 400;
+    line-height: 14rem;
+    text-shadow: 0 0 8rem #000, 0 0 4rem #000;
+    position: absolute;
+
+    /* Using parents flexbox to align it to the horizontal center */
+    bottom: 0;
+}
+

@@ -1,0 +1,207 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/random_events/112_eiffel_tower_ctf_building_hit_02.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -1.834939956665039,
+							"y": 8.294859886169434,
+							"z": 6.146420001983643
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -8.333271026611328,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "building_hit_01",
+				"uuid": "0285b2c9-a295-4d28-a722-0a08eb40f801"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/random_events/112_eiffel_tower_ctf_building_hit_01.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 5.637249946594238,
+							"y": 6.295100212097168,
+							"z": 2.940190076828003
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 60.021339416503906,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "building_hit_02",
+				"uuid": "3ad6cb3b-8dd0-4a36-82d3-5544f85e0779"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_stone_transition",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "112_bridge_bombing_01_house_01_transition_stone_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 2.9860100746154785,
+							"y": 5.616209983825684,
+							"z": 5.614069938659668
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_house_01_transition_stone_sfx",
+				"uuid": "6073e50d-3d8a-3788-a125-c327b02e2fc3"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_building",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "112_bridge_bombing_01_house_01_transition_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_house_01_transition_sfx",
+				"uuid": "b5e779f8-3022-4b9a-aeac-4f4eb9616061"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 10.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 0.5,
+								"object": "0285b2c9-a295-4d28-a722-0a08eb40f801",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 0.699999988079071,
+								"object": "3ad6cb3b-8dd0-4a36-82d3-5544f85e0779",
+								"parameters": [],
+								"startTime": 0.20000000298023224
+							},
+							{
+								"endTime": 10.0,
+								"object": "b5e779f8-3022-4b9a-aeac-4f4eb9616061",
+								"parameters": [],
+								"startTime": 0.10000000149011612
+							},
+							{
+								"endTime": 9.0,
+								"object": "6073e50d-3d8a-3788-a125-c327b02e2fc3",
+								"parameters": [],
+								"startTime": 0.30000001192092896
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "112_bridge_bombing_01_house_01_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

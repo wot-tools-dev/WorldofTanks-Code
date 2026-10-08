@@ -1,0 +1,843 @@
+<once-only-hints.xml>
+  <gui>	gui/tutorial-lobby-gui.xml	</gui>
+  <hints>
+    <hint>	CustomizationSlotsHint	  <item-id>	CustomizationSlots	</item-id>
+      <text>	_(#tutorial:customization/slots)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+    </hint>
+    <hint>	CustomizationAutoprolongationHint	  <item-id>	CustomizationAutoprolongation	</item-id>
+      <text>	_(#tutorial:customization/autoprolongation)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+    </hint>
+    <hint>	ShopTradeInHint	  <item-id>	ShopTradeIn	</item-id>
+      <text>	_(#tutorial:tradeIn/shop)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <condition>
+        <service>	ITradeInController	  <path>	skeletons.gui.game_control	</path>
+        </service>
+      </condition>
+    </hint>
+    <hint>	VehCompareConfigHint	  <item-id>	VehCompareConfig	</item-id>
+      <text>	_(#veh_compare:vehConf/confAvailable)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+    </hint>
+    <hint>	HoldSheetHint	  <item-id>	HoldSheetBtn	</item-id>
+      <text>	_(#quests:quest/chain/hint/holdAwardSheet)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <condition>
+        <global-active>	_MayPawnPersonalMission	</global-active>
+      </condition>
+      <equal-actions>	True	</equal-actions>
+    </hint>
+    <hint>	PauseHint	  <item-id>	PauseHintBtn	</item-id>
+      <text>	_(#quests:quest/chain/hint/pause)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <equal-actions>	True	</equal-actions>
+    </hint>
+    <hint>	HangarHaveNewBadgeHint	  <item-id>	AccountButton	</item-id>
+      <text>	_(#menu:header/account/popover/tutorial/newBadge)	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	DogTagProfileHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+          <global-active>	_HaveNewBadge	</global-active>
+        </condition-and>
+      </condition>
+    </hint>
+    <hint>	HangarHaveNewSuffixBadgeHint	  <item-id>	AccountButton	</item-id>
+      <text>	_(#menu:header/account/popover/tutorial/newSuffixBadge)	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	DogTagProfileHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+          <global-active>	_HaveNewSuffixBadge	</global-active>
+        </condition-and>
+      </condition>
+    </hint>
+    <hint>	HaveNewBadgeHint	  <item-id>	NewBadgeHintBtn	</item-id>
+      <text>	_(#menu:header/account/popover/tutorial/newBadge)	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_HaveNewBadge	</global-active>
+      </condition>
+    </hint>
+    <hint>	HaveNewSuffixBadgeHint	  <item-id>	NewBadgeHintBtn	</item-id>
+      <text>	_(#menu:header/account/popover/tutorial/newSuffixBadge)	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_HaveNewSuffixBadge	</global-active>
+      </condition>
+    </hint>
+    <hint>	BadgePageNewSuffixBadgeHint	  <item-id>	NewBadgeHintCheckBox	</item-id>
+      <text>	_(#menu:badgePage/tutorial/newSuffixBadge)	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_BadgePageHasNewSuffixBadge	</global-active>
+      </condition>
+    </hint>
+    <hint>	EpicReservesSlotHint	  <item-id>	EpicReservesSlot	</item-id>
+      <text>	_(#epic_battle:tutorial/hint/epicReservesSlotHint)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <equal-actions>	True	</equal-actions>
+    </hint>
+    <hint>	BlueprintsSwitchButtonHint	  <item-id>	BlueprintsSwitchButton	</item-id>
+      <text>	_(#tutorial:blueprints/techtree/switchButton)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	AccountButtonHint	</hint-id>
+            <value>	True	</value>
+          </condition-hint-showed>
+          <class-condition>	LimitedUIHintChecker	  <path>	gui.limited_ui.lui_tutorial_hints	</path>
+            <arguments>	blueprintsButton	</arguments>
+          </class-condition>
+        </condition-and>
+      </condition>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	BlueprintsResearchButtonHint	  <item-id>	BlueprintsResearchButton	</item-id>
+      <text>	_(#tutorial:blueprints/research/blueprintButton)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <condition>
+        <class-condition>	LimitedUIHintChecker	  <path>	gui.limited_ui.lui_tutorial_hints	</path>
+          <arguments>	blueprintsButton	</arguments>
+        </class-condition>
+      </condition>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <update-runtime>	True	</update-runtime>
+    </hint>
+    <hint>	BlueprintsTechtreeConvertButtonHint	  <item-id>	BlueprintsTechtreeConvertButton	</item-id>
+      <text>	_(#tutorial:blueprints/convertButton)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <condition>
+        <condition-hint-showed>
+          <hint-id>	BlueprintsResearchConvertButtonHint	</hint-id>
+          <value>	False	</value>
+        </condition-hint-showed>
+      </condition>
+      <update-runtime>	True	</update-runtime>
+      <check-view-area>	True	</check-view-area>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	BlueprintsResearchConvertButtonHint	  <item-id>	BlueprintsResearchConvertButton	</item-id>
+      <text>	_(#tutorial:blueprints/convertButton)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	BlueprintsTechtreeConvertButtonHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+          <condition-hint-showed>
+            <hint-id>	BlueprintsResearchButtonHint	</hint-id>
+            <value>	True	</value>
+          </condition-hint-showed>
+        </condition-and>
+      </condition>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	BlueprintScreenConvertFragmentHint	  <item-id>	BlueprintScreenConvertFragment	</item-id>
+      <text>	_(#tutorial:blueprints/blueprintScreen/fragmentItem)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	False	</ignore-outside-click>
+      <equal-actions>	True	</equal-actions>
+    </hint>
+    <hint>	BlueprintScreenConvertFormulaHint	  <item-id>	BlueprintScreenConvertFormula	</item-id>
+      <text>	_(#tutorial:blueprints/blueprintScreen/convertFormula)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <condition>
+        <condition-hint-showed>
+          <hint-id>	BlueprintScreenConvertFragmentHint	</hint-id>
+          <value>	True	</value>
+        </condition-hint-showed>
+      </condition>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	False	</ignore-outside-click>
+      <equal-actions>	True	</equal-actions>
+    </hint>
+    <hint>	AccountButtonHint	  <item-id>	AccountButton	</item-id>
+      <text></text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	DogTagProfileHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+        </condition-and>
+      </condition>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	DogTagHangarHint	  <item-id>	AccountButton	</item-id>
+      <text>	#dogtags:tutorial/hangar/playerProfile	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	DogTagProfileHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+          <class-condition>	LimitedUIHintChecker	  <path>	gui.limited_ui.lui_tutorial_hints	</path>
+            <arguments>	DogTagHangarHint	</arguments>
+          </class-condition>
+          <global-active>	_DogTagsEnabled	</global-active>
+        </condition-and>
+      </condition>
+    </hint>
+    <hint>	HangarManualHint	  <item-id>	LobbyMenuBnt	</item-id>
+      <text>	_(#manual:manual_update/hint)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	DogTagHangarHint	</hint-id>
+            <value>	True	</value>
+          </condition-hint-showed>
+        </condition-and>
+      </condition>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+    </hint>
+    <hint>	LobbyMenuManualHint	  <item-id>	LobbyMenuManualItem	</item-id>
+      <text></text>
+      <condition>
+        <global-active>	_LobbyMenuItemManual	</global-active>
+      </condition>
+    </hint>
+    <hint>	DogTagProfileHint	  <item-id>	DogTagsWidget	</item-id>
+      <text>	#dogtags:tutorial/playerProfile/dogtag	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_DogTagsEnabled	</global-active>
+        <class-condition>	LimitedUIHintChecker	  <path>	gui.limited_ui.lui_tutorial_hints	</path>
+          <arguments>	DogTagHangarHint	</arguments>
+        </class-condition>
+      </condition>
+    </hint>
+    <hint>	BattleSessionUpButtonTournamentHint	  <item-id>	BattleSessionUpButtonTournament	</item-id>
+      <text>	#prebattle:upButton/hint	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	False	</ignore-outside-click>
+    </hint>
+    <hint>	SessionStatsOpenBtnHint	  <item-id>	SessionStatsOpenBtn	</item-id>
+      <text>	_(#tutorial:sessionStat/openBtn)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	SessionStatsSettingsBtnHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+          <class-condition>	LimitedUIHintChecker	  <path>	gui.limited_ui.lui_tutorial_hints	</path>
+            <arguments>	sessionStats	</arguments>
+          </class-condition>
+        </condition-and>
+      </condition>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	SessionStatsSettingsBtnHint	  <item-id>	SessionStatsSettingsBtn	</item-id>
+      <text>	_(#tutorial:sessionStat/settingsBtn)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	PlatoonBtnHint	  <item-id>	CreatePlatoonButton	</item-id>
+      <text>	_(#tutorial:platoon/openBtn)	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	CustomizationCarouselHint	  <item-id>	CustomizationCarousel	</item-id>
+      <text>	_(#tutorial:customization/decal)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+        <position-value>	0.25	</position-value>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	CrewOperationBtnHint	  <item-id>	CrewOperationBtn	</item-id>
+      <text>	_(#crew_operations:crewBooks/tutorial/crewOperations)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	SoundButtonExHint	  <item-id>	SoundButtonEx	</item-id>
+      <text>	_(#crew_operations:crewBooks/tutorial/readBook)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	VehiclePreviewModulesButtonHint	  <item-id>	VehiclePreviewModulesButton	</item-id>
+      <text>	_(#tutorial:collectibleVehicles/showModules)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <hide-immediately>	True	</hide-immediately>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <condition>
+        <global-active>	_CollectibleVehiclePreviewEnabled	</global-active>
+      </condition>
+    </hint>
+    <hint>	FilterHintZoneHint	  <item-id>	FilterTutorialHintZone	</item-id>
+      <text>	_(#tank_setup:hints/filters/specialization)	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	ModernizedSetupTabHint	  <item-id>	ModernizedSetupTabHintZone	</item-id>
+      <text>	_(#tank_setup:hints/tabs/equipment)	</text>
+      <arrow>
+        <direction>	B	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <condition>
+        <class-condition>	LimitedUIHintChecker	  <path>	gui.limited_ui.lui_tutorial_hints	</path>
+          <arguments>	ModernizedSetupTabHint	</arguments>
+        </class-condition>
+      </condition>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	OptDevDragAndDropHint	  <item-id>	OptDevDragAndDropHintZone	</item-id>
+      <text>	_(#tank_setup:hints/dragAndDrop/section)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	ModeSelectorWidgetsBtnHint	  <item-id>	ModeSelectorWidgetsBtn	</item-id>
+      <text>	_(#mode_selector:hint/showProgression)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <class-condition>	LimitedUIHintChecker	  <path>	gui.limited_ui.lui_tutorial_hints	</path>
+          <arguments>	ModeSelectorWidgetsBtnHint	</arguments>
+        </class-condition>
+      </condition>
+    </hint>
+    <hint>	VehiclePreviewPostProgressionButtonHint	  <item-id>	VehiclePreviewPostProgressionButton	</item-id>
+      <text>	_(#veh_post_progression:hint/vehiclePreview)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_VehPostProgressionEnabled	</global-active>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	HeroVehiclePreviewPostProgressionButtonHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+          <condition-hint-showed>
+            <hint-id>	TradeInVehiclePreviewPostProgressionButtonHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+        </condition-and>
+      </condition>
+    </hint>
+    <hint>	HeroVehiclePreviewPostProgressionButtonHint	  <item-id>	HeroVehiclePreviewPostProgressionButton	</item-id>
+      <text>	_(#veh_post_progression:hint/vehiclePreview)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_VehPostProgressionEnabled	</global-active>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	VehiclePreviewPostProgressionButtonHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+          <condition-hint-showed>
+            <hint-id>	TradeInVehiclePreviewPostProgressionButtonHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+        </condition-and>
+      </condition>
+    </hint>
+    <hint>	TradeInVehiclePreviewPostProgressionButtonHint	  <item-id>	TradeInVehiclePreviewPostProgressionButton	</item-id>
+      <text>	_(#veh_post_progression:hint/vehiclePreview)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_VehPostProgressionEnabled	</global-active>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	VehiclePreviewPostProgressionButtonHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+          <condition-hint-showed>
+            <hint-id>	HeroVehiclePreviewPostProgressionButtonHint	</hint-id>
+            <value>	False	</value>
+          </condition-hint-showed>
+        </condition-and>
+      </condition>
+    </hint>
+    <hint>	VehiclePostProgressionEntryPointHint	  <item-id>	VehiclePostProgressionEntryPoint	</item-id>
+      <text>	_(#veh_post_progression:hint/entryPoint)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_HangarVehPostProgressionPurchasable	</global-active>
+      </condition>
+    </hint>
+    <hint>	ResearchPostProgressionEntryPointHint	  <item-id>	ResearchPostProgressionEntryPoint	</item-id>
+      <text>	_(#veh_post_progression:hint/entryPoint)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <global-active>	_ResearchVehPostProgressionPurchasable	</global-active>
+      </condition>
+    </hint>
+    <hint>	SwitchEquipmentAuxiliaryLoadoutHint	  <item-id>	SwitchEquipmentAuxiliaryLoadout	</item-id>
+      <text>	_(#veh_post_progression:hint/switchEquipment/auxiliaryLoadout)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <hide-immediately>	True	</hide-immediately>
+    </hint>
+    <hint>	SwitchEquipmentEssentialsLoadoutHint	  <item-id>	SwitchEquipmentEssentialsLoadout	</item-id>
+      <text>	_(#veh_post_progression:hint/switchEquipment/essentialsLoadout)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <hide-immediately>	True	</hide-immediately>
+    </hint>
+    <hint>	CompareModificationsPanelHint	  <item-id>	CompareModificationsPanel	</item-id>
+      <text>	_(#veh_post_progression:hint/CompareModificationsPanel)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	CompareSpecializationButtonHint	  <item-id>	CompareSpecializationButton	</item-id>
+      <text>	_(#veh_post_progression:hint/CompareSpecializationButton)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	SummaryCustomizationButtonHint	  <item-id>	SummaryCustomizationButtonHintZone	</item-id>
+      <text>	_(#achievements_page:hint/summary/customizationButton)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	CrewBooksPostProgressionHint	  <item-id>	CrewBooksPostProgressionBtn	</item-id>
+      <text>	_(#crew_books:buttons/postProgression/hint)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	CrewBooksMentoringLicenseHint	  <item-id>	CrewBooksMentoringLicenseBtn	</item-id>
+      <text>	_(#crew_books:page/mentoringLicense/hint)	</text>
+      <arrow>
+        <direction>	L	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+    </hint>
+    <hint>	NewC11nSectionHint	  <item-id>	TuningBtn	</item-id>
+      <text>	_(#vehicle_customization:customization/hint/newCustomizationSection)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	enabled	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <condition-and>
+          <class-condition>	NewC11nSectionHintChecker	  <path>	gui.customization.shared	</path>
+            <arguments>	NewC11nSectionHint	</arguments>
+          </class-condition>
+          <global-active>	_Unlocked3DCustomization	</global-active>
+        </condition-and>
+      </condition>
+    </hint>
+    <hint>	C11nVehicleListHint	  <item-id>	C11nVehicleListSidebarBtn	</item-id>
+      <text>	_(#vehicle_customization:customization/hint/suitableVehicleList)	</text>
+      <arrow>
+        <direction>	T	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <hide-immediately>	True	</hide-immediately>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <condition-and>
+          <condition-hint-showed>
+            <hint-id>	NewC11nSectionHint	</hint-id>
+            <value>	True	</value>
+          </condition-hint-showed>
+          <class-condition>	C11nVehicleListHintChecker	  <path>	gui.customization.shared	</path>
+            <arguments>	C11nVehicleListHint	</arguments>
+          </class-condition>
+        </condition-and>
+      </condition>
+    </hint>
+    <hint>	VehicleC11nFilterHint	  <item-id>	VehicleCarouselFilterPopoverBtn	</item-id>
+      <text>	_(#vehicle_customization:customization/hint/vehicleCustomizationFilter)	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <checked-ui-state>
+        <simple-state>
+          <state>	visible	</state>
+          <value>	True	</value>
+        </simple-state>
+      </checked-ui-state>
+      <update-runtime>	True	</update-runtime>
+      <ignore-outside-click>	True	</ignore-outside-click>
+      <condition>
+        <condition-and>
+          <class-condition>	VehicleC11nFilterHintChecker	  <path>	gui.customization.shared	</path>
+            <arguments>	VehicleC11nFilterHint	</arguments>
+          </class-condition>
+          <condition-hint-showed>
+            <hint-id>	NewC11nSectionHint	</hint-id>
+            <value>	True	</value>
+          </condition-hint-showed>
+        </condition-and>
+      </condition>
+    </hint>
+  </hints>
+</once-only-hints.xml>

@@ -1,0 +1,61 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent": {},
+					"script::TemperatureGunRTPCComponent": {
+						"RTPCName": "RTPC_ext_gun_temperature_slew_global",
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						]
+					}
+				},
+				"name": "temperatureGunRTPC_slew",
+				"uuid": "1784ad89-fe6d-4460-8e67-decd5dc0e735"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent": {},
+					"script::TemperatureGunRTPCComponent": {
+						"RTPCName": "RTPC_ext_gun_temperature_global",
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						]
+					}
+				},
+				"name": "temperatureGunRTPC",
+				"uuid": "6093cc3f-a5df-4e79-b3e5-7bca4849c29f"
+			}
+		],
+		"components": {
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"path": "vscript/plans/vehicles/mechanic_effects/heatingzones_gun_vfx.xml"
+			},
+			"cgf::TransformComponent": {},
+			"script::HeatingZonesGunEffects": {
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"soundHeatingDropMarker": "gui_abl_gun_heating_marker",
+				"soundHeatingIdleMarker": "gui_abl_gun_heating_marker_last_aim",
+				"soundHeatingOff": "gui_abl_gun_heating_off",
+				"soundHeatingOn": "gui_abl_gun_heating_on",
+				"soundUtilityStop": "gui_abl_gun_heating_stop_utility"
+			}
+		},
+		"name": "heatzones_gun_vfx",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

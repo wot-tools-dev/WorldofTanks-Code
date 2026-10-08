@@ -1,0 +1,160 @@
+from __future__ import absolute_import
+import logging
+import time
+from functools import partial
+from future.moves import pickle
+from future.utils import viewvalues
+import BigWorld
+from adisp import adisp_async, adisp_process
+from constants import REQUEST_COOLDOWN, TOKEN_TYPE
+from debug_utils import LOG_CURRENT_EXCEPTION
+from gui.shared.utils.requesters.TokenResponse import TokenResponse
+from helpers import isPlayerAccount
+from ids_generators import SequenceIDGenerator
+_logger = logging.getLogger(__name__)
+
+def _getAccountRepository():
+    import Account
+    return Account.g_accountRepository
+
+
+_tokenRqs = {}
+
+def getTokenRequester(tokenType):
+    global _tokenRqs
+    if tokenType not in _tokenRqs:
+        _tokenRqs[tokenType] = TokenRequester(tokenType, cache=False)
+    return _tokenRqs[tokenType]
+
+
+def fini():
+    for requester in viewvalues(_tokenRqs):
+        requester.clear()
+
+    _tokenRqs.clear()
+
+
+class TokenRequester(object):
+    __idsGen = SequenceIDGenerator()
+
+    def __init__(self, tokenType, wrapper=TokenResponse, cache=True):
+        super(TokenRequester, self).__init__()
+        if callable(wrapper):
+            self.__wrapper = wrapper
+        else:
+            raise ValueError('Wrapper is invalid: {0}'.format(wrapper))
+        self.__tokenType = tokenType
+        self.__callback = None
+        self.__lastResponse = None
+        self.__requestID = 0
+        self.__cache = cache
+        self.__timeoutCbID = None
+        self.__lastRequestTime = 0
+        return
+
+    def lastResponseDelta(self):
+        return time.time() - self.__lastRequestTime
+
+    def isInProcess(self):
+        return self.__callback is not None
+
+    def clear(self):
+        self.__callback = None
+        repository = _getAccountRepository()
+        if repository:
+            repository.onTokenReceived -= self._onTokenReceived
+        self.__lastResponse = None
+        self.__requestID = 0
+        self.__clearTimeoutCb()
+        return
+
+    def getReqCoolDown(self):
+        return getattr(REQUEST_COOLDOWN, TOKEN_TYPE.COOLDOWNS[self.__tokenType], 10.0)
+
+    def canAllowRequest(self):
+        return self.__tokenType != TOKEN_TYPE.WGNI if not isPlayerAccount() else True
+
+    @adisp_async
+    @adisp_process
+    def request(self, timeout=None, callback=None, allowDelay=False):
+
+        @adisp_async
+        def wait(t, callback):
+            BigWorld.callback(t, lambda : callback(None))
+
+        yield lambda callback: callback(True)
+        requester = self._getRequester()
+        if not requester or not callable(requester):
+            _logger.debug('Can not get requester. Request canceled.')
+            if callback:
+                callback(None)
+            return
+        elif self.__cache and self.__lastResponse and self.__lastResponse.isValid():
+            _logger.debug('Getting response <%s> from cache.', self.__lastResponse)
+            if callback:
+                callback(self.__lastResponse)
+            return
+        else:
+            delta = self.lastResponseDelta()
+            if allowDelay and delta < self.getReqCoolDown():
+                delay = self.getReqCoolDown() - delta
+                _logger.debug('Delaying request for <%s> sec.', delay)
+                yield wait(delay)
+            if requester != self._getRequester():
+                _logger.info('Request cancelled because requester has been changed. Player is %s', BigWorld.player())
+                if callback:
+                    callback(None)
+                return
+            self.__callback = callback
+            self.__requestID = self.__idsGen.nextSequenceID
+            if timeout:
+                self._loadTimeout(self.__requestID, self.__tokenType, max(timeout, 0.0))
+            repository = _getAccountRepository()
+            if repository and self.canAllowRequest():
+                repository.onTokenReceived += self._onTokenReceived
+                _logger.debug('Request with id=<%s> sent.', self.__requestID)
+                requester(self.__requestID, self.__tokenType)
+            elif callable(callback):
+                _logger.debug('Can not process. Request with id=<%s> canceled.', self.__requestID)
+                self.__requestID = 0
+                self.__callback = None
+                callback(None)
+            return
+
+    def _getRequester(self):
+        return getattr(BigWorld.player(), 'requestToken', None)
+
+    def _onTokenReceived(self, requestID, tokenType, data):
+        if self.__requestID != requestID or tokenType != self.__tokenType:
+            return
+        else:
+            repository = _getAccountRepository()
+            if repository:
+                repository.onTokenReceived -= self._onTokenReceived
+            try:
+                self.__lastResponse = self.__wrapper(**pickle.loads(data))
+            except TypeError:
+                LOG_CURRENT_EXCEPTION()
+
+            self.__requestID = 0
+            if self.__callback is not None:
+                callback = self.__callback
+                self.__callback = None
+                _logger.debug('Response <%s> from request <%s>.', self.__lastResponse, requestID)
+                callback(self.__lastResponse)
+            self.__lastRequestTime = time.time()
+            return
+
+    def _loadTimeout(self, requestID, tokenType, timeout):
+        self.__clearTimeoutCb()
+        self.__timeoutCbID = BigWorld.callback(timeout, partial(self.__onTimeout, requestID, tokenType))
+
+    def __clearTimeoutCb(self):
+        if self.__timeoutCbID is not None:
+            BigWorld.cancelCallback(self.__timeoutCbID)
+            self.__timeoutCbID = None
+        return
+
+    def __onTimeout(self, requestID, tokenType):
+        self.__clearTimeoutCb()
+        self._onTokenReceived(requestID, tokenType, pickle.dumps({'error': 'TIMEOUT'}, -1))

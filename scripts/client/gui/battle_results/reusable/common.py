@@ -1,0 +1,106 @@
+from collections import defaultdict
+import logging
+import typing
+from arena_bonus_type_caps import ARENA_BONUS_TYPE_CAPS as _CAPS
+import ArenaType
+from battle_modifiers_common import BattleModifiers
+from gui.battle_results.reusable.players import PlayerInfo
+from constants import ARENA_GUI_TYPE, ARENA_BONUS_TYPE, FINISH_REASON
+from gui.battle_control import arena_visitor
+from gui.battle_results.reusable import shared
+from helpers.bots import preprocessBotName
+_logger = logging.getLogger(__name__)
+
+class CommonInfo(shared.UnpackedInfo):
+    __slots__ = ('__arenaTypeID', '__winnerTeam', '__finishReason', '__finishAllPlayersLeft', '__arenaVisitor', '__bots', '__numDefended', '__bonusCapsOverrides', '__battleModifiers')
+
+    def __init__(self, arenaTypeID=0, guiType=ARENA_GUI_TYPE.UNKNOWN, bonusType=ARENA_BONUS_TYPE.UNKNOWN, winnerTeam=0, finishReason=FINISH_REASON.UNKNOWN, bots=None, finishAllPlayersLeft=False, bonusCapsOverrides=None, battleModifiersDescr=None, **kwargs):
+        super(CommonInfo, self).__init__()
+        self.__arenaTypeID = arenaTypeID
+        self.__winnerTeam = winnerTeam
+        self.__finishReason = finishReason
+        self.__bots = defaultdict()
+        self.__finishAllPlayersLeft = finishAllPlayersLeft
+        self.__numDefended = kwargs.get('commonNumDefended', 0)
+        self.__bonusCapsOverrides = bonusCapsOverrides
+        self.__battleModifiers = BattleModifiers(battleModifiersDescr)
+        if bots is not None:
+            allActiveVehicles = kwargs.get('vehicles', {})
+            for info in bots.iteritems():
+                if len(info) <= 1:
+                    _logger.error('Bot information can not be unpacked: not enough data')
+                    break
+                vehicleID = info[0]
+                if vehicleID in allActiveVehicles:
+                    team, name = info[1][:2]
+                    botPlayerInfo = PlayerInfo(team=team, realName=preprocessBotName(name, bonusType))
+                    self.__bots[vehicleID] = botPlayerInfo
+
+        if self.__arenaTypeID and self.__arenaTypeID in ArenaType.g_cache:
+            arenaType = ArenaType.g_cache[self.__arenaTypeID]
+        else:
+            arenaType = None
+        self.__arenaVisitor = arena_visitor.createSkeleton(arenaType=arenaType, guiType=guiType, bonusType=bonusType)
+        return
+
+    @property
+    def arenaVisitor(self):
+        return self.__arenaVisitor
+
+    @property
+    def arenaTypeID(self):
+        return self.__arenaTypeID
+
+    @property
+    def arenaGuiType(self):
+        return self.__arenaVisitor.getArenaGuiType()
+
+    @property
+    def arenaBonusType(self):
+        return self.__arenaVisitor.getArenaBonusType()
+
+    @property
+    def arenaSubTypeName(self):
+        return self.__arenaVisitor.type.getGamePlayName()
+
+    @property
+    def arenaType(self):
+        return self.__arenaVisitor.type
+
+    @property
+    def battleModifiers(self):
+        return self.__battleModifiers
+
+    @property
+    def winnerTeam(self):
+        return self.__winnerTeam
+
+    @property
+    def finishReason(self):
+        return self.__finishReason
+
+    @property
+    def finishAllPlayersLeft(self):
+        return self.__finishAllPlayersLeft
+
+    @property
+    def numDefended(self):
+        return self.__numDefended
+
+    def isSquadSupported(self):
+        return self.__arenaVisitor.bonus.isSquadSupported()
+
+    def canTakeSquadXP(self):
+        return self.__arenaVisitor.bonus.canTakeSquadXP()
+
+    def getArenaIcon(self, subdir=''):
+        return self.__arenaVisitor.getArenaIcon(subdir)
+
+    def getBotInfo(self, vehicleID):
+        return self.__bots.get(vehicleID, None)
+
+    def getBots(self):
+        return self.__bots
+
+    def checkBonusCaps(self, *bonusCaps):
+        return _CAPS.checkAny(self.arenaBonusType, specificOverrides=self.__bonusCapsOverrides, *bonusCaps)

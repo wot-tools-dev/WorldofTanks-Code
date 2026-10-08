@@ -1,0 +1,247 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"components": {
+											"BW::DynamicModel": {
+												"castShadows": false,
+												"decorType": "0",
+												"disabledDomains": [
+													"Server"
+												],
+												"modelName": "content/Hangars/h_newyear/customization/Tableful/Exposition/normal/lod0/NY24_Exposition_02_Outline.model"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "outline",
+										"uuid": "b20618db-c349-4d04-854b-bf91fe5a3398"
+									}
+								],
+								"components": {
+									"BW::Animator": {
+										"autoStart": false,
+										"disabledDomains": [
+											"Server"
+										],
+										"layers": [
+											{
+												"autoStart": true,
+												"clip": "<Default Clip>",
+												"graphicsPreset": "TYPE_NULL_SHADING",
+												"layerName": "deferred",
+												"lodScale": 1.0,
+												"path": "particles/eff_sequence/New_Year/NY24_Exposition_02.seq",
+												"properties": {
+													"delay": "0",
+													"loop": "1",
+													"loopCount": "-1",
+													"speed": "1"
+												},
+												"weight": 1.0
+											},
+											{
+												"autoStart": false,
+												"clip": "<Default Clip>",
+												"graphicsPreset": "TYPE_NULL_SHADING",
+												"layerName": "onclick",
+												"lodScale": 1.0,
+												"path": "particles/eff_sequence/New_Year/NY24_Exposition_02_onclick.seq",
+												"properties": {
+													"delay": "0",
+													"loop": "0",
+													"loopCount": "-1",
+													"speed": "1"
+												},
+												"weight": 1.0
+											},
+											{
+												"autoStart": false,
+												"clip": "<Default Clip>",
+												"graphicsPreset": "TYPE_NULL_SHADING",
+												"layerName": "onclick_day",
+												"lodScale": 1.0,
+												"path": "particles/eff_sequence/New_Year/NY24_Exposition_02_onclick_day.seq",
+												"properties": {
+													"delay": "0",
+													"loop": "0",
+													"loopCount": "-1",
+													"speed": "1"
+												},
+												"weight": 1.0
+											}
+										]
+									},
+									"BW::Colliders": {
+										"colliders": [
+											{
+												"__ctype__": "BW::MeshColliderDesc",
+												"__cvalue__": {
+													"modelName": "content/Hangars/h_newyear/customization/Tableful/Exposition/normal/lod0/NY24_Exposition_02_Outline.model",
+													"moduleName": "default"
+												}
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::DynamicModel": {
+										"castShadows": true,
+										"decorType": "0",
+										"disabledDomains": [
+											"Server"
+										],
+										"modelName": "content/Hangars/h_newyear/customization/Tableful/Exposition/normal/lod0/NY24_Exposition_02.model"
+									},
+									"BW::VSEComponent": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server",
+											"Editor"
+										],
+										"path": "holiday_ops/vscript/plans/holiday_ops/Exposition.xml"
+									},
+									"cgf::TransformComponent": {},
+									"script::HighlightComponent": {
+										"color": {
+											"w": 1.0,
+											"x": 0.20784300565719604,
+											"y": 0.8431370258331299,
+											"z": 1.0
+										},
+										"colorIndex": "4",
+										"disabledDomains": [
+											"Server",
+											"Editor"
+										],
+										"drawerMode": "0",
+										"groupName": "Fair",
+										"overridenHighlightModel": "b20618db-c349-4d04-854b-bf91fe5a3398"
+									},
+									"script::SelectionComponent": {
+										"disabledDomains": [
+											"Server",
+											"Editor"
+										],
+										"highlight": "1"
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "appearance",
+								"uuid": "27fdaafa-570e-41da-b9ab-9d2fb9ad714c"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::AppearanceDelayComponent": {
+								"delay": 0.5,
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "appearanceDelayOwner",
+						"uuid": "3c368478-bd18-4ea4-ac5d-e69d5a8a79e2"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Animator": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"layers": [
+											{
+												"autoStart": true,
+												"clip": "<Default Clip>",
+												"graphicsPreset": "TYPE_NULL_SHADING",
+												"layerName": "0",
+												"lodScale": 1.0,
+												"path": "particles/eff_sequence/New_Year/exposition_appear_circle.seq",
+												"properties": {
+													"delay": "0",
+													"loop": "0",
+													"loopCount": "-1",
+													"speed": "1"
+												},
+												"weight": 1.0
+											}
+										]
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "hangEffect",
+								"uuid": "201e6bc8-a7d0-4513-bab2-589977bf445c"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::HangEffectsOwner": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "hangEffectOwner",
+						"uuid": "4af0d89a-73bb-4fe2-8fd0-2d55230f5689"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": -7.629389983776491e-06,
+							"y": 0.05050300061702728,
+							"z": 5.722049991163658e-06
+						},
+						"rotation": {
+							"x": -2.297961873409804e-05,
+							"y": 17.405771255493164,
+							"z": 8.709474059287459e-05
+						}
+					}
+				},
+				"name": "Transform",
+				"uuid": "5130c752-9baa-4e50-af76-e7dee47b3180"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

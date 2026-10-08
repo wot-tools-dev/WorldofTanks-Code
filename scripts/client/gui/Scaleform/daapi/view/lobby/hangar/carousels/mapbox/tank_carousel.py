@@ -1,0 +1,20 @@
+from __future__ import absolute_import
+from constants import Configs
+from gui.filters.mapbox_carousel_filter import MapboxCarouselFilter
+from gui.Scaleform.daapi.view.lobby.hangar.carousels import BattlePassTankCarousel
+from gui.Scaleform.daapi.view.lobby.hangar.carousels.mapbox.carousel_data_provider import MapboxCarouselDataProvider
+from helpers import server_settings
+
+class MapboxTankCarousel(BattlePassTankCarousel):
+
+    def __init__(self):
+        super(MapboxTankCarousel, self).__init__()
+        self._carouselDPCls = MapboxCarouselDataProvider
+        self._carouselFilterCls = MapboxCarouselFilter
+
+    def _onServerSettingChanged(self, diff, skipVehicles=False):
+        super(MapboxTankCarousel, self)._onServerSettingChanged(diff, skipVehicles=self.__onServerSettingChanged(diff))
+
+    @server_settings.serverSettingsChangeListener(Configs.MAPBOX_CONFIG.value)
+    def __onServerSettingChanged(self, *_):
+        self.updateVehicles()

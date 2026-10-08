@@ -1,0 +1,680 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::SpotLightComponent": {
+								"descriptor": {
+									"commonLightDesc": {
+										"castShadows": true,
+										"color": {
+											"a": 1.0,
+											"b": 0.4078429937362671,
+											"g": 0.6274510025978088,
+											"r": 1.0
+										},
+										"colorTemperature": 1000.0,
+										"cookieTexture": "content/LightMasks/CookieTextures/light_03.dds",
+										"decorType": 448,
+										"disableOnGenLights": true,
+										"drawType": "AUTO",
+										"innerRadius": 5.0,
+										"isScrollingTexture": "0",
+										"isVolumetric": false,
+										"lodShift": 90.0,
+										"multiplier": 4000.0,
+										"outerRadius": 40.0,
+										"position": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"scrollingDirection": {
+											"x": 0.0,
+											"y": 1.0
+										},
+										"scrollingSpeed": "1",
+										"shadowBias": 9.999999747378752e-05,
+										"shadowsQuality": "Medium",
+										"shadowsType": "Static",
+										"tilingFactor": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"useColorTemperature": false,
+										"volumetricIntensity": 0.30000001192092896
+									},
+									"coneAngle": 80.0
+								},
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90.00020599365234,
+									"y": -0.0,
+									"z": 0.0
+								}
+							}
+						},
+						"name": "Spot Light",
+						"uuid": "2343e567-1077-4050-b3fc-c94983cb58c7"
+					},
+					{
+						"components": {
+							"BW::SpotLightComponent": {
+								"descriptor": {
+									"commonLightDesc": {
+										"castShadows": false,
+										"color": {
+											"a": 1.0,
+											"b": 0.4078429937362671,
+											"g": 0.6274510025978088,
+											"r": 1.0
+										},
+										"colorTemperature": 1000.0,
+										"cookieTexture": "content/LightMasks/CookieTextures/light_01.dds",
+										"decorType": 448,
+										"disableOnGenLights": true,
+										"drawType": "AUTO",
+										"innerRadius": 0.0,
+										"isScrollingTexture": "0",
+										"isVolumetric": false,
+										"lodShift": 90.0,
+										"multiplier": 40000.0,
+										"outerRadius": 20.0,
+										"position": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"scrollingDirection": {
+											"x": 0.0,
+											"y": 1.0
+										},
+										"scrollingSpeed": "1",
+										"shadowBias": 9.999999747378752e-05,
+										"shadowsQuality": "Low",
+										"shadowsType": "Dynamic",
+										"tilingFactor": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"useColorTemperature": false,
+										"volumetricIntensity": 0.30000001192092896
+									},
+									"coneAngle": 80.0
+								},
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": -0.007920309901237488,
+									"z": 0.0
+								},
+								"rotation": {
+									"x": 90.00020599365234,
+									"y": 0.0,
+									"z": 0.0
+								}
+							}
+						},
+						"name": "animated_light",
+						"uuid": "74625580-924a-3172-933c-2f827b4252c9"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 10.0,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Lights",
+				"uuid": "f5d42d55-e890-4fec-b107-e3b19e2ba336"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/hangar/hangar_v4_wotp8.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "eff",
+				"uuid": "33f9ee2f-159b-4a48-8360-196dcef67f43"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "particles/content_deferred/GFX_models/environment/hangar_v4/fake_light_wotp8.model"
+					},
+					"BW::ModelPropertyChanger": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"scale": {
+							"x": 5.0,
+							"y": 4.0,
+							"z": 5.0
+						}
+					}
+				},
+				"name": "fake_light",
+				"uuid": "6439173c-14cb-45c5-bea2-402e98e8a63e"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 2.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 10.002400398254395,
+								"object": "2343e567-1077-4050-b3fc-c94983cb58c7",
+								"parameters": [
+									{
+										"component": "BW::SpotLightComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.49761998653411865,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 1.9987000226974487,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 4000.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "descriptor"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "commonLightDesc"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "multiplier"
+											}
+										]
+									}
+								],
+								"startTime": 0.0023795999586582184
+							},
+							{
+								"endTime": 10.0,
+								"object": "6439173c-14cb-45c5-bea2-402e98e8a63e",
+								"parameters": [
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Hermite",
+												"value": {
+													"__ctype__": "BW::Vector4",
+													"__cvalue__": {
+														"w": 0.0,
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 2.0,
+												"type": "Hermite",
+												"value": {
+													"__ctype__": "BW::Vector4",
+													"__cvalue__": {
+														"w": 0.0,
+														"x": 0.15000000596046448,
+														"y": 0.15000000596046448,
+														"z": 0.0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "m_cylinder"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "lightMultipliers"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 10.0,
+								"object": "33f9ee2f-159b-4a48-8360-196dcef67f43",
+								"parameters": [
+									{
+										"component": "BW::Particle",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 2.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "emissionRate"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 1.6968499422073364,
+								"object": "74625580-924a-3172-933c-2f827b4252c9",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 11.723899841308594,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 11.723899841308594,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 1.9999999949504854e-06,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -5.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.9408559799194336,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 0.9408559799194336,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 1.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									},
+									{
+										"component": "BW::SpotLightComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 1.9999999949504854e-06,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 1.6968499422073364,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 20.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "descriptor"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "commonLightDesc"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "outerRadius"
+											}
+										]
+									},
+									{
+										"component": "BW::SpotLightComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.10000000149011612,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.3997949957847595,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10000.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 1.3009699583053589,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "descriptor"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "commonLightDesc"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "multiplier"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "proboost_activation",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

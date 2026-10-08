@@ -1,0 +1,69 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent": {},
+					"script::WTSoundNotification": {
+						"conditions": "hunter_player",
+						"disabledDomains": [
+							"Server"
+						],
+						"isUnique": "0",
+						"onExitNotification": "wt24_dialogue_hunters_vo_eo_spawn",
+						"onlyForPlayerVehicle": "0"
+					}
+				},
+				"uuid": "7ac3bad9-d7a9-45d1-9ddd-f4a68bc3dee2"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"lodScale": 1.0,
+						"path": "particles/Environment/event_white_tiger/enemies/MiniBoss_spawn/MiniBoss_Spawn.seq",
+						"properties": {
+							"delay": "0",
+							"loop": "0",
+							"loopCount": "1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::RemoveGoDelayedComponent": {
+				"delay": 3.0,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::WTSoundNotification": {
+				"conditions": "boss_player",
+				"disabledDomains": [
+					"Server"
+				],
+				"isUnique": "0",
+				"onExitNotification": "wt24_dialogue_w_vo_eo_spawn",
+				"onlyForPlayerVehicle": "0"
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

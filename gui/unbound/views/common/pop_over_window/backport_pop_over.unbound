@@ -1,0 +1,27 @@
+(def element BackportPopOverContent() entrance=true
+    (name = 'backportPopOverContent')
+    (visible = false)
+)
+
+(def layout BackportPopOverWindow() entrance=true
+    (name = 'backportPopOverWindow')
+    (macro PopOverWindowModel)
+    (scope
+        (var content:object = null)
+    )
+    (mouseEnabled = false)
+    (mouseChildren = false)
+    (mc 'net.wg.infrastructure.base.BackportPopOverCaller'
+        (name = 'popOverCaller')
+        (style
+            (position = absolute)
+        )
+        (visible = true)
+        (alpha = 0)
+        (bindcall init "boundX" "boundY" "boundWidth" "boundHeight" "directionType" init=false watch=true)
+    )
+    (view_holder
+        (name = 'contentViewHolder')
+        (bind content "content" init=false)
+    )
+)

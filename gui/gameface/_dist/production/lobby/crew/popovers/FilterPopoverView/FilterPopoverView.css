@@ -1,0 +1,631 @@
+.PopoverDecorator_base_d0107 {
+    display: flex;
+    position: absolute;
+}
+
+.PopoverDecorator_decorator_b4f33 {
+    padding: 58rem;
+    border-image-source: url('R.images.gui.maps.icons.popovers.popover_bg');
+    border-image-slice: 90 fill;
+    border-image-width: 90rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+.PopoverDecorator_arrow_ef5d0 {
+    background: no-repeat 0 0 / contain;
+    position: absolute;
+}
+
+.PopoverDecorator_arrow__bottom_ebbbc,
+    .PopoverDecorator_arrow__top_bb330 {
+        width: 301rem;
+        height: 90rem;
+        margin: 0 58rem;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_top');
+        left: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2,
+    .PopoverDecorator_arrow__right_ffef7 {
+        width: 84rem;
+        height: 181rem;
+        margin: 58rem 0;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_left');
+        top: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2 {
+        right: 10rem;
+        transform: scaleX(-1) translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__right_ffef7 {
+        left: 10rem;
+        transform: translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__top_bb330 {
+        bottom: 8rem;
+        transform: scaleY(-1) translateX(-150rem);
+    }
+
+.PopoverDecorator_arrow__bottom_ebbbc {
+        top: 8rem;
+        transform: translateX(-150rem);
+    }
+
+.PopoverDecorator_closeBtn_dbed5 {
+    width: 18rem;
+    height: 18rem;
+    background: url('R.images.gui.maps.icons.popovers.close_button_slim_up') no-repeat 0 0 / contain;
+    position: absolute;
+    top: 6rem;
+    right: 6rem;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.PopoverDecorator_closeBtn_dbed5:hover {
+        filter: brightness(160%);
+    }
+
+.PopoverDecorator_closeBtn_dbed5:active {
+        background-image: url('R.images.gui.maps.icons.popovers.close_button_slim_press');
+        filter: brightness(100%);
+    }
+
+.PopoverDecorator_content_bc28d {
+    position: relative;
+    z-index: 2;
+}
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Counter_base_b457c {
+    display: flex;
+    min-width: 14rem;
+    height: 14rem;
+    position: relative;
+    z-index: 0;
+    animation: Counter_show_a62c2 ease-in-out forwards;
+}
+
+    .Counter_base__big_d6a57 {
+        min-width: 21rem;
+        height: 21rem;
+    }
+
+    .Counter_base__small_ea547 {
+        min-width: 13rem;
+        height: 13rem;
+    }
+
+    .Counter_base__empty_c2ad2 {
+        min-width: 6rem;
+        height: 6rem;
+    }
+
+    .Counter_base__animated_fb5ef {
+        animation-duration: .2s;
+    }
+
+    .Counter_base__hidden_b1e71 {
+        animation-name: Counter_hide_d1bf0;
+    }
+.Counter_bg_f25ac {
+    border: 1rem solid #fe4e0f;
+    border-radius: 7rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, .3),
+            0 0 6rem rgba(254,103,0, .2),
+            0 0 12rem 4rem rgba(249,0,0, .3);
+    background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.Counter_base__big_d6a57 .Counter_bg_f25ac {
+        border-radius: 11rem;
+    }
+.Counter_base__small_ea547 .Counter_bg_f25ac {
+        border-radius: 7rem;
+    }
+.Counter_value_d1de3 {
+    display: flex;
+    padding: 0 4rem;
+    color: #fefeec;
+    font-size: 11rem;
+    line-height: 13rem;
+    white-space: nowrap;
+}
+.Counter_base__big_d6a57 .Counter_value_d1de3 {
+        padding: 0 7rem;
+        font-size: 14rem;
+        line-height: 20rem;
+    }
+.Counter_base__small_ea547 .Counter_value_d1de3 {
+        font-size: 9rem;
+        line-height: 12rem;
+    }
+.Counter_value__text_bb007 {
+        padding: 0 7rem;
+    }
+.Counter_base__big_d6a57 .Counter_value__text_bb007 {
+            padding: 0 10rem;
+        }
+.Counter_base__small_ea547 .Counter_value__text_bb007 {
+            padding: 0 5rem;
+            font-size: 10rem;
+        }
+.Counter_base__pattern_d1fff .Counter_value_d1de3 {
+        display: none;
+    }
+.Counter_plus_a405c {
+    position: relative;
+    top: -1rem;
+}
+.Counter_pattern_a4be2 {
+    display: none;
+}
+.Counter_base__pattern_d1fff .Counter_pattern_a4be2 {
+        display: block;
+        border-radius: 50%;
+        background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+        opacity: .8;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+@keyframes Counter_show_a62c2 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes Counter_hide_d1bf0 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+.ToggleButton_base_fc1bf {
+    border-radius: 2rem;
+    position: relative;
+}
+
+.ToggleButton_overlay_c47e8 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2rem;
+    pointer-events: none;
+}
+
+.ToggleButton_base__active_f778a .ToggleButton_overlay_c47e8 {
+        border: 1rem solid rgba(255, 195, 99, .75);
+        box-shadow: 0 0 0 1rem rgba(0, 0, 0, .6), 0 0 7px rgba(238, 112, 0, .5);
+        background: linear-gradient(
+            180deg,
+            rgba(255, 42, 0, .1) 0%,
+            rgba(255, 42, 0, 0) .01%,
+            rgba(255, 127, 0, .1) 100%
+        );
+    }
+
+.ToggleButton_button_c99e5 {
+    padding: 0;
+}
+
+.ToggleButton_indicator_a32b9 {
+    width: 40rem;
+    height: 29rem;
+    background: url('R.images.gui.maps.icons.buttons.toggle_indicator') no-repeat center / contain;
+    position: absolute;
+    bottom: -14rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    pointer-events: none;
+}
+
+.ToggleButton_base__active_f778a .ToggleButton_indicator_a32b9 {
+        background-image: url('R.images.gui.maps.icons.buttons.toggle_indicator_active');
+    }
+
+.ToggleButton_counter_ee31b {
+    position: absolute;
+    top: -6rem;
+    right: -3rem;
+    pointer-events: none;
+}
+
+.FilterTitle_base_f4afa {
+    display: flex;
+}
+
+.FilterTitle_label_f8725 {
+    color: #595950;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+}
+
+.FilterTitle_discount_cb9ec {
+    height: 18rem;
+    position: relative;
+}
+
+.FilterTitle_discountIcon_e6a48 {
+    width: 48rem;
+    height: 34rem;
+    background: url('R.images.gui.maps.icons.crew.filter.popover.discount') no-repeat center / contain;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: -6rem;
+    left: -23rem;
+    pointer-events: none;
+}
+
+.ToggleIcon_base_c4a23 {
+    width: 34rem;
+    height: 24rem;
+}
+
+    .ToggleIcon_base__small_b667d {
+        width: 30rem;
+        height: 20rem;
+    }
+
+.ToggleIcon_icon_dcc68 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: no-repeat 50% / 34rem 24rem;
+}
+
+.VehicleTier_base_ed8c9 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34rem;
+    height: 24rem;
+    color: #FEFEEC;
+    font-size: 11rem;
+    font-weight: 400;
+}
+
+    .VehicleTier_base__small_d51ad {
+        width: 30rem;
+        height: 20rem;
+    }
+
+.ToggleButtonIcon_icon__vehicleType_fc2d7 {
+        background-size: 9rem 12rem;
+    }
+    .ToggleButtonIcon_icon__nation_b8861,
+    .ToggleButtonIcon_icon__vehicleGradePrimary_f499e {
+        background-size: 26rem 16rem;
+    }
+    .ToggleButtonIcon_icon__tankmanRole_a35dd {
+        background-size: 14rem 14rem;
+        opacity: .6;
+    }
+    .ToggleButtonIcon_icon__selected_a2f18 .ToggleButtonIcon_icon__tankmanRole_a35dd {
+            opacity: 1;
+        }
+    .ToggleButtonIcon_icon__tankmanKind_fe2ac,
+    .ToggleButtonIcon_icon__vehicleGradeElite_a9afe,
+    .ToggleButtonIcon_icon__locationRecruit_f38c2,
+    .ToggleButtonIcon_icon__locationTankman_b4c9a {
+        background-size: 24rem 24rem;
+    }
+    .ToggleButtonIcon_icon__personalDataType_e15fc,
+    .ToggleButtonIcon_icon__tankmanKindDismissed_e07a1 {
+        background-size: 34rem 24rem;
+    }
+    .ToggleButtonIcon_icon__vehicleGradePremium_adfb1 {
+        background-size: 20rem 17rem;
+    }
+
+.FilterToggleGroup_base_ca0b2 {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.FilterToggleGroup_title_fb295 {
+    padding-bottom: 8rem;
+}
+
+.FilterToggleGroup_content_ed6f8 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.FilterToggleGroup_toggle_d2eb0 {
+    width: 34rem;
+    height: 24rem;
+}
+
+.FilterToggleGroup_toggle_d2eb0 + .FilterToggleGroup_toggle_d2eb0 {
+        margin-left: 6rem;
+    }
+
+.FilterToggleGroup_base__inPopup_dae54 .FilterToggleGroup_toggle_d2eb0 {
+        width: 30rem;
+        height: 20rem;
+        margin: 0 12rem 14rem 0;
+    }
+
+.ResetButton_base_dc33c {
+    display: flex;
+    min-width: 160rem;
+    height: 20rem;
+}
+
+.Footer_base_fbacf {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25rem 0 0;
+    background: no-repeat url('R.images.gui.maps.icons.crew.filter.popover.dots') top / 264rem 9rem;
+}
+
+.FilterPopoverApp_base_e0031 {
+    display: flex;
+    flex-direction: column;
+    width: 292rem;
+}
+.FilterPopoverApp_title_f98cc {
+    color: #E9E2BF;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 1.1;
+    padding: 10rem 26rem 23rem;
+    position: relative;
+}
+.FilterPopoverApp_divider_c334d {
+    width: 262rem;
+    height: 80rem;
+    background: no-repeat url('R.images.gui.maps.icons.crew.filter.popover.lip') center / 280rem 80rem;
+    position: absolute;
+    top: 13rem;
+    left: 1rem;
+}
+.FilterPopoverApp_content_f5e6a {
+    display: flex;
+    flex-direction: column;
+    padding: 20rem 26rem;
+}
+.FilterPopoverApp_filterGroup_d32f8 {
+    margin-right: -15rem;
+}
+.FilterPopoverApp_filterGroup_d32f8 + .FilterPopoverApp_filterGroup_d32f8 {
+        margin-top: 8rem;
+    }
+

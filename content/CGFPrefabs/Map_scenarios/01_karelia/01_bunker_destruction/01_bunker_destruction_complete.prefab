@@ -1,0 +1,440 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {},
+				"name": "01_bunker_destruction_normal.prefab",
+				"prefab": "content/CGFPrefabs/Map_scenarios/01_karelia/01_bunker_destruction/01_bunker_destruction_normal.prefab",
+				"uuid": "90463bb9-2601-4ac0-b1ae-e9c0d7a17707"
+			},
+			{
+				"components": {},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "01_bunker_destruction_transition.prefab",
+				"prefab": "content/CGFPrefabs/Map_scenarios/01_karelia/01_bunker_destruction/01_bunker_destruction_transition.prefab",
+				"uuid": "5402de43-3a93-4dd6-9f63-cf9083e9e9b0"
+			},
+			{
+				"components": {},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "01_bunker_destruction_destroyed.prefab",
+				"prefab": "content/CGFPrefabs/Map_scenarios/01_karelia/01_bunker_destruction/01_bunker_destruction_destroyed.prefab",
+				"uuid": "7f47265a-559f-46ec-806e-ffd30c8d6148"
+			},
+			{
+				"components": {},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "01_bunker_destruction_destroyed_effects.prefab",
+				"prefab": "content/CGFPrefabs/Map_scenarios/01_karelia/01_bunker_destruction/01_bunker_destruction_destroyed_effects.prefab",
+				"uuid": "21f35ee7-f47f-4487-891a-a6ddb4765ccd"
+			},
+			{
+				"components": {
+					"BW::AIDynamicEventComponent": {
+						"deathZoneGUID": "01_karelia_death_zone_ai",
+						"disabledDomains": [
+							"Client",
+							"Editor"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "AiDeathZone",
+				"uuid": "d389bcdf-293c-481a-b262-9ef3183383df"
+			},
+			{
+				"components": {},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "01_bunker_destruction_destroyed_effects_meshs.prefab",
+				"prefab": "content/CGFPrefabs/Map_scenarios/01_karelia/01_bunker_destruction/01_bunker_destruction_destroyed_effects_meshs.prefab",
+				"uuid": "3a47b9c4-1df5-4f8b-b0c4-95f73ea93c6e"
+			},
+			{
+				"components": {},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "01_bunker_destruction_destroyed_sfx.prefab",
+				"prefab": "content/CGFPrefabs/Map_scenarios/01_karelia/01_bunker_destruction/01_bunker_destruction_destroyed_sfx.prefab",
+				"uuid": "67b9f218-732f-4aaa-b5f4-d8c973a18bb9"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 40.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 24.530000686645508,
+								"object": "90463bb9-2601-4ac0-b1ae-e9c0d7a17707",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 40.0,
+								"object": "5402de43-3a93-4dd6-9f63-cf9083e9e9b0",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 8.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									},
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 24.530000686645508
+							},
+							{
+								"endTime": 40.0,
+								"object": "7f47265a-559f-46ec-806e-ffd30c8d6148",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 15.470000267028809,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 15.470000267028809
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									},
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 24.530000686645508
+							},
+							{
+								"endTime": 40.0,
+								"object": "21f35ee7-f47f-4487-891a-a6ddb4765ccd",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 2.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 2.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									}
+								],
+								"startTime": 26.530000686645508
+							},
+							{
+								"endTime": 40.0,
+								"object": "3a47b9c4-1df5-4f8b-b0c4-95f73ea93c6e",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									},
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 2.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 2.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									}
+								],
+								"startTime": 24.530000686645508
+							},
+							{
+								"endTime": 40.0,
+								"object": "67b9f218-732f-4aaa-b5f4-d8c973a18bb9",
+								"parameters": [],
+								"startTime": 26.530000686645508
+							},
+							{
+								"endTime": 30.563600540161133,
+								"object": "d389bcdf-293c-481a-b262-9ef3183383df",
+								"parameters": [],
+								"startTime": 0.09596340358257294
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "01_bunker_destruction_complete",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

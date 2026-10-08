@@ -1,0 +1,372 @@
+# ------ InputBase ---------- #
+(def macro InputBaseScope()
+    (scope
+        (event evTextChanged)
+        (event evInputComplete)
+        (event evDefaulChanged)
+
+        (var alignText:number = "left")
+        (var alertMsg:str = '')
+        (var displayAsPassword:bool = false)
+        (var maxChars:number = 100)
+        (var editable:bool = true)
+        (var restrict:str = null)
+        (var defaultText:str = '')
+        (var enteredText:str = '')
+        (var isInputTooltip:bool = false)
+        (var inputTooltipHeader:str = '')
+        (var inputTooltipBody:str = '')
+        (var inputFontSize:number = 14)
+        (var inputTexture:str = 'bitmap:BtnTextureStandard')
+        (var defaultFocus:bool = false)
+
+        (var isTextMatch:bool = true)
+        (var isDefault:bool = true)
+        (var validateString:str = '.*')
+
+        (bind isTextMatch "isMatch($event.text, validateString) || ($event.text == '' || $event.text == defaultText)" init=false watch=false (event "evTextChanged"))
+        (bind _isEnabled "isEnabled")
+    )
+    (buttonMode = false)
+    (bind mouseChildren "_isEnabled")
+)
+
+(def macro InputBaseLogic()
+    (bind alpha "isEnabled ? 1 : 0.6")
+    (bind mouseEnabled "isEnabled")
+    # (sync enteredText text init=false (event "evTextChanged"))
+    (bind defaultText "defaultText")
+    (bind selectable "isEnabled ? editable : isEnabled")
+    (bind displayAsPassword "displayAsPassword")
+    (bind maxChars "maxChars")
+    (bind type "editable ? TYPE_INPUT: TYPE_DYNAMIC")
+    (bind restrict "restrict")
+
+    (dispatch evTextChanged on='textChanged')
+    (dispatch evInputComplete on='inputComplete')
+    (dispatch evDefaulChanged on='defaulChanged')
+)
+
+(def macro InputBaseLogicStyle()
+    (style
+        (width = 100%)
+        (bind textAlign "alignText")
+        (multiline=false)
+        (fontFamily = $FieldFont)
+        # 0x595950 is gray, 0x8c8c7e is light gray
+        (textColor = 0x8c8c7e)
+        (bind textColor "$event.isDefault ? 0x595950 : 0x8c8c7e" init=false (event "evDefaulChanged"))
+        (bind fontSize "inputFontSize")
+    )
+)
+
+# ------ InputNumeric ---------- #
+(def macro InputNumericScope()
+    (macro InputBaseScope)
+    (scope
+        (restrict = '0-9')
+        (var minimum:number = 0)
+        (var maximum:number = 100000)
+    )
+)
+
+(def macro InputNumericLogic()
+    (macro InputBaseLogic)
+    (bind minimum "minimum")
+    (bind maximum "maximum")
+)
+
+# ------ Imput Elements ---------- #
+
+(def layout InputSimple()
+    (macro AbstractComponent "INPUT_SIMPLE_STYLES")
+    (macro InputBaseScope)
+    (style
+        (macro InputDefaultSize)
+        (macro CursorMargin)
+    )
+    (macro InputBackground)
+
+    (view_holder_content 'contentTop'
+
+        (class = 'InputContentStyle')
+        (style
+            (align = "middle")
+            (paddingBottom = 1px)
+            (paddingLeft = -13px)
+            (paddingRight = 15px)
+        )
+        (numeric_input
+            (macro InputBaseLogic)
+            (macro InputBaseLogicStyle)
+            (sync enteredText text init=false (event "evTextChanged"))
+            (bindcall setFocus (bind enabled "defaultFocus"))
+            (bindcall setFocus (event "evBtnDownEvent") (bind enabled "$event.keyCode == KEYBOARD.ENTER" init=false))
+        )
+        (macro AlertMode)
+    )
+    (macro InputTooltip)
+)
+
+(def layout InputPassword()
+    (macro AbstractComponent "INPUT_SIMPLE_STYLES")
+    (macro InputBaseScope)
+    (scope
+        (displayAsPassword = true)
+    )
+
+    (style
+        (macro InputDefaultSize)
+        (macro CursorMargin)
+    )
+
+    (macro PasswordInputBackground)
+
+    (view_holder_content 'contentTop'
+        (class = 'InputContentStyle')
+        (style
+            (align = "middle")
+            (paddingBottom = 1px)
+            (paddingLeft = 9px)
+            (paddingRight = 15px)
+        )
+        (numeric_input
+            (macro InputBaseLogic)
+            (macro InputBaseLogicStyle)
+            (sync enteredText text init=false (event "evTextChanged"))
+            (bindcall setFocus (event "evBtnDownEvent") (bind enabled "$event.keyCode == KEYBOARD.ENTER" init=false))
+        )
+        (block
+            (style
+                (paddingLeft = -22px)
+            )
+            (macro AlertMode)
+        )
+    )
+    (macro InputTooltip)
+)
+
+(def layout InputMail()
+    (macro AbstractComponent "INPUT_SIMPLE_STYLES")
+    (macro InputBaseScope)
+    (style
+        (macro InputDefaultSize)
+        (macro CursorMargin)
+    )
+
+    (macro MailInputBackground)
+
+    (view_holder_content 'contentTop'
+        (class = 'InputContentStyle')
+        (style
+            (align = "middle")
+            (paddingBottom = 1px)
+            (paddingLeft = 10px)
+            (paddingRight = 15px)
+        )
+        (numeric_input
+            (macro InputBaseLogic)
+            (macro InputBaseLogicStyle)
+            (sync enteredText text init=false (event "evInputComplete"))
+            (bindcall setFocus (event "evBtnDownEvent") (bind enabled "$event.keyCode == KEYBOARD.ENTER" init=false))
+        )
+        (block
+            (style
+                (paddingLeft = -24px)
+            )
+            (macro AlertMode)
+        )
+    )
+    (macro InputTooltip)
+)
+
+(def layout InputSearch()
+    (macro AbstractComponent "INPUT_SIMPLE_STYLES")
+    (macro InputBaseScope)
+    (style
+       (macro InputDefaultSize)
+       (macro CursorMargin)
+    )
+
+    (macro SearchInputBackground)
+
+    (view_holder_content 'contentTop'
+        (class = 'InputContentStyle')
+        (style
+            (align = "middle")
+            (paddingBottom = 1px)
+            (paddingLeft = 10px)
+            (paddingRight = 15px)
+        )
+        (numeric_input
+            (macro InputBaseLogic)
+            (macro InputBaseLogicStyle)
+            (sync enteredText text init=false (event "evTextChanged"))
+            (bindcall setFocus (event "evBtnDownEvent") (bind enabled "$event.keyCode == KEYBOARD.ENTER" init=false))
+        )
+        (block
+            (style
+                (paddingLeft = -24px)
+            )
+            (macro AlertMode)
+        )
+    )
+    (macro InputTooltip)
+)
+
+
+(def element InputNumeric() layout=true
+    (macro AbstractComponent "INPUT_SIMPLE_STYLES")
+    (macro InputNumericScope)
+
+    (style
+        (macro InputDefaultSize)
+        (macro CursorMargin)
+    )
+
+    (macro InputBackground)
+
+    (view_holder_content 'contentTop'
+        (class = 'InputContentStyle')
+        (style
+            (align = "middle")
+            (paddingBottom = 1px)
+            (paddingLeft = -10px)
+        )
+        (numeric_input
+            (macro InputNumericLogic)
+            (macro InputBaseLogicStyle)
+        )
+    )
+)
+
+(def macro InputBackground()
+    (view_holder 'background')
+    (view_holder_content 'background'
+        (image
+            (style
+                (width = 100%)
+                (height = 100%)
+                (scale9grid = "INPUT_SCALE9_RECT")
+            )
+            (source = "R.atlases.components.back_textfield()")
+        )
+        (view_holder 'indicator_error'
+            (style
+                (position = "absolute")
+            )
+        )
+        (view_holder_content 'indicator_error' "!isTextMatch"
+            (style
+                (macro AbsPositionFullSize)
+                (margin = [1,1,-3,-3])
+            )
+            (image
+                (style
+                    (macro AbsPositionFullSize)
+                    (scale9grid = "INPUT_SCALE9_RECT")
+
+                )
+                (alpha=0)
+                (bind source "R.atlases.components.input_alert()")
+                (controller $Animation
+                    (play duration=0.2 to={alpha:1})
+                )
+            )
+        )
+
+    )
+)
+
+(def macro PasswordInputBackground()
+    (macro InputBackground)
+    (block
+        (style
+            (macro AbsPositionFullSize)
+            (align = "middle|left")
+            (left = 6px)
+            (bind alpha "_isEnabled ? 1:0.5")
+        )
+        (image
+            (source = "R.atlases.components.pass_icon()")
+        )
+    )
+)
+
+(def macro SearchInputBackground()
+    (macro InputBackground)
+    (block
+        (style
+            (macro AbsPositionFullSize)
+            (align = "middle|left")
+            (left = 9px)
+            (bind alpha "_isEnabled ? 1:0.5")
+        )
+        (image
+            (source = "R.atlases.components.search_icon()")
+        )
+    )
+)
+
+(def macro MailInputBackground()
+    (macro InputBackground)
+    (block
+        (style
+            (macro AbsPositionFullSize)
+            (align = "middle|left")
+            (left = 4px)
+            (bind alpha "_isEnabled ? 1:0.5")
+        )
+        (image
+            (source = "R.atlases.components.mail_icon()")
+        )
+    )
+)
+
+(def css InputContentStyle()
+    (left = 16px)
+    (right = 6px)
+    (width = 100%)
+    (position = "absolute")
+)
+
+(def css InputErrotStyle()
+    (fontFamily = $FieldFont)
+    (textColor = "0xffff0000")
+    (fontSize = 14)
+    (position="absolute")
+)
+
+(def macro AlertMode()
+    (view_holder 'Alert_text')
+    (view_holder_content 'Alert_text' "!isTextMatch"
+        (tf
+            (style
+                (marginLeft = -4px)
+            )
+            (class InputErrotStyle)
+            (bind text "alertMsg")
+        )
+    )
+)
+
+(def macro InputDefaultSize()
+    (width = 180px)
+    (height = 24px)
+)
+
+(def macro CursorMargin()
+    (marginTop = 1px)
+    (marginBottom = 1px)
+)
+
+(def macro InputTooltip()
+    (controller $ToolTip
+        (delay = "0.4")
+        (bindcall args header='' body="inputTooltipBody" init=true)
+        (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+        (bind enabled "isInputTooltip")
+    )
+)
+

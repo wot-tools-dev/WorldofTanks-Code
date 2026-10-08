@@ -1,0 +1,1616 @@
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.CurrencyItem_currency_e980f {
+    height: 20rem;
+    margin-left: 20rem;
+    padding-left: 20rem;
+    background-repeat: no-repeat;
+    background-size: 16rem 16rem;
+    color: #c9c9b6;
+    font-size: 14rem;
+}
+
+    .CurrencyItem_currency__credits_e56bd {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+        background-position: 0 2rem;
+        color: #ced9d9;
+    }
+
+    .CurrencyItem_currency__gold_d119a {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+        background-position: 0 1rem;
+        color: #ffc363;
+    }
+
+    .CurrencyItem_currency__crystal_bace1 {
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+    }
+
+    .CurrencyItem_currency__freeXP_ab43a {
+        background-image: url('R.images.gui.maps.icons.library.FreeXpIcon_2');
+        background-position: 0 1rem;
+    }
+
+.CurrencyBalance_base_dbe23 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40rem;
+}
+
+body {
+    overflow: hidden;
+}
+
+.DialogTemplate_base_af4d2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(19,18,16, .6);
+    position: relative;
+}
+
+.DialogTemplate_control_c4d8e {
+    padding-right: 10rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.DialogTemplate_closeButton_a5c05 {
+    align-self: flex-end;
+    margin-top: 30rem;
+    margin-right: 21rem;
+}
+
+.DialogTemplate_view_a731a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 700rem;
+    max-width: 920rem;
+    opacity: 0;
+}
+
+.DialogTemplate_view__show_db47f {
+        animation: DialogTemplate_window-in_fdf59 .5s;
+        animation-fill-mode: both;
+    }
+
+.DialogTemplate_content_eed26 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.DialogTemplate_line_bc7d8 {
+    height: 1rem;
+    background-color: #FFFFFF;
+    opacity: .1;
+}
+
+.DialogTemplate_divider_aebd3 {
+    width: 700rem;
+    margin: 24rem 0;
+}
+
+.DialogTemplate_footer_e5125 {
+    color: #C9C9B6;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    align-items: center;
+    margin-bottom: 16rem;
+    line-height: 1;
+}
+
+.DialogTemplate_buttons_ac2f8 {
+    display: flex;
+    justify-content: center;
+}
+
+.DialogTemplate_buttonWrapper_c8080 {
+    padding: 0 5rem;
+}
+
+.DialogTemplate_button_bf4fc {
+    width: 170rem;
+    padding: 0 10rem;
+}
+
+.DialogTemplate_button_bf4fc + .DialogTemplate_button_bf4fc {
+        margin-left: 12rem;
+    }
+
+@keyframes DialogTemplate_window-in_fdf59 {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Currency_base_ed02c {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.Currency_icon_d34e3 {
+    width: 16rem;
+    height: 16rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    z-index: 1;
+}
+.Currency_base__small_af876 .Currency_icon_d34e3,
+    .Currency_base__big_f6388 .Currency_icon_d34e3,
+    .Currency_base__large_fb228 .Currency_icon_d34e3,
+    .Currency_base__extraLarge_d0b11 .Currency_icon_d34e3 {
+        transform: translateY(3rem);
+    }
+.Currency_icon__credits-small_cb645 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+    }
+.Currency_icon__credits-big_bb614 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_1');
+    }
+.Currency_icon__credits-large_b65af {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_silver');
+    }
+.Currency_base__large_fb228 .Currency_icon__credits-large_b65af {
+            transform: translateY(4rem);
+        }
+.Currency_icon__credits-extraLarge_a4a53 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.credits_icon_80x80');
+    }
+.Currency_icon__gold-small_eee32 {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__gold-small_eee32 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__gold-big_e419a {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_1');
+    }
+.Currency_base__big_f6388 .Currency_icon__gold-big_e419a {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-large_c3a99 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_gold');
+    }
+.Currency_base__large_fb228 .Currency_icon__gold-large_c3a99 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-extraLarge_f2852 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.gold_icon_80x80');
+    }
+.Currency_icon__crystal-small_d8644 {
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__crystal-small_d8644 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__crystal-big_f2873 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__crystal-big_f2873 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__crystal-large_cf068 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_bonds');
+    }
+.Currency_icon__crystal-extraLarge_a9843 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__crystal-extraLarge_a9843 {
+            transform: translateY(7rem);
+        }
+.Currency_icon__xp-small_f3b46 {
+        background-image: url('R.images.gui.maps.icons.library.NormalXpIcon');
+    }
+.Currency_base__small_af876 .Currency_icon__xp-small_f3b46 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__xp-big_c984a {
+        width: 23rem;
+        height: 22rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xpIcon_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__xp-big_c984a {
+            transform: translateY(2rem);
+        }
+.Currency_icon__xp-large_e9a09 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.exp');
+    }
+.Currency_icon__xp-extraLarge_f90f7 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xp_tank_icon_80x80');
+    }
+.Currency_icon__freeXP-small_bcda1 {
+        background-image: url('R.images.gui.maps.icons.library.freeXPIcon16x16');
+    }
+.Currency_base__small_af876 .Currency_icon__freeXP-small_bcda1 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__freeXP-big_eb64e {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.freeXPIconBig24x24');
+    }
+.Currency_icon__freeXP-large_e46b0 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.freeExp');
+    }
+.Currency_icon__freeXP-extraLarge_e41b1 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.free_xp_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__freeXP-extraLarge_e41b1 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__eliteXP-small_c4a51 {
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIcon-2');
+    }
+.Currency_base__small_af876 .Currency_icon__eliteXP-small_c4a51 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__eliteXP-big_eceb0 {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIconBig');
+    }
+.Currency_icon__eliteXP-large_e35ab {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_48x48');
+    }
+.Currency_icon__eliteXP-extraLarge_a17d5 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__eliteXP-extraLarge_a17d5 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__equipCoin-small_d3b9a {
+        width: 16rem;
+        height: 16rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_1');
+    }
+.Currency_base__small_af876 .Currency_icon__equipCoin-small_d3b9a {
+            transform: translateX(-1rem) translateY(1rem);
+        }
+.Currency_icon__equipCoin-big_c34e1 {
+        width: 24rem;
+        height: 24rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoinBig');
+    }
+.Currency_base__big_f6388 .Currency_icon__equipCoin-big_c34e1 {
+            transform: translateX(-5rem) translateY(3rem);
+        }
+.Currency_icon__equipCoin-large_b1b5e {
+        width: 48rem;
+        height: 48rem;
+        margin-right: 2rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.equipCoin');
+    }
+.Currency_icon__equipCoin-extraLarge_a7b90 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: 8rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__equipCoin-extraLarge_a7b90 {
+            transform: translateX(2rem) translateY(4rem);
+        }
+.Currency_value_bb176 {
+    /* font-size inherit does not work here, so 1em means the size does not change */
+    /* stylelint-disable-next-line */
+    font-size: 1em;
+    position: relative;
+    z-index: 2;
+}
+.Currency_base__small_af876 .Currency_value_bb176 {
+        padding-right: 2rem;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 {
+        padding-right: 5rem;
+        font-size: 24rem;
+        font-weight: 700;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 24rem;
+        }
+.Currency_base__large_fb228 .Currency_value_bb176 {
+        font-size: 36rem;
+        font-weight: 700;
+    }
+.Currency_base__large_fb228 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 36rem;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value_bb176 {
+        font-size: 56rem;
+        font-weight: 700;
+    }
+.Currency_value__freeXP_db401 {
+        color: #F2F2F7;
+    }
+.Currency_value__credits_c98c5 {
+        color: #CED9D9;
+    }
+.Currency_value__gold_b8214 {
+        color: #FFC363;
+    }
+.Currency_value__xp_eda0a,
+    .Currency_value__crystal_cf72e,
+    .Currency_value__equipCoin_cb08d,
+    .Currency_value__eliteXP_de450 {
+        color: #C9C9B6;
+    }
+.Currency_base__small_af876 .Currency_value__notEnough_db10a {
+            color: #FF2717;
+        }
+.Currency_base__big_f6388 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__large_fb228 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_stock_bffbc {
+    height: 13rem;
+    color: #FFDD99;
+    font-size: 13rem;
+    line-height: 1;
+    position: relative;
+    z-index: 0;
+    pointer-events: none;
+}
+.Currency_stock__indent_c4c0d {
+        margin-left: 2rem;
+    }
+.Currency_base__small_af876 .Currency_stock_bffbc {
+        transform: translateY(0rem);
+    }
+.Currency_base__big_f6388 .Currency_stock_bffbc {
+        transform: translateY(4rem);
+    }
+.Currency_base__large_fb228 .Currency_stock_bffbc {
+        transform: translateY(10rem);
+    }
+.Currency_base__extraLarge_d0b11 .Currency_stock_bffbc {
+        transform: translateY(18rem);
+    }
+.Currency_stock__interactive_e78a9 {
+        pointer-events: auto;
+    }
+.Currency_stockBackground_c8ab1 {
+    width: 80rem;
+    height: 45rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: -27rem;
+    bottom: 0;
+    z-index: -1;
+    transform: translateY(17rem);
+}
+
+.VehicleInfo_base_ee337 {
+    color: #F2F2F7;
+    font-size: 24rem;
+    font-weight: 700;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+}
+
+    .VehicleInfo_base__small_cc975 {
+        color: #F2F2F7;
+        font-size: 18rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+.VehicleInfo_type_c60d4 {
+    width: 81rem;
+    height: 73rem;
+    margin: -12rem;
+    margin-top: -4rem;
+    background: center / contain no-repeat;
+}
+
+.VehicleInfo_base__small_cc975 .VehicleInfo_type_c60d4 {
+        width: 54rem;
+        height: 48rem;
+        margin: -6rem;
+        margin-top: -1rem;
+    }
+
+.Slot_base_f062f {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Slot_icon_ae1f8 {
+    width: 68rem;
+    height: 68rem;
+    margin: 6rem 0;
+    background: url('R.images.gui.maps.icons.vehPostProgression.selectSlotSpecDialog.slots.normal') center / contain no-repeat;
+}
+
+.Slot_base__active_e9cdf .Slot_icon_ae1f8 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0;
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.selectSlotSpecDialog.slots.active');
+    }
+
+.Slot_specialization_c2541 {
+    width: 48rem;
+    height: 48rem;
+    margin-top: -12rem;
+    background: center / contain no-repeat;
+    opacity: .5;
+}
+
+.Slot_base__active_e9cdf .Slot_specialization_c2541 {
+        opacity: 1;
+    }
+
+.Slot_arrow_c62d5 {
+    width: 120rem;
+    height: 88rem;
+    margin: -35rem -20rem 0;
+    background: url('R.images.gui.maps.icons.vehPostProgression.selectSlotSpecDialog.slots.arrow') center / contain no-repeat;
+}
+
+.Slots_base_c63f3 {
+    display: flex;
+}
+
+.Slots_slot_f2bdd + .Slots_slot_f2bdd {
+        margin-left: 4rem;
+    }
+
+.Card_base_a05fc {
+    width: 150rem;
+    height: 150rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.Card_background_b9b33 {
+    width: 150rem;
+    height: 150rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.selectSlotSpecDialog.cards.normal') center / contain no-repeat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Card_base__normal_fcd86 .Card_background_b9b33 {
+        cursor: pointer;
+    }
+
+.Card_base__normal_fcd86 .Card_background_b9b33:hover {
+            background-image: url('R.images.gui.maps.icons.vehPostProgression.selectSlotSpecDialog.cards.hover');
+        }
+
+.Card_base__active_ea920 .Card_background_b9b33 {
+        width: 180rem;
+        height: 180rem;
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.selectSlotSpecDialog.cards.active');
+    }
+
+.Card_base__disabled_e7736 .Card_background_b9b33 {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.selectSlotSpecDialog.cards.disabled');
+    }
+
+.Card_specialization_edcab {
+    width: 100rem;
+    height: 100rem;
+    margin-top: 16rem;
+    background: center / contain no-repeat;
+}
+
+.Card_name_d0009 {
+    color: #E9E2BF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.Card_checkmark_f49c8 {
+    width: 62rem;
+    height: 32rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.selectSlotSpecDialog.cards.checkmark') center / contain no-repeat;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+.Cards_base_e1fc8 {
+    display: flex;
+}
+
+.Cards_card_dee46 + .Cards_card_dee46 {
+        margin-left: 24rem;
+    }
+
+.Price_base_ea4da {
+    display: flex;
+    line-height: 1;
+}
+
+.ExchangeRate_base_f6a09 {
+    animation-name: ExchangeRate_fadeIn_d7a8a;
+    animation-duration: 0.25s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+}
+
+    .ExchangeRate_baseHidden_f7d88 {
+        animation-name: ExchangeRate_fadeOut_dd0be;
+        animation-duration: 0.2s;
+        animation-timing-function: ease-out;
+        pointer-events: none;
+    }
+
+@keyframes ExchangeRate_fadeIn_d7a8a {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes ExchangeRate_fadeOut_dd0be {
+    to {
+        opacity: 0;
+    }
+}
+
+.ExchangeStatus_base_cc6fa {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    line-height: 1;
+}
+
+.ExchangeStatus_warning_b786d {
+    color: #EE7000;
+}
+
+.DialogContent_base_da5bf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.DialogContent_title_a89e2 {
+    color: #F2F2F7;
+    font-size: 36rem;
+    font-weight: 700;
+    line-height: 1.1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 720rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.DialogContent_base__small_d1b3b .DialogContent_title_a89e2 {
+        color: #F2F2F7;
+        font-size: 24rem;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+.DialogContent_slots_bd7c9 {
+    display: flex;
+    align-items: center;
+    margin-top: 38rem;
+}
+
+.DialogContent_base__small_d1b3b .DialogContent_slots_bd7c9 {
+        margin-top: 26rem;
+    }
+
+.DialogContent_cards_a7e35 {
+    display: flex;
+    align-items: center;
+}
+
+.DialogContent_description_e5d84 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 620rem;
+    margin-top: 36rem;
+}
+
+.DialogContent_status_bcce3 {
+    margin-top: 20rem;
+}
+
+.NumericStepper_base_d691a {
+    display: flex;
+    align-items: center;
+    border: 1rem solid #454437;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem #000;
+    background: #0d0d0c;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    transition: border .3s ease-in-out;
+}
+
+    .NumericStepper_base__small_d3077 {
+        width: 73rem;
+        height: 23rem;
+    }
+
+    .NumericStepper_base__medium_cd2a1 {
+        width: 90rem;
+        height: 31rem;
+    }
+
+    .NumericStepper_base__large_a1407 {
+        width: 178rem;
+        height: 49rem;
+    }
+
+    .NumericStepper_base__isFocus_fbaaf {
+        border-color: #663c1f;
+    }
+
+    .NumericStepper_base__isDisabled_d8da5 {
+        border-color: #22221a;
+    }
+.NumericStepper_inputContainer_ab738 {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+.NumericStepper_base__small_d3077 .NumericStepper_input_aac47 {
+        padding: 0 4rem 2rem 6rem;
+        font-size: 14rem;
+    }
+.NumericStepper_base__medium_cd2a1 .NumericStepper_input_aac47 {
+        padding: 0 8rem 1rem 9rem;
+        font-size: 20rem;
+    }
+.NumericStepper_base__large_a1407 .NumericStepper_input_aac47 {
+        padding: 0 12rem 3rem 17rem;
+        font-size: 22rem;
+        line-height: 26rem;
+    }
+.NumericStepper_base__withCurrency-small_f62b1 .NumericStepper_input_aac47 {
+        padding-right: 2rem;
+    }
+.NumericStepper_base__withCurrency-medium_a235e .NumericStepper_input_aac47 {
+        padding-right: 3rem;
+    }
+.NumericStepper_base__withCurrency-large_fd1ad .NumericStepper_input_aac47 {
+        padding-right: 4rem;
+    }
+.NumericStepper_input_aac47 {
+    flex: 1;
+    border: none;
+    background: transparent;
+    color: #8c8c7e;
+}
+.NumericStepper_input__disabled_b9583 {
+        color: transparent;
+        text-shadow: 0 0 0 #37362e;
+    }
+.NumericStepper_input__credits_d6601 {
+        color: #ced9d9;
+    }
+.NumericStepper_input__credits-disabled_f6727 {
+        color: transparent;
+        text-shadow: 0 0 0 rgba(206,217,217, .3);
+    }
+.NumericStepper_input__gold_a9d7f {
+        color: #ffc363;
+    }
+.NumericStepper_input__gold-disabled_c0cd2 {
+        color: transparent;
+        text-shadow: 0 0 0 rgba(255,195,99, .3);
+    }
+.NumericStepper_input__xp_b86d2,
+    .NumericStepper_input__freeXP_e05e1,
+    .NumericStepper_input__crystal_cb411 {
+        color: #c9c9b6;
+    }
+.NumericStepper_input__xp-disabled_b332d,
+    .NumericStepper_input__freeXP-disabled_e5d58,
+    .NumericStepper_input__crystal-disabled_f28a3 {
+        color: transparent;
+        text-shadow: 0 0 0 rgba(201,201,182, .3);
+    }
+.NumericStepper_input__withCurrency_ad45c {
+        font-weight: 700;
+    }
+.NumericStepper_base__small_d3077 .NumericStepper_input__withCurrency_ad45c {
+            padding-right: 22rem;
+        }
+.NumericStepper_base__medium_cd2a1 .NumericStepper_input__withCurrency_ad45c {
+            padding-right: 27rem;
+        }
+.NumericStepper_base__large_a1407 .NumericStepper_input__withCurrency_ad45c {
+            padding-right: 32rem;
+        }
+.NumericStepper_base__medium_cd2a1 .NumericStepper_input__xp-medium_dd684, .NumericStepper_base__medium_cd2a1 .NumericStepper_input__xp-large_c65dc, .NumericStepper_base__medium_cd2a1 .NumericStepper_input__freeXP-medium_ae80b, .NumericStepper_base__medium_cd2a1 .NumericStepper_input__freeXP-large_c6c4b, .NumericStepper_base__medium_cd2a1 .NumericStepper_input__crystal-medium_cdb42, .NumericStepper_base__medium_cd2a1 .NumericStepper_input__crystal-large_a61c4 {
+            padding-right: 34rem;
+        }
+.NumericStepper_base__large_a1407 .NumericStepper_input__xp-medium_dd684, .NumericStepper_base__large_a1407 .NumericStepper_input__xp-large_c65dc, .NumericStepper_base__large_a1407 .NumericStepper_input__freeXP-medium_ae80b, .NumericStepper_base__large_a1407 .NumericStepper_input__freeXP-large_c6c4b, .NumericStepper_base__large_a1407 .NumericStepper_input__crystal-medium_cdb42, .NumericStepper_base__large_a1407 .NumericStepper_input__crystal-large_a61c4 {
+            padding-right: 39rem;
+        }
+.NumericStepper_input__error_eaed0 {
+        color: #f00;
+    }
+.NumericStepper_input__disabled_b9583.NumericStepper_input__error_eaed0 {
+        color: transparent;
+        text-shadow: 0 0 0 #f00a;
+    }
+.NumericStepper_input_aac47::selection {
+        background-color: #8c8c7e;
+        color: #242420;
+    }
+.NumericStepper_currency_fcbef {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+.NumericStepper_base__small_d3077 .NumericStepper_currency_fcbef {
+        padding-right: 20rem;
+    }
+.NumericStepper_base__medium_cd2a1 .NumericStepper_currency_fcbef {
+        padding-right: 24rem;
+    }
+.NumericStepper_base__large_a1407 .NumericStepper_currency_fcbef {
+        padding-right: 28rem;
+    }
+.NumericStepper_base__medium_cd2a1 .NumericStepper_currency__xp-medium_d1812, .NumericStepper_base__medium_cd2a1 .NumericStepper_currency__xp-large_c9a44, .NumericStepper_base__medium_cd2a1 .NumericStepper_currency__freeXP-medium_cc551, .NumericStepper_base__medium_cd2a1 .NumericStepper_currency__freeXP-large_fbd2c, .NumericStepper_base__medium_cd2a1 .NumericStepper_currency__crystal-medium_f07d5, .NumericStepper_base__medium_cd2a1 .NumericStepper_currency__crystal-large_c757c {
+            padding-right: 31rem;
+        }
+.NumericStepper_base__large_a1407 .NumericStepper_currency__xp-medium_d1812, .NumericStepper_base__large_a1407 .NumericStepper_currency__xp-large_c9a44, .NumericStepper_base__large_a1407 .NumericStepper_currency__freeXP-medium_cc551, .NumericStepper_base__large_a1407 .NumericStepper_currency__freeXP-large_fbd2c, .NumericStepper_base__large_a1407 .NumericStepper_currency__crystal-medium_f07d5, .NumericStepper_base__large_a1407 .NumericStepper_currency__crystal-large_c757c {
+            padding-right: 35rem;
+        }
+.NumericStepper_currencyIcon_d75ae {
+    width: 16rem;
+    height: 16rem;
+    background: 50% / contain no-repeat;
+}
+.NumericStepper_currencyIcon__credits-small_f7f54 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+        transform: translateY(4rem);
+    }
+.NumericStepper_currencyIcon__credits-medium_e3fce {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_1');
+        transform: translateY(8rem);
+    }
+.NumericStepper_currencyIcon__credits-large_c2d6b {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_1');
+        transform: translateY(18rem);
+    }
+.NumericStepper_currencyIcon__gold-small_eb4ee {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+        transform: translateY(3rem);
+    }
+.NumericStepper_currencyIcon__gold-medium_b6313 {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_1');
+        transform: translateY(9rem);
+    }
+.NumericStepper_currencyIcon__gold-large_c0fd4 {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_1');
+        transform: translateY(19rem);
+    }
+.NumericStepper_currencyIcon__crystal-small_de250 {
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+        transform: translateY(3rem);
+    }
+.NumericStepper_currencyIcon__crystal-medium_df706 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_23x22');
+        transform: translateY(6rem);
+    }
+.NumericStepper_currencyIcon__crystal-large_d2482 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_23x22');
+        transform: translate(-1rem, 16rem);
+    }
+.NumericStepper_currencyIcon__freeXP-small_ad05c {
+        background-image: url('R.images.gui.maps.icons.library.freeXPIcon16x16');
+        transform: translateY(3rem);
+    }
+.NumericStepper_currencyIcon__freeXP-medium_fc2c8 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.freeXpIcon_23x22');
+        transform: translateY(4rem);
+    }
+.NumericStepper_currencyIcon__freeXP-large_f7e9d {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.freeXpIcon_23x22');
+        transform: translate(-2rem, 14rem);
+    }
+.NumericStepper_currencyIcon__xp-small_c8b11 {
+        background-image: url('R.images.gui.maps.icons.library.XpIcon_1');
+        transform: translateY(3rem);
+    }
+.NumericStepper_currencyIcon__xp-medium_b8a76 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.xpIcon_23x22');
+        transform: translateY(4rem);
+    }
+.NumericStepper_currencyIcon__xp-large_fda26 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.xpIcon_23x22');
+        transform: translate(-2rem, 14rem);
+    }
+.NumericStepper_base__isDisabled_d8da5 .NumericStepper_currencyIcon_d75ae {
+        filter: brightness(.3);
+    }
+.NumericStepper_base__small_d3077 .NumericStepper_dummyValue_df396 {
+        padding: 0 4rem 2rem 6rem;
+        font-size: 14rem;
+    }
+.NumericStepper_base__medium_cd2a1 .NumericStepper_dummyValue_df396 {
+        padding: 0 8rem 1rem 9rem;
+        font-size: 20rem;
+    }
+.NumericStepper_base__large_a1407 .NumericStepper_dummyValue_df396 {
+        padding: 0 12rem 3rem 17rem;
+        font-size: 22rem;
+        line-height: 26rem;
+    }
+.NumericStepper_base__withCurrency-small_f62b1 .NumericStepper_dummyValue_df396 {
+        padding-right: 2rem;
+    }
+.NumericStepper_base__withCurrency-medium_a235e .NumericStepper_dummyValue_df396 {
+        padding-right: 3rem;
+    }
+.NumericStepper_base__withCurrency-large_fd1ad .NumericStepper_dummyValue_df396 {
+        padding-right: 4rem;
+    }
+.NumericStepper_dummyValue_df396 {
+    max-width: 100%;
+    white-space: nowrap;
+    opacity: 0;
+    overflow: hidden;
+}
+.NumericStepper_control_da825 {
+    display: flex;
+    flex-direction: column;
+}
+.NumericStepper_buttonIncrement_f2a90,
+.NumericStepper_buttonDecrement_c2989 {
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+@media (min-width: 1920px) {
+.NumericStepper_buttonIncrement_f2a90,
+.NumericStepper_buttonDecrement_c2989 {
+        background-size: 200% 400%
+}
+    }
+.NumericStepper_buttonIncrement__small_b0a49, .NumericStepper_buttonDecrement__small_ed188 {
+        width: 19rem;
+        height: 11rem;
+        background-image: url('R.images.gui.maps.icons.components.numerical_stepper.stepper_small_buttons');
+    }
+.NumericStepper_buttonIncrement__medium_b887c, .NumericStepper_buttonDecrement__medium_a1ba7 {
+        width: 27rem;
+        height: 15rem;
+        background-image: url('R.images.gui.maps.icons.components.numerical_stepper.stepper_medium_buttons');
+    }
+.NumericStepper_buttonIncrement__large_a6222, .NumericStepper_buttonDecrement__large_e49c5 {
+        width: 43rem;
+        height: 24rem;
+        background-image: url('R.images.gui.maps.icons.components.numerical_stepper.stepper_large_buttons');
+    }
+.NumericStepper_buttonIncrement__isDisabled_df4d5, .NumericStepper_buttonDecrement__isDisabled_feb91 {
+        cursor: default;
+    }
+.NumericStepper_buttonIncrement__small_b0a49:hover {
+        background-position: 0 -11rem;
+    }
+.NumericStepper_buttonIncrement__medium_b887c:hover {
+        background-position: 0 -15rem;
+    }
+.NumericStepper_buttonIncrement__large_a6222:hover {
+        background-position: 0 -24rem;
+    }
+.NumericStepper_buttonIncrement__isActive-small_e410f,
+    .NumericStepper_buttonIncrement__isActive-small_e410f:hover {
+        background-position: 0 -22rem;
+    }
+.NumericStepper_buttonIncrement__isActive-medium_e6b19,
+    .NumericStepper_buttonIncrement__isActive-medium_e6b19:hover {
+        background-position: 0 -30rem;
+    }
+.NumericStepper_buttonIncrement__isActive-large_f6b0e,
+    .NumericStepper_buttonIncrement__isActive-large_f6b0e:hover {
+        background-position: 0 -48rem;
+    }
+.NumericStepper_buttonIncrement__isDisabled_df4d5,
+    .NumericStepper_buttonIncrement__isDisabled_df4d5:hover {
+        background-position: 0 100%;
+    }
+.NumericStepper_buttonDecrement_c2989 {
+    margin-top: -1rem;
+    background-position: 100% 0;
+}
+.NumericStepper_buttonDecrement__small_ed188:hover {
+        background-position: 100% -11rem;
+    }
+.NumericStepper_buttonDecrement__medium_a1ba7:hover {
+        background-position: 100% -15rem;
+    }
+.NumericStepper_buttonDecrement__large_e49c5:hover {
+        background-position: 100% -24rem;
+    }
+.NumericStepper_buttonDecrement__isActive-small_c4ec3,
+    .NumericStepper_buttonDecrement__isActive-small_c4ec3:hover {
+        background-position: 100% -22rem;
+    }
+.NumericStepper_buttonDecrement__isActive-medium_dc32f,
+    .NumericStepper_buttonDecrement__isActive-medium_dc32f:hover {
+        background-position: 100% -30rem;
+    }
+.NumericStepper_buttonDecrement__isActive-large_f3011,
+    .NumericStepper_buttonDecrement__isActive-large_f3011:hover {
+        background-position: 100% -48rem;
+    }
+.NumericStepper_buttonDecrement__isDisabled_feb91,
+    .NumericStepper_buttonDecrement__isDisabled_feb91:hover {
+        background-position: 100% 100%;
+    }
+
+.CurrencyStepper_base_e1738 {
+    position: relative;
+}
+
+.CurrencyStepper_label_da167 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-bottom: 9rem;
+}
+
+.CurrencyStepper_limit_ce9b2 {
+    color: rgba(255,221,153, .5);
+    font-size: 12rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: -24rem;
+    left: 0;
+}
+
+.CurrencyStepper_limit_ce9b2 .CurrencyStepper_limitIcon_cf586 {
+        width: 14rem;
+        height: 14rem;
+        margin-left: 5rem;
+        background: url('R.images.gui.maps.icons.personalExchangeRates.limit.info_1') no-repeat center / 100%;
+        opacity: 0.5;
+    }
+
+.CurrencyStepper_limit__exceeded_c20fe {
+        color: #EE7000;
+    }
+
+.CurrencyStepper_limit__exceeded_c20fe .CurrencyStepper_limitIcon_cf586 {
+            background-image: url('R.images.gui.maps.icons.personalExchangeRates.limit.info_2');
+            opacity: 1;
+        }
+
+.CurrencyStepper_limit__right_d4ab2 {
+        flex-direction: row-reverse;
+        top: 0;
+        right: -15rem;
+        bottom: 0;
+        left: auto;
+        transform: translateX(100%);
+    }
+
+.CurrencyStepper_limit__right_d4ab2 .CurrencyStepper_limitIcon_cf586 {
+            margin: 0 5rem 0 0;
+        }
+
+.CurrencyStepper_limitWrapper__enter_c6426 {
+        opacity: 0;
+        animation-name: CurrencyStepper_fadeIn_f069c;
+        animation-duration: 0.25s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in;
+        animation-iteration-count: 1;
+    }
+
+.CurrencyStepper_limitWrapper__exit_ee5e1 {
+        animation-name: CurrencyStepper_fadeOut_d43b1;
+        animation-duration: 0.2s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-out;
+        animation-iteration-count: 1;
+    }
+
+@keyframes CurrencyStepper_fadeIn_f069c {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes CurrencyStepper_fadeOut_d43b1 {
+    to {
+        opacity: 0;
+    }
+}
+
+.CurrencyStepper_restriction_e3c2c {
+    margin-left: -8rem;
+    transform: translateY(5rem);
+}
+
+.CurrencyStepper_limit__right_d4ab2 .CurrencyStepper_restriction_e3c2c {
+    transform: translateY(0);
+}
+
+.CurrencyStepper_restrictionIcon_bd07c {
+    background-image: url('R.images.gui.maps.icons.personalExchangeRates.limit.info_button');
+}
+
+.CurrencyStepper_restriction_e3c2c .CurrencyStepper_restrictionIconGlow_d9ca5 {
+    background-image: url('R.images.gui.maps.icons.components.text_button.info_glow_button');
+}
+
+.ExceededMessage_wrapper_c0dbd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.ExceededMessage_base_ead29 {
+    color: #EE7000;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.ExceededMessage_base_ead29 .ExceededMessage_limitIcon_b2fef {
+        width: 14rem;
+        height: 14rem;
+        margin-left: 5rem;
+        background: url('R.images.gui.maps.icons.personalExchangeRates.limit.info_2') no-repeat center / 100%;
+    }
+
+.ExceededMessage_base_ead29 + .ExceededMessage_base_ead29 {
+        position: absolute;
+    }
+
+.ExceededMessage_base_ead29 + .ExceededMessage_base_ead29 + .ExceededMessage_base_ead29 {
+        display: none;
+    }
+
+.ExceededMessage_hidden_a6592 {
+    visibility: hidden;
+}
+
+.ExceededMessage_limitWrapper__enter_a8cb6 {
+        opacity: 0;
+        animation-name: ExceededMessage_fadeIn_a9845;
+        animation-duration: 0.25s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-in;
+        animation-delay: 0.1s;
+        animation-iteration-count: 1;
+    }
+
+.ExceededMessage_limitWrapper__exit_d80fb {
+        animation-name: ExceededMessage_fadeOut_d4931;
+        animation-duration: 0.2s;
+        animation-fill-mode: forwards;
+        animation-timing-function: ease-out;
+        animation-iteration-count: 1;
+    }
+
+@keyframes ExceededMessage_fadeIn_a9845 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes ExceededMessage_fadeOut_d4931 {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.ExceededMessage_restriction_c6dc1 {
+    margin-left: 1rem;
+    margin-right: -10rem;
+}
+
+.ExceededMessage_restrictionIcon_fab1c {
+    background-image: url('R.images.gui.maps.icons.personalExchangeRates.limit.info_button');
+}
+
+.ExceededMessage_restriction_c6dc1 .ExceededMessage_restrictionIconGlow_b075d {
+    background-image: url('R.images.gui.maps.icons.personalExchangeRates.limit.info_button');
+}
+
+.ExchangePanel_base_ff091 {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    position: relative;
+}
+
+.ExchangePanel_arrow_c200e {
+    width: 24rem;
+    height: 48rem;
+    margin: 0 15rem;
+    background: url('R.images.gui.maps.icons.library.arrow') no-repeat center / contain;
+    transform: rotate(180deg);
+}
+
+.ExchangePanel_arrow__small_db9e6 {
+        width: 16rem;
+        height: 32rem;
+    }
+
+.ExchangePanel_excluded_b1d6d {
+    margin-top: 20rem;
+}
+
+.DialogFooter_base_d8939 {
+    display: flex;
+    align-items: center;
+}
+
+.DialogFooter_totalPrice_c025d {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 8rem;
+}
+
+.DialogFooter_label_fc915 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-right: 8rem;
+}
+

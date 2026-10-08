@@ -1,0 +1,4 @@
+class BATTLE_DEVICES_REPAIR_MODES(object):
+    NORMAL = 0
+    SLOWED = 1
+    SUSPENDED = 2

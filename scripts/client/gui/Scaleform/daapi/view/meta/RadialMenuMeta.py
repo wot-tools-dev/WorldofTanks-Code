@@ -1,0 +1,24 @@
+from gui.Scaleform.framework.entities.BaseDAAPIComponent import BaseDAAPIComponent
+
+class RadialMenuMeta(BaseDAAPIComponent):
+
+    def onSelect(self):
+        self._printOverrideError('onSelect')
+
+    def onAction(self, action):
+        self._printOverrideError('onAction')
+
+    def onHideCompleted(self):
+        self._printOverrideError('onHideCompleted')
+
+    def onRefresh(self):
+        self._printOverrideError('onRefresh')
+
+    def as_buildDataS(self, data):
+        return self.flashObject.as_buildData(data) if self._isDAAPIInited() else None
+
+    def as_showS(self, cursorX, cursorY, radialState, staticShortcutsDiff, replyStateDiff, offset):
+        return self.flashObject.as_show(cursorX, cursorY, radialState, staticShortcutsDiff, replyStateDiff, offset) if self._isDAAPIInited() else None
+
+    def as_hideS(self, allowAction):
+        return self.flashObject.as_hide(allowAction) if self._isDAAPIInited() else None

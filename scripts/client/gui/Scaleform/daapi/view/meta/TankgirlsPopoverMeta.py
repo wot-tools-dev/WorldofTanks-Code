@@ -1,0 +1,9 @@
+from gui.Scaleform.daapi.view.lobby.popover.SmartPopOverView import SmartPopOverView
+
+class TankgirlsPopoverMeta(SmartPopOverView):
+
+    def onRecruitClick(self, idx):
+        self._printOverrideError('onRecruitClick')
+
+    def as_setListDataProviderS(self, data):
+        return self.flashObject.as_setListDataProvider(data) if self._isDAAPIInited() else None

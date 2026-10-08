@@ -1,0 +1,353 @@
+(def element DialogWindow() layout=true entrance=true
+    (macro DialogWindowModel)
+    (scope
+        (var content:object = null)
+    )
+
+    (name = 'dialogWindow')
+    (mouseEnabled = true)
+    (tabEnabled = true)
+    (scope
+        (var bgWidth:number = 1)
+        (var bgHeight:number = 1)
+
+        (event evBackgroundLoaded)
+        (bind bgWidth "$event.width" init=false
+            (event "evBackgroundLoaded")
+        )
+        (bind bgHeight "$event.height" init=false
+            (event "evBackgroundLoaded")
+        )
+
+        (var animationAlpha:number = 0)
+        (controller $Animation
+            (play duration=0.8 from={animationAlpha:0} to={animationAlpha:1} easing="Easing.cubic_out")
+        )
+
+		(var contentAlpha:number = 0)
+		(var contentScaleX:number = 1.1)
+		(var contentScaleY:number = 1.1)
+		(controller $Animation
+			(play delay=0.2 duration=0.2 from={contentAlpha:0, contentScaleX:1.1, contentScaleY:1.1} 
+			to={contentAlpha:1, contentScaleX:1, contentScaleY:1} fixTextJitter=true easing="Easing.cubic_out")
+		)
+
+        (var currentPreset:dict = "DIALOG_PRESETS[preset] != null ? DIALOG_PRESETS[preset] : DEFAULT_DIALOG_PRESET")
+        (var showSound:str = "showSoundId != '' ? showSoundId : currentPreset.showSoundId")
+        (trace "'WARNING: preset [' + preset + '] wasnt found. Default is using'" init=false watch=false
+            (bind enabled "DIALOG_PRESETS[preset] == null")
+        )
+
+        (var _title:str = "title != '' ? title : currentPreset.title")
+        (var _titleArgs:array = "titleArgs.length > 0 ? titleArgs : currentPreset.titleArgs")
+        (var _titleFmtArgs:array = "titleFmtArgs.length > 0 ? titleFmtArgs : currentPreset.titleFmtArgs")
+
+        (var _icon:str = "icon != '' ? icon : currentPreset.icon")
+        (var _iconHighlight:str = "iconHighlight != '' ? iconHighlight : currentPreset.iconHighlight")
+        (var _animationHighlight:str = "animationHighlight != '' ? animationHighlight : currentPreset.animationHighlight")
+
+        (var _isTitleFmtArgsNamed:bool = "currentPreset.isTitleFmtArgsNamed")
+        (bind _isTitleFmtArgsNamed "isTitleFmtArgsNamed" init=false)
+    )
+
+    (dispatch onClosed on='escPressed')
+
+    (style
+        (bind width "viewSize.width"
+            (event "viewResized")
+        )
+        (bind height "viewSize.height"
+            (event "viewResized")
+        )
+        (bind backgroundColor "currentPreset.backgroundColor")
+        (bind paddingTop "currentPreset.yOffset")
+        (align = "middle|center")
+    )
+
+    (image
+        (name = 'background')
+        (style
+            (position = "absolute")
+            (hcenter = 0px)
+            (vcenter = 0px)
+
+            (bind width "viewSize.width / viewSize.height > bgWidth / bgHeight ? viewSize.width : (bgWidth / bgHeight * viewSize.height)"
+                (event "viewResized")
+                (bind enabled "currentPreset.backgroundImageScale == PROPORTIONAL_FIT_TO_SCREEN")
+            )
+            (bind height "viewSize.width / viewSize.height > bgWidth / bgHeight ? (bgHeight / bgWidth * viewSize.width) : viewSize.height"
+                (event "viewResized")
+                (bind enabled "currentPreset.backgroundImageScale == PROPORTIONAL_FIT_TO_SCREEN")
+            )
+
+            (bind width 100%
+                (bind enabled "currentPreset.backgroundImageScale == FIT_TO_SCREEN")
+            )
+            (bind height 100%
+                (bind enabled "currentPreset.backgroundImageScale == FIT_TO_SCREEN")
+            )
+            (bind alpha "animationAlpha")
+        )
+
+        (dispatch evBackgroundLoaded init=false on='complete')
+        (bind source "backgroundImage != '' ? backgroundImage : currentPreset.backgroundImage" init=false)
+    )
+    (block
+        (name = 'dialogContent')
+        (style
+            (position = "absolute")
+            (bind width "currentPreset.contentWidth")
+            (hcenter = 0px)
+            (vcenter = 0px)
+            (pivotX = 50%)
+            (pivotY = 50%)
+            (align = "middle|center")
+            (alpha = 0)
+            (gap = 12px)
+			(bind alpha "contentAlpha")
+			(bind scaleX "contentScaleX")
+			(bind scaleY "contentScaleY")
+        )
+        (block
+            (style
+                (width = 100%)
+                (gap = 45)
+                (align = "center")
+            )
+            (block
+                (name = 'iconBlock')
+                (style
+                    (width = 180px)
+                    (width = 135px)
+                    (align = "center | middle")
+                )
+                (bind visible "_animationHighlight != '' || _iconHighlight != '' || _icon != ''")
+                (swf
+                    (name = 'animationHighlight')
+                    (style
+                        (position = "absolute")
+                        (vcenter = 0px)
+                        (hcenter = 0px)
+                    )
+                    (bind source "_animationHighlight")
+                )
+
+                (image
+                    (name = 'iconHighlight')
+                    (style
+                        (position = "absolute")
+                        (vcenter = 0px)
+                        (hcenter = 0px)
+                        (blendMode = 'add')
+                    )
+                    (bind source "_iconHighlight")
+                )
+
+                (image
+                    (name = 'icon')
+                    (bind source "_icon")
+                )
+            )
+            (tf
+                (name = 'title')
+                (class GrandTitleTextStyle)
+                (style
+                    (width = 100%)
+                    (marginTop = -20px)
+                    (textAlign = "center")
+                )
+
+                (bind htmlText "htmlTextStyle(
+                        formatString(_title, _titleFmtArgs, _isTitleFmtArgsNamed),
+                        'GrandTitleTextStyle',
+                        'center'
+                    )"
+                    (enabled="_titleFmtArgs.length > 0 && _title != ''")
+                )
+
+                (bind text "TextFormat(_title, _titleArgs)"
+                    (enabled="_titleArgs.length > 0 && formattedTitle == ''")
+                )
+
+                (bind text "_title"
+                    (enabled="_titleArgs.length == 0 && _titleFmtArgs.length == 0 && formattedTitle == ''")
+                )
+
+                (bind htmlText "htmlTextStyle(formattedTitle, 'GrandTitleTextStyle', 'center')"
+                    (enabled="formattedTitle != ''")
+                )
+            )
+        )
+
+        # Top content block
+        (view_holder
+            (name = 'content')
+            (style
+                (width = 100%)
+            )
+            (bind content "content" init=false)
+            (bind visible "content != null")
+        )
+
+        # Devider
+        (block
+            (name = 'devider')
+            (style
+                (width = 100%)
+                (bind minWidth "currentPreset.contentWidth")
+                (backgroundColor = 0x19FFFFFF)
+                (height = 1px)
+                (marginTop = 16px)
+                (marginBottom = 24px)
+            )
+        )
+
+        # Bottom content block
+        (view_holder
+            (name = "R.dynamic_ids.dialog_window.bottom_content()")
+            (style
+                (marginBottom = 16px)
+                (width = 100%)
+            )
+            (bind visible "hasBottomContent != null")
+        )
+
+        (group name='buttons'
+            (renderer = 'DialogButton')
+            (container
+                (style
+                    (flow = "Flow.HORIZONTAL")
+                    (gap = 12px)
+                )
+            )
+        )
+    )
+
+    # Button close
+    (block
+        (style
+            (position = "absolute")
+            (bind top "hasBalance != null ? 70px : 40px")
+            (right = 40px)
+            (bind alpha "animationAlpha")
+        )    
+        (text_button 'closeBtn'
+            (name = 'closeButton')
+            (macro ButtonCloseStyle)
+            (bind visible "currentPreset.hasCloseButton")
+            (label = "R.strings.menu.viewHeader.closeBtn.label()")
+            (dispatch onClosed on='clicked')
+        )
+    )
+
+    # Currency block
+    (view_holder
+        (name = "R.dynamic_ids.dialog_window.balance_content()")
+        (style
+            (position = "absolute")
+            (right = 0px)
+            (bind alpha "animationAlpha")
+        )
+        (bind visible "hasBalance != null")
+    )
+
+    (exec "playSound(showSound)" watch=false init=false
+        (event "evScopeUpdated")
+        (bind enabled "showSound != ''")
+    )
+)
+
+(def element DialogButton() layout=true
+    (name = 'DialogButton')
+    (macro DialogButtonModel)
+    (tabEnabled = false)
+
+    (scope
+        (var stylesDict:dict = {
+            purchase : "R.atlases.components.back_main()",
+            submit : "R.atlases.components.back_primary()",
+            cancel : "R.atlases.components.back_secondary()",
+            research : "R.atlases.components.back_primary_green()"
+        })
+        (var fontsDict:dict = {
+            purchase : 'ZuricStyleMain',
+            submit : 'ZuricStylePrimary',
+            cancel : 'ZuricStyleSecondary',
+            research : 'ZuricStyleSecondary'
+        })
+    )
+
+    (button
+        (style
+            (minWidth = 160px)
+        )
+        (macro ButtonSimpleStyles "BUTTON_SIZE_LARGE" "null")
+        (macro ButtonIconTextStyles "BUTTON_SIZE_LARGE")
+
+        (bindcall background source="stylesDict[name]" scale9grid="BUTTON_BACKGROUND_RECT" offsets=null init=false)
+        (label
+            (bind class "fontsDict[name]" init=false)
+        )
+
+        (bind label "label")
+        (bind label "rawLabel")
+        (bind enabled "isEnabled")
+        (bind icon "icon")
+        (bind iconAlign "iconAfterText ? right : left")
+        (bind soundDown "soundDown" (bind enabled "soundDown != ''"))
+        (bindcall setFocus (bind enabled "doSetFocus"))
+        # buttons handle click event on gameplay to (see _onButtonClick in dialog_window.py)
+        (dispatch onClicked args="{}" on='clicked')
+    )
+
+    #simple tooltip which enabled if the tooltipBody or tooltipHeader defined
+    (controller $ToolTip
+        (delay = "0.4")
+        (bindcall args header="tooltipHeader" body="tooltipBody" init=true)
+        (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+        (bind enabled "tooltipBody != '' || tooltipHeader != ''")
+    )
+)
+
+(def element CurrencyItem() layout=true
+    (macro CurrencyItemModel)
+    (scope
+        (var icons:dict = {
+            'crystal' : "R.images.gui.maps.icons.library.CrystalIcon_1()",
+            'gold' : "R.images.gui.maps.icons.library.GoldIcon_2()",
+            'credits' : "R.images.gui.maps.icons.library.CreditsIcon_2()",
+            'freeXP' : "R.images.gui.maps.icons.library.FreeXpIcon_2()"
+        })
+        (var textStyle:dict = {
+            'crystal' : 'CrystalTextStyle',
+            'gold' : 'GoldTextStyle',
+            'credits' : 'CreditsTextStyle',
+            'freeXP' : 'ExpTextStyle'
+        })
+    )
+    (group
+        (style
+            (gap = 3)
+            (flow = "Flow.HORIZONTAL")
+            (align = "middle")
+        )
+        (image
+            (bind source "icons[currency]" init=false)
+        )
+        (tf
+            (bind class "textStyle[currency]" init=false)
+            (bind text "value == '' ? '---' : value")
+        )
+        (image
+            (bind source "value == '' ? R.images.gui.maps.icons.library.alertIcon1() : null")
+        )
+        (controller $ToolTip
+            (delay = 0.4)
+            (bind enabled "specialTooltip != ''")
+            (args tooltipId="specialTooltip")
+            (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+            (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+        )
+    )
+)

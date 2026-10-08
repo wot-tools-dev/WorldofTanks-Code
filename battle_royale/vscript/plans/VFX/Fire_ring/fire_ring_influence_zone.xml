@@ -1,0 +1,1392 @@
+<fire_ring_influence_zone.xml>
+  <info>
+    <name>	VFX/Fire_ring/fire_ring_influence_zone	</name>
+    <isMacro>	false	</isMacro>
+    <version>	0	</version>
+    <aspect>
+      <compatibles>	CLIENT	</compatibles>
+    </aspect>
+    <blocks>
+      <block>
+        <class>	Variable	</class>
+        <id>	Variable_1	</id>
+        <params>
+          <param>	Influence_Zone_Radius	  <name>	Variable Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	FloatT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	false	  <name>	External Init	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	false	  <name>	Is Const	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	false	  <name>	Is Global	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	1.000000	  <name>	Initial Value	</name>
+            <type>	FloatT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	default	</name>
+            <const>	\1.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	Variable	</class>
+        <id>	Variable_2	</id>
+        <params>
+          <param>	Main_Radius	  <name>	Variable Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	FloatT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	false	  <name>	External Init	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	false	  <name>	Is Const	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	false	  <name>	Is Global	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	1.000000	  <name>	Initial Value	</name>
+            <type>	FloatT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	default	</name>
+            <const>	\1.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	Variable	</class>
+        <id>	Variable_3	</id>
+        <params>
+          <param>	Num_Zones	  <name>	Variable Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	IntT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	false	  <name>	External Init	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	false	  <name>	Is Const	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	false	  <name>	Is Global	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	1	  <name>	Initial Value	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	default	</name>
+            <const>	\1\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	VariableReadOnly	</class>
+        <id>	VariableReadOnly_1	</id>
+        <params>
+          <param>	decal_prefab_path	  <name>	Variable Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	StringT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	false	  <name>	External Init	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	true	  <name>	Is Const	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	content/CGFPrefabs/steel_hunter/abilities/fire_ring/fire_ring_static_decal.prefab	  <name>	Initial Value	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	default	</name>
+            <const>	\content/CGFPrefabs/steel_hunter/abilities/fire_ring/fire_ring_static_decal.prefab\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	If	</class>
+        <id>	If_1	</id>
+      </block>
+      <block>
+        <class>	StartScript	</class>
+        <id>	StartScript_1	</id>
+      </block>
+      <block>
+        <class>	Macro	</class>
+        <id>	Macro_1	</id>
+        <params>
+          <param>	SpawnDecal	  <name>	Macro Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	HasComponent	</class>
+        <id>	HasComponent_1	</id>
+        <params>
+          <param>	Influence Zone Equipment	  <name>	Component Type	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	ContextGetSelf	</class>
+        <id>	ContextGetSelf_1	</id>
+        <params>
+          <param>	CGFGameObjectContext	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	getSelf	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	SetVariable	</class>
+        <id>	SetVariable_3	</id>
+        <buddy>	Variable_2	</buddy>
+        <params>
+          <param>	FloatT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	GetComponentProperties	</class>
+        <id>	GetComponentProperties_1	</id>
+        <params>
+          <param>	Influence Zone Equipment	  <name>	Component Type	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	Macro	</class>
+        <id>	Macro_2	</id>
+        <params>
+          <param>	SetParticleProperties	  <name>	Macro Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	nodeName	</name>
+            <const>	\particles\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	Sequence	</class>
+        <id>	Sequence_1	</id>
+        <params>
+          <param>	3	  <name>	Output Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	CreateVector	</class>
+        <id>	CreateVector_4	</id>
+        <params>
+          <param>	Vector3T	  <name>	Value Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	x	</name>
+            <const>	\0.000000\	</const>
+          </slot>
+          <slot>
+            <name>	y	</name>
+            <const>	\0.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	SetVariable	</class>
+        <id>	SetVariable_1	</id>
+        <buddy>	Variable_3	</buddy>
+        <params>
+          <param>	IntT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	GetParentOf	</class>
+        <id>	GetParentOf_1	</id>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_1	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i0	</name>
+            <const>	\0.600000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	SetVariable	</class>
+        <id>	SetVariable_2	</id>
+        <buddy>	Variable_1	</buddy>
+        <params>
+          <param>	FloatT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_9	</id>
+        <params>
+          <param>	3	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i2	</name>
+            <const>	\0.150000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	GetVariable	</class>
+        <id>	GetVariable_2	</id>
+        <buddy>	Variable_1	</buddy>
+        <params>
+          <param>	FloatT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_11	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i1	</name>
+            <const>	\0.500000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	AddFloat	</class>
+        <id>	AddFloat_1	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	CreateVector	</class>
+        <id>	CreateVector_3	</id>
+        <params>
+          <param>	Vector3T	  <name>	Value Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	y	</name>
+            <const>	\0.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	GetVariable	</class>
+        <id>	GetVariable_5	</id>
+        <buddy>	Variable_2	</buddy>
+        <params>
+          <param>	FloatT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	DivideFloat	</class>
+        <id>	DivideFloat_2	</id>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_8	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_2	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i0	</name>
+            <const>	\0.200000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	GetVariable	</class>
+        <id>	GetVariable_6	</id>
+        <buddy>	Variable_3	</buddy>
+        <params>
+          <param>	IntT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	AbsoluteFloat	</class>
+        <id>	AbsoluteFloat_1	</id>
+        <slots>
+          <slot>
+            <name>	a	</name>
+            <const>	\6.283185\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	Macro	</class>
+        <id>	Macro_3	</id>
+        <params>
+          <param>	SetParticleProperties	  <name>	Macro Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	nodeName	</name>
+            <const>	\particles_alt\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	CreateVector	</class>
+        <id>	CreateVector_5	</id>
+        <params>
+          <param>	Vector3T	  <name>	Value Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	x	</name>
+            <const>	\0.000000\	</const>
+          </slot>
+          <slot>
+            <name>	y	</name>
+            <const>	\0.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_7	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	DivideFloat	</class>
+        <id>	DivideFloat_1	</id>
+      </block>
+      <block>
+        <class>	GetVariable	</class>
+        <id>	GetVariable_4	</id>
+        <buddy>	Variable_1	</buddy>
+        <params>
+          <param>	FloatT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	SubtractFloat	</class>
+        <id>	SubtractFloat_1	</id>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_6	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i1	</name>
+            <const>	\0.700000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	CreateVector	</class>
+        <id>	CreateVector_6	</id>
+        <params>
+          <param>	Vector3T	  <name>	Value Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	y	</name>
+            <const>	\0.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_10	</id>
+        <params>
+          <param>	3	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i2	</name>
+            <const>	\0.150000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_5	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i1	</name>
+            <const>	\-1.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_3	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i0	</name>
+            <const>	\0.600000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	GetVariable	</class>
+        <id>	GetVariable_3	</id>
+        <buddy>	Variable_1	</buddy>
+        <params>
+          <param>	FloatT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+      </block>
+      <block>
+        <class>	MultiplyFloat	</class>
+        <id>	MultiplyFloat_4	</id>
+        <params>
+          <param>	2	  <name>	Input Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	i0	</name>
+            <const>	\0.200000\	</const>
+          </slot>
+        </slots>
+      </block>
+    </blocks>
+    <connections>
+      <connection>
+        <from>	StartScript_1	</from>
+        <input>	input	</input>
+        <to>	If_1	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	HasComponent_1	</from>
+        <input>	value	</input>
+        <to>	If_1	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	Sequence_1	</from>
+        <input>	input	</input>
+        <to>	Macro_1	</to>
+        <output>	o2	</output>
+      </connection>
+      <connection>
+        <from>	GetParentOf_1	</from>
+        <input>	gameObject	</input>
+        <to>	HasComponent_1	</to>
+        <output>	parent	</output>
+      </connection>
+      <connection>
+        <from>	GetComponentProperties_1	</from>
+        <input>	input	</input>
+        <to>	SetVariable_3	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	GetComponentProperties_1	</from>
+        <input>	value	</input>
+        <to>	SetVariable_3	</to>
+        <output>	radius	</output>
+      </connection>
+      <connection>
+        <from>	If_1	</from>
+        <input>	in	</input>
+        <to>	GetComponentProperties_1	</to>
+        <output>	true	</output>
+      </connection>
+      <connection>
+        <from>	GetParentOf_1	</from>
+        <input>	gameObject	</input>
+        <to>	GetComponentProperties_1	</to>
+        <output>	parent	</output>
+      </connection>
+      <connection>
+        <from>	Sequence_1	</from>
+        <input>	input	</input>
+        <to>	Macro_2	</to>
+        <output>	o1	</output>
+      </connection>
+      <connection>
+        <from>	CreateVector_3	</from>
+        <input>	emissionSize	</input>
+        <to>	Macro_2	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_9	</from>
+        <input>	emissionRate	</input>
+        <to>	Macro_2	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	CreateVector_4	</from>
+        <input>	translation	</input>
+        <to>	Macro_2	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	If_1	</from>
+        <input>	input	</input>
+        <to>	Sequence_1	</to>
+        <output>	false	</output>
+      </connection>
+      <connection>
+        <from>	SetVariable_2	</from>
+        <input>	input	</input>
+        <to>	Sequence_1	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_1	</from>
+        <input>	z	</input>
+        <to>	CreateVector_4	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	SetVariable_3	</from>
+        <input>	input	</input>
+        <to>	SetVariable_1	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	GetComponentProperties_1	</from>
+        <input>	value	</input>
+        <to>	SetVariable_1	</to>
+        <output>	zonesCount	</output>
+      </connection>
+      <connection>
+        <from>	ContextGetSelf_1	</from>
+        <input>	gameObject	</input>
+        <to>	GetParentOf_1	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_2	</from>
+        <input>	i1	</input>
+        <to>	MultiplyFloat_1	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	SetVariable_1	</from>
+        <input>	input	</input>
+        <to>	SetVariable_2	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	GetComponentProperties_1	</from>
+        <input>	value	</input>
+        <to>	SetVariable_2	</to>
+        <output>	zoneRadius	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_2	</from>
+        <input>	i0	</input>
+        <to>	MultiplyFloat_9	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	DivideFloat_2	</from>
+        <input>	i1	</input>
+        <to>	MultiplyFloat_9	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	DivideFloat_2	</from>
+        <input>	i0	</input>
+        <to>	MultiplyFloat_11	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_5	</from>
+        <input>	i0	</input>
+        <to>	AddFloat_1	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_4	</from>
+        <input>	i1	</input>
+        <to>	AddFloat_1	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_11	</from>
+        <input>	x	</input>
+        <to>	CreateVector_3	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_2	</from>
+        <input>	z	</input>
+        <to>	CreateVector_3	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_8	</from>
+        <input>	a	</input>
+        <to>	DivideFloat_2	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_6	</from>
+        <input>	b	</input>
+        <to>	DivideFloat_2	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	AddFloat_1	</from>
+        <input>	i0	</input>
+        <to>	MultiplyFloat_8	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	AbsoluteFloat_1	</from>
+        <input>	i1	</input>
+        <to>	MultiplyFloat_8	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_2	</from>
+        <input>	i1	</input>
+        <to>	MultiplyFloat_2	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	Sequence_1	</from>
+        <input>	input	</input>
+        <to>	Macro_3	</to>
+        <output>	o0	</output>
+      </connection>
+      <connection>
+        <from>	CreateVector_6	</from>
+        <input>	emissionSize	</input>
+        <to>	Macro_3	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_10	</from>
+        <input>	emissionRate	</input>
+        <to>	Macro_3	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	CreateVector_5	</from>
+        <input>	translation	</input>
+        <to>	Macro_3	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_5	</from>
+        <input>	z	</input>
+        <to>	CreateVector_5	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	AbsoluteFloat_1	</from>
+        <input>	i0	</input>
+        <to>	MultiplyFloat_7	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	SubtractFloat_1	</from>
+        <input>	i1	</input>
+        <to>	MultiplyFloat_7	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_7	</from>
+        <input>	a	</input>
+        <to>	DivideFloat_1	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_6	</from>
+        <input>	b	</input>
+        <to>	DivideFloat_1	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_5	</from>
+        <input>	a	</input>
+        <to>	SubtractFloat_1	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_4	</from>
+        <input>	b	</input>
+        <to>	SubtractFloat_1	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	DivideFloat_1	</from>
+        <input>	i0	</input>
+        <to>	MultiplyFloat_6	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_6	</from>
+        <input>	x	</input>
+        <to>	CreateVector_6	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_4	</from>
+        <input>	z	</input>
+        <to>	CreateVector_6	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_4	</from>
+        <input>	i0	</input>
+        <to>	MultiplyFloat_10	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	DivideFloat_1	</from>
+        <input>	i1	</input>
+        <to>	MultiplyFloat_10	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	MultiplyFloat_3	</from>
+        <input>	i0	</input>
+        <to>	MultiplyFloat_5	</to>
+        <output>	res	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_3	</from>
+        <input>	i1	</input>
+        <to>	MultiplyFloat_3	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	GetVariable_3	</from>
+        <input>	i1	</input>
+        <to>	MultiplyFloat_4	</to>
+        <output>	value	</output>
+      </connection>
+    </connections>
+    <macros>
+      <macro>
+        <name>	SpawnDecal	</name>
+        <blocks>
+          <block>
+            <class>	IsValid	</class>
+            <id>	IsValid_1	</id>
+          </block>
+          <block>
+            <class>	MacroInput	</class>
+            <id>	MacroInput_1	</id>
+            <params>
+              <param>	input	  <name>	Input Name	</name>
+                <type>	StringT	</type>
+              </param>
+              <param>	EventT	  <name>	Input Type	</name>
+                <type>	TypeT	</type>
+              </param>
+              <param>	Default	  <name>	Input Editor	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+          </block>
+          <block>
+            <class>	If	</class>
+            <id>	If_2	</id>
+          </block>
+          <block>
+            <class>	LoadPrefab	</class>
+            <id>	LoadPrefab_3	</id>
+            <params>
+              <param>	true	  <name>	Use transform matrix	</name>
+                <type>	BoolT	</type>
+              </param>
+              <param>	true	  <name>	Load with parent	</name>
+                <type>	BoolT	</type>
+              </param>
+            </params>
+          </block>
+          <block>
+            <class>	FindFirstNode	</class>
+            <id>	FindFirstNode_6	</id>
+            <slots>
+              <slot>
+                <name>	name	</name>
+                <const>	\static_decal\	</const>
+              </slot>
+              <slot>
+                <name>	includingInactive	</name>
+                <const>	\true\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	GetVariable	</class>
+            <id>	GetVariable_11	</id>
+            <buddy>	VariableReadOnly_1	</buddy>
+            <params>
+              <param>	StringT	  <name>	Variable Type	</name>
+                <type>	TypeT	</type>
+              </param>
+            </params>
+          </block>
+          <block>
+            <class>	MultiplyFloat	</class>
+            <id>	MultiplyFloat_14	</id>
+            <params>
+              <param>	2	  <name>	Input Count	</name>
+                <type>	IntT	</type>
+              </param>
+            </params>
+            <slots>
+              <slot>
+                <name>	i1	</name>
+                <const>	\1.750000\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	CreateVector	</class>
+            <id>	CreateVector_8	</id>
+            <params>
+              <param>	Vector3T	  <name>	Value Type	</name>
+                <type>	TypeT	</type>
+              </param>
+            </params>
+            <slots>
+              <slot>
+                <name>	z	</name>
+                <const>	\1.000000\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	CreateMatrix	</class>
+            <id>	CreateMatrix_2	</id>
+            <slots>
+              <slot>
+                <name>	pos	</name>
+                <const>	\0.000000, 0.000000, 0.000000\	</const>
+              </slot>
+              <slot>
+                <name>	rotation	</name>
+                <const>	\0.000000, 0.000000, 0.000000\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	GetVariable	</class>
+            <id>	GetVariable_10	</id>
+            <buddy>	Variable_1	</buddy>
+            <params>
+              <param>	FloatT	  <name>	Variable Type	</name>
+                <type>	TypeT	</type>
+              </param>
+            </params>
+          </block>
+          <block>
+            <class>	MultiplyFloat	</class>
+            <id>	MultiplyFloat_15	</id>
+            <params>
+              <param>	2	  <name>	Input Count	</name>
+                <type>	IntT	</type>
+              </param>
+            </params>
+            <slots>
+              <slot>
+                <name>	i1	</name>
+                <const>	\1.750000\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	ContextGetSelf	</class>
+            <id>	ContextGetSelf_2	</id>
+            <params>
+              <param>	CGFGameObjectContext	  <name>	Context Name	</name>
+                <type>	StringT	</type>
+              </param>
+              <param>	getSelf	  <name>	Member Name	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+          </block>
+        </blocks>
+        <connections>
+          <connection>
+            <from>	FindFirstNode_6	</from>
+            <input>	gameObject	</input>
+            <to>	IsValid_1	</to>
+            <output>	node	</output>
+          </connection>
+          <connection>
+            <from>	MacroInput_1	</from>
+            <input>	input	</input>
+            <to>	If_2	</to>
+            <output>	input	</output>
+          </connection>
+          <connection>
+            <from>	IsValid_1	</from>
+            <input>	value	</input>
+            <to>	If_2	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	If_2	</from>
+            <input>	in	</input>
+            <to>	LoadPrefab_3	</to>
+            <output>	true	</output>
+          </connection>
+          <connection>
+            <from>	GetVariable_11	</from>
+            <input>	path	</input>
+            <to>	LoadPrefab_3	</to>
+            <output>	value	</output>
+          </connection>
+          <connection>
+            <from>	FindFirstNode_6	</from>
+            <input>	parent	</input>
+            <to>	LoadPrefab_3	</to>
+            <output>	node	</output>
+          </connection>
+          <connection>
+            <from>	CreateMatrix_2	</from>
+            <input>	transform	</input>
+            <to>	LoadPrefab_3	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	ContextGetSelf_2	</from>
+            <input>	gameObject	</input>
+            <to>	FindFirstNode_6	</to>
+            <output>	value	</output>
+          </connection>
+          <connection>
+            <from>	GetVariable_10	</from>
+            <input>	i0	</input>
+            <to>	MultiplyFloat_14	</to>
+            <output>	value	</output>
+          </connection>
+          <connection>
+            <from>	MultiplyFloat_14	</from>
+            <input>	x	</input>
+            <to>	CreateVector_8	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	MultiplyFloat_15	</from>
+            <input>	y	</input>
+            <to>	CreateVector_8	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	CreateVector_8	</from>
+            <input>	scale	</input>
+            <to>	CreateMatrix_2	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	GetVariable_10	</from>
+            <input>	i0	</input>
+            <to>	MultiplyFloat_15	</to>
+            <output>	value	</output>
+          </connection>
+        </connections>
+      </macro>
+      <macro>
+        <name>	SetParticleProperties	</name>
+        <blocks>
+          <block>
+            <class>	MacroInput	</class>
+            <id>	MacroInput_4	</id>
+            <params>
+              <param>	nodeName	  <name>	Input Name	</name>
+                <type>	StringT	</type>
+              </param>
+              <param>	StringT	  <name>	Input Type	</name>
+                <type>	TypeT	</type>
+              </param>
+              <param>	Default	  <name>	Input Editor	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+          </block>
+          <block>
+            <class>	FindFirstNode	</class>
+            <id>	FindFirstNode_5	</id>
+            <slots>
+              <slot>
+                <name>	includingInactive	</name>
+                <const>	\true\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	ActivateGameObject	</class>
+            <id>	ActivateGameObject_1	</id>
+          </block>
+          <block>
+            <class>	SetComponentProperty	</class>
+            <id>	SetComponentProperty_12	</id>
+            <params>
+              <param>	Particle.emissionRate	  <name>	Component Type	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+          </block>
+          <block>
+            <class>	MacroInput	</class>
+            <id>	MacroInput_2	</id>
+            <params>
+              <param>	input	  <name>	Input Name	</name>
+                <type>	StringT	</type>
+              </param>
+              <param>	EventT	  <name>	Input Type	</name>
+                <type>	TypeT	</type>
+              </param>
+              <param>	Default	  <name>	Input Editor	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+            <slots>
+              <slot>
+                <name>	required	</name>
+                <const>	\true\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	SetComponentProperty	</class>
+            <id>	SetComponentProperty_11	</id>
+            <params>
+              <param>	Particle.emissionSize	  <name>	Component Type	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+          </block>
+          <block>
+            <class>	MacroInput	</class>
+            <id>	MacroInput_6	</id>
+            <params>
+              <param>	emissionSize	  <name>	Input Name	</name>
+                <type>	StringT	</type>
+              </param>
+              <param>	Vector3T	  <name>	Input Type	</name>
+                <type>	TypeT	</type>
+              </param>
+              <param>	Default	  <name>	Input Editor	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+            <slots>
+              <slot>
+                <name>	required	</name>
+                <const>	\true\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	MacroInput	</class>
+            <id>	MacroInput_5	</id>
+            <params>
+              <param>	emissionRate	  <name>	Input Name	</name>
+                <type>	StringT	</type>
+              </param>
+              <param>	FloatT	  <name>	Input Type	</name>
+                <type>	TypeT	</type>
+              </param>
+              <param>	Default	  <name>	Input Editor	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+            <slots>
+              <slot>
+                <name>	required	</name>
+                <const>	\true\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	MacroInput	</class>
+            <id>	MacroInput_3	</id>
+            <params>
+              <param>	translation	  <name>	Input Name	</name>
+                <type>	StringT	</type>
+              </param>
+              <param>	Vector3T	  <name>	Input Type	</name>
+                <type>	TypeT	</type>
+              </param>
+              <param>	Default	  <name>	Input Editor	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+            <slots>
+              <slot>
+                <name>	required	</name>
+                <const>	\true\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	SetComponentProperties	</class>
+            <id>	SetComponentProperties_3	</id>
+            <params>
+              <param>	Transform	  <name>	Component Type	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+          </block>
+          <block>
+            <class>	MatrixPosition	</class>
+            <id>	MatrixPosition_1	</id>
+          </block>
+          <block>
+            <class>	CreateMatrix	</class>
+            <id>	CreateMatrix_3	</id>
+            <slots>
+              <slot>
+                <name>	rotation	</name>
+                <const>	\0.000000, 0.000000, 0.000000\	</const>
+              </slot>
+              <slot>
+                <name>	scale	</name>
+                <const>	\1.000000, 1.000000, 1.000000\	</const>
+              </slot>
+            </slots>
+          </block>
+          <block>
+            <class>	MatrixRotation	</class>
+            <id>	MatrixRotation_1	</id>
+          </block>
+          <block>
+            <class>	MatrixScale	</class>
+            <id>	MatrixScale_1	</id>
+          </block>
+          <block>
+            <class>	ContextGetSelf	</class>
+            <id>	ContextGetSelf_3	</id>
+            <params>
+              <param>	CGFGameObjectContext	  <name>	Context Name	</name>
+                <type>	StringT	</type>
+              </param>
+              <param>	getSelf	  <name>	Member Name	</name>
+                <type>	StringT	</type>
+              </param>
+            </params>
+          </block>
+        </blocks>
+        <connections>
+          <connection>
+            <from>	ContextGetSelf_3	</from>
+            <input>	gameObject	</input>
+            <to>	FindFirstNode_5	</to>
+            <output>	value	</output>
+          </connection>
+          <connection>
+            <from>	MacroInput_4	</from>
+            <input>	name	</input>
+            <to>	FindFirstNode_5	</to>
+            <output>	nodeName	</output>
+          </connection>
+          <connection>
+            <from>	SetComponentProperty_12	</from>
+            <input>	in	</input>
+            <to>	ActivateGameObject_1	</to>
+            <output>	out	</output>
+          </connection>
+          <connection>
+            <from>	FindFirstNode_5	</from>
+            <input>	gameObject	</input>
+            <to>	ActivateGameObject_1	</to>
+            <output>	node	</output>
+          </connection>
+          <connection>
+            <from>	SetComponentProperty_11	</from>
+            <input>	in	</input>
+            <to>	SetComponentProperty_12	</to>
+            <output>	out	</output>
+          </connection>
+          <connection>
+            <from>	FindFirstNode_5	</from>
+            <input>	gameObject	</input>
+            <to>	SetComponentProperty_12	</to>
+            <output>	node	</output>
+          </connection>
+          <connection>
+            <from>	MacroInput_5	</from>
+            <input>	emissionRate	</input>
+            <to>	SetComponentProperty_12	</to>
+            <output>	emissionRate	</output>
+          </connection>
+          <connection>
+            <from>	SetComponentProperties_3	</from>
+            <input>	in	</input>
+            <to>	SetComponentProperty_11	</to>
+            <output>	out	</output>
+          </connection>
+          <connection>
+            <from>	FindFirstNode_5	</from>
+            <input>	gameObject	</input>
+            <to>	SetComponentProperty_11	</to>
+            <output>	node	</output>
+          </connection>
+          <connection>
+            <from>	MacroInput_6	</from>
+            <input>	emissionSize	</input>
+            <to>	SetComponentProperty_11	</to>
+            <output>	emissionSize	</output>
+          </connection>
+          <connection>
+            <from>	MacroInput_2	</from>
+            <input>	in	</input>
+            <to>	SetComponentProperties_3	</to>
+            <output>	input	</output>
+          </connection>
+          <connection>
+            <from>	FindFirstNode_5	</from>
+            <input>	gameObject	</input>
+            <to>	SetComponentProperties_3	</to>
+            <output>	node	</output>
+          </connection>
+          <connection>
+            <from>	MatrixPosition_1	</from>
+            <input>	position	</input>
+            <to>	SetComponentProperties_3	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	MatrixRotation_1	</from>
+            <input>	rotation	</input>
+            <to>	SetComponentProperties_3	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	MatrixScale_1	</from>
+            <input>	scale	</input>
+            <to>	SetComponentProperties_3	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	CreateMatrix_3	</from>
+            <input>	a	</input>
+            <to>	MatrixPosition_1	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	MacroInput_3	</from>
+            <input>	pos	</input>
+            <to>	CreateMatrix_3	</to>
+            <output>	translation	</output>
+          </connection>
+          <connection>
+            <from>	CreateMatrix_3	</from>
+            <input>	a	</input>
+            <to>	MatrixRotation_1	</to>
+            <output>	res	</output>
+          </connection>
+          <connection>
+            <from>	CreateMatrix_3	</from>
+            <input>	a	</input>
+            <to>	MatrixScale_1	</to>
+            <output>	res	</output>
+          </connection>
+        </connections>
+      </macro>
+    </macros>
+    <curves></curves>
+  </info>
+</fire_ring_influence_zone.xml>

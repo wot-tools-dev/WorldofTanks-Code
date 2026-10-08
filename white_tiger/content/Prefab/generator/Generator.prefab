@@ -1,0 +1,275 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"lodScale": 1.0,
+										"path": "particles/Environment/event_white_tiger/antenna/Antenna_idle.seq",
+										"properties": {
+											"delay": "2",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "IdleCycle",
+						"uuid": "67b0b0c1-a3a6-47a8-9119-199e6c8ae810"
+					},
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"lodScale": 1.0,
+										"path": "particles/Environment/event_white_tiger/antenna/Antenna_start.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::RemoveGoDelayedComponent": {
+								"delay": 2.0,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "IdleStart",
+						"uuid": "7818292e-0622-4510-825f-095c321bf833"
+					}
+				],
+				"components": {
+					"BW::WTGeneratorCaptureTrackerComponent": {
+						"captureEffect": "white_tiger/content/Prefab/generator/AntennaEnd.prefab",
+						"disabledDomains": [
+							"Server"
+						],
+						"stagesEffects": [
+							"white_tiger/content/Prefab/generator/AntennaStage1.prefab",
+							"white_tiger/content/Prefab/generator/AntennaStage2.prefab",
+							"white_tiger/content/Prefab/generator/AntennaStage3.prefab",
+							"white_tiger/content/Prefab/generator/AntennaStage4.prefab"
+						],
+						"trackerGO": "00000000-0000-0000-0000-000000000000"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Idle",
+				"uuid": "8cc4b8a4-39d0-4fe1-b92e-c5c426e418bf"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"lodScale": 1.0,
+								"path": "particles/Environment/event_white_tiger/antenna/Antenna_area/Antenna_area.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"scale": {
+							"x": 9.0,
+							"y": 2.0,
+							"z": 9.0
+						}
+					}
+				},
+				"name": "Border",
+				"uuid": "3e3cc2e4-42b1-432a-81f6-806f567763bd"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Shield",
+				"uuid": "5e47d18b-8fe1-4cc3-ac1a-62a2af68f951"
+			},
+			{
+				"components": {
+					"BW::AreaTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::CylinderArea": {
+						"disabledDomains": [
+							"Server"
+						],
+						"height": 14.0,
+						"radius": 50.0
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": -3.051759995287284e-05,
+							"y": -3.0,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "CaptureArea",
+				"uuid": "fd14c93c-d250-3cb3-8e68-6e28208bda43"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": 0.0,
+									"y": 23.042999267578125,
+									"z": 1.6294599771499634
+								}
+							}
+						},
+						"name": "LightningSource",
+						"uuid": "84b24b40-1d3e-49f3-87b8-3f7fa009b56d"
+					}
+				],
+				"components": {
+					"BW::AreaTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::CylinderArea": {
+						"disabledDomains": [
+							"Server"
+						],
+						"height": 14.0,
+						"radius": 18.0
+					},
+					"BW::WTLightningAreaComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"sourceLinkGO": "84b24b40-1d3e-49f3-87b8-3f7fa009b56d"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": 3.051759995287284e-05,
+							"y": -3.0,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "LightningArea",
+				"uuid": "b6d96a76-426e-4fd8-ab32-914f93f032c3"
+			}
+		],
+		"components": {
+			"BW::Colliders": {
+				"colliders": [
+					{
+						"__ctype__": "BW::MeshColliderDesc",
+						"__cvalue__": {
+							"modelName": "content/MilitaryEnvironment/hd_mle_UNI_040_EnergyAntenna/normal/lod0/hd_mle_UNI_040_EnergyAntenna.model",
+							"moduleName": "default"
+						}
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "content/MilitaryEnvironment/hd_mle_UNI_040_EnergyAntenna/normal/lod0/hd_mle_UNI_040_EnergyAntenna.model"
+			},
+			"BW::WTGeneratorAreaComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"triggerGO": "fd14c93c-d250-3cb3-8e68-6e28208bda43"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::WTGeneratorEmerging": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "Generator",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

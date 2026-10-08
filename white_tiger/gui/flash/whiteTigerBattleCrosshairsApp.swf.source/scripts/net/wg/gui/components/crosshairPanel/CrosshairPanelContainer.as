@@ -1,0 +1,1523 @@
+package net.wg.gui.components.crosshairPanel
+{
+   import fl.motion.easing.Quartic;
+   import flash.display.BlendMode;
+   import flash.display.DisplayObject;
+   import flash.display.DisplayObjectContainer;
+   import flash.display.Sprite;
+   import flash.display.StageAlign;
+   import flash.display.StageScaleMode;
+   import flash.utils.clearInterval;
+   import flash.utils.getDefinitionByName;
+   import flash.utils.getTimer;
+   import flash.utils.setInterval;
+   import net.wg.data.constants.Linkages;
+   import net.wg.data.constants.Values;
+   import net.wg.data.constants.generated.AUTOLOADERBOOSTVIEWSTATES;
+   import net.wg.data.constants.generated.CLIP_RELOADING_TYPES;
+   import net.wg.gui.components.crosshairPanel.VO.CrosshairSettingsVO;
+   import net.wg.gui.components.crosshairPanel.VO.GunMarkerIndicatorVO;
+   import net.wg.gui.components.crosshairPanel.VO.ShotFlyTimeVO;
+   import net.wg.gui.components.crosshairPanel.components.autoloader.BoostIndicatorStateParamsVO;
+   import net.wg.gui.components.crosshairPanel.components.gunMarker.IGunMarker;
+   import net.wg.gui.components.crosshairPanel.components.speedometer.Speedometer;
+   import net.wg.gui.components.crosshairPanel.constants.CrosshairConsts;
+   import net.wg.infrastructure.base.meta.impl.CrosshairPanelContainerMeta;
+   import net.wg.infrastructure.interfaces.entity.IDisposable;
+   import scaleform.clik.motion.Tween;
+   
+   public class CrosshairPanelContainer extends CrosshairPanelContainerMeta implements ICrosshairPanelContainer
+   {
+      
+      private static const SPEEDOMETER_X_OFFSET:int = 144;
+      
+      private static const SPEEDOMETER_Y_OFFSET:int = 104;
+      
+      private static const MSEC_TO_SEC_FACTOR:uint = 1000;
+      
+      private static const DIVIDE_10:Number = 0.1;
+      
+      private static const DIVIDE_100:Number = 0.01;
+      
+      private static const VALUE_100:int = 100;
+      
+      protected static const CROSSHAIRS_LINAKGES:Vector.<String> = new <String>[Linkages.CROSSHAIR_ARCADE_UI,Linkages.CROSSHAIR_SNIPER_UI,Linkages.CROSSHAIR_STRATEGIC_UI,Linkages.CROSSHAIR_POSTMORTEM_UI];
+      
+      private static const FADE_TWEEN_DURATION:uint = 500;
+      
+      private static const FADE_IN_ALPHA:Number = 1;
+      
+      private static const FADE_OUT_ALPHA:Number = 0.4;
+      
+      private static const EXTRA_SHOT_CLIP_RELOADING_CRITICAL_THRESHOLD:Number = 2;
+      
+      private var _gunMarkersContainer:GunMarkersManager;
+      
+      private var _currentCrosshair:ICrosshair = null;
+      
+      private var _viewId:int = -1;
+      
+      private var _visibleNet:int = 3;
+      
+      private var _visibleNetSeparator:Boolean = true;
+      
+      private var _settingId:int = -1;
+      
+      private var _settings:Array = null;
+      
+      private var _healthInPercents:Number = 0;
+      
+      private var _indicatorsData:Vector.<GunMarkerIndicatorVO> = new Vector.<GunMarkerIndicatorVO>();
+      
+      private var _zoomStr:String = "";
+      
+      private var _distanceStr:String = "";
+      
+      private var _averageDamageStr:String = "";
+      
+      private var _playerInfoStr:String = "";
+      
+      private var _isDistanceShown:Boolean = true;
+      
+      private var _scale:Number = 1;
+      
+      private var _width:Number = 0;
+      
+      private var _height:Number = 0;
+      
+      private var _reloadingInterval:Number = -1;
+      
+      private var _currReloadingPercent:Number = 0;
+      
+      private var _previousReloadingPercent:Number = 0;
+      
+      private var _isShotAvailable:Boolean = false;
+      
+      private var _isInControllableReload:Boolean = false;
+      
+      private var _isReloadBoost:Boolean = false;
+      
+      private var _isReloadBoostBorder:Boolean = false;
+      
+      private var _isReloadBoostBorderActive:Boolean = false;
+      
+      private var _isQuickReloadingActive:Boolean = false;
+      
+      private var _intuitionCooldown:String = "";
+      
+      private var _autoloaderBaseTime:Number = 0;
+      
+      private var _autoloaderState:String = "reloadingEnd";
+      
+      private var _autoloaderTimer:Number = -1;
+      
+      private var _reloadingAutoloaderFinishTime:Number = 0;
+      
+      private var _isAutoloaderTimerOn:Boolean = false;
+      
+      private var _isAutoloaderTimerRed:Boolean = false;
+      
+      private var _autoloaderAnimationBaseTime:Number = 0;
+      
+      private var _autoloaderAnimationProgress:Number = 0;
+      
+      private var _autoloaderAnimationFinishTime:Number = 0;
+      
+      private var _autoloaderAnimationTimer:Number = -1;
+      
+      private var _autoloaderAnimationState:String = "reloadingEnd";
+      
+      private var _extraShotClipReloadingState:String = "reloadingEnd";
+      
+      private var _extraShotClipReloadingTimer:Number = 0;
+      
+      private var _extraShotClipReloadingBaseTime:Number = 0;
+      
+      private var _extraShotClipReloadingFinishTime:Number = 0;
+      
+      private var _shellCalibrationState:uint = 0;
+      
+      private var _shellCalibrationClipReloadingState:String = "reloadingEnd";
+      
+      private var _shellCalibrationClipReloadingTimer:Number = 0;
+      
+      private var _shellCalibrationClipReloadingBaseTime:Number = 0;
+      
+      private var _shellCalibrationClipReloadingFinishTime:Number = 0;
+      
+      private var _remainingTimeInSec:Number = 0;
+      
+      private var _baseReloadingTimeInSec:Number = 0;
+      
+      private var _initReloadingTime:Number = 0;
+      
+      private var _baseReloadingTimeInMsec:Number = 0;
+      
+      private var _currReloadingState:String = "reloadingInit";
+      
+      private var _ammoQuantity:Number = 0;
+      
+      private var _ammoQuantityInClip:Number = 0;
+      
+      private var _clipReloadingType:int = 0;
+      
+      private var _isAutoloaderCritical:Boolean = false;
+      
+      private var _isAlternateZoomPosition:Boolean = false;
+      
+      private var _autoreloaderSurgeActive:Boolean = false;
+      
+      private var _ammoClipState:String = "";
+      
+      private var _ammoClipReloaded:Boolean = false;
+      
+      private var _ammoState:String = "";
+      
+      private var _clipCapacity:Number = -1;
+      
+      private var _burst:Number = -1;
+      
+      private var _isReloadingTimeFieldShown:Boolean = true;
+      
+      private var _crosshairs:Vector.<ICrosshair> = null;
+      
+      private var _netType:int = -1;
+      
+      private var _netSeparatorType:String = "default";
+      
+      private var _speedometer:Speedometer = null;
+      
+      private var _speedometerBg:Sprite = null;
+      
+      private var _speed:int = 0;
+      
+      private var _burnout:Number = 0;
+      
+      private var _speedMode:Boolean = false;
+      
+      private var _isWarning:Boolean = false;
+      
+      private var _isEngineCrush:Boolean = false;
+      
+      private var _burnoutWarning:String = "";
+      
+      private var _engineCrush:String = "";
+      
+      private var _sniperCameraTransitionFx:CrosshairPanelSniperCameraTransitionFx = null;
+      
+      private var _fadeTween:Tween = null;
+      
+      public function CrosshairPanelContainer()
+      {
+         super();
+         this._settings = [];
+         this._sniperCameraTransitionFx = new CrosshairPanelSniperCameraTransitionFx();
+      }
+      
+      protected static function createComponent(param1:String) : DisplayObject
+      {
+         var _loc2_:Class = Class(getDefinitionByName(param1));
+         return new _loc2_();
+      }
+      
+      public function as_setReloadBoost(param1:Boolean) : void
+      {
+         this._isReloadBoost = param1;
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.reloadBoost = this._isReloadBoost;
+         }
+      }
+      
+      public function as_setReloadBoostBorder(param1:Boolean, param2:Boolean) : void
+      {
+         this._isReloadBoostBorder = param1;
+         this._isReloadBoostBorderActive = param2;
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.setReloadBoostBorderVisible(this._isReloadBoostBorder,this._isReloadBoostBorderActive,false);
+         }
+      }
+      
+      public function as_setReloadBoostBorderBlink() : void
+      {
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.setReloadBoostBorderBlink();
+         }
+      }
+      
+      public function as_setAlternateZoomPosition(param1:Boolean) : void
+      {
+         this._isAlternateZoomPosition = param1;
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.isUseAlternateZoomPosition = this._isAlternateZoomPosition;
+         }
+      }
+      
+      public function as_setAutoreloaderSurgeState(param1:Boolean) : void
+      {
+         this._autoreloaderSurgeActive = param1;
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.setAutoreloaderSurgeState(this._autoreloaderSurgeActive);
+         }
+      }
+      
+      override protected function configUI() : void
+      {
+         super.configUI();
+         addEventListener(CrosshairPanelEvent.SOUND,this.onCrosshairPanelSoundHandler);
+      }
+      
+      override protected function onDispose() : void
+      {
+         var _loc1_:IDisposable = null;
+         removeEventListener(CrosshairPanelEvent.SOUND,this.onCrosshairPanelSoundHandler);
+         this.clearReloadingTimer();
+         this.clearAutoloaderReloadTimer();
+         this.clearAutoloaderAnimationTimer();
+         this.clearExtraShotClipTimer();
+         this.clearTweens();
+         this._gunMarkersContainer.dispose();
+         this._gunMarkersContainer = null;
+         if(this._speedometer)
+         {
+            this._speedometer.dispose();
+            this._speedometer = null;
+         }
+         this._speedometerBg = null;
+         this._currentCrosshair = null;
+         this._settings = null;
+         for each(_loc1_ in this._crosshairs)
+         {
+            _loc1_.dispose();
+         }
+         this._crosshairs.length = 0;
+         this._crosshairs = null;
+         if(this._sniperCameraTransitionFx)
+         {
+            this._sniperCameraTransitionFx.dispose();
+            this._sniperCameraTransitionFx = null;
+         }
+         this._indicatorsData = null;
+         super.onDispose();
+      }
+      
+      override protected function setGunMarkersIndicators(param1:Vector.<GunMarkerIndicatorVO>) : void
+      {
+         this._indicatorsData = param1;
+         var _loc2_:CrosshairSettingsVO = this._settings[this._settingId];
+         if(Boolean(_loc2_) && this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setGunMarkersData(param1,_loc2_.isColorBlind);
+         }
+      }
+      
+      override protected function setShotFlyTimes(param1:Vector.<ShotFlyTimeVO>) : void
+      {
+         if(this._currentCrosshair is CrosshairStrategic)
+         {
+            (this._currentCrosshair as CrosshairStrategic).setShotFlyTimesData(param1);
+         }
+      }
+      
+      public function as_addSpeedometer(param1:int, param2:int) : void
+      {
+         if(this._speedometer == null)
+         {
+            this._speedometer = Speedometer(createComponent(Linkages.SPEEDOMETER_UI));
+            this._speedometer.x = SPEEDOMETER_X_OFFSET;
+            this._speedometer.y = SPEEDOMETER_Y_OFFSET;
+            this._speedometer.setMaxSpeedNormalMode(param1);
+            this._speedometer.setMaxSpeedSpeedMode(param2);
+            this._speedometer.blendMode = BlendMode.ADD;
+         }
+         if(this._speedometerBg == null)
+         {
+            this._speedometerBg = Sprite(createComponent(Linkages.SPEEDOMETER_BG_UI));
+            this._speedometerBg.x = SPEEDOMETER_X_OFFSET;
+            this._speedometerBg.y = SPEEDOMETER_Y_OFFSET;
+         }
+         this._speedometerBg.visible = true;
+         this._speedometer.visible = true;
+         this.attachSpeedometer();
+      }
+      
+      public function as_autoloaderUpdate(param1:Number, param2:Number, param3:Boolean, param4:Boolean, param5:Boolean) : void
+      {
+         this.clearAutoloaderReloadTimer();
+         this._isAutoloaderTimerRed = param5;
+         this._isAutoloaderTimerOn = param4;
+         this._autoloaderBaseTime = param2;
+         this._reloadingAutoloaderFinishTime = getTimer() + param1 * CrosshairConsts.MS_IN_SECOND;
+         if(param1 > 0)
+         {
+            this._autoloaderState = CrosshairConsts.RELOADING_PROGRESS;
+            this._autoloaderTimer = setInterval(this.updateAutoloaderReloadingTimer,CrosshairConsts.ANIMATION_UPDATE_TICK);
+         }
+         else if(param1 == 0)
+         {
+            this._autoloaderState = CrosshairConsts.RELOADING_END;
+         }
+         this._isAutoloaderCritical = param3;
+         this.applyAutoloaderState();
+      }
+      
+      public function as_blinkReloadTime(param1:int) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.blinkReloadTime(param1);
+         }
+      }
+      
+      public function as_cancelDualGunCharge() : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.cancelDualGunCharge();
+         }
+      }
+      
+      public function as_setChargeGunActive(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setChargeGunActive(param1);
+         }
+      }
+      
+      public function as_setChargeGunState(param1:Number, param2:uint, param3:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setChargeGunState(param1,param2,param3);
+         }
+      }
+      
+      public function as_clearAverageDamage(param1:Boolean) : void
+      {
+         this._averageDamageStr = Values.EMPTY_STR;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.clearAverageDamage(param1);
+         }
+      }
+      
+      public function as_clearDistance(param1:Boolean) : void
+      {
+         this._distanceStr = Values.EMPTY_STR;
+         this._isDistanceShown = false;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.clearDistance(param1);
+         }
+      }
+      
+      public function as_createGunMarker(param1:Number, param2:String, param3:String) : Boolean
+      {
+         var gunMarker:IGunMarker = null;
+         var viewID:Number = param1;
+         var linkageName:String = param2;
+         var sceneName:String = param3;
+         try
+         {
+            gunMarker = createComponent(linkageName) as IGunMarker;
+            if(gunMarker != null && this._gunMarkersContainer != null)
+            {
+               this._gunMarkersContainer.addGunMarker(gunMarker,sceneName);
+               return true;
+            }
+         }
+         catch(e:ReferenceError)
+         {
+         }
+         return false;
+      }
+      
+      public function as_destroyGunMarker(param1:String) : Boolean
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            return this._gunMarkersContainer.destroyGunMarker(param1);
+         }
+         return false;
+      }
+      
+      public function as_hideBoost(param1:Boolean) : void
+      {
+         var _loc2_:BoostIndicatorStateParamsVO = null;
+         if(this._currentCrosshair != null)
+         {
+            _loc2_ = this._currentCrosshair.autoloaderBoostParams;
+            if(_loc2_)
+            {
+               _loc2_.currentState = AUTOLOADERBOOSTVIEWSTATES.INVISIBLE;
+               _loc2_.isSideFadeOut = param1;
+               this._currentCrosshair.autoloaderBoostUpdate(_loc2_,0);
+            }
+         }
+      }
+      
+      public function as_isFaded(param1:Boolean) : void
+      {
+         this.clearTweens();
+         this._fadeTween = new Tween(FADE_TWEEN_DURATION,this,{"alpha":(param1 ? FADE_OUT_ALPHA : FADE_IN_ALPHA)},{
+            "paused":false,
+            "ease":Quartic.easeOut,
+            "delay":0,
+            "fastTransform":false,
+            "onComplete":null
+         });
+      }
+      
+      public function as_recreateDevice(param1:Number, param2:Number) : void
+      {
+         var _loc3_:ICrosshair = null;
+         for each(_loc3_ in this._crosshairs)
+         {
+            _loc3_.x = param1;
+            _loc3_.y = param2;
+         }
+      }
+      
+      public function as_removeSpeedometer() : void
+      {
+         if(this._speedometer)
+         {
+            this._speedometer.visible = false;
+         }
+         if(this._speedometerBg)
+         {
+            this._speedometerBg.visible = false;
+         }
+      }
+      
+      public function as_runCameraTransitionFx(param1:int, param2:Number) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._sniperCameraTransitionFx.start(param1,param2);
+         }
+      }
+      
+      public function as_setAccuracyStacksProgress(param1:int) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.accuracyStacksProgress(param1);
+         }
+      }
+      
+      public function as_setAimDamageStage(param1:String) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setAimDamageStage(param1);
+         }
+      }
+      
+      public function as_setAmmoStock(param1:Number, param2:Number, param3:String, param4:Boolean) : void
+      {
+         this._ammoQuantity = param1;
+         this._ammoQuantityInClip = param2;
+         this._ammoClipState = param3;
+         this._ammoClipReloaded = param4;
+         if(this._ammoQuantity == 0)
+         {
+            this._remainingTimeInSec = 0;
+            this._currReloadingState = CrosshairConsts.RELOADING_IMPOSSIBLE_AMMO_ENDED;
+         }
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setAmmoStock(this._ammoQuantity,this._ammoQuantityInClip,this._ammoClipState,this._ammoClipReloaded);
+         }
+         this._ammoClipReloaded = false;
+      }
+      
+      public function as_setAutoloaderPercent(param1:Number, param2:Number, param3:Boolean, param4:Boolean, param5:Boolean) : void
+      {
+         this._isAutoloaderCritical = param3;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.autoloaderUpdate(param1,param2,param3,param4,param5);
+         }
+      }
+      
+      public function as_setAutoloaderReloadasPercent(param1:Number) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setAutoloaderReloadingAsPercent(param1);
+         }
+      }
+      
+      public function as_setAutoloaderReloading(param1:Number, param2:Number) : void
+      {
+         this.clearAutoloaderAnimationTimer();
+         this._autoloaderAnimationBaseTime = param2;
+         this._autoloaderAnimationFinishTime = getTimer() + param1 * CrosshairConsts.MS_IN_SECOND;
+         if(param1 > 0)
+         {
+            this._autoloaderAnimationState = CrosshairConsts.RELOADING_PROGRESS;
+            this._autoloaderAnimationTimer = setInterval(this.updateAutoloaderAnimationTimer,CrosshairConsts.ANIMATION_UPDATE_TICK);
+         }
+         else if(param1 == 0)
+         {
+            this._autoloaderAnimationState = CrosshairConsts.RELOADING_END;
+            this._autoloaderAnimationProgress = 0;
+         }
+         this.applyAutoloaderAnimationState();
+      }
+      
+      public function as_setAverageDamage(param1:String) : void
+      {
+         this._averageDamageStr = param1;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setAverageDamage(this._averageDamageStr);
+         }
+      }
+      
+      public function as_setBoostAsPercent(param1:Number, param2:Number) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.autoloaderBoostUpdateAsPercent(param2,param1);
+         }
+      }
+      
+      public function as_setBurnoutWarning(param1:String) : void
+      {
+         if(this._speedometer)
+         {
+            this._burnoutWarning = param1;
+            this._isWarning = true;
+            this._speedometer.setWarning(param1);
+         }
+      }
+      
+      public function as_setChargeableBurstMode(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setChargeableBurstMode(param1);
+         }
+      }
+      
+      public function as_setClipParams(param1:Number, param2:Number, param3:int) : void
+      {
+         this._clipReloadingType = param3;
+         this._clipCapacity = param1;
+         this._burst = param2;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setClipsParam(this._clipCapacity,this._burst,this._clipReloadingType);
+         }
+      }
+      
+      public function as_setDistance(param1:String) : void
+      {
+         this._distanceStr = param1;
+         this._isDistanceShown = true;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setDistance(this._distanceStr);
+         }
+      }
+      
+      public function as_setSecondaryGunMarkerActive(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setSecondaryActive(param1);
+         }
+      }
+      
+      public function as_setDispersionCircleThickness(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setDispersionCircleThickness(param1);
+         }
+      }
+      
+      public function as_setEngineCrushError(param1:String) : void
+      {
+         if(this._speedometer)
+         {
+            this._engineCrush = param1;
+            this._isEngineCrush = true;
+            this._speedometer.setEngineCrushError(param1);
+         }
+      }
+      
+      public function as_setGunMarkerColor(param1:String, param2:String) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setGunMarkerColor(param1,param2);
+         }
+      }
+      
+      public function as_setHealth(param1:Number) : void
+      {
+         this._healthInPercents = param1;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setHealth(this._healthInPercents);
+         }
+      }
+      
+      public function as_setIsInControllableReload(param1:Boolean) : void
+      {
+         this._isInControllableReload = param1;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setIsInControllableReload(param1);
+         }
+      }
+      
+      public function as_setShellCalibrationState(param1:uint) : void
+      {
+         this._shellCalibrationState = param1;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setShellCalibrationState(param1);
+         }
+      }
+      
+      public function as_setNetSeparatorType(param1:String) : void
+      {
+         if(this._netSeparatorType != param1)
+         {
+            this._netSeparatorType = param1;
+            this.applySettings();
+         }
+      }
+      
+      public function as_setNetSeparatorVisible(param1:Boolean) : void
+      {
+         if(this._visibleNetSeparator == param1)
+         {
+            return;
+         }
+         this._visibleNetSeparator = param1;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setNetSeparatorVisible(this._visibleNetSeparator);
+         }
+      }
+      
+      public function as_setNetType(param1:int) : void
+      {
+         if(this._netType != param1)
+         {
+            this._netType = param1;
+            this.applySettings();
+         }
+      }
+      
+      public function as_setNetVisible(param1:int) : void
+      {
+         if(this._visibleNet == param1)
+         {
+            return;
+         }
+         this._visibleNet = param1;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setVisibleNet(this._visibleNet);
+         }
+      }
+      
+      public function as_setReloading(param1:Number, param2:Number, param3:Number, param4:Boolean, param5:Boolean) : void
+      {
+         this._isShotAvailable = param5;
+         this.clearReloadingTimer();
+         this._baseReloadingTimeInSec = param2;
+         if(param1 == 0)
+         {
+            this._currReloadingPercent = VALUE_100;
+            this._remainingTimeInSec = this._baseReloadingTimeInSec;
+            if(param4)
+            {
+               this._currReloadingState = CrosshairConsts.RELOADING_END;
+            }
+            else if(param2 == 0)
+            {
+               this._currReloadingState = CrosshairConsts.RELOADING_INIT;
+            }
+            else
+            {
+               this._currReloadingState = CrosshairConsts.RELOADING_ENDED;
+            }
+         }
+         else if(param1 == Values.DEFAULT_INT)
+         {
+            this._currReloadingPercent = 0;
+            if(this._ammoQuantity == 0)
+            {
+               this._remainingTimeInSec = 0;
+               this._currReloadingState = CrosshairConsts.RELOADING_IMPOSSIBLE_AMMO_ENDED;
+            }
+            else
+            {
+               this._remainingTimeInSec = this._baseReloadingTimeInSec;
+               this._currReloadingState = CrosshairConsts.RELOADING_INIT;
+            }
+         }
+         else
+         {
+            this._remainingTimeInSec = param1;
+            this._previousReloadingPercent = this._currReloadingPercent = param3 / param2;
+            this._currReloadingState = CrosshairConsts.RELOADING_PROGRESS;
+            this._initReloadingTime = getTimer();
+            this._baseReloadingTimeInMsec = this._baseReloadingTimeInSec * MSEC_TO_SEC_FACTOR;
+            if(param4)
+            {
+               this._reloadingInterval = setInterval(this.updateReloadingTimer,CrosshairConsts.COUNTER_UPDATE_TICK,false);
+            }
+         }
+         this.updateCurrentCrosshairReloadingParams();
+         if(this.isExtraShot)
+         {
+            this.setExtraShotClipReloading(param1,param2,param5);
+         }
+         else if(this.isShellCalibration)
+         {
+            this.setShellCalibrationClipReloading(param1,param2);
+         }
+      }
+      
+      public function as_setReloadingAsPercent(param1:Number, param2:Number, param3:Boolean, param4:Boolean) : void
+      {
+         this._isShotAvailable = param4;
+         if(param2 >= VALUE_100)
+         {
+            this._currReloadingPercent = 1;
+            if(param3)
+            {
+               this._currReloadingState = CrosshairConsts.RELOADING_END;
+            }
+            else
+            {
+               this._currReloadingState = CrosshairConsts.RELOADING_ENDED;
+            }
+         }
+         else
+         {
+            this._currReloadingState = CrosshairConsts.RELOADING_PROGRESS;
+            this._currReloadingPercent = param2 * DIVIDE_100;
+         }
+         this._remainingTimeInSec = param1;
+         this.applyData(true);
+         if(this.isExtraShot)
+         {
+            this.setExtraShotClipReloadingAsPercent(this._remainingTimeInSec,this._currReloadingPercent,param4);
+         }
+         else if(this.isShellCalibration)
+         {
+            this.setShellCalibrationClipReloadingAsPercent(this._remainingTimeInSec,this._currReloadingPercent);
+         }
+      }
+      
+      public function as_setReloadingCounterShown(param1:Boolean) : void
+      {
+         this._isReloadingTimeFieldShown = param1;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.showReloadingTimeField(param1);
+         }
+      }
+      
+      public function as_setScale(param1:Number) : void
+      {
+         var _loc2_:ICrosshair = null;
+         if(this._scale == param1)
+         {
+            return;
+         }
+         this._scale = param1;
+         for each(_loc2_ in this._crosshairs)
+         {
+            _loc2_.scaleX = _loc2_.scaleY = this._scale;
+         }
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setScale(this._scale);
+         }
+      }
+      
+      public function as_setSettings(param1:Object) : void
+      {
+         var _loc2_:String = null;
+         var _loc3_:Object = null;
+         for(_loc2_ in param1)
+         {
+            _loc3_ = param1[_loc2_];
+            if(_loc3_)
+            {
+               this._settings[int(_loc2_)] = new CrosshairSettingsVO(_loc3_);
+            }
+         }
+         this.applySettings();
+      }
+      
+      public function as_setShellChangeTime(param1:Boolean, param2:String) : void
+      {
+         this._isQuickReloadingActive = param1;
+         this._intuitionCooldown = param2;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setQuickReloadingTime(this._isQuickReloadingActive,this._intuitionCooldown);
+         }
+      }
+      
+      public function as_setSize(param1:Number, param2:Number) : void
+      {
+         if(this._width == param1 && this._height == param2)
+         {
+            return;
+         }
+         this._width = param1;
+         this._height = param2;
+         this._currentCrosshair.setSize(param1,param2);
+      }
+      
+      public function as_setSpeedMode(param1:Boolean) : void
+      {
+         if(this._speedometer)
+         {
+            this._speedMode = param1;
+            this._speedometer.changeState(param1);
+         }
+      }
+      
+      public function as_setAuxiliaryRocketLauncherActive(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setAuxiliaryRocketLauncherActive(param1);
+         }
+      }
+      
+      public function as_setTwinGunMarkerActive(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setTwinGunActive(param1);
+         }
+      }
+      
+      public function as_setTwinGunMarkerState(param1:uint) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setTwinGunMarkerState(param1);
+         }
+      }
+      
+      public function as_setLowChargeInitialTime(param1:Number, param2:Number, param3:Number, param4:Number) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setLowChargeInitialTime(param1,param2,param3,param4);
+         }
+      }
+      
+      public function as_setLowChargeTimeLeft(param1:Number, param2:Number, param3:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setLowChargeTimeLeft(param1,param2,param3);
+         }
+      }
+      
+      public function as_setView(param1:int, param2:int) : void
+      {
+         var _loc3_:BoostIndicatorStateParamsVO = null;
+         if(this._viewId == param1 && this._settingId == param2)
+         {
+            return;
+         }
+         this._viewId = param1;
+         this._settingId = param2;
+         if(this._viewId <= 0)
+         {
+            this.hideAll();
+         }
+         else if(this._currentCrosshair != null)
+         {
+            if(this._currentCrosshair.visible)
+            {
+               this._currentCrosshair.visible = false;
+            }
+            _loc3_ = this._currentCrosshair.autoloaderBoostParams;
+            this._currentCrosshair = this._crosshairs[this._viewId - 1];
+            this._currentCrosshair.visible = true;
+            this._currentCrosshair.setSize(this._width,this._height);
+            this._currentCrosshair.setVisibleNet(this._visibleNet);
+            this._currentCrosshair.setNetSeparatorVisible(this._visibleNetSeparator);
+            if(_loc3_)
+            {
+               this._currentCrosshair.autoloaderBoostUpdate(_loc3_,0,true);
+            }
+         }
+         this._sniperCameraTransitionFx.setView(param1,this._currentCrosshair);
+         this.applySettings();
+         this.applyData();
+      }
+      
+      public function as_setZoom(param1:String, param2:Number) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._zoomStr = param1;
+            this._currentCrosshair.setZoom(this._zoomStr);
+         }
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setZoomFactor(param2);
+         }
+      }
+      
+      public function as_showBoost(param1:Number, param2:Number) : void
+      {
+         var _loc3_:BoostIndicatorStateParamsVO = null;
+         var _loc4_:Boolean = false;
+         if(this._currentCrosshair != null)
+         {
+            _loc3_ = this._currentCrosshair.autoloaderBoostParams;
+            _loc4_ = false;
+            if(_loc3_)
+            {
+               if(_loc3_.currentState != AUTOLOADERBOOSTVIEWSTATES.RECHARGE)
+               {
+                  _loc3_.resetToDefault();
+               }
+               else
+               {
+                  _loc4_ = true;
+               }
+               _loc3_.currentState = param1;
+               _loc3_.remainingDurationMSec = param1 * MSEC_TO_SEC_FACTOR;
+               this._currentCrosshair.autoloaderBoostUpdate(_loc3_,param2,_loc4_);
+            }
+         }
+      }
+      
+      public function as_showPenetrationFx() : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.showPenetrationFx();
+         }
+      }
+      
+      public function as_showShot() : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.showShot();
+         }
+      }
+      
+      public function as_startDualGunCharging(param1:Number, param2:Number) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.startDualGunCharging(param1,param2);
+         }
+      }
+      
+      public function as_stopBurnoutWarning() : void
+      {
+         if(this._speedometer)
+         {
+            this._isWarning = false;
+            this._speedometer.stopWarning();
+         }
+      }
+      
+      public function as_stopEngineCrushError() : void
+      {
+         if(this._speedometer)
+         {
+            this._isEngineCrush = false;
+            this._speedometer.stopEngineCrushError();
+         }
+      }
+      
+      public function as_updateAmmoState(param1:String) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._ammoState = param1;
+            this._currentCrosshair.updateAmmoState(this._ammoState);
+         }
+      }
+      
+      public function as_updateBurnout(param1:Number) : void
+      {
+         if(this._speedometer)
+         {
+            this._burnout = param1;
+            this._speedometer.setBurnout(param1);
+         }
+      }
+      
+      public function as_updateDualGunMarkerState(param1:int) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.updateDualGunMarkerState(param1);
+         }
+      }
+      
+      public function as_updatePlayerInfo(param1:String) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._playerInfoStr = param1;
+            this._currentCrosshair.updatePlayerInfo(this._playerInfoStr);
+         }
+      }
+      
+      public function as_updateScaleWidget(param1:Number) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.updateScaleWidget(param1);
+         }
+      }
+      
+      public function as_updateSpeed(param1:int) : void
+      {
+         if(this._speedometer)
+         {
+            this._speed = param1;
+            this._speedometer.setSpeed(param1);
+         }
+      }
+      
+      public function init() : void
+      {
+         stage.scaleMode = StageScaleMode.NO_SCALE;
+         stage.align = StageAlign.TOP_LEFT;
+         this.initCrosshairs();
+         this._gunMarkersContainer = new GunMarkersManager(this);
+         this.hideAll();
+      }
+      
+      protected function initCrosshairs() : void
+      {
+         var _loc1_:ICrosshair = null;
+         var _loc2_:String = null;
+         this._crosshairs = new Vector.<ICrosshair>(0);
+         for each(_loc2_ in CROSSHAIRS_LINAKGES)
+         {
+            _loc1_ = ICrosshair(createComponent(_loc2_));
+            this._crosshairs.push(_loc1_);
+            addChild(DisplayObject(_loc1_));
+         }
+         this._currentCrosshair = this._crosshairs[0];
+      }
+      
+      protected function hideAll() : void
+      {
+         var _loc1_:ICrosshair = null;
+         for each(_loc1_ in this._crosshairs)
+         {
+            _loc1_.visible = false;
+         }
+      }
+      
+      private function clearTweens() : void
+      {
+         if(this._fadeTween)
+         {
+            this._fadeTween.dispose();
+            this._fadeTween = null;
+         }
+      }
+      
+      private function attachSpeedometer() : void
+      {
+         var _loc1_:DisplayObjectContainer = null;
+         if(this._currentCrosshair != null && this._speedometer != null)
+         {
+            if(this._speedometer.parent != null)
+            {
+               this._speedometer.parent.removeChild(this._speedometer);
+            }
+            if(this._speedometerBg.parent != null)
+            {
+               this._speedometerBg.parent.removeChild(this._speedometer);
+            }
+            _loc1_ = this._currentCrosshair as DisplayObjectContainer;
+            if(this._currentCrosshair)
+            {
+               _loc1_.addChild(this._speedometer);
+               _loc1_.addChild(this._speedometerBg);
+               _loc1_.blendMode = BlendMode.LAYER;
+            }
+         }
+      }
+      
+      private function updateAutoloaderAnimationTimer() : void
+      {
+         if(getTimer() >= this._autoloaderAnimationFinishTime)
+         {
+            this.clearAutoloaderAnimationTimer();
+         }
+         this.applyAutoloaderAnimationState();
+      }
+      
+      private function applyAutoloaderAnimationState() : void
+      {
+         var _loc1_:Number = NaN;
+         if(this._autoloaderAnimationState != CrosshairConsts.RELOADING_END)
+         {
+            _loc1_ = (this._autoloaderAnimationFinishTime - getTimer()) / CrosshairConsts.MS_IN_SECOND;
+            this._autoloaderAnimationProgress = _loc1_ / this._autoloaderAnimationBaseTime;
+         }
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setAutoloaderReloadingAsPercent(1 - this._autoloaderAnimationProgress);
+         }
+      }
+      
+      private function clearTimer(param1:Number) : int
+      {
+         if(param1 != Values.DEFAULT_INT)
+         {
+            clearInterval(param1);
+         }
+         return Values.DEFAULT_INT;
+      }
+      
+      private function clearAutoloaderReloadTimer() : void
+      {
+         this._autoloaderTimer = this.clearTimer(this._autoloaderTimer);
+      }
+      
+      private function clearAutoloaderAnimationTimer() : void
+      {
+         this._autoloaderAnimationTimer = this.clearTimer(this._autoloaderAnimationTimer);
+      }
+      
+      private function updateAutoloaderReloadingTimer() : void
+      {
+         if(getTimer() >= this._reloadingAutoloaderFinishTime)
+         {
+            this.clearAutoloaderReloadTimer();
+         }
+         this.applyAutoloaderState();
+      }
+      
+      private function applyAutoloaderState(param1:Boolean = false) : void
+      {
+         if(this._currentCrosshair == null)
+         {
+            return;
+         }
+         var _loc2_:Number = 0;
+         var _loc3_:Number = this._autoloaderBaseTime;
+         if(this._autoloaderState != CrosshairConsts.RELOADING_END)
+         {
+            _loc3_ = (this._reloadingAutoloaderFinishTime - getTimer()) / CrosshairConsts.MS_IN_SECOND;
+            _loc2_ = _loc3_ / this._autoloaderBaseTime;
+         }
+         this._currentCrosshair.autoloaderUpdate(_loc2_,_loc3_,this._isAutoloaderCritical,this._isAutoloaderTimerOn,this._isAutoloaderTimerRed,param1);
+      }
+      
+      private function applyData(param1:Boolean = false) : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setInfo(this._healthInPercents,this._zoomStr,this._currReloadingState,this._isReloadingTimeFieldShown,this._isDistanceShown,this._distanceStr,this._playerInfoStr,this._clipCapacity,this._burst,this._clipReloadingType,this._ammoState,this._ammoQuantity,this._ammoQuantityInClip,this._ammoClipState,this._averageDamageStr,this._shellCalibrationState,this._ammoClipReloaded,this._isInControllableReload,this._isReloadBoost,this._isReloadBoostBorder,this._isReloadBoostBorderActive,this._isAlternateZoomPosition);
+            this._currentCrosshair.setQuickReloadingTime(this._isQuickReloadingActive,this._intuitionCooldown);
+            this._currentCrosshair.setAutoreloaderSurgeState(this._autoreloaderSurgeActive);
+            if(this._speedometer != null)
+            {
+               this._speedometer.changeState(this._speedMode);
+               this._speedometer.setBurnout(this._burnout);
+               this._speedometer.setSpeed(this._speed);
+               if(this._speedometer.warning.visible != this._isWarning)
+               {
+                  if(this._isWarning)
+                  {
+                     this._speedometer.setWarning(this._burnoutWarning);
+                  }
+                  else
+                  {
+                     this._speedometer.stopWarning();
+                  }
+               }
+               if(this._speedometer.engineError.visible != this._isEngineCrush)
+               {
+                  if(this._isEngineCrush)
+                  {
+                     this._speedometer.setEngineCrushError(this._engineCrush);
+                  }
+                  else
+                  {
+                     this._speedometer.stopEngineCrushError();
+                  }
+               }
+            }
+         }
+         if(!param1)
+         {
+            if(this.isAutoloader)
+            {
+               this.applyAutoloaderState(true);
+               this.applyAutoloaderAnimationState();
+            }
+            else if(this.isExtraShot)
+            {
+               this.applyExtraShotClipReloadingState(true);
+            }
+            else if(this.isControllableReload)
+            {
+               this.applyAutoloaderState(true);
+            }
+            else if(this.isShellCalibration)
+            {
+               this.applyShellCalibrationClipReloadingState(true);
+            }
+         }
+         this.updateCurrentCrosshairReloadingParams();
+      }
+      
+      private function applySettings() : void
+      {
+         var _loc1_:CrosshairSettingsVO = this._settings[this._settingId];
+         if(Boolean(_loc1_) && this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setNetType(this._netType != Values.DEFAULT_INT ? this._netType : _loc1_.netType);
+            this._currentCrosshair.setNetSeparatorType(this._netSeparatorType);
+            this._currentCrosshair.setComponentsAlpha(_loc1_.netAlphaValue,_loc1_.centerAlphaValue,_loc1_.reloaderAlphaValue,_loc1_.conditionAlphaValue,_loc1_.cassetteAlphaValue,_loc1_.reloaderTimerAlphaValue,_loc1_.zoomIndicatorAlphaValue);
+            this._currentCrosshair.setCenterType(_loc1_.centerType);
+            this._currentCrosshair.scaleWidgetEnabled = _loc1_.spgScaleWidgetEnabled;
+            this._currentCrosshair.setGunMarkersData(this._indicatorsData,_loc1_.isColorBlind);
+            this._gunMarkersContainer.updateSettings(_loc1_);
+         }
+      }
+      
+      private function updateReloadingTimer() : void
+      {
+         var _loc1_:Number = getTimer() - this._initReloadingTime;
+         this._currReloadingPercent = _loc1_ / this._baseReloadingTimeInMsec + this._previousReloadingPercent;
+         if(this._currReloadingPercent >= 1)
+         {
+            this.clearReloadingTimer();
+            this._currReloadingState = CrosshairConsts.RELOADING_ENDED;
+            this._remainingTimeInSec = this._baseReloadingTimeInSec;
+         }
+         else
+         {
+            this._remainingTimeInSec = int(this._baseReloadingTimeInMsec * (1 - this._currReloadingPercent) * DIVIDE_10) * DIVIDE_100;
+         }
+         this.updateCurrentCrosshairReloadingParams();
+      }
+      
+      private function updateCurrentCrosshairReloadingParams() : void
+      {
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setReloadingTime(this._remainingTimeInSec);
+            this._currentCrosshair.setReloadingAsPercent(this._currReloadingPercent);
+            this._currentCrosshair.setReloadingState(this._currReloadingState);
+         }
+         this._gunMarkersContainer.updateReloadingParams(this._currReloadingPercent,this._currReloadingState);
+      }
+      
+      private function clearReloadingTimer() : void
+      {
+         this._reloadingInterval = this.clearTimer(this._reloadingInterval);
+      }
+      
+      private function setExtraShotClipReloading(param1:Number, param2:Number, param3:Boolean) : void
+      {
+         this.clearExtraShotClipTimer();
+         this._extraShotClipReloadingBaseTime = param2;
+         this._extraShotClipReloadingFinishTime = getTimer() + param1 * CrosshairConsts.MS_IN_SECOND;
+         if(param1 > 0)
+         {
+            this._extraShotClipReloadingState = param3 || this._ammoQuantityInClip == 0 ? CrosshairConsts.CLIP_RELOADING : CrosshairConsts.GUN_RELOADING;
+            this._extraShotClipReloadingTimer = setInterval(this.updateExtraShotClipTimer,CrosshairConsts.ANIMATION_UPDATE_TICK);
+         }
+         else
+         {
+            this._extraShotClipReloadingState = CrosshairConsts.RELOADING_END;
+         }
+         this.applyExtraShotClipReloadingState();
+      }
+      
+      private function setExtraShotClipReloadingAsPercent(param1:Number, param2:Number, param3:Boolean) : void
+      {
+         var _loc4_:Boolean = false;
+         if(param2 < 1)
+         {
+            this._extraShotClipReloadingState = param3 || this._ammoQuantityInClip == 0 ? CrosshairConsts.CLIP_RELOADING : CrosshairConsts.GUN_RELOADING;
+            _loc4_ = param3 && param1 <= EXTRA_SHOT_CLIP_RELOADING_CRITICAL_THRESHOLD;
+         }
+         else
+         {
+            this._extraShotClipReloadingState = CrosshairConsts.RELOADING_END;
+         }
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setExtraShotClipReloading(this._extraShotClipReloadingState,param2,_loc4_);
+         }
+      }
+      
+      private function clearExtraShotClipTimer() : void
+      {
+         this._extraShotClipReloadingTimer = this.clearTimer(this._extraShotClipReloadingTimer);
+      }
+      
+      private function updateExtraShotClipTimer() : void
+      {
+         if(getTimer() >= this._extraShotClipReloadingFinishTime)
+         {
+            this.clearExtraShotClipTimer();
+         }
+         this.applyExtraShotClipReloadingState();
+      }
+      
+      private function applyExtraShotClipReloadingState(param1:Boolean = false) : void
+      {
+         var _loc4_:Number = NaN;
+         var _loc2_:Number = 1;
+         var _loc3_:Boolean = false;
+         if(this._extraShotClipReloadingState != CrosshairConsts.RELOADING_END)
+         {
+            _loc4_ = (this._extraShotClipReloadingFinishTime - getTimer()) / CrosshairConsts.MS_IN_SECOND;
+            _loc2_ -= _loc4_ / this._extraShotClipReloadingBaseTime;
+            _loc3_ = this._isShotAvailable && _loc4_ <= EXTRA_SHOT_CLIP_RELOADING_CRITICAL_THRESHOLD;
+         }
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setExtraShotClipReloading(this._extraShotClipReloadingState,_loc2_,_loc3_,param1);
+         }
+      }
+      
+      private function setShellCalibrationClipReloading(param1:Number, param2:Number) : void
+      {
+         this.clearShellCalibrationClipTimer();
+         this._shellCalibrationClipReloadingBaseTime = param2;
+         this._shellCalibrationClipReloadingFinishTime = getTimer() + param1 * CrosshairConsts.MS_IN_SECOND;
+         if(param1 > 0)
+         {
+            this._shellCalibrationClipReloadingState = this._ammoQuantityInClip == 0 ? CrosshairConsts.CLIP_RELOADING : CrosshairConsts.GUN_RELOADING;
+            this._shellCalibrationClipReloadingTimer = setInterval(this.updateShellCalibrationClipTimer,CrosshairConsts.ANIMATION_UPDATE_TICK);
+         }
+         else
+         {
+            this._shellCalibrationClipReloadingState = CrosshairConsts.RELOADING_END;
+         }
+         this.applyShellCalibrationClipReloadingState();
+      }
+      
+      private function setShellCalibrationClipReloadingAsPercent(param1:Number, param2:Number) : void
+      {
+         if(param2 < 1)
+         {
+            this._shellCalibrationClipReloadingState = this._ammoQuantityInClip == 0 ? CrosshairConsts.CLIP_RELOADING : CrosshairConsts.GUN_RELOADING;
+         }
+         else
+         {
+            this._shellCalibrationClipReloadingState = CrosshairConsts.RELOADING_END;
+         }
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setShellCalibrationClipReloading(this._shellCalibrationClipReloadingState,param2);
+         }
+      }
+      
+      private function clearShellCalibrationClipTimer() : void
+      {
+         this._shellCalibrationClipReloadingTimer = this.clearTimer(this._shellCalibrationClipReloadingTimer);
+      }
+      
+      private function updateShellCalibrationClipTimer() : void
+      {
+         if(getTimer() >= this._shellCalibrationClipReloadingFinishTime)
+         {
+            this.clearShellCalibrationClipTimer();
+         }
+         this.applyShellCalibrationClipReloadingState();
+      }
+      
+      private function applyShellCalibrationClipReloadingState(param1:Boolean = false) : void
+      {
+         var _loc3_:Number = NaN;
+         var _loc2_:Number = 1;
+         if(this._shellCalibrationClipReloadingState != CrosshairConsts.RELOADING_END)
+         {
+            _loc3_ = (this._shellCalibrationClipReloadingFinishTime - getTimer()) / CrosshairConsts.MS_IN_SECOND;
+            _loc2_ -= _loc3_ / this._shellCalibrationClipReloadingBaseTime;
+         }
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setShellCalibrationClipReloading(this._shellCalibrationClipReloadingState,_loc2_,param1);
+         }
+      }
+      
+      protected function get currentCrosshair() : ICrosshair
+      {
+         return this._currentCrosshair;
+      }
+      
+      protected function set currentCrosshair(param1:ICrosshair) : void
+      {
+         this._currentCrosshair = param1;
+      }
+      
+      protected function get crosshairs() : Vector.<ICrosshair>
+      {
+         return this._crosshairs;
+      }
+      
+      protected function set crosshairs(param1:Vector.<ICrosshair>) : void
+      {
+         this._crosshairs = param1;
+      }
+      
+      protected function get gunMarkersContainer() : GunMarkersManager
+      {
+         return this._gunMarkersContainer;
+      }
+      
+      private function get isAutoloader() : Boolean
+      {
+         return this._clipReloadingType == CLIP_RELOADING_TYPES.AUTO_LOADER_CLIP;
+      }
+      
+      private function get isExtraShot() : Boolean
+      {
+         return this._clipReloadingType == CLIP_RELOADING_TYPES.EXTRA_SHOT_CLIP;
+      }
+      
+      private function get isControllableReload() : Boolean
+      {
+         return this._clipReloadingType == CLIP_RELOADING_TYPES.CONTROLLABLE_RELOAD;
+      }
+      
+      private function get isShellCalibration() : Boolean
+      {
+         return this._clipReloadingType == CLIP_RELOADING_TYPES.SHELL_CALIBRATION_CLIP;
+      }
+      
+      private function onCrosshairPanelSoundHandler(param1:CrosshairPanelEvent) : void
+      {
+         as_playSound(param1.key);
+      }
+   }
+}
+

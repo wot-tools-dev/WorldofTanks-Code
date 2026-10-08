@@ -1,0 +1,2008 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::NodeLeaderComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "periscope_joint"
+					},
+					"BW::StartAtNodeTransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "periscope_joint"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.73521,
+							"y": 0.75,
+							"z": -0.79156
+						}
+					}
+				},
+				"name": "Periscope",
+				"uuid": "cce48b75-ab70-43b6-a9fe-d8cb066b742e"
+			},
+			{
+				"components": {
+					"BW::NodeLeaderComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "hatch_rotate3"
+					},
+					"BW::StartAtNodeTransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "hatch_rotate3"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.188,
+							"y": 0.086,
+							"z": -0.007
+						}
+					}
+				},
+				"name": "Hatch_piston_helper",
+				"uuid": "9583ec1e-3c0f-402b-b6fd-b762cf9572e0"
+			},
+			{
+				"components": {
+					"BW::NodeLeaderComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "hatch_rotate2"
+					},
+					"BW::StartAtNodeTransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "hatch_rotate2"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.549,
+							"y": 1.757,
+							"z": -1.017
+						}
+					}
+				},
+				"name": "Hatch_lift",
+				"uuid": "fee138ac-814e-4226-9c92-e38deaa6fcc5"
+			},
+			{
+				"components": {
+					"BW::NodeLeaderComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "hatch_rotate1"
+					},
+					"BW::StartAtNodeTransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "hatch_rotate1"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.92265,
+							"y": 2.7655,
+							"z": -1.0093
+						}
+					}
+				},
+				"name": "Hatch_static",
+				"uuid": "8d52f0b4-e1f8-4035-accc-65ac1a473cde"
+			},
+			{
+				"components": {
+					"BW::NodeLeaderComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "hatch_rotate"
+					},
+					"BW::StartAtNodeTransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "hatch_rotate"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.187,
+							"y": 0,
+							"z": 0
+						}
+					}
+				},
+				"name": "Hatch_rotator",
+				"uuid": "510d2f21-3883-4768-8b69-a0d3da599e6e"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"decorType": "0",
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/sweden/S36_Strv_107_12/normal/lod0/Hull.model"
+			},
+			"BW::NodeFollowerComponent": {
+				"modelLink": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"nodeName": "V"
+			},
+			"BW::SequenceComponent": {
+				"activeLayer": 3,
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 0.01,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 2,
+								"object": "cce48b75-ab70-43b6-a9fe-d8cb066b742e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.75
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.01,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.75
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "8d52f0b4-e1f8-4035-accc-65ac1a473cde",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 12,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 12,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "fee138ac-814e-4226-9c92-e38deaa6fcc5",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.644
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.01,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.644
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "510d2f21-3883-4768-8b69-a0d3da599e6e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "9583ec1e-3c0f-402b-b6fd-b762cf9572e0",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							}
+						]
+					},
+					{
+						"alwaysEnabled": false,
+						"duration": 2,
+						"loop": false,
+						"name": "opening",
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 2,
+								"object": "cce48b75-ab70-43b6-a9fe-d8cb066b742e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.75
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 2,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.451
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "8d52f0b4-e1f8-4035-accc-65ac1a473cde",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 12,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.3,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 12,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.852,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "fee138ac-814e-4226-9c92-e38deaa6fcc5",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.644
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.565,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.757
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "510d2f21-3883-4768-8b69-a0d3da599e6e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.3,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.852,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "9583ec1e-3c0f-402b-b6fd-b762cf9572e0",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.3,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.852,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							}
+						]
+					},
+					{
+						"alwaysEnabled": false,
+						"duration": 1.5,
+						"loop": false,
+						"name": "closing",
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 2,
+								"object": "cce48b75-ab70-43b6-a9fe-d8cb066b742e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.451
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 1.4,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.75
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "8d52f0b4-e1f8-4035-accc-65ac1a473cde",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.648,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 1.2,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 12,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "fee138ac-814e-4226-9c92-e38deaa6fcc5",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.757
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.935,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.757
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 1.5,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.644
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "510d2f21-3883-4768-8b69-a0d3da599e6e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.648,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 1.2,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 2,
+								"object": "9583ec1e-3c0f-402b-b6fd-b762cf9572e0",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.648,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 1.2,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							}
+						]
+					},
+					{
+						"alwaysEnabled": false,
+						"duration": 0.01,
+						"loop": false,
+						"name": "opening_force",
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 0.01,
+								"object": "cce48b75-ab70-43b6-a9fe-d8cb066b742e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.451
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.01,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.451
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 0.01,
+								"object": "8d52f0b4-e1f8-4035-accc-65ac1a473cde",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 0.01,
+								"object": "fee138ac-814e-4226-9c92-e38deaa6fcc5",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.757
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.01,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.757
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 0.01,
+								"object": "510d2f21-3883-4768-8b69-a0d3da599e6e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 0.01,
+								"object": "9583ec1e-3c0f-402b-b6fd-b762cf9572e0",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							}
+						]
+					},
+					{
+						"alwaysEnabled": false,
+						"duration": 0.01,
+						"loop": false,
+						"name": "closing_force",
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 0.01,
+								"object": "cce48b75-ab70-43b6-a9fe-d8cb066b742e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.75
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.01,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.75
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 0.01,
+								"object": "8d52f0b4-e1f8-4035-accc-65ac1a473cde",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 12,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 12,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 0.01,
+								"object": "fee138ac-814e-4226-9c92-e38deaa6fcc5",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.644
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.01,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.644
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 0.01,
+								"object": "510d2f21-3883-4768-8b69-a0d3da599e6e",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 0.01,
+								"object": "9583ec1e-3c0f-402b-b6fd-b762cf9572e0",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.01,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -90,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Editor",
+					"Server"
+				],
+				"path": "vscript/plans/vehicles/mechanic_effects/sweden/S36_Strv_107_12_pillbox_mode_vfx.xml"
+			},
+			"cgf::TransformComponent": {},
+			"script::PillboxSiegeModeSoundEffects": {
+				"abilityActivationStart": "gui_abl_pillbox_activation_phase_start",
+				"abilityActivationStartEngine": "gp_abl_pillbox_engine_activation_phase_start",
+				"abilityActivationStop": "gui_abl_pillbox_activation_phase_stop",
+				"abilityActivationStopEngine": "gp_abl_pillbox_engine_activation_phase_stop",
+				"abilityDeactivationStart": "gui_abl_pillbox_deactivation_phase_start",
+				"abilityDeactivationStartEngine": "gp_abl_pillbox_engine_deactivation_phase_start",
+				"abilityDeactivationStop": "gui_abl_pillbox_deactivation_phase_stop",
+				"abilityDeactivationStopEngine": "gp_abl_pillbox_engine_deactivation_phase_stop",
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"engineDamageOff": "STATE_ext_abl_pillbox_engine_damage_off",
+				"engineDamageOn": "STATE_ext_abl_pillbox_engine_damage_on",
+				"engineStateGroup": "STATE_ext_abl_pillbox_engine_damage",
+				"longpressActivation": "gui_abl_pillbox_activation_longpress",
+				"longpressDeactivation": "gui_abl_pillbox_deactivation_longpress",
+				"longpressError": "gui_abl_button_not_ready"
+			}
+		},
+		"name": "S36_Strv_107_12_pillbox_mode_vfx",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

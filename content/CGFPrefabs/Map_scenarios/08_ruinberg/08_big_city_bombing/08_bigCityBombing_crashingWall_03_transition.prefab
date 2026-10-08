@@ -1,0 +1,679 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "FBX",
+								"lodScale": 1.0,
+								"path": "content/Buildings/hd_bld_EU_088_CrashWall/normal/lod0/hd_bld_EU_088_CrashWall_01_anim.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "dithering",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/random_events/08_ruinberg/dithering_hd_bld_EU_088_CrashWall_01_anim.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_088_CrashWall/normal/lod0/hd_bld_EU_088_CrashWall_01_anim.model"
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/random_events/08_ruinberg_hd_bld_EU_088_CrashWall_01_Destruction_01.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 169.14974975585938,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "08_crashingWall_03_transition_wall_simulation",
+				"uuid": "38e3a9a8-b0ba-4950-913e-6da48f1c3c5b"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_explosion_small",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "wall_3_expl_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "08_crashingWall_03_transition_expl",
+				"uuid": "33f803f5-0a3c-4f35-904c-434f77a00c34"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/environment/random_events/08_ruinberg_debris_meshes.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": 11.529999732971191,
+									"z": 0.0
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": -80.7899169921875,
+									"z": 0.0
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "08_crashingWall_03_transition_ruin_drown_efx",
+						"uuid": "23fdeef8-a7f8-44cf-bef0-9fbbbab8481e"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Buildings/hd_bld_EU_033_KitCrashHouses/normal/lod0/hd_bld_EU_033_KitCrashHouses_Interior_01.model"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0030519999563694,
+									"y": -13.85420036315918,
+									"z": 3.099999958067201e-05
+								},
+								"rotation": {
+									"x": 2.515061378479004,
+									"y": 0.0,
+									"z": 7.2217326164245605
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "08_crashingWall_03_transition_ruin_drown_trajectory",
+						"uuid": "28fd9df9-6397-4108-b3b8-e0c351a50932"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -2.3550100326538086,
+							"y": -3.555459976196289,
+							"z": 8.304800033569336
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 80.7899169921875,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "08_crashingWall_03_transition_ruin_drown",
+				"uuid": "6f462817-9f03-4cd2-ad3b-32ae6852b9b3"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_building",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "wall_3_destroy_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "08_crashingWall_03_transition_destroy_sfx",
+				"uuid": "3017df95-a42e-4a2f-8d81-2fe9410954f3"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 10.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 10.0,
+								"object": "38e3a9a8-b0ba-4950-913e-6da48f1c3c5b",
+								"parameters": [
+									{
+										"component": "BW::Animator",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.99899959564209,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 9.99899959564209
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									}
+								],
+								"startTime": 0.0010000000474974513
+							},
+							{
+								"endTime": 10.0,
+								"object": "28fd9df9-6397-4108-b3b8-e0c351a50932",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.33333298563957214,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0030519999563694
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 4.766670227050781,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0030519999563694
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "x"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.17118799686431885,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": -0.15809699892997742,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.33333298563957214,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 6.0999998822808266e-05
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -4.052000045776367,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 4.766670227050781,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -13.85420036315918
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.33333298563957214,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 3.099999958067201e-05
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 4.766670227050781,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 3.099999958067201e-05
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "z"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -7.000000096013537e-06,
+														"y": 0.0,
+														"z": 2.722990036010742
+													},
+													"right": {
+														"x": -7.000000096013537e-06,
+														"y": 0.0,
+														"z": 2.722990036010742
+													}
+												},
+												"time": 0.33333298563957214,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 3.6133599281311035,
+														"y": -0.6947960257530212,
+														"z": 0.41095098853111267
+													},
+													"right": {
+														"x": 0.6490749716758728,
+														"y": -0.6947960257530212,
+														"z": -0.6412230134010315
+													}
+												},
+												"time": 1.9333300590515137,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.2000000171829015e-05,
+														"y": 0.0,
+														"z": 8.713549613952637
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.9580420255661011,
+														"y": -1.1323000192642212,
+														"z": -1.581760048866272
+													},
+													"right": {
+														"x": -0.9580420255661011,
+														"y": -1.1323000192642212,
+														"z": -1.581760048866272
+													}
+												},
+												"time": 6.099999904632568,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 2.5150599479675293,
+														"y": 0.0,
+														"z": 7.221749782562256
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0.0010000000474974513
+							},
+							{
+								"endTime": 10.0,
+								"object": "33f803f5-0a3c-4f35-904c-434f77a00c34",
+								"parameters": [],
+								"startTime": 0.10000000149011612
+							},
+							{
+								"endTime": 10.0,
+								"object": "3017df95-a42e-4a2f-8d81-2fe9410954f3",
+								"parameters": [],
+								"startTime": 2.0
+							},
+							{
+								"endTime": 2.0,
+								"object": "23fdeef8-a7f8-44cf-bef0-9fbbbab8481e",
+								"parameters": [],
+								"startTime": 0.06669999659061432
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "08_bigCityBombing_crashingWall_03_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

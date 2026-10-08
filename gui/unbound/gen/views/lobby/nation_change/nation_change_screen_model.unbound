@@ -1,0 +1,31 @@
+# This file was generated using wgpygen
+#   template: configs/templates/view_model.unbound.jinja2
+#   source: configs/definitions/views/lobby/nation_change/nation_change_screen_model.yaml
+# Please, don't edit this file manually.
+(def macro NationChangeScreenModel()
+    (scope
+        (event onCloseBtnClick)
+        (event onSwitchBtnClick)
+        (event onCancelBtnClick)
+        (event onHangarBtnClick)
+        (event onDogClick)
+
+        (var currentTankLvl:str = '')
+        (var targetTankLvl:str = '')
+        (var currentTankType:str = '')
+        (var targetTankType:str = '')
+        (var currenTankName:str = '')
+        (var targetTankName:str = '')
+        (var currentTankSetupsNumber:number = 0)
+        (var targetTankSetupsNumber:number = 0)
+        (var currentNation:str = '')
+        (var targetNation:str = '')
+        (var currentTankTooltipHeader:str = '')
+        (var currentTankTooltipBody:str = '')
+        (var isSlotAnimPlaying:bool = false)
+
+        # The following submodels are used in this model:
+        # currentNation:views.lobby.nation_change.nation_change_tank_slot_model
+        # targetNation:views.lobby.nation_change.nation_change_tank_slot_model
+    )
+)

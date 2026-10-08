@@ -1,0 +1,988 @@
+(def element BlueprintScreen() layout = true entrance=true
+    (name = 'BlueprintScreen')
+    (macro BlueprintScreenModel)
+    (macro BlueprintScreenTooltips)
+    (scope
+        (const OFFSET_FROM_BLUEPRINT:number = 80)
+        (const BOUNDARY_WIDTH:number = 1200)
+        (const BOUNDARY_HEIGHT:number = 1080)
+        (const BOUNDARY_HEIGHT_SMALL:number = 900)
+        (const SCHEME_MARGIN_TOP:number = 33)
+        (const FRAME_BOTTOM_BORDER:number = 25)
+        (const RESEARCH_BLOCK_ALPHA:number = 0.5)
+
+        (event evImageBgLoaded)
+        (event evOnClose)
+        (event evOnOpenVehicleViewBtnClicked)
+        (event evDrawingTabletOver)
+        (event evDrawingTabletOut)
+        (event onShowCorner)
+        (event evHeightViewChanged)
+        (event evFadeInComplete)
+        (event onHideVehicleUnavailableConfirm)
+
+        # Receive blueprint animation
+        (event onReceivedAnimationStart)
+        (event onReceivedAnimationComplete)
+        (event onShowReceivedAnimationStart)
+        (event onShowReceivedAnimationComplete)
+        (event onResearchBlockAnimationStart)
+        (event onUnlockItems)
+
+        # Vehicle unlock animation
+        (event onDrawingTabletAnimStart)
+        (event onDrawingTabletAnimComplete)
+        
+
+        (var isNormalSize:bool = "viewSize.width >= BOUNDARY_WIDTH && viewSize.height >= BOUNDARY_HEIGHT"
+            (event "viewResized")
+        )
+        (var additionalScaleFactor:number = "viewSize.height < BOUNDARY_HEIGHT_SMALL ? 0.9 : 1"
+            (event "viewResized")
+        )
+        (var scrScale:number = "isNormalSize ? 1.0 : 0.75 * additionalScaleFactor")
+        (var schemeWidth:number = "ceil(BLUEPRINT_SCHEME_WIDTH * scrScale)")
+        (var schemeHeight:number = "ceil(BLUEPRINT_SCHEME_HEIGHT * scrScale)")
+        (var schemeItemsCount:number = "schemeItems.length > 0 ? schemeCols * schemeRows : 0")
+        (var schemeItemWidth:number = "floor(schemeWidth / schemeCols)")
+        (var schemeItemHeight:number = "floor(schemeHeight / schemeRows)")
+        (var viewHeight:number = "$event.value" init=false
+            (event "evHeightViewChanged")
+        )
+
+        (var isSmall:bool = "viewSize.width < BASE_WIDTH_1366"
+            (event "viewResized")
+        )
+        
+        (var parentIsLocked:bool = "!isUnlocked && !isAvailableForUnlock")
+        (var needXp:bool="!isUnlocked && needXpToUnlock")
+        (var discountTooltipHeader:str = "parentIsLocked ? R.strings.tooltips.blueprint.BlueprintScreen.researchImpossible.header() : 
+                                       needXp ? R.strings.tooltips.researchPage.module.status.notEnoughXP.header() : ''")
+        (var discountTooltipBody:str = "parentIsLocked ? R.strings.tooltips.blueprint.BlueprintScreen.researchImpossible.body() : 
+                                       needXp ? R.strings.tooltips.researchPage.module.status.notEnoughXP.text() : ''")
+
+        (var enableTutorialHint:bool = false)
+        (bind enableTutorialHint "!showUnavailableConfirm" init=false watch=false 
+            (event "evScopeUpdated")
+            (enabled="$event.type == 'model'")
+        )
+        
+
+        # FadeIn and FadeOut
+        (var showProgress:number = 0.0)
+        (controller $Animation
+            (bindcall play duration="0.25" from="{showProgress:0.0}" to="{showProgress:1.0}" callbacks="{onComplete:evFadeInComplete}"
+                (event "evImageBgLoaded")
+            )
+            (bindcall play duration="0.15" from="{showProgress:1.0}" to="{showProgress:0.0}" callbacks="{onComplete:onClose}" 
+                (event "evOnClose")
+            )
+            (bindcall play duration="0.15" from="{showProgress:1.0}" to="{showProgress:0.0}" callbacks="{onComplete:onOpenVehicleViewBtnClicked}" 
+                (event "evOnOpenVehicleViewBtnClicked")
+            )
+        )
+
+        # Lock mouse evants during FadeIn
+        (var enabledView:bool = false)
+        (bind enabledView false init=false
+            (event "evImageBgLoaded")
+        )
+        (bind enabledView true init=false
+            (event "evFadeInComplete")
+        )
+
+        (var animationInProgress:bool = false)
+        (bind animationInProgress true init=false
+            (event "onSubmitUnavailableConfirm")
+        )
+
+        # Animation received items
+        (var enabledItems:bool = true)
+        (bind enabledItems false init=false
+            (event "onReceivedAnimationStart")
+        )
+        (bind enabledItems true init=false
+            (event "onUnlockItems")
+        )
+        (bind enabledItems true init=false
+            (enabled="!isSchemeFullCompleted || isUnlocked")
+            (event "onReceivedAnimationComplete")
+        )
+
+        (bind showUnavailableConfirm false init=false
+            (event "onHideVehicleUnavailableConfirm")
+        )
+
+        (var availableOverAnimation:bool = "isAvailableForUnlock && isSchemeFullCompleted && !isUnlocked && enabledItems && !blueprintAnimPaused")
+
+        # Animation lockConfirm
+        (var lockConfirmAlpha:number = "!isAvailableForUnlock && isSchemeFullCompleted && !isUnlocked && enabledItems ? 1 : 0")
+        (controller $Animation
+            (bindcall play delay=1 duration=0.5 from="{lockConfirmAlpha:0}" to="{lockConfirmAlpha:1}" easing="Easing.cubic_out"
+                callbacks="{onComplete: onUnlockItems}"
+                (enabled="isSchemeFullCompleted && !isAvailableForUnlock && !isUnlocked")
+                (event "onShowReceivedAnimationComplete")
+            )
+        )
+
+        # Animation researchBlock
+        (var researchBlockAlpha:number = "isAvailableForUnlock && isSchemeFullCompleted && !isUnlocked && enabledItems ? RESEARCH_BLOCK_ALPHA : 0")
+        (controller $Animation
+            (bindcall play delay=1 duration=0.5 from="{researchBlockAlpha:0}" to="{researchBlockAlpha:RESEARCH_BLOCK_ALPHA}" easing="Easing.cubic_out"
+                callbacks="{onStart: onResearchBlockAnimationStart, onComplete: onUnlockItems}"
+                (enabled="isSchemeFullCompleted && isAvailableForUnlock && !isUnlocked")
+                (event "onShowReceivedAnimationComplete")
+            )
+        )
+
+        # Reset after animation completion
+        (bind receivedCount 0 init=false
+            (bind enabled "enabledItems")
+        )
+    )
+
+    (controller $Tutorial viewTutorialId='BlueprintScreen')
+
+    (exec "playSound(R.sounds.gui_blueprint_desk_fragment_create())"
+        (bind enabled "receivedCount == 1")
+    )
+    (exec "playSound(R.sounds.gui_blueprint_desk_fragment_create_multiple())"
+        (bind enabled "receivedCount > 1")
+    )
+    (exec "playSound(R.sounds.gui_blueprint_desk_to_research_rollover())"
+        (event "evDrawingTabletOver")
+        (enabled="availableOverAnimation")
+    )
+    (exec "playSound(R.sounds.gui_blueprint_desk_to_research_rollout())"
+        (event "evDrawingTabletOut")
+        (enabled="availableOverAnimation")
+    )
+    (exec "playSound(R.sounds.gui_blueprint_desk_need_research())"
+        (event "onShowReceivedAnimationStart")
+    )
+    (exec "playSound(R.sounds.gui_blueprint_desk_need_research_stamp())"
+        (event "onResearchBlockAnimationStart")
+    )
+    (exec "playSound(R.sounds.gui_blueprint_desk_researched())"
+        (event "onDrawingTabletAnimStart")
+    )
+    (exec "playSound(R.sounds.gui_blueprint_desk_researched_stamp())"
+        (event "onDrawingTabletAnimComplete")
+    )
+
+    (style
+        (width = 100%)
+        (height = 100%)
+        (backgroundColor = 0xff131210)
+    )
+
+    (dispatch evHeightViewChanged on='block_height_Changed')
+    (dispatch evOnClose on='escPressed')
+
+    (bind mouseEnabled "enabledView")
+    (bind mouseChildren "enabledView")
+
+    (block
+        (name = 'viewContent')
+        (style
+            (width = 100%)
+            (height = 100%)
+            (marginTop = "SCHEME_MARGIN_TOP")
+            (bind alpha "showProgress")
+        )
+
+        (image
+            (name = 'background')
+            (class AbsPositionCenterStyle)
+            (style
+                (bind scaleX "scrScale")
+                (bind scaleY "scrScale")
+                (pivotX = 50%)
+                (pivotY = 50%)
+            )
+            (dispatch evImageBgLoaded on='complete')
+            (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.background()")
+            (controller $Animation
+                (bindcall play duration="0.5" to="{scaleX:0.95 * scrScale, scaleY:0.95 * scrScale, alpha:0.5}" id=ANM_BG_OVER_ID easing="Easing.cubic_out"
+                    (event "evDrawingTabletOver") 
+                    (enabled="availableOverAnimation")
+                )
+                (bindcall play duration="0.5" to="{scaleX:1 * scrScale, scaleY:1 * scrScale, alpha:1}" id=ANM_BG_OUT_ID easing="Easing.cubic_out"
+                    (event "evDrawingTabletOut")
+                    (enabled="availableOverAnimation")
+                )
+                (bindcall stop ANM_BG_OVER_ID
+                    (event "evDrawingTabletOut")
+                )
+                (bindcall stop ANM_BG_OUT_ID
+                    (event "evDrawingTabletOver")
+                )
+
+                # Vehicle unlock animation
+                (bindcall play duration="0.5" to="{scaleX:1 * scrScale, scaleY:1 * scrScale, alpha:1}" easing="Easing.sine_out"
+                    (enabled="isUnlocked && currentStateView == UPDATE && $event.type == 'model'")
+                    (event "evScopeUpdated")
+                )
+            )
+        )
+
+        (block
+            (name = 'vehicleTypeAndResearchStatus')
+            (style
+                (width = 100%)
+                (bind height "(viewHeight - schemeHeight - OFFSET_FROM_BLUEPRINT * scrScale) * 0.5")
+                (bind paddingTop "isNormalSize ? 0 : 40")
+                (align = "center|middle")
+            )
+
+            (image
+                (name = 'highLightBP')
+                (style
+                    (position = "absolute")
+                    (hcenter = 0px)
+                    (vcenter = 10px)
+                    (bind alpha "showUnavailableConfirm ? 0 : 1")
+                )
+                (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.pmLightOrange()")
+                (bind visible "parentIsLocked")
+                (controller $Animation
+                    (bindcall play duration=0.5 from={alpha:0} to={alpha:1}
+                        (event "onSubmitUnavailableConfirm")
+                    )
+                )
+            )
+
+            (hblock
+                (name = 'title')
+                (style
+                    (gap = 5px)
+                    (align = "middle")
+                )
+                (element VehicleTitle
+                    (name = 'vehicleTitle')
+                    (scope
+                        (bind vehLvlTxt "vehicleLevel")
+                        (bind vehType "vehicleType")
+                        (bind vehNameTxt "vehicleName")
+                        (bind txtStyle "isNormalSize ? 'GrandTitleTextStyle' : 'PromoTitleTextStyle'")
+                        (bind isElite "isElite")
+                    )
+                    (style
+                        # Note: fixed actual size
+                        (bind paddingTop "isNormalSize ? -20px : -26px")
+                        (bind paddingBottom "isNormalSize ? -20px : -26px")
+                    )
+                )
+
+                (controller $Instance layout=true
+                    (exprs
+                        (block
+                            (name = 'info')
+                            (image
+                                (name = 'icon')
+                                (source = "R.images.gui.maps.icons.library.info()")
+                            )
+                            (controller $ToolTip
+                                (delay = 0.4)
+                                (args tooltipId="TOOLTIP_BLUEPRINT")
+                                (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+                                (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+                            )
+                        )
+                    )
+                    (bind enabled "showBlueprintInfotypeIcon")
+                )
+            )
+            
+            (hblock
+                (name = 'costImposBlock')
+                (style
+                    (bind alpha "showUnavailableConfirm ? 0 : 1")
+                )
+                (image
+                    (name = 'lock')
+                    (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.lockStatus()")
+                )
+                (tf
+                    (name = 'label')
+                    (bind class "isNormalSize ? 'VehicleStatusCriticalTextStyle' : 'VehicleStatusCriticalSmallTextStyle'")
+                    (bind text "R.strings.blueprints.blueprintScreen.researchImpossible()")
+                )
+
+                (controller $ToolTip
+                    (bindcall args 
+                        header="htmlTextStyle(
+                            discountTooltipHeader,
+                            'StatusCriticalTextStyle'
+                        )" 
+                        body="discountTooltipBody"
+                        init=true
+                    )
+                    (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipHtmlContent.resId")
+                    (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+
+                    (enabled = false)
+                    (bind enabled true init=false
+                        (event "onSubmitUnavailableConfirm")
+                    )
+                    (bind enabled "!showUnavailableConfirm" init=true)
+                )
+
+                (bind visible "parentIsLocked")
+                (controller $Animation
+                    (bindcall play duration=0.5 to={alpha:1}
+                        (event "onSubmitUnavailableConfirm")
+                    )
+                )
+            )
+
+            (element BlueprintDiscount
+                (name = 'discountBlock')
+                (scope
+                    (bind discount "discount")
+                    (bind discountAbs "discountAbs")
+                    (bind filledCount "filledCount")
+                )
+                (bind visible "!isUnlocked && isAvailableForUnlock && !isSchemeFullCompleted")
+            )
+
+            (tf
+                (name = 'researchFree')
+                (class HighlightTextStyle)
+                (text = "R.strings.blueprints.blueprintScreen.researchFree()")
+                (bind visible "isAvailableForUnlock && isSchemeFullCompleted && !isUnlocked")
+            )
+        )
+        
+       (image
+            (name = 'smoke')
+            (class AbsPositionCenterStyle)
+            (style
+                (alpha = 0.75)
+                (blendMode = 'add')
+                (pivotX = 50%)
+                (pivotY = 50%)
+            )
+            (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.completeAnimationSmoke()")
+            
+            (visible = false)
+            (controller $Animation 
+                # Vehicle unlock animation
+                (bindcall play duration=2 
+                            from="{scaleX:(schemeWidth / 128 + 2), scaleY:(schemeHeight / 128 + 1), alpha:0.75, visible:true}" 
+                            to="{scaleX:(schemeWidth / 128 + 4), scaleY:(schemeHeight / 128 + 2), alpha:0,  visible:false}" 
+                            easing="Easing.expo_out" watch=false
+                    (event "onDrawingTabletAnimComplete")
+                )
+
+                # Vehicle recieved complete animation
+                (bindcall play delay=0.2 duration=2 
+                            from="{scaleX:(schemeWidth / 128 + 2), scaleY:(schemeHeight / 128 + 1), alpha:0.75, visible:true}" 
+                            to="{scaleX:(schemeWidth / 128 + 4), scaleY:(schemeHeight / 128 + 2), alpha:0,  visible:false}" 
+                            easing="Easing.expo_out" watch=false
+                    (enabled="isSchemeFullCompleted && !isUnlocked")
+                    (event "onReceivedAnimationComplete")
+                )
+            )
+        )
+
+        (block
+            (name = 'drawingTablet')
+            (class AbsPositionCenterStyle)
+            (style
+                (pivotX = 50%)
+                (pivotY = 50%)
+                (bind width "schemeWidth")
+                (bind height "schemeHeight")
+            )
+
+            (controller $Animation
+                (bindcall play duration=0.5 to="{scaleX:1.03, scaleY:1.03}" easing="Easing.cubic_out" id=ANM_DT_OVER_ID
+                    (event "evDrawingTabletOver")
+                    (enabled="availableOverAnimation")
+                )
+                (bindcall play duration=0.5 to="{scaleX:1, scaleY:1}" easing="Easing.cubic_out" id=ANM_DT_OUT_ID
+                    (event "evDrawingTabletOut")
+                    (enabled="availableOverAnimation")
+                )
+                (bindcall stop ANM_DT_OVER_ID
+                    (event "evDrawingTabletOut")
+                )
+                (bindcall stop ANM_DT_OUT_ID
+                    (event "evDrawingTabletOver")
+                )
+
+                (bindcall playSeq "[
+                            {duration:0.5, to:{scaleX:1.06, scaleY:1.06}, easing:Easing.sine_out},
+                            {duration:0.1, to:{scaleX:1, scaleY:1}, easing:Easing.sine_out}
+                        ]"
+                        callbacks="{onStart: onDrawingTabletAnimStart, onComplete: onDrawingTabletAnimComplete}"
+                    (enabled="isUnlocked && currentStateView == UPDATE && $event.type == 'model'")
+                    (event "evScopeUpdated")
+                )
+            )
+            
+            (bind buttonMode "availableOverAnimation")
+            (bind mouseChildren "!availableOverAnimation")
+            (bind mouseEnabled "enabledItems")
+
+            (dispatch evDrawingTabletOver on='rollOver')
+            (dispatch evDrawingTabletOut on='rollOut')
+            (dispatch onResearchVehicle on='click'
+                (enabled="isAvailableForUnlock && isSchemeFullCompleted && !isUnlocked && $event.buttonIdx == MOUSE.LEFT")
+            )
+
+            (image
+                (name = 'grids')
+                (class AbsPositionFullSizeStyle)
+                (bind source "R.images.gui.maps.icons.blueprints.blueprintScreen.grids['grids_' + schemeItemsCount]()" init=false
+                    (bind enabled "schemeItems.length > 1")
+                )
+            )
+
+            (element BlueprintScreenInteractiveItems
+                (name = 'blueprintScreenInteractiveItems')
+                (style
+                    (position = "absolute")
+                )
+                (scope
+                    (bind items "schemeItems")
+                    (bind itemsCols "schemeCols")
+                    (bind itemsCount "schemeItemsCount")
+                    (bind itemWidth "schemeItemWidth")
+                    (bind itemHeight "schemeItemHeight")
+                    (bind schemeWidth "schemeWidth")
+                    (bind schemeHeight "schemeHeight")
+                    (bind conversionAvailable "conversionAvailable")
+                    (bind isItemsUnlock "!showUnavailableConfirm")
+                    (bind scrScale "scrScale")
+                    (bind enableTutorialHint "enableTutorialHint")
+                    (bind receivedCount "receivedCount")
+                    (bind filledCount "filledCount")
+                    (dispatch onGoToConversionScreen on='onGoToConversionScreen')
+                )
+                (bind mouseEnabled "enabledItems")
+                (bind mouseChildren "enabledItems")
+            )
+            (dispatch onShowCorner dir=2 init=false
+                (event "onSubmitUnavailableConfirm")
+            )
+
+            (block
+                (name = 'fullHoverBlack')
+                (class AbsPositionFullSizeStyle)
+                (style
+                    (alpha = 0)
+                    (blendMode = 'add')
+                    (backgroundColor = 0xFF74BEFF)
+                )
+                (visible = false)
+                (mouseEnabled = false)
+                (mouseChildren = false)
+                (controller $Animation
+                    (bindcall play duration=0.5 from={visible:true} to={alpha:0.2} easing="Easing.cubic_out" id=ANM_FULL_OVER_ID
+                        (event "evDrawingTabletOver")
+                        (enabled="availableOverAnimation")
+                    )
+                    (bindcall play duration=0.5 to={alpha:0} easing="Easing.cubic_out" id=ANM_FULL_OUT_ID
+                        (event "evDrawingTabletOut")
+                        (enabled="availableOverAnimation")
+                    )
+                    (bindcall stop ANM_FULL_OVER_ID 
+                        (event "evDrawingTabletOut")
+                    )
+                    (bindcall stop ANM_FULL_OUT_ID 
+                        (event "evDrawingTabletOver")
+                    )
+
+                    # Vehicle unlock animation
+                    (bindcall play delay=0.4 duration=1 to={alpha:0, visible:false} easing="Easing.cubic_out" id=ANM_FULL_OUT_ID
+                        (enabled="isUnlocked && currentStateView == UPDATE && $event.type == 'model'")
+                        (event "evScopeUpdated")
+                    )
+                )
+            )
+
+            (block
+                (name = 'whiteBlock')
+                (class AbsPositionFullSizeStyle)
+                (style
+                    (alpha = 0)
+                    (blendMode = 'overlay')
+                    (backgroundColor = 0xFFFFFFFF)
+                )
+                (mouseEnabled = false)
+                (mouseChildren = false)
+                (visible = false)
+
+                # Fullcomplete animation
+                (controller $Animation
+                    (bindcall play duration=0.25 from={visible:true} to={alpha:1} easing="Easing.expo_in"
+                        callbacks="{onStart: onShowReceivedAnimationStart, onComplete:onShowReceivedAnimationComplete}"
+                        (enabled="isSchemeFullCompleted && !isUnlocked")
+                        (event "onReceivedAnimationComplete")
+                    )
+                    (bindcall play delay=0.7 duration=3 from={alpha:1} to={alpha:0} easing="Easing.expo_out"
+                        (enabled="isSchemeFullCompleted && !isUnlocked")
+                        (event "onReceivedAnimationComplete")
+                    )
+                )
+            )
+            
+            (element BlueprintVehicleAvailable
+                (name = 'researchBlock')
+                (style
+                    (bind alpha "researchBlockAlpha")
+                )
+                (controller $Animation
+                    (bindcall play duration=0.25 to="{alpha:RESEARCH_BLOCK_ALPHA + 0.2}" id=ANIM_VA_OVER_ID
+                        (event "evDrawingTabletOver")
+                    )
+                    (bindcall play duration=0.25 to="{alpha:RESEARCH_BLOCK_ALPHA}" id=ANIM_VA_OUT_ID
+                        (event "evDrawingTabletOut")
+                    )
+
+                    (bindcall stop id=ANIM_VA_OUT_ID
+                        (event "evDrawingTabletOver")
+                    )
+                    (bindcall stop id=ANIM_VA_OVER_ID
+                        (event "evDrawingTabletOut")
+                    )
+                )
+                (bind visible "researchBlockAlpha != 0")
+            )
+
+            (block
+                (name = 'unlockedBlock')
+                (style
+                    (position = "absolute")
+                    (bottom = 105px)
+                    (left = 195px)
+                    (rotation = -3)
+                    (padding = 5px)
+                    (pivotX = 50%)
+                    (pivotY = 50%)
+                )
+
+                (image
+                    (name = 'border')
+                    (class AbsPositionFullSizeStyle)
+                    (style
+                        (scale9grid = "Rect(10, 10, 45, 34)")
+                    )
+                    (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.stampBorder()")
+                )
+
+                (tf
+                    (name = 'label')
+                    (class PromoTitleTextStyle)
+                    (style
+                        (autoSize = true)
+                        (multiline = true)
+                        (textAlign = "center")
+                    )
+                    (text = "R.strings.blueprints.blueprintScreen.unlocked()")
+                )
+
+                (bind visible "isUnlocked && currentStateView == INIT")
+
+                # Vehicle unlock animation
+                (controller $Animation
+                    (bindcall playSeq "[
+                            {duration:0.4, from:{scaleX:2, scaleY:2, alpha:0, visible:true}, to:{scaleX:1, scaleY:1, alpha:1}, easing:Easing.quint_in},
+                            {duration:6, to:{alpha:0.8}, easing:Easing.sine_out}
+                        ]"
+                        (event "onDrawingTabletAnimComplete")
+                    )
+                )
+            )
+        )
+        
+        (hblock
+            (name = 'conversionCost')
+            (style
+                (position = "absolute")
+                (hcenter = 0)
+                (bind vcenter "schemeHeight * 0.5 + SCHEME_MARGIN_TOP + FRAME_BOTTOM_BORDER * scrScale + (isNormalSize ? 30 : (additionalScaleFactor == 1 ? 30 : 6))")
+                (bind width "schemeWidth + (isNormalSize ? 4 : 4)")
+                (align = "right")
+            )
+            (bind visible "!isSchemeFullCompleted")
+            (element BlueprintPriceContent name='conversionMaxCost'
+                (scope
+                    (bind isNormalSize "isNormalSize")
+                    (bind enableTutorialHint "enableTutorialHint && !isSchemeFullCompleted")
+                )
+            )
+
+            (button
+                (name = 'createMaxBtn')
+                (macro ButtonStylePrimary "BUTTON_SIZE_LARGE") 
+                (style
+                    (minWidth = 160px)
+                    (marginTop = 26px)
+                    (marginRight = 1px)
+                )
+                (label = "R.strings.blueprints.blueprintScreen.createMaxFrag()")
+                (bind enabled "maxConvertibleFragmentCount > 0 && !(showUnavailableConfirm && !animationInProgress)")
+                (bind buttonMode "maxConvertibleFragmentCount > 0")
+                (dispatch onGoToAllConversion on='clicked')
+
+                (controller $ToolTip
+                    (bindcall args 
+                        # using htmlTextStyle is workaround because unbound swallows <br>. this text should be in body.
+                        header="htmlTextStyle(
+                            R.strings.tooltips.blueprint.BlueprintScreen.createMaxFragments.header(),
+                            'MainTextStyle'
+                        )" 
+                        note="maxConvertibleFragmentCount > 0 ? 
+                            formatString(
+                                R.strings.tooltips.blueprint.BlueprintScreen.createMaxFragments.body(),
+                                [{name:'amount', value:maxConvertibleFragmentCount, style:'StatsTextStyle'}],
+                                true
+                            )
+                        : ''"
+                        init=true
+                    )
+                    (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipHtmlContent.resId")
+                    (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+
+                    (bind enabled "maxConvertibleFragmentCount > 0 && !(showUnavailableConfirm && !animationInProgress)")
+                )
+
+
+                (controller $ToolTip
+                    (bindcall args
+                        header="R.strings.tooltips.blueprint.BlueprintScreen.createMaxFragmentsDisabled.header()" 
+                        body="R.strings.tooltips.blueprint.BlueprintScreen.createMaxFragmentsDisabled.body()"
+                        init=true
+                    )
+                    (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+                    (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+
+                    (bind enabled "maxConvertibleFragmentCount <= 0 && !(showUnavailableConfirm && !animationInProgress)")
+                )
+            )
+        )
+
+        (block
+            (name = 'statusBottomBlock')
+            (style
+                (position = "absolute")
+                (hcenter = 0px)
+                (bind vcenter "schemeHeight * 0.5 + SCHEME_MARGIN_TOP + FRAME_BOTTOM_BORDER * scrScale + (isPurchased ? (additionalScaleFactor == 1 ? 1 : -15) : (additionalScaleFactor == 1 ? 23 : 4))")
+                (align = "center")
+            )
+
+            (hblock
+                (name = 'iconAndLabel')
+                (style
+                    (align = "middle")
+                    (gap = 2px)
+                )
+                (image
+                    (bind source "R.images.gui.maps.icons.library.yellowCheck()"
+                        (bind enabled "isPurchased")
+                    )
+                    (bind visible "isPurchased")
+                )
+                (tf
+                    (name = 'description')
+                    (class HighlightTextStyle)
+
+                    (bind text "R.strings.blueprints.blueprintScreen.researchedAndPurchased()"
+                        (bind enabled "isPurchased")
+                    )
+
+                    (bind text "R.strings.blueprints.blueprintScreen.researchedAndAvailablePurchased()"
+                        (event "evScopeUpdated")
+                        (enabled="isAvailableForUnlock && isSchemeFullCompleted
+                            && isUnlocked && !isPurchased && $event.type == 'model'")
+                    )
+                )
+            )
+
+            (button
+                (name = 'openVehicleViewBtn')
+                (macro ButtonStylePrimary "BUTTON_SIZE_LARGE") 
+                (style
+                    (bind marginTop "additionalScaleFactor == 1 ? 12 : 5")
+                    (minWidth = 160px)
+                )
+                (label = "R.strings.blueprints.blueprintScreen.openVehicleViewBtn()")
+
+                (dispatch evOnOpenVehicleViewBtnClicked on='clicked')
+                (bind visible "isAvailableForUnlock && isSchemeFullCompleted && isUnlocked && !isPurchased")
+            )
+        )
+
+        (element BlueprintVehicleUnavailable
+            (name = 'unavailableConfirm')
+            (class AbsPositionCenterStyle)
+            (style
+                (bind width "schemeWidth")
+                (bind height "schemeHeight")
+            )
+            (scope
+                (title = "R.strings.blueprints.blueprintScreen.confirmation.title()")
+                (description = "R.strings.blueprints.blueprintScreen.confirmation.description()")
+                (bind setFocus "showUnavailableConfirm")
+            )
+            (bind visible "showUnavailableConfirm")
+        )
+
+        (element BlueprintVehicleUnavailable
+            (name = 'lockConfirm')
+            (class AbsPositionCenterStyle)
+            (style
+                (bind width "schemeWidth")
+                (bind height "schemeHeight")
+                (bind alpha "lockConfirmAlpha")
+            )
+            (scope
+                (title = "R.strings.blueprints.blueprintScreen.unavailableConfirm.title()")
+                (bind description "formatString(R.strings.blueprints.blueprintScreen.unavailableConfirm.description(), 
+                    [
+                        {value:vehicleName, name:'vehicleName', hardSpace:true}
+                    ],
+                    true)"
+                    init=false
+                )
+                (buttonVisible = false)
+            )
+            (bind visible "lockConfirmAlpha != 0")
+        )
+        
+        (image
+            (name = 'rules')
+            (style
+                (position = "absolute")
+                (bind hcenter "-506 * scrScale")
+                (bind vcenter "-240 * scrScale")
+                (bind scaleX "scrScale")
+                (bind scaleY "scrScale")
+                (pivotX = 50%)
+                (pivotY = 50%)
+            )
+            (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.rules()")
+            
+            (controller $Animation
+                (bindcall play duration=0.5 to={alpha:0} id=ANIM_RULES_OVER_ID easing="Easing.cubic_out"
+                    (enabled="availableOverAnimation")
+                    (event "evDrawingTabletOver")
+                )
+                (bindcall play duration=0.5 to={alpha:1} id=ANIM_RULES_OUT_ID easing="Easing.cubic_out"
+                    (enabled="availableOverAnimation")
+                    (event "evDrawingTabletOut")
+                )
+                (bindcall stop id=ANIM_RULES_OUT_ID
+                    (event "evDrawingTabletOver")
+                )
+                (bindcall stop id=ANIM_RULES_OVER_ID
+                    (event "evDrawingTabletOut")
+                )
+
+                # Vehicle unlock animation
+                (bindcall play duration=0.5 to={alpha:1} easing="Easing.cubic_out"
+                    (event "onDrawingTabletAnimComplete")
+                )
+            )
+        )
+
+        (view_holder
+            (name = "R.dynamic_ids.blueprint_screen.balance_content()")
+            (style
+                (position = "absolute")
+                (bind top "isSmall ? 60 : 80")
+                (right = 0px)
+            )
+            (bind visible "!isSchemeFullCompleted")
+            
+            (tabEnabled = false)
+            (tabChildren = false)
+            (mouseEnabled = false)
+        )
+    )
+
+    (text_button 'backBtn'
+        (macro ButtonBackStyle)
+        (style
+            (position = "absolute")
+            (top = 62px)
+            (bind left "isSmall ? 18 : 38")
+        )
+        (scope
+            (dispatch evOnClose on='clicked')
+        )
+
+        (label = "R.strings.menu.viewHeader.backBtn.label()")
+        (bind labelAdditional "backBtnLabel")
+
+        (bindcall setFocus
+            (bind enabled "!showUnavailableConfirm")
+        )
+        (visible = false)
+    )
+    
+    (block
+        (name = 'backgroundBottom')
+        (style
+            (position = "absolute")
+            (width = 100%)
+            (height = 35px)
+            (bottom = -35px)
+            (backgroundColor = 0xff000000)
+        )
+    )
+)
+
+(def layout BlueprintPriceContent(name:str='')
+    (macro DialogPricesContentModel)
+    (style
+        (width = 100%)
+        (align = "left|bottom")
+        (flow = "Flow.VERTICAL")
+        (gap = -1px)
+    )
+    (scope
+        (var isNormalSize:bool = true)
+        (var enableTutorialHint:bool = false)
+    )
+
+    (tf
+        (name = 'label')
+        (class HighlightTextStyle)
+        (text = "R.strings.blueprints.blueprintScreen.conversionCost()")
+    )
+
+    (hblock
+        (name = 'constBlock')
+        (style
+            (align = "left|middle")
+        )
+        (element BlueprintPriceItem 'valueMain')
+        
+        (block
+            (style
+                (height = 100%)
+                (align = "middle")
+                (paddingTop = 1px)
+                (marginLeft = 5px)
+                (marginRight = 5px)
+            )
+            (image
+                (name = 'plus')
+                (source = "R.atlases.components.plus_small()")
+                (bind visible "hasAdditionalCost")
+            )
+        )
+
+        (tf
+            (name = 'label')
+            (bind class "isNormalSize ? 'MainBigTextStyle' : 'MainTextStyle'")
+            (style
+                (bind marginTop "isNormalSize ? 0 : 1")
+            )
+            (text = "R.strings.blueprints.blueprintScreen.conversionCostAdditional()")
+        )
+
+        (group 'additionalValues'
+            (renderer = 'BlueprintPriceItem')
+            (style
+                (marginLeft = 5px)
+            )
+            (container
+                (style
+                    (flow = "Flow.HORIZONTAL")
+                    (align = "middle")
+                    (gap = -1px)
+                )
+            )
+            (bind visible "hasAdditionalCost")
+        )
+
+        (block
+            (name = 'iconInfo')
+            (style
+                (height = 100%)
+                (marginLeft = 3px)
+                (align = "middle")
+            )
+            (image
+                (source = "R.images.gui.maps.icons.library.info()")
+                (bind visible "tooltipId != 0 && hasAdditionalCost")
+            )
+            (controller $ToolTip
+                (delay = "0.4")
+                (bind content "tooltipId")
+                (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            )
+        )
+        (controller $Tutorial viewTutorialId='BlueprintScreen' controlID='convertFormula' enabled=false
+            (bind enabled "enableTutorialHint" init=false)
+        )
+    )
+)
+
+(def layout BlueprintPriceItem(name:str='')
+    (bind name "name")
+    (macro BlueprintValuePrice)
+
+    (scope
+        (const COST_PRESET:dict = {
+            'notEnough': 'BluePrintsNotEnoughMoneyBigTextStyle',
+            'custom': 'BluePrintsEnoughMoneyBigTextStyle',
+        })
+    )
+
+    (mouseChildren = false)
+
+    (style
+        (gap = 3px)
+        (align = "middle")
+        (flow = "Flow.HORIZONTAL")
+    )
+
+    (tf
+        (name = 'costTf')
+        (bind class "COST_PRESET[notEnough ? 'notEnough' : type]")
+        (bind text "value")
+        (mouseEnabled = false)
+    )
+
+    (image
+        (name = 'currencyIcon')
+        (style
+            (align = "middle")
+            (marginTop = 4px)
+        )
+        (bind source "icon")
+    )
+
+    (image
+        (name = 'separator')
+        (source = "R.images.gui.maps.icons.library.delimeter()")
+        (bind visible "hasDelimeter")
+    )
+
+    (controller $ToolTip
+        (delay = 0.4)
+        (args tooltipId="tooltipId" itemCD="itemCD")
+        (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+
+        (bind enabled "tooltipId != ''")
+    )
+)
+
+(def css BluePrintsNotEnoughMoneyBigTextStyle()
+    (fontFamily = $TitleFont)
+    (fontSize = 16)
+    (textColor = 0xFF2717)
+)
+
+(def css BluePrintsEnoughMoneyBigTextStyle()
+    (fontFamily = $TitleFont)
+    (fontSize = 16)
+    (textColor = 0xe9e2bf)
+)

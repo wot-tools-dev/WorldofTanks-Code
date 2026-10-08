@@ -1,0 +1,160 @@
+<101_dday_flak_shooting_02.xml>
+  <info>
+    <name>	StoryMode_vfx_scenarios/101_dday_flak_shooting_02	</name>
+    <isMacro>	false	</isMacro>
+    <version>	0	</version>
+    <aspect>
+      <compatibles>	CLIENT	</compatibles>
+    </aspect>
+    <blocks>
+      <block>
+        <class>	VariableUDO	</class>
+        <id>	VariableUDO_4	</id>
+        <params>
+          <param>	AreaTrigger_B84A	  <name>	Variable Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	AreaTriggerT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	false	  <name>	External Init	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	false	  <name>	Is Const	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	6DB1307C.427F13EC.58D140B2.D682B84A	  <name>	Guid	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	default	</name>
+            <const>	\00000000.00000000.00000000.00000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	OnPlayerVehicleAreaTrigger	</class>
+        <id>	OnPlayerVehicleAreaTrigger_1	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	active	</name>
+            <const>	\true\	</const>
+          </slot>
+          <slot>
+            <name>	maxCount	</name>
+            <const>	\1\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	GetVariable	</class>
+        <id>	GetVariable_2	</id>
+        <buddy>	VariableUDO_4	</buddy>
+        <params>
+          <param>	AreaTriggerT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	DoOnce	</class>
+        <id>	DoOnce_1	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	DeactivateGameObject	</class>
+        <id>	DeactivateGameObject_2	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	ContextGetSelf	</class>
+        <id>	ContextGetSelf_1	</id>
+        <params>
+          <param>	CGFGameObjectContext	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	getSelf	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	TriggerExternal	</class>
+        <id>	TriggerExternal_1	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	eventID	</name>
+            <const>	\DDAY_flak2_escape\	</const>
+          </slot>
+          <slot>
+            <name>	isActive	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	FindFirstNode	</class>
+        <id>	FindFirstNode_2	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	name	</name>
+            <const>	\flak_shooting\	</const>
+          </slot>
+          <slot>
+            <name>	includingInactive	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+    </blocks>
+    <connections>
+      <connection>
+        <from>	GetVariable_2	</from>
+        <input>	trigger	</input>
+        <to>	OnPlayerVehicleAreaTrigger_1	</to>
+        <output>	value	</output>
+      </connection>
+      <connection>
+        <from>	TriggerExternal_1	</from>
+        <input>	input	</input>
+        <to>	DoOnce_1	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	OnPlayerVehicleAreaTrigger_1	</from>
+        <input>	input	</input>
+        <to>	DoOnce_1	</to>
+        <output>	onEnter	</output>
+      </connection>
+      <connection>
+        <from>	DoOnce_1	</from>
+        <input>	in	</input>
+        <to>	DeactivateGameObject_2	</to>
+        <output>	completed	</output>
+      </connection>
+      <connection>
+        <from>	FindFirstNode_2	</from>
+        <input>	gameObject	</input>
+        <to>	DeactivateGameObject_2	</to>
+        <output>	node	</output>
+      </connection>
+      <connection>
+        <from>	ContextGetSelf_1	</from>
+        <input>	gameObject	</input>
+        <to>	FindFirstNode_2	</to>
+        <output>	value	</output>
+      </connection>
+    </connections>
+    <macros></macros>
+    <curves></curves>
+  </info>
+</101_dday_flak_shooting_02.xml>

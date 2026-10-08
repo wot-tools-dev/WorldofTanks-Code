@@ -1,0 +1,163 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Sound2DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_transition",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_bridgeCrash01_scenario_transition_sfx",
+				"uuid": "49af429f-de77-44e2-a719-03b7964e15b4"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -1437.6500244140625,
+					"cgf::TransformComponent/position/y": 34.08509826660156,
+					"cgf::TransformComponent/position/z": 240.7779998779297
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_bridgeCrash01_plane_flight.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_bridge_crashing/105_bridgeCrash01_plane_flight.prefab",
+				"uuid": "12db8c74-9149-4a8b-9bd5-603ba4924cec"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -432.0050048828125,
+					"cgf::TransformComponent/position/y": 4.896570205688477,
+					"cgf::TransformComponent/position/z": 339.0559997558594
+				},
+				"name": "105_bridgeCrash01_bridge_complete.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_bridge_crashing/105_bridgeCrash01_bridge_complete.prefab",
+				"uuid": "a13b6a99-657a-4716-bea7-e37f279f737a"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -468.2239990234375,
+					"cgf::TransformComponent/position/y": 40.114601135253906,
+					"cgf::TransformComponent/position/z": 259.0690002441406
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_bridgeCrash01_bombing.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_bridge_crashing/105_bridgeCrash01_bombing.prefab",
+				"uuid": "4f366690-59bf-4479-82bb-bbdf3f9c497d"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 28.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 100.0,
+								"object": "a13b6a99-657a-4716-bea7-e37f279f737a",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.009999999776482582,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 100.0,
+								"object": "12db8c74-9149-4a8b-9bd5-603ba4924cec",
+								"parameters": [],
+								"startTime": 0.009999999776482582
+							},
+							{
+								"endTime": 27.219999313354492,
+								"object": "4f366690-59bf-4479-82bb-bbdf3f9c497d",
+								"parameters": [],
+								"startTime": 15.199999809265137
+							},
+							{
+								"endTime": 28.0,
+								"object": "49af429f-de77-44e2-a719-03b7964e15b4",
+								"parameters": [],
+								"startTime": 11.0
+							}
+						]
+					}
+				]
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Client",
+					"Editor"
+				],
+				"path": "story_mode/vscript/plans/Onboarding_vfx_scenarios/105_BridgeCrush.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::SequenceNetworkSync": {}
+		},
+		"name": "105_bridgeCrash01_scenario",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

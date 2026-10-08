@@ -1,0 +1,31 @@
+from __future__ import absolute_import
+import typing
+from helpers import time_utils
+from skeletons.gui.game_control import IGameStateTracker
+from skeletons.gui.impl import IGuiLoader, IFullscreenManager, INotificationWindowController
+if typing.TYPE_CHECKING:
+    from helpers.dependency import DependencyManager
+__all__ = ('getGuiImplConfig',)
+
+def getGuiImplConfig(manager):
+    from gui.impl.gui_loader import GuiLoader
+    from gui.impl.pub.fullscreen_manager import FullscreenManager
+    from gui.impl.pub.notification_window_controller import NotificationWindowController
+    from gui.impl.pub.window_loader_controller import WindowLoaderController
+    from gui.impl.gen.view_models.common.tutorial.tutorial_model import TutorialModel
+    from gui.impl.gen.view_models.common.ui_logger_model import UiLoggerModel
+    loader = GuiLoader()
+    loader.init(TutorialModel(), UiLoggerModel(), time_utils.getServerUTCTime)
+    manager.addInstance(IGuiLoader, loader, finalizer='fini')
+    notifications = NotificationWindowController()
+    tracker = manager.getService(IGameStateTracker)
+    tracker.addController(notifications)
+    notifications.init()
+    manager.addInstance(INotificationWindowController, notifications, finalizer='fini')
+    windowLoader = WindowLoaderController()
+    tracker.addController(windowLoader)
+    windowLoader.init()
+    manager.addInstance(WindowLoaderController, windowLoader, finalizer='fini')
+    fullscreen = FullscreenManager()
+    fullscreen.init()
+    manager.addInstance(IFullscreenManager, fullscreen, finalizer='fini')

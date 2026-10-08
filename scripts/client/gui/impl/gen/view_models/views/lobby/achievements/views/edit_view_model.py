@@ -1,0 +1,82 @@
+from frameworks.wulf import Array, ViewModel
+from gui.impl.gen.view_models.views.lobby.achievements.achievement_model import AchievementModel
+from gui.impl.gen.view_models.views.lobby.achievements.views.achievement_section_model import AchievementSectionModel
+
+class EditViewModel(ViewModel):
+    __slots__ = ('onChangeAutoSelect', 'onReplaceAchievement', 'onSave', 'onCancel', 'onExitConfirm', 'onHideFirstEntryState')
+
+    def __init__(self, properties=8, commands=6):
+        super(EditViewModel, self).__init__(properties=properties, commands=commands)
+
+    def getIsAutoSelect(self):
+        return self._getBool(0)
+
+    def setIsAutoSelect(self, value):
+        self._setBool(0, value)
+
+    def getIsFirstEntry(self):
+        return self._getBool(1)
+
+    def setIsFirstEntry(self, value):
+        self._setBool(1, value)
+
+    def getHasChanges(self):
+        return self._getBool(2)
+
+    def setHasChanges(self, value):
+        self._setBool(2, value)
+
+    def getSelectedAchievements(self):
+        return self._getArray(3)
+
+    def setSelectedAchievements(self, value):
+        self._setArray(3, value)
+
+    @staticmethod
+    def getSelectedAchievementsType():
+        return AchievementModel
+
+    def getAchievementSections(self):
+        return self._getArray(4)
+
+    def setAchievementSections(self, value):
+        self._setArray(4, value)
+
+    @staticmethod
+    def getAchievementSectionsType():
+        return AchievementSectionModel
+
+    def getRibbonSmall(self):
+        return self._getString(5)
+
+    def setRibbonSmall(self, value):
+        self._setString(5, value)
+
+    def getRibbonNormal(self):
+        return self._getString(6)
+
+    def setRibbonNormal(self, value):
+        self._setString(6, value)
+
+    def getRibbonLarge(self):
+        return self._getString(7)
+
+    def setRibbonLarge(self, value):
+        self._setString(7, value)
+
+    def _initialize(self):
+        super(EditViewModel, self)._initialize()
+        self._addBoolProperty('isAutoSelect', False)
+        self._addBoolProperty('isFirstEntry', False)
+        self._addBoolProperty('hasChanges', False)
+        self._addArrayProperty('selectedAchievements', Array())
+        self._addArrayProperty('achievementSections', Array())
+        self._addStringProperty('ribbonSmall', '')
+        self._addStringProperty('ribbonNormal', '')
+        self._addStringProperty('ribbonLarge', '')
+        self.onChangeAutoSelect = self._addCommand('onChangeAutoSelect')
+        self.onReplaceAchievement = self._addCommand('onReplaceAchievement')
+        self.onSave = self._addCommand('onSave')
+        self.onCancel = self._addCommand('onCancel')
+        self.onExitConfirm = self._addCommand('onExitConfirm')
+        self.onHideFirstEntryState = self._addCommand('onHideFirstEntryState')

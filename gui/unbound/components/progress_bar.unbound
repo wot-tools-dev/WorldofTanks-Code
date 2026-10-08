@@ -1,0 +1,228 @@
+(def element ProgressBarSmall() layout=true
+    (scope
+        (var value:number = 0.0)
+    )
+    (progress
+        (bind value "value")
+        (renderer = 'FWProgressSmallMC')
+    )    
+)
+
+(def element ProgressBarNormal() layout=true
+    (scope
+        (var value:number = 0.0)
+    )
+    (progress
+        (bind value "value")
+        (renderer = 'FWProgressNormalMC')
+    )
+)
+
+(def element ProgressBarRound() layout=true
+    (scope
+        (var value:number = 0.0)
+    ) 
+    (progress
+        (bind value "value")
+        (renderer = 'RoundProgressBarMC')
+    )
+)
+
+(def element ProgressBarUB(skin:dict, size:dict, timings:dict) layout=true
+    (scope
+        (event evValueChanged)
+        (event evShowDelta)
+        (event evHideDelta)
+
+        (var PBbackground:str = "skin.PBbackground")
+        (var PBGradientBG:str = "skin.PBGradientBG")
+        (var inactiveProgress:str = "skin.inactiveProgress")
+        (var activeProgress:str = "skin.activeProgress")
+        (var fullProgress:str = "skin.fullProgress")
+        (var deltaProgress:str = "skin.deltaProgress")
+
+        (var value:number = 0.0
+            (dispatch evValueChanged on='evChanged')
+        )
+        (var _actualValue:number = 0.0)
+        (var _isFull:bool="value >= 1")
+
+        (var progressBarHeight:number = "size.progressBarHeight")
+        (var defaultHeight:number = "size.sampleHeight")
+        (var deltaHighlightOffset:number = "size.deltaHighlightOffset")
+
+        (var deltaDuration:number = "timings.deltaDuration")
+        (var decreasingColorDuration:number = "timings.decreasingColorDuration")
+
+        (var decreasingColor:number = 0xFFFFFFFF)
+        (var decreasingAlpha:number = 1.0)
+        (var decreasingRed:number = 1.0)
+        (var decreasingGreen:number = 1.0)
+        (var decreasingBlue:number = 1.0)
+        (var deltaAlpha:number = 1.0)
+
+        (var enabled:bool = true)
+        (var increasing:bool = "value > _actualValue"
+            (event "evValueChanged")
+        )
+        
+        (var _scaleY:number = "progressBarHeight / defaultHeight")
+        (var _deltaLeft:number = "increasing ? _actualValue : value")
+        (var _deltaWidth:number = "increasing ? value - _actualValue : _actualValue - value")
+
+        (controller $Animation name='deltaSize'
+            (bindcall stop 
+                (event "evValueChanged")
+            )
+            (bindcall play delay="increasing ? 0 : enabled ? decreasingColorDuration : 0" duration="deltaDuration" to="{_actualValue:value}" easing="Easing.cubic_out"
+                callbacks="{onStart: evShowDelta, onComplete: evHideDelta}"
+                (event "evValueChanged")
+            )
+        )
+
+        (controller $Animation name='deltaColor'
+            (bindcall stop 
+                (event "evValueChanged")
+            )
+            (bindcall play duration="decreasingColorDuration"
+                from="{decreasingAlpha:1.0, decreasingRed:1.0, decreasingGreen:1.0, decreasingBlue:1.0, deltaAlpha:1.0}"
+                to="{decreasingAlpha:0.6, decreasingRed:0.6, decreasingGreen:0, decreasingBlue:0, deltaAlpha:0}"
+                callbacks="{onStart: evShowDelta, onComplete: evHideDelta}"
+                (event "evValueChanged")
+                (bind enabled "!increasing") 
+            )
+        )
+    )
+    (style
+        (width = 100px)
+        (bind height "progressBarHeight")
+    )
+    (block
+        (name = 'progressBG')
+        (style
+            (position = "absolute")
+            (bind height "defaultHeight")
+            (width = 100%)
+            (bind scaleY "_scaleY")
+            (backgroundImage = "PBbackground")
+            (backgroundSize = "repeat")
+        )
+    )
+    (block
+        (name = 'progressValue')
+        (style
+            (position = "absolute")
+            (bind height "defaultHeight")
+            (bind width "100% * _actualValue")
+            (bind scaleY "_scaleY")
+            (bind backgroundImage "enabled ? (_isFull ? fullProgress : activeProgress) : inactiveProgress")
+            (backgroundSize = "repeat")
+        )
+    )
+    (hblock
+        (name = 'progressGradient')
+        (bind visible "enabled")
+        (style
+            (position = "absolute")
+            (width = 100%)
+        )
+        (image
+            (source = "PBGradientBG")
+            (style
+                (alpha = 0.6)
+                (bind height "defaultHeight")
+                (bind width "_isFull ? 100% * value / 2 : 100% * value")
+                (bind scaleY "_scaleY")
+                (blendMode='add')
+            )   
+        )
+        (image
+            (source = "PBGradientBG")
+            (bind visible "_isFull")
+            (style
+                (position = "absolute")
+                (bind left "100% * value")
+                (bind height "defaultHeight")
+                (bind width "100% * value / 2")
+                (bind scaleY "_scaleY")
+                (scaleX = -1)
+                (alpha = 0.6)
+                (blendMode='add')
+            )   
+        )
+    )
+    (block
+        (style
+            (width = 100%)   
+        )
+        (bind visible "enabled")
+        (name = 'delta')
+        (block
+            (style
+                (position = "absolute")
+                (bind width "100% * _deltaWidth")
+                (bind left "100% * _deltaLeft")
+                (bind height "progressBarHeight")
+            )
+            (image
+                (source = "deltaProgress")
+                (bind visible "true && value!=_actualValue" init=false
+                    (event "evShowDelta")
+                )
+                (bind visible "false"
+                    (event "evHideDelta")
+                )
+                (style
+                    (bind alpha "increasing ? 1 : deltaAlpha")
+                    (position = "absolute")
+                    (bind left "-deltaHighlightOffset")
+                    (bind right "-deltaHighlightOffset")
+                    (bind top "-deltaHighlightOffset")
+                    (bind bottom "-deltaHighlightOffset")
+                    (scale9grid = "Rect(deltaHighlightOffset,deltaHighlightOffset,100,12)")
+                    (blendMode = 'add')
+                )
+            )
+        )
+        (block
+            (name = 'decreasingDelta')
+            (bind visible "!increasing")
+            (style
+                (position = "absolute")
+                (bind left "100% * _deltaLeft")
+                (bind height "defaultHeight")
+                (bind width "100% * _deltaWidth")
+                (bind scaleY "_scaleY")
+                (backgroundColor = "decreasingColor")
+            )
+            (bind colorTransform "{redMultiplier:decreasingRed,
+                                greenMultiplier:decreasingGreen,
+                                blueMultiplier:decreasingBlue,
+                                alphaMultiplier:decreasingAlpha}")
+        )
+    )
+    
+)
+
+(def constant PROGRESSBAR_ORANGE_SKIN "{
+    PBbackground : R.images.gui.maps.icons.ProgressBarUB.pb_pattern_bg(),
+    PBGradientBG : R.images.gui.maps.icons.ProgressBarUB.pb_gradient(),
+    inactiveProgress : R.images.gui.maps.icons.ProgressBarUB.pb_pattern_gr(),
+    activeProgress : R.images.gui.maps.icons.ProgressBarUB.pb_pattern_orange(),
+    fullProgress : R.images.gui.maps.icons.ProgressBarUB.pb_pattern_green(),
+    deltaProgress : R.images.gui.maps.icons.ProgressBarUB.glowing_delta()
+    }"
+)
+
+(def constant PROGRESSBAR_DEFAULT_SIZE "{
+    progressBarHeight : 12px,
+    sampleHeight : 12px,
+    deltaHighlightOffset : 40px
+    }"
+)
+
+(def constant PROGRESSBAR_DEFAULT_TIMINGS "{
+    deltaDuration : 0.5,
+    decreasingColorDuration : 0.5
+    }"
+)

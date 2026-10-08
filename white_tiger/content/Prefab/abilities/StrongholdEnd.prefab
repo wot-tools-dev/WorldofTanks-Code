@@ -1,0 +1,91 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"lodScale": 1.0,
+								"path": "particles/Environment/event_white_tiger/player_tank/siege/Turret_idle_stop.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInKillCamMode": "1",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Animator",
+				"uuid": "00616000-d0f2-458d-8beb-508d29332ea6"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/american/A120_M48A5/_skins/A120_M48A5_3DSt_TLXXL/normal/lod0/Turret_01.model"
+			},
+			"BW::RemoveGoDelayedComponent": {
+				"delay": 0.5,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::WTVehicleSound": {
+				"disabledDomains": [
+					"Server"
+				],
+				"onEnterSound": "ev_white_tiger_gameplay_siege_mode_off",
+				"onEnterSoundNPC": "ev_white_tiger_gameplay_siege_mode_off",
+				"useNPCEvents": "0"
+			}
+		},
+		"name": "StrongholdEnd",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,138 @@
+(def layout NationChangeTankSetup(renderer_model:dict = null)
+    (name = 'tankSetup')
+    (macro NationChangeTankSetupModel)
+    (macro NationChangeTooltips)
+    (scope
+        (var equipBlockMargin:number = 12px)
+        (var equipBlockMarginSmall:number = 3px)
+        (var hideAllAlpha:number = 1)
+        (var isBigFlag:bool = false)
+        (var isHitAreaEnable:bool = true)
+        (var vehicleIntCD:number = 0)
+    )
+
+    (hblock
+        (name = 'equipmentBlock')
+        (bind visible "renderer_model.equipmentList.length")
+        (style
+            (bind marginLeft "isBigFlag ? equipBlockMargin : equipBlockMarginSmall")
+            (bind marginRight "isBigFlag ? equipBlockMargin : equipBlockMarginSmall")
+        )
+        (controller $Repeat renderer=NationChangeDevice layout=true
+            (bind count "renderer_model.equipmentList.length")
+            (exprs
+                (style
+                    (marginLeft = 1px)
+                    (marginRight = 1px)
+                )
+                (scope
+                    (bind image "renderer_model.equipmentList[$index].image")
+                    (bind isImproved "renderer_model.equipmentList[$index].isImproved") 
+                    (bind isTrophyBasic "renderer_model.equipmentList[$index].isTrophyBasic")
+                    (bind isTrophyUpgraded "renderer_model.equipmentList[$index].isTrophyUpgraded")
+                    (bind isModernized "renderer_model.equipmentList[$index].isModernized")
+                    (bind level "renderer_model.equipmentList[$index].level")
+                )
+                (controller $ToolTip
+                    (args 
+                        tooltipId = "TOOLTIP_NC_HANGARMODULE"
+                        intCD = "renderer_model.equipmentList[$index].intCD"
+                        vehicleIntCD = "vehicleIntCD"
+                    ) 
+                    (bind enabled "isHitAreaEnable")
+                    (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+                    (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+                )
+            )
+        )
+    )
+    (element NationChangeInstruction 'instructionSlot'
+        (scope
+            (bind vehicleIntCD "vehicleIntCD")
+            (bind image "renderer_model.instructionSlot.image")
+            (bind isInstalled "renderer_model.instructionSlot.isInstalled")
+            (bind isActive "renderer_model.instructionSlot.isActive")
+            (bind isPerkReplace "renderer_model.instructionSlot.isPerkReplace")
+            (bind intCD "renderer_model.instructionSlot.intCD")
+            (bind layoutIDx "renderer_model.instructionSlot.layoutIDx")
+        )
+        (style
+            (bind marginLeft "isBigFlag ? equipBlockMargin : equipBlockMarginSmall")
+            (bind marginRight "isBigFlag ? equipBlockMargin : equipBlockMarginSmall")
+        )
+    )
+    (hblock
+        (name = 'shellBlock')
+        (bind visible "renderer_model.shellList.length")
+        (style
+            (bind marginLeft "isBigFlag ? equipBlockMargin : equipBlockMarginSmall")
+            (bind marginRight "isBigFlag ? equipBlockMargin : equipBlockMarginSmall")
+            (align = "center|middle")
+        )  
+        (controller $Repeat layout=true
+            (bind count "renderer_model.shellList.length")
+            (exprs
+                (block
+                    (style
+                        (width = 48px)
+                        (height = 48px)
+                        (marginLeft = -1px)
+                        (marginRight = -1px)
+                    ) 
+                    (image
+                        (style
+                            (width = 100%)
+                            (height = 100%)
+                        )
+                        (bind source "renderer_model.shellList[$index].image") 
+                    )
+                    (controller $ToolTip
+                        (args 
+                            tooltipId = "TOOLTIP_NC_HANGARSHELL"
+                            intCD = "renderer_model.shellList[$index].intCD"
+                            vehicleIntCD = "vehicleIntCD"
+                        ) 
+                        (bind enabled "isHitAreaEnable")
+                        (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+                        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+                    )
+                )
+            )
+        )
+    )
+    (hblock
+        (name = 'supplyBlock')
+        (bind visible "renderer_model.supplyList.length")
+        (style
+            (bind marginLeft "isBigFlag ? equipBlockMargin : equipBlockMarginSmall")
+            (bind marginRight "isBigFlag ? equipBlockMargin : equipBlockMarginSmall")
+            (align = "center|middle")
+        )  
+        (controller $Repeat layout=true
+            (bind count "renderer_model.supplyList.length")
+            (exprs
+                (block
+                    (style
+                        (width = 45px)
+                        (height = 45px)
+                        (marginLeft = 1px)
+                        (marginRight = 1px)
+                    ) 
+                    (image
+                        (bind source "renderer_model.supplyList[$index].image") 
+                    )
+                    (controller $ToolTip
+                        (args 
+                            tooltipId = "TOOLTIP_NC_HANGARMODULE"
+                            intCD = "renderer_model.supplyList[$index].intCD"
+                            vehicleIntCD = "vehicleIntCD"
+                        )
+                        (bind enabled "isHitAreaEnable")
+                        (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+                        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+                    )
+                )
+            )
+        )
+    )
+)

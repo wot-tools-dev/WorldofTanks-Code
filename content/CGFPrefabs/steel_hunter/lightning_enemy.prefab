@@ -1,0 +1,66 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"clip": "<Default Clip>",
+								"layerName": "0",
+								"path": "particles/Environment/Battle_Royal/Lighting/Strike_Lighting_Zone_Flash.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"scale": {
+							"x": 10.0,
+							"y": 1.0,
+							"z": 10.0
+						}
+					}
+				},
+				"name": "Zone_Flash",
+				"uuid": "22d4cbca-334e-4c72-b351-395cfd68ca54"
+			}
+		],
+		"components": {
+			"BW::RemoveGoDelayedComponent": {
+				"delay": 1.0,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::VSEComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"path": "battle_royale/vscript/plans/VFX/Lighting/Lighting_randomizer.xml"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "Root",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

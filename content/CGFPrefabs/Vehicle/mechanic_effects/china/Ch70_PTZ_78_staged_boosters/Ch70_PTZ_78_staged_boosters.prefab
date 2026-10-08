@@ -1,0 +1,188 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::VSEComponent": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								],
+								"path": "vscript/plans/vehicles/mechanic_effects/staged_jet_boosters_vfx.xml"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "sound",
+						"uuid": "707a2c65-b1da-4d03-a842-c8342b54fb41"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::NestedPrefabComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"resourceName": "content/CGFPrefabs/Vehicle/mechanic_effects/china/Ch70_PTZ_78_staged_boosters/Ch70_PTZ_78_staged_boosters_client_right.prefab"
+									},
+									"cgf::TransformComponent": {
+										"rotation": {
+											"x": -0.0,
+											"y": 179.99986267089844,
+											"z": 0.0
+										}
+									},
+									"cgf::network::ReplicableComponent": {}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "right_rocket",
+								"uuid": "027cea5d-77c1-4cf7-8f48-60cae762b1e6"
+							}
+						],
+						"components": {
+							"BW::SoundObject3DComponent": {
+								"aux": "0",
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 1.0005199909210205,
+									"y": 0.815517008304596,
+									"z": -3.565000057220459
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 179.99986267089844,
+									"z": 0.0
+								}
+							}
+						},
+						"name": "right_joint",
+						"uuid": "bc713dab-9773-41ac-b551-5ecb82882df8"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::NestedPrefabComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"resourceName": "content/CGFPrefabs/Vehicle/mechanic_effects/china/Ch70_PTZ_78_staged_boosters/Ch70_PTZ_78_staged_boosters_client_left.prefab"
+									},
+									"cgf::TransformComponent": {
+										"rotation": {
+											"x": -0.0,
+											"y": 179.99986267089844,
+											"z": 0.0
+										}
+									},
+									"cgf::network::ReplicableComponent": {}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "left_rocket",
+								"uuid": "4b21ad75-9fa9-4e5a-92c8-fd4b24834357"
+							}
+						],
+						"components": {
+							"BW::SoundObject3DComponent": {
+								"aux": "0",
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -0.99822998046875,
+									"y": 0.8001629710197449,
+									"z": -3.565000057220459
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 179.99986267089844,
+									"z": 0.0
+								}
+							}
+						},
+						"name": "left_joint",
+						"uuid": "28d6d044-582d-4d91-a807-f4bd6c5a78d5"
+					}
+				],
+				"components": {
+					"BW::EntityLinkerComponent": {
+						"disabledDomains": [
+							"Client",
+							"Editor"
+						],
+						"sourceType": "InParent"
+					},
+					"cgf::TransformComponent": {},
+					"cgf::network::ReplicableComponent": {},
+					"script::PhasedMechanicStateMachineComponent": {
+						"activeTime": "3",
+						"autoDeploy": "0",
+						"deployTime": "3",
+						"disabledDomains": [
+							"Client"
+						],
+						"quantity": "-1",
+						"reloadTime": "3"
+					},
+					"script::StagedJetBoostersController": {
+						"left": {
+							"__ctype__": "BW::UUID",
+							"__cvalue__": "4b21ad75-9fa9-4e5a-92c8-fd4b24834357"
+						},
+						"right": {
+							"__ctype__": "BW::UUID",
+							"__cvalue__": "027cea5d-77c1-4cf7-8f48-60cae762b1e6"
+						},
+						"stateController": {
+							"__ctype__": "BW::UUID",
+							"__cvalue__": "4709432a-9b19-4f49-8f4f-f8fd8ac600e5"
+						}
+					}
+				},
+				"name": "normal",
+				"uuid": "4709432a-9b19-4f49-8f4f-f8fd8ac600e5"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"decorType": "0",
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"isOverlayEnabled": "0",
+				"modelName": "vehicles/chinese/Ch70_PTZ_78/normal/lod0/Hull.model"
+			},
+			"BW::StateSwitcherComponent": {
+				"critical": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"damaged": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"normal": "4709432a-9b19-4f49-8f4f-f8fd8ac600e5",
+				"preview": 1
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::ReplicableComponent": {},
+			"script::VehicleHealthObserverComponent": {
+				"state": "1"
+			}
+		},
+		"name": "Ch70_PTZ_78_staged_boosters",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

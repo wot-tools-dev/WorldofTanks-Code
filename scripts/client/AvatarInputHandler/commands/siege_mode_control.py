@@ -1,0 +1,84 @@
+from __future__ import absolute_import
+import BigWorld
+from weakref import ref
+from constants import ARENA_PERIOD, VEHICLE_SIEGE_STATE, VEHICLE_SETTING
+import CommandMapping
+from AvatarInputHandler.commands.input_handler_command import InputHandlerCommand
+from AvatarInputHandler.player_notifications.siege_mode.sound_notifications import playUnavailableSound, playTriggerSound
+from helpers import dependency
+from vehicles.mechanics.mechanic_constants import VehicleMechanic
+from vehicles.mechanics.mechanic_helpers import getPlayerVehicleMechanicComponent
+from skeletons.gui.battle_session import IBattleSessionProvider
+
+class SiegeModeControl(InputHandlerCommand):
+    __sessionProvider = dependency.descriptor(IBattleSessionProvider)
+    __CANT_SWITCH_ERRORS = {'gun': 'cantSwitchGunDestroyed',
+     'engine': 'cantSwitchEngineDestroyed'}
+
+    def __init__(self, notifier):
+        self.__currentState = VEHICLE_SIEGE_STATE.DISABLED
+        self.__notifier = ref(notifier)
+        notifier.onSiegeStateChanged += self.__onSiegeStateChanged
+
+    def destroy(self):
+        notifier = self.__notifier()
+        if notifier is not None:
+            notifier.onSiegeStateChanged -= self.__onSiegeStateChanged
+        self.__notifier = None
+        return
+
+    def handleKeyEvent(self, isDown, key, mods, event=None):
+        cmdMap = CommandMapping.g_instance
+        keyCaptured = cmdMap.isFired(CommandMapping.CMD_CM_VEHICLE_SWITCH_AUTOROTATION, key) and isDown
+        if not keyCaptured:
+            return False
+        else:
+            vehicle = BigWorld.player().getVehicleAttached()
+            if vehicle is None:
+                return False
+            vehicleDescr = vehicle.typeDescriptor
+            if vehicleDescr.hasAutoSiegeMode or vehicleDescr.type.isDualgunVehicleType:
+                return False
+            onlyInBattleSwitch = vehicleDescr.isTwinGunVehicle
+            if onlyInBattleSwitch and self.__sessionProvider.arenaVisitor.getArenaPeriod() != ARENA_PERIOD.BATTLE:
+                return False
+            if vehicle.isPlayerVehicle and vehicle.isAlive():
+                self.__switchSiegeMode(vehicle)
+            mechanicComponent = getPlayerVehicleMechanicComponent(VehicleMechanic.SHELL_PARAMS_SWITCHER)
+            if mechanicComponent is not None:
+                mechanicComponent.tryActivate()
+            return True
+
+    def __onSiegeStateChanged(self, vehicleID, newState, timeToNextMode):
+        avatar = BigWorld.player()
+        vehicle = BigWorld.entities.get(vehicleID)
+        if vehicle is None or not (vehicle.isPlayerVehicle or vehicleID == avatar.observedVehicleID):
+            return
+        else:
+            self.__currentState = newState
+            return
+
+    def __switchSiegeMode(self, vehicle):
+        player = BigWorld.player()
+        if player is None:
+            return
+        else:
+            siegeModeParams = vehicle.typeDescriptor.type.siegeModeParams
+            soundStateChange = siegeModeParams['soundStateChange'] if siegeModeParams else None
+            playTriggerSound(soundStateChange)
+            isSwitching = self.__currentState in VEHICLE_SIEGE_STATE.SWITCHING
+            if isSwitching and siegeModeParams and not siegeModeParams['switchCancelEnabled']:
+                return
+            deviceName = vehicle.typeDescriptor.type.siegeDeviceName
+            if player.deviceStates.get(deviceName) == 'destroyed' and not isSwitching:
+                player.showVehicleError(self.__CANT_SWITCH_ERRORS[deviceName])
+                playUnavailableSound(soundStateChange)
+                return
+            ammo = self.__sessionProvider.shared.ammo
+            enableSiegeMode = self.__currentState not in (VEHICLE_SIEGE_STATE.SWITCHING_ON, VEHICLE_SIEGE_STATE.ENABLED)
+            if vehicle.typeDescriptor.isTwinGunVehicle and enableSiegeMode and ammo and ammo.getShellsQuantityLeft() == 1:
+                player.showVehicleError('cantSwitchOneShellLeft')
+                playUnavailableSound(soundStateChange)
+                return
+            player.cell.vehicle_changeSetting(VEHICLE_SETTING.SIEGE_MODE_ENABLED, enableSiegeMode)
+            return

@@ -1,0 +1,1 @@
+var e=(e=>(e.Prepick="prepick",e.Voting="voting",e.Finished="finished",e.None="none",e))(e||{}),n=(e=>(e.NoSelected="noSelected",e.DontBanSelected="dontBanSelected",e.SingleCandidate="singleCandidate",e.MultipleCandidates="multipleCandidates",e))(n||{});export{e as B,n as C};

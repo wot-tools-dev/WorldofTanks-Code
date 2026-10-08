@@ -1,0 +1,213 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Headlights",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A176_M103_110_HBP_3Dst/Hull_Headlights.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_A176_Attachment_1"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull_Headlights",
+				"uuid": "ae6dd770-e850-49d1-a61b-669eacb4f5b5"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Torch",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A176_M103_110_HBP_3Dst/Turret_Torch_Default.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInKillCamMode": "0",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "0",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_A176_Attachment_2"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.015121500007808208,
+							"y": 0.0,
+							"z": 0.010280599817633629
+						}
+					}
+				},
+				"name": "Turret_Torch_Default",
+				"uuid": "5025587a-b4d3-329b-ad2f-640826e14952"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Sound3DComponent": {
+								"AutoStart": true,
+								"Event name": "style_cust_m103_HBP_torch",
+								"Fade time": 0.0,
+								"Fade type": 4,
+								"Object name": "Turret_Torch_Sound3D",
+								"Volume": 1.0,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 1.2717000246047974,
+									"y": 1.30771005153656,
+									"z": -1.594939947128296
+								},
+								"scale": {
+									"x": 5.0,
+									"y": 5.0,
+									"z": 5.0
+								}
+							}
+						},
+						"name": "Turret_Torch_Sound3D",
+						"uuid": "169e6966-79a6-4f98-be17-301484dd76d9"
+					}
+				],
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Torch",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A176_M103_110_HBP_3Dst/Turret_Torch_Stop-Move.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInKillCamMode": "0",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "0",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "1"
+					},
+					"BW::EngineStateAnimatorTriggerComponent": {
+						"highTrigger": "Move",
+						"idleTrigger": "Stop",
+						"mediumTrigger": "Move",
+						"monitorGear": "0",
+						"monitorPhysicLoad": "0",
+						"monitorRelativeRpm": "0",
+						"monitorRpm": "0",
+						"stoppedTrigger": "Stop",
+						"triggerEngineStart": "0",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_A176_Attachment_2"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.036392200738191605,
+							"y": 0.0,
+							"z": 0.010280599817633629
+						}
+					}
+				},
+				"name": "Turret_Torch_Stop-Move",
+				"uuid": "8583ec28-06d2-49fa-85c9-44e518fba193"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/american/A176_M103_110/_skins/A176_M103_110_HBP_3Dst/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "A176_M103_110_HBP_3Dst",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,515 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Client",
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "vehicles/german/G42_Maus/normal/lod0/Hull.model"
+					},
+					"BW::FashionComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::GpuDecalsReceiverComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::RemoveGoDelayedComponent": {
+						"delay": 0.0010000000474974513,
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.08654790371656418,
+							"y": -0.8499169945716858,
+							"z": 1.9483000040054321
+						}
+					}
+				},
+				"uuid": "51665276-a144-4ce3-b85c-91e48efcd777"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90.0
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.0
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::VectorZExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "damageSticker/rotation"
+															}
+														}
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0.0,
+										"y": 0.0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": "10",
+									"emissionType": "Temperature",
+									"enabled": "0",
+									"power": 1.6299999952316284
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "3",
+									"tintColor": {
+										"w": 1.0,
+										"x": 0.0,
+										"y": 1.0,
+										"z": 1.0
+									}
+								},
+								"mapsConfig": {
+									"albedo": "content/TestContent/GPU_Decals/textures/test_parallax_AM.dds",
+									"glossMetallic": "content/TestContent/GPU_Decals/textures/test_GMM.dds",
+									"normal": "content/TestContent/GPU_Decals/textures/test_parallax_NM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.49000000953674316,
+									"enabled": "1",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90.00020599365234,
+									"y": -0.0,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 0.4375,
+									"y": 0.4375,
+									"z": 0.4375
+								}
+							}
+						},
+						"name": "Ricochet_decal",
+						"uuid": "b737e26b-630e-3f5f-ac89-91efb07f7258"
+					}
+				],
+				"components": {
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::AddExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 1.0
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::SubtractExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 1.0
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::DotProductExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::ConstantVector3Expression",
+																	"__cvalue__": {
+																		"vector3Value/x": 0.0,
+																		"vector3Value/y": 1.0,
+																		"vector3Value/z": 0.0
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::UnitVectorExpression",
+																	"__cvalue__": {
+																		"arg/expression": {
+																			"__ctype__": "BW::variables::NegateExpression",
+																			"__cvalue__": {
+																				"arg/expression": {
+																					"__ctype__": "BW::variables::VariableExpression",
+																					"__cvalue__": {
+																						"variable/variableName": "hit/projectile/direction"
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.6499999761581421
+													}
+												}
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "cgf::TransformComponent",
+								"componentPropertyDest/propertyPath": "scale/z"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::ConstructVector3Expression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.0
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::VectorYExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "damageSticker/rotation"
+													}
+												}
+											}
+										},
+										"arg2/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.0
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "cgf::TransformComponent",
+								"componentPropertyDest/propertyPath": "rotation"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 90.00020599365234,
+							"z": 0.0
+						},
+						"scale": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.3593100309371948
+						}
+					}
+				},
+				"name": "Common",
+				"uuid": "4dba21fe-7a9a-4967-907e-f2d349aec04d"
+			}
+		],
+		"components": {
+			"BW::EffectInitContextCalcComponent": {
+				"calcs": [
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::DivideExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/caliber"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 160.0
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0.699999988079071
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/energy"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::LessEqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::AbsoluteValueExpression",
+									"__cvalue__": {
+										"arg/expression": {
+											"__ctype__": "BW::variables::DotProductExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::DivideExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/direction"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::VectorLengthExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/projectile/direction"
+																	}
+																}
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantVector3Expression",
+													"__cvalue__": {
+														"vector3Value/x": 0.0,
+														"vector3Value/y": 0.9929999709129333,
+														"vector3Value/z": 0.0
+													}
+												}
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0.5
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "damageSticker/angled"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ZLookAtPitchYawRollExpression",
+							"__cvalue__": {
+								"arg/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "hit/projectile/direction"
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "damageSticker/rotation"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::EffectInitMockVariablesComponent": {
+				"calcs": [
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "hitType",
+								"enumValueName": "finalRicochet"
+							}
+						},
+						"variableDest/variableName": "hit/type"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantVector3Expression",
+							"__cvalue__": {
+								"vector3Value/x": 1.0,
+								"vector3Value/y": -0.5,
+								"vector3Value/z": 0.0
+							}
+						},
+						"variableDest/variableName": "hit/projectile/direction"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantFloatExpression",
+							"__cvalue__": {
+								"floatValue": 100.0
+							}
+						},
+						"variableDest/variableName": "hit/projectile/caliber"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "shellType",
+								"enumValueName": "armorPiercing"
+							}
+						},
+						"variableDest/variableName": "hit/projectile/shellType"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantFloatExpression",
+							"__cvalue__": {
+								"floatValue": 90.0
+							}
+						},
+						"variableDest/variableName": "damageSticker/rotation"
+					}
+				],
+				"disabledDomains": [
+					"Client",
+					"Server"
+				]
+			},
+			"BW::EffectInitPreviewComponent": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				]
+			},
+			"BW::variables::VariableGetterComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::variables::VariableStorageComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"varInitialValues": []
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "armor_hit_decal",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

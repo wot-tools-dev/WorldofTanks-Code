@@ -1,0 +1,881 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ChooseExpression",
+													"__cvalue__": {
+														"choices": [
+															{
+																"condition/expression": {
+																	"__ctype__": "BW::variables::EqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "vehicle/gun/shellType"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "shellType",
+																				"enumValueName": "armorPiercing"
+																			}
+																		}
+																	}
+																},
+																"result/expression": {
+																	"__ctype__": "BW::variables::ConstantVector4Expression",
+																	"__cvalue__": {
+																		"vector4Value/w": 1.0,
+																		"vector4Value/x": 0.9686269760131836,
+																		"vector4Value/y": 0.0,
+																		"vector4Value/z": 1.0
+																	}
+																}
+															}
+														],
+														"defaultResult/expression": {
+															"__ctype__": "BW::variables::ConstantVector4Expression",
+															"__cvalue__": {
+																"vector4Value/w": 1.0,
+																"vector4Value/x": 0.0,
+																"vector4Value/y": 1.0,
+																"vector4Value/z": 0.035294100642204285
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "tintColorVec4"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank/shots/groundwave_large_ground_mb.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "groundwave_large_ground",
+								"uuid": "875a6c33-4ffd-3ef4-a9d8-2fed51030678"
+							},
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstantVector4Expression",
+													"__cvalue__": {
+														"vector4Value/w": 1.0,
+														"vector4Value/x": 0.1411760002374649,
+														"vector4Value/y": 1.0,
+														"vector4Value/z": 0.0
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "tintColorVec4"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank/shots/groundwave_large_stone_mb.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 16777215
+										},
+										"windWeight": 1.0
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "groundwave_large_stone",
+								"uuid": "1945f87a-c36e-30dc-b942-0b1b93fdf8d8"
+							},
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank/shots/groundwave_large_water.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "groundwave_large_water",
+								"uuid": "4a86c18d-8387-353d-aeb6-9dbf25f3894d"
+							},
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstantVector4Expression",
+													"__cvalue__": {
+														"vector4Value/w": 1.0,
+														"vector4Value/x": 0.5254899859428406,
+														"vector4Value/y": 0.0,
+														"vector4Value/z": 1.0
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "tintColorVec4"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank/shots/groundwave_large_oil_mb.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 16777215
+										},
+										"windWeight": 1.0
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "groundwave_large_oil",
+								"uuid": "8394faa6-07c6-304f-8542-e418d4255999"
+							},
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstantVector4Expression",
+													"__cvalue__": {
+														"vector4Value/w": 1.0,
+														"vector4Value/x": 0.0,
+														"vector4Value/y": 0.9568629860877991,
+														"vector4Value/z": 1.0
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "tintColorVec4"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::ConstantVector2Expression",
+															"__cvalue__": {
+																"vector2Value/x": 2.0,
+																"vector2Value/y": 2.0
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::DivideExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1.0
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "groundwave/distanceToTerrain"
+																	}
+																}
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "particleSize"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank/shots/groundwave_large_snow_mb.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 65285
+										},
+										"windWeight": 1.0
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "groundwave_large_snow",
+								"uuid": "a21b2e46-402f-3ece-be26-56022de52910"
+							},
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstantVector4Expression",
+													"__cvalue__": {
+														"vector4Value/w": 1.0,
+														"vector4Value/x": 1.0,
+														"vector4Value/y": 0.0,
+														"vector4Value/z": 0.4549019932746887
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "tintColorVec4"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank/shots/groundwave_large_sand_mb.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "groundwave_large_sand",
+								"uuid": "3234dc57-1f49-334b-b882-b103f23834dc"
+							},
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstantVector4Expression",
+													"__cvalue__": {
+														"vector4Value/w": 1.0,
+														"vector4Value/x": 0.9098039865493774,
+														"vector4Value/y": 1.0,
+														"vector4Value/z": 0.0
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "tintColorVec4"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank/shots/groundwave_large_dirt_mb.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "groundwave_large_dirt",
+								"uuid": "6bc2aa9a-2d66-3bf4-ba82-b7dc0c7aaa61"
+							}
+						],
+						"components": {
+							"BW::DetachableGameObjectComponent": {
+								"destroyDelay": "0",
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::MultipleGameObjectsActivationRulesComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"gameObjectActivationExpressions": [
+									{
+										"uuidCalcExpr/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "groundwave/terrainMatKind"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "matKind",
+														"enumValueName": "water"
+													}
+												}
+											}
+										},
+										"uuidDest": "4a86c18d-8387-353d-aeb6-9dbf25f3894d"
+									},
+									{
+										"uuidCalcExpr/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "groundwave/terrainMatKind"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "matKind",
+														"enumValueName": "stone"
+													}
+												}
+											}
+										},
+										"uuidDest": "1945f87a-c36e-30dc-b942-0b1b93fdf8d8"
+									},
+									{
+										"uuidCalcExpr/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "groundwave/terrainMatKind"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "matKind",
+														"enumValueName": "snow"
+													}
+												}
+											}
+										},
+										"uuidDest": "a21b2e46-402f-3ece-be26-56022de52910"
+									},
+									{
+										"uuidCalcExpr/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "groundwave/terrainMatKind"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "matKind",
+														"enumValueName": "sand"
+													}
+												}
+											}
+										},
+										"uuidDest": "3234dc57-1f49-334b-b882-b103f23834dc"
+									},
+									{
+										"uuidCalcExpr/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "groundwave/terrainMatKind"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "matKind",
+														"enumValueName": "oil"
+													}
+												}
+											}
+										},
+										"uuidDest": "8394faa6-07c6-304f-8542-e418d4255999"
+									},
+									{
+										"uuidCalcExpr/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "groundwave/terrainMatKind"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "matKind",
+														"enumValueName": "ground"
+													}
+												}
+											}
+										},
+										"uuidDest": "875a6c33-4ffd-3ef4-a9d8-2fed51030678"
+									},
+									{
+										"uuidCalcExpr/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "groundwave/terrainMatKind"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "matKind",
+														"enumValueName": "dirt"
+													}
+												}
+											}
+										},
+										"uuidDest": "6bc2aa9a-2d66-3bf4-ba82-b7dc0c7aaa61"
+									}
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "effect_root",
+						"uuid": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+					}
+				],
+				"components": {
+					"BW::CastFilterComponent": {
+						"acceptBodyFlags": "0",
+						"collisionTypeFlags": "7",
+						"disabledDomains": [
+							"Server"
+						],
+						"ignoreBodyFlags": "2"
+					},
+					"BW::CastResultComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::DeactivateGoDelayedComponent": {
+						"delay": 2.0,
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						]
+					},
+					"BW::EffectInitContextCalcComponent": {
+						"calcs": [],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::EffectInitMockVariablesComponent": {
+						"calcs": [
+							{
+								"variableCalcExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 100.0
+									}
+								},
+								"variableDest/variableName": "vehicle/gun/caliber"
+							},
+							{
+								"variableCalcExpr/expression": {
+									"__ctype__": "BW::variables::EnumExpression",
+									"__cvalue__": {
+										"enumName": "shellType",
+										"enumValueName": "armorPiercing"
+									}
+								},
+								"variableDest/variableName": "vehicle/gun/shellType"
+							},
+							{
+								"variableCalcExpr/expression": {
+									"__ctype__": "BW::variables::EnumExpression",
+									"__cvalue__": {
+										"enumName": "matKind",
+										"enumValueName": "snow"
+									}
+								},
+								"variableDest/variableName": "groundwave/terrainMatKind"
+							},
+							{
+								"variableCalcExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 10.0
+									}
+								},
+								"variableDest/variableName": "groundwave/distanceToTerrain"
+							}
+						],
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::EffectInitPreviewComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::GroundWaveComponent": {
+						"cutoffDistance": 3.5,
+						"disabledDomains": [
+							"Server"
+						],
+						"effects": [
+							{
+								"materialKindName": "default",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "ground",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "oil",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "sand",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "snow",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "stone",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "dirt",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "wood",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "metal",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "blacksand",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							},
+							{
+								"materialKindName": "water",
+								"transformLink": "79d687f8-3f52-3593-8b75-5cc61316bb58"
+							}
+						]
+					},
+					"BW::GroundWaveRayCasterComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"interpolationFactor": 0.8999999761581421,
+						"iterationsCount": "2"
+					},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::variables::VariableStorageComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"varInitialValues": []
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "groundwave",
+				"uuid": "3dde10b5-7989-36d2-8310-23b4bb4ad571"
+			}
+		],
+		"components": {
+			"BW::DetachableGameObjectsHandlerComponent": {
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "groundwave",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

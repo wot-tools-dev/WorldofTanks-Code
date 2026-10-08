@@ -1,0 +1,323 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInLookAtKillerMode": false,
+								"visibleInMapCaseArcadeMode": true,
+								"visibleInSniperMode": false,
+								"visibleInTwinGunMode": false
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/G183_headlights.model"
+							},
+							"cgf::TransformComponent": {
+								"position/y": 0.00043774,
+								"position/z": 0.004
+							}
+						},
+						"name": "Headlights",
+						"uuid": "520f6fbc-574d-42c5-93cc-0409b806939d"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseArcadeMode": true,
+								"visibleInSniperMode": false,
+								"visibleInTwinGunMode": false
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/G183_stoplights.model"
+							},
+							"cgf::TransformComponent": {
+								"position/z": -0.005,
+								"rotation/y": -180
+							}
+						},
+						"name": "Stoplights",
+						"uuid": "1e0a8274-8125-4b7b-a86e-9421f15b33f7"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseArcadeMode": true,
+								"visibleInSniperMode": false,
+								"visibleInTwinGunMode": false
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/G183_sidelights.model"
+							},
+							"cgf::TransformComponent": {
+								"position/z": -0.005,
+								"rotation/y": -180
+							}
+						},
+						"name": "Sidelights",
+						"uuid": "b653daa0-4f2a-4511-a354-868d28533267"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_G183_Attachment_Hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "8e0f7c59-5ac0-4bd4-a822-ab4200db2bae"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"dynamicModelLinkType": "SelfAndParents",
+						"layers": [
+							{
+								"autoStart": false,
+								"layerName": "Headlights_open",
+								"path": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/headlights_open.seq",
+								"properties/loop": false,
+								"properties/loopCount": 1
+							},
+							{
+								"autoStart": false,
+								"layerName": "Headlights_close",
+								"path": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/headlights_close.seq",
+								"properties/loop": false,
+								"properties/loopCount": 1
+							},
+							{
+								"autoStart": false,
+								"layerName": "Headlights_idle",
+								"path": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/animation/front_lights_idle.fbx"
+							},
+							{
+								"autoStart": false,
+								"layerName": "Radar_animate",
+								"path": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/radar_animate.seq",
+								"properties/loop": false,
+								"properties/loopCount": 1
+							},
+							{
+								"autoStart": false,
+								"layerName": "Rangefinder_open",
+								"path": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/rangefinder_open.seq",
+								"properties/loop": false,
+								"properties/loopCount": 1
+							},
+							{
+								"autoStart": false,
+								"layerName": "Rangefinder_close",
+								"path": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/rangefinder_close.seq",
+								"properties/loop": false,
+								"properties/loopCount": 1
+							},
+							{
+								"autoStart": false,
+								"layerName": "Rangefinder_idle",
+								"path": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/rangefinder_idle.seq",
+								"properties/loop": true,
+								"properties/loopCount": -1
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Animations",
+				"uuid": "c856b2d4-349c-45de-9b71-f931f936a592"
+			},
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseArcadeMode": true,
+										"visibleInSniperMode": false,
+										"visibleInTwinGunMode": false
+									},
+									"BW::DynamicModel": {
+										"castShadows": false,
+										"modelName": "particles/Tank/customization/G183_Fossa_VM_68_3Dst/G183_steam_main.model"
+									},
+									"BW::ModelPropertyChanger": {},
+									"cgf::TransformComponent": {}
+								},
+								"name": "GunSteam",
+								"uuid": "a96d46a9-a5c5-4872-8c9e-c7daa3de6913"
+							},
+							{
+								"components": {
+									"BW::Sound3DComponent": {
+										"AutoStart": true,
+										"Event name": "style_cust_G183_gun_smoke",
+										"Object name": "G183_Fossa_VM_68_3Dst_gun_sfx"
+									},
+									"cgf::TransformComponent": {
+										"position/z": 3.1031
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "G183_Fossa_VM_68_3Dst_gun_sfx",
+								"uuid": "286465eb-027d-437c-94f5-d88090a1a334"
+							}
+						],
+						"components": {
+							"BW::SequenceComponent": {
+								"autoStart": true,
+								"layers": [
+									{
+										"duration": 3,
+										"tracks": [
+											{
+												"endTime": 10,
+												"object": "a96d46a9-a5c5-4872-8c9e-c7daa3de6913",
+												"parameters": [
+													{
+														"component": "BW::ModelPropertyChanger",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"time": 0.75896,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"time": 1.0843,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {
+																		"x": 2
+																	}
+																}
+															},
+															{
+																"time": 1.3935,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {
+																		"x": 2
+																	}
+																}
+															},
+															{
+																"time": 2.4279,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"time": 3,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"object": "a96d46a9-a5c5-4872-8c9e-c7daa3de6913",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "properties"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "lambert1"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "Common Properties"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "lightMultipliers"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "value"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 3,
+												"object": "286465eb-027d-437c-94f5-d88090a1a334",
+												"startTime": 0.01
+											}
+										]
+									}
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Gun_shoot",
+						"uuid": "5616be4e-d72b-4e97-91be-ab464ef5df94"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_G183_Attachment_Gun_02"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Gun",
+				"uuid": "3d7d1a92-3395-4c5a-b185-bdee6f4a2b4a"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"decorType": "0",
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"isOverlayEnabled": "0",
+				"modelName": "vehicles/german/G183_Fossa_VM_68/_skins/G183_Fossa_VM_68_3Dst/normal/lod0/Hull.model"
+			},
+			"BW::VSEComponent": {
+				"disabledDomains": [],
+				"path": "vscript/plans/VFX/G183_Fossa_VM_68_3Dst/g183_animations.xml"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "G183_Fossa_VM_68_3Dst_hull",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,45 @@
+# This file was generated using wgpygen
+#   template: configs/templates/view_model.unbound.jinja2
+#   source: configs/definitions/views/lobby/blueprints/blueprint_screen_model.yaml
+# Please, don't edit this file manually.
+(def macro BlueprintScreenModel()
+    (scope
+        (event onGoToConversionScreen)
+        (event onClose)
+        (event onResearchVehicle)
+        (event onGoToAllConversion)
+        (event onSubmitUnavailableConfirm)
+        (event onOpenVehicleViewBtnClicked)
+
+        (var vehicleName:str = '')
+        (var vehicleType:str = '')
+        (var vehicleLevel:str = '')
+        (var isElite:bool = false)
+        (var schemeCols:number = 1)
+        (var schemeRows:number = 1)
+        (var isUnlocked:bool = false)
+        (var isAvailableForUnlock:bool = false)
+        (var needXpToUnlock:bool = true)
+        (var conversionAvailable:bool = false)
+        (var schemeItems:array = [])
+        (var filledCount:number = 0)
+        (var isSchemeFullCompleted:bool = false)
+        (var isPurchased:bool = false)
+        (var cost:str = '')
+        (var discount:number = 0)
+        (var discountAbs:str = '0')
+        (var backBtnLabel:str = '')
+        (var maxConvertibleFragmentCount:number = 0)
+        (var showUnavailableConfirm:bool = false)
+        (var blueprintAnimPaused:bool = false)
+        (var currentStateView:number = -1)
+        (var receivedCount:number = 0)
+        (var showBlueprintInfotypeIcon:bool = false)
+
+        (const INIT:number = 0)
+        (const UPDATE:number = 1)
+
+        # The following submodels are used in this model:
+        # conversionMaxCost:views.lobby.blueprints.blueprint_price_content_model
+    )
+)

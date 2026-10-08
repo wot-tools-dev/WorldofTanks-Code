@@ -1,0 +1,1264 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::EffectInitPreviewComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantVector2Expression",
+											"__cvalue__": {
+												"vector2Value/x": 1.5,
+												"vector2Value/y": 1.5
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "startSpeed"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantVector2Expression",
+											"__cvalue__": {
+												"vector2Value/x": 1.0,
+												"vector2Value/y": 1.0
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "particleSize"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::GameObjectActivationRulesComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::EqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/muzzleBrake"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::EnumExpression",
+									"__cvalue__": {
+										"enumName": "muzzleBrakeType",
+										"enumValueName": "standard"
+									}
+								}
+							}
+						},
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Tank/shots/shot_main_01.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"BW::TransformHistoryComponent": {},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": -90.00020599365234,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Muzzle Fire Left (MB Only)",
+				"uuid": "2374d1be-567e-3592-a245-e1746dab024e"
+			},
+			{
+				"components": {
+					"BW::EffectInitPreviewComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantVector2Expression",
+											"__cvalue__": {
+												"vector2Value/x": 0.5,
+												"vector2Value/y": 0.5
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "startSpeed"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantVector2Expression",
+											"__cvalue__": {
+												"vector2Value/x": 0.5,
+												"vector2Value/y": 0.5
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "particleSize"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::GameObjectActivationRulesComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::EqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/muzzleBrake"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::EnumExpression",
+									"__cvalue__": {
+										"enumName": "muzzleBrakeType",
+										"enumValueName": "standard"
+									}
+								}
+							}
+						},
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Tank/shots/shot_main_01.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"BW::TransformHistoryComponent": {},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Muzzle Fire (MB Only)",
+				"uuid": "240a3aaa-e0f4-3610-a566-7313625a1f04"
+			},
+			{
+				"components": {
+					"BW::EffectInitPreviewComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantVector2Expression",
+											"__cvalue__": {
+												"vector2Value/x": 2.0,
+												"vector2Value/y": 2.0
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "particleSize"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantVector2Expression",
+											"__cvalue__": {
+												"vector2Value/x": 1.0,
+												"vector2Value/y": 1.0
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "startSpeed"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::GameObjectActivationRulesComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::EqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/muzzleBrake"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::EnumExpression",
+									"__cvalue__": {
+										"enumName": "muzzleBrakeType",
+										"enumValueName": "none"
+									}
+								}
+							}
+						},
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Tank/shots/shot_main_01.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"BW::TransformHistoryComponent": {},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Fire (No MB)",
+				"uuid": "1b996eb1-7b72-4cd8-805a-8d82c22ca016"
+			},
+			{
+				"components": {
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "vehicle/gun/caliber"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 2.0
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::LightParametrizationDataComponent",
+								"componentPropertyDest/propertyPath": "multiplierBase"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 130.0
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.0010000000474974513
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.0010000000474974513
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::OmniLightComponent",
+								"componentPropertyDest/propertyPath": "descriptor/commonLightDesc/innerRadius"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "vehicle/gun/caliber"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.0010000000474974513
+													}
+												}
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 100.0
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::OmniLightComponent",
+								"componentPropertyDest/propertyPath": "descriptor/commonLightDesc/outerRadius"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::ChooseExpression",
+									"__cvalue__": {
+										"choices": [
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::EqualExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/shellType"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::EnumExpression",
+															"__cvalue__": {
+																"enumName": "shellType",
+																"enumValueName": "armorPiercing"
+															}
+														}
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantVector4Expression",
+													"__cvalue__": {
+														"vector4Value/w": 1.0,
+														"vector4Value/x": 1.0,
+														"vector4Value/y": 0.0,
+														"vector4Value/z": 0.0
+													}
+												}
+											},
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::EqualExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/shellType"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::EnumExpression",
+															"__cvalue__": {
+																"enumName": "shellType",
+																"enumValueName": "armorPiercingCR"
+															}
+														}
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantVector4Expression",
+													"__cvalue__": {
+														"vector4Value/w": 1.0,
+														"vector4Value/x": 0.0,
+														"vector4Value/y": 0.0,
+														"vector4Value/z": 1.0
+													}
+												}
+											}
+										],
+										"defaultResult/expression": {
+											"__ctype__": "BW::variables::ConstantVector4Expression",
+											"__cvalue__": {
+												"vector4Value/w": 1.0,
+												"vector4Value/x": 0.9764710068702698,
+												"vector4Value/y": 0.0,
+												"vector4Value/z": 1.0
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::OmniLightComponent",
+								"componentPropertyDest/propertyPath": "descriptor/commonLightDesc/color"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::LightParametrizationDataComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::OmniLightComponent": {
+						"descriptor": {
+							"castHemisphereShadows": true,
+							"commonLightDesc": {
+								"castShadows": false,
+								"color": {
+									"a": 1.0,
+									"b": 0.0,
+									"g": 0.0,
+									"r": 1.0
+								},
+								"colorTemperature": 1600.0,
+								"decorType": 504,
+								"disableOnGenLights": false,
+								"drawType": "AUTO",
+								"innerRadius": 390.0,
+								"isScrollingTexture": "0",
+								"isVolumetric": false,
+								"lodShift": 0.0,
+								"multiplier": 628.3189697265625,
+								"outerRadius": 400.0,
+								"position": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"scrollingDirection": {
+									"x": 1.0,
+									"y": 0.0
+								},
+								"scrollingSpeed": "1",
+								"shadowBias": 9.999999747378752e-05,
+								"shadowsQuality": "Low",
+								"shadowsType": "Dynamic",
+								"tilingFactor": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"useColorTemperature": false,
+								"volumetricIntensity": 0.30000001192092896
+							}
+						},
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 1.0,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Light",
+				"uuid": "1e0c6964-cbd3-4628-9e6a-a1ce6b2f99c5"
+			},
+			{
+				"components": {
+					"BW::EffectInitPreviewComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 12.0
+									}
+								},
+								"componentPropertyDest/component": "BW::RTPCComponent",
+								"componentPropertyDest/propertyPath": "rtpcs/RTPC_ext_interval_between_shots/value"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::ChooseExpression",
+									"__cvalue__": {
+										"choices": [
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::BetweenFloatsExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"lCheck": "None",
+														"leftBound": 0.0,
+														"rCheck": "<",
+														"rightBound": 50.0
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 0
+													}
+												}
+											},
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::BetweenFloatsExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"lCheck": "<=",
+														"leftBound": 50.0,
+														"rCheck": "<",
+														"rightBound": 85.0
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 1
+													}
+												}
+											},
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::BetweenFloatsExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"lCheck": "<=",
+														"leftBound": 85.0,
+														"rCheck": "<",
+														"rightBound": 100.0
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 2
+													}
+												}
+											},
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::BetweenFloatsExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"lCheck": "<=",
+														"leftBound": 100.0,
+														"rCheck": "<",
+														"rightBound": 105.0
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 3
+													}
+												}
+											},
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::BetweenFloatsExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"lCheck": "<=",
+														"leftBound": 105.0,
+														"rCheck": "<",
+														"rightBound": 126.0
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 4
+													}
+												}
+											},
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::BetweenFloatsExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"lCheck": "<=",
+														"leftBound": 126.0,
+														"rCheck": "<",
+														"rightBound": 140.0
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 5
+													}
+												}
+											},
+											{
+												"condition/expression": {
+													"__ctype__": "BW::variables::BetweenFloatsExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														},
+														"lCheck": "<=",
+														"leftBound": 140.0,
+														"rCheck": "None",
+														"rightBound": 0.0
+													}
+												},
+												"result/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 6
+													}
+												}
+											}
+										],
+										"defaultResult/expression": {
+											"__ctype__": "BW::variables::ConstantIntExpression",
+											"__cvalue__": {
+												"intValue": 7
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::SoundParametrizationComponent",
+								"componentPropertyDest/propertyPath": "soundEventIndex"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::RTPCComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"rtpcs": {
+							"RTPC_ext_interval_between_shots": {
+								"type": 0,
+								"value": 0.0
+							},
+							"RTPC_ext_kinetic_energy": {
+								"type": 0,
+								"value": 0.0
+							}
+						}
+					},
+					"BW::SoundObject3DComponent": {
+						"aux": "1",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::SoundParametrizationComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"soundEvents": [
+							"wpn_small_PC",
+							"wpn_medium_PC",
+							"wpn_main_PC",
+							"wpn_main_extra_PC",
+							"wpn_large_PC",
+							"wpn_large_extra_PC",
+							"wpn_huge_PC"
+						]
+					},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "sound",
+				"uuid": "c35aac04-11a7-407b-a7fe-803a169a52e0"
+			},
+			{
+				"components": {
+					"BW::EffectInitPreviewComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantVector2Expression",
+											"__cvalue__": {
+												"vector2Value/x": 1.5,
+												"vector2Value/y": 1.5
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "startSpeed"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantVector2Expression",
+											"__cvalue__": {
+												"vector2Value/x": 1.0,
+												"vector2Value/y": 1.0
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "particleSize"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::GameObjectActivationRulesComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::EqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/muzzleBrake"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantIntExpression",
+									"__cvalue__": {
+										"intValue": 1
+									}
+								}
+							}
+						},
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Tank/shots/shot_main_01.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"BW::TransformHistoryComponent": {},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 90.00020599365234,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Muzzle Fire Right (MB Only)",
+				"uuid": "557fc9da-25ae-30a7-b249-8b070feb04f0"
+			}
+		],
+		"components": {
+			"BW::DeactivateGoDelayedComponent": {
+				"delay": 2.0,
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			},
+			"BW::EffectInitContextCalcComponent": {
+				"calcs": [
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::AddExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.0010000000474974513
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/caliber"
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "vehicle/gun/gunLength"
+													}
+												}
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.8500000238418579
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0.5
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/energy"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::EffectInitMockVariablesComponent": {
+				"calcs": [
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantFloatExpression",
+							"__cvalue__": {
+								"floatValue": 105.0
+							}
+						},
+						"variableDest/variableName": "vehicle/gun/caliber"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantFloatExpression",
+							"__cvalue__": {
+								"floatValue": 6.0
+							}
+						},
+						"variableDest/variableName": "vehicle/gun/gunLength"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "muzzleBrakeType",
+								"enumValueName": "none"
+							}
+						},
+						"variableDest/variableName": "vehicle/gun/muzzleBrake"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "shellType",
+								"enumValueName": "armorPiercing"
+							}
+						},
+						"variableDest/variableName": "vehicle/gun/shellType"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "particleQuality",
+								"enumValueName": null
+							}
+						},
+						"variableDest/variableName": "system/particleQuality"
+					}
+				],
+				"disabledDomains": [
+					"Client",
+					"Server"
+				]
+			},
+			"BW::EffectInitPreviewComponent": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				]
+			},
+			"BW::Gun::Effects::EffectComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"effectMask": "1"
+			},
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 1.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 0.9974510073661804,
+								"object": "1e0c6964-cbd3-4628-9e6a-a1ce6b2f99c5",
+								"parameters": [
+									{
+										"component": "BW::LightParametrizationDataComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 2.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.795602023601532,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.9974510073661804,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "multiplierCoef"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"BW::variables::VariableGetterComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::variables::VariableStorageComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"varInitialValues": []
+			},
+			"cgf::TransformComponent": {}
+		},
+		"flags": [
+			"SelfInactive"
+		],
+		"name": "simple_shot",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

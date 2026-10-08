@@ -1,0 +1,224 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Buildings/hd_bld_EU_088_CrashWall/normal/lod0/hd_bld_EU_088_CrashWall_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": -0.6000000238418579,
+							"z": 0.0
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -54.11001968383789,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "0a88b72f-b5bf-4c52-8879-c6c8baf41cbe",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "[COL_01]_08_crashingWall_05_normal_088_CrashWall_01",
+				"uuid": "0a88b72f-b5bf-4c52-8879-c6c8baf41cbe"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_088_CrashWall/normal/lod0/hd_bld_EU_088_CrashWall_01.model"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": -0.6000000238418579,
+							"z": 0.0
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -54.11001968383789,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "08_crashingWall_05_normal_088_CrashWall_01_dyn_model",
+				"uuid": "5d52c680-ac33-3a25-890d-2a4c4dc6c394"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env440_borders/normal/lod0/hd_env440_borders_20m_edge.model"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -6.078829765319824,
+									"y": -0.03709010034799576,
+									"z": -8.521690368652344
+								},
+								"rotation": {
+									"x": 0.18416354060173035,
+									"y": -144.48965454101563,
+									"z": 2.7997926736134104e-05
+								},
+								"scale": {
+									"x": 1.0,
+									"y": 1.0,
+									"z": 1.0460000038146973
+								}
+							}
+						},
+						"flags": [
+							"Static"
+						],
+						"name": "hd_env440_borders_20m_edge_wall_05_01",
+						"uuid": "37e2da4f-5bed-4420-a850-81744130ae01"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env440_borders/normal/lod0/hd_env440_borders_20m_edge.model"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 6.078859806060791,
+									"y": 0.03709010034799576,
+									"z": 8.521679878234863
+								},
+								"rotation": {
+									"x": -0.7199730277061462,
+									"y": -145.12677001953125,
+									"z": 0.008005309849977493
+								},
+								"scale": {
+									"x": 1.0,
+									"y": 1.0,
+									"z": 1.0460000038146973
+								}
+							}
+						},
+						"flags": [
+							"Static"
+						],
+						"name": "hd_env440_borders_20m_edge_wall_05_02",
+						"uuid": "aad6b125-b7bc-382e-905d-4b00fb1e4ec6"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -19.17889976501465,
+							"y": -1.0759999752044678,
+							"z": -2.1304099559783936
+						}
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "08_crashingWall_05_normal_borders",
+				"uuid": "528a27fe-0b1e-4271-ab3c-144af41d0c8b"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 25.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 22.466699600219727,
+								"object": "5d52c680-ac33-3a25-890d-2a4c4dc6c394",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 23.466699600219727,
+								"object": "528a27fe-0b1e-4271-ab3c-144af41d0c8b",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 24.36669921875,
+								"object": "0a88b72f-b5bf-4c52-8879-c6c8baf41cbe",
+								"parameters": [],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "08_bigCityBombing_crashingWall_05_normal_models",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

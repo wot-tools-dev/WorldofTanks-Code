@@ -1,0 +1,1 @@
+import{j as s,f as e}from"./vendor.js";import"./lib.js";const i="Divider_35efe770",a="Divider_db17be24",r=({className:r})=>s.jsx("div",{className:e(i,r),children:s.jsx("div",{className:a})});export{r as D};

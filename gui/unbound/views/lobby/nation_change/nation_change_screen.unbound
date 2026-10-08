@@ -1,0 +1,463 @@
+
+(def layout NationChangeScreen() entrance=true
+    (macro NationChangeScreenModel)
+    (macro NationChangeTooltips)
+    (scope
+        (const BORDER_SCREEN_WIDHT:number = 1280)
+        (const BORDER_SCREEN_HEIGHT:number =  1024)
+
+        (event playChangeNationAnim) 
+        (event onArrowStartComplete)
+        (event onChangeNationAnimComplete)
+       
+        (var equipBlockMargin:number = 0px)
+        (var animationAlpha:number = 0)
+        (var hideAllAlpha:number = 1)
+        (var showAllAlpha:number = 0) 
+        (var finalShiftX:number = 100)
+        (var finalShiftY:number = 100)
+        (var isResizeEnable:bool = true)
+        (var isBigFlag:bool = false)
+        (var isHitAreaEnable:bool = true)
+        (var slotAnimTrigger:bool = false 
+            (dispatch playChangeNationAnim on='evChanged' init=false dir=2 
+                (bind enabled "isSlotAnimPlaying")
+            )
+        )
+        (var equipBlockHeight:number = 0px)
+        (bind equipBlockHeight "60 * max(1, max(currentTankSetupsNumber, targetTankSetupsNumber))")
+        
+        (bind slotAnimTrigger "isSlotAnimPlaying" init=false) 
+        (bind isBigFlag "viewSize.width >= BORDER_SCREEN_WIDHT && viewSize.height >= BORDER_SCREEN_HEIGHT" 
+            (event "viewResized")
+        )
+        (bind isHitAreaEnable "false" init=false 
+            (event "playChangeNationAnim")
+        )
+        (bind isResizeEnable "false" init=false 
+            (event "playChangeNationAnim")
+        )
+        (bind animationAlpha "0" init=false 
+            (event "onArrowStartComplete")
+        )
+        (bind finalShiftX "isBigFlag ? -505 : -678" init=true 
+            (bind enabled "isResizeEnable")
+        )
+        
+        (bind finalShiftY "isBigFlag ? -30 : -150" init=true 
+            (bind enabled "isResizeEnable")
+        )
+
+        (controller $Animation
+            (bindcall playSeq "[
+                    {duration:0.4, to:{animationAlpha:0.9}},
+                    {duration:0.3, to:{animationAlpha:0.5}}
+                ]"
+                (event "onArrowStartComplete")
+            )
+            (bindcall stop (event "playChangeNationAnim")) 
+            (bindcall play
+                to="{hideAllAlpha:0}"
+                duration=0.5
+                delay=0.5
+                easing="Easing.cubic_in"
+                (event "playChangeNationAnim")
+            )
+            (bindcall play
+                to="{showAllAlpha:1}"
+                duration=0.5
+                delay=1.3
+                easing="Easing.cubic_out"
+                (event "playChangeNationAnim")
+            )
+        )
+    )
+
+    (style
+        (bind width "viewSize.width" 
+            (event "viewResized")
+        )
+        (bind height "viewSize.height" 
+            (event "viewResized")
+        )
+        (align = "center|middle")
+    )
+    (image
+        (style
+            (position="absolute")
+            (width = 100%)
+            (height = 100%)
+        )
+        (source = "R.images.gui.maps.icons.lobby.settings_blured_bg()")
+    )
+    (block
+        (style
+            (width = 100%)
+            (height = 100%)
+            (align = "center|middle")
+        )
+        
+        (hblock
+            (name = 'tankItems')
+            (style
+                (width = 100%)
+                (height = 100%)
+                (bind marginTop "isBigFlag ? -46px : -83px")
+                (align = "center|middle")
+                (position = "absolute")
+            )
+            (block
+                (name = 'arrow')
+                (visible = true)
+                (style
+                    (width = 100%)
+                    (height = 100%)
+                    (position = "absolute")
+                    (align = "center|middle")
+                    (bind marginTop "isBigFlag ? -76px : -47px")
+                    (bind alpha "hideAllAlpha")
+                )  
+                (block
+                    (style
+                        (blendMode = 'add')
+                        (bind alpha "animationAlpha")
+                        (marginLeft = 30px)
+                    )
+                    (image 
+                        (source = "R.images.gui.maps.icons.nationChange.orange_flash()")
+                    )
+                )
+                (block
+                    (style
+                        (width = 100%)
+                        (height = 100%)
+                        (position = "absolute")
+                        (align = "center|middle")
+                    )
+                    (image 
+                        (source = "R.images.gui.maps.icons.nationChange.main_arrow()")
+                    )
+                    (controller $Animation
+                        (play 
+                            from={alpha:0, x:-60}
+                            to={alpha:1, x:0}
+                            duration=0.7 
+                            delay=0.5
+                            easing="Easing.quint_out"
+                            callbacks="{
+                                onComplete: onArrowStartComplete
+                            }"
+                        )
+                    )
+                )
+            )
+            (element NationChangeTankSlot 'currentNation'
+                (scope
+                    (bind flagAlpha 0.6) 
+                    (bind isBigFlag "isBigFlag")
+                    (bind equipBlockHeight "equipBlockHeight")
+                )
+                (style
+                    (bind alpha "hideAllAlpha")
+                )
+            ) 
+            (block
+                (style
+                    (bind marginLeft "isBigFlag ? 160px : 0px" 
+                        (bind enabled "isResizeEnable")
+                    )
+                )
+                (element NationChangeTankSlot 'targetNation'
+                    (scope
+                        (bind isBigFlag "isBigFlag")
+                        (bind hideAllAlpha "hideAllAlpha")
+                        (bind equipBlockHeight "equipBlockHeight")
+                    )                    
+                )
+                (controller $Animation
+                    (bindcall play
+                        to="{marginLeft:finalShiftX - 0.1, marginTop:finalShiftY}"
+                        duration=0.6
+                        watch=false
+                        delay=1.0
+                        easing="Easing.quint_out"
+                        callbacks="{onComplete:onChangeNationAnimComplete}"
+                        (event "playChangeNationAnim")
+                    )
+                    (bindcall play
+                        to="{marginLeft:finalShiftX, marginTop:finalShiftY}"
+                        duration=0.6
+                        watch=false
+                        (event "onChangeNationAnimComplete")
+                    )
+                )
+            )
+        ) 
+
+        (hblock
+            (name = 'description')
+            (style
+                (width = 100%)
+                (height = 100%)
+                (bind marginTop "isBigFlag ? 388px : 257px")
+                (align = "center|middle")
+                (position = "absolute")
+            )
+            (element NationChangeScreenDescription 
+                (scope
+                    (bind description "R.strings.multinational_vehicles.changeScreen.info[currentNation]()")
+                )
+                (style
+                    (bind alpha "hideAllAlpha")
+                )
+            )
+            (controller $Animation
+                (play
+                    from={alpha:0}
+                    to={alpha:1}
+                    duration=2.6
+                    delay=1
+                    easing="Easing.quint_out" 
+                )
+            )
+        )
+        (hblock
+            (name = 'descriptionChanged')
+            (bind visible "!isHitAreaEnable")
+            (style
+                (width = 100%)
+                (height = 100%)
+                (marginTop = 257px)
+                (align = "center|middle")
+                (position = "absolute")
+                (bind alpha "showAllAlpha")
+            )
+            (element NationChangeScreenDescription 
+                (scope
+                    (bind description "R.strings.multinational_vehicles.changeScreen.complete.info[currentNation]()")
+                )
+            )
+        )
+        (hblock
+            (style
+                (width = 100%) 
+                (height = 100%)
+                (bind marginTop "isBigFlag ? 449px : 318px")
+                (align = "center|middle")
+                (position = "absolute")
+                (bind alpha "hideAllAlpha")
+            )
+            (element Button 
+                (macro Primary)
+                (scope
+                    (label = "R.strings.multinational_vehicles.changeScreen.nationChangeBtn()")
+                    (bind isEnabled "isHitAreaEnable")
+                )
+                (style
+                    (minWidth = 162px)
+                    (minHeight = 31px)
+                )
+                (dispatch onSwitchBtnClick on='click')
+            )
+            (element Button
+                (macro Secondary)
+                (scope 
+                    (label = "R.strings.multinational_vehicles.changeScreen.cancelBtn()")
+                    (bind isEnabled "isHitAreaEnable")
+                )
+                (style 
+                    (marginLeft = 20px)
+                    (minWidth = 162px)
+                    (minHeight = 31px)
+                ) 
+                (dispatch onCancelBtnClick on='click')
+            )
+        )
+        (hblock
+            (name = 'buttonChanged')
+            (style
+                (width = 100%)
+                (height = 100%)
+                (marginTop = 318px)
+                (align = "center|middle")
+                (position = "absolute")
+                (bind alpha "showAllAlpha")
+            )
+            (element Button
+                (macro Primary)
+                (bind visible "!isHitAreaEnable")
+                (scope
+                    (label = "R.strings.multinational_vehicles.changeScreen.complete.hangarBtn()")
+                    (bind isEnabled "!isHitAreaEnable")
+                )
+                (style
+                    (minWidth = 162px)
+                    (minHeight = 31px)
+                )
+                (dispatch onHangarBtnClick on='click')
+            )
+        )
+    )
+    (block
+        (name = 'screenChangedTitle')
+        (style
+            (width = 100%)
+            (height = 100%)
+            (marginTop = -307px)
+            (align = "center|middle")
+            (position = "absolute")
+            (bind alpha "showAllAlpha")
+        )
+        (hblock
+            (style
+                (align="middle")
+            )
+            (tf
+                (class GrandTitleTextStyle)
+                (style
+                    (marginRight = -15px)
+                )
+                (bind text "targetTankLvl")
+            )
+            (image
+                (style 
+                    (marginTop = 1px)
+                )
+                (bind source "R.atlases.components[targetTankType]()" init=false)
+            )
+            (tf
+                (class GrandTitleTextStyle)
+                (style
+                    (marginLeft = -13px)
+                )
+                (bind text "targetTankName")
+            )
+        )
+        (hblock
+            (style
+                (align="middle")
+                (marginTop = "-3px")
+            )
+            (tf
+                (class HighlightTextStyle)
+                (style
+                    (fontSize = 18px)
+                )
+                (bind text "R.strings.multinational_vehicles.changeScreen.complete.nation[targetNation]()")
+            )
+        )
+    )
+    (block
+        (name = 'screenTitle')
+        (style
+            (width = 100%)
+            (height = 100%)
+            (bind marginTop "isBigFlag ? -430px : -303px")
+            (align = "center|middle")
+            (bind alpha "hideAllAlpha")
+            (position = "absolute")
+        )
+        (hblock
+            (style
+                (align="middle")
+            )
+            (tf
+                (class GrandTitleTextStyle)
+                (style
+                    (bind fontSize "isBigFlag ? 36px : 28px")
+                    (bind marginRight "isBigFlag ? 17px : 6px")
+                )
+                (text = "R.strings.multinational_vehicles.changeScreen.title.header()")
+            ) 
+            (tf
+                (class GrandTitleTextStyle)
+                (style
+                    (bind fontSize "isBigFlag ? 36px : 28px")
+                    (textColor = 0xcbac77)
+                    (bind marginRight "isBigFlag ? -13px : -18px")
+                )
+                (bind text "currentTankLvl") 
+            )
+            (image
+                (style
+                    (bind marginTop "isBigFlag ? 6px : 1px")
+                ) 
+                (bind source "R.atlases.components[currentTankType]()" init = false)
+            )
+            (tf
+                (class GrandTitleTextStyle)
+                (style
+                    (bind fontSize "isBigFlag ? 36px : 28px")
+                    (textColor = 0xcbac77)
+                    (bind marginLeft "isBigFlag ? -13px : -18px")
+                )
+                (bind text "currenTankName")
+            )
+            (block
+                (image
+                    (style
+                        (bind marginTop "isBigFlag ? 5px : 5px")
+                        (bind marginLeft "isBigFlag ? 1px : 3px")
+                    )
+                    (source = "R.images.gui.maps.icons.library.notif_filters_information_16x16()")
+                )
+                (controller $ToolTip
+                    (args 
+                        header = "currentTankTooltipHeader"
+                        body = "currentTankTooltipBody" 
+                    ) 
+                    (bind enabled "isHitAreaEnable")
+                    (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+                    (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+                )
+            )
+        )
+        (hblock
+            (style
+                (align="middle")
+                (marginTop = "-2px")
+            )
+            (tf
+                (class MainTextStyle)
+                (text = "R.strings.multinational_vehicles.changeScreen.title.desc()")
+            )
+        )
+    )
+    (dispatch onCloseBtnClick on='escPressed')
+    (text_button 'closeBtn'
+        (macro ButtonCloseStyle)
+        (style
+            (position = "absolute")
+            (right = 40px)
+            (top = 37px)
+        )
+        (label = "R.strings.multinational_vehicles.changeScreen.closeBtn()")
+        (dispatch onCloseBtnClick on='click')
+    )
+    (exec "playSound(R.sounds.shop_buy_tank())"
+        (event "playChangeNationAnim")
+        (bind enabled "slotAnimTrigger") 
+    )
+)
+
+(def element NationChangeScreenDescription() layout = true
+    (scope
+        (var description:str = '')
+    )
+    (tf
+        (style
+            (width = 650px)
+        )        
+        (bind htmlText "htmlTextStyle(
+            R.images.gui.maps.icons.library.attentionIconFilled.tag(16,16,-2) + ' ' + description, 
+            'BottomTextStyle', 
+            'center')"
+        )
+    )
+)
+
+(def css BottomTextStyle()
+    (fontFamily = $FieldFont)
+    (fontSize = 16px)
+    (textColor = 0xffffdd99)
+)

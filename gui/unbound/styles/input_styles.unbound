@@ -1,0 +1,36 @@
+(def constant INPUT_SCALE9_RECT "Rect(15, 7, 135, 5)")
+
+(def constant TYPE_INPUT 'input')
+(def constant TYPE_DYNAMIC 'dynamic')
+
+(def css InputDisabledOverlayStyle()
+    (backgroundImage = 'bitmap:InputDisable')
+    (backgroundSize = "repeat")
+    (width = 98%)
+    (height = 90%)
+)
+
+
+(def constant INPUT_SIMPLE_STYLES {
+        focusOverlay : {image: {source: "R.atlases.components.indicator_focus()", scale9: "Rect(15, 7, 135, 5)"}},
+        disabledOverlay : {style: 'InputDisabledOverlayStyle'}
+    }
+)
+
+(def macro InputLargeSize()
+    (style
+        (height = 32px)
+    )
+    (scope
+        (inputFontSize = 16)
+    )
+)
+
+(def macro InputExtraLargeSize()
+    (style
+        (height = 64px)
+    )
+    (scope
+        (inputFontSize = 24)
+    )
+)

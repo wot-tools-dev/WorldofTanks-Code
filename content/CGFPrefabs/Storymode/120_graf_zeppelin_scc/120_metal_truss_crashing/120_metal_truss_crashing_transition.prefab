@@ -1,0 +1,213 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Animation",
+								"lodScale": 1.0,
+								"path": "content/Environment/hd_env_UNI_198_MetalTruss/animation/hd_env_UNI_199_WallCrash_anim_01.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Dithering",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/Storymode/120_graf_zeppelin_scc/dithering_hd_env_UNI_198_MetalTruss_anim_01.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/hd_env_UNI_198_MetalTruss/normal/lod0/hd_env_UNI_198_MetalTruss_anim_01.model"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 179.99986267089844,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "hd_env_UNI_198_MetalTruss_anim_01",
+				"uuid": "dee56811-cae8-4f7f-aead-97a72d8019fe"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/environment/storymode/120_graf_zeppelin_pipe_explosion_01.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": 10.467300415039063,
+									"z": 0.0
+								}
+							}
+						},
+						"name": "Pipe_explosion",
+						"uuid": "fbcc5ca6-d042-420e-801c-94d7e2ff314c"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"name": "Explosion",
+				"uuid": "aa9c6b9b-84bf-40fa-869f-60feb5bd589c"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_explosion_big",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "dstrct_explosion_big",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "metal_truss_explosion_sfx",
+				"uuid": "89c8e144-d2f6-46af-b20f-b5d571ea0ad0"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_metal_small",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "dstrct_metal_small",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "metal_truss_debris_sfx",
+				"uuid": "b23e7acc-a2c8-42a5-b9ab-080c8e5a5381"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 20.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 8.0,
+								"object": "dee56811-cae8-4f7f-aead-97a72d8019fe",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 20.0,
+								"object": "89c8e144-d2f6-46af-b20f-b5d571ea0ad0",
+								"parameters": [],
+								"startTime": 0.009999999776482582
+							},
+							{
+								"endTime": 20.0,
+								"object": "b23e7acc-a2c8-42a5-b9ab-080c8e5a5381",
+								"parameters": [],
+								"startTime": 0.009999999776482582
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "120_metal_truss_crashing_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

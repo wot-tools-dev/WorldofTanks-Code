@@ -1,0 +1,877 @@
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+@keyframes Reward_fadeIn_d295e {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes Reward_fadeInWithScale_c222c {
+    0% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes Reward_slideUp_b95af {
+    0% {
+        opacity: 0;
+        transform: translateY(20rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes Reward_raysAppearance_fd4ed {
+    0% {
+        opacity: 0;
+        transform: translateY(20rem);
+    }
+
+    100% {
+        opacity: .5;
+        transform: translateY(0);
+    }
+}
+
+@keyframes Reward_rotate_f385d {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.Reward_base_ab59b {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Reward_base__third_dbcf7 {
+        padding: 0 20rem;
+    }
+
+.Reward_base__third_dbcf7.Reward_base__medium_afdff {
+            padding: 0 15rem;
+        }
+
+.Reward_base__third_dbcf7.Reward_base__small_fc34e {
+            padding: 0 10rem;
+        }
+
+.Reward_base__third_dbcf7.Reward_base__extraSmall_f4fc1 {
+            padding: 0 5rem;
+        }
+
+.Reward_icon_d21ae {
+    opacity: 0;
+    animation-name: Reward_fadeInWithScale_c222c;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.07, .82, .17, 1);
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    display: flex;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+.Reward_base__regular_edfb2 .Reward_icon_d21ae {
+        width: 600rem;
+        height: 450rem;
+    }
+
+.Reward_base__medium_afdff.Reward_base__regular_edfb2 .Reward_icon_d21ae,
+        .Reward_base__small_fc34e.Reward_base__regular_edfb2 .Reward_icon_d21ae,
+        .Reward_base__extraSmall_f4fc1.Reward_base__regular_edfb2 .Reward_icon_d21ae {
+            width: 400rem;
+            height: 300rem;
+        }
+
+.Reward_base__third_dbcf7 .Reward_icon_d21ae {
+        width: 400rem;
+        height: 300rem;
+    }
+
+.Reward_base__medium_afdff.Reward_base__third_dbcf7 .Reward_icon_d21ae,
+        .Reward_base__small_fc34e.Reward_base__third_dbcf7 .Reward_icon_d21ae {
+            width: 296rem;
+            height: 222rem;
+        }
+
+.Reward_base__extraSmall_f4fc1.Reward_base__third_dbcf7 .Reward_icon_d21ae {
+            width: 232rem;
+            height: 174rem;
+        }
+
+.Reward_overlay_b37c2 {
+    background: no-repeat center / contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-49%, -49%);
+}
+
+.Reward_base__regular_edfb2 .Reward_overlay_b37c2 {
+        width: 710rem;
+        height: 634rem;
+    }
+
+.Reward_base__medium_afdff.Reward_base__regular_edfb2 .Reward_overlay_b37c2,
+        .Reward_base__small_fc34e.Reward_base__regular_edfb2 .Reward_overlay_b37c2 {
+            width: 580rem;
+            height: 520rem;
+        }
+
+.Reward_base__extraSmall_f4fc1.Reward_base__regular_edfb2 .Reward_overlay_b37c2 {
+            width: 450rem;
+            height: 408rem;
+        }
+
+.Reward_base__third_dbcf7 .Reward_overlay_b37c2 {
+        width: 580rem;
+        height: 520rem;
+    }
+
+.Reward_base__medium_afdff.Reward_base__third_dbcf7 .Reward_overlay_b37c2,
+        .Reward_base__small_fc34e.Reward_base__third_dbcf7 .Reward_overlay_b37c2 {
+            width: 322rem;
+            height: 308rem;
+        }
+
+.Reward_base__extraSmall_f4fc1.Reward_base__third_dbcf7 .Reward_overlay_b37c2 {
+            width: 248rem;
+            height: 224rem;
+        }
+
+.Reward_value_a8562 {
+    width: 100%;
+    color: #E9E2BF;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.Reward_value__multi_a5c33 {
+        text-align: right;
+    }
+
+.Reward_value__credits_c6df3 {
+        color: #CED9D9;
+    }
+
+.Reward_value__gold_f6951 {
+        color: #FFC363;
+    }
+
+.Reward_value__crystal_c6ac1 {
+        color: #C9C9B6;
+    }
+
+.Reward_base__regular_edfb2 .Reward_value_a8562 {
+        color: #F2F2F7;
+        font-size: 36rem;
+        font-weight: 700;
+        line-height: 1.1;
+        padding: 0 56rem;
+        bottom: 43rem;
+    }
+
+.Reward_base__medium_afdff.Reward_base__regular_edfb2 .Reward_value_a8562 {
+            color: #F2F2F7;
+            font-size: 28rem;
+            font-weight: 700;
+            line-height: 1.1;
+            padding: 0 20rem;
+            bottom: 24rem;
+        }
+
+.Reward_base__small_fc34e.Reward_base__regular_edfb2 .Reward_value_a8562,
+        .Reward_base__extraSmall_f4fc1.Reward_base__regular_edfb2 .Reward_value_a8562 {
+            color: #F2F2F7;
+            font-size: 24rem;
+            font-weight: 700;
+            line-height: 1.2;
+            padding: 0 20rem;
+            bottom: 24rem;
+        }
+
+.Reward_base__third_dbcf7 .Reward_value_a8562 {
+        color: #F2F2F7;
+        font-size: 24rem;
+        font-weight: 700;
+        line-height: 1.2;
+        padding: 0 28rem;
+        bottom: 20rem;
+    }
+
+.Reward_base__medium_afdff.Reward_base__third_dbcf7 .Reward_value_a8562,
+        .Reward_base__small_fc34e.Reward_base__third_dbcf7 .Reward_value_a8562 {
+            padding: 0 14rem;
+            bottom: 11rem;
+        }
+
+.Reward_base__extraSmall_f4fc1.Reward_base__third_dbcf7 .Reward_value_a8562 {
+            color: #CED9D9;
+            font-size: 22rem;
+            font-weight: 700;
+            line-height: 1.2;
+            padding: 0 22rem;
+            bottom: 10rem;
+        }
+
+.Reward_captionContainer_e949e {
+    width: 100%;
+    position: relative;
+}
+
+.Reward_caption_a1a31 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+}
+
+.Reward_base__regular_edfb2 .Reward_caption_a1a31 {
+        top: -21rem;
+    }
+
+.Reward_base__medium_afdff.Reward_base__regular_edfb2 .Reward_caption_a1a31,
+        .Reward_base__small_fc34e.Reward_base__regular_edfb2 .Reward_caption_a1a31,
+        .Reward_base__extraSmall_f4fc1.Reward_base__regular_edfb2 .Reward_caption_a1a31 {
+            top: 2rem;
+        }
+
+.Reward_base__third_dbcf7 .Reward_caption_a1a31 {
+        top: 19rem;
+    }
+
+.Reward_base__medium_afdff.Reward_base__third_dbcf7 .Reward_caption_a1a31,
+        .Reward_base__small_fc34e.Reward_base__third_dbcf7 .Reward_caption_a1a31,
+        .Reward_base__extraSmall_f4fc1.Reward_base__third_dbcf7 .Reward_caption_a1a31 {
+            top: 0;
+        }
+
+.Reward_title_e305c {
+    opacity: 0;
+    animation-name: Reward_fadeIn_d295e;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.07, .82, .17, 1);
+    animation-delay: 1.4s;
+    animation-iteration-count: 1;
+    color: #E9E2BF;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    position: relative;
+}
+
+.Reward_base__small_fc34e .Reward_title_e305c,
+    .Reward_base__extraSmall_f4fc1 .Reward_title_e305c {
+        color: #E9E2BF;
+        font-size: 14rem;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+.Rewards_base_b1a1f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+@keyframes App_fadeIn_e523a {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes App_fadeInWithScale_ed270 {
+    0% {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes App_slideUp_f7420 {
+    0% {
+        opacity: 0;
+        transform: translateY(20rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes App_raysAppearance_fcaaa {
+    0% {
+        opacity: 0;
+        transform: translateY(20rem);
+    }
+
+    100% {
+        opacity: .5;
+        transform: translateY(0);
+    }
+}
+
+@keyframes App_rotate_e46a6 {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.App_base_f31ae {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.App_container_e3756 {
+    opacity: 0;
+    animation-name: App_fadeInWithScale_ed270;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.07, .82, .17, 1);
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.mapbox.bg') no-repeat center / cover;
+    position: relative;
+}
+
+.App_close_dd8af {
+    position: absolute;
+    top: 40rem;
+    right: 40rem;
+}
+
+.App_blackout_d6acd {
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .5) 100%);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.App_light_ab6e6 {
+    width: 51.92%;
+    padding-bottom: 100.2%; /* to achieve ratio of 997*999px */
+    background: url('R.images.gui.maps.icons.mapbox.awardsView.light') no-repeat center / contain;
+    opacity: .75;
+    mix-blend-mode: overlay;
+    position: absolute;
+}
+
+.App_light__gold_b94ea {
+        background-image: url('R.images.gui.maps.icons.mapbox.awardsView.light_gold');
+        opacity: .5;
+    }
+
+.App_rays_cf81c {
+    opacity: 0;
+    animation-name: App_raysAppearance_fcaaa, App_rotate_e46a6;
+    animation-duration: .8s, 120s;
+    animation-fill-mode: forwards, forwards;
+    animation-timing-function: cubic-bezier(.07, .82, .17, 1), linear;
+    animation-delay: .8s, 1.2s;
+    animation-iteration-count: 1, infinite;
+    width: 67.7%;
+    padding-bottom: 99.84%; /* to achieve ratio of 1300*1298px */
+    background: url('R.images.gui.maps.icons.mapbox.awardsView.rays') no-repeat center / contain;
+    mix-blend-mode: screen;
+    position: absolute;
+}
+
+.App_ribbon_c4ea0 {
+    opacity: 0;
+    animation-name: App_slideUp_f7420;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.07, .82, .17, 1);
+    animation-delay: 1s;
+    animation-iteration-count: 1;
+    width: 1920rem;
+    height: 500rem;
+    background: url('R.images.gui.maps.icons.mapbox.awardsView.ribbon_regular') no-repeat center / contain;
+    position: absolute;
+    top: 35%;
+}
+
+.App_ribbon__gold_ac3db {
+        background-image: url('R.images.gui.maps.icons.mapbox.awardsView.ribbon_gold');
+    }
+
+.App_base__small_c50e9 .App_ribbon_c4ea0,
+    .App_base__extraSmall_d9c35 .App_ribbon_c4ea0 {
+        width: 1366rem;
+        height: 356rem;
+    }
+
+.App_base__extraLarge_e282d .App_ribbon_c4ea0 {
+        top: 43%;
+    }
+
+.App_header_a7210 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    top: 55rem;
+    left: 0;
+}
+
+.App_base__small_c50e9 .App_header_a7210,
+    .App_base__extraSmall_d9c35 .App_header_a7210 {
+        top: 40rem;
+    }
+
+.App_title_fe0ca {
+    opacity: 0;
+    animation-name: App_slideUp_f7420;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.07, .82, .17, 1);
+    animation-delay: .6s;
+    animation-iteration-count: 1;
+    color: #F2F2F7;
+    font-size: 24rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 7rem;
+}
+
+.App_base__small_c50e9 .App_title_fe0ca,
+    .App_base__extraSmall_d9c35 .App_title_fe0ca {
+        color: #F2F2F7;
+        font-size: 18rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+.App_subTitle_fef2b {
+    opacity: 0;
+    animation-name: App_slideUp_f7420;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.07, .82, .17, 1);
+    animation-delay: .8s;
+    animation-iteration-count: 1;
+    color: #F2F2F7;
+    font-size: 73rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.App_base__small_c50e9 .App_subTitle_fef2b,
+    .App_base__extraSmall_d9c35 .App_subTitle_fef2b {
+        color: #F2F2F7;
+        font-size: 56rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+.App_footer_c8eda {
+    opacity: 0;
+    animation-name: App_slideUp_f7420;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(.07, .82, .17, 1);
+    animation-delay: 1.6s;
+    animation-iteration-count: 1;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    bottom: 80rem;
+    left: 0;
+}
+
+.App_base__medium_a09b0 .App_footer_c8eda,
+    .App_base__small_c50e9 .App_footer_c8eda,
+    .App_base__extraSmall_d9c35 .App_footer_c8eda {
+        bottom: 40rem;
+    }
+
+.App_button_fcfc5 {
+    min-width: 160rem;
+}
+

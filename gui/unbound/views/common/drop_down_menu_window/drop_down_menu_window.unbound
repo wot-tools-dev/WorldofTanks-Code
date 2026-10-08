@@ -1,0 +1,62 @@
+(def element DropDownMenuWindow() layout=true entrance=true
+    (macro DropDownMenuWindowModel)
+
+    (scope
+        # Animate drop down menu appearence
+        (var groupHeight:number = 0)
+        (var content:object = null)
+        (controller $Animation
+            (play delay=0.1 duration=0.3 easing="Easing.cubic_out" from={groupHeight:0} to={groupHeight:100})
+        )
+        (event onVDirectionChanged)
+    )
+
+    (name = 'DropDownMenuWindow')
+
+    # Mask and hit area
+    (element HitArea
+        (style
+            (bind height "1% * groupHeight")
+            (position = "absolute")
+            (bind bottom "$event ? auto : 0px" init=false (event "onVDirectionChanged"))
+        )
+    )
+    (mask = "$target.hitElement")
+    (hitArea = "$target.hitElement")
+
+    (block
+        # Stretched window background
+        (image
+            (name = 'bg')
+            (style
+                (position = "absolute")
+                (bind width "targetWidth - 2")
+                (height = 100%)
+                (scale9grid = "Rect(5, 5, 13, 13)")
+            )
+            (source = "R.atlases.components.dropDownBg()")
+        )
+        (mouseEnabled = false)
+
+        # View holder for drop down list
+        (view_holder
+            (style
+                (bind width "targetWidth - 2")
+                (padding = 1px)
+            )
+            (name = 'View holder')
+            (bind content "content" init=false)
+        )
+    )
+
+    # Adjust position of drop down menu
+    (controller $AdjustPosition
+        (bind original_x "x + 3")
+        (bind original_y "y - 10")
+        (bind y_offset_for_up "-targetHeight + 1")
+    )
+
+    (controller $Animation
+        (bindcall play duration=0.3 delay=0.1 easing="Easing.cubic_out" to={alpha:1} from={alpha:0} init=true)
+    )
+)

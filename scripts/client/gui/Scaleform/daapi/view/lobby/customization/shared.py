@@ -1,0 +1,950 @@
+from __future__ import absolute_import
+import logging
+import struct
+from collections import namedtuple, Counter
+import typing
+from future.utils import viewitems, viewvalues
+import BigWorld
+import Math
+import nations
+from AccountCommands import isCodeValid
+from CurrentVehicle import g_currentVehicle
+from gui import GUI_NATIONS_ORDER_INDICES
+from gui.Scaleform import getNationsFilterAssetPath
+from gui.Scaleform.locale.RES_ICONS import RES_ICONS
+from gui.Scaleform.locale.VEHICLE_CUSTOMIZATION import VEHICLE_CUSTOMIZATION
+from gui.customization.constants import CustomizationModes
+from gui.customization.shared import QUANTITY_LIMITED_CUSTOMIZATION_TYPES, appliedToFromSlotsIds, C11nId, PurchaseItem, AdditionalPurchaseGroups, getAvailableRegions, EDITABLE_STYLE_APPLY_TO_ALL_AREAS_TYPES, EDITABLE_STYLE_IRREMOVABLE_TYPES, C11N_ITEM_TYPE_MAP
+from gui.hangar_cameras.hangar_camera_common import CameraMovementStates
+from gui.impl import backport
+from gui.impl.gen import R
+from gui.shared.formatters import icons, text_styles
+from gui.shared.gui_items import GUI_ITEM_TYPE
+from gui.shared.gui_items.Vehicle import VEHICLE_TYPES_ORDER, VEHICLE_TAGS
+from gui.shared.gui_items.gui_item_economics import ItemPrice
+from gui.shared.money import Money
+from gui.shared.utils import code2str
+from helpers import dependency, int2roman
+from helpers.i18n import makeString as _ms
+from items import parseIntCompactDescr
+from items.components.c11n_components import getItemSlotType
+from items.components.c11n_constants import SeasonType, ProjectionDecalFormTags, CustomizationType, SLOT_DEFAULT_ALLOWED_MODEL, EMPTY_ITEM_ID
+from items.customizations import CustomizationOutfit
+from items.vehicles import VEHICLE_CLASS_TAGS, getItemByCompactDescr
+from serializable_types.customizations.projection_decal import ProjectionDecalComponent
+from shared_utils import first
+from skeletons.gui.customization import ICustomizationService
+from skeletons.gui.lobby_context import ILobbyContext
+from skeletons.gui.shared import IItemsCache
+from skeletons.gui.shared.utils import IHangarSpace
+from vehicle_outfit.containers import SlotData
+from vehicle_outfit.outfit import Area, Outfit
+from vehicle_outfit.packers import ProjectionDecalPacker
+if typing.TYPE_CHECKING:
+    from items.vehicles import VehicleDescriptor
+    from gui.shared.gui_items.customization.c11n_items import Style
+    from gui.shared.gui_items.Vehicle import Vehicle
+    from items.components.c11n_components import StyleItem
+    from typing import Optional, List
+_logger = logging.getLogger(__name__)
+EMPTY_PERSONAL_NUMBER = ''
+
+class CustomizationTabs(object):
+    DEFAULT = -1
+    PAINTS = 1
+    CAMOUFLAGES = 2
+    PROJECTION_DECALS = 3
+    EMBLEMS = 4
+    INSCRIPTIONS = 5
+    MODIFICATIONS = 6
+    STYLES_2D = 7
+    STYLES_3D = 8
+    ATTACHMENTS = 9
+    STAT_TRACKERS = 10
+    ALL = (STYLES_3D,
+     STYLES_2D,
+     ATTACHMENTS,
+     PAINTS,
+     CAMOUFLAGES,
+     PROJECTION_DECALS,
+     EMBLEMS,
+     INSCRIPTIONS,
+     MODIFICATIONS)
+    REGIONS = (PAINTS,
+     CAMOUFLAGES,
+     MODIFICATIONS,
+     STYLES_2D,
+     STYLES_3D)
+    ALWAYS_ENABLED = (PROJECTION_DECALS, ATTACHMENTS)
+    STYLES = (STYLES_2D, STYLES_3D)
+    MODES = {CustomizationModes.CUSTOM: (PAINTS,
+                                 CAMOUFLAGES,
+                                 PROJECTION_DECALS,
+                                 EMBLEMS,
+                                 INSCRIPTIONS,
+                                 MODIFICATIONS,
+                                 ATTACHMENTS,
+                                 STAT_TRACKERS),
+     CustomizationModes.STYLE_2D: (STYLES_2D, ATTACHMENTS, STAT_TRACKERS),
+     CustomizationModes.STYLE_3D: (STYLES_3D, STAT_TRACKERS),
+     CustomizationModes.STYLE_2D_EDITABLE: (PAINTS,
+                                            CAMOUFLAGES,
+                                            PROJECTION_DECALS,
+                                            EMBLEMS,
+                                            INSCRIPTIONS,
+                                            MODIFICATIONS,
+                                            STAT_TRACKERS)}
+    TAB_TO_MODE = {PAINTS: (CustomizationModes.CUSTOM, CustomizationModes.STYLE_2D_EDITABLE),
+     CAMOUFLAGES: (CustomizationModes.CUSTOM, CustomizationModes.STYLE_2D_EDITABLE),
+     PROJECTION_DECALS: (CustomizationModes.CUSTOM, CustomizationModes.STYLE_2D_EDITABLE),
+     EMBLEMS: (CustomizationModes.CUSTOM, CustomizationModes.STYLE_2D_EDITABLE),
+     INSCRIPTIONS: (CustomizationModes.CUSTOM, CustomizationModes.STYLE_2D_EDITABLE),
+     MODIFICATIONS: (CustomizationModes.CUSTOM, CustomizationModes.STYLE_2D_EDITABLE),
+     STYLES_2D: (CustomizationModes.STYLE_2D,),
+     STYLES_3D: (CustomizationModes.STYLE_3D,),
+     ATTACHMENTS: (CustomizationModes.STYLE_2D, CustomizationModes.CUSTOM),
+     STAT_TRACKERS: (CustomizationModes.STYLE_2D,
+                     CustomizationModes.STYLE_3D,
+                     CustomizationModes.CUSTOM,
+                     CustomizationModes.STYLE_2D_EDITABLE)}
+    TAB_NAMES = {PAINTS: 'paint',
+     CAMOUFLAGES: 'camouflage',
+     PROJECTION_DECALS: 'projectionDecal',
+     EMBLEMS: 'emblem',
+     INSCRIPTIONS: 'inscription',
+     MODIFICATIONS: 'modification',
+     STYLES_2D: 'customStyle',
+     STYLES_3D: 'uncustomStyle',
+     ATTACHMENTS: 'attachment',
+     STAT_TRACKERS: 'statTracker'}
+    SLOT_TYPES = {PAINTS: GUI_ITEM_TYPE.PAINT,
+     CAMOUFLAGES: GUI_ITEM_TYPE.CAMOUFLAGE,
+     PROJECTION_DECALS: GUI_ITEM_TYPE.PROJECTION_DECAL,
+     EMBLEMS: GUI_ITEM_TYPE.EMBLEM,
+     INSCRIPTIONS: GUI_ITEM_TYPE.INSCRIPTION,
+     MODIFICATIONS: GUI_ITEM_TYPE.MODIFICATION,
+     STYLES_2D: GUI_ITEM_TYPE.STYLE,
+     STYLES_3D: GUI_ITEM_TYPE.STYLE,
+     ATTACHMENTS: GUI_ITEM_TYPE.ATTACHMENT,
+     STAT_TRACKERS: GUI_ITEM_TYPE.STAT_TRACKER}
+    ITEM_TYPES = {PAINTS: (GUI_ITEM_TYPE.PAINT,),
+     CAMOUFLAGES: (GUI_ITEM_TYPE.CAMOUFLAGE,),
+     PROJECTION_DECALS: (GUI_ITEM_TYPE.PROJECTION_DECAL,),
+     EMBLEMS: (GUI_ITEM_TYPE.EMBLEM,),
+     INSCRIPTIONS: (GUI_ITEM_TYPE.INSCRIPTION, GUI_ITEM_TYPE.PERSONAL_NUMBER),
+     MODIFICATIONS: (GUI_ITEM_TYPE.MODIFICATION,),
+     STYLES_2D: (GUI_ITEM_TYPE.STYLE,),
+     STYLES_3D: (GUI_ITEM_TYPE.STYLE,),
+     ATTACHMENTS: (GUI_ITEM_TYPE.ATTACHMENT,),
+     STAT_TRACKERS: (GUI_ITEM_TYPE.STAT_TRACKER,)}
+    TABS_WITH_RARITY = (ATTACHMENTS,)
+
+
+ITEM_TYPE_TO_TAB = {value:key for key, values in viewitems(CustomizationTabs.ITEM_TYPES) for value in values}
+ITEM_TYPE_TO_SLOT_TYPE = {itemType:CustomizationTabs.SLOT_TYPES[tabId] for itemType, tabId in viewitems(ITEM_TYPE_TO_TAB)}
+REGIONS_SLOTS = tuple((CustomizationTabs.SLOT_TYPES[tabId] for tabId in CustomizationTabs.REGIONS))
+APPLIED_TO_TYPES = (GUI_ITEM_TYPE.EMBLEM,
+ GUI_ITEM_TYPE.INSCRIPTION,
+ GUI_ITEM_TYPE.PERSONAL_NUMBER,
+ GUI_ITEM_TYPE.PAINT,
+ GUI_ITEM_TYPE.CAMOUFLAGE)
+SCALE_SIZE = (VEHICLE_CUSTOMIZATION.CUSTOMIZATION_POPOVER_SCALE_SMALL, VEHICLE_CUSTOMIZATION.CUSTOMIZATION_POPOVER_SCALE_NORMAL, VEHICLE_CUSTOMIZATION.CUSTOMIZATION_POPOVER_SCALE_LARGE)
+TYPES_ORDER = (GUI_ITEM_TYPE.STYLE,
+ GUI_ITEM_TYPE.ATTACHMENT,
+ GUI_ITEM_TYPE.STAT_TRACKER,
+ GUI_ITEM_TYPE.PAINT,
+ GUI_ITEM_TYPE.CAMOUFLAGE,
+ GUI_ITEM_TYPE.PROJECTION_DECAL,
+ GUI_ITEM_TYPE.EMBLEM,
+ GUI_ITEM_TYPE.PERSONAL_NUMBER,
+ GUI_ITEM_TYPE.INSCRIPTION,
+ GUI_ITEM_TYPE.MODIFICATION)
+SEASON_TYPE_TO_INFOTYPE_MAP = {SeasonType.SUMMER: VEHICLE_CUSTOMIZATION.CUSTOMIZATION_INFOTYPE_MAPTYPE_SUMMER,
+ SeasonType.DESERT: VEHICLE_CUSTOMIZATION.CUSTOMIZATION_INFOTYPE_MAPTYPE_DESERT,
+ SeasonType.WINTER: VEHICLE_CUSTOMIZATION.CUSTOMIZATION_INFOTYPE_MAPTYPE_WINTER}
+COMMON_C11N_AUTO_INSTALL_TYPES = (GUI_ITEM_TYPE.STAT_TRACKER,)
+
+class BillPopoverButtons(object):
+    CUSTOMIZATION_CLEAR = 'customizationClear'
+    CUSTOMIZATION_CLEAR_LOCKED = 'customizationClearLocked'
+    ALL = (CUSTOMIZATION_CLEAR, CUSTOMIZATION_CLEAR_LOCKED)
+
+
+OutfitInfo = namedtuple('OutfitInfo', ('original', 'modified'))
+CustomizationSlotUpdateVO = namedtuple('CustomizationSlotUpdateVO', ('slotId', 'itemIntCD', 'uid'))
+
+@dependency.replace_none_kwargs(c11nService=ICustomizationService)
+def getCommonPurchaseItems(commonOutfit, c11nService=None):
+    purchaseItems = []
+    vehicleCD = g_currentVehicle.item.descriptor.makeCompactDescr()
+    inventoryCounts = __getInventoryCounts({SeasonType.ALL: commonOutfit}, vehicleCD)
+    for intCD, component, idx, container, _ in commonOutfit.itemsFull():
+        item = c11nService.getItemByCD(intCD)
+        isFromInventory = inventoryCounts[intCD] > 0
+        slotType = ITEM_TYPE_TO_SLOT_TYPE.get(item.itemTypeID)
+        if slotType is None or C11N_ITEM_TYPE_MAP[slotType] not in CustomizationType.COMMON_TYPES:
+            _logger.error('Invalid slotType for purchaseItem: [%s]', item)
+            continue
+        purchaseItems.append(PurchaseItem(item, item.getBuyPrice(), areaID=container.getAreaID(), slotType=slotType, regionIdx=idx, selected=True, group=SeasonType.ALL, isFromInventory=isFromInventory, component=component, isEdited=True))
+        inventoryCounts[intCD] -= 1
+
+    return purchaseItems
+
+
+@dependency.replace_none_kwargs(c11nService=ICustomizationService)
+def getCustomPurchaseItems(season, modifiedOutfits, c11nService=None):
+    purchaseItems = []
+    seasonOrder = [season] + [ s for s in SeasonType.COMMON_SEASONS if s != season ]
+    vehicleCD = g_currentVehicle.item.descriptor.makeCompactDescr()
+    inventoryCounts = __getInventoryCounts(modifiedOutfits, vehicleCD)
+    for s in seasonOrder:
+        for intCD, component, idx, container, _ in modifiedOutfits[s].itemsFull():
+            item = c11nService.getItemByCD(intCD)
+            isFromInventory = inventoryCounts[intCD] > 0
+            slotType = ITEM_TYPE_TO_SLOT_TYPE.get(item.itemTypeID)
+            if slotType is None:
+                _logger.error('Failed to get slotType for purchaseItem: [%s]', item)
+                continue
+            purchaseItems.append(PurchaseItem(item, price=item.getBuyPrice(), areaID=container.getAreaID(), slotType=slotType, regionIdx=idx, selected=True, group=s, isFromInventory=isFromInventory, component=component))
+            inventoryCounts[intCD] -= 1
+
+    return purchaseItems
+
+
+@dependency.replace_none_kwargs(c11nService=ICustomizationService)
+def getStylePurchaseItems(style, modifiedOutfits, c11nService=None, prolongRent=False, progressionLevel=-1):
+    purchaseItems = []
+    vehicle = g_currentVehicle.item
+    vehicleCD = vehicle.descriptor.makeCompactDescr()
+    currentStyle = c11nService.getCurrentStyle()
+    isStyleInstalled = currentStyle and currentStyle.id == style.id
+    inventoryCounts = __getInventoryCounts(modifiedOutfits, vehicleCD)
+    styleCount = style.fullInventoryCount(vehicle.intCD)
+    isFromInventory = not prolongRent and (styleCount > 0 or isStyleInstalled)
+    if style.isProgressive:
+        totalPrice = ItemPrice(Money(), Money())
+        currentProgressionLvl = style.getLatestOpenedProgressionLevel(vehicle)
+        progressivePrice = style.getUpgradePrice(currentProgressionLvl, progressionLevel)
+        if style.isProgressionPurchasable(progressionLevel):
+            totalPrice = progressivePrice
+        if not style.isHidden and not isFromInventory:
+            totalPrice += style.getBuyPrice()
+        isFromInventory = False if progressionLevel > currentProgressionLvl else isFromInventory
+        purchaseItem = PurchaseItem(style, totalPrice, areaID=None, slotType=None, regionIdx=None, selected=True, group=AdditionalPurchaseGroups.STYLES_GROUP_ID, isFromInventory=isFromInventory, locked=True, progressionLevel=progressionLevel)
+        purchaseItems.append(purchaseItem)
+    else:
+        purchaseItem = PurchaseItem(style, style.getBuyPrice(), areaID=None, slotType=None, regionIdx=None, selected=True, group=AdditionalPurchaseGroups.STYLES_GROUP_ID, isFromInventory=isFromInventory, locked=True)
+        purchaseItems.append(purchaseItem)
+    for season in SeasonType.COMMON_SEASONS:
+        modifiedOutfit = removePartsFromOutfit(season, modifiedOutfits[season])
+        if style.isProgressive:
+            modifiedOutfit = c11nService.removeAdditionalProgressionData(outfit=modifiedOutfit, style=style, vehCD=vehicleCD, season=season)
+        baseOutfit = removePartsFromOutfit(season, style.getOutfit(season, vehicleCD))
+        for intCD, component, regionIdx, container, _ in modifiedOutfit.itemsFull():
+            item = c11nService.getItemByCD(intCD)
+            itemTypeID = item.itemTypeID
+            slotType = ITEM_TYPE_TO_SLOT_TYPE.get(itemTypeID)
+            if slotType is None:
+                continue
+            slotId = C11nId(container.getAreaID(), slotType, regionIdx)
+            modifiedSlotData = SlotData(intCD, component)
+            baseSlotData = getSlotDataFromSlot(baseOutfit, slotId)
+            isEdited = baseSlotData.intCD != modifiedSlotData.intCD
+            if isEdited:
+                if slotId != correctSlot(slotId):
+                    continue
+                price = item.getBuyPrice()
+                isFromInventory = inventoryCounts[intCD] > 0 or item.isStyleOnly
+                locked = bool(style.getDependenciesIntCDs()) and itemTypeID in EDITABLE_STYLE_IRREMOVABLE_TYPES and itemTypeID != GUI_ITEM_TYPE.CAMOUFLAGE
+            else:
+                price = ItemPrice(Money(credits=0), Money())
+                isFromInventory = True
+                locked = isPurchaseItemLocked(item, style)
+            purchaseItem = PurchaseItem(item, price=price, areaID=slotId.areaId, slotType=slotId.slotType, regionIdx=slotId.regionIdx, selected=True, group=season, isFromInventory=isFromInventory, component=component, locked=locked, isEdited=isEdited)
+            purchaseItems.append(purchaseItem)
+            inventoryCounts[intCD] -= 1
+
+    return purchaseItems
+
+
+def correctSlot(slotId):
+    if slotId.slotType in EDITABLE_STYLE_APPLY_TO_ALL_AREAS_TYPES:
+        slotId = EDITABLE_STYLE_APPLY_TO_ALL_AREAS_TYPES[slotId.slotType]
+    return slotId
+
+
+def fitOutfit(outfit, availableRegionsMap):
+    for container in outfit.containers():
+        areaRegions = availableRegionsMap.get(container.getAreaID(), {})
+        for slot in container.slots():
+            availableRegions = set()
+            isProjectionDecal = False
+            slotItemTypes = slot.getTypes()
+            if {GUI_ITEM_TYPE.SEQUENCE, GUI_ITEM_TYPE.ATTACHMENT, GUI_ITEM_TYPE.INSIGNIA} & set(slotItemTypes):
+                continue
+            for itemType in slotItemTypes:
+                availableRegions.update(areaRegions.get(itemType, ()))
+                isProjectionDecal |= itemType == GUI_ITEM_TYPE.PROJECTION_DECAL
+
+            for regionIdx in range(slot.capacity()):
+                component = slot.getComponent(regionIdx)
+                if component is None:
+                    continue
+                if isProjectionDecal and (component.slotId == ProjectionDecalPacker.STYLED_SLOT_ID or component.matchingTag):
+                    continue
+                if regionIdx not in availableRegions:
+                    slot.remove(regionIdx)
+
+    outfit.invalidateItemsCounter()
+    return
+
+
+def getOutfitWithoutItems(outfitsInfo, intCD, count):
+    customizationService = dependency.instance(ICustomizationService)
+    for season, outfitCompare in viewitems(outfitsInfo):
+        backward = outfitCompare.modified.diff(outfitCompare.original)
+        for container in backward.containers():
+            for slot in container.slots():
+                for idx in range(slot.capacity()):
+                    regionIntCD = slot.getItemCD(idx)
+                    if regionIntCD == intCD and count:
+                        item = customizationService.getItemByCD(regionIntCD)
+                        outfit = outfitCompare.original
+                        container = outfit.getContainer(container.getAreaID())
+                        slot = container.slotFor(item.itemTypeID)
+                        slot.remove(idx)
+                        count -= 1
+
+        yield (season, outfitCompare.original)
+
+
+def getOutfitWithoutItemsNoDiff(outfits, intCD, count):
+    for season, outfit in viewitems(outfits):
+        for container in outfit.containers():
+            for slot in container.slots():
+                for idx in range(slot.capacity()):
+                    regionIntCD = slot.getItemCD(idx)
+                    if regionIntCD == intCD and count:
+                        container = outfit.getContainer(container.getAreaID())
+                        slot.remove(idx)
+                        count -= 1
+
+        yield (season, outfit)
+
+
+def fromWorldCoordsToHangarVehicle(worldCoords):
+    compoundModel = g_currentVehicle.hangarSpace.space.getVehicleEntity().appearance.compoundModel
+    modelMat = Math.Matrix(compoundModel.matrix)
+    modelMat.invert()
+    return modelMat.applyPoint(worldCoords)
+
+
+def fromHangarVehicleToWorldCoords(hangarVehicleCoords):
+    compoundModel = g_currentVehicle.hangarSpace.space.getVehicleEntity().appearance.compoundModel
+    modelMatrix = Math.Matrix(compoundModel.matrix)
+    return modelMatrix.applyPoint(hangarVehicleCoords)
+
+
+def getSuitableText(item, currentVehicle=None, formatVehicle=True):
+    conditions = []
+    for node in item.descriptor.filter.include:
+        separator = ' '.join(['&nbsp;&nbsp;', icons.makeImageTag(RES_ICONS.MAPS_ICONS_CUSTOMIZATION_TOOLTIP_SEPARATOR, 3, 21, -6), '  '])
+        if node.nations:
+            sortedNations = sorted(node.nations, key=GUI_NATIONS_ORDER_INDICES.get)
+            for nation in sortedNations:
+                name = nations.NAMES[nation]
+                conditions.append(icons.makeImageTag(getNationsFilterAssetPath(name), 26, 16, -4))
+                conditions.append('  ')
+
+            conditions = conditions[:-1]
+            conditions.append(' ')
+        if node.tags:
+            for vehType in VEHICLE_TYPES_ORDER:
+                if vehType in node.tags:
+                    conditions.append(icons.makeImageTag(RES_ICONS.getFilterVehicleType(vehType), 27, 17, -4))
+
+            if VEHICLE_CLASS_TAGS & node.tags:
+                conditions.append(separator)
+            if VEHICLE_TAGS.PREMIUM in node.tags:
+                conditions.append(icons.makeImageTag(RES_ICONS.MAPS_ICONS_LIBRARY_PREM_SMALL_ICON, 20, 17, -4))
+            if VEHICLE_TAGS.PREMIUM_IGR in node.tags:
+                conditions.append(icons.premiumIgrSmall())
+                conditions.append(separator)
+        if node.levels:
+            for level in node.levels:
+                conditions.append(text_styles.stats(int2roman(level)))
+                conditions.append(text_styles.stats(',&nbsp;'))
+
+            conditions = conditions[:-1]
+            conditions.append(separator)
+        if node.vehicles:
+            vehicleName = makeVehiclesShortNamesString(set(node.vehicles), currentVehicle, flat=True)
+            conditions.append(text_styles.main(vehicleName) if formatVehicle else vehicleName)
+            conditions.append(separator)
+
+    return text_styles.concatStylesToSingleLine(*conditions[:-1])
+
+
+@dependency.replace_none_kwargs(itemsCache=IItemsCache)
+def makeVehiclesShortNamesString(vehiclesCDs, currentVehicle, flat=False, itemsCache=None):
+
+    def getVehicleShortName(vehicleCD):
+        return itemsCache.items.getItemByCD(vehicleCD).shortUserName
+
+    vehiclesShortNames = []
+    if currentVehicle is not None and currentVehicle.intCD in vehiclesCDs and not flat:
+        vehiclesCDs.remove(currentVehicle.intCD)
+        vehiclesShortNames.append(currentVehicle.shortUserName + _ms(VEHICLE_CUSTOMIZATION.CUSTOMIZATION_LIMITED_CURRENT_VEHICLE))
+    vehiclesShortNames.extend((getVehicleShortName(vehCD) for vehCD in vehiclesCDs))
+    return ', '.join(vehiclesShortNames)
+
+
+@dependency.replace_none_kwargs(lobbyContext=ILobbyContext, hangarSpace=IHangarSpace)
+def isC11nEnabled(lobbyContext=None, hangarSpace=None):
+    state = g_currentVehicle.getViewState()
+    vehicleEntity = hangarSpace.getVehicleEntity()
+    if vehicleEntity is None:
+        isVehicleCameraReadyForC11n = False
+    else:
+        isVehicleCameraReadyForC11n = vehicleEntity.state == CameraMovementStates.ON_OBJECT
+    return lobbyContext.getServerSettings().isCustomizationEnabled() and state.isCustomizationEnabled() and not state.isOnlyForEventBattles() and hangarSpace.spaceInited and hangarSpace.isModelLoaded and isVehicleCameraReadyForC11n
+
+
+def formatPersonalNumber(number, digitsCount):
+    return number.rjust(digitsCount, '0')
+
+
+def fitPersonalNumber(number, digitsCount):
+    return number[max(0, len(number) - digitsCount):]
+
+
+def getProjectionSlotFormfactor(slotId):
+    if slotId.slotType != GUI_ITEM_TYPE.PROJECTION_DECAL:
+        return None
+    else:
+        anchorSlot = g_currentVehicle.item.getAnchorBySlotId(slotId.slotType, slotId.areaId, slotId.regionIdx)
+        return ProjectionDecalFormTags.ALL.index(first(anchorSlot.formfactors))
+
+
+def getMultiSlot(outfit, slotId):
+    container = outfit.getContainer(slotId.areaId)
+    return None if container is None else container.slotFor(slotId.slotType)
+
+
+def getSlotDataFromSlot(outfit, slotId):
+    multiSlot = getMultiSlot(outfit, slotId)
+    return None if multiSlot is None else multiSlot.getSlotData(slotId.regionIdx)
+
+
+@dependency.replace_none_kwargs(service=ICustomizationService)
+def getItemFromSlot(outfit, slotId, service=None):
+    if slotId.slotType == GUI_ITEM_TYPE.STYLE:
+        if outfit.id:
+            return service.getItemByID(GUI_ITEM_TYPE.STYLE, outfit.id)
+        return
+    else:
+        slotData = getSlotDataFromSlot(outfit, slotId)
+        if slotData is None:
+            return
+        return None if not slotData.intCD else service.getItemByCD(slotData.intCD)
+
+
+def getComponentFromSlot(outfit, slotId):
+    slotData = getSlotDataFromSlot(outfit, slotId)
+    return None if slotData is None else slotData.component
+
+
+def isSlotFilled(outfit, slotId):
+    if slotId.slotType == GUI_ITEM_TYPE.STYLE:
+        return bool(outfit.id)
+    else:
+        component = getComponentFromSlot(outfit, slotId)
+        return component is not None and component.isFilled()
+
+
+def isItemLimitReached(item, outfits=None, customizationMode=None):
+    if not item.isLimited and not item.isHidden:
+        return False
+    if customizationMode:
+        inventoryCount = customizationMode.getItemInventoryCount(item)
+    else:
+        inventoryCount = getItemInventoryCount(item, outfits)
+    if inventoryCount > 0:
+        return False
+    if item.buyCount == 0:
+        return True
+    purchaseLimit = getPurchaseLimit(item, outfits)
+    return purchaseLimit == 0
+
+
+def getPurchaseLimit(item, outfits=None):
+    appliedCount = getItemAppliedCount(item, outfits)
+    inventoryCount = item.fullInventoryCount(g_currentVehicle.intCD)
+    purchaseLimit = item.buyCount - max(appliedCount - inventoryCount, 0)
+    return max(purchaseLimit, 0)
+
+
+@dependency.replace_none_kwargs(service=ICustomizationService)
+def isItemsQuantityLimitReached(outfit, itemType, service=None):
+    if itemType not in QUANTITY_LIMITED_CUSTOMIZATION_TYPES:
+        return False
+    else:
+        qty = 0
+        for intCD, component, _, _, _ in outfit.itemsFull():
+            item = service.getItemByCD(intCD)
+            isMatchingProjection = component.customType == ProjectionDecalComponent.customType and component.matchingTag is not None
+            if item.itemTypeID == itemType and (component.isFilled() or isMatchingProjection):
+                qty += 1
+
+        return qty >= QUANTITY_LIMITED_CUSTOMIZATION_TYPES[itemType]
+
+
+def getEmptyRegions(outfit, slotType):
+    emptyRegions = []
+    for areaId in Area.ALL:
+        regionsIndexes = getAvailableRegions(areaId, slotType)
+        for regionIdx in regionsIndexes:
+            intCD = outfit.getContainer(areaId).slotFor(slotType).getItemCD(regionIdx)
+            if not intCD:
+                emptyRegions.append((areaId, slotType, regionIdx))
+
+    mask = appliedToFromSlotsIds(emptyRegions)
+    return mask
+
+
+def getCurrentVehicleAvailableRegionsMap():
+    availableRegionsMap = {}
+    vehicleDescr = g_currentVehicle.item.descriptor
+    outfit = Outfit(vehicleCD=vehicleDescr.makeCompactDescr())
+    for areaId in Area.ALL:
+        availableRegionsMap[areaId] = {}
+        for slotType in viewvalues(CustomizationTabs.SLOT_TYPES):
+            regions = getAvailableRegions(areaId, slotType, vehicleDescr=vehicleDescr, vehicleOutfit=outfit)
+            availableRegionsMap[areaId][slotType] = regions
+
+    return availableRegionsMap
+
+
+def checkSlotsFilling(outfit, slotType):
+    availableCount = 0
+    filledCount = 0
+    currentOutfit = Outfit(vehicleCD=g_currentVehicle.item.descriptor.makeCompactDescr())
+    for areaId in Area.ALL:
+        regionsIndexes = getAvailableRegions(areaId, slotType, vehicleOutfit=currentOutfit)
+        availableCount += len(regionsIndexes)
+        for regionIdx in regionsIndexes:
+            intCD = outfit.getContainer(areaId).slotFor(slotType).getItemCD(regionIdx)
+            if intCD:
+                filledCount += 1
+
+    if slotType in QUANTITY_LIMITED_CUSTOMIZATION_TYPES:
+        availableCount = min(availableCount, QUANTITY_LIMITED_CUSTOMIZATION_TYPES[slotType])
+    return (availableCount, filledCount)
+
+
+def isSlotLocked(outfit, slotId):
+    if slotId.slotType not in QUANTITY_LIMITED_CUSTOMIZATION_TYPES:
+        return False
+    limit = QUANTITY_LIMITED_CUSTOMIZATION_TYPES[slotId.slotType]
+    slot = outfit.getContainer(slotId.areaId).slotFor(slotId.slotType)
+    regions = slot.getRegions()
+    filledRegions = [ regions.index(region) for region, _, __ in slot.items() ]
+    isLocked = len(filledRegions) >= limit and slotId.regionIdx not in filledRegions
+    return isLocked
+
+
+def isPurchaseItemLocked(item, style):
+    sType = getItemSlotType(item.descriptor)
+    locked = item.itemTypeID in EDITABLE_STYLE_IRREMOVABLE_TYPES or sType not in style.changeableSlotTypes
+    return locked
+
+
+@dependency.replace_none_kwargs(service=ICustomizationService)
+def isItemUsedUp(item, appliedItems=None, service=None):
+    ctx = service.getCtx()
+    if ctx is None:
+        _logger.warning('Customization helper function "isItemUsedUp" is used out of customization context')
+        return False
+    else:
+        mode = ctx.mode
+        if mode.getItemInventoryCount(item) > 0:
+            return False
+        if mode.getPurchaseLimit(item) > 0:
+            return False
+        if item.itemTypeID == GUI_ITEM_TYPE.STYLE:
+            isApplied = ctx.modeId in (CustomizationModes.STYLE_2D, CustomizationModes.STYLE_3D) and mode.modifiedStyle == item
+        elif appliedItems is not None:
+            isApplied = item.intCD in appliedItems
+        else:
+            outfits = mode.outfits
+            isApplied = any((outfits[s].has(item) for s in SeasonType.REGULAR))
+        return not isApplied
+
+
+def getItemInventoryCount(item, outfits=None):
+    if item.itemTypeID == GUI_ITEM_TYPE.STYLE:
+        inventoryCount = __getStyleInventoryCount(item, outfits)
+    else:
+        inventoryCount = __getItemInventoryCount(item, outfits)
+    return max(0, inventoryCount)
+
+
+def getItemAppliedCount(item, outfits):
+    if item.itemTypeID == GUI_ITEM_TYPE.STYLE:
+        appliedCount = __getStyleAppliedCount(item, outfits)
+    else:
+        appliedCount = __getItemAppliedCount(item, outfits)
+    return appliedCount
+
+
+def getItemInstalledCount(item):
+    if item.itemTypeID == GUI_ITEM_TYPE.STYLE:
+        installedCount = int(__isStyleInstalled(item))
+    else:
+        installedCount = item.installedCount(g_currentVehicle.intCD)
+    return installedCount
+
+
+def getProgressionItemStatusText(level):
+    return backport.text(R.strings.vehicle_customization.progression.item.doneFirst()) if level == 1 else backport.text(R.strings.vehicle_customization.customization.infotype.progression.achievedState(), level=int2roman(level))
+
+
+def vehicleHasSlot(slotType, vehicle=None, modelsSet=None):
+    vehicle = vehicle or g_currentVehicle.item
+    if vehicle is None:
+        return False
+    else:
+        for areaId in Area.ALL:
+            for _, anchor in vehicle.getAnchors(slotType, areaId):
+                if not anchor.hiddenForUser and (modelsSet is None or modelsSet in anchor.compatibleModels):
+                    return True
+
+        return False
+
+
+def getItemTypesAvailableForVehicle(vehicle=None):
+    availableItemTypes = set()
+    for itemType in GUI_ITEM_TYPE.CUSTOMIZATIONS:
+        slotType = ITEM_TYPE_TO_SLOT_TYPE.get(itemType)
+        if slotType is not None and vehicleHasSlot(slotType, vehicle):
+            availableItemTypes.add(itemType)
+
+    return availableItemTypes
+
+
+def customizationSlotIdToUid(slotId):
+    s = struct.pack('bbh', slotId.areaId, slotId.slotType, slotId.regionIdx)
+    uid = struct.unpack('I', s)[0]
+    return uid
+
+
+def getEditableStyleOutfitDiffComponent(outfit, baseOutfit):
+    component = outfit.pack()
+    baseComponent = baseOutfit.pack()
+    diffComponent = component.getDiff(baseComponent)
+    return diffComponent
+
+
+def getEditableStyleOutfitDiff(outfit, baseOutfit):
+    diffComponent = getEditableStyleOutfitDiffComponent(outfit, baseOutfit)
+    diff = diffComponent.makeCompDescr()
+    return diff
+
+
+def isStyleEditedForCurrentVehicle(outfits, style):
+    vehicleCD = g_currentVehicle.item.descriptor.makeCompactDescr()
+    for season, outfit in viewitems(outfits):
+        baseOutfit = style.getOutfit(season, vehicleCD)
+        fitOutfit(baseOutfit, getCurrentVehicleAvailableRegionsMap())
+        if not outfit.isEqual(baseOutfit):
+            return True
+
+    return False
+
+
+@dependency.replace_none_kwargs(service=ICustomizationService)
+def getUnsuitableDependentData(outfit, selCamoItemID, styleDependencies, service=None):
+    result = []
+    outfitItemsList = tuple(((cIntCD, regionIdx, container) for cIntCD, _, regionIdx, container, _ in outfit.itemsFull()))
+    getItemByCD = service.getItemByCD
+    camoDependencies = styleDependencies.get(selCamoItemID)
+    if camoDependencies:
+        for cIntCD, regionIdx, container in outfitItemsList:
+            possiblyUnsuitable = getItemByCD(cIntCD)
+            posUnsuitTypeId = possiblyUnsuitable.itemTypeID
+            posUnsuitType = possiblyUnsuitable.descriptor.itemType
+            posUnsuitId = possiblyUnsuitable.id
+            dependentByType = camoDependencies.get(posUnsuitType)
+            if dependentByType and posUnsuitId not in dependentByType:
+                for dependent in viewvalues(styleDependencies):
+                    dItemIds = dependent.get(posUnsuitType)
+                    if dItemIds and posUnsuitId in dItemIds:
+                        slotType = ITEM_TYPE_TO_SLOT_TYPE[posUnsuitTypeId]
+                        slotIdToChange = C11nId(container.getAreaID(), slotType, regionIdx)
+                        result.append((possiblyUnsuitable, slotIdToChange))
+                        break
+
+    return result
+
+
+def resetC11nItemsNovelty(items):
+
+    def _callback(resultID):
+        if not isCodeValid(resultID):
+            _logger.error('Error occurred while trying to reset c11n items=%s novelty, reason by resultId = %d: %s', items, resultID, code2str(resultID))
+
+    BigWorld.player().shop.resetC11nItemsNovelty(items, _callback)
+
+
+def removeUnselectedItemsFromEditableStyle(modifiedOutfits, baseOutfits, purchaseItems):
+    for pItem in purchaseItems:
+        if pItem.selected:
+            continue
+        season = pItem.group
+        if season in modifiedOutfits:
+            slotId = C11nId(pItem.areaID, pItem.slotType, pItem.regionIdx)
+            outfit = modifiedOutfits[season]
+            baseOutfit = baseOutfits[season]
+            modifiedOutfits[season] = removeItemFromEditableStyle(outfit, baseOutfit, slotId, season)
+
+
+@dependency.replace_none_kwargs(service=ICustomizationService)
+def removeItemFromEditableStyle(outfit, baseOutfit, slotId, season, service=None):
+    slotType = slotId.slotType
+    if slotType in EDITABLE_STYLE_APPLY_TO_ALL_AREAS_TYPES:
+        slotData = getSlotDataFromSlot(outfit, slotId)
+        outfit = removePartsFromOutfit(season, outfit, [slotData.intCD])
+        __removeItemFromEditableStyleAllAreas(outfit, baseOutfit, slotType)
+        slotData = getSlotDataFromSlot(outfit, slotId)
+        if slotType == GUI_ITEM_TYPE.CAMOUFLAGE:
+            parsedData = parseIntCompactDescr(compactDescr=slotData.intCD)
+            for _, uSlotId in getUnsuitableDependentData(outfit, parsedData[2], outfit.style.dependencies):
+                __doItemRemoveFromEditableStyleOutfit(outfit, baseOutfit, uSlotId, True)
+
+        outfit = addPartsToOutfit(season, outfit, [slotData.intCD])
+    else:
+        __removeItemFromEditableStyleOutfit(outfit, baseOutfit, slotId)
+    return outfit
+
+
+@dependency.replace_none_kwargs(service=ICustomizationService)
+def removeItemsFromOutfit(outfit, filterMethod, service=None):
+    for slot in outfit.slots():
+        for idx in range(slot.capacity()):
+            intCD = slot.getItemCD(idx)
+            if not intCD:
+                continue
+            item = service.getItemByCD(intCD)
+            if item.isHiddenInUI():
+                continue
+            if filterMethod(item):
+                slot.remove(idx)
+
+
+def __removeItemFromEditableStyleAllAreas(outfit, baseOutfit, slotType):
+    for areaId in Area.TANK_PARTS:
+        regionsIndexes = getAvailableRegions(areaId, slotType)
+        for regionIdx in regionsIndexes:
+            slotId = C11nId(areaId=areaId, slotType=slotType, regionIdx=regionIdx)
+            __removeItemFromEditableStyleOutfit(outfit, baseOutfit, slotId)
+
+
+def __removeItemFromEditableStyleOutfit(outfit, baseOutfit, slotId):
+    __doItemRemoveFromEditableStyleOutfit(outfit, baseOutfit, slotId, slotId.slotType in EDITABLE_STYLE_IRREMOVABLE_TYPES)
+
+
+def __doItemRemoveFromEditableStyleOutfit(outfit, baseOutfit, slotId, isSetToDefault):
+    multiSlot = outfit.getContainer(slotId.areaId).slotFor(slotId.slotType)
+    multiSlot.remove(slotId.regionIdx)
+    if isSetToDefault:
+        slotData = getSlotDataFromSlot(baseOutfit, slotId)
+        if slotData is not None and not slotData.isEmpty():
+            multiSlot.set(slotData.intCD, slotId.regionIdx, slotData.component)
+    return
+
+
+def __getItemInventoryCount(item, outfits=None):
+    inventoryCount = item.fullInventoryCount(g_currentVehicle.intCD)
+    if outfits is not None:
+        appliedCount = getItemAppliedCount(item, outfits)
+        inventoryCount -= appliedCount
+    return inventoryCount
+
+
+def __getStyleInventoryCount(item, outfits=None):
+    inventoryCount = item.fullInventoryCount(g_currentVehicle.intCD)
+    appliedCount = 0
+    if outfits is not None:
+        appliedCount = getItemAppliedCount(item, outfits)
+        inventoryCount -= appliedCount
+    if item.isRentable:
+        if getItemInstalledCount(item) + appliedCount:
+            inventoryCount += 1
+    return inventoryCount
+
+
+def __getItemAppliedCount(item, outfits):
+    appliedCount = sum((outfit.itemsCounter[item.intCD] for outfit in viewvalues(outfits)))
+    appliedCount -= getItemInstalledCount(item)
+    return appliedCount
+
+
+def __getStyleAppliedCount(item, outfits):
+    appliedCount = int(outfits[SeasonType.SUMMER].id == item.id)
+    appliedCount -= getItemInstalledCount(item)
+    return appliedCount
+
+
+def __isStyleInstalled(style):
+    vehicleItem = g_currentVehicle.item
+    if vehicleItem is None:
+        return False
+    else:
+        currentOutfit = vehicleItem.getOutfit(SeasonType.SUMMER)
+        return False if currentOutfit is None else currentOutfit.id == style.id
+
+
+@dependency.replace_none_kwargs(itemsCache=IItemsCache, c11nService=ICustomizationService)
+def __getInventoryCounts(modifiedOutfits, vehicleCD, itemsCache=None, c11nService=None):
+    inventoryCounts = Counter()
+    removedCounts = Counter()
+    for modifiedOutfit in viewvalues(modifiedOutfits):
+        for intCD in modifiedOutfit.items():
+            descriptor = getItemByCompactDescr(intCD)
+            if descriptor.id == EMPTY_ITEM_ID:
+                continue
+            if intCD in inventoryCounts:
+                continue
+            item = itemsCache.items.getItemByCD(intCD)
+            inventoryCounts[intCD] = item.fullInventoryCount(g_currentVehicle.intCD)
+
+    style = c11nService.getCurrentStyle()
+    for season in SeasonType.REGULAR:
+        removed = c11nService.getCurrentOutfit(season)
+        if style is not None and season in SeasonType.COMMON_SEASONS:
+            baseOutfit = style.getOutfit(season, vehicleCD)
+            removed = baseOutfit.diff(removed)
+        removedCounts += removed.itemsCounter
+
+    for intCD in removedCounts.copy():
+        descriptor = getItemByCompactDescr(intCD)
+        if descriptor.id == EMPTY_ITEM_ID:
+            del removedCounts[intCD]
+            continue
+        item = itemsCache.items.getItemByCD(intCD)
+        if item.isStyleOnly:
+            removedCounts[intCD] = 0
+
+    return inventoryCounts + removedCounts
+
+
+def changePartsOutfit(season, outfit, intCD, removeIntCD):
+    if removeIntCD == intCD:
+        return outfit
+    style = outfit.style
+    changedOutfit = style.changePartsOutfitExceptGunInsignia(season, outfit.pack(), removeIntCD)
+    vehicleCD = outfit.vehicleCD
+    addedOutfit = style.addPartsToOutfit(season, changedOutfit, vehicleCD, intCDs=(intCD,))
+    return Outfit(component=addedOutfit, vehicleCD=vehicleCD)
+
+
+def addPartsToOutfit(season, outfit, intCDs=None):
+    return outfit if outfit.style is None else Outfit(component=outfit.style.addPartsToOutfit(season, outfit.pack(), outfit.vehicleCD, intCDs=intCDs), vehicleCD=outfit.vehicleCD)
+
+
+def removePartsFromOutfit(season, outfit, intCDs=None):
+    return outfit if outfit.style is None else Outfit(component=outfit.style.removePartrsFromOutfit(season, outfit.pack(), outfit.vehicleCD, intCDs=intCDs), vehicleCD=outfit.vehicleCD)
+
+
+@dependency.replace_none_kwargs(customizationService=ICustomizationService)
+def getStyledModeRequestData(requestData, style, vehicle, purchaseItems=None, stylesDiffsCache=None, styleProgressionLevel=None, customizationService=None):
+    if purchaseItems is None:
+        purchaseItems = []
+    vehicleCD = vehicle.descriptor.makeCompactDescr()
+    if style is not None:
+        baseStyleOutfits = {}
+        modifiedStyleOutfits = {}
+        for season in SeasonType.COMMON_SEASONS:
+            diff = stylesDiffsCache.getDiffs(style).get(season) if stylesDiffsCache else None
+            baseStyleOutfits[season] = style.getOutfit(season, vehicleCD=vehicleCD)
+            modifiedStyleOutfits[season] = style.getOutfit(season, vehicleCD=vehicleCD, diff=diff)
+
+        removeUnselectedItemsFromEditableStyle(modifiedStyleOutfits, baseStyleOutfits, purchaseItems)
+        for season in SeasonType.COMMON_SEASONS:
+            if style.isProgressive:
+                modifiedStyleOutfits[season] = customizationService.removeAdditionalProgressionData(outfit=modifiedStyleOutfits[season], style=style, vehCD=vehicleCD, season=season)
+            baseComponent = removePartsFromOutfit(season, baseStyleOutfits[season]).pack()
+            modifiedComponent = removePartsFromOutfit(season, modifiedStyleOutfits[season]).pack()
+            modifiedStyleOutfits[season] = Outfit(vehicleCD=vehicleCD, component=modifiedComponent.getDiff(baseComponent))
+
+        styleOutfitComponent = CustomizationOutfit(styleId=style.id, styleProgressionLevel=styleProgressionLevel, serial_number=style.serialNumber)
+        styleOutfit = Outfit(vehicleCD=vehicleCD, component=styleOutfitComponent)
+        for season in SeasonType.REGULAR:
+            outfit = modifiedStyleOutfits.get(season, Outfit(vehicleCD=vehicleCD))
+            modifiedStyleOutfits[season] = styleOutfit.adjust(outfit)
+
+        for outfit, seasonType in requestData:
+            if seasonType == SeasonType.ALL:
+                modifiedStyleOutfits[seasonType] = modifiedStyleOutfits[seasonType].adjust(outfit)
+
+        requestData = [ (outfit, season) for season, outfit in viewitems(modifiedStyleOutfits) ]
+    else:
+        for season in SeasonType.COMMON_SEASONS:
+            outfit = customizationService.getEmptyOutfitWithNationalEmblems(vehicleCD)
+            requestData.append((outfit, season))
+
+    return requestData
+
+
+def remove3DStyleIncompatibleCommonItems(outfit, style=None, vehicle=None):
+    vehicle = vehicle or g_currentVehicle.item
+    for slotType in GUI_ITEM_TYPE.COMMON_C11NS:
+        for partIdx in Area.ALL:
+            multiSlot = outfit.getContainer(partIdx).slotFor(slotType)
+            if multiSlot:
+                for idx in range(multiSlot.capacity()):
+                    slotData = multiSlot.getSlotData(idx)
+                    if not slotData.isEmpty():
+                        if slotType not in GUI_ITEM_TYPE.COMMON_C11N_COMPATIBLE_WITH_3D_STYLES:
+                            multiSlot.remove(idx)
+                        elif style is not None and style.modelsSet:
+                            anchor = vehicle.getAnchorBySlotId(slotType, partIdx, idx)
+                            if style.modelsSet not in anchor.compatibleModels:
+                                multiSlot.remove(idx)
+
+    return
+
+
+@dependency.replace_none_kwargs(c11nService=ICustomizationService)
+def isStatTrackerTabEnabled(c11nService=None):
+    ctx = c11nService.getCtx()
+    if ctx is None:
+        _logger.error('Helper function "isStatTrackerTabEnabled" called outside of customization context')
+        return False
+    else:
+        outfit = ctx.mode.outfits[ctx.season]
+        modelsSet = SLOT_DEFAULT_ALLOWED_MODEL
+        if outfit.style is not None:
+            modelsSet = outfit.style.modelsSet or modelsSet
+        return True if vehicleHasSlot(CustomizationTabs.SLOT_TYPES[CustomizationTabs.STAT_TRACKERS], modelsSet=modelsSet) else False
+
+
+def getAvailableSlots(slotType, vehicleDescr=None):
+    availableSlots = []
+    for areaId in Area.ALL:
+        availableSlots.extend((C11nId(areaId, slotType, region) for region in getAvailableRegions(areaId, slotType, vehicleDescr)))
+
+    return availableSlots
+
+
+def removeUncommonItems(outfit):
+    for slotType in GUI_ITEM_TYPE.CUSTOMIZATIONS:
+        if slotType in GUI_ITEM_TYPE.COMMON_C11NS:
+            continue
+        for partIdx in Area.ALL:
+            multiSlot = outfit.getContainer(partIdx).slotFor(slotType)
+            if multiSlot:
+                for idx in range(multiSlot.capacity()):
+                    slotData = multiSlot.getSlotData(idx)
+                    if not slotData.isEmpty():
+                        multiSlot.remove(idx)

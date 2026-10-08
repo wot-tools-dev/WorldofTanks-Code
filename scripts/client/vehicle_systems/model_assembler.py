@@ -1,0 +1,749 @@
+import math
+import typing
+from functools import partial
+from collections import namedtuple
+from typing import List, Callable
+import logging
+import weakref
+import Vehicular
+import WWISE
+import BigWorld
+import Math
+import material_kinds
+import CGF
+import GenericComponents
+from constants import IS_DEVELOPMENT, IS_UE_EDITOR
+from soft_exception import SoftException
+import math_utils
+from helpers import DecalMap
+from items.components import shared_components, component_constants
+from items.components.c11n_constants import AttachmentLogic
+from vehicle_systems.vehicle_damage_state import VehicleDamageState
+from vehicle_systems.tankStructure import getPartModelsFromDesc, getCollisionModelsFromDesc, TankNodeNames, TankPartNames, TankPartIndexes, TankRenderMode, TankCollisionPartNames
+from vehicle_systems.components.hull_aiming_controller import HullAimingController
+if typing.TYPE_CHECKING:
+    from vehicle_appearance.common_tank_appearance import CommonTankAppearance
+    from gui.hangar_vehicle_appearance import HangarVehicleAppearance
+    from items.vehicles import VehicleDescriptor
+    TAppearance = typing.Union[HangarVehicleAppearance, CommonTankAppearance]
+_logger = logging.getLogger(__name__)
+DEFAULT_MAX_LOD_PRIORITY = None
+_INFINITY = 10000
+_PHYSICAL_TRACKS_MAX_DISTANCE = 60
+_PHYSICAL_TRACKS_MAX_COUNT = 5
+_PHYSICAL_TRACKS_LOD_SETTINGS = shared_components.LodSettings(_PHYSICAL_TRACKS_MAX_DISTANCE, _PHYSICAL_TRACKS_MAX_COUNT)
+_SPLINE_TRACKS_MAX_COUNT = 5
+_AREA_LOD_FOR_NONSIMPLE_TRACKS = 50
+_WHEEL_TO_TRACE_RATIO = 0.75
+_DEFAULT_LOD_INDEX = 0
+
+def __getWheelsRiseTime(vehicleDesc):
+    wheelsRiseTime = 0.0
+    chassisXPhysics = vehicleDesc.type.xphysics['chassis'][vehicleDesc.chassis.name]
+    if 'wheelRiseSpeed' in chassisXPhysics:
+        wheelRiseSpeed = chassisXPhysics['wheelRiseSpeed']
+        if wheelRiseSpeed > 0.0:
+            wheelsRiseTime = 1.0 / wheelRiseSpeed
+    return wheelsRiseTime
+
+
+def prepareCollisionAssembler(vehicleDesc, isTurretDetached, worldID):
+    hitTestersByPart = {TankPartNames.CHASSIS: vehicleDesc.chassis.hitTester,
+     TankPartNames.HULL: vehicleDesc.hull.hitTester}
+    if not isTurretDetached:
+        hitTestersByPart[TankPartNames.TURRET] = vehicleDesc.turret.hitTester
+        hitTestersByPart[TankPartNames.GUN] = vehicleDesc.gun.hitTester
+    bspModels = []
+    for partName, hitTester in hitTestersByPart.iteritems():
+        partId = TankPartNames.getIdx(partName)
+        bspModel = (partId, hitTester.bspModelName)
+        bspModels.append(bspModel)
+
+    trackPairs = vehicleDesc.chassis.trackPairs[1:]
+    for idx, trackPair in enumerate(trackPairs):
+        totalDefaultParts = len(TankPartNames.ALL)
+        bspModels.append((totalDefaultParts + idx, trackPair.hitTester.bspModelName))
+
+    assembler = BigWorld.CollisionAssembler(tuple(bspModels), worldID)
+    return assembler
+
+
+def collisionIdxToTrackPairIdx(collisionIdx, typeDesc):
+    leftBound = len(TankPartNames.ALL)
+    rightBound = leftBound + len(typeDesc.chassis.trackPairs) - 1
+    return collisionIdx - leftBound if leftBound < collisionIdx <= rightBound else None
+
+
+def trackPairIdxToCollisionIdx(trackPairIdx):
+    return len(TankPartNames.ALL) + trackPairIdx
+
+
+def setupCollisions(vehicleDesc, collisions):
+    hitTestersByPart = {TankPartNames.CHASSIS: vehicleDesc.chassis.hitTester,
+     TankPartNames.HULL: vehicleDesc.hull.hitTester,
+     TankPartNames.TURRET: vehicleDesc.turret.hitTester,
+     TankPartNames.GUN: vehicleDesc.gun.hitTester}
+    for partName, hitTester in hitTestersByPart.iteritems():
+        partID = TankPartNames.getIdx(partName)
+        hitTester.bbox = collisions.getBoundingBox(partID)
+        if not hitTester.bbox:
+            _logger.error("Couldn't find bounding box for the part '%s' (collisions=%r)", partName, collisions)
+
+    trackPairs = vehicleDesc.chassis.trackPairs[1:]
+    for idx, trackPair in enumerate(trackPairs):
+        trackPair.hitTester.bbox = collisions.getBoundingBox(trackPairIdxToCollisionIdx(idx))
+        if not trackPair.hitTester.bbox:
+            _logger.error("Couldn't find bounding box for the track pair '%i' (collisions=%s)", idx, collisions)
+
+
+def prepareCompoundAssembler(vehicleDesc, modelsSetParams, spaceID, isTurretDetached=False, lodIdx=_DEFAULT_LOD_INDEX, skipMaterials=False, renderMode=None):
+    if IS_DEVELOPMENT and modelsSetParams.state not in VehicleDamageState.MODEL_STATE_NAMES:
+        raise SoftException('Invalid modelStateName %s, must be in %s' % (modelsSetParams.state, VehicleDamageState.MODEL_STATE_NAMES))
+    if spaceID is None:
+        spaceID = BigWorld.player().spaceID
+    assembler = BigWorld.CompoundAssembler()
+    attachModels(assembler, vehicleDesc, modelsSetParams, isTurretDetached, renderMode)
+    if renderMode == TankRenderMode.OVERLAY_COLLISION:
+        attachModels(assembler, vehicleDesc, modelsSetParams, isTurretDetached, TankRenderMode.SERVER_COLLISION, True)
+    cornerPoint = vehicleDesc.chassis.topRightCarryingPoint
+    assembler.addNode(TankNodeNames.TRACK_LEFT_MID, TankPartNames.CHASSIS, math_utils.createTranslationMatrix((-cornerPoint[0], 0, 0)))
+    assembler.addNode(TankNodeNames.TRACK_RIGHT_MID, TankPartNames.CHASSIS, math_utils.createTranslationMatrix((cornerPoint[0], 0, 0)))
+    assembler.addNode(TankNodeNames.CHASSIS_MID_TRAIL, TankPartNames.CHASSIS)
+    assembler.name = vehicleDesc.name
+    assembler.spaceID = spaceID
+    assembler.lodIdx = lodIdx
+    assembler.skipMaterials = skipMaterials
+    return assembler
+
+
+def attachModels(assembler, vehicleDesc, modelsSetParams, isTurretDetached, renderMode=None, overlayCollision=False):
+    collisionState = renderMode in (TankRenderMode.CLIENT_COLLISION,
+     TankRenderMode.SERVER_COLLISION,
+     TankRenderMode.CRASH_COLLISION,
+     TankRenderMode.ARMOR_WIDTH_COLLISION)
+    if collisionState:
+        partModels = getCollisionModelsFromDesc(vehicleDesc, renderMode)
+    else:
+        partModels = getPartModelsFromDesc(vehicleDesc, modelsSetParams)
+    chassis, hull, turret, gun = partModels
+    partNames = TankPartNames
+    if overlayCollision:
+        partNames = TankCollisionPartNames
+    if not overlayCollision:
+        assembler.addRootPart(chassis, TankPartNames.CHASSIS)
+    else:
+        assembler.addPart(chassis, TankPartNames.CHASSIS, TankCollisionPartNames.CHASSIS)
+    if collisionState:
+        trackPairs = vehicleDesc.chassis.trackPairs[1:]
+        for idx, trackPair in enumerate(trackPairs):
+            assembler.addPart(trackPair.hitTester.bspModelName, partNames.CHASSIS, 'trackPair' + str(idx + 1))
+
+    if collisionState and vehicleDesc.isWheeledVehicle:
+        for i, wheel in enumerate(vehicleDesc.chassis.wheels.wheels):
+            bspPath = ''
+            if renderMode == TankRenderMode.CLIENT_COLLISION:
+                bspPath = wheel.hitTesterManager.edClientBspModel
+            elif renderMode in (TankRenderMode.SERVER_COLLISION, TankRenderMode.ARMOR_WIDTH_COLLISION):
+                bspPath = wheel.hitTesterManager.edServerBspModel
+            if bspPath:
+                assembler.addNode(wheel.nodeName, partNames.CHASSIS, math_utils.createTranslationMatrix(wheel.position))
+                assembler.emplacePart(bspPath, wheel.nodeName, TankCollisionPartNames.WHEEL + str(i))
+
+    if collisionState and not overlayCollision:
+        assembler.addNode('V', TankPartNames.CHASSIS, math_utils.createTranslationMatrix(vehicleDesc.chassis.hullPosition))
+    if not overlayCollision:
+        assembler.emplacePart(hull, 'V', partNames.HULL)
+    else:
+        assembler.addPart(hull, 'V', partNames.HULL)
+    turretJointName = vehicleDesc.hull.turretHardPoints[0]
+    assembler.addNodeAlias(turretJointName, TankNodeNames.TURRET_JOINT)
+    if not isTurretDetached:
+        if collisionState and not overlayCollision:
+            assembler.addNode(turretJointName, 'V', math_utils.createRTMatrix(Math.Vector3(0, vehicleDesc.hull.turretPitches[0], 0), vehicleDesc.hull.turretPositions[0]))
+        assembler.addPart(turret, turretJointName, partNames.TURRET)
+        if collisionState and not overlayCollision:
+            assembler.addNode(TankNodeNames.GUN_JOINT, TankPartNames.TURRET, math_utils.createRTMatrix(Math.Vector3(0, vehicleDesc.turret.gunJointPitch, 0), vehicleDesc.turret.gunPosition))
+        assembler.addPart(gun, TankNodeNames.GUN_JOINT, partNames.GUN)
+        if modelsSetParams.state == 'undamaged':
+            for attachment in modelsSetParams.attachments:
+                if attachment.attachmentLogic not in AttachmentLogic.FLAGS or not attachment.attachNode:
+                    continue
+                assembler.addPart(attachment.modelName, attachment.attachNode, attachment.partNodeAlias)
+
+
+def assembleSuspensionIfNeed(appearance, collisionObstaclesCollector, tessellationCollisionSensor, queue):
+    vehicleDescriptor = appearance.typeDescriptor
+    suspension = None
+    try:
+        compoundModel = appearance.compoundModel
+        groundNodesConfig = vehicleDescriptor.chassis.groundNodes
+        groundNodeGroups = groundNodesConfig.groups
+        groundNodes = groundNodesConfig.nodes
+        hasGroundNodes = len(groundNodeGroups) or len(groundNodes)
+        if not hasGroundNodes:
+            return
+        siegeSwitchOnTime = 0.0
+        siegeSwitchOffTime = 0.0
+        if vehicleDescriptor.type.siegeModeParams is not None:
+            siegeSwitchOnTime = vehicleDescriptor.type.siegeModeParams['switchOnTime']
+            siegeSwitchOffTime = vehicleDescriptor.type.siegeModeParams['switchOffTime']
+        if vehicleDescriptor.isWheeledVehicle:
+            siegeSwitchOnTime = siegeSwitchOffTime = __getWheelsRiseTime(vehicleDescriptor)
+        appearanceUUID = appearance.gameObject.uuid
+        suspension = queue.createComponent(appearance.gameObject, Vehicular.Suspension, compoundModel, appearanceUUID, appearanceUUID, appearanceUUID, TankPartIndexes.CHASSIS, siegeSwitchOnTime, siegeSwitchOffTime, groundNodesConfig.activePostmortem, vehicleDescriptor.isWheeledVehicle)
+        for groundGroup in groundNodeGroups:
+            nodes = _createNameListByTemplate(groundGroup.startIndex, groundGroup.nodesTemplate, groundGroup.nodesCount)
+            wheels = ['']
+            if groundGroup.affectedWheelsTemplate is not None:
+                wheels = _createNameListByTemplate(groundGroup.startIndex, groundGroup.affectedWheelsTemplate, groundGroup.nodesCount)
+            suspension.addGroundNodesGroup(nodes, groundGroup.isLeft, groundGroup.minOffset, groundGroup.maxOffset, wheels, groundGroup.collisionSamplesCount, groundGroup.hasLiftMode)
+
+        for groundNode in groundNodes:
+            suspension.addGroundNode(groundNode.nodeName, groundNode.isLeft, groundNode.minOffset, groundNode.maxOffset, groundNode.affectedWheelName, groundNode.collisionSamplesCount, groundNode.hasLiftMode)
+
+        if vehicleDescriptor.chassis.trackSplineParams is not None:
+            trackSplineParams = vehicleDescriptor.chassis.trackSplineParams
+            suspension.setParameters(trackSplineParams.thickness)
+        else:
+            suspension.setParameters(0.0)
+        lodSettings = groundNodesConfig.lodSettings
+        if lodSettings is None:
+            lodSettings = shared_components.LodSettings(vehicleDescriptor.chassis.chassisLodDistance, DEFAULT_MAX_LOD_PRIORITY)
+        suspension.setLodSettings(lodSettings)
+        collisionObstaclesCollector.setActivePostmortem(groundNodesConfig.activePostmortem)
+        tessellationCollisionSensor.setActivePostmortem(groundNodesConfig.activePostmortem)
+    except BigWorld.AssetException:
+        _logger.error('Failed to create Suspension', exc_info=True)
+        if suspension:
+            queue.removeComponent(appearance.gameObject, Vehicular.Suspension)
+
+    return
+
+
+def assembleLeveredSuspensionIfNeed(appearance, tessellationCollisionSensor, queue):
+    vehicleDescriptor = appearance.typeDescriptor
+    compoundModel = appearance.compoundModel
+    leveredSuspensionConfig = vehicleDescriptor.chassis.leveredSuspension
+    if leveredSuspensionConfig is None:
+        return
+    else:
+        siegeSwitchOnTime = 0.0
+        siegeSwitchOffTime = 0.0
+        if vehicleDescriptor.type.siegeModeParams is not None:
+            siegeSwitchOnTime = vehicleDescriptor.type.siegeModeParams['switchOnTime']
+            siegeSwitchOffTime = vehicleDescriptor.type.siegeModeParams['switchOffTime']
+        if vehicleDescriptor.isWheeledVehicle:
+            siegeSwitchOnTime = siegeSwitchOffTime = __getWheelsRiseTime(vehicleDescriptor)
+        leveredSuspension = queue.createComponent(appearance.gameObject, Vehicular.LeveredSuspension, compoundModel, leveredSuspensionConfig.levers, appearance.gameObject.uuid, leveredSuspensionConfig.interpolationSpeedMul, siegeSwitchOnTime, siegeSwitchOffTime, leveredSuspensionConfig.activePostmortem)
+        leveredSuspension.setupLodSettings(leveredSuspensionConfig.lodSettings)
+        tessellationCollisionSensor.setActivePostmortem(leveredSuspensionConfig.activePostmortem)
+        return
+
+
+def createWheelsAnimator(appearance, colliderType, typeDescriptor, wheelsState, splineTracks, queue):
+    return createGeneralWheelsAnimator(appearance, colliderType, typeDescriptor, wheelsState, queue) if typeDescriptor.chassis.generalWheelsAnimatorConfig is not None else createTankWheelsAnimator(appearance, typeDescriptor, splineTracks, queue)
+
+
+def createGeneralWheelsAnimator(appearance, colliderType, typeDescriptor, wheelsState, queue):
+    config = typeDescriptor.chassis.generalWheelsAnimatorConfig
+    generalWheelsAnimator = queue.createComponent(appearance.gameObject, Vehicular.GeneralWheelsAnimator, queue.spaceID, config, appearance.compoundModel, colliderType, wheelsState, appearance.id)
+    generalWheelsAnimator.setLodSettings(shared_components.LodSettings(typeDescriptor.chassis.chassisLodDistance, DEFAULT_MAX_LOD_PRIORITY))
+    generalWheelsAnimator.connectVehicleFashion(appearance.fashion)
+    return generalWheelsAnimator
+
+
+def createTankWheelsAnimator(appearance, typeDescriptor, splineTracks, queue):
+    wheelsAnimator = None
+    try:
+        compoundModel = appearance.compoundModel
+        f = appearance.filter
+        wheelsConfig = typeDescriptor.chassis.wheels
+        wheelsAnimator = queue.createComponent(appearance.gameObject, Vehicular.TankWheelsAnimator, compoundModel)
+        for group in wheelsConfig.groups:
+            nodes = _createNameListByTemplate(group.startIndex, group.template, group.count)
+            wheelsAnimator.addWheelGroup(group.isLeft, group.radius, nodes)
+
+        for wheel in wheelsConfig.wheels:
+            wheelsAnimator.addWheel(wheel.isLeft, wheel.radius, wheel.nodeName, wheel.isLeading, wheel.leadingSyncAngle)
+
+        if splineTracks and splineTracks.left and splineTracks.right:
+            wheelsAnimator.setSplineTrackMovementData(splineTracks.left[0], splineTracks.right[0])
+        wheelsAnimator.setLodSettings(shared_components.LodSettings(typeDescriptor.chassis.chassisLodDistance, DEFAULT_MAX_LOD_PRIORITY))
+        if f is not None:
+            wheelsAnimator.setMovementInfo(f.movementInfo)
+        return wheelsAnimator
+    except BigWorld.AssetException:
+        _logger.error('Failed to create TankWheelsAnimator', exc_info=True)
+        if wheelsAnimator:
+            queue.removeComponent(appearance.gameObject, Vehicular.TankWheelsAnimator)
+        return
+
+    return
+
+
+def createTrackNodesAnimator(appearance, typeDescriptor, queue):
+    trackNodesAnimator = None
+    try:
+        compoundModel = appearance.compoundModel
+        appearanceUUID = appearance.gameObject.uuid
+        trackNodesConfig = typeDescriptor.chassis.trackNodes
+        trackSplineParams = typeDescriptor.chassis.trackSplineParams
+        if not trackNodesConfig:
+            return
+        trackNodesAnimator = queue.createComponent(appearance.gameObject, Vehicular.TrackNodesAnimator, compoundModel, TankNodeNames.HULL_SWINGING)
+        if trackSplineParams is not None:
+            trackNodesAnimator.setParameters(trackSplineParams.thickness, trackSplineParams.gravity, trackSplineParams.maxAmplitude, trackSplineParams.maxOffset)
+        for trackNode in trackNodesConfig.nodes:
+            leftSibling = '' if trackNode.leftNodeName is None else trackNode.leftNodeName
+            rightSibling = '' if trackNode.rightNodeName is None else trackNode.rightNodeName
+            trackNodesAnimator.addTrackNode(trackNode.name, trackNode.isLeft, trackNode.initialOffset, leftSibling, rightSibling, (trackNode.damping,
+             trackNode.elasticity,
+             trackNode.forwardElasticityCoeff,
+             trackNode.backwardElasticityCoeff))
+
+        trackNodesAnimator.setWheelsDataProvider(appearanceUUID)
+        trackNodesAnimator.setLodSettings(shared_components.LodSettings(typeDescriptor.chassis.chassisLodDistance, DEFAULT_MAX_LOD_PRIORITY))
+    except BigWorld.AssetException:
+        _logger.error('Failed to create TrackNodesAnimator', exc_info=True)
+        if trackNodesAnimator:
+            queue.removeComponent(appearance.gameObject, Vehicular.TrackNodesAnimator)
+
+    return
+
+
+def assembleVehicleTraces(appearance, vehicleFilter, wheelsAnimator, queue):
+    vehicleTraces = queue.createComponent(appearance.gameObject, Vehicular.VehicleTraces)
+    chassisConfig = appearance.typeDescriptor.chassis
+    tracesConfig = chassisConfig.traces
+    textures = {}
+    for matKindName, texId in DecalMap.g_instance.getTextureSet(tracesConfig.textureSet).iteritems():
+        if matKindName != 'bump':
+            for matKind in material_kinds.EFFECT_MATERIAL_IDS_BY_NAMES[matKindName]:
+                textures[matKind] = texId
+
+    vehicleTraces.setTrackTextures(textures)
+    vehicleTraces.setCompound(appearance.compoundModel)
+    if chassisConfig.generalWheelsAnimatorConfig is None:
+        wrOffset = Math.Vector2(tracesConfig.centerOffset, 0)
+        wlOffset = Math.Vector2(-tracesConfig.centerOffset, 0)
+        length = appearance.typeDescriptor.chassis.topRightCarryingPoint[1] * 2
+        vehicleTraces.addTrackTrace('', wrOffset, tracesConfig.size, length, tracesConfig.bufferPrefs, False)
+        vehicleTraces.addTrackTrace('', wlOffset, tracesConfig.size, length, tracesConfig.bufferPrefs, False)
+    else:
+        traceConfigs = wheelsAnimator.getTraceConfigs()
+        for trace in traceConfigs:
+            vehicleTraces.addTrackTrace('', trace[0], tracesConfig.size, trace[1], tracesConfig.bufferPrefs, False)
+
+    vehicleTraces.setLodSettings(shared_components.LodSettings(tracesConfig.lodDist, DEFAULT_MAX_LOD_PRIORITY))
+    vehicleTraces.setMovementInfo(vehicleFilter.movementInfo)
+    vehicleTraces.setActivePostmortem(tracesConfig.activePostmortem)
+    return
+
+
+def assembleGunLinkedNodesAnimator(appearance, queue):
+    skin = appearance.modelsSetParams.skin
+    drivingJoints = appearance.typeDescriptor.gun.drivenJoints or {}
+    drivingJoints = drivingJoints.get(skin, drivingJoints.get('default', None))
+    if drivingJoints is not None:
+        queue.createComponent(appearance.gameObject, Vehicular.LinkedNodesPitchAnimator, appearance.compoundModel, drivingJoints)
+    return
+
+
+def assembleHullAimingController(appearance, queue):
+    if not (appearance.typeDescriptor.hasSiegeMode and appearance.typeDescriptor.isPitchHullAimingAvailable):
+        return
+    queue.createComponent(appearance.gameObject, HullAimingController)
+
+
+def assembleSuspensionSound(appearance, isPlayer, queue):
+    if not WWISE.WW_isInitialised():
+        return
+    elif not appearance.typeDescriptor.hasSiegeMode:
+        return
+    else:
+        siegeVehicleDescr = appearance.typeDescriptor.siegeVehicleDescr
+        if siegeVehicleDescr is None:
+            return
+        suspensionSoundParams = siegeVehicleDescr.chassis.hullAimingSound
+        if suspensionSoundParams is None:
+            return
+        model = appearance.compoundModel
+        if model is None:
+            return
+        hullNode = model.node(TankPartNames.HULL)
+        if hullNode is None:
+            return
+        suspensionSound = queue.createComponent(appearance.gameObject, Vehicular.SuspensionSound)
+        for sound in suspensionSoundParams.sounds:
+            if isPlayer:
+                suspensionSound.setSoundsForState(sound.state, sound.underLimitSounds.PC, sound.overLimitSounds.PC)
+            suspensionSound.setSoundsForState(sound.state, sound.underLimitSounds.NPC, sound.overLimitSounds.NPC)
+
+        suspensionSound.bodyMatrix = None
+        suspensionSound.angleLimitValue = suspensionSoundParams.angleLimitValue
+        suspensionSound.lodSetting = suspensionSoundParams.lodDist
+        suspensionSound.vehicleMatrix = appearance.filter.groundPlacingMatrix
+        suspensionSound.bodyMatrix = appearance.filter.bodyMatrix
+        return
+
+
+def assembleTerrainMatKindSensor(appearance, queue):
+    TERRAIN_MAT_KIND_SENSOR_LOD_DIST = 100.0
+    TERRAIN_MAT_KIND_SENSOR_MAX_PRIORITY = 15
+    compoundModel = appearance.compoundModel
+    invertedOrigin = Math.Matrix(compoundModel.matrix)
+    leftNodeMatrix = Math.Matrix(compoundModel.node(TankNodeNames.TRACK_LEFT_MID))
+    rightNodeMatrix = Math.Matrix(compoundModel.node(TankNodeNames.TRACK_RIGHT_MID))
+    leftNodeMatrix.postMultiply(invertedOrigin)
+    rightNodeMatrix.postMultiply(invertedOrigin)
+    scanLength = 4.0
+    offset = Math.Vector3(0.0, scanLength * 0.5, 0.0)
+    localPoints = (leftNodeMatrix.translation + offset, rightNodeMatrix.translation + offset, Math.Vector3(0.0, 0.0, 0.0) + offset)
+    sensor = queue.createComponent(appearance.gameObject, Vehicular.TerrainMatKindSensor, compoundModel.root, localPoints, scanLength)
+    sensor.setLodSettings(shared_components.LodSettings(TERRAIN_MAT_KIND_SENSOR_LOD_DIST, TERRAIN_MAT_KIND_SENSOR_MAX_PRIORITY))
+
+
+def assembleVehicleAudition(isPlayer, appearance, queue):
+    PLAYER_UPDATE_PERIOD = 0.1
+    NPC_UPDATE_PERIOD = 0.25
+    typeDescriptor = appearance.typeDescriptor
+    engineEventName = typeDescriptor.engine.sounds.getEvents()
+    chassisEventName = typeDescriptor.chassis.sounds.getEvents()
+    wheeledVehicle = False
+    if typeDescriptor.chassis.generalWheelsAnimatorConfig is not None:
+        wheeledVehicle = typeDescriptor.chassis.generalWheelsAnimatorConfig.isWheeledVehicle()
+    if wheeledVehicle:
+        vehicleData = (typeDescriptor.physics['enginePower'] / component_constants.HP_TO_WATTS,
+         typeDescriptor.physics['weight'],
+         typeDescriptor.physics['rotationSpeedLimit'],
+         engineEventName,
+         chassisEventName,
+         ('wheel_vehicle_wheel_repaired', 'wheel_vehicle_wheel_metal_repaired'),
+         ('wheel_vehicle_wheel_damaged', 'wheel_vehicle_wheel_metal_damaged'),
+         'RTPC_ext_client_rpm_rel',
+         'RTPC_ext_client_rpm_abs')
+    else:
+        vehicleData = (typeDescriptor.physics['enginePower'] / component_constants.HP_TO_WATTS,
+         typeDescriptor.physics['weight'],
+         typeDescriptor.physics['rotationSpeedLimit'],
+         engineEventName,
+         chassisEventName,
+         ('repair_treads',),
+         ('brakedown_treads',),
+         '',
+         '')
+    engineAudition = queue.createComponent(appearance.gameObject, Vehicular.VehicleAudition, appearance.id, isPlayer, vehicleData)
+    engineAudition.setEffectMaterialsInfo(lambda : appearance.terrainEffectMaterialNames)
+    engineAudition.setSpeedInfo(lambda : appearance.filter.angularSpeed, lambda : appearance.filter.strafeSpeed)
+    if typeDescriptor.type.siegeModeParams is not None:
+        soundStateChange = typeDescriptor.type.siegeModeParams['soundStateChange']
+        engineAudition.setSiegeSoundEvents(soundStateChange.isEngine, soundStateChange.on if isPlayer else soundStateChange.npcOn, soundStateChange.off if isPlayer else soundStateChange.npcOff)
+    engineAudition.setUpdatePeriod(PLAYER_UPDATE_PERIOD if isPlayer else NPC_UPDATE_PERIOD)
+    return
+
+
+def createVehicleFilter(typeDescriptor):
+    vehicleFilter = BigWorld.WGVehicleFilter()
+    vehicleFilter.hullLocalPosition = typeDescriptor.chassis.hullPosition
+    vehicleFilter.vehicleWidth = typeDescriptor.chassis.topRightCarryingPoint[0] * 2
+    vehicleFilter.maxMove = typeDescriptor.physics['speedLimits'][0] * 2.0
+    vehicleFilter.vehicleMinNormalY = typeDescriptor.physics['minPlaneNormalY']
+    for p1, p2, p3 in typeDescriptor.physics['carryingTriangles']:
+        vehicleFilter.addTriangle((p1[0], 0, p1[1]), (p2[0], 0, p2[1]), (p3[0], 0, p3[1]))
+
+    vehicleFilter.forceGroundPlacingMatrix(typeDescriptor.isPitchHullAimingAvailable)
+    vehicleFilter.enablePitchHullAiming(typeDescriptor.isPitchHullAimingAvailable)
+    return vehicleFilter
+
+
+def _createNameListByTemplate(startIndex, template, count):
+    return [ '%s%d' % (template, i) for i in range(startIndex, startIndex + count) ]
+
+
+_ROOT_NODE_NAME = 'V'
+SplineTracks = namedtuple('SplineTracks', ('left', 'right'))
+
+def setupSplineTracks(fashion, vDesc, chassisModel, prereqs, modelsSet):
+    splineDesc = vDesc.chassis.splineDesc
+    resultTracks = None
+    if splineDesc is None:
+        return resultTracks
+    else:
+        leftSpline = []
+        rightSpline = []
+        for idx, trackDesc in splineDesc.trackPairs.iteritems():
+            segmentModelLeft = segmentModelRight = segment2ModelLeft = segment2ModelRight = None
+            modelName = trackDesc.segmentModelLeft(modelsSet)
+            try:
+                segmentModelLeft = prereqs[modelName]
+            except Exception:
+                _logger.error("can't load track segment model '%s'", modelName)
+
+            modelName = trackDesc.segmentModelRight(modelsSet)
+            try:
+                segmentModelRight = prereqs[modelName]
+            except Exception:
+                _logger.error("can't load track segment model '%s'", modelName)
+
+            modelName = trackDesc.segment2ModelLeft(modelsSet)
+            if modelName is not None:
+                try:
+                    segment2ModelLeft = prereqs[modelName]
+                except Exception:
+                    _logger.error("can't load track segment 2 model '%s'", modelName)
+
+            modelName = trackDesc.segment2ModelRight(modelsSet)
+            if modelName is not None:
+                try:
+                    segment2ModelRight = prereqs[modelName]
+                except Exception:
+                    _logger.error("can't load track segment 2 model '%s'", modelName)
+
+            if segmentModelLeft is not None and segmentModelRight is not None:
+                identityMatrix = Math.Matrix()
+                identityMatrix.setIdentity()
+                if not chassisModel.isValid():
+                    _logger.error('chassisModel is not valid')
+                    return
+                track = BigWorld.wg_createSplineTrack(chassisModel, trackDesc.leftDesc, idx, trackDesc.segmentLength, segmentModelLeft, trackDesc.segmentOffset, segment2ModelLeft, trackDesc.segment2Offset, _ROOT_NODE_NAME, trackDesc.atlasUTiles, trackDesc.atlasVTiles)
+                if track is not None:
+                    leftSpline.append(track)
+                track = BigWorld.wg_createSplineTrack(chassisModel, trackDesc.rightDesc, idx, trackDesc.segmentLength, segmentModelRight, trackDesc.segmentOffset, segment2ModelRight, trackDesc.segment2Offset, _ROOT_NODE_NAME, trackDesc.atlasUTiles, trackDesc.atlasVTiles)
+                if track is not None:
+                    rightSpline.append(track)
+
+        if len(leftSpline) != len(rightSpline) or not leftSpline:
+            return
+        fashion.setSplineTracks(leftSpline + rightSpline)
+        resultTracks = SplineTracks(leftSpline, rightSpline)
+        return resultTracks
+
+
+def assembleWaterSensor(vehicleDesc, appearance, spaceID, queue):
+    MIN_DEPTH_FOR_HEAVY_SPLASH = 0.5
+    WATER_SENSOR_LOD_DIST = 150.0
+    WATER_SENSOR_MAX_PRIORITY = 15
+    turretOffset = vehicleDesc.chassis.hullPosition + vehicleDesc.hull.turretPositions[0]
+    trPoint = vehicleDesc.chassis.topRightCarryingPoint
+    lightVelocityThreshold = vehicleDesc.type.collisionEffectVelocities['waterContact']
+    heavyVelocityThreshold = vehicleDesc.type.heavyCollisionEffectVelocities['waterContact']
+    sensor = queue.createComponent(appearance.gameObject, Vehicular.WaterSensor, turretOffset, trPoint, lightVelocityThreshold, heavyVelocityThreshold, MIN_DEPTH_FOR_HEAVY_SPLASH, spaceID)
+    sensor.sensorPlaneLink = appearance.compoundModel.root
+    sensor.speedLink = CGF.createFloatLink(appearance.filter, 'averageSpeed')
+    sensor.onWaterSplash = appearance.onWaterSplash
+    sensor.onUnderWaterSwitch = appearance.onUnderWaterSwitch
+    sensor.setLodSettings(shared_components.LodSettings(WATER_SENSOR_LOD_DIST, WATER_SENSOR_MAX_PRIORITY))
+
+
+def assembleDrivetrain(appearance, isPlayerVehicle, queue):
+    PLAYER_UPDATE_PERIOD = 0.1
+    NPC_UPDATE_PERIOD = 0.25
+    typeDescriptor = appearance.typeDescriptor
+    detailedEngineState = queue.createComponent(appearance.gameObject, Vehicular.DetailedEngineState)
+    queue.createComponent(appearance.gameObject, Vehicular.SiegeState)
+    speed_limits_0 = typeDescriptor.physics['speedLimits'][0]
+    speed_limits_1 = typeDescriptor.physics['speedLimits'][1]
+    rpm_min = typeDescriptor.engine.rpm_min
+    rpm_max = typeDescriptor.engine.rpm_max
+    rotation_speed_limit = typeDescriptor.physics['rotationSpeedLimit']
+    max_climb_angle = math.acos(typeDescriptor.physics['minPlaneNormalY'])
+    detailedEngineState.setVehicleParams(speed_limits_0, speed_limits_1, rotation_speed_limit, max_climb_angle, rpm_min, rpm_max, isPlayerVehicle)
+    detailedEngineState.setUpdatePeriod(PLAYER_UPDATE_PERIOD if isPlayerVehicle else NPC_UPDATE_PERIOD)
+    wheeledVehicle = False
+    if typeDescriptor.chassis.generalWheelsAnimatorConfig is not None:
+        wheeledVehicle = typeDescriptor.chassis.generalWheelsAnimatorConfig.isWheeledVehicle()
+    if wheeledVehicle and isPlayerVehicle:
+        gearbox = queue.createComponent(appearance.gameObject, Vehicular.GearBox)
+        gearShiftMap = (((1e-05, rpm_min * 1.2, rpm_max * 0.98),
+          (0.15 * speed_limits_0, rpm_min * 1.7, rpm_max * 0.98),
+          (0.5 * speed_limits_0, rpm_min * 2.2, rpm_max * 0.98),
+          (0.7 * speed_limits_0, rpm_max * 0.7, rpm_max * 0.9)), ((0.01, rpm_min * 1.2, rpm_max * 0.98),))
+        gearbox.setGearBoxParams(speed_limits_0, speed_limits_1, rpm_min, rpm_max, gearShiftMap)
+    return
+
+
+def setupTracksFashion(vehicleDesc, fashion):
+    tracksCfg = vehicleDesc.chassis.tracks
+    if tracksCfg is not None:
+        leftMaterials = []
+        rightMaterials = []
+        for value in tracksCfg.trackPairs.values():
+            leftMaterials.append(value.leftMaterial)
+            rightMaterials.append(value.rightMaterial)
+
+        fashion.setTracksMaterials(leftMaterials, rightMaterials)
+    return
+
+
+def assembleSimpleTracks(vehicleDesc, appearance, tracks):
+    tracksCfg = vehicleDesc.chassis.tracks
+    if tracksCfg is None:
+        return
+    else:
+        leftTracks = []
+        rightTracks = []
+        for i in xrange(len(tracksCfg.trackPairs)):
+            left = Vehicular.SimpleTrackCreationData(True, i, tracksCfg.trackPairs[i].leftMaterial, appearance.fashion, appearance.gameObject.uuid, tracksCfg.trackPairs[i].textureScale)
+            right = Vehicular.SimpleTrackCreationData(False, i, tracksCfg.trackPairs[i].rightMaterial, appearance.fashion, appearance.gameObject.uuid, tracksCfg.trackPairs[i].textureScale)
+            leftTracks.append(left)
+            rightTracks.append(right)
+
+        lodSettings = shared_components.LodSettings(_INFINITY, DEFAULT_MAX_LOD_PRIORITY)
+        tracks.addSimpleTrack(True, leftTracks, lodSettings)
+        tracks.addSimpleTrack(False, rightTracks, lodSettings)
+        return
+
+
+def assembleSizePhysicalTrack(resourceRefs, resourceFormat, isLeft, trackPairsCount, appearance, tracks, instantWarmup, setupOnlyThickness=False):
+    try:
+        inited = True
+        allTracks = []
+        for i in xrange(trackPairsCount):
+            name = resourceFormat.format(i)
+            trackBuilder = resourceRefs[name] if resourceRefs.has_key(name) else None
+            if trackBuilder is not None and trackBuilder.isValid() and not setupOnlyThickness:
+                trackData = Vehicular.PhysicalTrackCreationData(trackBuilder, appearance.compoundModel, appearance.gameObject.uuid, appearance.gameObject.uuid, appearance.gameObject.uuid, appearance.fashion, instantWarmup)
+                allTracks.append(trackData)
+            if trackBuilder is not None:
+                tracks.setTrackThickness(isLeft, i, trackBuilder.trackThickness)
+            inited = False
+
+        if allTracks:
+            tracks.addPhysicalTrack(isLeft, allTracks, _PHYSICAL_TRACKS_LOD_SETTINGS)
+    except ValueError as e:
+        _logger.error('Failure on physical track creation: %s', e)
+        inited = False
+
+    return inited
+
+
+def assemblePhysicalTracks(resourceRefs, trackPairsCount, appearance, tracks, instantWarmup, setupOnlyThickness=False):
+    inited = True
+    inited = inited and assembleSizePhysicalTrack(resourceRefs, 'left{0}PhysicalTrack', True, trackPairsCount, appearance, tracks, instantWarmup, setupOnlyThickness)
+    inited = inited and assembleSizePhysicalTrack(resourceRefs, 'right{0}PhysicalTrack', False, trackPairsCount, appearance, tracks, instantWarmup, setupOnlyThickness)
+    return inited
+
+
+def assembleSplineTracks(vehicleDesc, appearance, splineTracksImpl, tracks):
+    if splineTracksImpl is None:
+        return
+    else:
+        lodDist = vehicleDesc.chassis.splineDesc.lodDist
+        lodSettings = shared_components.LodSettings(lodDist, _SPLINE_TRACKS_MAX_COUNT)
+        leftSplineTracks = []
+        rightSplineTracks = []
+        for left, right in zip(splineTracksImpl[0], splineTracksImpl[1]):
+            leftSplineTracks.append(Vehicular.SplineTrackCreationData(left, appearance.compoundModel, appearance.gameObject.uuid))
+            rightSplineTracks.append(Vehicular.SplineTrackCreationData(right, appearance.compoundModel, appearance.gameObject.uuid))
+
+        if leftSplineTracks:
+            tracks.addSplineTrack(True, leftSplineTracks, lodSettings)
+        if rightSplineTracks:
+            tracks.addSplineTrack(False, rightSplineTracks, lodSettings)
+        return
+
+
+def assembleTracks(resourceRefs, vehicleDesc, appearance, splineTracksImpl, instantWarmup, queue):
+    tracks, trackPairsCount = assembleTracksContext(vehicleDesc, appearance, queue)
+    assemblePhysicalTracks(resourceRefs, trackPairsCount, appearance, tracks, instantWarmup)
+    assembleSplineTracks(vehicleDesc, appearance, splineTracksImpl, tracks)
+    assembleSimpleTracks(vehicleDesc, appearance, tracks)
+    vehicleFilter = getattr(appearance, 'filter', None)
+    if vehicleFilter is not None:
+        tracks.setTrackScrollLink(CGF.createFloatLink(vehicleFilter, 'leftTrackScroll'), CGF.createFloatLink(vehicleFilter, 'rightTrackScroll'))
+    return
+
+
+def assembleTracksContext(vehicleDesc, appearance, queue):
+    trackPairsCount = 0
+    tracksCfg = vehicleDesc.chassis.tracks
+    if tracksCfg is not None:
+        trackPairsCount = len(tracksCfg.trackPairs)
+    tracks = Vehicular.VehicleTracksCreationContext(appearance.gameObject, queue, appearance.compoundModel, TankPartIndexes.CHASSIS, _AREA_LOD_FOR_NONSIMPLE_TRACKS, trackPairsCount)
+    tracks.setWheelsProviderLink(appearance.gameObject.uuid)
+    tracks.setLodLink(Vehicular.getDummyLodLink())
+    return (tracks, trackPairsCount)
+
+
+def assembleCollisionObstaclesCollector(appearance, desc, queue):
+    isWheeledVehicle = 'wheeledVehicle' in desc.type.tags
+    return queue.createComponent(appearance.gameObject, Vehicular.CollisionObstaclesCollector, appearance.compoundModel, queue.spaceID, isWheeledVehicle)
+
+
+def assembleTessellationCollisionSensor(appearance, queue):
+    return queue.createComponent(appearance.gameObject, Vehicular.TessellationCollisionSensor, appearance.compoundModel, TankPartIndexes.CHASSIS)
+
+
+def setLodSettings(appearance, component):
+    component.setLodSettings(shared_components.LodSettings(appearance.typeDescriptor.chassis.chassisLodDistance, DEFAULT_MAX_LOD_PRIORITY))
+
+
+def assembleBurnoutProcessor(appearance, cgfQueue):
+    burnoutAnimation = appearance.typeDescriptor.hull.burnoutAnimation
+    if burnoutAnimation is None:
+        return
+    else:
+        cgfQueue.createComponent(appearance.gameObject, Vehicular.BurnoutProcessor, appearance.compoundModel, lambda : appearance.burnoutLevel, burnoutAnimation.accumImpulseMag, burnoutAnimation.dischargeImpulseMag, burnoutAnimation.timeToAccumImpulse)
+        return
+
+
+def assembleCustomLogicComponents(appearance, typeDescriptor, attachments, modelAnimators, queue):
+    assemblers = [(AttachmentLogic.FLAG_ANIMATION, __assembleAnimationFlagComponent), (AttachmentLogic.PREFAB, __assemblePrefabComponent)]
+    for assemblerName, assembler in assemblers:
+        for attachment in attachments:
+            if attachment.attachmentLogic == assemblerName:
+                assembler(appearance, attachment, attachments, modelAnimators, queue)
+
+    skin = (appearance.outfit.modelsSet if appearance.outfit is not None else '') or 'default'
+    for item in (typeDescriptor.chassis,
+     typeDescriptor.hull,
+     typeDescriptor.turret,
+     typeDescriptor.gun):
+        for prefab in item.prefabs.get(skin, {}).get('custom', ()):
+            loadAppearancePrefab(prefab, appearance)
+
+    return
+
+
+def __assembleAnimationFlagComponent(appearance, attachment, attachments, modelAnimators, queue):
+    mainAnimator = None
+    for i, modelAnimator in enumerate(modelAnimators):
+        if modelAnimator.attachmentPartNode == attachment.partNodeAlias:
+            mainAnimator = modelAnimators.pop(i)
+            break
+
+    if mainAnimator is None:
+        return False
+    else:
+        flagParts = tuple((a.partNodeAlias for a in attachments if a.attachmentLogic == AttachmentLogic.FLAG_PART))
+        flagComponent = queue.createComponent(appearance.gameObject, Vehicular.FlagComponent, mainAnimator.animator, mainAnimator.node, TankPartNames.TURRET, (attachment.partNodeAlias,) + flagParts)
+        filter = appearance.filter
+        if filter is not None:
+            flagComponent.vehicleSpeedLink = CGF.createFloatLink(filter, 'averageSpeed')
+            flagComponent.allowTransparency(True)
+        return
+
+
+def loadAppearancePrefab(prefab, appearance, postLoadCallback=None, removeOnDeath=True):
+    _logger.debug('loadAppearancePrefab: %s', prefab)
+    onLoadedCallback = partial(__onAppearancePrefabLoaded, weakref.proxy(appearance), postLoadCallback, removeOnDeath)
+    appearance.loadPrefab(prefab, appearance.gameObject, Math.Vector3(0, 0, 0), onLoadedCallback)
+
+
+def __onAppearancePrefabLoaded(appearance, postLoadCallback, removeOnDeath, objects, queue):
+    root = objects[0]
+    if removeOnDeath:
+        appearance.customizationGameObjects.append(queue.gameObject(root))
+    if IS_UE_EDITOR:
+        queue.removeComponent(root, GenericComponents.DynamicModelComponent)
+    queue.createComponent(root, GenericComponents.RedirectorComponent, appearance.gameObject)
+    if appearance.compoundModel is not None:
+        queue.createComponent(root, GenericComponents.DynamicModelComponent, appearance.compoundModel)
+    else:
+        _logger.warning('Appearance prefab %s loaded when no compoundModel, skip DynamicModelComponent creation', queue.gameObjectName(root))
+    return postLoadCallback(root, objects, queue) if postLoadCallback else True
+
+
+def __assemblePrefabComponent(appearance, attachment, _, __, ___):
+    if attachment.hidden:
+        loadAppearancePrefab(attachment.modelName, appearance)

@@ -1,0 +1,163 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Environment/hangar/new_year_cust_sculpture_g5.eff",
+										"emissionRate": 1.0
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "hangEffect",
+								"uuid": "72eae3d0-4f37-45bd-8adc-6a7c47a494cd"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::HangEffectsOwner": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "hangEffectOwner",
+						"uuid": "f9900a95-ec76-4097-be89-42f3a68dbaf7"
+					},
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"components": {
+											"BW::DynamicModel": {
+												"castShadows": false,
+												"disabledDomains": [
+													"Server"
+												],
+												"modelName": "content/Hangars/h_newyear/customization/Installation/Kiosk/normal/lod0/NY22_Kiosk_Base_Outline.model"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "outline",
+										"uuid": "1b0bb387-807c-4767-8deb-8b9f6804d993"
+									}
+								],
+								"components": {
+									"BW::Colliders": {
+										"colliders": [
+											{
+												"__ctype__": "BW::MeshColliderDesc",
+												"__cvalue__": {
+													"modelName": "content/Hangars/h_newyear/customization/Installation/Kiosk/normal/lod0/NY22_Kiosk_Base_Outline.model",
+													"moduleName": "default"
+												}
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::DynamicModel": {
+										"castShadows": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"modelName": "content/Hangars/h_newyear/customization/Installation/Kiosk/normal/lod0/NY22_Kiosk_Base.model"
+									},
+									"BW::VSEComponent": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server",
+											"Editor"
+										],
+										"path": "holiday_ops/vscript/plans/holiday_ops/SnowSculpture.xml"
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"script::HighlightComponent": {
+										"color": {
+											"w": 1.0,
+											"x": 0.21199999749660492,
+											"y": 0.8429999947547913,
+											"z": 1.0
+										},
+										"colorIndex": "4",
+										"disabledDomains": [
+											"Server"
+										],
+										"drawerMode": "0",
+										"groupName": "Installation",
+										"overridenHighlightModel": "1b0bb387-807c-4767-8deb-8b9f6804d993"
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "appearance",
+								"uuid": "07239031-d835-4bea-b8c4-783a8b218d7e"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::AppearanceDelayComponent": {
+								"delay": 0.5,
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "appearanceDelayOwner",
+						"uuid": "17fbb04d-f346-47ca-8023-531306997019"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Transform",
+				"uuid": "5130c752-9baa-4e50-af76-e7dee47b3180"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

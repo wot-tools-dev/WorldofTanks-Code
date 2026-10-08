@@ -1,0 +1,194 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ColorManagerRule": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"decorType": 16,
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": false,
+								"modelName": "particles/content_deferred/GFX_models/environment/ONPX1/disk_light_low.model"
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"scale/x": 0.04,
+								"scale/z": 0.04
+							}
+						},
+						"name": "fake_light",
+						"uuid": "c7c0e1d4-d95e-4fb1-aded-6b73856df8b8"
+					}
+				],
+				"components": {
+					"BW::AttachToTerrainComponent": {
+						"OverTerrainHeight": "0",
+						"YCutOffDistance": "5",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::ColorManagerRule": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::DistToTerrainComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"transfromLink": "26049110-e83f-48ca-934c-35d4cac99a28"
+					},
+					"BW::DynamicModel": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "particles/content_deferred/GFX_models/environment/ONPX1/border_01.model"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"script::ArtilleryFortColorComponent": {
+						"colorComponent": "26049110-e83f-48ca-934c-35d4cac99a28",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"script::ColorComponent": {
+						"color": {
+							"w": 1,
+							"x": 1,
+							"y": 0,
+							"z": 1
+						},
+						"colorParamName": "TintlColor",
+						"disabledDomains": [
+							"Server"
+						],
+						"model": "26049110-e83f-48ca-934c-35d4cac99a28"
+					}
+				},
+				"name": "area",
+				"uuid": "26049110-e83f-48ca-934c-35d4cac99a28"
+			},
+			{
+				"components": {
+					"BW::OmniLightComponent": {
+						"descriptor/commonLightDesc/color/b": 0.36471,
+						"descriptor/commonLightDesc/color/g": 0.52941,
+						"descriptor/commonLightDesc/color/r": 0.8902,
+						"descriptor/commonLightDesc/innerRadius": 10,
+						"descriptor/commonLightDesc/lodShift": 1000,
+						"descriptor/commonLightDesc/multiplier": 40000,
+						"descriptor/commonLightDesc/outerRadius": 150,
+						"disabledDomains": []
+					},
+					"cgf::TransformComponent": {
+						"position/x": -1,
+						"position/y": 25,
+						"position/z": -1
+					}
+				},
+				"name": "Omni Light",
+				"uuid": "3d96862a-0048-4889-bcd8-875f9bd26dcc"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"effect": "particles/Environment/ONPX/ability_illumination_flare_start.eff"
+					},
+					"cgf::TransformComponent": {
+						"position/x": 0,
+						"position/y": 20,
+						"position/z": 0
+					}
+				},
+				"disableDomains": [
+					"Server"
+				],
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "ability_illumination_flare_start",
+				"uuid": "9988f073-4575-432f-9182-6a208140b5d2"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"effect": "particles/Environment/ONPX/ability_illumination_flare_idle.eff"
+					},
+					"BW::tags::TagsComponent": {
+						"tags": []
+					},
+					"cgf::TransformComponent": {
+						"position/x": 0,
+						"position/y": 20,
+						"position/z": 0
+					}
+				},
+				"disableDomains": [
+					"Server"
+				],
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "ability_illumination_flare_idle",
+				"uuid": "f2653151-770b-4f3a-9ee2-b106f088acd4"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"effect": "particles/Environment/ONPX/ability_illumination_flare_end.eff"
+					},
+					"cgf::TransformComponent": {
+						"position/x": 0,
+						"position/y": 20,
+						"position/z": 0
+					}
+				},
+				"disableDomains": [
+					"Server"
+				],
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "ability_illumination_flare_end",
+				"uuid": "ccf047d3-c0cb-4e69-a975-afee1b33ea63"
+			}
+		],
+		"components": {
+			"BW::AttackArtilleryFortColorManagerRule": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"disableDomains": [
+			"Server"
+		],
+		"name": "inspire_area",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

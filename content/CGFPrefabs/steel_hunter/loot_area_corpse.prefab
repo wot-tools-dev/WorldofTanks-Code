@@ -1,0 +1,132 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "0",
+										"lodScale": 1.0,
+										"path": "particles/Environment/Battle_Royal/Loot_Area/br_loot_start_transparency.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "0",
+											"loopCount": "1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::AreaTriggerTarget": {},
+							"BW::AttachToTerrainComponent": {
+								"OverTerrainHeight": "0",
+								"YCutOffDistance": "2",
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::DistToTerrainComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"transfromLink": "3de6ede4-566a-4c8e-8931-a9a2d05fc86e"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "particles/Environment/Battle_Royal/Loot_Area/br_area_red.model"
+							},
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/Battle_Royal/Loot_Area/br_flare_red.eff",
+								"emissionRate": 1.0
+							},
+							"cgf::TransformComponent": {
+								"scale": {
+									"x": 2.4000000953674316,
+									"y": 1.0,
+									"z": 2.4000000953674316
+								}
+							},
+							"script::LootTransparencyTriggerComponent": {
+								"alphaColor": {
+									"w": 0.44999998807907104,
+									"x": 1.0,
+									"y": 1.0,
+									"z": 1.0
+								},
+								"alphaEmissionRate": 0.5,
+								"alphaOpacity": 0.27000001072883606,
+								"baseColor": {
+									"w": 1.0,
+									"x": 1.0,
+									"y": 1.0,
+									"z": 1.0
+								},
+								"baseEmissionRate": "1",
+								"baseOpacity": "1",
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								],
+								"model": "3de6ede4-566a-4c8e-8931-a9a2d05fc86e",
+								"modelMaterial": "TintlColor",
+								"particles": "3de6ede4-566a-4c8e-8931-a9a2d05fc86e"
+							}
+						},
+						"flags": [
+							"Static"
+						],
+						"name": "Effect_Model_with_Settings",
+						"uuid": "3de6ede4-566a-4c8e-8931-a9a2d05fc86e"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 0.10000000149011612,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "LocalTransform_for_correct_attaching",
+				"uuid": "f49a7bcc-d563-438e-8c9d-e80a891a0922"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "br_loot_area_corpse",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

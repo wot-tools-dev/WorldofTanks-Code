@@ -1,0 +1,354 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::DynamicModel": {
+										"disabledDomains": [
+											"Server"
+										],
+										"modelName": "particles/Environment/event_white_tiger/enemies/Waffentrager_E100_idle/Waffentrager_E100_shield_indicator.model"
+									},
+									"BW::HealthManipulator": {
+										"disabledDomains": [
+											"Server"
+										],
+										"endValue": {
+											"w": 0.0,
+											"x": 0.0,
+											"y": 0.5,
+											"z": 3.0
+										},
+										"paramName": "diffuseUVSpeedAlphaOffset",
+										"source": "00000000-0000-0000-0000-000000000000",
+										"startValue": {
+											"w": 0.0,
+											"x": 0.0,
+											"y": 1.0,
+											"z": 3.0
+										}
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									}
+								},
+								"name": "Health Indicator",
+								"uuid": "327f70f2-7d93-464c-879c-c9376b0b8222"
+							}
+						],
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"path": "particles/Environment/event_white_tiger/enemies/Waffentrager_E100_idle/wt_boss_turret.ssm",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::ComponentsVisibilityController": {
+								"disabledDomains": [
+									"Server"
+								],
+								"visibleInArcadeMode": "1",
+								"visibleInArtyMode": "1",
+								"visibleInDeathFreeCamMode": "1",
+								"visibleInDualGunMode": "1",
+								"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+								"visibleInMapCaseArcadeMode": "1",
+								"visibleInMapCaseMode": "1",
+								"visibleInPostmortemMode": "1",
+								"visibleInRespawnDeathMode": "1",
+								"visibleInSniperMode": "0",
+								"visibleInStrategicMode": "1"
+							},
+							"BW::WTAlwaysVisibleTrackerComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"paramName": "isAlwaysVisible",
+								"trackerSource": "00000000-0000-0000-0000-000000000000"
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "Turret Animator",
+						"uuid": "f54928d3-5559-46a5-9659-bcc6bde790c4"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "turret"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Turret",
+				"uuid": "91264783-c1e4-410d-82b9-91377c5f3036"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"path": "particles/Environment/event_white_tiger/enemies/Waffentrager_E100_idle/wt_boss_gun.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "Gun"
+					},
+					"BW::WTAlwaysVisibleTrackerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"paramName": "isAlwaysVisible",
+						"trackerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Gun",
+				"uuid": "1ad31295-82c6-4859-b36d-1252e0b30c02"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "Hull Animator",
+						"uuid": "26bc2747-ecee-41f4-95d7-5884522252f2"
+					}
+				],
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"path": "particles/Environment/event_white_tiger/enemies/Waffentrager_E100_idle/wt_boss_hull.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "hull"
+					},
+					"BW::WTAlwaysVisibleTrackerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"paramName": "isAlwaysVisible",
+						"trackerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Hull",
+				"uuid": "bf45060a-08d1-4208-8a60-2bf1ce6048f1"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"path": "particles/Environment/event_white_tiger/enemies/Waffentrager_E100_idle/wt_boss_g.ssm",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::ComponentsVisibilityController": {
+								"disabledDomains": [
+									"Server"
+								],
+								"visibleInArcadeMode": "1",
+								"visibleInArtyMode": "1",
+								"visibleInDeathFreeCamMode": "1",
+								"visibleInDualGunMode": "1",
+								"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+								"visibleInMapCaseArcadeMode": "1",
+								"visibleInMapCaseMode": "1",
+								"visibleInPostmortemMode": "1",
+								"visibleInRespawnDeathMode": "1",
+								"visibleInSniperMode": "0",
+								"visibleInStrategicMode": "1"
+							},
+							"BW::ShotsAnimatorTriggerComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"ignorePeriod": "0",
+								"triggerName": "shoot",
+								"triggerSource": "00000000-0000-0000-0000-000000000000"
+							},
+							"BW::WTGunReloadedTrackerComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"paramName": "isReloaded",
+								"trackerSource": "00000000-0000-0000-0000-000000000000"
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "G Animator",
+						"uuid": "985222c7-6f2f-46a0-ae93-aa7dc9de501d"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "G"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "G",
+				"uuid": "b45caf56-3233-4be0-b03a-d6198066ad78"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "white_tiger/vehicles/german/G98_Waffentrager_E100_TLXXL/normal/lod0/Turret_01.model"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "BossIdle",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

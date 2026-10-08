@@ -1,0 +1,4793 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::BoxColliderDesc",
+										"__cvalue__": {
+											"transform": "(( 3.21427,-2.79397e-09,-5.28928e-11,       0), (2.79397e-09, 3.78034,       0,       0), (3.2486e-10,7.27596e-12, 8.43179,       0), (       0,       2,       0,       1))"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::RigidBodyComponent": {
+								"bodiesFrictionFactor": 0.30000001192092896,
+								"centerOfMass": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"collideWithBodies": true,
+								"collideWithDestructibles": true,
+								"collideWithOnlyLeavesTrees": true,
+								"collideWithSimulationObjects": true,
+								"collideWithStatics": true,
+								"collideWithTerrain": false,
+								"collideWithVehicles": true,
+								"destructiblesFrictionFactor": 1.0,
+								"disabledDomains": [
+									"Client"
+								],
+								"generateVelocities": false,
+								"inertiaFactors": {
+									"x": 1.0,
+									"y": 1.0,
+									"z": 1.0
+								},
+								"isTrigger": false,
+								"mass": 100.0,
+								"simulationObjectsFrictionFactor": 0.30000001192092896,
+								"state": "Kinematic",
+								"staticsFrictionFactor": 1.0,
+								"terrainFrictionFactor": 1.0,
+								"vehiclesFrictionFactors": 0.30000001192092896
+							},
+							"BW::VisibilityObstacleComponent": {
+								"collidersLink": "4bfe391a-4f7b-475f-bd7e-186ffc1f68df",
+								"disabledDomains": [
+									"Client"
+								],
+								"prismAreaLink": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+							},
+							"cgf::TransformComponent": {},
+							"cgf::network::NetworkComponent": {
+								"disabledDomains": [
+									"Editor"
+								]
+							},
+							"cgf::network::NetworkEntity": {
+								"disabledDomains": [
+									"Editor"
+								]
+							},
+							"cgf::network::NetworkTransformComponent": {
+								"detailed": false,
+								"disabledDomains": [
+									"Editor"
+								],
+								"filterType": "NO_SYNC"
+							},
+							"script::ShootingObstacle": {
+								"colliders": "4bfe391a-4f7b-475f-bd7e-186ffc1f68df",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "2c399f67-5f75-407a-b153-9c4c5984fe08"
+							},
+							"script::ShotsReceiver": {}
+						},
+						"name": "45_train_crashing_01_train_van_12_collision",
+						"uuid": "2c399f67-5f75-407a-b153-9c4c5984fe08"
+					},
+					{
+						"components": {
+							"BW::Sound3DComponent": {
+								"AutoStart": true,
+								"Event name": "dstrct_train_movement",
+								"Fade time": 1.0,
+								"Fade type": 4,
+								"Object name": "45_01_train_van_12_transition_movement_sfx",
+								"Volume": 1.0,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "45_01_train_van_12_transition_movement_sfx",
+						"uuid": "26c333eb-4c93-46f6-a6dc-9aaaacafff3a"
+					}
+				],
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "FBX",
+								"lodScale": 1.0,
+								"path": "content/animation/114_czech/trains/animation/114_czech_018_019_carriages_wheels.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Railway/hd_rw_UNI_018_Carriage/normal/lod0/hd_rw_UNI_018_Carriage_03.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Railway/hd_rw_UNI_018_Carriage/normal/lod0/hd_rw_UNI_018_Carriage_03_anim.model"
+					},
+					"BW::ModelPropertyChanger": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 378.8819885253906,
+							"y": 11.9576997756958,
+							"z": -926.989990234375
+						},
+						"rotation": {
+							"x": -0.00034800023422576487,
+							"y": 0.010734994895756245,
+							"z": -0.17833082377910614
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "45_train_crashing_01_train_van_12_transition_model",
+				"uuid": "4bfe391a-4f7b-475f-bd7e-186ffc1f68df"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 46.03329849243164,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 46.03329849243164,
+								"object": "4bfe391a-4f7b-475f-bd7e-186ffc1f68df",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 0.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.8819885253906
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0013650000328198075,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0013650000328198075,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 10.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.8909912109375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0015719999792054296,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0015719999792054296,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 20.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.90899658203125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0018970000091940165,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0018970000091940165,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 30.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9219970703125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002770999912172556,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.00013000000035390258,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 37.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9419860839844
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 7.200000254670158e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 7.200000254670158e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 37.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9419860839844
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0010839999886229634,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0010839999886229634,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 38.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9419860839844
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002177000045776367,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.002177000045776367,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 38.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9429931640625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002520000096410513,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.002520000096410513,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 39.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.94500732421875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0027840000111609697,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0027840000111609697,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9460144042969
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002678999910131097,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.002678999910131097,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.947998046875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0027340000960975885,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0027340000960975885,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.93330001831055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9490051269531
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002343999920412898,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.002343999920412898,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9490051269531
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0005859999801032245,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0005859999801032245,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.233299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95001220703125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002343999920412898,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.002343999920412898,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.29999923706055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95001220703125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.003515999997034669,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.003515999997034669,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.400001525878906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95001220703125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0025110000278800726,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0025110000278800726,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95001220703125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.001171999960206449,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.001171999960206449,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.63330078125,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95001220703125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0029299999587237835,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0029299999587237835,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.70000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95098876953125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.004687999840825796,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.004687999840825796,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.766700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95098876953125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0033199999015778303,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0033199999015778303,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95098876953125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0019529999699443579,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0019529999699443579,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.96670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9519958496094
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0029299999587237835,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0029299999587237835,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.06669998168945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9519958496094
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0038499999791383743,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0038499999791383743,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9519958496094
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0027830000035464764,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0027830000035464764,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.29999923706055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0018420000560581684,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0018420000560581684,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.43330001831055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0029299999587237835,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0029299999587237835,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.004296999890357256,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.004296999890357256,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.63330078125,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0033199999015778303,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0033199999015778303,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.733299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9540100097656
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002176000038161874,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.002176000038161874,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.83330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9540100097656
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0030129998922348022,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0030129998922348022,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.96670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9540100097656
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.004102000035345554,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.004102000035345554,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.06669998168945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9549865722656
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0029299999587237835,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0029299999587237835,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9549865722656
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0018420000560581684,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0018420000560581684,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.266700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9549865722656
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002343999920412898,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.002343999920412898,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.400001525878906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95599365234375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0007810000097379088,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.0007810000097379088,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95599365234375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.011718999594449997,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.011718999594449997,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.599998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95599365234375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.011133000254631042,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.011133000254631042,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.766700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0006699999794363976,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0006699999794363976,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.001003999961540103,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.001003999961540103,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0005859999801032245,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0005859999801032245,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.099998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.001171999960206449,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.001171999960206449,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.20000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9540100097656
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0030759999062865973,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.0030759999062865973,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0027830000035464764,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.0027830000035464764,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.46670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9530029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0024900001008063555,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.0024900001008063555,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.599998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9519958496094
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.00380899989977479,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.00380899989977479,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.733299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9519958496094
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.005078000016510487,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.005078000016510487,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95098876953125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.004102000035345554,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.004102000035345554,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95098876953125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.00318100000731647,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.00318100000731647,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.20000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.95001220703125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0025110000278800726,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.0025110000278800726,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.5,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9490051269531
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.001088000019080937,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.001088000019080937,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.9490051269531
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -5.8000001445179805e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -5.8000001445179805e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 46.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 378.947998046875
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "x"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 0.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.9576997756958
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 3.5000000934815034e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 3.5000000934815034e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 10.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.957900047302246
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.500000042957254e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.500000042957254e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 20.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.95829963684082
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.900000178371556e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.900000178371556e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 30.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.958900451660156
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.199999941396527e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.199999941396527e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 37.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.95930004119873
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.0999999075429514e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.0999999075429514e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 37.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.95930004119873
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.999999873689376e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.999999873689376e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 38.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.95930004119873
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.8999998398358e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.8999998398358e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 38.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.959400177001953
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.70000013592653e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.70000013592653e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 39.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.959400177001953
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.600000102072954e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.600000102072954e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.959400177001953
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.5000000682193786e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.5000000682193786e-05,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.959500312805176
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.400000034365803e-05,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.027800999581813812,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.93330001831055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.959500312805176
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.10287299752235413,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.10287299752235413,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.95300006866455
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.3656249940395355,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.00824000034481287,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.233299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.928600311279297
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.1874929964542389,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.1874929964542389,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.29999923706055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.929200172424316
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.19728800654411316,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.19728800654411316,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.400001525878906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.89739990234375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.10676900297403336,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.26768800616264343,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.883099555969238
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.26768800616264343,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.030340999364852905,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.63330078125,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.856399536132813
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.10361000150442123,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.10361000150442123,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.70000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.858400344848633
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.23756100237369537,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.07565899938344955,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.766700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.842599868774414
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.031537000089883804,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.031537000089883804,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.850099563598633
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.13873299956321716,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.12099599838256836,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.96670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.836199760437012
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.002032000105828047,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.002032000105828047,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.06669998168945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.848299980163574
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.1250610053539276,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.07437700033187866,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.835800170898438
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.010821999981999397,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.010821999981999397,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.29999923706055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.845800399780273
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.09602099657058716,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.10294199734926224,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.43330001831055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.833000183105469
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.02357799932360649,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.02357799932360649,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.843199729919434
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.15009799599647522,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.12661099433898926,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.63330078125,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.828200340270996
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.001550000044517219,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.001550000044517219,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.733299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.840900421142578
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.12351100146770477,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.06895799934864044,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.83330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.828499794006348
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.026575999334454536,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.026575999334454536,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.96670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.837699890136719
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.15395499765872955,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.12355999648571014,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.06669998168945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.82229995727539
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.005822999868541956,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.005822999868541956,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.834699630737305
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.1352050006389618,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.07387399673461914,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.266700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.821200370788574
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0014509999891743064,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0014509999891743064,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.400001525878906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.831000328063965
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0709720030426979,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.4932129979133606,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.821599960327148
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.4932129979133606,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.4268510043621063,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.599998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.854399681091309
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.37335801124572754,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.37335801124572754,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.766700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.925600051879883
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0016580000519752502,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0016580000519752502,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.954000473022461
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.7062900066375732,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.3627150058746338,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.911199569702148
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0008779999916441739,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0008779999916441739,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.099998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.929200172424316
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.42773398756980896,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.024289999157190323,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.20000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.909099578857422
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.11976899951696396,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.08582200109958649,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.893099784851074
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.01646599918603897,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.01646599918603897,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.46670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.904600143432617
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.11875300109386444,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.08730500191450119,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.599998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.888699531555176
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.008034000173211098,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.008034000173211098,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.733299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.900400161743164
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.1033720001578331,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.05978799983859062,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.88659954071045
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.01221999991685152,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.01221999991685152,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.896499633789063
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0842289999127388,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.07010699808597565,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.20000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.882499694824219
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.07147400081157684,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.040814001113176346,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.5,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.88129997253418
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.002492999890819192,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.002492999890819192,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.888400077819824
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.008608000352978706,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 46.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 11.880399703979492
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 0.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -926.989990234375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 7.4690399169921875,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 7.4690399169921875,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 10.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -880.6270141601563
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 11.354399681091309,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 11.354399681091309,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 20.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -777.6090087890625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 12.571800231933594,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 12.571800231933594,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 30.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -653.5399780273438
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 12.806300163269043,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 12.758500099182129,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 37.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -563.468994140625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 12.751799583435059,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 12.751799583435059,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 37.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -559.6409912109375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 12.736499786376953,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 12.736499786376953,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 38.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -551.1420288085938
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 12.880599975585938,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 12.880599975585938,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 38.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -542.6589965820313
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 11.195799827575684,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 11.195799827575684,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 39.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -534.72900390625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 10.104599952697754,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 10.104599952697754,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -527.4190063476563
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 8.057570457458496,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 8.057570457458496,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -521.2559814453125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 7.367420196533203,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 7.367420196533203,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.93330001831055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -519.2109985351563
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 7.010290145874023,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 7.010290145874023,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -517.572998046875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.995800018310547,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.995800018310547,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.233299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -517.1079711914063
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.995160102844238,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.995160102844238,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.29999923706055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -516.6400146484375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.954579830169678,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.954579830169678,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.400001525878906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -515.9420166015625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.917910099029541,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.917910099029541,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -515.0170288085938
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.880080223083496,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.880080223083496,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.63330078125,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -514.3280029296875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.823530197143555,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.823530197143555,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.70000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -513.8699951171875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.762889862060547,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.762889862060547,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.766700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -513.4180297851563
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.707809925079346,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.707809925079346,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -512.7429809570313
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.624410152435303,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.624410152435303,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 41.96670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -512.0759887695313
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.531050205230713,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.531050205230713,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.06669998168945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -511.4179992675781
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.403960227966309,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.403960227966309,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -510.7699890136719
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.273630142211914,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.273630142211914,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.29999923706055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -509.92401123046875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.13661003112793,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 6.13661003112793,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.43330001831055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -509.09698486328125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.978909969329834,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.978909969329834,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -508.49200439453125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.834569931030273,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.834569931030273,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.63330078125,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -507.9020080566406
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.704689979553223,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.704689979553223,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.733299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -507.32501220703125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.532589912414551,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.532589912414551,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.83330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -506.760986328125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.378910064697266,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.378910064697266,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 42.96670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -506.03399658203125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.198239803314209,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.198239803314209,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.06669998168945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -505.5050048828125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 5.030660152435303,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 5.030660152435303,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.16669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -504.9949951171875
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.841020107269287,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.841020107269287,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.266700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -504.4989929199219
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.6463398933410645,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.6463398933410645,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.400001525878906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -503.864990234375
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.50370979309082,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.50370979309082,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.53329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -503.260009765625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.309490203857422,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.309490203857422,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.599998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -502.9649963378906
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 4.146969795227051,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 4.146969795227051,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.766700744628906,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -502.2550048828125
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 3.788170099258423,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 3.788170099258423,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 43.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -501.8590087890625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 3.6056900024414063,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 3.6056900024414063,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -501.3710021972656
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 3.4042999744415283,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 3.4042999744415283,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.099998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -501.0169982910156
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 3.1804699897766113,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 3.1804699897766113,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.20000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -500.69000244140625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 2.983299970626831,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 2.983299970626831,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.33330154418945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -500.2749938964844
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 2.7397000789642334,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 2.7397000789642334,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.46670150756836,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -499.8949890136719
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 2.498879909515381,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 2.498879909515381,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.599998474121094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -499.5450134277344
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 2.2580599784851074,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 2.2580599784851074,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.733299255371094,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -499.2279968261719
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.9878900051116943,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 1.9878900051116943,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 44.86669921875,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -498.9429931640625
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.720900058746338,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 1.720900058746338,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -498.6319885253906
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.42576003074646,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 1.42576003074646,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.20000076293945,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -498.3689880371094
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.9055520296096802,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.9055520296096802,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.5,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -498.0199890136719
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.6084520220756531,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.6084520220756531,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.66669845581055,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -497.8940124511719
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0018060000147670507,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0018060000147670507,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 46.03329849243164,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -497.7820129394531
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "z"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": -0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.0,
+														"y": -0.0,
+														"z": 0.0
+													}
+												},
+												"time": 0.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -0.0003480000013951212,
+														"y": 0.010734999552369118,
+														"z": -0.17833100259304047
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 3.999999989900971e-06,
+														"y": -3.199999991920777e-05,
+														"z": 0.0033909999765455723
+													},
+													"right": {
+														"x": 3.999999989900971e-06,
+														"y": -3.199999991920777e-05,
+														"z": 0.0033909999765455723
+													}
+												},
+												"time": 10.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -0.0003060000017285347,
+														"y": 0.010629000142216682,
+														"z": -0.15682299435138702
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1000000085914508e-05,
+														"y": -0.00021399999968707561,
+														"z": 0.003909999970346689
+													},
+													"right": {
+														"x": 1.1000000085914508e-05,
+														"y": -0.00021399999968707561,
+														"z": 0.003909999970346689
+													}
+												},
+												"time": 20.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -0.00027099999715574086,
+														"y": 0.00991700030863285,
+														"z": -0.11050699651241302
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": -0.0,
+														"z": 0.0047109997831285
+													},
+													"right": {
+														"x": -0.0,
+														"y": -0.0,
+														"z": 0.0047109997831285
+													}
+												},
+												"time": 30.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0006699999794363976,
+														"y": -0.020690999925136566,
+														"z": -0.07861900329589844
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.00011500000255182385,
+														"y": 0.0027920000720769167,
+														"z": 0.005975999869406223
+													},
+													"right": {
+														"x": -0.00011500000255182385,
+														"y": 0.0027920000720769167,
+														"z": 0.005975999869406223
+													}
+												},
+												"time": 37.03329849243164,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 4.199999966658652e-05,
+														"y": -0.0013099999632686377,
+														"z": -0.0302559994161129
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": 0.0026809999253600836,
+														"z": 0.004341000225394964
+													},
+													"right": {
+														"x": -0.0,
+														"y": 0.0026809999253600836,
+														"z": 0.004341000225394964
+													}
+												},
+												"time": 39.03329849243164,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -0.00036899998667649925,
+														"y": 0.004532999824732542,
+														"z": -0.024636000394821167
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.00026199998683296144,
+														"y": -0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.00026199998683296144,
+														"y": -0.0,
+														"z": 0.0
+													}
+												},
+												"time": 40.400001525878906,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -0.0002500000118743628,
+														"y": 0.007716999854892492,
+														"z": -0.01564200036227703
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.021643999963998795,
+														"y": -1.1496000289916992,
+														"z": -0.04214699938893318
+													},
+													"right": {
+														"x": 0.021643999963998795,
+														"y": -1.1496000289916992,
+														"z": -0.04214699938893318
+													}
+												},
+												"time": 40.70000076293945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.005563000217080116,
+														"y": -0.22574999928474426,
+														"z": -0.019856000319123268
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0224629994481802,
+														"y": -1.6659599542617798,
+														"z": -0.2513960003852844
+													},
+													"right": {
+														"x": 0.0224629994481802,
+														"y": -1.6659599542617798,
+														"z": -0.2513960003852844
+													}
+												},
+												"time": 41.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.012736000120639801,
+														"y": -0.6820399761199951,
+														"z": -0.044996000826358795
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.01434599980711937,
+														"y": -1.996000051498413,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.01434599980711937,
+														"y": -1.996000051498413,
+														"z": 0.0
+													}
+												},
+												"time": 41.16669845581055,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.01604600064456463,
+														"y": -1.0032000541687012,
+														"z": -1.0565500259399414
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.005216000135987997,
+														"y": -2.131619930267334,
+														"z": 14.982500076293945
+													},
+													"right": {
+														"x": 0.005216000135987997,
+														"y": -2.131619930267334,
+														"z": 14.982500076293945
+													}
+												},
+												"time": 41.266700744628906,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.016561999917030334,
+														"y": -1.2143100500106812,
+														"z": 0.6984670162200928
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.005568999797105789,
+														"y": -2.250040054321289,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.005568999797105789,
+														"y": -2.250040054321289,
+														"z": 0.0
+													}
+												},
+												"time": 41.29999923706055,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.016742000356316566,
+														"y": -1.2874200344085693,
+														"z": 0.941116988658905
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.005781000014394522,
+														"y": -2.321199893951416,
+														"z": -9.367050170898438
+													},
+													"right": {
+														"x": 0.005781000014394522,
+														"y": -2.321199893951416,
+														"z": -9.367050170898438
+													}
+												},
+												"time": 41.400001525878906,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.01730399951338768,
+														"y": -1.5143100023269653,
+														"z": 0.09645699709653854
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.006076000165194273,
+														"y": -2.4205100536346436,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.006076000165194273,
+														"y": -2.4205100536346436,
+														"z": 0.0
+													}
+												},
+												"time": 41.5,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.01789800077676773,
+														"y": -1.7516599893569946,
+														"z": -0.9322929978370667
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.018644999712705612,
+														"y": -2.5099899768829346,
+														"z": 9.422220230102539
+													},
+													"right": {
+														"x": 0.018644999712705612,
+														"y": -2.5099899768829346,
+														"z": 9.422220230102539
+													}
+												},
+												"time": 41.599998474121094,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.018518999218940735,
+														"y": -1.9984099864959717,
+														"z": -0.4303709864616394
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.06850799918174744,
+														"y": -2.5906600952148438,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.06850799918174744,
+														"y": -2.5906600952148438,
+														"z": 0.0
+													}
+												},
+												"time": 41.70000076293945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.024593999609351158,
+														"y": -2.253649950027466,
+														"z": 0.9521520137786865
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.07723099738359451,
+														"y": -2.6634299755096436,
+														"z": -8.921299934387207
+													},
+													"right": {
+														"x": 0.07723099738359451,
+														"y": -2.6634299755096436,
+														"z": -8.921299934387207
+													}
+												},
+												"time": 41.79999923706055,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.032221000641584396,
+														"y": -2.516550064086914,
+														"z": -0.3593739867210388
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0491969995200634,
+														"y": -2.728940010070801,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0491969995200634,
+														"y": -2.728940010070801,
+														"z": 0.0
+													}
+												},
+												"time": 41.900001525878906,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0400409996509552,
+														"y": -2.7863399982452393,
+														"z": -0.8321080207824707
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": -2.7787599563598633,
+														"z": 11.04640007019043
+													},
+													"right": {
+														"x": -0.0,
+														"y": -2.7787599563598633,
+														"z": 11.04640007019043
+													}
+												},
+												"time": 42.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0420599989593029,
+														"y": -3.0623300075531006,
+														"z": 0.540207028388977
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.04141499847173691,
+														"y": -2.832350015640259,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.04141499847173691,
+														"y": -2.832350015640259,
+														"z": 0.0
+													}
+												},
+												"time": 42.06669998168945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.039322998374700546,
+														"y": -3.2494699954986572,
+														"z": 1.0089499950408936
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.03688900172710419,
+														"y": -2.872299909591675,
+														"z": -9.527950286865234
+													},
+													"right": {
+														"x": -0.03688900172710419,
+														"y": -2.872299909591675,
+														"z": -9.527950286865234
+													}
+												},
+												"time": 42.16669845581055,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.03515800088644028,
+														"y": -3.5343899726867676,
+														"z": 0.18507499992847443
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.02870500087738037,
+														"y": -2.915980100631714,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.02870500087738037,
+														"y": -2.915980100631714,
+														"z": 0.0
+													}
+												},
+												"time": 42.266700744628906,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.03194599971175194,
+														"y": -3.823930025100708,
+														"z": -0.8966389894485474
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.02542099915444851,
+														"y": -2.95497989654541,
+														"z": 7.215360164642334
+													},
+													"right": {
+														"x": -0.02542099915444851,
+														"y": -2.95497989654541,
+														"z": 7.215360164642334
+													}
+												},
+												"time": 42.36669921875,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.029417000710964203,
+														"y": -4.117589950561523,
+														"z": -0.6313890218734741
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.025637000799179077,
+														"y": -2.984060049057007,
+														"z": 9.565919876098633
+													},
+													"right": {
+														"x": -0.025637000799179077,
+														"y": -2.984060049057007,
+														"z": 9.565919876098633
+													}
+												},
+												"time": 42.46670150756836,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.026861000806093216,
+														"y": -4.414919853210449,
+														"z": 0.5464329719543457
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.025843000039458275,
+														"y": -3.0144801139831543,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.025843000039458275,
+														"y": -3.0144801139831543,
+														"z": 0.0
+													}
+												},
+												"time": 42.53329849243164,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.025143999606370926,
+														"y": -4.614930152893066,
+														"z": 0.9629319906234741
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0003659999929368496,
+														"y": -3.0364298820495605,
+														"z": -10.074999809265137
+													},
+													"right": {
+														"x": -0.0003659999929368496,
+														"y": -3.0364298820495605,
+														"z": -10.074999809265137
+													}
+												},
+												"time": 42.63330078125,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.022554000839591026,
+														"y": -4.91733980178833,
+														"z": -0.04911300167441368
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": -3.058919906616211,
+														"z": 0.0
+													},
+													"right": {
+														"x": -0.0,
+														"y": -3.058919906616211,
+														"z": 0.0
+													}
+												},
+												"time": 42.733299255371094,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.02254199981689453,
+														"y": -5.222219944000244,
+														"z": -1.0520800352096558
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.021122999489307404,
+														"y": -3.0772500038146973,
+														"z": 9.405449867248535
+													},
+													"right": {
+														"x": 0.021122999489307404,
+														"y": -3.0772500038146973,
+														"z": 9.405449867248535
+													}
+												},
+												"time": 42.83330154418945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.02423500083386898,
+														"y": -5.529119968414307,
+														"z": -0.2542319893836975
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.025333000347018242,
+														"y": -3.091629981994629,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.025333000347018242,
+														"y": -3.091629981994629,
+														"z": 0.0
+													}
+												},
+												"time": 42.93330001831055,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.02676600031554699,
+														"y": -5.837669849395752,
+														"z": 0.8290119767189026
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0239889994263649,
+														"y": -3.1019299030303955,
+														"z": -8.801190376281738
+													},
+													"right": {
+														"x": 0.0239889994263649,
+														"y": -3.1019299030303955,
+														"z": -8.801190376281738
+													}
+												},
+												"time": 43.03329849243164,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.029301000759005547,
+														"y": -6.147449970245361,
+														"z": 0.43760600686073303
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.013674999587237835,
+														"y": -3.1080799102783203,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.013674999587237835,
+														"y": -3.1080799102783203,
+														"z": 0.0
+													}
+												},
+												"time": 43.13330078125,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.031564000993967056,
+														"y": -6.458059787750244,
+														"z": -0.9312260150909424
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0048340000212192535,
+														"y": -3.1104400157928467,
+														"z": 7.574810028076172
+													},
+													"right": {
+														"x": 0.0048340000212192535,
+														"y": -3.1104400157928467,
+														"z": 7.574810028076172
+													}
+												},
+												"time": 43.233299255371094,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.03203599900007248,
+														"y": -6.769060134887695,
+														"z": -0.6249099969863892
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.005042999982833862,
+														"y": -3.1100399494171143,
+														"z": 9.309969902038574
+													},
+													"right": {
+														"x": 0.005042999982833862,
+														"y": -3.1100399494171143,
+														"z": 9.309969902038574
+													}
+												},
+												"time": 43.33330154418945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.032531000673770905,
+														"y": -7.080140113830566,
+														"z": 0.5837370157241821
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.005365000106394291,
+														"y": -3.1058199405670166,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.005365000106394291,
+														"y": -3.1058199405670166,
+														"z": 0.0
+													}
+												},
+												"time": 43.400001525878906,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.03287699818611145,
+														"y": -7.287399768829346,
+														"z": 0.926751971244812
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": -3.1013998985290527,
+														"z": -6.503009796142578
+													},
+													"right": {
+														"x": -0.0,
+														"y": -3.1013998985290527,
+														"z": -6.503009796142578
+													}
+												},
+												"time": 43.5,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.03342499956488609,
+														"y": -7.597780227661133,
+														"z": 0.36895400285720825
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -9.019330024719238,
+														"y": -3.0921099185943604,
+														"z": -7.20904016494751
+													},
+													"right": {
+														"x": -9.019330024719238,
+														"y": -3.0921099185943604,
+														"z": -7.20904016494751
+													}
+												},
+												"time": 43.53329849243164,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -0.06678999960422516,
+														"y": -7.700920104980469,
+														"z": 0.05968400090932846
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -10.250200271606445,
+														"y": -3.048759937286377,
+														"z": 0.0
+													},
+													"right": {
+														"x": -10.250200271606445,
+														"y": -3.048759937286377,
+														"z": 0.0
+													}
+												},
+												"time": 43.70000076293945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -1.98062002658844,
+														"y": -8.21619987487793,
+														"z": -1.072849988937378
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": -2.9798600673675537,
+														"z": 7.568739891052246
+													},
+													"right": {
+														"x": -0.0,
+														"y": -2.9798600673675537,
+														"z": 7.568739891052246
+													}
+												},
+												"time": 43.86669921875,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -3.141170024871826,
+														"y": -8.717169761657715,
+														"z": 0.2668919861316681
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 7.768310070037842,
+														"y": -2.969219923019409,
+														"z": 0.0
+													},
+													"right": {
+														"x": 7.768310070037842,
+														"y": -2.969219923019409,
+														"z": 0.0
+													}
+												},
+												"time": 43.96670150756836,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.4674999713897705,
+														"y": -9.01082992553711,
+														"z": 0.9454770088195801
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 10.863100051879883,
+														"y": -3.0671300888061523,
+														"z": -3.036099910736084
+													},
+													"right": {
+														"x": -11.131600379943848,
+														"y": -3.1166300773620605,
+														"z": -8.322990417480469
+													}
+												},
+												"time": 44.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.1053900718688965,
+														"y": -9.113069534301758,
+														"z": 0.8442729711532593
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -6.272299766540527,
+														"y": -3.1521999835968018,
+														"z": -11.092900276184082
+													},
+													"right": {
+														"x": -6.272299766540527,
+														"y": -3.1521999835968018,
+														"z": -11.092900276184082
+													}
+												},
+												"time": 44.03329849243164,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.476449966430664,
+														"y": -9.216959953308105,
+														"z": 0.5668399930000305
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.0,
+														"y": -3.143120050430298,
+														"z": -11.276900291442871
+													},
+													"right": {
+														"x": -0.0,
+														"y": -3.143120050430298,
+														"z": -11.276900291442871
+													}
+												},
+												"time": 44.099998474121094,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.7326300144195557,
+														"y": -9.428290367126465,
+														"z": -0.26501598954200745
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 6.306660175323486,
+														"y": -3.074660062789917,
+														"z": -7.715240001678467
+													},
+													"right": {
+														"x": 6.306660175323486,
+														"y": -3.074660062789917,
+														"z": -7.715240001678467
+													}
+												},
+												"time": 44.16669845581055,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.398390054702759,
+														"y": -9.636039733886719,
+														"z": -0.9367420077323914
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.05945499986410141,
+														"y": -2.8016600608825684,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.05945499986410141,
+														"y": -2.8016600608825684,
+														"z": 0.0
+													}
+												},
+												"time": 44.20000076293945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.1019599437713623,
+														"y": -9.735759735107422,
+														"z": -1.0365400314331055
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.019805999472737312,
+														"y": -2.7410500049591064,
+														"z": 7.578320026397705
+													},
+													"right": {
+														"x": 0.019805999472737312,
+														"y": -2.7410500049591064,
+														"z": 7.578320026397705
+													}
+												},
+												"time": 44.36669921875,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.0986599922180176,
+														"y": -10.196399688720703,
+														"z": 0.359607994556427
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.021702000871300697,
+														"y": -2.754509925842285,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.021702000871300697,
+														"y": -2.754509925842285,
+														"z": 0.0
+													}
+												},
+												"time": 44.46670150756836,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.096679925918579,
+														"y": -10.466699600219727,
+														"z": 0.9843469858169556
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.02991900034248829,
+														"y": -2.623379945755005,
+														"z": -5.079460144042969
+													},
+													"right": {
+														"x": 0.02991900034248829,
+														"y": -2.623379945755005,
+														"z": -5.079460144042969
+													}
+												},
+												"time": 44.63330078125,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.092869997024536,
+														"y": -10.930899620056152,
+														"z": -0.3921619951725006
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.031824998557567596,
+														"y": -2.2184500694274902,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.031824998557567596,
+														"y": -2.2184500694274902,
+														"z": 0.0
+													}
+												},
+												"time": 44.79999923706055,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.086699962615967,
+														"y": -11.34119987487793,
+														"z": -0.7088059782981873
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.02570600062608719,
+														"y": -1.9125200510025024,
+														"z": 7.598229885101318
+													},
+													"right": {
+														"x": 0.02570600062608719,
+														"y": -1.9125200510025024,
+														"z": 7.598229885101318
+													}
+												},
+												"time": 44.96670150756836,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.0822598934173584,
+														"y": -11.67039966583252,
+														"z": 0.8052819967269897
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.015077999792993069,
+														"y": -1.568850040435791,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.015077999792993069,
+														"y": -1.568850040435791,
+														"z": 0.0
+													}
+												},
+												"time": 45.03329849243164,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.080709934234619,
+														"y": -11.787400245666504,
+														"z": 1.0641100406646729
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.01170899998396635,
+														"y": -1.17917001247406,
+														"z": -4.985690116882324
+													},
+													"right": {
+														"x": 0.01170899998396635,
+														"y": -1.17917001247406,
+														"z": -4.985690116882324
+													}
+												},
+												"time": 45.20000076293945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.078739881515503,
+														"y": -12.036499977111816,
+														"z": 0.17756099998950958
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.009709999896585941,
+														"y": -0.06871999800205231,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.009709999896585941,
+														"y": -0.06871999800205231,
+														"z": 0.0
+													}
+												},
+												"time": 45.33330154418945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.0771899223327637,
+														"y": -12.141200065612793,
+														"z": -0.4315919876098633
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.006936000194400549,
+														"y": -0.0,
+														"z": 3.2830801010131836
+													},
+													"right": {
+														"x": 0.006936000194400549,
+														"y": -0.0,
+														"z": 3.2830801010131836
+													}
+												},
+												"time": 45.5,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.0758299827575684,
+														"y": -12.145000457763672,
+														"z": 0.10652399808168411
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0048779998905956745,
+														"y": -0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0048779998905956745,
+														"y": -0.0,
+														"z": 0.0
+													}
+												},
+												"time": 45.66669845581055,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.0748798847198486,
+														"y": -12.14169979095459,
+														"z": 0.6627669930458069
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.002876000013202429,
+														"y": -0.036997001618146896,
+														"z": -1.703279972076416
+													},
+													"right": {
+														"x": 0.002876000013202429,
+														"y": -0.036997001618146896,
+														"z": -1.703279972076416
+													}
+												},
+												"time": 45.83330154418945,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.074199914932251,
+														"y": -12.149100303649902,
+														"z": 0.3497369885444641
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0006859999848529696,
+														"y": -0.0028069999534636736,
+														"z": 0.0
+													},
+													"right": {
+														"x": 0.0006859999848529696,
+														"y": -0.0028069999534636736,
+														"z": 0.0
+													}
+												},
+												"time": 46.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.0739200115203857,
+														"y": -12.154000282287598,
+														"z": 0.09500499814748764
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.00022899999748915434,
+														"y": -0.0009360000258311629,
+														"z": 0.0005569999921135604
+													},
+													"right": {
+														"x": -0.0,
+														"y": -0.0,
+														"z": 0.0
+													}
+												},
+												"time": 46.03329849243164,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -2.0739200115203857,
+														"y": -12.154000282287598,
+														"z": 0.0950239971280098
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 45.0,
+								"object": "26c333eb-4c93-46f6-a6dc-9aaaacafff3a",
+								"parameters": [
+									{
+										"component": "BW::Sound3DComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 43.0,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Fade Activated"
+											}
+										]
+									}
+								],
+								"startTime": 1.0
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "45_train_crashing_01_train_van_12_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

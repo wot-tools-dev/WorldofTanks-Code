@@ -1,0 +1,2431 @@
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.ToggleButton_base_a0da0 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 30rem;
+    min-height: 20rem;
+    border-radius: 2rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .ToggleButton_base__button_ec23d.ToggleButton_base__active_ac70b {
+    border-image: linear-gradient(90deg, #ac802c 0%, #eece63 48.95%, #efd065 48.96%, #ae842e 100%) 1 1 1 stretch;
+    border-image-width: 1rem;
+    box-shadow: 0 0 0 1rem rgba(0, 0, 0, .6), 0 0 7rem rgba(250, 112, 0, .6);
+    background: linear-gradient(180deg, rgba(255,42,0, .1) 0%, rgba(255,42,0, 0) .01%, rgba(255,128,0, .1) 100%);
+        }
+
+    .ToggleButton_base__button_ec23d.ToggleButton_base__active_ac70b:hover {
+                box-shadow: 0 0 0 1rem rgba(0,0,0, .6), 0 0 7rem rgba(250,112,0, .6), inset 0 0 40rem rgba(255,255,255, .1);
+            }
+
+    .ToggleButton_base__slot_d0746 {
+        min-width: 80rem;
+        min-height: 80rem;
+        border: 1rem solid rgba(255,255,255, .15);
+        background: rgba(0,0,0, .1);
+    }
+
+    .ToggleButton_base__slot_d0746:hover {
+            background: radial-gradient(rgba(0,0,0, 0) 10%, rgba(150,150,150, .1));
+        }
+
+    .ToggleButton_base__slot_d0746:active,.ToggleButton_base__slot_d0746  {
+            box-shadow: none;
+            background: rgba(0,0,0, .2);
+        }
+
+    .ToggleButton_base__slot_d0746.ToggleButton_base__active_ac70b {
+    border-image: linear-gradient(90deg, #ac802c 0%, #eece63 48.95%, #efd065 48.96%, #ae842e 100%) 1 1 1 stretch;
+    border-image-width: 1rem;
+    box-shadow: 0 0 0 1rem rgba(0, 0, 0, .6), 0 0 7rem rgba(250, 112, 0, .6);
+    background: linear-gradient(180deg, rgba(255,42,0, .1) 0%, rgba(255,42,0, 0) .01%, rgba(255,128,0, .1) 100%);
+        }
+
+    .ToggleButton_base__slot_d0746.ToggleButton_base__active_ac70b:active {
+                background: rgba(0,0,0, .2);
+            }
+
+    .ToggleButton_base__disabled_c1e9d {
+        cursor: initial;
+        pointer-events: none;
+    }
+
+.ToggleButton_texture_cb598 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    z-index: 1;
+}
+
+.ToggleButton_background_d5901 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    z-index: -1;
+}
+
+.ToggleButton_background__main_b350d {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+.ToggleButton_background__primary_d0435 {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+.ToggleButton_background__primaryGreen_b073d {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+.ToggleButton_background__primaryRed_cb27b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+.ToggleButton_background__secondary_a1c84 {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+.ToggleButton_background__ghost_c391e {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, .3), 0 0 0 1rem rgba(255,255,255, .15) inset;
+        background-color: rgba(0,0,0, .15);
+    }
+
+.ToggleButton_content_a7a03 {
+    color: #f1f0e0;
+    font-size: 13rem;
+    font-weight: 300;
+    text-align: center;
+    text-shadow: 0 -1rem 2rem rgba(0,0,0, .7);
+}
+
+.ToggleButton_base__slot_d0746 .ToggleButton_content_a7a03 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex: 1 auto;
+        position: relative;
+        z-index: -1;
+    }
+
+.ToggleButton_overlay_a0f82 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2rem;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.ToggleButton_base__disabled_c1e9d .ToggleButton_overlay_a0f82 {
+        margin: -1rem;
+        background: url('R.images.gui.maps.icons.buttons.toggle_disable') repeat;
+    }
+
+.ToggleButton_base__button_ec23d .ToggleButton_overlay_a0f82 {
+        background-color: rgba(255,255,255, .04);
+    }
+
+.ToggleButton_base__button_ec23d:hover .ToggleButton_overlay_a0f82 {
+        box-shadow: inset 0 0 40rem rgba(255,255,255, .1);
+    }
+
+.ToggleButton_base__button_ec23d:active .ToggleButton_overlay_a0f82 {
+        box-shadow: none;
+        background: rgba(0,0,0, .2);
+    }
+
+.ToggleButton_base__button_ec23d.ToggleButton_base__active_ac70b:active .ToggleButton_overlay_a0f82 {
+        background: rgba(0,0,0, .2);
+    }
+
+.ToggleButton_indicator_df92b {
+    /* This Needs to be an even number otherwise translate(-50%) makes it at half a pixel position and causes sub pixel blurring */
+    width: 16rem;
+    height: 5rem;
+    background: url('R.images.gui.maps.icons.buttons.toggle_switcher_off');
+    background-size: 16rem 5rem;
+    position: absolute;
+    bottom: -2rem;
+    left: 50%;
+    z-index: 3;
+    transform: translate(-50%, 0);
+    pointer-events: none;
+}
+
+.ToggleButton_base__slot_d0746 .ToggleButton_indicator_df92b {
+        width: 64rem;
+        height: 32rem;
+        background-image: none;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        position: absolute;
+        bottom: -17rem;
+    }
+
+.ToggleButton_base__slot_d0746.ToggleButton_base__active_ac70b .ToggleButton_indicator_df92b {
+        background-image: url('R.images.gui.maps.icons.buttons.toggle_check');
+    }
+
+.ToggleButton_base__button_ec23d.ToggleButton_base__active_ac70b .ToggleButton_indicator_df92b {
+        background-image: url('R.images.gui.maps.icons.buttons.toggle_switcher_on');
+    }
+
+.FeatureButton_base_e5458 {
+    height: 20rem;
+    position: relative;
+    pointer-events: none;
+}
+
+    .FeatureButton_base_e5458 .FeatureButton_base__actionStateSelectable_f907f.FeatureButton_base__stepStateReceived_cd3db,
+    .FeatureButton_base_e5458 .FeatureButton_base__actionStateChangeable_b82d1.FeatureButton_base__stepStateReceived_cd3db {
+        pointer-events: auto;
+    }
+.FeatureButton_buttonWrapper_ec780 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.FeatureButton_base__actionStateSelectable_f907f.FeatureButton_base__stepStateReceived_cd3db .FeatureButton_buttonWrapper__select_f6131 {
+            opacity: 1;
+            pointer-events: auto;
+        }
+.FeatureButton_base__actionStateChangeable_b82d1.FeatureButton_base__stepStateReceived_cd3db .FeatureButton_buttonWrapper__change_bf1dc {
+            opacity: 1;
+            pointer-events: auto;
+        }
+.FeatureButton_base__actionStatePersistent_dcdb3.FeatureButton_base__stepStateReceived_cd3db .FeatureButton_buttonWrapper__persistent_f85cc {
+            opacity: 1;
+            pointer-events: auto;
+        }
+.FeatureButton_buttonLabelWrapper_dc091 {
+    height: 20rem;
+    line-height: 20rem;
+}
+.FeatureButton_buttonMix_fb4fc {
+    flex: 1;
+    min-width: 90rem;
+    padding: 0;
+}
+
+.UnlockLevel_base_a8254 {
+    width: 32rem;
+    height: 32rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.UnlockLevel_background_c58a7 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 34rem;
+    height: 32rem;
+    background: center / contain no-repeat;
+    opacity: 0;
+    z-index: -1;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.UnlockLevel_background__normal_b44a3 {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.unlockLevel.background_normal');
+    }
+.UnlockLevel_base__backgroundTypeNormal_a9fca .UnlockLevel_background__normal_b44a3 {
+            opacity: 1;
+        }
+.UnlockLevel_background__special_b11c8 {
+        width: 36rem;
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.unlockLevel.background_special');
+    }
+.UnlockLevel_base__backgroundTypeSpecial_ccc38 .UnlockLevel_background__special_b11c8 {
+            opacity: 1;
+        }
+.UnlockLevel_border_a0dac {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 34rem;
+    height: 32rem;
+    background: center / contain no-repeat;
+    opacity: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.UnlockLevel_border__normal_c6249 {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.unlockLevel.border_normal');
+    }
+.UnlockLevel_base__borderTypeNormal_f8622 .UnlockLevel_border__normal_c6249 {
+            opacity: 1;
+        }
+.UnlockLevel_border__special_d3ebf {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.unlockLevel.border_special');
+    }
+.UnlockLevel_base__borderTypeSpecial_f04cd .UnlockLevel_border__special_d3ebf {
+            opacity: 1;
+        }
+.UnlockLevel_border__specialReceived_bc144 {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.unlockLevel.border_special_received');
+    }
+.UnlockLevel_base__borderTypeSpecialReceived_ce9cd .UnlockLevel_border__specialReceived_bc144 {
+            opacity: 1;
+        }
+.UnlockLevel_border__unavailable_f5e4c {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.unlockLevel.border_unavailable');
+    }
+.UnlockLevel_base__borderTypeUnavailable_b3d34 .UnlockLevel_border__unavailable_f5e4c {
+            opacity: 1;
+        }
+.UnlockLevel_level_b0013 {
+    color: #FFDD99;
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 1rem;
+    transition: color .2s cubic-bezier(.07, .82, .17, 1), opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.UnlockLevel_base__numberTypeLocked_f6655 .UnlockLevel_level_b0013 {
+        color: #CBAC77;
+    }
+.UnlockLevel_base__numberTypeUnavailable_c3d53 .UnlockLevel_level_b0013 {
+        color: #F2F2F7;
+        opacity: .3;
+    }
+.UnlockLevel_lock_a2eb8 {
+    width: 24rem;
+    height: 24rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.unlockLevel.lock') center / contain no-repeat;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.UnlockLevel_base__lockTypeUnavailable_e9e96 .UnlockLevel_lock_a2eb8 {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.unlockLevel.lock_ghost');
+    }
+.UnlockLevel_base__lockTypeNone_ef4ff .UnlockLevel_lock_a2eb8 {
+        opacity: 0;
+    }
+.UnlockLevel_tooltipArea_a68ac {
+    width: 32rem;
+    height: 32rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.RoleCategoryIcon_base_ea1b7 {
+    width: 64rem;
+    height: 64rem;
+    background: center / contain no-repeat;
+}
+
+.FeatureRoleCategoryIcon_base_ee406 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100rem;
+    height: 50rem;
+}
+.FeatureRoleCategoryIcon_underlay_f5f96 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: radial-gradient(50% 50% at 50% 50%, #021430 0%, rgba(2,20,48, 0) 100%);
+    opacity: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.FeatureRoleCategoryIcon_base__actionStateChangeable_fb5ed.FeatureRoleCategoryIcon_base__stepStateReceived_e52ae .FeatureRoleCategoryIcon_underlay_f5f96 {
+        opacity: .6;
+    }
+.FeatureRoleCategoryIcon_wrapper_da52c {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.FeatureRoleCategoryIcon_base__actionStateChangeable_fb5ed.FeatureRoleCategoryIcon_base__stepStateReceived_e52ae .FeatureRoleCategoryIcon_wrapper__selected_e3126 {
+            opacity: 1;
+        }
+.FeatureRoleCategoryIcon_base__actionStateChangeable_fb5ed.FeatureRoleCategoryIcon_base__stepStateReceived_e52ae.FeatureRoleCategoryIcon_base__disabled_a5376 .FeatureRoleCategoryIcon_wrapper__selected_e3126 {
+            opacity: .2;
+        }
+.FeatureRoleCategoryIcon_animation__enterActive_deebf {
+        animation: FeatureRoleCategoryIcon_opacity-animation_f110c .2s cubic-bezier(.07, .82, .17, 1);
+    }
+.FeatureRoleCategoryIcon_animation__exitActive_e1d58 {
+        opacity: 0;
+        transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    }
+@keyframes FeatureRoleCategoryIcon_opacity-animation_f110c {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
+    }
+
+.AccentCorners_base_ee128 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.AccentCorners_corner_f4989 {
+    width: 5rem;
+    height: 5rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.accentCorners.corner') center / contain no-repeat;
+    opacity: .5;
+    mix-blend-mode: screen;
+    position: absolute;
+}
+
+.AccentCorners_corner__topLeft_f15c9 {
+        top: 0;
+        left: 0;
+        transform: rotate(180deg);
+    }
+
+.AccentCorners_corner__topRight_f4429 {
+        top: 0;
+        right: 0;
+        transform: rotate(270deg);
+    }
+
+.AccentCorners_corner__bottomRight_a65e7 {
+        right: 0;
+        bottom: 0;
+    }
+
+.AccentCorners_corner__bottomLeft_f8c1d {
+        bottom: 0;
+        left: 0;
+        transform: rotate(90deg);
+    }
+
+.Feature_base_eb67b {
+    width: 120rem;
+    height: 80rem;
+    mix-blend-mode: screen;
+    position: relative;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+
+    .Feature_base__medium_ad479,
+    .Feature_base__large_b6b77 {
+        width: 160rem;
+        height: 100rem;
+    }
+
+    .Feature_base__extraLarge_a944e {
+        width: 192rem;
+        height: 120rem;
+    }
+
+    .Feature_base__interactiveStateSelectedFaded_ebed5,
+    .Feature_base__interactiveStateFaded_d1286 {
+        opacity: .5;
+    }
+.Feature_content_d68ad {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    position: relative;
+}
+.Feature_roleCategoryIconWrapper_c5867 {
+    flex: 1;
+    width: 100%;
+    position: relative;
+    pointer-events: none;
+}
+.Feature_featureButton_f8389 {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.Feature_glow_b740e {
+    width: 300rem;
+    height: 300rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: url('swf://gui/flash/animations/vehPostProgression/vehPostProgressionView/grid/feature/glow.swf') no-repeat center / contain;
+    opacity: 0;
+    mix-blend-mode: additive;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Feature_base__actionStateSelectable_ca045.Feature_base__stepStateReceived_e8e11.Feature_base__progressionAvailabilityAvailable_f0a66 .Feature_glow_b740e {
+        opacity: 1;
+    }
+.Feature_base__actionStateSelectable_ca045.Feature_base__stepStateReceived_e8e11.Feature_base__progressionAvailabilityAvailable_f0a66.Feature_base__disabled_e4bb9 .Feature_glow_b740e {
+        opacity: 0;
+    }
+.Feature_underlay_fcc8e {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2rem;
+    background-color: rgba(0,0,0, .5);
+    transition: background-color .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Feature_base__stepStateReceived_e8e11 .Feature_underlay_fcc8e {
+        background-color: rgba(0,0,0, .7);
+    }
+.Feature_base__interactiveStateSelectedHighlighted_a19bc .Feature_underlay_fcc8e {
+        background-color: #000000;
+    }
+.Feature_base__disabled_e4bb9 .Feature_underlay_fcc8e {
+        background-color: rgba(0,0,0, .7);
+    }
+.Feature_outline_aa20c {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    border: 1rem solid rgba(255,255,255, .1);
+    border-radius: 2rem;
+    transition: border .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Feature_base__stepStateReceived_e8e11.Feature_base__progressionAvailabilityAvailable_f0a66 .Feature_outline_aa20c {
+        border-color: #FFDD99;
+    }
+.Feature_base__stepStateReceived_e8e11.Feature_base__progressionAvailabilityAvailable_f0a66.Feature_base__disabled_e4bb9 .Feature_outline_aa20c {
+        border-color: rgba(255,255,255, .1);
+    }
+.Feature_accentCornersWrapper_a2016 {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+}
+.Feature_interactiveHighlight_f38ec {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    border: 2rem solid transparent;
+    border-radius: 2rem;
+    transition: box-shadow .2s cubic-bezier(.07, .82, .17, 1),
+    border .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Feature_base__interactiveStateSelected_fdc70 .Feature_interactiveHighlight_f38ec,
+    .Feature_base__interactiveStateSelectedFaded_ebed5 .Feature_interactiveHighlight_f38ec {
+        border-color: rgba(203,172,119, .5);
+    }
+.Feature_base__interactiveStateSelectedHighlighted_a19bc .Feature_interactiveHighlight_f38ec {
+        border-color: rgba(203,172,119, .8);
+        box-shadow: 0 0 10rem #CBAC77;
+    }
+.Feature_base__interactiveStateSelected_fdc70.Feature_base__disabled_e4bb9 .Feature_interactiveHighlight_f38ec,
+    .Feature_base__interactiveStateSelectedHighlighted_a19bc.Feature_base__disabled_e4bb9 .Feature_interactiveHighlight_f38ec {
+        border-color: transparent;
+        box-shadow: none;
+    }
+.Feature_image_e58aa {
+    width: 120rem;
+    height: 80rem;
+    background: no-repeat 50% / contain;
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Feature_base__stepStateReceived_e8e11 .Feature_image_e58aa {
+        opacity: 1;
+    }
+.Feature_base__interactiveStateSelected_fdc70 .Feature_image_e58aa,
+    .Feature_base__interactiveStateSelectedHighlighted_a19bc .Feature_image_e58aa {
+        opacity: .8;
+    }
+.Feature_base__disabled_e4bb9 .Feature_image_e58aa {
+        opacity: .2;
+    }
+.Feature_base__medium_ad479 .Feature_image_e58aa,
+    .Feature_base__large_b6b77 .Feature_image_e58aa {
+        width: 160rem;
+        height: 100rem;
+    }
+.Feature_base__extraLarge_a944e .Feature_image_e58aa {
+        width: 192rem;
+        height: 120rem;
+    }
+.Feature_disabledPattern_f91e3 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('R.images.gui.maps.icons.library.disabled_pattern') center / 9rem;
+    opacity: .5;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Feature_base__stepStateReceived_e8e11.Feature_base__progressionAvailabilityAvailable_f0a66 .Feature_disabledPattern_f91e3,
+    .Feature_base__interactiveStateSelectedHighlighted_a19bc .Feature_disabledPattern_f91e3 {
+        opacity: 0;
+    }
+.Feature_base__stepStateReceived_e8e11.Feature_base__progressionAvailabilityAvailable_f0a66.Feature_base__disabled_e4bb9 .Feature_disabledPattern_f91e3,
+    .Feature_base__interactiveStateSelectedHighlighted_a19bc.Feature_base__disabled_e4bb9 .Feature_disabledPattern_f91e3 {
+        opacity: .3;
+    }
+.Feature_selectedRoleSlotPattern_f700f {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(2,20,48, .6);
+    opacity: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Feature_base__actionStateChangeable_a9317.Feature_base__stepStateReceived_e8e11 .Feature_selectedRoleSlotPattern_f700f {
+        opacity: 1;
+    }
+.Feature_base__actionStateChangeable_a9317.Feature_base__stepStateReceived_e8e11.Feature_base__disabled_e4bb9 .Feature_selectedRoleSlotPattern_f700f {
+        opacity: 0;
+    }
+.Feature_topHighlight_ccbdc {
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Feature_topHighlight__disabled_ea1f2 {
+        width: 69rem;
+        height: 1rem;
+        background-image: linear-gradient(
+                        90deg,
+                        rgba(255,255,255, 0) 0%,
+                        rgba(255,255,255, .05) 5%,
+                        rgba(255,255,255, .3) 50%,
+                        rgba(255,255,255, .05) 95%,
+                        rgba(255,255,255, 0) 100%
+        );
+        opacity: 1;
+        transform: translateX(-35rem);
+    }
+.Feature_base__stepStateReceived_e8e11 .Feature_topHighlight__disabled_ea1f2 {
+            opacity: 0;
+        }
+.Feature_featureUnlockLevel_fc8d4 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.Feature_alertImage_c3855 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16rem;
+    height: 16rem;
+    background: url('R.images.gui.maps.icons.library.alertIcon') no-repeat 50% / contain;
+    transition: top .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+
+.RestrictedSlot_base_f3aa6 {
+    mix-blend-mode: screen;
+    position: relative;
+}
+
+    .RestrictedSlot_base__typeFeature_f1df5 {
+        color: #8C8C7E;
+        font-size: 12rem;
+        font-weight: 400;
+        line-height: 1.3;
+        width: 120rem;
+        height: 80rem;
+    }
+
+    .RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__medium_e8871,
+        .RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__large_c0a16 {
+            width: 160rem;
+            height: 100rem;
+        }
+
+    .RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__extraLarge_ca5f5 {
+            width: 192rem;
+            height: 120rem;
+        }
+
+    .RestrictedSlot_base__typePairModification_f5920 {
+        color: #8C8C7E;
+        font-size: 14rem;
+        font-weight: 400;
+        line-height: 1.3;
+        width: 160rem;
+        height: 80rem;
+    }
+
+    .RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__medium_e8871,
+        .RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__large_c0a16 {
+            width: 200rem;
+            height: 100rem;
+        }
+
+    .RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__extraLarge_ca5f5 {
+            width: 240rem;
+            height: 120rem;
+        }
+.RestrictedSlot_label_b4759 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6rem;
+    text-align: center;
+}
+.RestrictedSlot_border_f7b51 {
+    border-image-source: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.restricted_modification_border_template');
+    border-image-slice: 2;
+    border-image-repeat: round;
+    position: absolute;
+    pointer-events: none;
+}
+.RestrictedSlot_border__main_adf9e {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        border-image-width: 0 2rem 2rem 2rem;
+        top: 2rem;
+    }
+.RestrictedSlot_border__sideLeft_b85d7,
+    .RestrictedSlot_border__sideRight_e2218 {
+        height: 100%;
+        border-image-width: 2rem 0 0 0;
+        top: 0;
+    }
+.RestrictedSlot_base__typeFeature_f1df5 .RestrictedSlot_border__sideLeft_b85d7, .RestrictedSlot_base__typeFeature_f1df5 .RestrictedSlot_border__sideRight_e2218 {
+            width: 42rem;
+        }
+.RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__medium_e8871 .RestrictedSlot_border__sideLeft_b85d7,
+        .RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__large_c0a16 .RestrictedSlot_border__sideLeft_b85d7,
+        .RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__medium_e8871 .RestrictedSlot_border__sideRight_e2218,
+        .RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__large_c0a16 .RestrictedSlot_border__sideRight_e2218 {
+            width: 62rem;
+        }
+.RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__extraLarge_ca5f5 .RestrictedSlot_border__sideLeft_b85d7, .RestrictedSlot_base__typeFeature_f1df5.RestrictedSlot_base__extraLarge_ca5f5 .RestrictedSlot_border__sideRight_e2218 {
+            width: 78rem;
+        }
+.RestrictedSlot_base__typePairModification_f5920 .RestrictedSlot_border__sideLeft_b85d7, .RestrictedSlot_base__typePairModification_f5920 .RestrictedSlot_border__sideRight_e2218 {
+            width: 62rem;
+        }
+.RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__medium_e8871 .RestrictedSlot_border__sideLeft_b85d7,
+        .RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__large_c0a16 .RestrictedSlot_border__sideLeft_b85d7,
+        .RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__medium_e8871 .RestrictedSlot_border__sideRight_e2218,
+        .RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__large_c0a16 .RestrictedSlot_border__sideRight_e2218 {
+            width: 82rem;
+        }
+.RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__extraLarge_ca5f5 .RestrictedSlot_border__sideLeft_b85d7, .RestrictedSlot_base__typePairModification_f5920.RestrictedSlot_base__extraLarge_ca5f5 .RestrictedSlot_border__sideRight_e2218 {
+            width: 102rem;
+        }
+.RestrictedSlot_border__sideLeft_b85d7 {
+        left: 2rem;
+    }
+.RestrictedSlot_border__sideRight_e2218 {
+        right: 2rem;
+    }
+.RestrictedSlot_unlockLevel_a87b2 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.Modification_base_d3360 {
+    width: 38rem;
+    height: 36rem;
+    position: relative;
+}
+
+    .Modification_base__clickable_b4a82 {
+        cursor: pointer;
+    }
+.Modification_background_e5bd4 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 38rem;
+    height: 36rem;
+    background: center / contain no-repeat;
+    opacity: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Modification_background__received_c01d1 {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.modification.received_background');
+    }
+.Modification_base__stepStateReceived_c8f00.Modification_base__actionTypeModification_e4ef2 .Modification_background__received_c01d1 {
+            opacity: 1;
+        }
+.Modification_base__stepStateReceived_c8f00.Modification_base__actionTypeModification_e4ef2.Modification_base__current_cc00c .Modification_background__received_c01d1 {
+            opacity: 0;
+        }
+.Modification_background__receivedSpecial_a228b {
+        width: 58rem;
+        height: 54rem;
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.modification.received_special_background');
+    }
+.Modification_base__stepStateReceived_c8f00.Modification_base__actionTypeModificationWithFeature_d3c7d .Modification_background__receivedSpecial_a228b {
+            opacity: 1;
+        }
+.Modification_base__stepStateReceived_c8f00.Modification_base__actionTypeModificationWithFeature_d3c7d.Modification_base__current_cc00c .Modification_background__receivedSpecial_a228b {
+            opacity: 0;
+        }
+.Modification_background__current_e4706 {
+        width: 70rem;
+        height: 64rem;
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.modification.current_background');
+    }
+.Modification_base__current_cc00c .Modification_background__current_e4706 {
+            opacity: 1;
+        }
+.Modification_background__selected_bf3c0 {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.modification.selected_background');
+    }
+.Modification_base__interactiveStateSelected_f1f21 .Modification_background__selected_bf3c0 {
+            opacity: 1;
+        }
+.Modification_background__lastSelected_f70ee {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.modification.last_selected_background');
+    }
+.Modification_base__interactiveStateLastSelected_befb0 .Modification_background__lastSelected_f70ee {
+            opacity: 1;
+        }
+.Modification_background__disabled_f50dc {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.modification.disabled_background');
+    }
+.Modification_base__stepStateAvailablePurchase_bde83.Modification_base__interactiveStateNormal_b2125 .Modification_background__disabled_f50dc,
+        .Modification_base__stepStateUnavailableLocked_c953d.Modification_base__interactiveStateNormal_b2125 .Modification_background__disabled_f50dc {
+            opacity: 1;
+        }
+.Modification_background__disabledHover_b3224 {
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.modification.selected_background');
+    }
+.Modification_base__stepStateAvailablePurchase_bde83.Modification_base__interactiveStateNormal_b2125.Modification_base__clickable_b4a82:hover .Modification_background__disabledHover_b3224,
+        .Modification_base__stepStateUnavailableLocked_c953d.Modification_base__interactiveStateNormal_b2125.Modification_base__clickable_b4a82:hover .Modification_background__disabledHover_b3224 {
+            opacity: .5;
+        }
+.Modification_labelWrapper_b81a0 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: #CBAC77;
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1.15;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 1rem;
+    transition: color .2s cubic-bezier(.07, .82, .17, 1);
+}
+.Modification_base__stepStateReceived_c8f00 .Modification_labelWrapper_b81a0 {
+        color: #FFDD99;
+    }
+.Modification_lock_bafc8 {
+    width: 24rem;
+    height: 24rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.modification.lock') center / contain no-repeat;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.Modification_base__stepStateAvailablePurchase_bde83 .Modification_lock_bafc8,
+    .Modification_base__stepStateUnavailableLocked_c953d .Modification_lock_bafc8 {
+        opacity: 1;
+    }
+
+.ProgressLine_base_ffc91 {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.ProgressLine_line_cdc3f {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 2rem;
+    background-color: rgba(203,172,119, .1);
+    transition: background-color .2s cubic-bezier(.07, .82, .17, 1);
+}
+
+.ProgressLine_base__stepStateReceived_b6ada .ProgressLine_line_cdc3f,
+    .ProgressLine_base__interactiveStateSelected_a07bd .ProgressLine_line_cdc3f,
+    .ProgressLine_base__interactiveStateLastSelected_fb8bc .ProgressLine_line_cdc3f {
+        background-color: rgba(203,172,119, .5);
+    }
+
+.ProgressLine_glow_c10f6 {
+    width: 50rem;
+    height: 22rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.progression.current_glow') center / contain no-repeat;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    right: 6rem;
+    transform: translateY(-50%);
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+
+.ProgressLine_base__current_ff01c .ProgressLine_glow_c10f6 {
+        opacity: 1;
+    }
+
+.Progression_base_ffda1 {
+    min-height: 53rem;
+    position: relative;
+}
+
+    .Progression_base__medium_bbd8e,
+    .Progression_base__large_b3bd5,
+    .Progression_base__extraLarge_e01fe {
+        min-height: 67rem;
+    }
+
+.Progression_progressLine_c2646 {
+    flex: 1;
+    z-index: -1;
+}
+
+.Progression_tape_c3753,
+.Progression_final_ec551 {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+
+.Progression_tape_c3753 {
+    padding-left: 45rem;
+    padding-right: 45rem;
+}
+
+.Progression_tape__small_d9044 {
+        padding-left: 35rem;
+        padding-right: 35rem;
+    }
+
+.Progression_tape__medium_f588a {
+        padding-left: 50rem;
+        padding-right: 50rem;
+    }
+
+.Progression_tape__large_a1966,
+    .Progression_tape__extraLarge_c6992 {
+        padding-left: 70rem;
+        padding-right: 70rem;
+    }
+
+.Progression_tape_c3753 {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    opacity: 1;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: auto;
+}
+
+.Progression_base__progressionStateFinal_c0197 .Progression_tape_c3753 {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+.Progression_final_ec551 {
+    padding-top: 31rem;
+    opacity: 0;
+    right: 10rem;
+    bottom: 0;
+    left: 10rem;
+    pointer-events: none;
+}
+
+.Progression_base__medium_bbd8e .Progression_final_ec551,
+    .Progression_base__large_b3bd5 .Progression_final_ec551,
+    .Progression_base__extraLarge_e01fe .Progression_final_ec551 {
+        padding-top: 45rem;
+    }
+
+.Progression_base__progressionStateFinal_c0197 .Progression_final_ec551 {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+.Progression_indicator_aaa21 {
+    width: 48rem;
+    height: 52rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.progression.max_level_indicator_small')
+        center / contain no-repeat;
+    text-shadow: 0 1rem 2rem rgba(0,0,0, 0.5);
+    filter: drop-shadow(0 1rem 2rem rgba(0,0,0, 0.5)) drop-shadow(0 0 25rem rgba(255,199,0, 0.5))
+        drop-shadow(0 4rem 20rem rgba(255,0,0, 0.25));
+    mask-image: linear-gradient(180deg, #c4c4c4 67%, rgba(196,196,196, 0) 100%);
+    mask-repeat: no-repeat;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.Progression_base__medium_bbd8e .Progression_indicator_aaa21,
+    .Progression_base__large_b3bd5 .Progression_indicator_aaa21,
+    .Progression_base__extraLarge_e01fe .Progression_indicator_aaa21 {
+        width: 60rem;
+        height: 65rem;
+        background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.progression.max_level_indicator');
+    }
+
+.Progression_indicatorLabel_b3c14 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 24rem;
+    background: center / contain no-repeat;
+}
+
+.Progression_base__medium_bbd8e .Progression_indicatorLabel_b3c14,
+    .Progression_base__large_b3bd5 .Progression_indicatorLabel_b3c14,
+    .Progression_base__extraLarge_e01fe .Progression_indicatorLabel_b3c14 {
+        height: 30rem;
+    }
+
+.Progression_header_d1517 {
+    color: #E9E2BF;
+    font-size: 18rem;
+    font-weight: 700;
+}
+
+.GridCenterGroup_base_ca233 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex: 1;
+    height: 100%;
+}
+
+.GridCenterGroup_featureStepsWrapper_d33f6 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25rem;
+}
+
+.GridCenterGroup_base__medium_def6c .GridCenterGroup_featureStepsWrapper_d33f6,
+    .GridCenterGroup_base__large_dac5e .GridCenterGroup_featureStepsWrapper_d33f6 {
+        margin-bottom: 30rem;
+    }
+
+.GridCenterGroup_base__extraLarge_f7eab .GridCenterGroup_featureStepsWrapper_d33f6 {
+        margin-bottom: 87rem;
+    }
+
+.GridCenterGroup_featureStepWrapper_c1ce2 {
+    margin: 0 5rem;
+}
+
+.GridCenterGroup_base__medium_def6c .GridCenterGroup_featureStepWrapper_c1ce2,
+    .GridCenterGroup_base__large_dac5e .GridCenterGroup_featureStepWrapper_c1ce2,
+    .GridCenterGroup_base__extraLarge_f7eab .GridCenterGroup_featureStepWrapper_c1ce2 {
+        margin: 0 10rem;
+    }
+
+.Checkmark_base_da4b3 {
+    width: 27rem;
+    height: 28rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.checkmark.checkmark') center / contain no-repeat;
+}
+
+.DiscardButton_base_f8fcf {
+    width: 37rem;
+    height: 18rem;
+}
+
+.DiscardButton_icon_aa3b2 {
+    width: 24rem;
+    height: 24rem;
+    background: url('R.images.gui.maps.icons.tanksetup.actions.destroy') no-repeat center / contain;
+    top: 1rem;
+}
+
+.Currency_base_ed02c {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.Currency_icon_d34e3 {
+    width: 16rem;
+    height: 16rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    z-index: 1;
+}
+.Currency_base__small_af876 .Currency_icon_d34e3,
+    .Currency_base__big_f6388 .Currency_icon_d34e3,
+    .Currency_base__large_fb228 .Currency_icon_d34e3,
+    .Currency_base__extraLarge_d0b11 .Currency_icon_d34e3 {
+        transform: translateY(3rem);
+    }
+.Currency_icon__credits-small_cb645 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+    }
+.Currency_icon__credits-big_bb614 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_1');
+    }
+.Currency_icon__credits-large_b65af {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_silver');
+    }
+.Currency_base__large_fb228 .Currency_icon__credits-large_b65af {
+            transform: translateY(4rem);
+        }
+.Currency_icon__credits-extraLarge_a4a53 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.credits_icon_80x80');
+    }
+.Currency_icon__gold-small_eee32 {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__gold-small_eee32 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__gold-big_e419a {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_1');
+    }
+.Currency_base__big_f6388 .Currency_icon__gold-big_e419a {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-large_c3a99 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_gold');
+    }
+.Currency_base__large_fb228 .Currency_icon__gold-large_c3a99 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-extraLarge_f2852 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.gold_icon_80x80');
+    }
+.Currency_icon__crystal-small_d8644 {
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__crystal-small_d8644 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__crystal-big_f2873 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__crystal-big_f2873 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__crystal-large_cf068 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_bonds');
+    }
+.Currency_icon__crystal-extraLarge_a9843 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__crystal-extraLarge_a9843 {
+            transform: translateY(7rem);
+        }
+.Currency_icon__xp-small_f3b46 {
+        background-image: url('R.images.gui.maps.icons.library.NormalXpIcon');
+    }
+.Currency_base__small_af876 .Currency_icon__xp-small_f3b46 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__xp-big_c984a {
+        width: 23rem;
+        height: 22rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xpIcon_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__xp-big_c984a {
+            transform: translateY(2rem);
+        }
+.Currency_icon__xp-large_e9a09 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.exp');
+    }
+.Currency_icon__xp-extraLarge_f90f7 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xp_tank_icon_80x80');
+    }
+.Currency_icon__freeXP-small_bcda1 {
+        background-image: url('R.images.gui.maps.icons.library.freeXPIcon16x16');
+    }
+.Currency_base__small_af876 .Currency_icon__freeXP-small_bcda1 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__freeXP-big_eb64e {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.freeXPIconBig24x24');
+    }
+.Currency_icon__freeXP-large_e46b0 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.freeExp');
+    }
+.Currency_icon__freeXP-extraLarge_e41b1 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.free_xp_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__freeXP-extraLarge_e41b1 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__eliteXP-small_c4a51 {
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIcon-2');
+    }
+.Currency_base__small_af876 .Currency_icon__eliteXP-small_c4a51 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__eliteXP-big_eceb0 {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIconBig');
+    }
+.Currency_icon__eliteXP-large_e35ab {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_48x48');
+    }
+.Currency_icon__eliteXP-extraLarge_a17d5 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__eliteXP-extraLarge_a17d5 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__equipCoin-small_d3b9a {
+        width: 16rem;
+        height: 16rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_1');
+    }
+.Currency_base__small_af876 .Currency_icon__equipCoin-small_d3b9a {
+            transform: translateX(-1rem) translateY(1rem);
+        }
+.Currency_icon__equipCoin-big_c34e1 {
+        width: 24rem;
+        height: 24rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoinBig');
+    }
+.Currency_base__big_f6388 .Currency_icon__equipCoin-big_c34e1 {
+            transform: translateX(-5rem) translateY(3rem);
+        }
+.Currency_icon__equipCoin-large_b1b5e {
+        width: 48rem;
+        height: 48rem;
+        margin-right: 2rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.equipCoin');
+    }
+.Currency_icon__equipCoin-extraLarge_a7b90 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: 8rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__equipCoin-extraLarge_a7b90 {
+            transform: translateX(2rem) translateY(4rem);
+        }
+.Currency_value_bb176 {
+    /* font-size inherit does not work here, so 1em means the size does not change */
+    /* stylelint-disable-next-line */
+    font-size: 1em;
+    position: relative;
+    z-index: 2;
+}
+.Currency_base__small_af876 .Currency_value_bb176 {
+        padding-right: 2rem;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 {
+        padding-right: 5rem;
+        font-size: 24rem;
+        font-weight: 700;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 24rem;
+        }
+.Currency_base__large_fb228 .Currency_value_bb176 {
+        font-size: 36rem;
+        font-weight: 700;
+    }
+.Currency_base__large_fb228 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 36rem;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value_bb176 {
+        font-size: 56rem;
+        font-weight: 700;
+    }
+.Currency_value__freeXP_db401 {
+        color: #F2F2F7;
+    }
+.Currency_value__credits_c98c5 {
+        color: #CED9D9;
+    }
+.Currency_value__gold_b8214 {
+        color: #FFC363;
+    }
+.Currency_value__xp_eda0a,
+    .Currency_value__crystal_cf72e,
+    .Currency_value__equipCoin_cb08d,
+    .Currency_value__eliteXP_de450 {
+        color: #C9C9B6;
+    }
+.Currency_base__small_af876 .Currency_value__notEnough_db10a {
+            color: #FF2717;
+        }
+.Currency_base__big_f6388 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__large_fb228 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_stock_bffbc {
+    height: 13rem;
+    color: #FFDD99;
+    font-size: 13rem;
+    line-height: 1;
+    position: relative;
+    z-index: 0;
+    pointer-events: none;
+}
+.Currency_stock__indent_c4c0d {
+        margin-left: 2rem;
+    }
+.Currency_base__small_af876 .Currency_stock_bffbc {
+        transform: translateY(0rem);
+    }
+.Currency_base__big_f6388 .Currency_stock_bffbc {
+        transform: translateY(4rem);
+    }
+.Currency_base__large_fb228 .Currency_stock_bffbc {
+        transform: translateY(10rem);
+    }
+.Currency_base__extraLarge_d0b11 .Currency_stock_bffbc {
+        transform: translateY(18rem);
+    }
+.Currency_stock__interactive_e78a9 {
+        pointer-events: auto;
+    }
+.Currency_stockBackground_c8ab1 {
+    width: 80rem;
+    height: 45rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: -27rem;
+    bottom: 0;
+    z-index: -1;
+    transform: translateY(17rem);
+}
+
+.BuyButton_base_d0bc1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 17rem;
+    padding: 0 8rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, .6);
+    background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.pairModification.pairModificationBuyButton.back');
+    background-size: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+    .BuyButton_base__disabled_e17f7 {
+        cursor: default;
+    }
+
+.BuyButton_back_c0c48 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-image-source: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.pairModification.pairModificationBuyButton.back');
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+}
+
+.BuyButton_texture_a4eda {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.pairModification.pairModificationBuyButton.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+}
+
+.BuyButton_state_dacbf {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow .16s ease-in-out;
+}
+
+.BuyButton_stateHighlightHover_a6026,
+.BuyButton_stateHighlightActive_c088f,
+.BuyButton_stateDisabled_cd050 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity .16s ease-in-out;
+}
+
+.BuyButton_stateHighlightHover_a6026 {
+    background-image: linear-gradient(180deg, rgba(252,248,235, .25) 0%, rgba(252,248,235, .1) 50%, rgba(255,255,255, 0) 100%);
+}
+
+.BuyButton_base_d0bc1:hover .BuyButton_stateHighlightHover_a6026 {
+        opacity: 1;
+    }
+
+.BuyButton_base_d0bc1:active .BuyButton_stateHighlightHover_a6026 {
+        opacity: 0;
+    }
+
+.BuyButton_base__disabled_e17f7:hover .BuyButton_stateHighlightHover_a6026 {
+        opacity: 0;
+    }
+
+.BuyButton_stateHighlightActive_c088f {
+    background-image: linear-gradient(180deg, rgba(0,0,0, .3) 0%, rgba(0,0,0, .15) 100%);
+}
+
+.BuyButton_base_d0bc1:active .BuyButton_stateHighlightActive_c088f {
+        opacity: 1;
+    }
+
+.BuyButton_base__disabled_e17f7:active .BuyButton_stateHighlightActive_c088f {
+        opacity: 0;
+    }
+
+.BuyButton_stateDisabled_cd050 {
+    background-color: rgba(0,0,0, .25);
+    background-image: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.pairModification.pairModificationBuyButton.texture_disable');
+    background-size: 15rem;
+}
+
+.BuyButton_base__disabled_e17f7 .BuyButton_stateDisabled_cd050 {
+        opacity: 1;
+    }
+
+.BuyButton_content_fe1c3 {
+    display: flex;
+    align-items: center;
+    transform: translateY(-1rem);
+}
+
+.Price_base_e7799 {
+    width: 100%;
+    height: 18rem;
+    position: relative;
+}
+.Price_itemWrapper_ce825 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Price_itemWrapper__label_da9ec {
+        height: 18rem;
+        line-height: 1;
+        opacity: .6;
+    }
+.Price_base__stepStateReceived_f148d .Price_itemWrapper__label_da9ec {
+            opacity: 0;
+        }
+.Price_base__stepStateReceived_f148d.Price_base__otherReceived_d219b .Price_itemWrapper__label_da9ec {
+            opacity: .6;
+        }
+.Price_base__stepStateReceived_f148d.Price_base__otherReceived_d219b.Price_base__selected_d507b .Price_itemWrapper__label_da9ec {
+            opacity: 0;
+        }
+.Price_itemWrapper__button_d53bb {
+        height: 17rem;
+    }
+.Price_base__stepStateReceived_f148d .Price_itemWrapper__button_d53bb {
+            opacity: 1;
+            pointer-events: auto;
+        }
+.Price_base__stepStateReceived_f148d.Price_base__received_d299d .Price_itemWrapper__button_d53bb,
+        .Price_base__stepStateReceived_f148d.Price_base__otherReceived_d219b .Price_itemWrapper__button_d53bb {
+            opacity: 0;
+            pointer-events: none;
+        }
+.Price_base__stepStateReceived_f148d.Price_base__otherSelected_ff6d8 .Price_itemWrapper__button_d53bb {
+            opacity: .4;
+            pointer-events: none;
+        }
+.Price_base__stepStateReceived_f148d.Price_base__received_d299d.Price_base__otherSelected_ff6d8 .Price_itemWrapper__button_d53bb {
+            opacity: 0;
+            pointer-events: none;
+        }
+.Price_base__stepStateReceived_f148d.Price_base__otherReceived_d219b.Price_base__selected_d507b .Price_itemWrapper__button_d53bb {
+            opacity: 1;
+            pointer-events: auto;
+        }
+.Price_buttonContentWrapper_c56ed {
+    display: flex;
+    align-items: flex-end;
+    color: #E9E2BF;
+    font-size: 11rem;
+    line-height: 18rem;
+    position: relative;
+}
+.Price_icon_babd8 {
+    width: 16rem;
+    height: 16rem;
+    margin-left: 1rem;
+    background: center / contain no-repeat;
+}
+.Price_icon__typeCredits_b1fe1 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+    }
+.Price_icon__typeGold_e8045 {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+        transform: translateY(-1rem);
+    }
+.Price_icon__typeCrystal_f4c9c {
+        margin-left: 3rem;
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+        transform: translateY(-1rem);
+    }
+.Price_icon__typeXp_dfe8d {
+        background-image: url('R.images.gui.maps.icons.library.NormalXpIcon');
+        transform: translateY(-1rem);
+    }
+.Price_icon__typeFreeXp_e7e69 {
+        background-image: url('R.images.gui.maps.icons.library.freeXPIcon16x16');
+        transform: translateY(-1rem);
+    }
+
+.Item_base_ddb19 {
+    width: 80rem;
+    height: 80rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .Item_base__received_a2e49 {
+        cursor: default;
+    }
+
+    .Item_base__medium_f9015,
+    .Item_base__large_e8fdc {
+        width: 100rem;
+        height: 100rem;
+    }
+
+    .Item_base__extraLarge_d9246 {
+        width: 120rem;
+        height: 120rem;
+    }
+.Item_content_dab24 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100%;
+    padding: 6rem;
+}
+.Item_imageWrapper_c4d92 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: opacity .5s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Item_imageWrapper__enabled_eb094 {
+        opacity: 0;
+    }
+.Item_base__received_a2e49 .Item_imageWrapper__enabled_eb094 {
+            opacity: 1;
+        }
+.Item_imageWrapper__disabled_b420f {
+        opacity: 1;
+    }
+.Item_base__received_a2e49 .Item_imageWrapper__disabled_b420f {
+            opacity: 0;
+        }
+.Item_image_bb901 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: center / contain no-repeat;
+    opacity: .4;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.Item_base__stepStateReceived_f67af .Item_image_bb901,
+    .Item_base__selected_f92f9 .Item_image_bb901 {
+        opacity: .8;
+    }
+.Item_base__stepStateReceived_f67af.Item_base__otherSelected_f152c .Item_image_bb901,
+    .Item_base__stepStateReceived_f67af.Item_base__otherReceived_df90c .Item_image_bb901 {
+        opacity: .4;
+    }
+.Item_base__stepStateReceived_f67af.Item_base__selected_f92f9 .Item_image_bb901,
+    .Item_base__received_a2e49 .Item_image_bb901,
+    .Item_base__stepStateReceived_f67af.Item_base__otherSelected_f152c.Item_base__received_a2e49 .Item_image_bb901 {
+        opacity: 1;
+    }
+.Item_disabledPattern_cc713 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('R.images.gui.maps.icons.library.disabled_pattern') center / 9rem;
+    opacity: .5;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Item_base__stepStateReceived_f67af.Item_base__progressionAvailabilityAvailable_ffdbe .Item_disabledPattern_cc713,
+    .Item_base__interactiveStateSelectedHighlighted_cde9a .Item_disabledPattern_cc713 {
+        opacity: 0;
+    }
+.Item_topButtonWrapper_d8505 {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Item_base__received_a2e49 .Item_topButtonWrapper_d8505 {
+        opacity: 1;
+        pointer-events: auto;
+    }
+.Item_bottomHighlight_a14d0,
+.Item_checkmarkWrapper_bfef3 {
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Item_base__received_a2e49 .Item_bottomHighlight_a14d0, .Item_base__received_a2e49 .Item_checkmarkWrapper_bfef3 {
+        opacity: 1;
+    }
+.Item_bottomHighlight_a14d0 {
+    width: 69rem;
+    height: 32rem;
+    background: url('R.images.gui.maps.icons.vehPostProgression.vehiclePostProgressionView.grid.pairModification.item.bottom_highlight_active') center / contain no-repeat;
+    transform: translate(-35rem, -16rem);
+}
+.Item_title_cf5e7 {
+    color: #8C8C7E;
+    font-size: 12rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    margin-top: 2rem;
+    padding: 0 5rem;
+    opacity: .8;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 100%;
+    transition: color .2s cubic-bezier(.07, .82, .17, 1),
+        opacity .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.Item_base__stepStateReceived_f67af .Item_title_cf5e7 {
+        opacity: 1;
+    }
+.Item_base__stepStateReceived_f67af.Item_base__otherReceived_df90c .Item_title_cf5e7 {
+        opacity: .8;
+    }
+.Item_base__selected_f92f9 .Item_title_cf5e7 {
+        color: #FFDD99;
+    }
+.Item_base__titleAlignmentLeft_cc1b1 .Item_title_cf5e7,
+    .Item_base__titleAlignmentRight_efe92 .Item_title_cf5e7 {
+        width: 200%;
+        white-space: pre;
+    }
+.Item_base__titleAlignmentLeft_cc1b1 .Item_title_cf5e7 {
+        justify-content: flex-start;
+        text-align: left;
+        left: 0;
+    }
+.Item_base__titleAlignmentCenter_e656b .Item_title_cf5e7 {
+        justify-content: center;
+        text-align: center;
+        right: 0;
+        left: 0;
+    }
+.Item_base__titleAlignmentRight_efe92 .Item_title_cf5e7 {
+        justify-content: flex-end;
+        text-align: right;
+        right: 0;
+    }
+.Item_base__medium_f9015 .Item_title_cf5e7 {
+        padding: 0 8rem;
+    }
+.Item_base__large_e8fdc .Item_title_cf5e7,
+    .Item_base__extraLarge_d9246 .Item_title_cf5e7 {
+        margin-top: 5rem;
+        padding: 0 10rem;
+        font-size: 14rem;
+    }
+
+.Separator_base_c9f35 {
+    color: #E9E2BF;
+    font-size: 12rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    text-align: center;
+    position: relative;
+}
+
+    .Separator_base__medium_c1cac,
+    .Separator_base__large_c58fb,
+    .Separator_base__extraLarge_cbfb9 {
+        font-size: 14rem;
+    }
+.Separator_underlay_a9b5a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100rem;
+    height: 50rem;
+    background-image: radial-gradient(
+        ellipse,
+        rgba(0,0,0, .4) 0%,
+        rgba(0,0,0, .2) 40%,
+        rgba(0,0,0, .01) 70%,
+        rgba(0,0,0, 0) 100%
+    );
+}
+.Separator_line_b1fc4 {
+    width: 1rem;
+    height: 23rem;
+    background-color: rgba(255,255,255, .15);
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.Separator_base__lineVisible_df4c7 .Separator_line_b1fc4 {
+        opacity: 1;
+    }
+.Separator_base__medium_c1cac .Separator_line_b1fc4 {
+        height: 28rem;
+    }
+.Separator_base__large_c58fb .Separator_line_b1fc4,
+    .Separator_base__extraLarge_cbfb9 .Separator_line_b1fc4 {
+        height: 33rem;
+    }
+.Separator_line__top_a2958 {
+        top: 0;
+    }
+.Separator_line__bottom_e3bbe {
+        bottom: 0;
+    }
+.Separator_label_b9eea {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    opacity: .4;
+    mix-blend-mode: screen;
+}
+
+.Content_base_addeb {
+    display: flex;
+}
+.Content_separatorWrapper_cc400 {
+    display: flex;
+    margin: 0 -5rem;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.Caret_base_aaa29 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    mix-blend-mode: screen;
+}
+
+.Caret_sector_d11bc {
+
+    width: 25rem;
+
+    height: 25rem;
+    filter: drop-shadow(0 0 5px #aa1f00);
+    position: absolute;
+}
+
+.Caret_base__medium_c41ab .Caret_sector_d11bc {
+        width: 30rem;
+        height: 30rem;
+    }
+
+.Caret_base__large_f7b11 .Caret_sector_d11bc,
+    .Caret_base__extraLarge_e48c9 .Caret_sector_d11bc {
+        width: 35rem;
+        height: 35rem;
+    }
+
+.Caret_sector__topLeft_e13f0 {
+        border-left: 2rem solid #FFDD99;
+        border-radius: 2rem 0 0 0;
+        border-top: 2rem solid #FFDD99;
+        top: 0;
+        left: 0;
+    }
+
+.Caret_sector__topRight_d6806 {
+        border-radius: 0 2rem 0 0;
+        border-top: 2rem solid #FFDD99;
+        border-right: 2rem solid #FFDD99;
+        top: 0;
+        right: 0;
+    }
+
+.Caret_sector__bottomRight_a959c {
+        border-radius: 0 0 2rem 0;
+        border-right: 2rem solid #FFDD99;
+        border-bottom: 2rem solid #FFDD99;
+        right: 0;
+        bottom: 0;
+    }
+
+.Caret_sector__bottomLeft_d3f28 {
+        border-left: 2rem solid #FFDD99;
+        border-radius: 0 0 0 2rem;
+        border-bottom: 2rem solid #FFDD99;
+        bottom: 0;
+        left: 0;
+    }
+
+.CaretRail_base_bb787 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CaretRail_caretWrapper_d8e7e {
+    opacity: 0;
+    transition: transform .2s cubic-bezier(.07, .82, .17, 1),
+        opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.CaretRail_base__animatingAppear_d483a .CaretRail_caretWrapper_d8e7e {
+        transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+    }
+.CaretRail_base__animatingDisappear_d6a70 .CaretRail_caretWrapper_d8e7e {
+        transition: transform .2s cubic-bezier(.07, .82, .17, 1) .2s,
+            opacity .2s cubic-bezier(.07, .82, .17, 1);
+    }
+.CaretRail_base__visible_be7ec .CaretRail_caretWrapper_d8e7e {
+        opacity: 1;
+    }
+
+.SelectionFrame_base_e67de {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.SelectionFrame_hoverCaretWrapper_dc50b {
+    height: 100%;
+    opacity: 0;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+.SelectionFrame_hoverCaretWrapper__visible_d5849 {
+        opacity: .25;
+    }
+
+.PairModification_base_fc11c {
+    position: relative;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+
+    .PairModification_base__interactiveStateSelectedFaded_ccd88,
+    .PairModification_base__interactiveStateFaded_c43ce {
+        opacity: .5;
+    }
+.PairModification_underlay_f24c2 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2rem;
+    background-color: rgba(0,0,0, .5);
+    z-index: -1;
+    transition: background-color .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.PairModification_base__stepStateReceived_ad117 .PairModification_underlay_f24c2 {
+        background-color: rgba(0,0,0, .7);
+    }
+.PairModification_base__interactiveStateSelectedHighlighted_b9c58 .PairModification_underlay_f24c2 {
+        background-color: #000000;
+    }
+.PairModification_topHighlight_f709d {
+    width: 62rem;
+    height: 1rem;
+    margin: auto;
+    background-image: linear-gradient(
+        90deg,
+        rgba(255,255,255, 0) 0%,
+        rgba(255,255,255, .05) 5%,
+        rgba(255,255,255, .3) 50%,
+        rgba(255,255,255, .05) 95%,
+        rgba(255,255,255, 0) 100%
+    );
+    position: absolute;
+    top: -1rem;
+    left: 50%;
+    transform: translateX(-31rem);
+}
+.PairModification_outline_d6114 {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    border: 1rem solid rgba(255,255,255, .1);
+    border-radius: 2rem;
+    pointer-events: none;
+}
+.PairModification_accentCornersWrapper_efd91 {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+}
+.PairModification_interactiveHighlight_c212a {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    border: 2rem solid transparent;
+    border-radius: 2rem;
+    transition: box-shadow .2s cubic-bezier(.07, .82, .17, 1),
+        border .2s cubic-bezier(.07, .82, .17, 1);
+    pointer-events: none;
+}
+.PairModification_base__interactiveStateSelected_f3bc9 .PairModification_interactiveHighlight_c212a,
+    .PairModification_base__interactiveStateSelectedFaded_ccd88 .PairModification_interactiveHighlight_c212a {
+        border-color: rgba(203,172,119, .5);
+    }
+.PairModification_base__interactiveStateSelectedHighlighted_b9c58 .PairModification_interactiveHighlight_c212a {
+        border-color: rgba(203,172,119, .8);
+        box-shadow: 0 0 10rem #CBAC77;
+    }
+.PairModification_selectionFrameWrapper_be7c6 {
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    bottom: -2rem;
+    left: -2rem;
+    pointer-events: none;
+}
+.PairModification_unlockLevelWrapper_dc1a3 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+}
+.PairModification_base__stepStateReceived_ad117 .PairModification_unlockLevelWrapper_dc1a3 {
+        pointer-events: none;
+    }
+
+.DiagonalLine_base_a5100 {
+    display: flex;
+    opacity: .3;
+    transition: opacity .2s cubic-bezier(.07, .82, .17, 1);
+}
+
+    .DiagonalLine_base__stepStateReceived_aef41 {
+        opacity: .5;
+    }
+
+    .DiagonalLine_base__directionLeft_d99a4 {
+        flex-direction: row-reverse;
+    }
+.DiagonalLine_lineBase_dfa77 {
+    width: 8rem;
+    height: 1rem;
+    background-color: #FFFFFF;
+}
+.DiagonalLine_base__stepStateReceived_aef41 .DiagonalLine_lineBase_dfa77 {
+        height: 2rem;
+    }
+.DiagonalLine_base__large_e8563 .DiagonalLine_lineBase_dfa77,
+    .DiagonalLine_base__extraLarge_bf49b .DiagonalLine_lineBase_dfa77 {
+        width: 20rem;
+    }
+.DiagonalLine_line_cc7b7 {
+    height: 1rem;
+    position: relative;
+    left: -1rem;
+}
+.DiagonalLine_base__stepStateReceived_aef41 .DiagonalLine_line_cc7b7 {
+        height: 2rem;
+    }
+.DiagonalLine_base__directionRight_a13ad .DiagonalLine_line_cc7b7 {
+    background-image: linear-gradient(90deg, #FFFFFF 50%, rgba(255,255,255, 0) 100%);
+        transform-origin: 0 0;
+    }
+.DiagonalLine_base__directionLeft_d99a4 .DiagonalLine_line_cc7b7 {
+    background-image: linear-gradient(270deg, #FFFFFF 50%, rgba(255,255,255, 0) 100%);
+        transform-origin: 100% 100%;
+    }
+.DiagonalLine_base__position1_f7783 .DiagonalLine_line_cc7b7 {
+        width: 120rem;
+    }
+.DiagonalLine_base__position2_addbf .DiagonalLine_line_cc7b7 {
+        width: 140rem;
+    }
+.DiagonalLine_base__position3_bf7b0 .DiagonalLine_line_cc7b7 {
+        width: 150rem;
+    }
+.DiagonalLine_base__medium_d956a.DiagonalLine_base__position1_f7783 .DiagonalLine_line_cc7b7 {
+        width: 170rem;
+    }
+.DiagonalLine_base__medium_d956a.DiagonalLine_base__position2_addbf .DiagonalLine_line_cc7b7 {
+        width: 180rem;
+    }
+.DiagonalLine_base__medium_d956a.DiagonalLine_base__position3_bf7b0 .DiagonalLine_line_cc7b7 {
+        width: 195rem;
+    }
+.DiagonalLine_base__large_e8563.DiagonalLine_base__position1_f7783 .DiagonalLine_line_cc7b7 {
+        width: 195rem;
+    }
+.DiagonalLine_base__large_e8563.DiagonalLine_base__position2_addbf .DiagonalLine_line_cc7b7 {
+        width: 260rem;
+    }
+.DiagonalLine_base__large_e8563.DiagonalLine_base__position3_bf7b0 .DiagonalLine_line_cc7b7 {
+        width: 235rem;
+    }
+.DiagonalLine_base__extraLarge_bf49b.DiagonalLine_base__position1_f7783 .DiagonalLine_line_cc7b7 {
+        width: 165rem;
+    }
+.DiagonalLine_base__extraLarge_bf49b.DiagonalLine_base__position2_addbf .DiagonalLine_line_cc7b7 {
+        width: 220rem;
+    }
+.DiagonalLine_base__extraLarge_bf49b.DiagonalLine_base__position3_bf7b0 .DiagonalLine_line_cc7b7 {
+        width: 190rem;
+    }
+
+.GridSideGroup_base_fcd60 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding-top: 16rem;
+    padding-bottom: 90rem;
+}
+
+    .GridSideGroup_base__medium_d1e19 {
+        padding-bottom: 120rem;
+    }
+
+    .GridSideGroup_base__large_a168f {
+        padding-bottom: 140rem;
+    }
+
+    .GridSideGroup_base__extraLarge_c6536 {
+        padding-bottom: 228rem;
+    }
+.GridSideGroup_elementWrapper_f2b53 {
+    display: flex;
+    position: relative;
+}
+.GridSideGroup_elementWrapper__left_f23a2 {
+        justify-content: flex-start;
+        margin: 0 46rem 0 2rem;
+    }
+.GridSideGroup_elementWrapper__right_b3c27 {
+        justify-content: flex-end;
+        margin: 0 2rem 0 46rem;
+    }
+.GridSideGroup_base__large_a168f .GridSideGroup_elementWrapper__right_b3c27 {
+        margin-left: 95rem;
+    }
+.GridSideGroup_base__large_a168f .GridSideGroup_elementWrapper__left_f23a2 {
+        margin-right: 95rem;
+    }
+.GridSideGroup_base__extraLarge_c6536 .GridSideGroup_elementWrapper__right_b3c27 {
+        margin-left: 75rem;
+    }
+.GridSideGroup_base__extraLarge_c6536 .GridSideGroup_elementWrapper__left_f23a2 {
+        margin-right: 75rem;
+    }
+.GridSideGroup_elementPlaceholder_c0f4e {
+    height: 80rem;
+}
+.GridSideGroup_base__medium_d1e19 .GridSideGroup_elementPlaceholder_c0f4e,
+    .GridSideGroup_base__large_a168f .GridSideGroup_elementPlaceholder_c0f4e {
+        height: 100rem;
+    }
+.GridSideGroup_base__extraLarge_c6536 .GridSideGroup_elementPlaceholder_c0f4e {
+        height: 120rem;
+    }
+.GridSideGroup_lineContainer_f9cb8 {
+    position: absolute;
+    top: 50%;
+}
+.GridSideGroup_base__positionLeft_de12d .GridSideGroup_lineContainer_f9cb8 {
+        padding-left: 10rem;
+        left: 100%;
+    }
+.GridSideGroup_base__positionRight_fd2e0 .GridSideGroup_lineContainer_f9cb8 {
+        padding-right: 10rem;
+        right: 100%;
+    }
+
+.Grid_base_ce421 {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    padding-bottom: 7rem;
+}
+
+    .Grid_base__medium_e0270 .Grid_base_ce421,
+    .Grid_base__large_c3f92 .Grid_base_ce421,
+    .Grid_base__extraLarge_f96a6 .Grid_base_ce421 {
+        padding-bottom: 3rem;
+    }
+

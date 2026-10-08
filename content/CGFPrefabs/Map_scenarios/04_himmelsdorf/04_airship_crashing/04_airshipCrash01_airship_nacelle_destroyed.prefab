@@ -1,0 +1,129 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/random_events/04_himmelsdorf_ground_burn.eff",
+						"emissionRate": 1.0
+					},
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_fire_metal_loop",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "nacelle_destroyed_fire_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.6402869820594788,
+							"y": 0.42415499687194824,
+							"z": -0.12647199630737305
+						}
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "effect_ground_burn",
+				"uuid": "81d381e6-7bee-4d09-8abb-712a3279d531"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_UNI_163_ZeppelinNacelle/normal/lod0/hd_env_UNI_163_ZeppelinNacelle_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/hd_env_UNI_163_ZeppelinNacelle/normal/lod0/hd_env_UNI_163_ZeppelinNacelle_01.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.1213039979338646,
+							"y": -0.001604020013473928,
+							"z": -0.20629900693893433
+						},
+						"rotation": {
+							"x": -7.999980449676514,
+							"y": 47.00001525878906,
+							"z": -13.000011444091797
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "76f09685-de26-4214-a245-425c0ccc067e",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "[COL_01]_hd_env_UNI_163_ZeppelinNacelle_01_01",
+				"uuid": "76f09685-de26-4214-a245-425c0ccc067e"
+			}
+		],
+		"components": {
+			"BW::AIDataPatchComponent": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"patchName": "04_airshipCrash_ai"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "04_airshipCrash01_airship_nacelle_destroyed",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

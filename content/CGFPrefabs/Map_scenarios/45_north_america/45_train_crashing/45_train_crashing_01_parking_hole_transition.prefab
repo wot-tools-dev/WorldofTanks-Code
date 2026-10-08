@@ -1,0 +1,583 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/random_events/45_north_america_smoke_coal.eff",
+								"emissionRate": 3.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": 0.1073400005698204,
+									"z": 4.609950065612793
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "smoke",
+						"uuid": "6211537f-1f97-40d6-bff3-ff0f1e9a6919"
+					},
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/random_events/04_himmelsdorf_dark_smoke_after_explosion.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 1.9998799562454224,
+									"y": 0.1073400005698204,
+									"z": 6.405580043792725
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "post_smoke",
+						"uuid": "8310f65f-20e1-369b-9262-6270950f5996"
+					},
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/random_events/45_north_america_smoke_after_explosion.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 1.9998799562454224,
+									"y": 0.1073400005698204,
+									"z": 6.405580043792725
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "after_explosion",
+						"uuid": "9b0d3bc2-2acc-371e-85b2-a1aa20bb6f1d"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"name": "effects",
+				"uuid": "01fcdfb6-bd7f-45a5-8209-ed5820ef87bf"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::SphereColliderDesc",
+								"__cvalue__": {
+									"transform": "((      40,       0,       0,       0), (       0,      40,       0,       0), (       0,       0,      40,       0), (       0,       0,       0,       1))"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::RigidBodyComponent": {
+						"bodiesFrictionFactor": 0.30000001192092896,
+						"centerOfMass": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"collideWithBodies": false,
+						"collideWithDestructibles": true,
+						"collideWithOnlyLeavesTrees": true,
+						"collideWithSimulationObjects": false,
+						"collideWithStatics": false,
+						"collideWithTerrain": false,
+						"collideWithVehicles": false,
+						"destructiblesFrictionFactor": 1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"generateVelocities": false,
+						"inertiaFactors": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						},
+						"isTrigger": true,
+						"mass": 100.0,
+						"simulationObjectsFrictionFactor": 0.30000001192092896,
+						"state": "Kinematic",
+						"staticsFrictionFactor": 1.0,
+						"terrainFrictionFactor": 1.0,
+						"vehiclesFrictionFactors": 0.30000001192092896
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": -25.0,
+							"z": 0.0
+						}
+					},
+					"cgf::network::NetworkComponent": {
+						"disabledDomains": [
+							"Editor"
+						]
+					},
+					"cgf::network::NetworkEntity": {
+						"disabledDomains": [
+							"Editor"
+						]
+					},
+					"cgf::network::NetworkTransformComponent": {
+						"detailed": false,
+						"disabledDomains": [
+							"Editor"
+						],
+						"filterType": "NO_SYNC"
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "45_train_crashing_01_parking_hole_transition_destructible_collision",
+				"uuid": "1ec52bc9-23b2-4f29-8e0c-e73e4cd3e127"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 5.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 5.0,
+								"object": "6211537f-1f97-40d6-bff3-ff0f1e9a6919",
+								"parameters": [
+									{
+										"component": "BW::Particle",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.15000000596046448,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "emissionRate"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 5.0,
+								"object": "8310f65f-20e1-369b-9262-6270950f5996",
+								"parameters": [
+									{
+										"component": "BW::Particle",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Hermite",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 3.0,
+														"y": 3.0,
+														"z": 3.0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "emissionSize"
+											}
+										]
+									},
+									{
+										"component": "BW::Particle",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.15000000596046448,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 2.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "emissionRate"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 5.0,
+								"object": "9b0d3bc2-2acc-371e-85b2-a1aa20bb6f1d",
+								"parameters": [
+									{
+										"component": "BW::Particle",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Step",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "emissionRate"
+											}
+										]
+									}
+								],
+								"startTime": 0.009999999776482582
+							},
+							{
+								"endTime": 0.5,
+								"object": "1ec52bc9-23b2-4f29-8e0c-e73e4cd3e127",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -25.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.5,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -10.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.34497201442718506,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.5,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -15.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "z"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "45_train_crashing_01_parking_hole_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,271 @@
+(def layout ProgressiveRewardAward() entrance=true
+    (name = 'ProgressiveRewardAward')
+    (macro ProgressiveRewardAwardModel)
+    (macro LootCongratsTypes)
+    (scope
+        (const BUTTONS_FADE_IN_DUR:number = 0.2)
+        (const BLUR_ANIMATION_DELAY:number = 0.3)
+        (const BUTTONS_FADE_IN_DELAY_CONGRATS:number = 1.6)
+        (const BLUR_DURATION:number = 0.5)
+        (const FADE_DURATION:number = 0.3)
+        (const WIDTH_CHANGE_POINT:number = 1360)
+        (const SCREEN_HEIGHT_POINT:number = 800)
+
+        # end of content fade in animation
+        (event evOnFadeInComplete)
+        (var isFadeIn:bool = false)
+        (bind isFadeIn "true" init=false
+            (event "evOnFadeInComplete")
+        )
+
+        (event evReadyToShow)
+        (event evOnCloseAction)
+
+        (var isRewardsAnimComplete:bool = false)
+        (event evOnRewardsAnimationComplete)
+        (bind isRewardsAnimComplete false init=false
+            (event "evReadyToShow")
+        )
+        (bind isRewardsAnimComplete true init=false
+            (event "evOnRewardsAnimationComplete")
+        )
+
+        (macro BgAspectRatioHelper "evReadyToShow" 10)
+
+        (var currentStep:dict = null)
+        (bind currentStep "steps[stepIdx]" init=false)
+
+        # open or confirm button fade in complete
+        (event evOnBtnFadeInComplete)
+        (event evOnBtnFadeInStart)
+
+        # start show some reward's congratulation
+        (event evNeedChangeCongratRenderer)
+        (var congratsModel:dict = null)
+        (bind congratsModel "$event.congratsModel" init=false
+            (event "evNeedChangeCongratRenderer")
+            (enabled = "$event.congratsModel.congratsType == CONGRAT_TYPE_BLUEPRINT || $event.congratsModel.congratsType == CONGRAT_TYPE_BLUEPRINT_PART")
+        )
+
+        (var blurValue:number = 0)
+        (controller $Animation
+            (bindcall play delay="BLUR_ANIMATION_DELAY" duration="BLUR_DURATION" from={blurValue:0} to={blurValue:10}
+                (event "evReadyToShow")
+            )
+        )
+
+        # reward's congrats start showing
+        (event evOnCongratsLootBoxStartFadeIn)
+
+        (var initialCongratsData:dict = null)
+        (bind initialCongratsData "steps != null && initialCongratsType != '' ?
+                                                            {
+                                                                'congratsType': initialCongratsType,
+                                                                'progress_steps': steps
+                                                            }
+                                                        : null")
+    )
+    (style
+        (align = "center|middle")
+        (alpha = 0)
+        (width = 100%)
+        (height = 100%)
+    )
+
+    # sounds
+    (exec "playSound(R.sounds.gui_random_reward_end())"
+        (event "evOnBtnFadeInStart")
+    )
+
+    (bind mouseChildren "true" init=false
+        (event "evOnFadeInComplete")
+    )
+
+    # Close button and event for ESC
+    (dispatch evOnCloseAction on='escPressed'
+        (enabled = "isRewardsAnimComplete && !fadeOut")
+    )
+
+    (controller $Animation
+        # fadeIn effect animation
+        (bindcall play duration="FADE_DURATION" from={alpha:0} to={alpha:1} callbacks="{onComplete: evOnFadeInComplete}" init=false
+            (event "evReadyToShow")
+        )
+        # starts closing by button
+        (bindcall play duration="FADE_DURATION" to={alpha:0} callbacks="{onComplete: onCloseAction}" init=false
+            (event "evOnCloseAction")
+        )
+        # starts closing by python
+        (bindcall play duration="FADE_DURATION" to={alpha:0} callbacks="{onComplete: onCloseAction}" init=false
+            (bind enabled "hardReset")
+        )
+        # ends closing with fadeOut effect
+        (bindcall play duration="FADE_DURATION" to={alpha:0} callbacks="{onComplete: onDestroyEvent}" init=false
+            (bind enabled "fadeOut")
+        )
+    )
+
+    (macro ViewTransparentBg)
+
+    (block
+        (name = 'bgImg')
+        (style
+            (position = "absolute")
+            (hcenter = 0)
+            (vcenter = 0)
+            (bind width "bgW")
+            (bind height "bgH")
+
+            (filters
+                (blur
+                    (bind blurX "blurValue")
+                    (bind blurY "blurValue")
+                    (quality = 2)
+                )
+            )
+        )
+
+        (image
+            (style
+                (width = 100%)
+                (height = 100%)
+            )
+            (dispatch evReadyToShow on='complete')
+            (bind source "R.images.gui.maps.icons.progressiveReward.screenBg[initialCongratsType].exists()
+                    ? R.images.gui.maps.icons.progressiveReward.screenBg[initialCongratsType]()
+                    : R.images.gui.maps.icons.progressiveReward.screenBg.received()")
+        )
+    )
+
+    (block
+        (name = 'contentBlock')
+        (style
+            (align = "center")
+            (position = "absolute")
+            (width = 1024px)
+            (height = 768px)
+            (hcenter = 0)
+            (vcenter = 0)
+        )
+
+        (block
+            (name = 'rewardsBlock')
+            (style
+                (position = "absolute")
+                (align = "center")
+                (hcenter = 0)
+                (bottom = 100px)
+            )
+
+            (block
+                (name = 'rewardImgBlock')
+                (style
+                    (position = "absolute")
+                    (hcenter = 0)
+                    (vcenter = -100px)
+                )
+                (image
+                    (style
+                        (filters
+                            (blur
+                                (bind blurX "blurValue")
+                                (bind blurY "blurValue")
+                                (quality = 2)
+                            )
+                        )
+                    )
+                    (bind source "R.images.gui.maps.icons.progressiveReward.rewards.big[currentStep.rewardType].exists() ?
+                                R.images.gui.maps.icons.progressiveReward.rewards.big[currentStep.rewardType]() : ''"
+                        (bind enabled "currentStep != null")
+                    )
+                )
+                (macro EmptyHitAreaMacro)
+            )
+
+            (element RewardsRibbon
+                (name = 'rewardsRibbonElement')
+                (scope
+                    (isOpenBoxAnimPlayed = true)
+                    (canShowCongratsImg = false)
+                    (bind isFadeIn "isFadeIn")
+                    (bind rewards "rewards")
+                    (bind initialCongratsModel "initialCongratsData")
+                    (bind blurValue "blurValue")
+                    (bind isEpicRibbon "initialCongratsType == INIT_CONGRAT_TYPE_EPIC_REWARDS")
+                )
+            )
+
+            (hblock
+                (name = 'buttonsBlock')
+                (style
+                    (bind marginTop "initialCongratsType == INIT_CONGRAT_TYPE_EPIC_REWARDS ? 120px : 70px")
+                    (alpha = 0)
+                    (gap = 20px)
+                )
+
+                (controller $Animation
+                    (bindcall play delay="congratsModel != null ? BUTTONS_FADE_IN_DELAY_CONGRATS : 0.05"
+                                    duration="BUTTONS_FADE_IN_DUR"
+                                    to="{alpha:1}"
+                                    callbacks="{onComplete:evOnBtnFadeInComplete, onStart:evOnBtnFadeInStart}"
+                        (bind enabled "isRewardsAnimComplete")
+                    )
+                )
+
+                (button 'toHangarButton'
+                    (macro ButtonStylePrimary "BUTTON_SIZE_LARGE")
+                    (enabled = false)
+                    (style
+                        (minWidth = 157px)
+                    )
+                    (bind enabled "isRewardsAnimComplete" watch = false
+                        (event "evOnBtnFadeInComplete")
+                    )
+                    (bind label " R.strings.progressive_reward.awardView[initialCongratsType].toHangar.exists()
+                                ? R.strings.progressive_reward.awardView[initialCongratsType].toHangar()
+                                : initialCongratsType == INIT_CONGRAT_TYPE_AC_EMAIL_CONFIRMATION 
+                                    ? R.strings.personal_missions.awardsScreen.acceptBtn.label()
+                                    : R.strings.progressive_reward.awardView.toHangar()")
+
+                    (dispatch evOnCloseAction on='clicked')
+                    (bindcall setFocus
+                        (event "evOnBtnFadeInComplete")
+                    )
+                )
+
+                (element BlueprintProgressBar
+                    (scope
+                        (dispatch onSpecialActionBtnClick
+                            args="congratsModel"
+                            on='evBtnLeftClickEvent'
+                        )
+                        (isEnabled = false)
+                        (bind isEnabled "congratsModel != null && isRewardsAnimComplete" watch = false
+                            (event "evOnBtnFadeInComplete")
+                        )
+                        (glowEnabled = false)
+                        (bind vehicleCD "congratsModel != null ? congratsModel.congratsSourceId : 0")
+                        (bind fragments "congratsModel != null ? congratsModel.fragments : 0")
+                        (bind fragmentsTotal "congratsModel != null ? congratsModel.fragmentsTotal : 1")
+                        (bind canConvert "congratsModel != null ? congratsModel.canConvert : false")
+                    )
+                    (bind visible "congratsModel != null && congratsModel.fragmentsTotal > 1")
+                    (tabIndex = 2)
+                )
+            )
+        )
+    )
+
+    (text_button 'closeBtn'
+        (macro ButtonCloseStyle)
+        (style
+            (position = "absolute")
+            (right = 30px)
+            (top = 30px)
+        )
+        (label = "R.strings.menu.viewHeader.closeBtn.label()")
+        (dispatch evOnCloseAction on='clicked'
+            (enabled = "!fadeOut")
+        )
+    )
+)

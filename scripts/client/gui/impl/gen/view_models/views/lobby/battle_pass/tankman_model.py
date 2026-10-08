@@ -1,0 +1,87 @@
+from enum import Enum
+from frameworks.wulf import Array, ViewModel
+from gui.impl.gen.view_models.views.lobby.battle_pass.skill_model import SkillModel
+
+class TankmanStates(Enum):
+    RECEIVED = 'received'
+    PROGRESSION = 'progression'
+    IN_SHOP = 'inShop'
+    NOT_FULL = 'notFull'
+    UNAVAILABLE = 'unavailable'
+
+
+class TankmanModel(ViewModel):
+    __slots__ = ()
+
+    def __init__(self, properties=9, commands=0):
+        super(TankmanModel, self).__init__(properties=properties, commands=commands)
+
+    def getFullName(self):
+        return self._getString(0)
+
+    def setFullName(self, value):
+        self._setString(0, value)
+
+    def getGroupName(self):
+        return self._getString(1)
+
+    def setGroupName(self, value):
+        self._setString(1, value)
+
+    def getState(self):
+        return TankmanStates(self._getString(2))
+
+    def setState(self, value):
+        self._setString(2, value.value)
+
+    def getChapterID(self):
+        return self._getNumber(3)
+
+    def setChapterID(self, value):
+        self._setNumber(3, value)
+
+    def getProgressionLevel(self):
+        return self._getNumber(4)
+
+    def setProgressionLevel(self, value):
+        self._setNumber(4, value)
+
+    def getCount(self):
+        return self._getNumber(5)
+
+    def setCount(self, value):
+        self._setNumber(5, value)
+
+    def getAvailableCount(self):
+        return self._getNumber(6)
+
+    def setAvailableCount(self, value):
+        self._setNumber(6, value)
+
+    def getHasVoiceover(self):
+        return self._getBool(7)
+
+    def setHasVoiceover(self, value):
+        self._setBool(7, value)
+
+    def getSkills(self):
+        return self._getArray(8)
+
+    def setSkills(self, value):
+        self._setArray(8, value)
+
+    @staticmethod
+    def getSkillsType():
+        return SkillModel
+
+    def _initialize(self):
+        super(TankmanModel, self)._initialize()
+        self._addStringProperty('fullName', '')
+        self._addStringProperty('groupName', '')
+        self._addStringProperty('state')
+        self._addNumberProperty('chapterID', 0)
+        self._addNumberProperty('progressionLevel', 0)
+        self._addNumberProperty('count', 1)
+        self._addNumberProperty('availableCount', 0)
+        self._addBoolProperty('hasVoiceover', False)
+        self._addArrayProperty('skills', Array())

@@ -1,0 +1,415 @@
+#definition button component
+(def layout Button(name:str ='')
+    (macro AbstractComponent) #USE THIS MACRO EVER BEFORE USING HOLDERS!!!
+    (macro AbstractButton)
+    (macro ButtonAbsctractContent)
+    (name = "name")
+    (macro ButtonSounds)
+)
+
+# Component for test animation holder
+(def layout BlinkAnimationButton(name:str ='')
+    (macro AbstractComponent)
+    (macro AbstractButton)
+    (macro ButtonAbsctractContent)
+    (macro ButtonAbsctractAnimation 'Btn_Blink')
+)
+
+#definition Toggle button component
+(def layout ToggleButton(name:str ='')
+    (macro AbstractComponent)
+    (macro AbstractButton)
+    (scope
+        (isToggle = true)
+        (background = "R.atlases.components.back_secondary()")
+        (bind isSelected "!isSelected" init=false watch=false (event "evBtnLeftClickEvent"))
+        (isTooltip = true)
+    )
+    (style
+        (width = 160px)
+        (height = 24px)
+    )
+    (macro ButtonAbsctractContent)
+    (macro ButtonSounds)
+)
+
+
+#macro which contains background/texture/indicators and all states with out content
+(def macro AbstractButton()
+    (scope
+        (event rootWidthChanged)
+        (event onSelectedChange)
+        (const paddingSize:number = 32)
+        (const textfieldFixSize:number = 4)
+        (var background:str = '')
+        (var texture:str = 'bitmap:BtnTextureStandard')
+        (var _fontSize:number = 14)
+        (var isAlert:bool = false)
+        (var isWaiting:bool = false)
+        (var isSelected:bool = false
+            (dispatch onSelectedChange on='evChanged')
+        )
+        (var isTooltip:bool = false)
+        (var isToggle:bool = false)
+        (var tooltipHeader:str = '')
+        (var tooltipBody:str = '')
+        (var enableAlert:bool = false)
+        (var btnStroke:str = "R.atlases.components.stroke()")
+        (dispatch onClicked args="{}" on='evBtnLeftClickEvent')
+    )
+    (style
+        (width = 160px)
+        (height  = 30px)
+    )
+
+    (dispatch rootWidthChanged on='StyleWidthChanged')
+
+    (mouseChildren = false)
+
+    # Mask for items list
+    (element HitArea)
+    (hitArea = "$target.hitElement")
+    #
+    #holder which contains background and texture
+    (view_holder_content 'background'
+        (image
+            (name = 'background image')
+            (style
+                (macro AbsPositionFullSize)
+                (scale9grid = "BUTTON_BACKGROUND_RECT")
+            )
+            (bind source "isWaiting? backgroundWaiting : background")
+        )
+        (block
+            (name = 'texture block')
+            (style
+                (macro AbsPositionFullSize)
+                (bind backgroundImage "texture != ''? texture : 'url:'")
+                (bind backgroundSize "repeat")
+            )
+        )
+    )
+    #holder which contains indicator hover
+    (view_holder_content 'indicator'
+        #block for hover mode that can contain next elements: image, animations
+        (block
+            (name = 'indicator hover block')
+            (style
+                (macro AbsPositionFullSize)
+                (bind alpha "0" (bind enabled "!_isEnabled"))
+            )
+            (alpha = 0)
+            (bind alpha "0" (bind enabled "!_isEnabled"))
+            (image
+                (name = 'indicator hover image')
+                (style
+                    (width = 100%)
+                    (height = 100%)
+                    (scale9grid = "BUTTON_BACKGROUND_RECT")
+                    (blendMode = 'add')
+                )
+                (bind visible "!_isPressed")
+                (bind source "R.atlases.components.indicator_over()" init=false watch=false (event "evBtnOverEvent"))
+            )
+
+            (controller $Animation
+                (bindcall stop (bind enabled "!_isEnabled"))
+                (bindcall play duration=0.2 to={alpha:1} (event "evBtnOverEvent"))
+                (bindcall play duration=0.2 to={alpha:0} (event "evBtnOutEvent"))
+                (bindcall play duration=0.1 to={alpha:0} (event "evBtnDownEvent") (bind enabled "!_isPressed"))
+                (bindcall play duration=0.1 to={alpha:1} (event "evLmbUpEvent"))
+            )
+        )
+        #indicator alert with animation on with enableAlert flag
+        (view_holder 'alert')
+        (view_holder_content 'alert' "enableAlert"
+            (class AbsPositionFullSizeStyle)
+            (image
+                (style
+                    (macro AbsPositionFullSize)
+                    (scale9grid = "BUTTON_BACKGROUND_RECT")
+                    (blendMode = 'add')
+                )
+                (bind visible "isAlert")
+                (bind source "R.atlases.components.indicator_alert()")
+                (controller $Animation
+                    (bindcall stop (bind enabled "!isAlert"))
+                    (bindcall playSeq "[
+                            {duration:1, to:{alpha:0.0}},
+                            {duration:0.6, to:{alpha:1.0}}
+                        ]" repeatCount=-1
+                        (bind enabled "isAlert")
+                    )
+                )
+            )
+        )
+
+        #toggle indicator, is used only in ToggleButton, on with isToggle flag
+        (view_holder 'toggle_indicator')
+        (view_holder_content 'toggle_indicator' "isToggle"
+            (class AbsPositionFullSizeStyle)
+            (block
+                (name = 'indicator select block')
+                (style
+                    (macro AbsPositionFullSize)
+                    (padding = [-10,-10,-11,-11])
+                )
+                (image
+                    (name = 'indicatorSelect image')
+                    (style
+                        (width = 100%)
+                        (height = 100%)
+                        (scale9grid = "Rect(16,16,148,12)")
+                    )
+                    (bind visible "isToggle && isSelected")
+                    (bind source "R.atlases.components.indicator_selected()")
+                )
+            )
+            #icon select
+            (block
+                (name = 'toggle icon select')
+                (style
+                    (position = "absolute")
+                    (padding = [-20,-20,-20,-20])
+                    (hcenter = 0)
+                    (bottom = -3)
+                )
+                (image
+                    (bind visible "isToggle")
+                    (name = 'iconSelected')
+                    (bind source "isSelected ? R.atlases.components.icon_selected_on() : R.atlases.components.icon_selected_off()")
+                )
+            )
+        )
+        #stroke used all buttons
+        (image
+            (name = 'stroke')
+            (style
+                (macro AbsPositionFullSize)
+                (scale9grid = "Rect(5,5,150,14)")
+            )
+            (bind source "btnStroke")
+        )
+    )
+    #tooltip which is enable if the text is not placed in the button
+    (controller $ToolTip
+        (delay = "0.4")
+        (bindcall args header='' body="tooltipBody" init=true)
+        (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+        (bind enabled "isTooltip")
+    )
+
+    (bind mouseEnabled "!isWaiting && (_isEnabled || allowMouseEventsOnDisabled)")
+    (bind buttonMode "!isWaiting && _isEnabled")
+)
+
+#macro which contains all button content
+(def macro ButtonAbsctractContent()
+    (scope
+        (var labelWaiting:str ='Load')
+        (var iconPadding:number = 2)
+        (var textPadding:number = 16)
+        (var iconWaiting:str = "R.atlases.components.icon_loading()")
+        (var backgroundWaiting:gfx = "R.atlases.components.back_ghost()")
+        (var textClass:str = 'ZuricStyleSecondary')
+        (var showLeftIcon:bool = false)
+        (var showRightIcon:bool = false)
+        (var iconBeforeText:bool = false)
+        (var enableWaiting:bool = false)
+        (var onlyIcon:bool = false)
+        (var textMaxWidth:number = 120)
+        (var iconSize:number = "(showLeftIcon || showRightIcon) ? 24 : 0")
+        (bind showLeftIcon "(iconBeforeText && icon != '') || isWaiting")
+        (bind showRightIcon "(!iconBeforeText && icon != '') && !isWaiting")
+        (bind tooltipBody "label")
+        (bind tooltipBody "rawLabel")
+        (bind textMaxWidth "(onlyIcon ? 0 : ($event.value - paddingSize - iconSize - textfieldFixSize))" init=false watch=false (event "rootWidthChanged"))
+        (var textElideStatus:bool = false)
+        (bind isTooltip "textElideStatus")
+
+    )
+    #holder which contanis left and waiting icon
+    (view_holder_content 'contentTop'
+        (hblock
+            (style
+                (macro AbsPositionFullSize)
+                (align = "middle|center")
+            )
+            (view_holder 'left_icon')
+            (view_holder_content 'left_icon' "showLeftIcon"
+                #block for waiting mode that can contain next elements: Icon
+                (block
+                    (style
+                        (macro IconStyle)
+                    )
+                    #left icon image
+                    (image
+                        (name = 'iconBeforeText')
+                        (bind visible "!isWaiting")
+                        (bind alpha "_isEnabled? 1:0.6")
+                        (bind source "iconBeforeText ? icon: null")
+                    )
+                    (block
+                        (style
+                            (macro BlockImageStyle)
+                            (position = "absolute")
+                        )
+                        #waiting mode, used all buttons, on with enableWaiting flag, inner: icon, animation
+                        (view_holder 'waiting_mode')
+                        (view_holder_content 'waiting_mode' "enableWaiting"
+                            (image
+                                (name = 'Waiting')
+                                (style
+                                    (macro ImageStyle)
+                                )
+                                (bind visible "isWaiting")
+                                (bind source "iconWaiting")
+                            )
+                                #animation for waiting mode
+                            (controller $Animation
+                                (bindcall play duration=1 to={rotation:360} repeatCount=-1 init=true (bind enabled "isWaiting"))
+                            )
+                        )
+                    )
+                )
+            )
+            #holder which contains textfield and waiting text
+            (view_holder 'main_text')
+            (view_holder_content 'main_text' "rawLabel != '' || label != ''"
+                #block which contains textfield and waiting text
+                (block
+                    (name = 'textField block')
+                    (style
+                        (marginTop = -2)
+                        (bind maxWidth "max(textMaxWidth, 10)")
+                    )
+                    (bind visible "textMaxWidth > 10")
+                    (tf
+                        (name = 'textfield')
+                        (style
+                            (bind fontSize "_fontSize")
+                            (elideMode = true)
+                            (bind alpha "_isEnabled ? 1:0.6")
+                        )
+                        (bind visible "!isWaiting")
+                        (bind class "textClass")
+                        (bind text "rawLabel == '' ? label : rawLabel")
+                        (sync textElideStatus '$event.value' init=false on='textElideStatus')
+                    )
+                )
+            )
+            #waiting text, used all buttons, on with enableWaiting flag, inner: textfield with elide
+            (view_holder 'waiting_text')
+            (view_holder_content 'waiting_text' "enableWaiting"
+                #block which contains textfield and waiting text
+                (block
+                    (name = 'waiting text')
+                    (style
+                        (marginTop = -2)
+                        (bind maxWidth "max(textMaxWidth, 10)")
+                    )
+                    (bind visible "textMaxWidth > 10")
+                    (tf
+                        (style
+                            (bind fontSize "_fontSize")
+                            (elideMode = true)
+                            (bind alpha "isWaiting ? 0.6 : 1")
+                        )
+                        (bind class "textClass")
+                        (bind text "labelWaiting")
+                        (sync textElideStatus '$event.value' init=false on='textElideStatus')
+                    )
+                )
+            )
+            #holder which contains right icon
+            (view_holder 'right_icon')
+            (view_holder_content 'right_icon' "showRightIcon"
+                (block
+                    (style
+                        (macro IconStyle)
+                    )
+                    #right icon
+                    (image
+                        (name = 'iconAfterText')
+                        (bind visible "!isWaiting")
+                        (bind alpha "_isEnabled? 1:0.6")
+                        (bind source "iconBeforeText ? null : icon")
+                    )
+                )
+            )
+        )
+    )
+)
+
+#macro which contain holder with mc for animation button
+(def macro ButtonAbsctractAnimation(nameAnimation:str = '')
+    (scope
+        (var _animationName:str = '')
+        (bind _animationName "nameAnimation")
+    )
+    (view_holder_content 'animation' "_animationName != ''"
+        (mc "_animationName"
+            (name = 'bg')
+            (class AbsPositionFullSizeStyle)
+        )
+    )
+)
+
+(def macro IconStyle()
+    (width = 24px)
+    (height = 24px)
+    (bind marginLeft "!onlyIcon ? iconPadding : 0")
+    (align = "middle|center")
+    (marginTop = -2)
+)
+
+(def macro BlockImageStyle()
+    (marginTop = 12px)
+    (marginLeft = 12px)
+)
+
+(def macro ImageStyle()
+    (marginLeft = -50%)
+    (marginTop = -50%)
+)
+
+
+#below are the old implementations of buttons that are likely to need to be redone.
+#↓↓↓
+(def element CloseBtnSlim(name:str = '') layout=true
+    (macro AnimationStateBasic)
+    (name = "name")
+    (buttonMode = true)
+    (mouseChildren = false)
+
+    (mc 'FWCloseButtonSlimMC'
+        (name = 'closeBtnCrossAnim')
+        (bindcall gotoAndPlay "stateFrame")
+    )
+)
+
+(def element ButtonOrangeBig(name:str = '') layout=true
+    (macro AbstractComponent "BTN_ORANGE_BIG")
+    (macro AbstractButton)
+    (macro AnimationBackground)
+    (name = "name")
+
+    (style
+        (minHeight = 33px)
+        (minWidth = 157px)
+    )
+)
+
+(def macro AnimationBackground(duration:number = 0.2)
+    (scope
+        (bind backgroundAlpha "states.up.alpha ? states.up.alpha : 1")
+        (controller $Animation
+            (bindcall play duration="duration" to="{backgroundAlpha : (states.up.alpha ? states.up.alpha : 1)}" (event "evBtnOutEvent"))
+            (bindcall play duration="duration" to="{backgroundAlpha : (states.down.alpha ? states.down.alpha : 1)}" (event "evBtnDownEvent"))
+            (bindcall play duration="duration" to="{backgroundAlpha : (states.down.alpha ? states.down.alpha : 1)}" (event "evBtnOverEvent") (bind enabled "_isPressed"))
+            (bindcall play duration="duration" to="{backgroundAlpha : (states.hover.alpha ? states.hover.alpha : 1)}" (event "evBtnUpEvent"))
+            (bindcall play duration="duration" to="$event.value ? {backgroundAlpha : (currStateClass.alpha ? currStateClass.alpha : 1) } : {backgroundAlpha : (states.disabled.alpha ? states.disabled.alpha : 1)}" init=false (event "evBtnEnabledEvent"))
+        )
+    )
+)

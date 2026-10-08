@@ -1,0 +1,140 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Hull_hit",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/F119_Char_Murat_PBC_3Dst/F119_Char_Murat_PBC_3Dst_hull_hit.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInKillCamMode": "0",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_F119_Attachment_Hull"
+					},
+					"BW::ProjectileHitsReceivedAnimatorTriggerComponent": {
+						"ignorePeriod": "5",
+						"triggerName": "Hit",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull_hit",
+				"uuid": "63f2b001-3e22-4732-be7b-f21d4c316aef"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Brake",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/F119_Char_Murat_PBC_3Dst/F119_Char_Murat_PBC_3Dst_stoplight.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInKillCamMode": "0",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_F119_Attachment_Hull"
+					},
+					"BW::VSEComponent": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						],
+						"path": "vscript/plans/VFX/F119_Char_Murat_PBC_3Dst/F119_Char_Murat_PBC_3Dst_brake.xml"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "BrakeState",
+				"uuid": "100b9b97-5f76-4df5-a5ce-57cd512b5005"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/french/F119_Char_Murat/_skins/F119_Char_Murat_PBC_3Dst/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "F119_Projet_Murat_PBC_3Dst",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,22 @@
+# This file was generated using wgpygen
+#   template: configs/templates/view_model.unbound.jinja2
+#   source: configs/definitions/views/lobby/progressive_reward/progressive_reward_view_model.yaml
+# Please, don't edit this file manually.
+(def macro ProgressiveRewardStepModel()
+    (scope
+        (var stepState:str = 'not_received')
+        (var rewardType:str = 'small')
+        (var hasPreviousStep:bool = true)
+
+        (const PR_STATE_NOT_RECEIVED:str = 'not_received')
+        (const PR_STATE_OPENED:str = 'opened')
+        (const PR_STATE_PROB_MIN:str = 'prob_min')
+        (const PR_STATE_PROB_MED:str = 'prob_med')
+        (const PR_STATE_PROB_MAX:str = 'prob_max')
+        (const PR_STATE_RECEIVED:str = 'received')
+        (const PR_TYPE_SMALL:str = 'small')
+        (const PR_TYPE_BIG:str = 'big')
+        (const PR_TYPE_SMALL_HIDDEN:str = 'small_hidden')
+        (const PR_TYPE_BIG_HIDDEN:str = 'big_hidden')
+    )
+)

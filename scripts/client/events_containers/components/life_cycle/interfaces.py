@@ -1,0 +1,58 @@
+from __future__ import absolute_import
+import typing
+from events_containers.common.containers import IClientEventsContainer, IClientEventsContainerListener
+
+class ILifeCycleComponent(object):
+
+    @property
+    def lifeCycleEvents(self):
+        raise NotImplementedError
+
+    def getComponentParams(self):
+        return None
+
+
+class IComponentLifeCycleEventsLogic(object):
+    onComponentAvatarReady = None
+    onComponentParamsCollected = None
+    onComponentAppearanceReady = None
+    onComponentAppearanceReset = None
+    onComponentDestroyed = None
+
+    def processComponentAvatarReady(self):
+        raise NotImplementedError
+
+    def processAppearanceReady(self):
+        raise NotImplementedError
+
+    def processAppearanceReset(self):
+        raise NotImplementedError
+
+    def processParamsCollected(self):
+        raise NotImplementedError
+
+
+class IComponentLifeCycleEvents(IClientEventsContainer, IComponentLifeCycleEventsLogic):
+    pass
+
+
+class IComponentLifeCycleListenerLogic(object):
+
+    def onComponentAvatarReady(self, component):
+        pass
+
+    def onComponentParamsCollected(self, params):
+        pass
+
+    def onComponentAppearanceReady(self, component):
+        pass
+
+    def onComponentAppearanceReset(self, component):
+        pass
+
+    def onComponentDestroyed(self, component):
+        pass
+
+
+class IComponentLifeCycleListener(IClientEventsContainerListener, IComponentLifeCycleListenerLogic):
+    pass

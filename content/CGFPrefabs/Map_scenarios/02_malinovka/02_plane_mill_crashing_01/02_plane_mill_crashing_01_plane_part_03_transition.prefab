@@ -1,0 +1,6840 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/random_events/02_malinovka_electric_sparks.eff",
+								"emissionRate": 0
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -8.3141,
+									"y": -0.40402,
+									"z": -1.5436
+								},
+								"rotation": {
+									"x": 4.2689e-07,
+									"y": 180,
+									"z": 1.0178e-13
+								}
+							}
+						},
+						"name": "fx_falling_plane_right_wing_electric_sparks",
+						"uuid": "802890a6-0799-31cf-ae4c-cdeca1ec18bf"
+					},
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/random_events/02_malinovka_ground_plowing.eff",
+								"emissionRate": 1
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": 3.2144,
+									"y": 0.88098,
+									"z": -0.20233
+								},
+								"rotation": {
+									"x": -1.9884,
+									"y": 0.2053,
+									"z": 1.0026
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "fx_falling_plane_right_wing_plowing",
+						"uuid": "cf786b2f-f4d5-3cc0-89a6-04d934aa2161"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::BoxColliderDesc",
+										"__cvalue__": {
+											"transform": "(( 22.2284,5.24521e-06,9.05991e-06,       0), (-1.19209e-07, 1.51823,-3.57628e-07,       0), (1.07288e-06,7.15256e-07, 6.14392,       0), ( 2.70731,-3.05176e-05,-0.000152588,       1))"
+										}
+									}
+								]
+							},
+							"BW::DamageOnCollisionComponent": {
+								"cameraName": "02_plane_mill_crashing_01",
+								"destroyingTime": -1,
+								"disabledDomains": [
+									"Client"
+								],
+								"isDestroying": false,
+								"killResolveType": "Push",
+								"killSpeed": 25,
+								"onBodyCollision": false,
+								"onSimulationObjectCollision": false,
+								"onVehicleCollision": true
+							},
+							"BW::RigidBodyComponent": {
+								"bodiesFrictionFactor": 0.3,
+								"centerOfMass": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"collideWithBodies": true,
+								"collideWithDestructibles": true,
+								"collideWithOnlyLeavesTrees": true,
+								"collideWithSimulationObjects": true,
+								"collideWithStatics": true,
+								"collideWithTerrain": true,
+								"collideWithVehicles": true,
+								"destructiblesFrictionFactor": 1,
+								"disabledDomains": [
+									"Client"
+								],
+								"inertiaFactors": {
+									"x": 1,
+									"y": 1,
+									"z": 1
+								},
+								"isTrigger": true,
+								"mass": 100,
+								"simulationObjectsFrictionFactor": 0.3,
+								"state": "Kinematic",
+								"staticsFrictionFactor": 1,
+								"terrainFrictionFactor": 1,
+								"vehiclesFrictionFactors": 0.3
+							},
+							"BW::VisibilityObstacleComponent": {
+								"collidersLink": "22ef5fad-b871-4215-9eb8-9afde654054d",
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"cgf::TransformComponent": {},
+							"script::ShootingObstacle": {
+								"colliders": "22ef5fad-b871-4215-9eb8-9afde654054d",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "00000000-0000-0000-0000-000000000000"
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"name": "falling_plane_right_wing_kill_collision",
+						"uuid": "22ef5fad-b871-4215-9eb8-9afde654054d"
+					}
+				],
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/MilitaryEnvironment/hd_mle_EU_009_JunkersJuEF101/normal/lod0/hd_mle_EU_009_JunkersJuEF101_crash_02.model"
+					},
+					"BW::ModelPropertyChanger": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -0.50458,
+							"y": 0.20175,
+							"z": 0.5755
+						},
+						"rotation": {
+							"x": -34.688,
+							"y": -141.75,
+							"z": 18.059
+						}
+					}
+				},
+				"name": "falling_plane_right_wing",
+				"uuid": "0b700129-d91a-3f55-8cdc-4ce53054c3ed"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -3.8217,
+									"y": 0.2857,
+									"z": 8.8856
+								},
+								"rotation": {
+									"x": -16.316,
+									"y": 80.11,
+									"z": 4.766
+								},
+								"scale": {
+									"x": 0.8,
+									"y": 0.8,
+									"z": 0.8
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_07",
+						"uuid": "beb72913-f20a-3935-8947-1b2a767c2385"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -8.7731,
+									"y": 0.0376,
+									"z": 19.799
+								},
+								"rotation": {
+									"x": -18.065,
+									"y": 80.19,
+									"z": 5.7148
+								},
+								"scale": {
+									"x": 0.8,
+									"y": 0.6,
+									"z": 0.8
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_04",
+						"uuid": "51b51280-ea32-3a5c-a7eb-a7b444ed9a46"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -3.9486,
+									"y": 0.29779,
+									"z": 15.765
+								},
+								"rotation": {
+									"x": -20.278,
+									"y": -106.46,
+									"z": -3.6225
+								},
+								"scale": {
+									"x": 0.7,
+									"y": 0.5,
+									"z": 0.7
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_02",
+						"uuid": "a8b8dbf6-3bbf-3f3d-b915-3855229e4296"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"rotation": {
+									"x": -2.9998,
+									"y": -165.2,
+									"z": -5.658
+								},
+								"scale": {
+									"x": 1.1,
+									"y": 0.7,
+									"z": 0.9
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_01",
+						"uuid": "05453d3d-fa99-3578-8350-b3818d9023c3"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -5.3037,
+									"y": -0.50434,
+									"z": 16.67
+								},
+								"rotation": {
+									"x": -8.1693,
+									"y": 96.319,
+									"z": 9.1953
+								},
+								"scale": {
+									"x": 1,
+									"y": 0.6,
+									"z": 1
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_08",
+						"uuid": "da4086d6-f75f-384e-8a5f-c4fcca253731"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -8.6281,
+									"y": -0.099221,
+									"z": 21.696
+								},
+								"rotation": {
+									"x": -18.123,
+									"y": 89.972,
+									"z": 6.9481
+								},
+								"scale": {
+									"x": 0.8,
+									"y": 0.6,
+									"z": 0.8
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_03",
+						"uuid": "d7816ec8-9f91-3bca-a287-1020b5558df5"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": 0.55109,
+									"y": 0.52529,
+									"z": 2.736
+								},
+								"rotation": {
+									"x": -7.4283,
+									"y": 89.486,
+									"z": 3.9772
+								},
+								"scale": {
+									"x": 0.8,
+									"y": 0.8,
+									"z": 0.8
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_05",
+						"uuid": "d480acb9-ff10-3b3f-a1a7-0767d84e3588"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -1.6884,
+									"y": -0.041616,
+									"z": 8.5458
+								},
+								"rotation": {
+									"x": -10.849,
+									"y": 105.48,
+									"z": 10.229
+								},
+								"scale": {
+									"x": 1,
+									"y": 0.8,
+									"z": 1
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_06",
+						"uuid": "8e038eb8-f9d9-3476-a7b5-97f6e80fb510"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -3.3762,
+									"y": 0.92216,
+									"z": 4.2366
+								},
+								"rotation": {
+									"x": -20.299,
+									"y": -123.36,
+									"z": -1.9586
+								},
+								"scale": {
+									"x": 0.8,
+									"y": 0.8,
+									"z": 0.8
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_09",
+						"uuid": "285b63d7-709b-37b3-b610-cdfe31185eef"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -5.5764,
+									"y": -0.14946,
+									"z": 12.126
+								},
+								"rotation": {
+									"x": 13.098,
+									"y": -88.116,
+									"z": -1.2702
+								},
+								"scale": {
+									"x": 0.85,
+									"y": 0.6,
+									"z": 0.85
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_10",
+						"uuid": "e3601dfd-7abd-3704-896c-e551ef8636c9"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env_UNI_164_SoilHeaps/normal/lod0/hd_env_UNI_164_SoilHeaps_01_05.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": -3.2338,
+									"y": -0.22133,
+									"z": 0.49695
+								},
+								"rotation": {
+									"x": 19.739,
+									"y": -74.128,
+									"z": 2.7734
+								},
+								"scale": {
+									"x": 1,
+									"y": 0.7,
+									"z": 1
+								}
+							}
+						},
+						"name": "falling_plane_right_wing_pile_11",
+						"uuid": "d1cf3be0-7355-3f03-a6ef-8ad9dfba9391"
+					}
+				],
+				"components": {
+					"BW::SequenceComponent": {
+						"activeLayer": 1,
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"alwaysEnabled": false,
+								"duration": 3.83,
+								"loop": false,
+								"pauseOnEnd": false,
+								"tracks": [
+									{
+										"endTime": 3.83,
+										"object": "05453d3d-fa99-3578-8350-b3818d9023c3",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -56.455,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -56.455,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -45.337,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -45.337,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.033333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -1.8818
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -27.29,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -27.29,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -5.3037
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -22.96
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 24.859,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 24.859,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 13.977,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 13.977,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.033333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.82863
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.68075,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.68075,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.1381
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 2.0684
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -1.7622,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -1.7622,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.033333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -5.9555,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -5.9555,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -0.35245
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -2.9504
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -3.3e-05,
+																"y": 3.1e-05,
+																"z": 3.2718
+															},
+															"right": {
+																"x": -3.3e-05,
+																"y": 3.1e-05,
+																"z": 3.2718
+															}
+														},
+														"time": 0,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -2.9998,
+																"y": -165.2,
+																"z": -5.658
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.5,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -2.9999,
+																"y": -165.2,
+																"z": -0.75031
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.066667,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.066667,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.7
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.010842,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.010842,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.2,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.2,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.1
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008799,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008799,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.066667,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.066667,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.9
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.01213,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.01213,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "a8b8dbf6-3bbf-3f3d-b915-3855229e4296",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -24.677,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -24.677,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -3.9486
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -21.931,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -21.931,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -5.5938
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.084927,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.084927,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -19.491
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 8.4535,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 8.4535,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.29779
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.15892,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.15892,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.86135
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.47906,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.47906,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.2608
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -8.974,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -8.974,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 15.765
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.56483,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.56483,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 15.166
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001278,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001278,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 14.81
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -4.3875,
+																"y": 0.31007,
+																"z": -0.12357
+															},
+															"right": {
+																"x": -4.3875,
+																"y": 0.31007,
+																"z": -0.12357
+															}
+														},
+														"time": 0.066667,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -20.278,
+																"y": -106.46,
+																"z": -3.6225
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.5,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -26.567,
+																"y": -106.02,
+																"z": -3.7996
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.034884,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.034884,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.5
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.00191,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.00191,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.10465,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.10465,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.7
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.003309,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.003309,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.034884,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.034884,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.7
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.000687,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.000687,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "d7816ec8-9f91-3bca-a287-1020b5558df5",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -10.744,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -10.744,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -8.6281
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -20.869,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -20.869,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -9.3444
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -21.605
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 9.0239,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 9.0239,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -0.099221
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.1937,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.1937,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.50237
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.008224,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.008224,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.57474
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 1.398,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.398,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.066667,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 21.696
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 1.0237,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.0237,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 21.789
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 22.529
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 7.8585,
+																"y": 0.95951,
+																"z": -0.21294
+															},
+															"right": {
+																"x": 7.8585,
+																"y": 0.95951,
+																"z": -0.21294
+															}
+														},
+														"time": 0.13333,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -18.123,
+																"y": 89.972,
+																"z": 6.9482
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.5,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -7.3831,
+																"y": 91.284,
+																"z": 6.6571
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.036585,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.036585,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.6
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.005357,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.005357,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.29268,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.29268,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.003043,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.003043,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.75
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.036585,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.036585,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.000624,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.000624,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.75
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "51b51280-ea32-3a5c-a7eb-a7b444ed9a46",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -23.942,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -23.942,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -8.7731
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -21.541
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.0376
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -2.6e-05,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -2.6e-05,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.86834
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 19.799
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 19.799
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 5.5599,
+																"y": 0.56409,
+																"z": -0.13913
+															},
+															"right": {
+																"x": 5.5599,
+																"y": 0.56409,
+																"z": -0.13913
+															}
+														},
+														"time": 0.13333,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -18.065,
+																"y": 80.19,
+																"z": 5.7148
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.5,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -10.466,
+																"y": 80.961,
+																"z": 5.5247
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.6
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.009271,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.009271,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.29268,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.29268,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.006145,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.006145,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.003989,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.003989,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "d480acb9-ff10-3b3f-a1a7-0767d84e3588",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -84.693,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -84.693,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.55109
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -34.574,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -34.574,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -2.272
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -22.783
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 28.035,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 28.035,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.52529
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.73848,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.73848,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.4598
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 2.469
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -29.633,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -29.633,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 2.736
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -2.3554,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -2.3554,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.7483
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.53565
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 4.9427,
+																"y": 0.34253,
+																"z": -0.022334
+															},
+															"right": {
+																"x": 4.9427,
+																"y": 0.34253,
+																"z": -0.022334
+															}
+														},
+														"time": 0.13333,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -7.4283,
+																"y": 89.486,
+																"z": 3.9773
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.6333,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -0.014267,
+																"y": 90,
+																"z": 3.9437
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.13333,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.13333,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.014288,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.014288,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.13333,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.13333,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.003926,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.003926,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.13333,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.13333,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.020203,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.020203,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "8e038eb8-f9d9-3476-a7b5-97f6e80fb510",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -33.326,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -33.326,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -1.6884
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -33.314,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -33.314,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -2.7993
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -22.229
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 27.841,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 27.841,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -0.041616
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.67004,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.67004,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.88642
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.8021
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -19.416,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -19.416,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 8.5458
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 7.8987
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 7.8987
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 7.0829,
+																"y": 1.2699,
+																"z": -0.12044
+															},
+															"right": {
+																"x": 7.0829,
+																"y": 1.2699,
+																"z": -0.12044
+															}
+														},
+														"time": 0.1,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -10.849,
+																"y": 105.48,
+																"z": 10.229
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.6333,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 0.011517,
+																"y": 107.43,
+																"z": 10.044
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.13333,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.13333,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.005401,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.005401,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "beb72913-f20a-3935-8947-1b2a767c2385",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -42.853,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -42.853,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -3.8217
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -30.061,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -30.061,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -5.2502
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -20.74
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 24.706,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 24.706,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.2857
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.60429,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.60429,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.1092
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.678
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 8.8856
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 8.8856
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 8.8856
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 7.8192,
+																"y": 0.64927,
+																"z": -0.11852
+															},
+															"right": {
+																"x": 7.8192,
+																"y": 0.64927,
+																"z": -0.11852
+															}
+														},
+														"time": 0.1,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -16.316,
+																"y": 80.11,
+																"z": 4.766
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.6,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -4.5874,
+																"y": 81.084,
+																"z": 4.5883
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.10227,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.10227,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.030792,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.030792,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.13636,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.13636,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001694,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001694,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.10227,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.10227,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.017375,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.017375,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.6,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "da4086d6-f75f-384e-8a5f-c4fcca253731",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -46.705,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -46.705,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -5.3037
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -24.791,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -24.791,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -6.8606
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -21.091
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 29.04,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 29.04,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -0.50434
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.034756,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.034756,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.46365
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.63864
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -10.088,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -10.088,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 16.67
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 16.334
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 16.334
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 12.062,
+																"y": 1.9459,
+																"z": 0.002451
+															},
+															"right": {
+																"x": 12.062,
+																"y": 1.9459,
+																"z": 0.002451
+															}
+														},
+														"time": 0.13333,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -8.1693,
+																"y": 96.319,
+																"z": 9.1954
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.5,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 8.3157,
+																"y": 98.979,
+																"z": 9.1987
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.6
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.29268,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.29268,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.007565,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.007565,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "285b63d7-709b-37b3-b610-cdfe31185eef",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -26.607,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -26.607,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -3.3762
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -19.431
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 1.6851,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.6851,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.92216
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.875
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 4.2366
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 4.2366
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -3.4017,
+																"y": -0.12497,
+																"z": 2.8795
+															},
+															"right": {
+																"x": -3.4017,
+																"y": -0.12497,
+																"z": 2.8795
+															}
+														},
+														"time": 0.13333,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -20.299,
+																"y": -123.36,
+																"z": -1.9586
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.5,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -24.948,
+																"y": -123.53,
+																"z": 1.9766
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.013215,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.013215,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.036184,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.036184,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.10976,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.8
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.022201,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.022201,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.65
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "e3601dfd-7abd-3704-896c-e551ef8636c9",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -64.466,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -64.466,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -5.5764
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -26.104,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -26.104,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -7.7252
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -24.316
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 34.736,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 34.736,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -0.14946
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.23834,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.23834,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.0084
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.007454,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.3341
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -4.6729,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -4.6729,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 12.126
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 11.971
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 11.971
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.99915,
+																"y": 8.7701,
+																"z": 1.785
+															},
+															"right": {
+																"x": -0.99915,
+																"y": 8.7701,
+																"z": 1.785
+															}
+														},
+														"time": 0.1,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 13.098,
+																"y": -88.117,
+																"z": -1.2702
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.5,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 11.699,
+																"y": -75.838,
+																"z": 1.2288
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.073171,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.073171,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.6
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.00649,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.00649,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.75
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.10976,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.10976,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.85
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.013918,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.013918,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.75
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -0.073171,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.073171,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.85
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.037087,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.037087,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.75
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									},
+									{
+										"endTime": 3.83,
+										"object": "d1cf3be0-7355-3f03-a6ef-8ad9dfba9391",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -34.842,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -34.842,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -3.2338
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -41.062,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -41.062,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -4.3952
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.008509,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -25.681
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 42.615,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 42.615,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": -0.22133
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.63518,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.63518,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1.1992
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.13142,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.13142,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 2.1363
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -12.939,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -12.939,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.1,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.49695
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.065643
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": -0.001318,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.065643
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": -13.39,
+																"y": -0.637,
+																"z": -0.11609
+															},
+															"right": {
+																"x": -13.39,
+																"y": -0.637,
+																"z": -0.11609
+															}
+														},
+														"time": 0.1,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 19.739,
+																"y": -74.128,
+																"z": 2.7734
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															},
+															"right": {
+																"x": 0.034743,
+																"y": 0.014539,
+																"z": 0.002602
+															}
+														},
+														"time": 1.5,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 0.99282,
+																"y": -75.02,
+																"z": 2.6108
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0.7
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0.21951,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.21951,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0.004149,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0.004149,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "x"
+													}
+												]
+											},
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.13333,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 1.5,
+														"type": "CubicBezier",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "scale"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "z"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									}
+								]
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -13.351,
+							"y": -20.575,
+							"z": -17.768
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "falling_plane_right_wing_piles",
+				"uuid": "940a86ca-eff3-3cbf-8913-497fcba5e1a5"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 3.833,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 3.833,
+								"object": "0b700129-d91a-3f55-8cdc-4ce53054c3ed",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": -28.927,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -39.922,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -34.051,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -34.051,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.36667,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -14.638
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -30.295,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -30.295,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.5,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -18.395
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -27.257,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -27.257,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.6,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -21.636
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -20.523,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -20.523,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.83333,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -26.794
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.25271,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -1.1e-05,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 2.0667,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -36.515
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -0.25271,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 3.8333,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -36.515
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "x"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": -45.387,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -45.387,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -30.541,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -30.541,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.36667,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -15.759
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -7.1958,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -7.1958,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.5,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -17.923
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.87753,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0.87753,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.6,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -17.739
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.27482,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 0.27482,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.83333,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -17.758
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.020345,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 5.8e-05,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 2.0667,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -17.107
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -0.020345,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 3.8333,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -17.107
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": -24.062,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -27.805,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -18.427,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -18.427,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.36667,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -10.195
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -6.4177,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -6.4177,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.5,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -11.402
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -2.2838,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -2.2838,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.6,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -11.78
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.31547,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -0.31547,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 0.83333,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -11.963
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.002587,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": 5.6e-05,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 2.0667,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -11.67
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0,
+														"y": 0,
+														"z": 0
+													},
+													"right": {
+														"x": -0.002587,
+														"y": 0,
+														"z": 0
+													}
+												},
+												"time": 3.8333,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -11.67
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "z"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": -37.877,
+														"y": -13.179,
+														"z": 8.1438
+													},
+													"right": {
+														"x": 154.55,
+														"y": 36.223,
+														"z": -99.354
+													}
+												},
+												"time": 0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -34.688,
+														"y": -141.76,
+														"z": 18.059
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 154.55,
+														"y": 36.223,
+														"z": -99.354
+													},
+													"right": {
+														"x": 201.18,
+														"y": 50.712,
+														"z": -44.145
+													}
+												},
+												"time": 0.2,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -3.7775,
+														"y": -134.51,
+														"z": -1.8121
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 201.18,
+														"y": 50.712,
+														"z": -44.145
+													},
+													"right": {
+														"x": -3.4863,
+														"y": 107.43,
+														"z": 12.182
+													}
+												},
+												"time": 0.36667,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 29.752,
+														"y": -126.06,
+														"z": -9.1696
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -182.79,
+														"y": 101.54,
+														"z": 33.648
+													},
+													"right": {
+														"x": -182.79,
+														"y": 101.54,
+														"z": 33.648
+													}
+												},
+												"time": 0.43333,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 19.437,
+														"y": -118.9,
+														"z": -8.3574
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -136.65,
+														"y": 74.765,
+														"z": 28.629
+													},
+													"right": {
+														"x": -136.65,
+														"y": 74.765,
+														"z": 28.629
+													}
+												},
+												"time": 0.5,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 5.3796,
+														"y": -112.52,
+														"z": -4.6832
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -46.109,
+														"y": 41.23,
+														"z": -0.53157
+													},
+													"right": {
+														"x": -46.109,
+														"y": 41.23,
+														"z": -0.53157
+													}
+												},
+												"time": 0.6,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -0.86487,
+														"y": -107.13,
+														"z": -4.4688
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -26.482,
+														"y": 32.184,
+														"z": -1.1446
+													},
+													"right": {
+														"x": -26.482,
+														"y": 32.184,
+														"z": -1.1446
+													}
+												},
+												"time": 0.7,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -3.8423,
+														"y": -104.27,
+														"z": -4.7895
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -19.213,
+														"y": 24.982,
+														"z": -0.23973
+													},
+													"right": {
+														"x": -19.213,
+														"y": 24.982,
+														"z": -0.23973
+													}
+												},
+												"time": 0.8,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -6.1613,
+														"y": -100.69,
+														"z": -4.6977
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -14.09,
+														"y": 13.759,
+														"z": -1.9197
+													},
+													"right": {
+														"x": -14.09,
+														"y": 13.759,
+														"z": -1.9197
+													}
+												},
+												"time": 0.93333,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -8.1928,
+														"y": -98.804,
+														"z": -4.8841
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -12.449,
+														"y": 13.504,
+														"z": -0.31364
+													},
+													"right": {
+														"x": -12.449,
+														"y": 13.504,
+														"z": -0.31364
+													}
+												},
+												"time": 1.1,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -10.35,
+														"y": -96.582,
+														"z": -5.291
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -9.4381,
+														"y": 11.491,
+														"z": -0.94121
+													},
+													"right": {
+														"x": -9.4381,
+														"y": 11.491,
+														"z": -0.94121
+													}
+												},
+												"time": 1.3,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -12.741,
+														"y": -93.847,
+														"z": -4.9282
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -5.8628,
+														"y": 8.1255,
+														"z": -2.8656
+													},
+													"right": {
+														"x": -5.8628,
+														"y": 8.1255,
+														"z": -2.8656
+													}
+												},
+												"time": 1.5,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -14.125,
+														"y": -91.985,
+														"z": -5.6675
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -2.5847,
+														"y": 4.6199,
+														"z": 0.026523
+													},
+													"right": {
+														"x": -2.5847,
+														"y": 4.6199,
+														"z": 0.026523
+													}
+												},
+												"time": 1.6333,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -14.766,
+														"y": -91.06,
+														"z": -5.9388
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.031004,
+														"y": 0.059819,
+														"z": 2.1129
+													},
+													"right": {
+														"x": 0.031004,
+														"y": 0.059819,
+														"z": 2.1129
+													}
+												},
+												"time": 1.9,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -15.431,
+														"y": -90.83,
+														"z": -5.73
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.21368,
+														"y": -0.002984,
+														"z": -0.56578
+													},
+													"right": {
+														"x": -0.21368,
+														"y": -0.002984,
+														"z": -0.56578
+													}
+												},
+												"time": 2.3667,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -14.556,
+														"y": -90.83,
+														"z": -5.199
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.16677,
+														"y": -0.14513,
+														"z": -0.45318
+													},
+													"right": {
+														"x": -0.16677,
+														"y": -0.14513,
+														"z": -0.45318
+													}
+												},
+												"time": 2.9,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -15.047,
+														"y": -90.833,
+														"z": -5.6908
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.21752,
+														"y": 0.002009,
+														"z": -0.036161
+													},
+													"right": {
+														"x": 0.21752,
+														"y": 0.002009,
+														"z": -0.036161
+													}
+												},
+												"time": 3.3333,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -14.847,
+														"y": -90.838,
+														"z": -5.6712
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -0.026779,
+														"y": 0.015656,
+														"z": -0.11771
+													},
+													"right": {
+														"x": -0.026779,
+														"y": 0.015656,
+														"z": -0.11771
+													}
+												},
+												"time": 3.8333,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -14.86,
+														"y": -90.83,
+														"z": -5.73
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 1.9,
+								"object": "cf786b2f-f4d5-3cc0-89a6-04d934aa2161",
+								"parameters": [
+									{
+										"component": "BW::Particle",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Hermite",
+												"value": {
+													"__ctype__": "BW::Vector2",
+													"__cvalue__": {
+														"x": 1,
+														"y": 1
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 1.5,
+												"type": "Hermite",
+												"value": {
+													"__ctype__": "BW::Vector2",
+													"__cvalue__": {
+														"x": 0.2,
+														"y": 0.2
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "startSpeed"
+											}
+										]
+									},
+									{
+										"component": "BW::Particle",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.333
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 1.3,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.5
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 1.5,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "emissionRate"
+											}
+										]
+									},
+									{
+										"component": "BW::Particle",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Hermite",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.25,
+														"y": 0,
+														"z": 0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "emissionSize"
+											}
+										]
+									}
+								],
+								"startTime": 0.4
+							},
+							{
+								"endTime": 3.833,
+								"object": "802890a6-0799-31cf-ae4c-cdeca1ec18bf",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": -140.54,
+														"y": 1286.3,
+														"z": -299.88
+													},
+													"right": {
+														"x": -140.54,
+														"y": 1286.3,
+														"z": -299.88
+													}
+												},
+												"time": 2.1667,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0,
+														"y": 180,
+														"z": 0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": -140.54,
+														"y": 1286.3,
+														"z": -299.88
+													},
+													"right": {
+														"x": -140.54,
+														"y": 1286.3,
+														"z": -299.88
+													}
+												},
+												"time": 2.2333,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -9.369,
+														"y": 265.75,
+														"z": -19.992
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							},
+							{
+								"endTime": 3.83,
+								"object": "940a86ca-eff3-3cbf-8913-497fcba5e1a5",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 3.49,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 3.49
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									}
+								],
+								"startTime": 0.34
+							},
+							{
+								"endTime": 2.3,
+								"object": "22ef5fad-b871-4215-9eb8-9afde654054d",
+								"parameters": [],
+								"startTime": 0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "02_plane_mill_crashing_01_plane_part_03_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

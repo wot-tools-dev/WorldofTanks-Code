@@ -1,0 +1,1 @@
+const n=(n,s,a="")=>{const r=a.length>0?`_${a}`:a,o=n.$dyn(`c_${s}${r}`),e=String(s).slice(-1),g=n.$dyn(`default_${e}${r}`);return o||g},s=s=>{const a=R.images.gui.maps.icons.battlePass.backgrounds;return s?{backgroundImage:`url(${n(a.progression,s)})`}:{backgroundImage:`url(${a.$dyn("common")})`}};export{s as a,n as g};

@@ -1,0 +1,59 @@
+from __future__ import absolute_import
+import typing
+from gui.Scaleform.daapi.view.meta.WidgetsPanelMeta import WidgetsPanelMeta
+from gui.battle_control.controllers.vehicle_passenger import hasVehiclePassengerCtrl, VehiclePassengerInfoWatcher
+from gui.Scaleform.genConsts.BATTLE_WIDGETS_CONSTS import BATTLE_WIDGETS_CONSTS
+from vehicles.mechanics.mechanic_constants import VehicleMechanic
+
+class MechanicWidgetsPanel(WidgetsPanelMeta, VehiclePassengerInfoWatcher):
+    _VEHICLE_MECHANIC_UI_COMPONENTS_MAP = {VehicleMechanic.ROCKET_ACCELERATION: (BATTLE_WIDGETS_CONSTS.ROCKET_ACCELERATOR,),
+     VehicleMechanic.STAGED_JET_BOOSTERS: (BATTLE_WIDGETS_CONSTS.STAGED_JET_BOOSTERS,),
+     VehicleMechanic.RECHARGEABLE_NITRO: (BATTLE_WIDGETS_CONSTS.RECHARGEABLE_NITRO,),
+     VehicleMechanic.CONCENTRATION_MODE: (BATTLE_WIDGETS_CONSTS.CONCENTRATION,),
+     VehicleMechanic.CHARGEABLE_BURST: (BATTLE_WIDGETS_CONSTS.CHARGEABLE_BURST,),
+     VehicleMechanic.POWER_MODE: (BATTLE_WIDGETS_CONSTS.POWER,),
+     VehicleMechanic.SUPPORT_WEAPON: (BATTLE_WIDGETS_CONSTS.SUPPORT_WEAPON,),
+     VehicleMechanic.PILLBOX_SIEGE_MODE: (BATTLE_WIDGETS_CONSTS.PILLBOX_SIEGE,),
+     VehicleMechanic.CHARGE_SHOT: (BATTLE_WIDGETS_CONSTS.CHARGE_SHOT,),
+     VehicleMechanic.TARGET_DESIGNATOR: (BATTLE_WIDGETS_CONSTS.TARGET_DESIGNATOR_WIDGET,),
+     VehicleMechanic.STANCE_DANCE: (BATTLE_WIDGETS_CONSTS.STANCE_DANCE_FIGHT, BATTLE_WIDGETS_CONSTS.STANCE_DANCE_TURBO),
+     VehicleMechanic.STATIONARY_RELOAD: (BATTLE_WIDGETS_CONSTS.STATIONARY_RELOAD,),
+     VehicleMechanic.OVERHEAT_GUN: (BATTLE_WIDGETS_CONSTS.TEMPERATURE_GUN_OVERHEAT,),
+     VehicleMechanic.HEATING_ZONES_GUN: (BATTLE_WIDGETS_CONSTS.TEMPERATURE_GUN_HEAT_ZONES,),
+     VehicleMechanic.LOW_CHARGE_SHOT: (BATTLE_WIDGETS_CONSTS.LOW_CHARGE_SHOT,),
+     VehicleMechanic.PROPELLANT_GUN: (BATTLE_WIDGETS_CONSTS.PROPELLANT_GUN,),
+     VehicleMechanic.WHEELED_DASH: (BATTLE_WIDGETS_CONSTS.WHEELED_DASH,),
+     VehicleMechanic.AUXILIARY_ROCKET_LAUNCHER: (BATTLE_WIDGETS_CONSTS.AUXILIARY_ROCKET_LAUNCHER,),
+     VehicleMechanic.SHELL_PARAMS_SWITCHER: (BATTLE_WIDGETS_CONSTS.SHELL_PARAMS_SWITCHER,),
+     VehicleMechanic.SHELL_CALIBRATION: (BATTLE_WIDGETS_CONSTS.SHELL_CALIBRATION,),
+     VehicleMechanic.AUTORELOADER_SURGE: (BATTLE_WIDGETS_CONSTS.AUTORELOADER_SURGE,),
+     VehicleMechanic.BUSTLE_FEED: (BATTLE_WIDGETS_CONSTS.BUSTLE_FEED,),
+     VehicleMechanic.SIGHT_POINTER: (BATTLE_WIDGETS_CONSTS.SIGHT_POINTER_WIDGET,)}
+
+    def _populate(self):
+        super(MechanicWidgetsPanel, self)._populate()
+        self.startVehiclePassengerLateListening(self.__onVehicleControlling)
+
+    def _dispose(self):
+        self.stopVehiclePassengerListening(self.__onVehicleControlling)
+        super(MechanicWidgetsPanel, self)._dispose()
+
+    def _setIsReplay(self, isReplay):
+        self.as_isReplayS(isReplay)
+
+    def _setIsVisible(self, isVisible):
+        self.as_setVisibleS(isVisible)
+
+    def _setCrosshairScaledPosition(self, position):
+        self.as_updateLayoutS(*position)
+
+    def _setCrosshairViewID(self, viewID):
+        self.as_updateCrosshairTypeS(viewID)
+
+    def _addMechanicUIComponent(self, mechanicComponents):
+        for componentName in mechanicComponents:
+            self.as_addWidgetS(componentName)
+
+    @hasVehiclePassengerCtrl()
+    def __onVehicleControlling(self, _, passengerCtrl=None):
+        self.as_isPlayerS(passengerCtrl.isCurrentPlayerVehicle)

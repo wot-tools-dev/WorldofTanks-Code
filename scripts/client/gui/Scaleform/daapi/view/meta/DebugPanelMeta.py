@@ -1,0 +1,18 @@
+from gui.Scaleform.framework.entities.BaseDAAPIComponent import BaseDAAPIComponent
+
+class DebugPanelMeta(BaseDAAPIComponent):
+
+    def as_updatePingInfoS(self, pingValue):
+        return self.flashObject.as_updatePingInfo(pingValue) if self._isDAAPIInited() else None
+
+    def as_updateFPSInfoS(self, fpsValue):
+        return self.flashObject.as_updateFPSInfo(fpsValue) if self._isDAAPIInited() else None
+
+    def as_updateLagInfoS(self, isLagging):
+        return self.flashObject.as_updateLagInfo(isLagging) if self._isDAAPIInited() else None
+
+    def as_updatePingFPSInfoS(self, pingValue, fpsValue):
+        return self.flashObject.as_updatePingFPSInfo(pingValue, fpsValue) if self._isDAAPIInited() else None
+
+    def as_updatePingFPSLagInfoS(self, pingValue, fpsValue, isLagging):
+        return self.flashObject.as_updatePingFPSLagInfo(pingValue, fpsValue, isLagging) if self._isDAAPIInited() else None

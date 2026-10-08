@@ -1,0 +1,41 @@
+from __future__ import absolute_import
+import typing
+from commendations_schema import commendationsConfigSchema
+from params_schemas.veh_playlists_schema import vehPlaylistsConfigSchema
+import armor_flashlight_common.server_config
+from config_schemas.umg import umgMissionsConfigSchema, umgEventsConfigSchema
+from config_schemas.umg_config import umgConfigSchema
+from config_schemas.oit_availability import oitAvailabilitySchema
+from config_schemas.prefab_effects_availability import prefabEffectsAvailabilitySchema
+from player_satisfaction_schema import playerSatisfactionSchema
+from schema_manager import getSchemaManager
+import armor_inspector_common.schemas
+import hints_common.prebattle.newbie.schemas
+import hints_common.prebattle.schemas
+import hints_common.battle.schemas.newbie
+import renewable_subscription_common.schema
+from weekly_quests_common.weekly_quests_schema import weeklyQuestsSchema
+if typing.TYPE_CHECKING:
+    from schema_manager import SchemaManager
+
+def init():
+    schemaManager = getSchemaManager()
+    _registerSchemas(schemaManager)
+
+
+def _registerSchemas(schemaManager):
+    schemaManager.registerSchema(hints_common.prebattle.newbie.schemas.configSchema)
+    schemaManager.registerSchema(hints_common.prebattle.schemas.configSchema)
+    schemaManager.registerSchema(hints_common.battle.schemas.newbie.configSchema)
+    schemaManager.registerSchema(playerSatisfactionSchema)
+    schemaManager.registerSchema(commendationsConfigSchema)
+    schemaManager.registerSchema(vehPlaylistsConfigSchema)
+    schemaManager.registerSchema(armor_flashlight_common.server_config.serverConfigSchema)
+    schemaManager.registerSchema(umgMissionsConfigSchema)
+    schemaManager.registerSchema(umgEventsConfigSchema)
+    schemaManager.registerSchema(umgConfigSchema)
+    schemaManager.registerSchema(weeklyQuestsSchema)
+    schemaManager.registerSchema(armor_inspector_common.schemas.armorInspectorConfigSchema)
+    schemaManager.registerSchema(renewable_subscription_common.schema.renewableSubscriptionsConfigSchema)
+    schemaManager.registerSchema(oitAvailabilitySchema)
+    schemaManager.registerSchema(prefabEffectsAvailabilitySchema)

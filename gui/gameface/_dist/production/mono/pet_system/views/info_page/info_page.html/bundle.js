@@ -1,0 +1,1 @@
+import{j as s}from"../../../chunks/vendor.js";import{k as n,n as o,l as t}from"../../../chunks/lib.js";/* empty css                    */const e="App_b6dc3403";function r(){return s.jsx("div",{className:e,children:"APP!"})}n(s.jsx(r,{})).then(()=>o(document.getElementById("root"))).then(()=>t());

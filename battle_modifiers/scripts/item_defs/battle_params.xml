@@ -1,0 +1,1037 @@
+<battle_params.xml>
+  <fakeModifier>
+    <scope>	hangar	</scope>
+    <domain>	fake	</domain>
+  </fakeModifier>
+  <vseModifier>
+    <scope>	cell client	</scope>
+    <domain>	vse	</domain>
+  </vseModifier>
+  <vehicleHealth>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	int	</dataType>
+    <domain>	vehicle	</domain>
+    <client>
+      <domain>	vitality	</domain>
+      <physicalType>	hitPoints	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </vehicleHealth>
+  <gravityFactor>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <client>
+      <domain>	battleParams	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </gravityFactor>
+  <dispFactorChassisMovement>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	chassis	</domain>
+    <client>
+      <domain>	accuracy	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </dispFactorChassisMovement>
+  <dispFactorChassisRotation>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	chassis	</domain>
+    <client>
+      <domain>	accuracy	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </dispFactorChassisRotation>
+  <turretRotationSpeed>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	turret	</domain>
+    <client>
+      <domain>	mobility	</domain>
+      <physicalType>	radians_per_second	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </turretRotationSpeed>
+  <gunRotationSpeed>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	mobility	</domain>
+      <physicalType>	radians_per_second	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </gunRotationSpeed>
+  <reloadTime>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	damageDealing	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.1	</min>
+    </restrictions>
+  </reloadTime>
+  <twinGunReloadTime>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	damageDealing	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.1	</min>
+    </restrictions>
+  </twinGunReloadTime>
+  <clipInterval>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	damageDealing	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.1	</min>
+    </restrictions>
+  </clipInterval>
+  <burstInterval>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	damageDealing	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.1	</min>
+    </restrictions>
+  </burstInterval>
+  <autoreloadTime>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	damageDealing	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.1	</min>
+    </restrictions>
+  </autoreloadTime>
+  <aimingTime>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	accuracy	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.1	</min>
+    </restrictions>
+  </aimingTime>
+  <shotDispersionRadius>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	accuracy	</domain>
+      <physicalType>	meters	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </shotDispersionRadius>
+  <dispFactorTurretRotation>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	accuracy	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </dispFactorTurretRotation>
+  <dispFactorAfterShot>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	accuracy	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </dispFactorAfterShot>
+  <dispFactorWhileGunDamaged>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	accuracy	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </dispFactorWhileGunDamaged>
+  <shellGravity>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shot	</domain>
+    <client>
+      <domain>	battleParams	</domain>
+      <physicalType>	meter_per_second_squared	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1.0	</min>
+    </restrictions>
+  </shellGravity>
+  <shellSpeed>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shot	</domain>
+    <client>
+      <domain>	battleParams	</domain>
+      <physicalType>	metersPerSecond	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1.0	</min>
+    </restrictions>
+  </shellSpeed>
+  <piercingPowerFirst>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shot	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </piercingPowerFirst>
+  <piercingPowerLast>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shot	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </piercingPowerLast>
+  <damageRandomization>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shell	</domain>
+    <client>
+      <domain>	randomization	</domain>
+      <physicalType>	deviation	</physicalType>
+      <useTypes>	val	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </damageRandomization>
+  <piercingPowerRandomization>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shell	</domain>
+    <client>
+      <domain>	randomization	</domain>
+      <physicalType>	deviation	</physicalType>
+      <useTypes>	val	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </piercingPowerRandomization>
+  <normalizationAngle>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <client>
+      <domain>	armorPiercing	</domain>
+      <physicalType>	radians	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+      <max>	90.0	</max>
+    </restrictions>
+  </normalizationAngle>
+  <ricochetAngle>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <client>
+      <domain>	armorPiercing	</domain>
+      <physicalType>	radians	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+      <max>	90.0	</max>
+    </restrictions>
+  </ricochetAngle>
+  <enginePower>
+    <scope>	cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <client>
+      <domain>	mobility	</domain>
+      <physicalType>	horsepower	</physicalType>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </enginePower>
+  <engineFireFactor>
+    <scope>	cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	engine	</domain>
+    <client>
+      <domain>	battleParams	</domain>
+      <physicalType>	probability	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+      <max>	1.0	</max>
+    </restrictions>
+  </engineFireFactor>
+  <fwMaxSpeed>
+    <scope>	cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <client>
+      <domain>	mobility	</domain>
+      <physicalType>	metersPerSecond	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1.0	</min>
+    </restrictions>
+  </fwMaxSpeed>
+  <bkMaxSpeed>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <client>
+      <domain>	mobility	</domain>
+      <physicalType>	metersPerSecond	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1.0	</min>
+    </restrictions>
+  </bkMaxSpeed>
+  <rotationSpeedOnStill>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <client>
+      <domain>	mobility	</domain>
+      <physicalType>	radians_per_second	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </rotationSpeedOnStill>
+  <rotationSpeedOnMove>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </rotationSpeedOnMove>
+  <armorDamageFirst>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shell	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </armorDamageFirst>
+  <armorDamageLast>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shell	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </armorDamageLast>
+  <deviceDamageFirst>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shell	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </deviceDamageFirst>
+  <deviceDamageLast>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shell	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </deviceDamageLast>
+  <invisibilityOnStill>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	vehType	</domain>
+    <client>
+      <domain>	concealment	</domain>
+      <useTypes>	mul add	</useTypes>
+      <physicalType>	probability	</physicalType>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+      <max>	1.0	</max>
+    </restrictions>
+  </invisibilityOnStill>
+  <invisibilityOnMove>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	vehType	</domain>
+    <client>
+      <domain>	concealment	</domain>
+      <useTypes>	mul add	</useTypes>
+      <physicalType>	probability	</physicalType>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+      <max>	1.0	</max>
+    </restrictions>
+  </invisibilityOnMove>
+  <visionRadius>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	turret	</domain>
+    <client>
+      <domain>	visibility	</domain>
+      <physicalType>	meters	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </visionRadius>
+  <radioDistance>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	radio	</domain>
+    <client>
+      <domain>	visibility	</domain>
+      <physicalType>	meters	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </radioDistance>
+  <battleLength>
+    <scope>	base client hangar	</scope>
+    <dataType>	int	</dataType>
+    <client>
+      <domain>	battleParams	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	180	</min>
+    </restrictions>
+  </battleLength>
+  <vehicleRammingDamage>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	battleParams	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </vehicleRammingDamage>
+  <vehiclePressureDamage>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	battleParams	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </vehiclePressureDamage>
+  <turretRammingDamage>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	battleParams	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </turretRammingDamage>
+  <turretPressureDamage>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	battleParams	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </turretPressureDamage>
+  <envHullDamage>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	battleParams	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </envHullDamage>
+  <envChassisDamage>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	battleParams	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </envChassisDamage>
+  <envTankmanDamageChance>
+    <scope>	cell base client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	vehType	</domain>
+    <client>
+      <domain>	battleParams	</domain>
+      <physicalType>	probability	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+      <max>	1.0	</max>
+    </restrictions>
+  </envTankmanDamageChance>
+  <envModuleDamageChance>
+    <scope>	cell base client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	vehType	</domain>
+    <client>
+      <domain>	battleParams	</domain>
+      <physicalType>	probability	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+      <max>	1.0	</max>
+    </restrictions>
+  </envModuleDamageChance>
+  <repairSpeed>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	sustaining	</domain>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </repairSpeed>
+  <visionMinRadius>
+    <scope>	cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	visibility	</domain>
+      <physicalType>	meters	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </visionMinRadius>
+  <visionTime>
+    <scope>	cell hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	visibility	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </visionTime>
+  <equipmentCooldown>
+    <scope>	cell client hangar	</scope>
+    <dataType>	int	</dataType>
+    <client>
+      <domain>	sustaining	</domain>
+      <physicalType>	seconds	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </equipmentCooldown>
+  <fwdFriction>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </fwdFriction>
+  <sideFriction>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </sideFriction>
+  <dirtReleaseRate>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </dirtReleaseRate>
+  <maxDirt>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <domain>	physics	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </maxDirt>
+  <shotEffects>
+    <scope>	base cell client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	shell	</domain>
+  </shotEffects>
+  <gunEffects>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	gun	</domain>
+  </gunEffects>
+  <shotPrefabEffects>
+    <scope>	base cell client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	shell	</domain>
+  </shotPrefabEffects>
+  <gunPrefabEffects>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	gun	</domain>
+  </gunPrefabEffects>
+  <destructionEffect>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	vehicle	</domain>
+  </destructionEffect>
+  <fullDestructionEffect>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	vehicle	</domain>
+  </fullDestructionEffect>
+  <chassisDecals>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	chassis	</domain>
+  </chassisDecals>
+  <engineSounds>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	engine	</domain>
+  </engineSounds>
+  <exhaustEffects>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	hull	</domain>
+  </exhaustEffects>
+  <armorSpallsArmorDamageFirst>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </armorSpallsArmorDamageFirst>
+  <armorSpallsArmorDamageLast>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </armorSpallsArmorDamageLast>
+  <armorSpallsDeviceDamageFirst>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </armorSpallsDeviceDamageFirst>
+  <armorSpallsDeviceDamageLast>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </armorSpallsDeviceDamageLast>
+  <armorSpallsImpactRadius>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </armorSpallsImpactRadius>
+  <armorSpallsConeAngle>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+      <max>	180.0	</max>
+    </restrictions>
+  </armorSpallsConeAngle>
+  <armorSpallsDamageAbsorption>
+    <scope>	base cell client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	shellType	</domain>
+  </armorSpallsDamageAbsorption>
+  <changeShellType>
+    <scope>	client cell	</scope>
+    <dataType>	string	</dataType>
+    <domain>	shellType	</domain>
+  </changeShellType>
+  <caliberToExplosionRadius>
+    <scope>	client cell	</scope>
+    <dataType>	float	</dataType>
+    <domain>	shellType	</domain>
+    <restrictions>
+      <min>	0.01	</min>
+    </restrictions>
+  </caliberToExplosionRadius>
+  <modeCreditsFactor>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <domain>	vehicle	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </modeCreditsFactor>
+  <invisibilityFactorAtShot>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <restrictions>
+      <min>	0.001	</min>
+    </restrictions>
+  </invisibilityFactorAtShot>
+  <vehicleAoIRadius>
+    <scope>	base cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <domain>	constants	</domain>
+    <client>
+      <domain>	visibility	</domain>
+      <physicalType>	meters	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </vehicleAoIRadius>
+  <soundNotifications>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+  </soundNotifications>
+  <divingDestructionDelay>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </divingDestructionDelay>
+  <stunFactorEnginePower>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <restrictions>
+      <min>	0.001	</min>
+    </restrictions>
+  </stunFactorEnginePower>
+  <stunFactorVehicleRotationSpeed>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <restrictions>
+      <min>	0.001	</min>
+    </restrictions>
+  </stunFactorVehicleRotationSpeed>
+  <stunFactorTurretTraverse>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <restrictions>
+      <min>	0.001	</min>
+    </restrictions>
+  </stunFactorTurretTraverse>
+  <stunFactorMaxSpeed>
+    <scope>	cell	</scope>
+    <dataType>	float	</dataType>
+    <restrictions>
+      <min>	0.001	</min>
+    </restrictions>
+  </stunFactorMaxSpeed>
+  <piercingPowerInterpolationDistFirst>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	constants	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </piercingPowerInterpolationDistFirst>
+  <piercingPowerInterpolationDistLast>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	constants	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </piercingPowerInterpolationDistLast>
+  <damageInterpolationDistFirst>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	constants	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </damageInterpolationDistFirst>
+  <damageInterpolationDistLast>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	constants	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </damageInterpolationDistLast>
+  <bonusCapsOverrides>
+    <scope>	base hangar	</scope>
+    <dataType>	dict	</dataType>
+  </bonusCapsOverrides>
+  <crystalRewards>
+    <scope>	base postBattle hangar	</scope>
+    <dataType>	dict	</dataType>
+    <domain>	vehicle	</domain>
+  </crystalRewards>
+  <goldReserveGains>
+    <scope>	base postBattle	</scope>
+    <dataType>	dict	</dataType>
+  </goldReserveGains>
+  <postMortemOverrides>
+    <scope>	base	</scope>
+    <dataType>	dict	</dataType>
+  </postMortemOverrides>
+  <damageRandomizationType>
+    <scope>	base cell client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	shell	</domain>
+  </damageRandomizationType>
+  <piercingPowerRandomizationType>
+    <scope>	base cell client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	shell	</domain>
+  </piercingPowerRandomizationType>
+  <shellStun>
+    <scope>	cell client	</scope>
+    <dataType>	hashable_dict	</dataType>
+    <domain>	shell	</domain>
+    <restrictions>
+      <useTypes>	val	</useTypes>
+    </restrictions>
+  </shellStun>
+  <forcedReloadTime>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <restrictions>
+      <min>	0.1	</min>
+    </restrictions>
+  </forcedReloadTime>
+  <autoShootDispersionPerShot>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </autoShootDispersionPerShot>
+  <autoShootMaxShotDispersionFactor>
+    <scope>	base cell client	</scope>
+    <dataType>	float	</dataType>
+    <domain>	gun	</domain>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </autoShootMaxShotDispersionFactor>
+  <gunMainPrefab>
+    <scope>	client cell	</scope>
+    <dataType>	string	</dataType>
+    <domain>	gun	</domain>
+  </gunMainPrefab>
+  <rootPrefabsMechanicEffects>
+    <scope>	client	</scope>
+    <dataType>	string	</dataType>
+    <domain>	vehType	</domain>
+  </rootPrefabsMechanicEffects>
+  <visionMaxRadius>
+    <scope>	cell client hangar	</scope>
+    <dataType>	float	</dataType>
+    <client>
+      <domain>	visibility	</domain>
+      <physicalType>	meters	</physicalType>
+      <useTypes>	val mul add	</useTypes>
+    </client>
+    <restrictions>
+      <min>	0.0	</min>
+    </restrictions>
+  </visionMaxRadius>
+  <ammoBayHealth>
+    <scope>	cell hangar	</scope>
+    <dataType>	int	</dataType>
+    <domain>	hull	</domain>
+    <client>
+      <domain>	vitality	</domain>
+      <physicalType>	hitPoints	</physicalType>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </ammoBayHealth>
+  <engineHealth>
+    <scope>	cell hangar	</scope>
+    <dataType>	int	</dataType>
+    <domain>	engine	</domain>
+    <client>
+      <domain>	vitality	</domain>
+      <physicalType>	hitPoints	</physicalType>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </engineHealth>
+  <fuelTankHealth>
+    <scope>	cell hangar	</scope>
+    <dataType>	int	</dataType>
+    <domain>	hull	</domain>
+    <client>
+      <domain>	vitality	</domain>
+      <physicalType>	hitPoints	</physicalType>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </fuelTankHealth>
+  <turretRotatorHealth>
+    <scope>	cell hangar	</scope>
+    <dataType>	int	</dataType>
+    <domain>	turret	</domain>
+    <client>
+      <domain>	vitality	</domain>
+      <physicalType>	hitPoints	</physicalType>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </turretRotatorHealth>
+  <surveyingDeviceHealth>
+    <scope>	cell hangar	</scope>
+    <dataType>	int	</dataType>
+    <domain>	turret	</domain>
+    <client>
+      <domain>	vitality	</domain>
+      <physicalType>	hitPoints	</physicalType>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </surveyingDeviceHealth>
+  <chassisHealth>
+    <scope>	cell hangar	</scope>
+    <dataType>	int	</dataType>
+    <domain>	chassis	</domain>
+    <client>
+      <domain>	vitality	</domain>
+      <physicalType>	hitPoints	</physicalType>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </chassisHealth>
+  <gunHealth>
+    <scope>	cell hangar	</scope>
+    <dataType>	int	</dataType>
+    <domain>	gun	</domain>
+    <client>
+      <domain>	vitality	</domain>
+      <physicalType>	hitPoints	</physicalType>
+      <useTypes>	mul	</useTypes>
+    </client>
+    <restrictions>
+      <min>	1	</min>
+    </restrictions>
+  </gunHealth>
+</battle_params.xml>

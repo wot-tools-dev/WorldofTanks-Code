@@ -1,0 +1,34 @@
+#---------------------------------------------#
+#               SLOT_BTN_FRAME                #
+#---------------------------------------------#
+
+(def constant SLOT_BTN_FRAME {
+        up : {image: {source: 'bitmap:button_slot_normal', scale9: "Rect(16,16, 250, 5)"}, padding: -12px},
+        hover : {image: {source: 'bitmap:button_slot_normal', scale9: "Rect(16, 16, 250, 5)"}, sound: "R.sounds.highlight()", padding: -12px},
+        down : {image: {source: 'bitmap:button_slot_normal', scale9: "Rect(16,16, 250, 5)"}, sound: "R.sounds.yes1()", padding: -12px},
+        disabled : {image: {source: 'bitmap:button_slot_disabled', scale9: "Rect(16, 16, 250, 5)"}, padding: -12px},
+        upSelected : {image: {source: 'bitmap:button_slot_active', scale9: "Rect(16, 16, 250, 5)"}, padding: -12px},
+        hoverSelected : {image: {source: 'bitmap:button_slot_active', scale9: "Rect(16, 16, 250, 5)"}, sound: "R.sounds.highlight()", padding: -12px},
+        downSelected : {image: {source: 'bitmap:button_slot_active', scale9: "Rect(16, 16, 250, 5)"}, sound: "R.sounds.yes1()", padding: -12px}
+    }
+)
+
+#---------------------------------------------#
+#               SLOT_BTN_FADE                 #
+#---------------------------------------------#
+
+(def css SlotBtnNormalFadeStyle()
+    (backgroundImage = 'bitmap:button_slot_grey_shine_hover')
+    (backgroundSize = "fill")
+)
+
+(def css SlotBtnSelectedFadeStyle()
+    (backgroundImage = 'bitmap:button_slot_red_shine_hover')
+    (backgroundSize = "fill")
+)
+
+(def constant SLOT_BTN_FADE {
+        normal : {style: 'SlotBtnNormalFadeStyle'},
+        selected : {style: 'SlotBtnSelectedFadeStyle'}
+    }
+)

@@ -1,0 +1,123 @@
+from __future__ import absolute_import
+import logging
+import typing
+from functools import partial
+from typing import List
+import BigWorld
+import CGF
+from constants import ROCKET_ACCELERATION_STATE
+from Event import Event
+from events_containers.components.life_cycle import createComponentLifeCycleEvents, ILifeCycleComponent
+from gui.shared.utils.decorators import ReprInjector
+from wotdecorators import noexcept
+from vehicles.mechanics.common import IMechanicComponent
+from vehicles.mechanics.mechanic_constants import VehicleMechanic
+from vehicle_systems.model_assembler import loadAppearancePrefab
+if typing.TYPE_CHECKING:
+    from events_containers.components.life_cycle import IComponentLifeCycleEvents
+_logger = logging.getLogger(__name__)
+_DEFAULT_OUTFIT = 'default'
+
+@ReprInjector.withParent()
+class RocketAccelerationController(BigWorld.DynamicScriptComponent, ILifeCycleComponent, IMechanicComponent):
+
+    def __init__(self):
+        super(RocketAccelerationController, self).__init__()
+        self.__prefabGameObject = None
+        self.__lifeCycleEvents = createComponentLifeCycleEvents(self)
+        self.__onStateChanged = Event()
+        self.__onTryActivate = Event()
+        self.__initAppearance()
+        return
+
+    @property
+    def vehicleMechanic(self):
+        return VehicleMechanic.ROCKET_ACCELERATION
+
+    @property
+    def lifeCycleEvents(self):
+        return self.__lifeCycleEvents
+
+    def tryActivate(self):
+        if self.stateStatus.status == ROCKET_ACCELERATION_STATE.READY:
+            self.cell.tryActivate()
+        self.__onTryActivate()
+
+    @noexcept
+    def set_stateStatus(self, _=None):
+        self.__onStateChanged(self.stateStatus, False)
+
+    def onDestroy(self):
+        self.cleanup()
+
+    def onLeaveWorld(self):
+        self.cleanup()
+
+    def subscribe(self, callback=None, tryActivateCallback=None):
+        try:
+            if callback is not None:
+                self.__onStateChanged += callback
+            if tryActivateCallback is not None:
+                self.__onTryActivate += tryActivateCallback
+            if callback is not None and self.stateStatus is not None:
+                callback(self.stateStatus, True)
+        except Exception as ex:
+            _logger.exception(ex)
+            self.cleanup()
+
+        return
+
+    def unsubscribe(self, callback=None, tryActivateCallback=None):
+        if self.entity.isDestroyed or not self.entity.inWorld:
+            return
+        else:
+            if callback is not None:
+                self.__onStateChanged -= callback
+            if tryActivateCallback is not None:
+                self.__onTryActivate -= tryActivateCallback
+            return
+
+    def sendStateToAllSubscribers(self):
+        self.__onStateChanged(self.stateStatus, False)
+
+    def cleanup(self):
+        if self.entity.isDestroyed or not self.entity.inWorld:
+            return
+        else:
+            self.__lifeCycleEvents.destroy()
+            self.__onStateChanged.clear()
+            self.__onTryActivate.clear()
+            self.entity.events.onAppearanceReady -= self.__tryUpdatePrefab
+            if self.__prefabGameObject is not None:
+                self.__prefabGameObject.destroy()
+                self.__prefabGameObject = None
+            return
+
+    def __initAppearance(self):
+        if not self.__tryUpdatePrefab():
+            self.entity.events.onAppearanceReady += self.__tryUpdatePrefab
+
+    def __onLoaded(self, path, root, _, queue):
+        if not root:
+            _logger.error('Failed to load prefab: %s', path)
+            return
+        uuid = queue.gameObjectUuid(root)
+        self.__prefabGameObject = queue.gameObject(uuid)
+
+    def __tryUpdatePrefab(self):
+        if self.__prefabGameObject is not None:
+            return False
+        else:
+            typeDescriptor = self.entity.typeDescriptor
+            if typeDescriptor is None:
+                return False
+            if typeDescriptor.type.compactDescr != self.vehTypeCD:
+                return False
+            appearance = self.entity.appearance
+            if appearance is None or not appearance.isConstructed or appearance.isDestroyed:
+                return False
+            modelsSet = appearance.outfit.modelsSet
+            outfit = modelsSet if modelsSet else _DEFAULT_OUTFIT
+            prefabPath = typeDescriptor.type.prefabs[outfit]['mechanicEffects'][0]
+            loadAppearancePrefab(prefabPath, appearance, partial(self.__onLoaded, prefabPath), False)
+            return True

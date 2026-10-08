@@ -1,0 +1,114 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "Gun"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"script::ShotPassionNodeComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectTemplate": "particles/Environment/Battle_Royal/Shot_Passion/Stage_0{stage}_Gun_{length}.seq",
+						"maxAnimationStage": "5"
+					}
+				},
+				"name": "Gun",
+				"uuid": "9cee435f-8339-4b5c-bcbb-d9a83145c464"
+			},
+			{
+				"components": {
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "turret"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"script::ShotPassionNodeComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectTemplate": "particles/Environment/Battle_Royal/Shot_Passion/Stage_0{stage}_Turret.seq",
+						"maxAnimationStage": "5"
+					}
+				},
+				"name": "Turret",
+				"uuid": "f52756a2-3583-4d1c-9a94-8179ab768700"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": ""
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::ShotPassionComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"gunNode": "9cee435f-8339-4b5c-bcbb-d9a83145c464",
+				"turretNode": "f52756a2-3583-4d1c-9a94-8179ab768700"
+			}
+		},
+		"name": "shotPassion",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

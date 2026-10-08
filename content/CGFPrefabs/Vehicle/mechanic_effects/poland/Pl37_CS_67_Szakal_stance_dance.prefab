@@ -1,0 +1,143 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "start",
+								"lodScale": 1.0,
+								"path": "particles/Tank/mechanics/ion_engine_start.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "idle",
+								"lodScale": 1.0,
+								"path": "particles/Tank/mechanics/ion_engine_idle.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "end",
+								"lodScale": 1.0,
+								"path": "particles/Tank/mechanics/ion_engine_stop.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInKillCamMode": "1",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "0",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSmEntityViewMode": "1",
+						"visibleInSmStrategicMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "0"
+					},
+					"BW::VSEComponent": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						],
+						"path": "vscript/plans/vehicles/mechanic_effects/stance_dance_vfx.xml"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 179.99986267089844,
+							"z": 0.0
+						}
+					},
+					"script::StanceDanceEffects": {
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						],
+						"sound3DTurboActivatedNPC": "gp_abl_stance_turbo_active_on_npc",
+						"sound3DTurboActivatedPC": "gp_abl_stance_turbo_active_on_pc",
+						"sound3DTurboDeactivatedNPC": "gp_abl_stance_turbo_active_off_npc",
+						"sound3DTurboDeactivatedPC": "gp_abl_stance_turbo_active_off_pc",
+						"soundActivation": "gui_abl_button_trigger",
+						"soundActivationDisabled": "gui_abl_button_not_ready",
+						"soundFightActivated": "gui_abl_stance_shooting_active_on_pc",
+						"soundFightDeactivated": "gui_abl_stance_shooting_active_off_pc",
+						"soundFightFullEnergy": "gui_abl_stance_shooting_full",
+						"soundFightModeOn": "gui_abl_stance_shooting_on_pc",
+						"soundMechanicStopNPC": "abl_stance_stop_npc_utility",
+						"soundMechanicStopPC": "abl_stance_stop_utility",
+						"soundSwitch": "gui_abl_stance_mode_switch",
+						"soundTurboFullEnergy": "gui_abl_stance_turbo_full",
+						"soundTurboModeOn": "gui_abl_stance_turbo_on_pc"
+					}
+				},
+				"name": "Engine_effects",
+				"uuid": "8dbbef9c-40ea-4770-8f4e-6db1ab9af283"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/poland/Pl37_CS_67_Szakal/normal/lod0/Hull.model"
+			},
+			"BW::NodeFollowerComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"modelLink": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"nodeName": "V"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "stance_dance_vfx",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,26 @@
+package
+{
+   import flash.display.MovieClip;
+   
+   [Embed(source="/_assets/assets.swf", symbol="symbol95")]
+   public dynamic class attack_n extends MovieClip
+   {
+      
+      public function attack_n()
+      {
+         addFrameScript(0,this.frame1,1,this.frame2);
+         super();
+      }
+      
+      internal function frame1() : *
+      {
+         stop();
+      }
+      
+      internal function frame2() : *
+      {
+         stop();
+      }
+   }
+}
+

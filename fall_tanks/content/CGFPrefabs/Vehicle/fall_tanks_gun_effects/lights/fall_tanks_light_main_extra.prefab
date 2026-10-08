@@ -1,0 +1,321 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::OmniLightComponent": {
+								"descriptor": {
+									"castHemisphereShadows": true,
+									"commonLightDesc": {
+										"castShadows": false,
+										"color": {
+											"a": 1,
+											"b": 0.25882,
+											"g": 0.59216,
+											"r": 1
+										},
+										"colorTemperature": 1000,
+										"decorType": 0,
+										"disableOnGenLights": true,
+										"drawType": "AUTO",
+										"innerRadius": 1.5,
+										"isVolumetric": false,
+										"lodShift": 0,
+										"multiplier": 40,
+										"outerRadius": 8,
+										"position": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"shadowBias": 0.0001,
+										"shadowsQuality": "Low",
+										"shadowsType": "Dynamic",
+										"useColorTemperature": false,
+										"volumetricIntensity": 0.3
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "single_shot_light",
+						"uuid": "75dc355b-8469-48b3-bc1d-1db602c299d7"
+					}
+				],
+				"components": {
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "17"
+					},
+					"BW::SequenceComponent": {
+						"activeLayer": 1,
+						"autoStart": true,
+						"layers": [
+							{
+								"alwaysEnabled": false,
+								"duration": 1,
+								"loop": false,
+								"pauseOnEnd": true,
+								"tracks": [
+									{
+										"endTime": 0.075,
+										"object": "75dc355b-8469-48b3-bc1d-1db602c299d7",
+										"parameters": [
+											{
+												"component": "BW::OmniLightComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0,
+														"type": "Linear",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 10
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.011,
+														"type": "Linear",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 13
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.049,
+														"type": "Linear",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 10
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.075,
+														"type": "Linear",
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 5
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "descriptor"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "commonLightDesc"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "multiplier"
+													}
+												]
+											},
+											{
+												"component": "BW::OmniLightComponent",
+												"keys": [
+													{
+														"tangents": {
+															"left": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0,
+														"type": "Hermite",
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"w": 0,
+																"x": 1,
+																"y": 0.58824,
+																"z": 0
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.011,
+														"type": "Hermite",
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"w": 0,
+																"x": 1,
+																"y": 0.78431,
+																"z": 0.39216
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.049,
+														"type": "Hermite",
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"w": 0,
+																"x": 0.66667,
+																"y": 0.2549,
+																"z": 0.098039
+															}
+														}
+													},
+													{
+														"tangents": {
+															"left": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															},
+															"right": {
+																"x": 1.5708,
+																"y": 0,
+																"z": 0
+															}
+														},
+														"time": 0.075,
+														"type": "Hermite",
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"w": 0,
+																"x": 0,
+																"y": 0,
+																"z": 0
+															}
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "descriptor"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "commonLightDesc"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "color"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									}
+								]
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "single_shot_light_animator",
+				"uuid": "eb9fe672-6b69-4a2d-a139-5d22f11e858f"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "light_main_extra",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,349 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "FBX",
+								"lodScale": 1.0,
+								"path": "content/Buildings/hd_bld_EU_223_PMill/animations/hd_bld_EU_223_PMill_02.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_223_PMill/normal/lod0/hd_bld_EU_223_PMill_02.model"
+					},
+					"BW::ModelPropertyChanger": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"rotation": {
+							"x": -0.0,
+							"y": -133.0001220703125,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "mill_destruction_animator",
+				"uuid": "98fd80e2-03bf-3050-9987-88a9e9d8e0bc"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/random_events/02_malinovka_mill_destruction.eff",
+						"emissionRate": 1.0
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "fx_mill_destruction",
+				"uuid": "6f15af04-852c-3f75-9512-ee76b6d175ef"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_wood_destroy",
+						"Fade time": 1.0,
+						"Fade type": 4,
+						"Object name": "02_plane_mill_crashing_01_mill_transition_wood_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "01_mill_transition_wood_sfx",
+				"uuid": "9b1361d4-78f2-426a-89ae-203657673065"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_metal_object_breakdown",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "01_mill_transition_impulse_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "01_mill_transition_impulse_sfx",
+				"uuid": "bcde6f4a-a1aa-4272-81a4-d948f41a4643"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_explosion_epic",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "01_mill_transition_expl_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "01_mill_transition_expl_sfx",
+				"uuid": "0fef532f-8885-4d36-90ab-73933cd66f26"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 9.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 9.0,
+								"object": "98fd80e2-03bf-3050-9987-88a9e9d8e0bc",
+								"parameters": [
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd0_skinned"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_ditherCoeff"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::Animator",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 9.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 2.0,
+								"object": "6f15af04-852c-3f75-9512-ee76b6d175ef",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 8.5,
+								"object": "9b1361d4-78f2-426a-89ae-203657673065",
+								"parameters": [
+									{
+										"component": "BW::Sound3DComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 7.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Fade Activated"
+											}
+										]
+									}
+								],
+								"startTime": 0.75
+							},
+							{
+								"endTime": 6.0,
+								"object": "bcde6f4a-a1aa-4272-81a4-d948f41a4643",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 9.0,
+								"object": "0fef532f-8885-4d36-90ab-73933cd66f26",
+								"parameters": [],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "02_plane_mill_crashing_01_mill_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

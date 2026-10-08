@@ -1,0 +1,165 @@
+(def element ActionPriceSmall() layout=true
+    (macro ActionPrice "ACTION_PRICE_SMALL")
+)
+
+(def element ActionDefPriceSmall() layout=true
+    (macro ActionPrice "ACTION_PRICE_SMALL")
+    (scope
+        (showAction = false)
+        (var strikeConfig:dict = "STRIKE_TEXT")
+        (bind strikeConfig "action == 100 ? STRIKE_TEXT_DEFAULT : STRIKE_TEXT")
+        (bind showValue "action != 100")
+    )
+    (view_holder_content 'prefix'
+        (block
+            (style
+                (marginTop = -10px)
+                (marginRight = 3px)
+            )
+            (element StrikeText
+                (scope
+                    (bind textStyle "strikeConfig.font[type]" (enabled = "type!=''"))
+                    (bind lineColor "strikeConfig.line[type]" (enabled = "type!=''"))
+                    (bind strikeText "defPrice")
+                )
+                (bind visible "isWithAction")
+            )
+        )
+    )
+    (buttonMode = true)
+)
+
+(def element ActionPriceTotalCost() layout=true
+    (macro ActionPrice "ACTION_PRICE_TOTAL_COST")
+)
+
+(def element StrikeText(strikeTextArg:str='', textStyleArg:str='', lineColorArg:number=0, lineOffsetYArg:number=-11px) layout=true
+    (scope
+        (var strikeText:str = "strikeTextArg")   
+        (var textStyle:str = "textStyleArg")
+        (var lineColor:number = "lineColorArg")  
+        (var lineOffsetY:number = "lineOffsetYArg")
+    )
+    (block
+        (tf
+            (name='tf')
+            (bind class "textStyle" (enabled = "textStyle != ''"))
+            (bind text "strikeText")
+            (selectable = false)
+        )
+        (block
+            (name='mask')
+            (style
+                (width=90%)
+                (height=1px)
+                (marginLeft = 2px)
+                (bind marginTop "lineOffsetY")
+                (bind backgroundColor "lineColor" (enabled = "lineColor"))
+            )
+        )
+    )
+)
+
+(def element ActionPriceTotalCostSmallDiscount() layout=true
+    (macro ActionPrice "ACTION_PRICE_TOTAL_COST_SMALL_DISCOUNT")
+)
+
+(def macro ActionPrice(configExpr:expression) layout=true
+    (macro ActionPriceModel)
+    (scope
+        (var showAction:bool = true)
+        (var showValue:bool = true)
+        (var config:dict="configExpr")
+    )
+    (style
+        (flow = "Flow.HORIZONTAL")
+        (align = "middle")
+    )
+    (hblock
+        (name = 'price')
+        (style
+            (align = "middle")
+            (zindex = 1)
+        )
+        (view_holder 'prefix')
+        (block
+            (bind visible "showOldValue")
+            (style
+                (marginRight = 4)
+            )
+            (tf
+                (name = 'defPrice')
+                (class MainTextStyle)
+                (bind text "defPrice")
+            )
+            (block
+                (name = 'strike')
+                (style
+                    (position = absolute)
+                    (width = 100%)
+                    (height = 1px)
+                    (vcenter = 1)
+                    (backgroundColor = 0xFF8C8C7E)
+                )
+            )
+        )
+        (tf
+            (name = 'price')
+            (bind visible "showValue")
+            (selectable = false)
+            (bind class "!fontNotEnoughIsEnabled || isEnough ? config.font[type] : config.fontNotEnough")
+            (bind text "price")
+        )
+        (image
+            (style
+                (marginTop = "config.iconMargins.top")
+                (marginRight = "config.iconMargins.right")
+                (marginBottom = "config.iconMargins.bottom")
+                (marginLeft = "config.iconMargins.left")
+            )
+            (name = 'currencyIcon')
+            (bind source "config.icon[type]")
+        )
+    )
+    (image
+        (bind visible "isWithAction && showAction")
+        (style
+            (marginTop = "config.actionsBGMargins.top")
+            (marginRight = "config.actionsBGMargins.right")
+            (marginBottom = "config.actionsBGMargins.bottom")
+            (marginLeft = "config.actionsBGMargins.left")
+        )
+        (name = 'actionIcon')
+        (bind source "config.actionsBG")
+    )
+    (block
+        (name = 'hit')
+        (style
+            (position = "absolute")
+            (width = 100%)
+            (height = 100%)
+            (backgroundColor=0xFF000000)
+            (alpha = 0)
+        )
+    )
+    (hitArea = "$target.hit")
+    (mouseChildren = false)
+
+    (controller $ToolTip
+        (bindcall args
+            tooltipId="'actionPrice'"
+            tooltipType = "tooltipType"
+            key = "key"
+            newCredits = "newCredits"
+            newGold = "newGold"
+            newCrystal = "newCrystal"
+            oldCredits = "oldCredits"
+            oldGold = "oldGold"
+            oldCrystal = "oldCrystal"
+            isBuying = "isBuying"
+        )
+        (bind enabled "isWithAction")
+        (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+    )
+)   

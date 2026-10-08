@@ -1,0 +1,162 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "content/MilitaryEnvironment/hd_mle_UNI_078_PillboxRight/normal/lod0/hd_mle_UNI_078_PillboxRight_anim_01.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/MilitaryEnvironment/hd_mle_UNI_078_PillboxRight/normal/lod0/hd_mle_UNI_078_PillboxRight_anim_01.model"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "101_hd_mle_UNI_078_PillboxRight_01_anim_01",
+				"uuid": "9724366d-f529-4018-b655-b8220d1f8641"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/Storymode/101_dday_bunker_explosion_02.eff",
+						"emissionRate": 1.0
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "bunker_explosion",
+				"uuid": "de2af035-2cbe-4062-ad07-27a7b056eb57"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_stone_big",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "101_hd_mle_UNI_078_PillboxRight_01_transition_debri_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "101_hd_mle_UNI_078_PillboxRight_01_transition_debri_sfx",
+				"uuid": "7b12df28-4ff3-4f78-b5c6-21c0dcebb306"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_explosion_epic",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "101_hd_mle_UNI_078_PillboxRight_01_transition_sfx",
+						"Volume": 4.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "101_hd_mle_UNI_078_PillboxRight_01_transition_sfx",
+				"uuid": "70bb137d-4757-4a89-8d75-f3c64974966d"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 8.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 5.0,
+								"object": "9724366d-f529-4018-b655-b8220d1f8641",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 8.0,
+								"object": "7b12df28-4ff3-4f78-b5c6-21c0dcebb306",
+								"parameters": [],
+								"startTime": 1.0
+							},
+							{
+								"endTime": 8.0,
+								"object": "70bb137d-4757-4a89-8d75-f3c64974966d",
+								"parameters": [],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::SequenceNetworkSync": {}
+		},
+		"name": "101_hd_mle_UNI_078_PillboxRight_01_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

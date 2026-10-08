@@ -1,0 +1,123 @@
+from __future__ import absolute_import, division
+from typing import Union
+from past.utils import old_div
+import ArenaType
+from gui.Scaleform.daapi.view.meta.MinimapPresentationMeta import MinimapPresentationMeta
+from gui.Scaleform.genConsts.MINIMAPENTRIES_CONSTANTS import MINIMAPENTRIES_CONSTANTS
+from gui.Scaleform.locale.RES_ICONS import RES_ICONS
+from gui.impl import backport
+from gui.impl.gen import R
+from helpers import dependency
+from skeletons.account_helpers.settings_core import ISettingsCore
+from points_of_interest_shared import PoiType
+_POI_TYPE_TO_STR = {PoiType.ARTILLERY: MINIMAPENTRIES_CONSTANTS.POI_TYPE_ARTY,
+ PoiType.RECON: MINIMAPENTRIES_CONSTANTS.POI_TYPE_RECON,
+ PoiType.ILLUMINATION_FLARE: MINIMAPENTRIES_CONSTANTS.POI_TYPE_ILLUMINATION_FLARE}
+
+def _resilientMapIconPathGetter(gameplayName, geometryName):
+    prefixedGeometryName = 'c_%s' % geometryName
+    gamemodeFolderAccessor = R.images.gui.maps.icons.map.dyn(gameplayName)
+    if gamemodeFolderAccessor.isValid():
+        mapIconDynAccessor = gamemodeFolderAccessor.dyn(prefixedGeometryName)
+        if mapIconDynAccessor.isValid():
+            return backport.image(mapIconDynAccessor())
+    commonFolderMapIconAccessor = R.images.gui.maps.icons.map.dyn(prefixedGeometryName)
+    return backport.image(commonFolderMapIconAccessor()) if commonFolderMapIconAccessor.isValid() else ''
+
+
+class MinimapLobby(MinimapPresentationMeta):
+    settingsCore = dependency.descriptor(ISettingsCore)
+
+    def __init__(self):
+        super(MinimapLobby, self).__init__()
+        self.__playerTeam = 1
+        self.__arenaTypeID = None
+        self.__cfg = {}
+        self.__minimapSize = 300
+        return
+
+    def _populate(self):
+        super(MinimapLobby, self)._populate()
+        self.settingsCore.onSettingsChanged += self.onSettingsChanging
+
+    def _dispose(self):
+        self.settingsCore.onSettingsChanged -= self.onSettingsChanging
+        super(MinimapLobby, self)._dispose()
+
+    def onSettingsChanging(self, diff):
+        if 'isColorBlind' in diff:
+            self.as_updatePointsS()
+
+    def setMap(self, arenaID):
+        self.setArena(arenaID)
+
+    def setMinimapData(self, arenaID, playerTeam, size):
+        self.__minimapSize = size
+        self.__playerTeam = playerTeam
+        self.setArena(arenaID)
+
+    def setPlayerTeam(self, playerTeam):
+        self.__playerTeam = playerTeam
+
+    def swapTeams(self, team):
+        doBuild = False
+        if not team:
+            team = 1
+        if team is not self.__playerTeam:
+            self.__playerTeam = team
+            doBuild = True
+        if doBuild and self.__arenaTypeID is not None:
+            self.build()
+        return
+
+    def setArena(self, arenaTypeID):
+        self.__arenaTypeID = int(arenaTypeID)
+        arenaType = ArenaType.g_cache[self.__arenaTypeID]
+        self.setConfig({'texture': _resilientMapIconPathGetter(arenaType.gameplayName, arenaType.geometryName),
+         'size': arenaType.boundingBox,
+         'teamBasePositions': arenaType.teamBasePositions,
+         'teamSpawnPoints': arenaType.teamSpawnPoints,
+         'controlPoints': arenaType.controlPoints,
+         'pointsOfInterest': arenaType.pointsOfInterest})
+
+    def setEmpty(self):
+        self.as_clearS()
+        path = RES_ICONS.getMapPath('question')
+        self.as_changeMapS(path)
+
+    def setConfig(self, cfg):
+        self.__cfg = cfg
+        self.build()
+
+    def build(self):
+        self.as_clearS()
+        self.as_changeMapS(self.__cfg['texture'])
+        bottomLeft, upperRight = self.__cfg['size']
+        mapWidthMult, mapHeightMult = (upperRight - bottomLeft) / self.__minimapSize
+        offset = (upperRight + bottomLeft) * 0.5
+
+        def _normalizePoint(posX, posY):
+            return (old_div(posX - offset.x, mapWidthMult), old_div(posY - offset.y, mapHeightMult))
+
+        for team, teamSpawnPoints in enumerate(self.__cfg['teamSpawnPoints'], 1):
+            for spawn, spawnPoint in enumerate(teamSpawnPoints, 1):
+                posX, posY = _normalizePoint(spawnPoint[0], spawnPoint[1])
+                self.as_addPointS(posX, posY, MINIMAPENTRIES_CONSTANTS.POINT_TYPE_SPAWN, self.__getTeamColor(team == self.__playerTeam), spawn + 1 if len(teamSpawnPoints) > 1 else 1)
+
+        for team, teamBasePoints in enumerate(self.__cfg['teamBasePositions'], 1):
+            for baseNumber, basePoint in enumerate(teamBasePoints.values(), 2):
+                posX, posY = _normalizePoint(basePoint[0], basePoint[1])
+                self.as_addPointS(posX, posY, MINIMAPENTRIES_CONSTANTS.POINT_TYPE_BASE, self.__getTeamColor(team == self.__playerTeam), baseNumber if len(teamBasePoints) > 1 else 1)
+
+        for idx, point in enumerate(self.__cfg['pointsOfInterest'], 1):
+            x, y = _normalizePoint(*point['position'])
+            poiType = point['type']
+            self.as_addPoiS(x, y, _POI_TYPE_TO_STR[poiType], str(idx))
+
+        if self.__cfg['controlPoints']:
+            for index, controlPoint in enumerate(self.__cfg['controlPoints'], 2):
+                posX, posY = _normalizePoint(controlPoint[0], controlPoint[1])
+                self.as_addPointS(posX, posY, MINIMAPENTRIES_CONSTANTS.POINT_TYPE_CONTROL, MINIMAPENTRIES_CONSTANTS.COLOR_EMPTY, index if len(self.__cfg['controlPoints']) > 1 else 1)
+
+    def __getTeamColor(self, isPlayerTeam):
+        return MINIMAPENTRIES_CONSTANTS.COLOR_BLUE if isPlayerTeam else MINIMAPENTRIES_CONSTANTS.COLOR_RED

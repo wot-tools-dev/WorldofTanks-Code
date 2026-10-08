@@ -1,0 +1,260 @@
+from __future__ import absolute_import
+import typing
+from typing import Optional, Set
+import BigWorld
+from account_helpers.AccountSettings import AccountSettings, IS_BATTLE_PASS_START_ANIMATION_SEEN
+from battle_pass_common import getPresentLevel
+from gui.battle_pass.battle_pass_constants import ChapterState
+from gui.impl.gen import R
+from gui.impl.gen.view_models.views.lobby.user_missions.widget.battle_pass_model import AppearAnimationState, BattlePassModel, WidgetState
+from gui.impl.lobby.battle_pass.battle_pass_entry_point_view import BaseBattlePassEntryPointView
+from gui.impl.lobby.battle_pass.common import getExtraChapterID, isExtraChapterSeen, isHolidayChapterSeen, isUmgExtraChapterSeen, setUmgExtraChapterSeen, setHolidayChapterSeen
+from gui.impl.lobby.battle_pass.tooltips.battle_pass_completed_tooltip_view import BattlePassCompletedTooltipView
+from gui.impl.lobby.battle_pass.tooltips.battle_pass_in_progress_tooltip_view import BattlePassInProgressTooltipView
+from gui.impl.lobby.battle_pass.tooltips.battle_pass_no_chapter_tooltip_view import BattlePassNoChapterTooltipView
+from gui.impl.lobby.user_missions.hangar_widget.overlap_ctrl import OverlapCtrlMixin
+from gui.impl.lobby.user_missions.hangar_widget.presenters.base_child_presenter import UserMissionChildPresenter
+from gui.impl.lobby.user_missions.hangar_widget.presenters.constants import UserMissionGroups
+from gui.impl.lobby.user_missions.hangar_widget.services import IBattlePassService
+from gui.impl.lobby.user_missions.hangar_widget.tooltip_positioner import TooltipPositionerMixin
+from gui.impl.pub.view_component import ViewComponent
+from gui.shared.event_dispatcher import showBattlePass
+from helpers import dependency
+from skeletons.gui.game_control import IBattlePassController
+from skeletons.gui.shared.utils import IHangarSpace
+if typing.TYPE_CHECKING:
+    from frameworks.wulf import View, ViewEvent
+
+class _LastEntryState(object):
+
+    def __init__(self):
+        self.rewards = set()
+        self.pointsEarned = 0
+        self.level = 0
+        self.chapterID = 0
+        self.rewardsHash = 0
+
+    def update(self, rewards=None, level=0, pointsEarned=0, chapterID=0, rewardsHash=0):
+        if rewards is None:
+            rewards = set()
+        self.rewards = rewards
+        self.pointsEarned = pointsEarned
+        self.level = level
+        self.chapterID = chapterID
+        self.rewardsHash = rewardsHash
+        return
+
+    def getRewardsHash(self, currentRewards):
+        newTokens = currentRewards - self.rewards
+        availableTokensLen = len(currentRewards)
+        newTokensLen = len(newTokens)
+        if availableTokensLen == 0:
+            return 0
+        return self.rewardsHash if newTokensLen == 0 else self.rewardsHash + 1
+
+
+_SPACE_CREATED_UPDATE_DELAY = 0.7
+_g_entryLastState = _LastEntryState()
+
+class BattlePassPresenter(UserMissionChildPresenter, TooltipPositionerMixin, OverlapCtrlMixin, ViewComponent[BattlePassModel], BaseBattlePassEntryPointView):
+    GROUP = UserMissionGroups.BATTLE_PASS
+    __hangarSpace = dependency.descriptor(IHangarSpace)
+    __battlePass = dependency.descriptor(IBattlePassController)
+    battlePassService = dependency.descriptor(IBattlePassService)
+
+    def __init__(self):
+        self._firstUpdatePerformed = False
+        self._readyForAnimations = self.__hangarSpace.spaceInited
+        self._isOffersUpdatedCall = False
+        super(BattlePassPresenter, self).__init__(model=BattlePassModel)
+
+    @property
+    def viewModel(self):
+        return super(BattlePassPresenter, self).getViewModel()
+
+    def isVisible(self):
+        return self.battlePassService.isVisible()
+
+    def createToolTipContent(self, event, contentID):
+        if not self.isHoliday and contentID == R.views.mono.battle_pass.tooltips.no_chapter():
+            return BattlePassNoChapterTooltipView()
+        return BattlePassCompletedTooltipView() if contentID == R.views.mono.battle_pass.tooltips.completed() else self._createInProgressTooltipView()
+
+    @property
+    def hasDeferModelUpdate(self):
+        isDeferUpdate = super(BattlePassPresenter, self).hasDeferModelUpdate
+        isSpaceInited = self.__hangarSpace.spaceInited
+        return isDeferUpdate or not isSpaceInited
+
+    def _createInProgressTooltipView(self):
+        return BattlePassInProgressTooltipView()
+
+    @staticmethod
+    def _onIntroAnimationPlayed():
+        AccountSettings.setSettings(IS_BATTLE_PASS_START_ANIMATION_SEEN, True)
+
+    @staticmethod
+    def _isIntroAnimationPlayed():
+        return AccountSettings.getSettings(IS_BATTLE_PASS_START_ANIMATION_SEEN)
+
+    def _getEvents(self):
+        return super(BattlePassPresenter, self)._getEvents() + ((self.viewModel.onOpenBattlePass, self._onClick),
+         (self.viewModel.onIntroAnimationPlayed, self._onIntroAnimationPlayed),
+         (self.viewModel.onWidgetUnmounted, self._onWidgetUnmounted),
+         (self.__hangarSpace.onSpaceCreate, self._onSpaceCreate),
+         (self.battlePassService.onBattlePassChanged, self._onBattlePassChanged))
+
+    def _onLoading(self, *args, **kwargs):
+        self.initOverlapCtrl()
+        super(BattlePassPresenter, self)._onLoading(*args, **kwargs)
+        self._start()
+
+    def _onBattlePassChanged(self):
+        self._notifyVisibilityChanged()
+
+    def _onClick(self):
+        showBattlePass()
+        if self._needToRemindExtraChapter():
+            setUmgExtraChapterSeen()
+        elif self.__battlePass.isHoliday() and not isHolidayChapterSeen():
+            setHolidayChapterSeen()
+
+    def _onWidgetUnmounted(self):
+        if self._firstUpdatePerformed:
+            self._savePresenterLastState()
+            with self.viewModel.transaction() as tx:
+                points, _ = self.__battlePass.getLevelProgression(self.chapterID)
+                rewards = set(self.__battlePass.getNotChosenRewardsIter())
+                self._fillLastSeen(tx, self.chapterID, points, getPresentLevel(self.level), set(self.__battlePass.getNotChosenRewardsIter()), _g_entryLastState.getRewardsHash(rewards))
+
+    def _onPointsUpdated(self, *_):
+        self._updateOptional()
+
+    def _onOffersUpdated(self, *_):
+        if not self.__battlePass.isDisabled():
+            self._isOffersUpdatedCall = True
+            self._updateOptional()
+            self._isOffersUpdatedCall = False
+
+    def _delayedUpdateAfterSpaceCreated(self):
+        if self._isFinalized:
+            return
+        self._readyForAnimations = True
+        self._preInitModel()
+        self._updateData()
+
+    def _onSpaceCreate(self):
+        if self._isFinalized:
+            return
+        BigWorld.callback(_SPACE_CREATED_UPDATE_DELAY, self._delayedUpdateAfterSpaceCreated)
+
+    def _finalize(self):
+        self._stop()
+        super(BattlePassPresenter, self)._finalize()
+
+    def _updateOptional(self):
+        if not self.__battlePass.isDisabled():
+            hasRareLevel = any((self.__battlePass.isRareLevel(self.chapterID, lvl) for lvl in range(_g_entryLastState.level + 1, self.level + 1)))
+            if not hasRareLevel:
+                self._updateData()
+
+    def _updateData(self, *_):
+        if not self.isVisible():
+            return
+        if not self.isUpdateQueued:
+            self.deferUpdate(self._updateViewModel)
+        self._updateViewModelIfNeeded()
+
+    def _rawUpdate(self):
+        super(BattlePassPresenter, self)._rawUpdate()
+        with self.viewModel.transaction() as tx:
+            self._fillViewModel(tx)
+
+    def _updateViewModel(self):
+        self.queueUpdate()
+
+    def _preInitModel(self):
+        points, limit = self.__battlePass.getLevelProgression(self.chapterID)
+        _g_entryLastState.update(level=self.level, pointsEarned=points, chapterID=self.chapterID)
+        chapterID = self.chapterID
+        level = getPresentLevel(self.level)
+        with self.viewModel.transaction() as tx:
+            self._fillModel(tx, chapterID, points, limit, level, 0)
+            tx.lastSeenState.setPointsEarned(points)
+            tx.lastSeenState.setLevel(level)
+
+    def _fillViewModel(self, tx):
+        self._firstUpdatePerformed = True
+        chapterID = self.chapterID
+        points, limit = self.__battlePass.getLevelProgression(chapterID)
+        level = getPresentLevel(self.level)
+        rewards = set(self.__battlePass.getNotChosenRewardsIter())
+        rewardsHash = _g_entryLastState.getRewardsHash(rewards)
+        self._fillModel(tx, chapterID, points, limit, level, rewardsHash)
+        if not self._isOffersUpdatedCall:
+            self._fillLastSeen(tx, chapterID, points, level, rewards, rewardsHash)
+
+    def _fillModel(self, tx, chapterID, points, limit, level, rewardsHash):
+        extraChapterId = getExtraChapterID()
+        isBattlePassExtraChapterSeen = isExtraChapterSeen()
+        isBattlePassHolidayChapterSeen = isHolidayChapterSeen()
+        tx.setWidgetState(self._getWidgetState(isBattlePassExtraChapterSeen, isBattlePassHolidayChapterSeen))
+        tx.setLevel(level)
+        tx.setTooltipID(self._getTooltip())
+        tx.setChapterID(chapterID)
+        tx.setSeason(self.__battlePass.getSeasonNum())
+        tx.setIsBought(self.isBought)
+        tx.setIsPaused(self.isPaused)
+        tx.setIsExtraChapter(self.__battlePass.isExtraChapter(chapterID))
+        tx.setIsHoliday(self.isHoliday)
+        tx.setRewardsHash(rewardsHash)
+        tx.setHasExtraChapter(self._hasExtraChapter(extraChapterId))
+        tx.setIsExtraChapterHighlighted(self._needToShowExtraIntro(isBattlePassExtraChapterSeen))
+        tx.setAppearAnimationState(self._getAppearAnimationState())
+        extraTimeLeft = self.__battlePass.getChapterRemainingTime(extraChapterId)
+        timeLeft = self.__battlePass.getSeasonTimeLeft()
+        if chapterID:
+            tx.setTimeLeft(extraTimeLeft if self.__battlePass.isExtraChapter(chapterID) else timeLeft)
+        else:
+            tx.setTimeLeft(extraTimeLeft if self.__battlePass.hasExtra() else timeLeft)
+        tx.setPointsEarned(points)
+        tx.setLevelPoints(limit)
+
+    def _fillLastSeen(self, tx, chapterID, points, level, rewards, rewardsHash):
+        if _g_entryLastState.chapterID == chapterID:
+            tx.lastSeenState.setPointsEarned(_g_entryLastState.pointsEarned)
+            tx.lastSeenState.setLevel(getPresentLevel(_g_entryLastState.level))
+        else:
+            tx.lastSeenState.setPointsEarned(points)
+            tx.lastSeenState.setLevel(level)
+        tx.lastSeenState.setRewardsHash(_g_entryLastState.rewardsHash)
+        self._savePresenterLastState(rewards=rewards, rewardsHash=rewardsHash)
+
+    def _needToShowExtraIntro(self, isBattlePassExtraChapterSeen):
+        return self.hasExtra and (not isBattlePassExtraChapterSeen or self._needToRemindExtraChapter())
+
+    def _needToRemindExtraChapter(self):
+        return self.hasExtra and self.isPostProgressionActive and not isUmgExtraChapterSeen() and not self.isAllExtraCompleted and not self.isAnyExtraActive
+
+    def _getAppearAnimationState(self):
+        if self._isIntroAnimationPlayed():
+            return AppearAnimationState.PLAYED
+        return AppearAnimationState.READY if not self.hasDeferModelUpdate and self._readyForAnimations else AppearAnimationState.WAITING
+
+    def _getWidgetState(self, isBattlePassExtraChapterSeen, isBattlePassHolidayChapterSeen):
+        if self.isCompleted and not self.isPostProgressionActive:
+            return WidgetState.COMPLETED
+        isIntro = self.isHoliday and not isBattlePassHolidayChapterSeen or self._needToShowExtraIntro(isBattlePassExtraChapterSeen) or not self.isChapterChosen
+        return WidgetState.INTRO if isIntro else WidgetState.PROGRESSION
+
+    def _hasExtraChapter(self, chapterID):
+        return self.hasExtra and self.__battlePass.getChapterState(chapterID) != ChapterState.COMPLETED
+
+    def _savePresenterLastState(self, rewards=None, rewardsHash=None):
+        points, _ = self.__battlePass.getLevelProgression(self.chapterID)
+        if rewards is None:
+            rewards = set(self.__battlePass.getNotChosenRewardsIter())
+        if rewardsHash is None:
+            rewardsHash = _g_entryLastState.getRewardsHash(rewards)
+        _g_entryLastState.update(rewards=rewards, level=self.level, pointsEarned=points, chapterID=self.chapterID, rewardsHash=rewardsHash)
+        return

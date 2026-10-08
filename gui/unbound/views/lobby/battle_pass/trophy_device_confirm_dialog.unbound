@@ -1,0 +1,145 @@
+(def constant OPEN_TAG_TEMPLATE '<font face="$TitleFont" size="18" color="#7ab300">')
+(def constant CLOSE_TAG_TEMPLATE '&nbsp;</font>')
+
+(def layout TrophyDeviceConfirmDialogContent() entrance=true
+    (name = 'TrophyDeviceConfirmDialogContent')
+    (macro TrophyDeviceConfirmDialogModel)
+
+    (style
+        (align = "center | middle")
+        (width = 100%)
+        (marginTop = -2px)
+        (marginBottom = 6px)
+        (gap = 15px)
+    )
+
+    (block
+        (name = 'title')
+        (style
+            (align = "center | middle")
+        )
+
+        (block
+            (image
+                (style
+                    (position = "absolute")
+                    (hcenter = 0)
+                    (vcenter = 0)
+                )
+                (name = 'upgradeBgLite')
+                (source = "R.images.gui.maps.icons.battlePass.trophy_upgrade.upgrade_bg_lite()")
+
+            )
+
+            (image
+                (name = 'baseDevice')
+                (bind source "trophyBasicImg")
+            )
+
+            (image
+                (style
+                    (position = "absolute")
+                    (hcenter = -10px)
+                    (vcenter = 6px)
+                )
+                (name = 'upgradeTrophyLite')
+                (source = "R.images.gui.maps.icons.battlePass.trophy_upgrade.upgrade_trophy_lite()")
+            )
+        )
+
+        (tf
+            (style
+                (width = 700px)
+            )
+            (bind htmlText "formatString(
+                            htmlTextStyle(R.strings.battle_pass.trophyDeviceUpgradeConfim.title(), 'GrandTitleTextStyle', 'center'),
+                            [{name: 'deviceName', value: formatString(
+                                R.strings.battle_pass.trophyDeviceUpgradeConfim.title.template(),
+                                [{name: 'deviceName', value: R.strings.artefacts[trophyBasicName].name()}], true),
+                            style:'GrandTitleYellowTextStyle'}], true)"
+            )
+        )
+    )
+
+    (block
+        (name = 'content')
+        (style
+            (align = "center | middle")
+        )
+
+        (tf
+            (htmlText = "htmlTextStyle(R.strings.battle_pass.trophyDeviceUpgradeConfim.message(), 'HighlightTextStyle', 'center')")
+        )
+
+        (hblock
+
+            (block
+                (style
+                    (align = "right")
+                )
+                (controller $Repeat layout = true
+                    (bind count "bonuses.length")
+                    (exprs
+                        (name = "'baseBonus' + $index")
+                        (hblock
+                            (style
+                                (align = "center | middle")
+                                (height = 35px)
+                                (bind marginTop "$index == 0 ? 0px : -8px")
+                            )
+                            (tf
+                                (class MissionStatusAvailableTextStyle)
+                                (style
+                                    (marginTop = -4px)
+                                    (alpha = 0.5)
+                                )
+                                (bind text "bonuses[$index].baseValue")
+                            )
+                        )
+                    )
+                )
+            )
+            (block
+                (controller $Repeat layout = true
+                    (bind count "bonuses.length")
+                    (exprs
+                        (name = "'bonus' + $index")
+                        (hblock
+                            (style
+                                (align = "center | middle")
+                                (height = 35px)
+                                (bind marginTop "$index == 0 ? 0px : -8px")
+                            )
+
+                            (image
+                                (style
+                                    (marginTop = -2px)
+                                    (marginLeft = -5px)
+                                )
+                                (source = "R.images.gui.maps.icons.battlePass.trophy_upgrade.upgrade_arrow_icon()")
+                            )
+                            (tf
+                                (class MissionStatusAvailableTextStyle)
+                                (style
+                                    (marginTop = -4px)
+                                )
+                                (bind text "bonuses[$index].upgradedValue")
+                            )
+
+                            (tf
+                                (style
+                                    (marginLeft = 5px)
+                                    (marginBottom = 5px)
+                                )
+                                (class MainBigTextStyle)
+                                (bind text "(bonuses[$index].upgradedValue[0] == '+') ? 
+                                    R.strings.tank_setup.kpi.bonus.positive[bonuses[$index].kpiName]() :
+                                    R.strings.tank_setup.kpi.bonus.negative[bonuses[$index].kpiName]()")
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)

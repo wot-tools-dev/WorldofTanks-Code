@@ -1,0 +1,118 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Gun::AuditionComponent": {
+						"activationSoundNPC": "wpn_meduim_NPC",
+						"activationSoundPC": "wpn_meduim_PC",
+						"disabledDomains": [
+							"Server"
+						],
+						"isPlayer": "0"
+					},
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "1"
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "single_shot_sound_event",
+				"uuid": "d8f14cd7-18ce-09e1-1256-c19b01648a86"
+			},
+			{
+				"components": {
+					"BW::Gun::AuditionComponent": {
+						"activationSoundNPC": "wpn_main_dual_NPC",
+						"activationSoundPC": "wpn_main_dual_PC",
+						"disabledDomains": [
+							"Server"
+						],
+						"isPlayer": "0"
+					},
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "16"
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "dual_shot_sound_event",
+				"uuid": "a1377c9d-83ba-7f92-32a8-004299499988"
+			}
+		],
+		"components": {
+			"BW::Gun::DistanceToCannonGetterComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::RTPCComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"rtpcs": {
+					"RTPC_ext_control_reflections_priority": {
+						"type": 4,
+						"value": 0
+					},
+					"RTPC_ext_weapon_energy": {
+						"type": 0,
+						"value": 0
+					}
+				}
+			},
+			"BW::SoundObject3DComponent": {
+				"aux": "1",
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::variables::PropertyOnChangeCalculatorComponent": {
+				"calcs": [
+					{
+						"componentPropertyCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/caliber"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/gunLength"
+									}
+								}
+							}
+						},
+						"componentPropertyDest/component": "BW::RTPCComponent",
+						"componentPropertyDest/propertyPath": "rtpcs/RTPC_ext_weapon_energy/value"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "sound_medium_dg",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

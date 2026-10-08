@@ -1,0 +1,40 @@
+(def macro ComponentProgressBase(skin:expression)
+    (scope
+        (event evValueChanged)
+
+        (var value:number = 1.0 
+            (dispatch evValueChanged args="{value: value}" dir="1" on=evChanged)
+        )
+        (var width:number = 100%)
+    )
+
+    (style
+        (bind minWidth "width")
+    )
+
+    (mc "skin.background"
+        (name = 'bg')
+        (style
+            (width = 100%)
+        )
+    )
+
+    (block
+        (name = 'maskMc')
+        (style
+            (position = "absolute")
+            (bind width "width * value")
+            (height = 16px)
+            (backgroundColor = 0xFFFFFFFF)
+        )
+    )
+
+    (mc "skin.progress"
+        (name = 'progress')
+        (style
+            (position = "absolute")
+            (width = 100%)
+        )
+        (mask = "$element.maskMc")
+    )
+)

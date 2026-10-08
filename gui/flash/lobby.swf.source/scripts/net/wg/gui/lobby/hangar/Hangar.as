@@ -1,0 +1,1051 @@
+package net.wg.gui.lobby.hangar
+{
+   import fl.motion.easing.Quadratic;
+   import flash.display.DisplayObject;
+   import flash.display.InteractiveObject;
+   import flash.display.MovieClip;
+   import flash.display.Sprite;
+   import flash.display.Stage;
+   import flash.events.Event;
+   import flash.events.KeyboardEvent;
+   import flash.geom.Point;
+   import flash.geom.Rectangle;
+   import flash.ui.Keyboard;
+   import net.wg.data.Aliases;
+   import net.wg.data.constants.Linkages;
+   import net.wg.data.constants.generated.HANGAR_ALIASES;
+   import net.wg.gui.events.LobbyEvent;
+   import net.wg.gui.lobby.hangar.alertMessage.AlertMessageBlock;
+   import net.wg.gui.lobby.hangar.ammunitionPanel.AmmunitionPanel;
+   import net.wg.gui.lobby.hangar.ammunitionPanel.data.AmmunitionPanelVO;
+   import net.wg.gui.lobby.hangar.ammunitionPanelInject.AmmunitionPanelInject;
+   import net.wg.gui.lobby.hangar.interfaces.IHangar;
+   import net.wg.gui.lobby.hangar.interfaces.IVehicleParameters;
+   import net.wg.gui.lobby.hangar.tcarousel.TankCarousel;
+   import net.wg.gui.lobby.post.Teaser;
+   import net.wg.gui.lobby.post.TeaserEvent;
+   import net.wg.gui.lobby.post.data.TeaserVO;
+   import net.wg.gui.notification.events.NotificationLayoutEvent;
+   import net.wg.gui.tutorial.components.TutorialClip;
+   import net.wg.infrastructure.base.meta.impl.HangarMeta;
+   import net.wg.infrastructure.events.FocusRequestEvent;
+   import net.wg.infrastructure.interfaces.ITutorialCustomComponent;
+   import net.wg.infrastructure.managers.ITooltipMgr;
+   import net.wg.utils.IGameInputManager;
+   import net.wg.utils.IUtils;
+   import net.wg.utils.StageSizeBoundaries;
+   import net.wg.utils.helpLayout.IHelpLayout;
+   import scaleform.clik.events.ComponentEvent;
+   import scaleform.clik.events.InputEvent;
+   import scaleform.clik.motion.Tween;
+   import scaleform.clik.ui.InputDetails;
+   
+   public class Hangar extends HangarMeta implements IHangar, ITutorialCustomComponent
+   {
+      
+      private static const INVALIDATE_CAROUSEL_SIZE:String = "InvalidateCarouselSize";
+      
+      private static const INVALIDATE_AMMUNITION_PANEL_SIZE:String = "InvalidateAmmunitionPanelSize";
+      
+      private static const INVALIDATE_EVENT_LOOT_BOXES_VISIBLE:String = "invalidateEventLootBoxesVisible";
+      
+      private static const INVALIDATE_EVENT_TOURNAMENT_BANNER_VISIBILITY:String = "invalidEventTournamentBanner";
+      
+      private static const INVALIDATE_PRESTIGE_WIDGET_VISIBILITY:String = "invalidPrestigeProgress";
+      
+      private static const PARAMS_POSITION_INVALID:String = "paramsPositionInvalid";
+      
+      private static const CAROUSEL_NAME:String = "carousel";
+      
+      private static const CAROUSEL_EVENT_ENTRY_NAME:String = "carouselEventEntryContainer";
+      
+      private static const PARAMS_TOP_MARGIN:int = 3;
+      
+      private static const PARAMS_BOTTOM_MARGIN:int = 80;
+      
+      private static const TOP_MARGIN:int = 33;
+      
+      private static const ANIM_SPEED_TIME:int = 600;
+      
+      private static const TEASER_SHOW_X_OFFSET:int = 10;
+      
+      private static const TEASER_SHOW_SMALL_X_OFFSET:int = -110;
+      
+      private static const TEASER_HIDE_SMALL_X_OFFSET:int = -355;
+      
+      private static const SM_CAROUSEL_PADDING:int = 12;
+      
+      private static const SM_AMMUNITION_PANEL_PADDING:int = 86;
+      
+      private static const SM_THRESHOLD_X:int = 1360;
+      
+      private static const SM_PADDING_X:int = 5;
+      
+      private static const ALERT_MESSAGE_GAP:int = 40;
+      
+      private static const RIGHT_MARGIN:int = 5;
+      
+      private static const VEH_RESEARCH_PANEL_Y:int = 45;
+      
+      private static const VEH_RESEARCH_PANEL_OFFSET:int = 37;
+      
+      private static const EVENT_TOURNAMENT_BANNER_OFFSET_X:int = -15;
+      
+      private static const EVENT_TOURNAMENT_BANNER_OFFSET_Y:int = -12;
+      
+      private static const PARAMS_SMALL_SCREEN_BOTTOM_MARGIN:int = 98;
+      
+      private static const AMMUNITION_PANEL_OFFSET_Y:int = 4;
+      
+      private static const AMMUNITION_PANEL_INJECT_OFFSET_TOP:int = 7;
+      
+      private static const CAROUSEL_EVENT_ENTRY_X_OFFSET:int = 0;
+      
+      private static const CAROUSEL_EVENT_ENTRY_Y_OFFSET:int = 110;
+      
+      private static const HELP_LAYOUT_ADDITIONAL_WIDTH:int = -30;
+      
+      public var vehResearchPanel:ResearchPanel;
+      
+      public var vehResearchBG:TutorialClip;
+      
+      public var params:IVehicleParameters;
+      
+      public var ammunitionPanel:AmmunitionPanel;
+      
+      public var ammunitionPanelInject:AmmunitionPanelInject;
+      
+      public var bottomBg:TutorialClip;
+      
+      public var carouselContainer:TutorialClip;
+      
+      public var switchModePanel:SwitchModePanel;
+      
+      public var prestigeBg:TutorialClip;
+      
+      public var teaser:Teaser;
+      
+      public var carouselEventEntry:CarouselEventEntry = null;
+      
+      public var crewPanelInject:CrewPanelInject;
+      
+      public var prestigeProgressInject:PrestigeProgressInject = null;
+      
+      private var _header:HangarHeader;
+      
+      private var _carousel:TankCarousel;
+      
+      private var _isControlsVisible:Boolean = false;
+      
+      private var _carouselAlias:String;
+      
+      private var _alertMessageBlock:AlertMessageBlock;
+      
+      private var _gameInputMgr:IGameInputManager = App.gameInputMgr;
+      
+      private var _toolTipMgr:ITooltipMgr = App.toolTipMgr;
+      
+      private var _utils:IUtils = App.utils;
+      
+      private var _helpLayout:IHelpLayout = App.utils.helpLayout;
+      
+      private var _hangarContentHelper:HangarContentHelper;
+      
+      private var _teaserX:int = 0;
+      
+      private var _teaserOffsetX:int = 0;
+      
+      private var _tweenTeaser:Tween;
+      
+      private var _isTeaserShow:Boolean;
+      
+      private var _hangarViewSwitchAnimator:HangarAmunitionSwitchAnimator;
+      
+      private var _isVisibleByAnimator:Boolean = true;
+      
+      private var _isVisible:Boolean = true;
+      
+      private var _eventTournamentBanner:EventTournamentBannerInject = null;
+      
+      private var _appStage:Stage = App.stage;
+      
+      private var _topMargin:int = 0;
+      
+      private var _carouselEventEntryContainer:Sprite = null;
+      
+      private var _carouselEventEntryVisible:Boolean = true;
+      
+      private var _carouselVisible:Boolean = true;
+      
+      public function Hangar()
+      {
+         super();
+         _deferredDispose = true;
+         this.switchModePanel.visible = false;
+         this.params.snapHeightToRenderers = false;
+         this._hangarContentHelper = new HangarContentHelper(this);
+         this._carouselEventEntryContainer = new Sprite();
+         addChildAt(this._carouselEventEntryContainer,getChildIndex(this.carouselContainer) + 1);
+         this._carouselEventEntryContainer.name = CAROUSEL_EVENT_ENTRY_NAME;
+         this._header = this._utils.classFactory.getComponent(Linkages.HANGAR_HEADER,HangarHeader);
+         this._header.name = HANGAR_ALIASES.HEADER;
+         addChildAt(this._header,numChildren);
+      }
+      
+      public static function getAdditionalHelpLayoutOffset() : int
+      {
+         return Math.min(HELP_LAYOUT_ADDITIONAL_WIDTH + (App.appWidth - StageSizeBoundaries.WIDTH_1024 >> 1),0);
+      }
+      
+      override public function updateStage(param1:Number, param2:Number) : void
+      {
+         var _loc3_:Rectangle = null;
+         _originalWidth = param1;
+         _originalHeight = param2;
+         setSize(param1,param2);
+         if(this.carousel != null)
+         {
+            this.carousel.updateStage(param1,param2);
+            this.updateCarouselPosition();
+         }
+         if(this.bottomBg != null)
+         {
+            this.bottomBg.x = 0;
+            this.bottomBg.y = _originalHeight >> 0;
+            this.bottomBg.width = _originalWidth;
+         }
+         this.alignToCenter(this.switchModePanel);
+         if(this.header != null)
+         {
+            this.header.x = param1 >> 1;
+         }
+         if(this._alertMessageBlock)
+         {
+            this._alertMessageBlock.x = _width - this._alertMessageBlock.width >> 1;
+         }
+         if(this.vehResearchPanel != null)
+         {
+            this.vehResearchPanel.x = param1;
+            _loc3_ = this.vehResearchBG.getBounds(this.vehResearchBG);
+            this.vehResearchBG.x = param1 - _loc3_.x - _loc3_.width - RIGHT_MARGIN >> 0;
+         }
+         this._helpLayout.hide();
+      }
+      
+      override protected function onPopulate() : void
+      {
+         super.onPopulate();
+         registerFlashComponentS(this.crewPanelInject,HANGAR_ALIASES.CREW_PANEL_INJECT);
+         registerFlashComponentS(this.ammunitionPanel,HANGAR_ALIASES.AMMUNITION_PANEL);
+         registerFlashComponentS(this.ammunitionPanelInject,HANGAR_ALIASES.AMMUNITION_PANEL_INJECT);
+         registerFlashComponentS(this.switchModePanel,Aliases.SWITCH_MODE_PANEL);
+         registerFlashComponentS(this.params,HANGAR_ALIASES.VEHICLE_PARAMETERS);
+         registerFlashComponentS(this._header,HANGAR_ALIASES.HEADER);
+         this._appStage.addEventListener(HangarAmunitionSwitchAnimator.AMMUNITION_VIEW_HIDE_ANIM_COMPLETE,this.onAmmunitionViewHideAnimCompleteHandler);
+         this.ammunitionPanelInject.addEventListener(Event.RESIZE,this.onAmmunitionPanelInjectResizeHandler);
+         addEventListener(CrewDropDownEvent.SHOW_DROP_DOWN,this.onHangarShowDropDownHandler);
+         if(this.vehResearchPanel != null)
+         {
+            registerFlashComponentS(this.vehResearchPanel,HANGAR_ALIASES.RESEARCH_PANEL);
+         }
+         this.updateElementsPosition();
+         this.updateHeaderMargin();
+      }
+      
+      override protected function onBeforeDispose() : void
+      {
+         App.tutorialMgr.removeListenersFromCustomTutorialComponent(this);
+         this.ammunitionPanelInject.removeEventListener(Event.RESIZE,this.onAmmunitionPanelInjectResizeHandler);
+         this._gameInputMgr.clearKeyHandler(Keyboard.ESCAPE,KeyboardEvent.KEY_DOWN,this.handleEscapeHandler);
+         this._appStage.dispatchEvent(new LobbyEvent(LobbyEvent.UNREGISTER_DRAGGING));
+         this._appStage.removeEventListener(HangarAmunitionSwitchAnimator.AMMUNITION_VIEW_HIDE_ANIM_COMPLETE,this.onAmmunitionViewHideAnimCompleteHandler);
+         removeEventListener(CrewDropDownEvent.SHOW_DROP_DOWN,this.onHangarShowDropDownHandler);
+         this._gameInputMgr.clearKeyHandler(Keyboard.F1,KeyboardEvent.KEY_DOWN,this.showLayoutHandler);
+         this._gameInputMgr.clearKeyHandler(Keyboard.F1,KeyboardEvent.KEY_UP,this.closeLayoutHandler);
+         this.ammunitionPanel.removeEventListener(Event.RESIZE,this.onAmmunitionPanelResizeHandler);
+         this.ammunitionPanel.removeEventListener(FocusRequestEvent.REQUEST_FOCUS,this.onAmmunitionPanelRequestFocusHandler);
+         this.vehResearchPanel.removeEventListener(Event.RESIZE,this.onVehResearchPanelResizeHandler);
+         this.teaser.removeEventListener(TeaserEvent.TEASER_CLICK,this.onTeaserTeaserClickHandler);
+         this.teaser.removeEventListener(TeaserEvent.HIDE,this.onTeaserHideHandler);
+         this.switchModePanel.removeEventListener(ComponentEvent.SHOW,this.onSwitchModePanelShowHandler);
+         this.switchModePanel.removeEventListener(ComponentEvent.HIDE,this.onSwitchModePanelHideHandler);
+         this.carousel.removeEventListener(Event.RESIZE,this.onCarouselResizeHandler);
+         if(this._hangarViewSwitchAnimator)
+         {
+            this._hangarViewSwitchAnimator.dispose();
+            this._hangarViewSwitchAnimator = null;
+         }
+         super.onBeforeDispose();
+      }
+      
+      override protected function onDispose() : void
+      {
+         this.removePrestigeWidgetPanel();
+         this.bottomBg.dispose();
+         this.bottomBg = null;
+         this.teaser.dispose();
+         this.teaser = null;
+         if(this._tweenTeaser)
+         {
+            this._tweenTeaser.paused = true;
+            this._tweenTeaser.dispose();
+            this._tweenTeaser = null;
+         }
+         this.vehResearchPanel = null;
+         this.vehResearchBG.dispose();
+         this.vehResearchBG = null;
+         this.crewPanelInject = null;
+         this.params = null;
+         this.ammunitionPanel = null;
+         this.ammunitionPanelInject = null;
+         this._carousel = null;
+         this.switchModePanel = null;
+         this._header = null;
+         this._alertMessageBlock = null;
+         this.carouselEventEntry = null;
+         this.prestigeBg.dispose();
+         this.prestigeBg = null;
+         this._gameInputMgr = null;
+         this._toolTipMgr = null;
+         this._utils = null;
+         this._helpLayout = null;
+         this._appStage = null;
+         this.carouselContainer.dispose();
+         this.carouselContainer = null;
+         this._hangarContentHelper.dispose();
+         this._hangarContentHelper = null;
+         removeChild(this._carouselEventEntryContainer);
+         this._carouselEventEntryContainer = null;
+         super.onDispose();
+      }
+      
+      override protected function configUI() : void
+      {
+         super.configUI();
+         App.tutorialMgr.addListenersToCustomTutorialComponent(this);
+         this._appStage.dispatchEvent(new LobbyEvent(LobbyEvent.REGISTER_DRAGGING));
+         mouseEnabled = false;
+         this.bottomBg.mouseEnabled = false;
+         this._gameInputMgr.setKeyHandler(Keyboard.F1,KeyboardEvent.KEY_DOWN,this.showLayoutHandler,true);
+         this._gameInputMgr.setKeyHandler(Keyboard.F1,KeyboardEvent.KEY_UP,this.closeLayoutHandler,true);
+         this._gameInputMgr.setKeyHandler(Keyboard.ESCAPE,KeyboardEvent.KEY_DOWN,this.handleEscapeHandler,true);
+         this.ammunitionPanel.addEventListener(Event.RESIZE,this.onAmmunitionPanelResizeHandler);
+         this.ammunitionPanel.addEventListener(FocusRequestEvent.REQUEST_FOCUS,this.onAmmunitionPanelRequestFocusHandler);
+         this.switchModePanel.addEventListener(ComponentEvent.SHOW,this.onSwitchModePanelShowHandler);
+         this.switchModePanel.addEventListener(ComponentEvent.HIDE,this.onSwitchModePanelHideHandler);
+         this.vehResearchPanel.addEventListener(Event.RESIZE,this.onVehResearchPanelResizeHandler);
+         this.teaser.addEventListener(TeaserEvent.TEASER_CLICK,this.onTeaserTeaserClickHandler);
+         this.teaser.addEventListener(TeaserEvent.HIDE,this.onTeaserHideHandler);
+         this.carouselContainer.mouseEnabled = false;
+         this._teaserX = -this.teaser.over.width;
+         this.prestigeBg.visible = false;
+         this.prestigeBg.mouseEnabled = this.prestigeBg.mouseChildren = false;
+      }
+      
+      override protected function allowHandleInput() : Boolean
+      {
+         return false;
+      }
+      
+      override protected function draw() : void
+      {
+         var _loc4_:int = 0;
+         super.draw();
+         var _loc1_:Boolean = isInvalid(INVALIDATE_AMMUNITION_PANEL_SIZE);
+         var _loc2_:Boolean = isInvalid(PARAMS_POSITION_INVALID);
+         var _loc3_:Boolean = isInvalid(INVALIDATE_PRESTIGE_WIDGET_VISIBILITY);
+         if(isInvalid(INVALIDATE_CAROUSEL_SIZE))
+         {
+            this.carousel.visible = this._carouselVisible;
+            this.updateCarouselPosition();
+            if(hasEventListener(Event.RESIZE))
+            {
+               dispatchEvent(new Event(Event.RESIZE));
+            }
+            this.updateTeaserSize();
+            if(this.visible)
+            {
+               _loc4_ = SM_CAROUSEL_PADDING;
+               if(width > SM_THRESHOLD_X)
+               {
+                  _loc4_ = SM_AMMUNITION_PANEL_PADDING;
+               }
+               App.systemMessages.dispatchEvent(new NotificationLayoutEvent(NotificationLayoutEvent.UPDATE_LAYOUT,new Point(SM_PADDING_X,height - this.ammunitionPanel.y - _loc4_)));
+            }
+         }
+         if(_loc3_)
+         {
+            this.prestigeBg.visible = this.prestigeProgressInject != null;
+            _loc2_ = true;
+         }
+         if(isInvalid(INVALIDATE_EVENT_LOOT_BOXES_VISIBLE))
+         {
+            if(this._carouselEventEntryVisible)
+            {
+               if(!this.carouselEventEntry)
+               {
+                  this.carouselEventEntry = new CarouselEventEntry();
+                  this._carouselEventEntryContainer.addChild(this.carouselEventEntry);
+               }
+               if(!isFlashComponentRegisteredS(HANGAR_ALIASES.CAROUSEL_EVENT_ENTRY_HOLDER))
+               {
+                  registerFlashComponentS(this.carouselEventEntry,HANGAR_ALIASES.CAROUSEL_EVENT_ENTRY_HOLDER);
+               }
+               this.carouselEventEntry.visible = true;
+               this.carouselEventEntry.updateStateS();
+            }
+            else if(this.carouselEventEntry)
+            {
+               this.carouselEventEntry.updateStateS();
+               if(isFlashComponentRegisteredS(HANGAR_ALIASES.CAROUSEL_EVENT_ENTRY_HOLDER))
+               {
+                  unregisterFlashComponentS(HANGAR_ALIASES.CAROUSEL_EVENT_ENTRY_HOLDER);
+               }
+               this._carouselEventEntryContainer.removeChild(this.carouselEventEntry);
+               this.carouselEventEntry = null;
+            }
+            if(this.carousel)
+            {
+               this.carousel.setRightMargin(this._carouselEventEntryVisible ? CarouselEventEntry.WIDTH + CAROUSEL_EVENT_ENTRY_X_OFFSET : 0);
+            }
+            this.updateCarouselEventEntryWidgetPosition();
+         }
+         if(isInvalid(INVALIDATE_EVENT_TOURNAMENT_BANNER_VISIBILITY))
+         {
+            this.updateEventTournamentBannerSizeAndPosition();
+         }
+         if(_loc1_)
+         {
+            this.updateAmmunitionPanelPosition();
+            _loc2_ = true;
+         }
+         if(_loc2_)
+         {
+            this.updateParamsPosition();
+         }
+      }
+      
+      override protected function onSetModalFocus(param1:InteractiveObject) : void
+      {
+         if(param1 == null)
+         {
+            param1 = this;
+         }
+         super.onSetModalFocus(param1);
+      }
+      
+      override protected function setupAmmunitionPanel(param1:AmmunitionPanelVO) : void
+      {
+         this.ammunitionPanel.updateButtons(param1);
+      }
+      
+      override protected function show3DSceneTooltip(param1:String, param2:Array) : void
+      {
+         this._toolTipMgr.showSpecial.apply(this._toolTipMgr,[param1,null].concat(param2));
+      }
+      
+      override protected function showTeaser(param1:TeaserVO) : void
+      {
+         this.teaser.setData(param1);
+         this._isTeaserShow = true;
+         if(!this._tweenTeaser && (!this._hangarViewSwitchAnimator || this._hangarViewSwitchAnimator.isHangarShown))
+         {
+            this.teaser.alpha = 0;
+            this._tweenTeaser = new Tween(ANIM_SPEED_TIME,this.teaser,{
+               "x":this._teaserOffsetX,
+               "alpha":1
+            },{
+               "paused":false,
+               "onComplete":this.animationFinished,
+               "ease":Quadratic.easeInOut
+            });
+         }
+      }
+      
+      override protected function updateHangarComponents(param1:Array, param2:Array) : void
+      {
+         this._hangarContentHelper.updateShowComponents(param1);
+         this._hangarContentHelper.updateHideComponents(param2);
+      }
+      
+      public function addAlertMessage() : void
+      {
+         if(this._alertMessageBlock == null)
+         {
+            this._alertMessageBlock = this._utils.classFactory.getComponent(Linkages.ALERT_MESSAGE_BLOCK,AlertMessageBlock);
+            this._alertMessageBlock.name = HANGAR_ALIASES.ALERT_MESSAGE_BLOCK;
+         }
+         var _loc1_:Boolean = this._alertMessageBlock ? contains(this._alertMessageBlock) : false;
+         if(!_loc1_)
+         {
+            addChildAt(this._alertMessageBlock,getChildIndex(this.ammunitionPanel as DisplayObject) - 1);
+         }
+         if(!isFlashComponentRegisteredS(HANGAR_ALIASES.ALERT_MESSAGE_BLOCK))
+         {
+            registerFlashComponentS(this._alertMessageBlock,HANGAR_ALIASES.ALERT_MESSAGE_BLOCK);
+         }
+         this.updateElementsPosition();
+      }
+      
+      public function addEventTournamentBanner(param1:String) : void
+      {
+         if(Boolean(this._eventTournamentBanner) && this._eventTournamentBanner.alias != param1)
+         {
+            this.removeEventTournamentBanner(this._eventTournamentBanner.alias);
+         }
+         if(!this._eventTournamentBanner)
+         {
+            this._eventTournamentBanner = new EventTournamentBannerInject(param1);
+            addChild(this._eventTournamentBanner);
+            registerFlashComponentS(this._eventTournamentBanner,param1);
+         }
+         invalidate(INVALIDATE_EVENT_TOURNAMENT_BANNER_VISIBILITY);
+      }
+      
+      public function addPrestigeWidget() : void
+      {
+         if(!this.prestigeProgressInject)
+         {
+            this.prestigeProgressInject = PrestigeProgressInject(this._utils.classFactory.getComponent(Linkages.PRESTIGE_HANGAR_WIDGET_UI,PrestigeProgressInject));
+            this.prestigeProgressInject.name = PrestigeProgressInject.PRESTIGE_WIDGET_NAME;
+            addChildAt(this.prestigeProgressInject,getChildIndex(this.params as DisplayObject) + 1);
+            registerFlashComponentS(this.prestigeProgressInject,HANGAR_ALIASES.PRESTIGE_PROGRESS_WIDGET);
+            if(this._hangarViewSwitchAnimator)
+            {
+               this._hangarViewSwitchAnimator.addAlphaItem(this.prestigeProgressInject);
+            }
+            invalidate(INVALIDATE_PRESTIGE_WIDGET_VISIBILITY);
+         }
+      }
+      
+      public function as_animateHangarViews(param1:Boolean) : void
+      {
+         this.initHangarSwitchAnimator();
+         if(param1)
+         {
+            this._hangarViewSwitchAnimator.runShowAnimation();
+         }
+         else
+         {
+            this._hangarViewSwitchAnimator.playHideAnimation();
+         }
+      }
+      
+      public function as_closeHelpLayout() : void
+      {
+         this._helpLayout.hide();
+      }
+      
+      public function as_hide3DSceneTooltip() : void
+      {
+         this.hideTooltip();
+      }
+      
+      public function as_hideTeaserTimer() : void
+      {
+         this.teaser.hideTimer();
+      }
+      
+      public function as_setCarousel(param1:String, param2:String) : void
+      {
+         if(this.carousel != null)
+         {
+            this.carousel.removeEventListener(Event.RESIZE,this.onCarouselResizeHandler);
+            this.carouselContainer.removeChild(this.carousel);
+            unregisterFlashComponentS(this._carouselAlias);
+         }
+         this._carouselAlias = param2;
+         this._carousel = this._utils.classFactory.getComponent(param1,TankCarousel);
+         this.carousel.visible = false;
+         if(this._carouselEventEntryVisible)
+         {
+            this.carousel.setRightMargin(CarouselEventEntry.WIDTH + CAROUSEL_EVENT_ENTRY_X_OFFSET);
+         }
+         else if(this._eventTournamentBanner)
+         {
+            this.carousel.setRightMargin(this._eventTournamentBanner.width);
+         }
+         this.carousel.addEventListener(Event.RESIZE,this.onCarouselResizeHandler);
+         this.carousel.updateStage(_originalWidth,_originalHeight);
+         this.carousel.name = CAROUSEL_NAME;
+         this.carouselContainer.addChild(this.carousel);
+         registerFlashComponentS(this.carousel,this._carouselAlias);
+         this.carousel.validateNow();
+         invalidate(INVALIDATE_CAROUSEL_SIZE);
+      }
+      
+      public function as_setCarouselEnabled(param1:Boolean) : void
+      {
+         this.carousel.enabled = param1;
+      }
+      
+      public function as_setControlsVisible(param1:Boolean) : void
+      {
+         if(param1 != this.isControlsVisible)
+         {
+            this._isControlsVisible = param1;
+         }
+      }
+      
+      public function as_setEventTournamentBannerVisible(param1:String, param2:Boolean) : void
+      {
+         if(param2 && !this._eventTournamentBanner)
+         {
+            this.addEventTournamentBanner(param1);
+         }
+         if(!param2 && Boolean(this._eventTournamentBanner))
+         {
+            this.removeEventTournamentBanner(param1);
+         }
+      }
+      
+      public function as_setPrestigeWidgetVisible(param1:Boolean) : void
+      {
+         if(param1 && this.prestigeProgressInject == null)
+         {
+            this.addPrestigeWidget();
+         }
+         if(!param1 && this.prestigeProgressInject != null)
+         {
+            this.removePrestigeWidget();
+         }
+      }
+      
+      public function as_setTeaserTimer(param1:String) : void
+      {
+         this.teaser.setTime(param1);
+      }
+      
+      public function as_setVisible(param1:Boolean) : void
+      {
+         this.visible = param1;
+      }
+      
+      public function as_showHelpLayout() : void
+      {
+         var _loc1_:Number = NaN;
+         if(this.params.visible)
+         {
+            _loc1_ = Math.max(this.params.getHelpLayoutWidth(),this.vehResearchPanel.getHelpLayoutWidth());
+            this.params.showHelpLayoutEx(this.vehResearchPanel.x - this.params.x,_loc1_);
+         }
+         this._helpLayout.show();
+      }
+      
+      public function as_showMiniClientInfo(param1:String, param2:String) : void
+      {
+      }
+      
+      public function as_updateCarouselEventEntryState(param1:Boolean) : void
+      {
+         if(param1 != this._carouselEventEntryVisible)
+         {
+            this._carouselEventEntryVisible = param1;
+            invalidate(INVALIDATE_EVENT_LOOT_BOXES_VISIBLE);
+         }
+      }
+      
+      public function generatedUnstoppableEvents() : Boolean
+      {
+         return true;
+      }
+      
+      public function getTutorialDescriptionName() : String
+      {
+         return name;
+      }
+      
+      public function needPreventInnerEvents() : Boolean
+      {
+         return true;
+      }
+      
+      public function removeAlertMessage() : void
+      {
+         var _loc1_:Boolean = false;
+         if(this._alertMessageBlock)
+         {
+            if(isFlashComponentRegisteredS(HANGAR_ALIASES.ALERT_MESSAGE_BLOCK))
+            {
+               unregisterFlashComponentS(HANGAR_ALIASES.ALERT_MESSAGE_BLOCK);
+            }
+            _loc1_ = this._alertMessageBlock ? contains(this._alertMessageBlock) : false;
+            if(_loc1_)
+            {
+               removeChild(this._alertMessageBlock);
+            }
+            this._alertMessageBlock = null;
+         }
+         this.updateElementsPosition();
+      }
+      
+      public function removeEventTournamentBanner(param1:String) : void
+      {
+         if(this._eventTournamentBanner != null && this._eventTournamentBanner.alias == param1)
+         {
+            removeChild(this._eventTournamentBanner);
+            if(!_baseDisposed && isFlashComponentRegisteredS(this._eventTournamentBanner.alias))
+            {
+               unregisterFlashComponentS(this._eventTournamentBanner.alias);
+            }
+            this._eventTournamentBanner = null;
+            invalidate(INVALIDATE_EVENT_TOURNAMENT_BANNER_VISIBILITY);
+         }
+      }
+      
+      public function removePrestigeWidget() : void
+      {
+         this.removePrestigeWidgetPanel();
+         invalidate(INVALIDATE_PRESTIGE_WIDGET_VISIBILITY);
+      }
+      
+      public function setAnimatorVisibility(param1:Boolean) : void
+      {
+         this._isVisibleByAnimator = param1;
+         this.resolveVisibility();
+      }
+      
+      public function updateAmmunitionPanelPosition() : void
+      {
+         var _loc1_:int = 0;
+         this.ammunitionPanel.x = _width - this.ammunitionPanel.width >> 1;
+         if(this.carousel != null)
+         {
+            _loc1_ = this.ammunitionPanel.height + AmmunitionPanel.SLOTS_HEIGHT_AND_OFFSET;
+            if(!this.carouselContainer.visible)
+            {
+               this.ammunitionPanel.y = height - _loc1_ | 0;
+            }
+            else
+            {
+               this.ammunitionPanel.y = Math.min(this.carousel.y - _loc1_ + AMMUNITION_PANEL_OFFSET_Y | 0,height - _loc1_ | 0);
+            }
+            this.ammunitionPanel.updateStage(_width,this.carousel.y);
+            this.updateAmmunitionPanelInjectPosition();
+            invalidate(PARAMS_POSITION_INVALID);
+         }
+      }
+      
+      private function removePrestigeWidgetPanel() : void
+      {
+         if(this.prestigeProgressInject != null)
+         {
+            if(this._hangarViewSwitchAnimator)
+            {
+               this._hangarViewSwitchAnimator.removeAlphaItem(this.prestigeProgressInject);
+            }
+            removeChild(this.prestigeProgressInject);
+            if(!_baseDisposed && isFlashComponentRegisteredS(HANGAR_ALIASES.PRESTIGE_PROGRESS_WIDGET))
+            {
+               unregisterFlashComponentS(HANGAR_ALIASES.PRESTIGE_PROGRESS_WIDGET);
+            }
+            this.prestigeProgressInject = null;
+         }
+      }
+      
+      private function resolveVisibility() : void
+      {
+         super.visible = this._isVisibleByAnimator && this._isVisible;
+      }
+      
+      private function initHangarSwitchAnimator() : void
+      {
+         if(!this._hangarViewSwitchAnimator)
+         {
+            this._hangarViewSwitchAnimator = new HangarAmunitionSwitchAnimator(this,Vector.<DisplayObject>([this.params,this.crewPanelInject,this.teaser,this._alertMessageBlock,this.vehResearchPanel,this.vehResearchBG,this.header,this.ammunitionPanel,this.bottomBg,this.prestigeBg,this.prestigeProgressInject,this.ammunitionPanelInject]).concat(this.getHints()),Vector.<DisplayObject>([this.carouselContainer,this._carouselEventEntryContainer]),this.ammunitionPanelInject,height);
+         }
+      }
+      
+      private function getHints() : Vector.<DisplayObject>
+      {
+         var _loc3_:DisplayObject = null;
+         var _loc1_:Vector.<DisplayObject> = new Vector.<DisplayObject>(0);
+         var _loc2_:int = 0;
+         while(_loc2_ != numChildren)
+         {
+            _loc3_ = getChildAt(_loc2_);
+            if(_loc3_ is this._utils.classFactory.getClass(Linkages.TUTORIAL_HINT_UI))
+            {
+               _loc1_.push(_loc3_);
+            }
+            _loc2_++;
+         }
+         return _loc1_;
+      }
+      
+      private function updateHeaderMargin() : void
+      {
+         var _loc2_:int = 0;
+         var _loc1_:int = this._topMargin;
+         this._topMargin = 0;
+         if(_loc1_ != this._topMargin)
+         {
+            _loc2_ = VEH_RESEARCH_PANEL_Y + this._topMargin;
+            this.vehResearchPanel.y = this.vehResearchBG.y = _loc2_;
+            this.updateParamsPosition();
+         }
+      }
+      
+      private function hideTeaserAnim() : void
+      {
+         this._isTeaserShow = false;
+         this._teaserX = this.teaser.x = -this.teaser.width;
+         this.teaser.alpha = 0;
+         hideTeaserS();
+      }
+      
+      private function updateTeaserSize() : void
+      {
+         if(stage.stageWidth <= Teaser.STAGE_WIDTH_BOUNDARY)
+         {
+            this._teaserOffsetX = TEASER_SHOW_SMALL_X_OFFSET;
+            this._teaserX = this._isTeaserShow ? this._teaserOffsetX : TEASER_HIDE_SMALL_X_OFFSET;
+         }
+         else
+         {
+            this._teaserOffsetX = TEASER_SHOW_X_OFFSET;
+            this._teaserX = this._isTeaserShow ? this._teaserOffsetX : int(-this.teaser.over.width);
+         }
+         this.teaser.x = this._teaserX;
+         this.teaser.y = this._carousel.y - this.teaser.height - TEASER_SHOW_X_OFFSET;
+         this.teaser.invalidateSize();
+      }
+      
+      private function animationFinished() : void
+      {
+         this._tweenTeaser = null;
+         this._teaserX = this.teaser.x;
+      }
+      
+      private function updateParamsPosition() : void
+      {
+         var _loc4_:uint = 0;
+         var _loc5_:uint = 0;
+         var _loc6_:Rectangle = null;
+         this.vehResearchBG.y = VEH_RESEARCH_PANEL_OFFSET + this.vehResearchPanel.offset;
+         var _loc1_:* = this.vehResearchBG.y + this.vehResearchBG.height + PARAMS_TOP_MARGIN ^ 0;
+         if(this.prestigeProgressInject)
+         {
+            _loc4_ = uint(PrestigeProgressInject.PRESTIGE_WIDGET_WIDTH);
+            _loc5_ = App.appWidth > StageSizeBoundaries.WIDTH_1366 ? uint(PrestigeProgressInject.PRESTIGE_WIDGET_HEIGHT) : uint(PrestigeProgressInject.PRESTIGE_WIDGET_HEIGHT_SMALL);
+            this.prestigeProgressInject.setSize(_loc4_,_loc5_);
+            this.prestigeBg.height = _loc5_ - 2 * PrestigeProgressInject.PRESTIGE_WIDGET_OFFSET;
+            this.prestigeProgressInject.x = _originalWidth - this.prestigeProgressInject.width - RIGHT_MARGIN ^ 0;
+            _loc6_ = this.prestigeBg.getBounds(this.prestigeBg);
+            this.prestigeBg.x = _originalWidth - _loc6_.x - _loc6_.width - RIGHT_MARGIN >> 0;
+            this.prestigeBg.y = _loc1_;
+            this.prestigeProgressInject.y = _loc1_ - (PrestigeProgressInject.PRESTIGE_WIDGET_OFFSET >> 1);
+            _loc1_ = this.prestigeBg.y + this.prestigeBg.height + PARAMS_TOP_MARGIN ^ 0;
+         }
+         this.params.x = _originalWidth - this.params.width - RIGHT_MARGIN ^ 0;
+         this.params.y = _loc1_;
+         var _loc2_:int = _originalWidth <= StageSizeBoundaries.WIDTH_1280 ? PARAMS_SMALL_SCREEN_BOTTOM_MARGIN : 0;
+         var _loc3_:int = this.ammunitionPanel.y - this.params.y + PARAMS_BOTTOM_MARGIN - _loc2_;
+         if(_loc3_ > 0)
+         {
+            this.params.height = _loc3_;
+         }
+      }
+      
+      private function hideTooltip() : void
+      {
+         this._toolTipMgr.hide();
+      }
+      
+      private function updateCarouselPosition() : void
+      {
+         this._carousel.updateCarouselPosition(_height - this._carousel.getBottom() ^ 0);
+         this.updateEventTournamentBannerSizeAndPosition();
+         this.updateCarouselEventEntryWidgetPosition();
+         this.updateAmmunitionPanelPosition();
+         if(this._hangarViewSwitchAnimator)
+         {
+            this._hangarViewSwitchAnimator.updateStage(width,height);
+         }
+      }
+      
+      private function updateCarouselEventEntryWidgetPosition() : void
+      {
+         var _loc1_:int = 0;
+         var _loc2_:int = 0;
+         if(Boolean(this.carouselEventEntry) && Boolean(this._carousel))
+         {
+            _loc1_ = this.carousel.x + this._carousel.rightArrow.x;
+            _loc2_ = this._carousel.y + this._carousel.leftArrow.y + (this._carousel.leftArrow.height >> 1);
+            _loc1_ += CAROUSEL_EVENT_ENTRY_X_OFFSET;
+            _loc2_ -= CAROUSEL_EVENT_ENTRY_Y_OFFSET;
+            this.carouselEventEntry.x = _loc1_;
+            this.carouselEventEntry.y = _loc2_;
+         }
+      }
+      
+      private function updateEventTournamentBannerSizeAndPosition() : void
+      {
+         if(!this._carousel)
+         {
+            return;
+         }
+         if(this._eventTournamentBanner)
+         {
+            this._eventTournamentBanner.isExtended = this._carousel.isExtended && App.appHeight >= StageSizeBoundaries.HEIGHT_900;
+            this._carousel.setRightMargin(this._eventTournamentBanner.width);
+            this._eventTournamentBanner.x = this._carousel.x + this._carousel.rightArrow.x + this._carousel.rightArrow.width + EVENT_TOURNAMENT_BANNER_OFFSET_X | 0;
+            this._eventTournamentBanner.y = this._carousel.y + this._carousel.getBottom() - this._eventTournamentBanner.height + EVENT_TOURNAMENT_BANNER_OFFSET_Y | 0;
+         }
+         else if(!this._carouselEventEntryVisible)
+         {
+            this._carousel.setRightMargin(0);
+         }
+      }
+      
+      private function updateElementsPosition() : void
+      {
+         var _loc1_:int = TOP_MARGIN;
+         if(this._alertMessageBlock)
+         {
+            this._alertMessageBlock.x = _width - this._alertMessageBlock.width >> 1;
+            this._alertMessageBlock.y = _loc1_;
+            _loc1_ += ALERT_MESSAGE_GAP;
+         }
+         if(this.header != null)
+         {
+            this.header.x = _width >> 1;
+         }
+         if(this.switchModePanel.visible)
+         {
+            this.switchModePanel.y = _loc1_;
+         }
+         if(this.switchModePanel.visible)
+         {
+            this.switchModePanel.y = _loc1_;
+         }
+      }
+      
+      private function alignToCenter(param1:DisplayObject) : void
+      {
+         if(param1)
+         {
+            param1.x = width - param1.width >> 1;
+         }
+      }
+      
+      private function closeLayoutHandler() : void
+      {
+         closeHelpLayoutS();
+      }
+      
+      private function updateAmmunitionPanelInjectPosition() : void
+      {
+         if(this.carousel != null && this.ammunitionPanelInject.width > 0)
+         {
+            this.ammunitionPanelInject.x = _width - this.ammunitionPanelInject.width >> 1;
+            this.ammunitionPanelInject.y = this.ammunitionPanel.y + AMMUNITION_PANEL_INJECT_OFFSET_TOP;
+         }
+      }
+      
+      override public function set visible(param1:Boolean) : void
+      {
+         this._isVisible = param1;
+         this.resolveVisibility();
+      }
+      
+      public function set carouselVisible(param1:Boolean) : void
+      {
+         this._carouselVisible = param1;
+         this.carousel.visible = this._carouselVisible;
+      }
+      
+      public function get carousel() : TankCarousel
+      {
+         return this._carousel;
+      }
+      
+      public function get header() : HangarHeader
+      {
+         return this._header;
+      }
+      
+      public function get isControlsVisible() : Boolean
+      {
+         return this._isControlsVisible;
+      }
+      
+      private function onAmmunitionPanelRequestFocusHandler(param1:FocusRequestEvent) : void
+      {
+         setFocus(param1.focusContainer.getComponentForFocus());
+      }
+      
+      private function handleEscapeHandler(param1:InputEvent) : void
+      {
+         if(!this._helpLayout.isShown())
+         {
+            onEscapeS();
+         }
+      }
+      
+      private function showLayoutHandler(param1:InputEvent) : void
+      {
+         var _loc2_:InputDetails = param1.details;
+         if(_loc2_.altKey || _loc2_.ctrlKey || _loc2_.shiftKey)
+         {
+            return;
+         }
+         showHelpLayoutS();
+      }
+      
+      private function onSwitchModePanelShowHandler(param1:ComponentEvent) : void
+      {
+         this.updateElementsPosition();
+      }
+      
+      private function onSwitchModePanelHideHandler(param1:ComponentEvent) : void
+      {
+         this.updateElementsPosition();
+      }
+      
+      private function onAmmunitionViewHideAnimCompleteHandler(param1:Event) : void
+      {
+         invalidate(INVALIDATE_CAROUSEL_SIZE);
+      }
+      
+      private function onTeaserTeaserClickHandler(param1:TeaserEvent) : void
+      {
+         onTeaserClickS();
+      }
+      
+      private function onTeaserHideHandler(param1:TeaserEvent) : void
+      {
+         this.hideTeaserAnim();
+      }
+      
+      private function onAmmunitionPanelResizeHandler(param1:Event) : void
+      {
+         invalidate(INVALIDATE_AMMUNITION_PANEL_SIZE);
+      }
+      
+      private function onHangarShowDropDownHandler(param1:CrewDropDownEvent) : void
+      {
+         var _loc2_:MovieClip = param1.dropDownref;
+         var _loc3_:Point = globalToLocal(new Point(_loc2_.x,_loc2_.y));
+         addChild(_loc2_);
+         _loc2_.x = _loc3_.x;
+         _loc2_.y = _loc3_.y;
+      }
+      
+      private function onCarouselResizeHandler(param1:Event) : void
+      {
+         invalidate(INVALIDATE_CAROUSEL_SIZE);
+      }
+      
+      private function onVehResearchPanelResizeHandler(param1:Event) : void
+      {
+         this.updateParamsPosition();
+      }
+      
+      private function onAmmunitionPanelInjectResizeHandler(param1:Event) : void
+      {
+         this.updateAmmunitionPanelInjectPosition();
+      }
+   }
+}
+

@@ -1,0 +1,4245 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Gun::Effects::EffectComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"effectMask": "1"
+									},
+									"BW::Gun::ShotImpulseComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"impulse": 0.38
+									},
+									"BW::variables::PropertyOnChangeCalculatorComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ChooseExpression",
+													"__cvalue__": {
+														"choices": [
+															{
+																"condition/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "vehicle/gun/shellParamsSwitcher/isActive"
+																	}
+																},
+																"result/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 0.38
+																	}
+																}
+															}
+														],
+														"defaultResult/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.38
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Gun::ShotImpulseComponent",
+												"componentPropertyDest/propertyPath": "impulse"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "single_shot_impulse",
+								"uuid": "ab1b3750-7aef-42cc-a069-81b8ad9643a8"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {}
+						},
+						"name": "impulse",
+						"uuid": "54850c33-5845-4728-93c4-eb6ade715357"
+					},
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"components": {
+													"BW::NodeLeaderComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_1"
+													},
+													"BW::StartAtNodeTransformComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_1"
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": 0.014623,
+															"y": -2.3842e-07,
+															"z": 0
+														}
+													}
+												},
+												"name": "valve_1",
+												"uuid": "69c9791c-03aa-4646-8e6c-483aa69cd1b5"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve_small_1_0"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": -0.24734,
+													"y": 0.07204,
+													"z": 0.27784
+												},
+												"rotation": {
+													"x": 0.00015795,
+													"y": 104.43,
+													"z": 13.995
+												}
+											}
+										},
+										"name": "valve_1_0",
+										"uuid": "8ae918fa-0222-4a10-b948-bad623756c47"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::NodeLeaderComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_2"
+													},
+													"BW::StartAtNodeTransformComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_2"
+													},
+													"cgf::TransformComponent": {}
+												},
+												"name": "valve_2",
+												"uuid": "f449a36a-22f2-40d8-88b1-6f3975e1fa3e"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve_small_2_0"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0.24735,
+													"y": 0.072042,
+													"z": 0.27784
+												},
+												"rotation": {
+													"x": 0.00015453,
+													"y": 75.565,
+													"z": 13.996
+												}
+											}
+										},
+										"name": "valve_2_0",
+										"uuid": "5c91fb81-c03f-4600-b6f1-a4ebed961f51"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::NodeLeaderComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_3"
+													},
+													"BW::StartAtNodeTransformComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_3"
+													},
+													"cgf::TransformComponent": {}
+												},
+												"name": "valve_3",
+												"uuid": "e90e499f-304c-4c82-9fba-4ec72e8d656e"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve_small_3_0"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": -0.24735,
+													"y": -0.069103,
+													"z": 0.27784
+												},
+												"rotation": {
+													"x": -0.00015496,
+													"y": 104.43,
+													"z": -13.995
+												}
+											}
+										},
+										"name": "valve_3_0",
+										"uuid": "3d75cfcc-c9f0-4c74-952a-7dd3f0cb4244"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::NodeLeaderComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_7"
+													},
+													"BW::StartAtNodeTransformComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_7"
+													},
+													"cgf::TransformComponent": {}
+												},
+												"name": "valve_7",
+												"uuid": "772e936e-5d2c-4d16-a7a7-f065a4a3e83f"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve_small_7_0"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": -0.24734,
+													"y": -0.069101,
+													"z": -0.42216
+												},
+												"rotation": {
+													"x": 0.00016136,
+													"y": 104.44,
+													"z": -13.996
+												}
+											}
+										},
+										"name": "valve_7_0",
+										"uuid": "05266ebc-5873-4e59-9099-89e3ce738047"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::NodeLeaderComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_4"
+													},
+													"BW::StartAtNodeTransformComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_4"
+													},
+													"cgf::TransformComponent": {}
+												},
+												"name": "valve_4",
+												"uuid": "f05c1407-b054-430f-94ec-1439354fb7ab"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve_small_4_0"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0.24735,
+													"y": -0.069103,
+													"z": 0.27784
+												},
+												"rotation": {
+													"x": 0.00032017,
+													"y": 75.568,
+													"z": -13.995
+												}
+											}
+										},
+										"name": "valve_4_0",
+										"uuid": "33242f74-e38c-4a97-abea-2f81eaaac797"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::NodeLeaderComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_5"
+													},
+													"BW::StartAtNodeTransformComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_5"
+													},
+													"cgf::TransformComponent": {}
+												},
+												"name": "valve_5",
+												"uuid": "8826ee42-ca4f-40c2-9b7c-c017df3146c0"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve_small_5_0"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": -0.24735,
+													"y": 0.072045,
+													"z": -0.42216
+												},
+												"rotation": {
+													"x": 0.00018228,
+													"y": 104.43,
+													"z": 13.995
+												}
+											}
+										},
+										"name": "valve_5_0",
+										"uuid": "7ade7981-97a0-493b-adf8-96f3b6f1dac9"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::NodeLeaderComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_6"
+													},
+													"BW::StartAtNodeTransformComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_6"
+													},
+													"cgf::TransformComponent": {}
+												},
+												"name": "valve_6",
+												"uuid": "8d4b3f48-388a-46f4-b099-69631b185066"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve_small_6_0"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0.24735,
+													"y": 0.072041,
+													"z": -0.42216
+												},
+												"rotation": {
+													"x": 0.00035133,
+													"y": 75.566,
+													"z": 13.999
+												}
+											}
+										},
+										"name": "valve_6_0",
+										"uuid": "4015791e-df49-429a-a091-2b70dc2b0c12"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::NodeLeaderComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_8"
+													},
+													"BW::StartAtNodeTransformComponent": {
+														"disabledDomains": [
+															"Server"
+														],
+														"nodeName": "valve_8"
+													},
+													"cgf::TransformComponent": {}
+												},
+												"name": "valve_8",
+												"uuid": "ea89d8ba-e75c-44ba-83ea-60cff7bc9dc7"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "valve_small_8_0"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0.24735,
+													"y": -0.069101,
+													"z": -0.42216
+												},
+												"rotation": {
+													"x": -1.0672e-05,
+													"y": 75.567,
+													"z": -13.997
+												}
+											}
+										},
+										"name": "valve_8_0",
+										"uuid": "58a15acf-d23f-4a7f-b7f5-ab8ef163ae63"
+									}
+								],
+								"components": {
+									"cgf::TransformComponent": {}
+								},
+								"name": "joints",
+								"uuid": "2714e6eb-e4eb-4c3a-a7d9-4bd7500ad522"
+							},
+							{
+								"children": [
+									{
+										"name": "groundwave_G196_VK62_00.prefab",
+										"prefab": "content/CGFPrefabs/Vehicle/gun_effects/groundwaves/groundwave_G196_VK62_00.prefab",
+										"uuid": "c05bffb6-ca88-4969-907b-6db60630b25b"
+									},
+									{
+										"components": {
+											"BW::RemoveWhenPrefabEffectsAvailableComponent": {}
+										},
+										"name": "particle_large_mb.prefab",
+										"prefab": "content/CGFPrefabs/Vehicle/gun_effects/particles/particle_large_mb.prefab",
+										"uuid": "d91ce886-0310-4692-8ba2-ba1fdf03b266"
+									},
+									{
+										"components": {
+											"BW::RemoveWhenPrefabEffectsAvailableComponent": {}
+										},
+										"name": "light_large.prefab",
+										"prefab": "content/CGFPrefabs/Vehicle/gun_effects/lights/light_large.prefab",
+										"uuid": "6c806f7a-8ed8-443a-9b0a-4a4b410d475f"
+									},
+									{
+										"components": {
+											"cgf::TransformComponent": {}
+										},
+										"prefab": "content/CGFPrefabs/Vehicle/gun_effects/sounds/sound_large.prefab",
+										"uuid": "a154b0f7-bb5a-479a-bfa4-cf7074edccb5"
+									},
+									{
+										"components": {
+											"BW::RemoveWhenPrefabEffectsNotAvailableComponent": {},
+											"cgf::TransformComponent": {}
+										},
+										"prefab": "content/EffectPrefabs/regular/shot/simple_shot.prefab",
+										"uuid": "5d636192-b855-4b03-a9a7-e1939548a619"
+									}
+								],
+								"components": {
+									"BW::StartAtNodeTransformComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "HP_gunFire"
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "HP_gunFire",
+								"uuid": "b3d5b6df-dac3-48f3-abc9-51530418aa55"
+							},
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"components": {
+													"BW::ComponentsVisibilityController": {
+														"castShadows": "0",
+														"visibleInArcadeMode": "1",
+														"visibleInArtyMode": "1",
+														"visibleInDeathFreeCamMode": "1",
+														"visibleInDualGunMode": "0",
+														"visibleInKillCamMode": "1",
+														"visibleInLookAtKillerMode": "1",
+														"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+														"visibleInMapCaseArcadeMode": "1",
+														"visibleInMapCaseMode": "1",
+														"visibleInPostmortemMode": "1",
+														"visibleInRespawnDeathMode": "1",
+														"visibleInSmEntityViewMode": "1",
+														"visibleInSmStrategicMode": "1",
+														"visibleInSniperMode": "0",
+														"visibleInStrategicMode": "1",
+														"visibleInTwinGunMode": "0"
+													},
+													"BW::Particle": {
+														"autoStart": true,
+														"disabledDomains": [
+															"Server"
+														],
+														"effect": "particles/Tank/mechanics/chamber_shot_disc.eff",
+														"emissionRate": 1,
+														"emissionSize": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"epicenterOffset": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"fps": 1,
+														"gravity": 1,
+														"opacity": 1,
+														"startSpeed": {
+															"x": 1,
+															"y": 1
+														},
+														"tintColor": {
+															"value": 4294967295
+														},
+														"windWeight": 1
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": 0,
+															"y": -1.4305e-06,
+															"z": -0.04
+														}
+													}
+												},
+												"flags": [
+													"SelfInactive"
+												],
+												"name": "smoke_04",
+												"uuid": "a4a28138-abdc-4b68-ba60-68eaf2dce359"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunEffect_04"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "HP_gunEffect_04",
+										"uuid": "4c2c0dc9-f66b-42bf-9ab0-d3f20a6962ec"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::ComponentsVisibilityController": {
+														"castShadows": "0",
+														"visibleInArcadeMode": "1",
+														"visibleInArtyMode": "1",
+														"visibleInDeathFreeCamMode": "1",
+														"visibleInDualGunMode": "0",
+														"visibleInKillCamMode": "1",
+														"visibleInLookAtKillerMode": "1",
+														"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+														"visibleInMapCaseArcadeMode": "1",
+														"visibleInMapCaseMode": "1",
+														"visibleInPostmortemMode": "1",
+														"visibleInRespawnDeathMode": "1",
+														"visibleInSmEntityViewMode": "1",
+														"visibleInSmStrategicMode": "1",
+														"visibleInSniperMode": "0",
+														"visibleInStrategicMode": "1",
+														"visibleInTwinGunMode": "0"
+													},
+													"BW::Particle": {
+														"autoStart": true,
+														"disabledDomains": [
+															"Server"
+														],
+														"effect": "particles/Tank/mechanics/chamber_shot_disc.eff",
+														"emissionRate": 1,
+														"emissionSize": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"epicenterOffset": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"fps": 1,
+														"gravity": 1,
+														"opacity": 1,
+														"startSpeed": {
+															"x": 1,
+															"y": 1
+														},
+														"tintColor": {
+															"value": 4294967295
+														},
+														"windWeight": 1
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": -7.6294e-06,
+															"y": -9.5367e-07,
+															"z": -0.04
+														}
+													}
+												},
+												"flags": [
+													"SelfInactive"
+												],
+												"name": "smoke_05",
+												"uuid": "34d1e8d3-ed5d-44e2-bdfa-4075f3959db6"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunEffect_05"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "HP_gunEffect_05",
+										"uuid": "74beb5fe-25f3-4795-8e70-6fa7f218d567"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::ComponentsVisibilityController": {
+														"castShadows": "0",
+														"visibleInArcadeMode": "1",
+														"visibleInArtyMode": "1",
+														"visibleInDeathFreeCamMode": "1",
+														"visibleInDualGunMode": "0",
+														"visibleInKillCamMode": "1",
+														"visibleInLookAtKillerMode": "1",
+														"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+														"visibleInMapCaseArcadeMode": "1",
+														"visibleInMapCaseMode": "1",
+														"visibleInPostmortemMode": "1",
+														"visibleInRespawnDeathMode": "1",
+														"visibleInSmEntityViewMode": "1",
+														"visibleInSmStrategicMode": "1",
+														"visibleInSniperMode": "0",
+														"visibleInStrategicMode": "1",
+														"visibleInTwinGunMode": "0"
+													},
+													"BW::Particle": {
+														"autoStart": true,
+														"disabledDomains": [
+															"Server"
+														],
+														"effect": "particles/Tank/mechanics/chamber_shot_disc.eff",
+														"emissionRate": 1,
+														"emissionSize": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"epicenterOffset": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"fps": 1,
+														"gravity": 1,
+														"opacity": 1,
+														"startSpeed": {
+															"x": 1,
+															"y": 1
+														},
+														"tintColor": {
+															"value": 4294967295
+														},
+														"windWeight": 1
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": -7.6294e-06,
+															"y": 4.7684e-07,
+															"z": -0.04
+														}
+													}
+												},
+												"flags": [
+													"SelfInactive"
+												],
+												"name": "smoke_01",
+												"uuid": "135c4828-4f83-47f0-b55e-52abcbf87324"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunEffect_01"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": -0.16379,
+													"y": 0.16527,
+													"z": 2.8024
+												},
+												"rotation": {
+													"x": -13.994,
+													"y": -166.12,
+													"z": 0.13363
+												}
+											}
+										},
+										"name": "HP_gunEffect_01",
+										"uuid": "4dce4f29-8b38-43cb-a10f-57fd84b130bf"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::ComponentsVisibilityController": {
+														"castShadows": "0",
+														"visibleInArcadeMode": "1",
+														"visibleInArtyMode": "1",
+														"visibleInDeathFreeCamMode": "1",
+														"visibleInDualGunMode": "0",
+														"visibleInKillCamMode": "1",
+														"visibleInLookAtKillerMode": "1",
+														"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+														"visibleInMapCaseArcadeMode": "1",
+														"visibleInMapCaseMode": "1",
+														"visibleInPostmortemMode": "1",
+														"visibleInRespawnDeathMode": "1",
+														"visibleInSmEntityViewMode": "1",
+														"visibleInSmStrategicMode": "1",
+														"visibleInSniperMode": "0",
+														"visibleInStrategicMode": "1",
+														"visibleInTwinGunMode": "0"
+													},
+													"BW::Particle": {
+														"autoStart": true,
+														"disabledDomains": [
+															"Server"
+														],
+														"effect": "particles/Tank/mechanics/chamber_shot_disc.eff",
+														"emissionRate": 1,
+														"emissionSize": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"epicenterOffset": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"fps": 1,
+														"gravity": 1,
+														"opacity": 1,
+														"startSpeed": {
+															"x": 1,
+															"y": 1
+														},
+														"tintColor": {
+															"value": 4294967295
+														},
+														"windWeight": 1
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": 7.6294e-06,
+															"y": 0,
+															"z": -0.04
+														}
+													}
+												},
+												"flags": [
+													"SelfInactive"
+												],
+												"name": "smoke_07",
+												"uuid": "4ab3b86b-50e3-4dd3-8c6b-81ab412a671e"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunEffect_07"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "HP_gunEffect_07",
+										"uuid": "b55eed86-cac5-4c8f-af63-4b191d9a2cdb"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::ComponentsVisibilityController": {
+														"castShadows": "0",
+														"visibleInArcadeMode": "1",
+														"visibleInArtyMode": "1",
+														"visibleInDeathFreeCamMode": "1",
+														"visibleInDualGunMode": "0",
+														"visibleInKillCamMode": "1",
+														"visibleInLookAtKillerMode": "1",
+														"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+														"visibleInMapCaseArcadeMode": "1",
+														"visibleInMapCaseMode": "1",
+														"visibleInPostmortemMode": "1",
+														"visibleInRespawnDeathMode": "1",
+														"visibleInSmEntityViewMode": "1",
+														"visibleInSmStrategicMode": "1",
+														"visibleInSniperMode": "0",
+														"visibleInStrategicMode": "1",
+														"visibleInTwinGunMode": "0"
+													},
+													"BW::Particle": {
+														"autoStart": true,
+														"disabledDomains": [
+															"Server"
+														],
+														"effect": "particles/Tank/mechanics/chamber_shot_disc.eff",
+														"emissionRate": 1,
+														"emissionSize": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"epicenterOffset": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"fps": 1,
+														"gravity": 1,
+														"opacity": 1,
+														"startSpeed": {
+															"x": 1,
+															"y": 1
+														},
+														"tintColor": {
+															"value": 4294967295
+														},
+														"windWeight": 1
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": -7.6294e-06,
+															"y": -1.4305e-06,
+															"z": -0.04
+														}
+													}
+												},
+												"flags": [
+													"SelfInactive"
+												],
+												"name": "smoke_02",
+												"uuid": "992750f8-cc8b-4c95-adcb-559dddc0e6bc"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunEffect_02"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0.1638,
+													"y": 0.15506,
+													"z": 2.8024
+												},
+												"rotation": {
+													"x": -13.92,
+													"y": 171.66,
+													"z": -1.4717
+												}
+											}
+										},
+										"name": "HP_gunEffect_02",
+										"uuid": "1fb93f6c-a4aa-43fb-afaf-9ed23f236d13"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::ComponentsVisibilityController": {
+														"castShadows": "0",
+														"visibleInArcadeMode": "1",
+														"visibleInArtyMode": "1",
+														"visibleInDeathFreeCamMode": "1",
+														"visibleInDualGunMode": "0",
+														"visibleInKillCamMode": "1",
+														"visibleInLookAtKillerMode": "1",
+														"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+														"visibleInMapCaseArcadeMode": "1",
+														"visibleInMapCaseMode": "1",
+														"visibleInPostmortemMode": "1",
+														"visibleInRespawnDeathMode": "1",
+														"visibleInSmEntityViewMode": "1",
+														"visibleInSmStrategicMode": "1",
+														"visibleInSniperMode": "0",
+														"visibleInStrategicMode": "1",
+														"visibleInTwinGunMode": "0"
+													},
+													"BW::Particle": {
+														"autoStart": true,
+														"disabledDomains": [
+															"Server"
+														],
+														"effect": "particles/Tank/mechanics/chamber_shot_disc.eff",
+														"emissionRate": 1,
+														"emissionSize": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"epicenterOffset": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"fps": 1,
+														"gravity": 1,
+														"opacity": 1,
+														"startSpeed": {
+															"x": 1,
+															"y": 1
+														},
+														"tintColor": {
+															"value": 4294967295
+														},
+														"windWeight": 1
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": 0,
+															"y": -1.9073e-06,
+															"z": -0.04
+														}
+													}
+												},
+												"flags": [
+													"SelfInactive"
+												],
+												"name": "smoke_03",
+												"uuid": "2d83dc64-b257-43a4-ae20-f96d2fae94a6"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunEffect_03"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "HP_gunEffect_03",
+										"uuid": "1ca97e39-f8b6-49e8-8290-24bfc50f7364"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::ComponentsVisibilityController": {
+														"castShadows": "0",
+														"visibleInArcadeMode": "1",
+														"visibleInArtyMode": "1",
+														"visibleInDeathFreeCamMode": "1",
+														"visibleInDualGunMode": "0",
+														"visibleInKillCamMode": "1",
+														"visibleInLookAtKillerMode": "1",
+														"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+														"visibleInMapCaseArcadeMode": "1",
+														"visibleInMapCaseMode": "1",
+														"visibleInPostmortemMode": "1",
+														"visibleInRespawnDeathMode": "1",
+														"visibleInSmEntityViewMode": "1",
+														"visibleInSmStrategicMode": "1",
+														"visibleInSniperMode": "0",
+														"visibleInStrategicMode": "1",
+														"visibleInTwinGunMode": "0"
+													},
+													"BW::Particle": {
+														"autoStart": true,
+														"disabledDomains": [
+															"Server"
+														],
+														"effect": "particles/Tank/mechanics/chamber_shot_disc.eff",
+														"emissionRate": 1,
+														"emissionSize": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"epicenterOffset": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"fps": 1,
+														"gravity": 1,
+														"opacity": 1,
+														"startSpeed": {
+															"x": 1,
+															"y": 1
+														},
+														"tintColor": {
+															"value": 4294967295
+														},
+														"windWeight": 1
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": -7.6294e-06,
+															"y": 2.3842e-07,
+															"z": -0.04
+														}
+													}
+												},
+												"flags": [
+													"SelfInactive"
+												],
+												"name": "smoke_06",
+												"uuid": "14bf682f-598b-4203-a425-9789bb3ed036"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunEffect_06"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "HP_gunEffect_06",
+										"uuid": "fdde2c4d-d27a-4547-a640-157bec175a36"
+									},
+									{
+										"children": [
+											{
+												"components": {
+													"BW::ComponentsVisibilityController": {
+														"castShadows": "0",
+														"visibleInArcadeMode": "1",
+														"visibleInArtyMode": "1",
+														"visibleInDeathFreeCamMode": "1",
+														"visibleInDualGunMode": "0",
+														"visibleInKillCamMode": "1",
+														"visibleInLookAtKillerMode": "1",
+														"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+														"visibleInMapCaseArcadeMode": "1",
+														"visibleInMapCaseMode": "1",
+														"visibleInPostmortemMode": "1",
+														"visibleInRespawnDeathMode": "1",
+														"visibleInSmEntityViewMode": "1",
+														"visibleInSmStrategicMode": "1",
+														"visibleInSniperMode": "0",
+														"visibleInStrategicMode": "1",
+														"visibleInTwinGunMode": "0"
+													},
+													"BW::Particle": {
+														"autoStart": true,
+														"disabledDomains": [
+															"Server"
+														],
+														"effect": "particles/Tank/mechanics/chamber_shot_disc.eff",
+														"emissionRate": 1,
+														"emissionSize": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"epicenterOffset": {
+															"x": 0,
+															"y": 0,
+															"z": 0
+														},
+														"fps": 1,
+														"gravity": 1,
+														"opacity": 1,
+														"startSpeed": {
+															"x": 1,
+															"y": 1
+														},
+														"tintColor": {
+															"value": 4294967295
+														},
+														"windWeight": 1
+													},
+													"cgf::TransformComponent": {
+														"position": {
+															"x": 0,
+															"y": 1.1921e-06,
+															"z": -0.04
+														}
+													}
+												},
+												"flags": [
+													"SelfInactive"
+												],
+												"name": "smoke_08",
+												"uuid": "15577632-adb6-4885-a068-8056c4df3995"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunEffect_08"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0.1638,
+													"y": -0.15515,
+													"z": 2.103
+												},
+												"rotation": {
+													"x": 13.961,
+													"y": 161.38,
+													"z": -1.0109
+												}
+											}
+										},
+										"name": "HP_gunEffect_08",
+										"uuid": "a84716cd-790f-463b-a63a-3b5f2d259d5b"
+									}
+								],
+								"components": {
+									"cgf::TransformComponent": {}
+								},
+								"name": "HP_gunEffect",
+								"uuid": "cb4d875b-a2a3-41a4-9416-23cd4a96b2d2"
+							},
+							{
+								"components": {
+									"BW::Sound3DComponent": {
+										"AutoStart": true,
+										"Event name": "gp_abl_scs_gun_G196_01",
+										"Fade time": 0,
+										"Fade type": 4,
+										"Object name": "abl_scs_gun_G196_01_sfx",
+										"Volume": 1,
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "sound_gun_G196_01_sfx",
+								"uuid": "7cb46fcb-31ef-4501-bbce-a635193d7e94"
+							}
+						],
+						"components": {
+							"BW::Gun::Effects::CollectorComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::Gun::GroupComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"firingOrder": "0"
+							},
+							"BW::Gun::RecoilComponent": {
+								"amplitude": 0.5,
+								"backoffTime": 0.15,
+								"disabledDomains": [
+									"Server"
+								],
+								"loop": "0",
+								"returnTime": 1.3,
+								"started": "0"
+							},
+							"BW::Gun::SingleComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::NodeLeaderComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"nodeName": "G"
+							},
+							"BW::SequenceComponent": {
+								"activeLayer": 1,
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"duration": 2
+									},
+									{
+										"duration": 5,
+										"name": "animation",
+										"tracks": [
+											{
+												"endTime": 5,
+												"object": "69c9791c-03aa-4646-8e6c-483aa69cd1b5",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": -40,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 0.7,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": -20,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": -2,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.95,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90.4
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.1,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 3.1,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 2,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 20,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 3.25,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 40,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 0,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 4.5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.035,
+																"time": 0.3,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.027695,
+																"tangents/right/x": 0,
+																"time": 0.68,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.05,
+																"time": 0.72,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0158,
+																"tangents/right/x": 0,
+																"time": 1.97,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.0158,
+																"time": 3.23,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": -0.0492,
+																"tangents/right/x": 0,
+																"time": 4.48,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.0277,
+																"time": 4.52,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": -0.0342,
+																"tangents/right/x": 0,
+																"time": 4.9,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "f449a36a-22f2-40d8-88b1-6f3975e1fa3e",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 40,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 0.7,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 20,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 2,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.95,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90.4
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 2.1,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 3.1,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": -2,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": -20,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 3.25,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": -40,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 4.5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": 0.035,
+																"time": 0.3,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.0278,
+																"tangents/right/x": 0,
+																"time": 0.68,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.05,
+																"time": 0.72,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0158,
+																"tangents/right/x": 0,
+																"time": 1.97,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.0158,
+																"time": 3.23,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": -0.05,
+																"tangents/right/x": 0,
+																"time": 4.48,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": -0.0277,
+																"time": 4.52,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": -0.035,
+																"tangents/right/x": 1.1755e-38,
+																"time": 4.9,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "e90e499f-304c-4c82-9fba-4ec72e8d656e",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.035,
+																"time": 0.3,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.0278,
+																"tangents/right/x": 0,
+																"time": 0.68,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.05,
+																"time": 0.72,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0158,
+																"tangents/right/x": 0,
+																"time": 1.9482,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.0158,
+																"time": 3.23,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": -0.05,
+																"tangents/right/x": 0,
+																"time": 4.48,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.027,
+																"time": 4.52,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": -0.035,
+																"tangents/right/x": 0,
+																"time": 4.9,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 40,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 0.70001,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 20,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 2,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 1.97,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90.45
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.1,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 3.1,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": -2,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": -20,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 3.25,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": -40,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 4.5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "f05c1407-b054-430f-94ec-1439354fb7ab",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": 0.035,
+																"time": 0.3,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.0286,
+																"tangents/right/x": 0,
+																"time": 0.68,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.05,
+																"tangents/right/x": 0.05,
+																"time": 0.72,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0158,
+																"tangents/right/x": 0,
+																"time": 1.97,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.0158,
+																"time": 3.23,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": -0.0492,
+																"tangents/right/x": 0,
+																"time": 4.48,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.027,
+																"time": 4.52,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": -0.035,
+																"tangents/right/x": 0,
+																"time": 4.9,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": -40,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 0.7,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": -20,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": -2,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 1.95,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90.4
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.1,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 3.1,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 2,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 20,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 3.25,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 40.001,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 4.5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "8826ee42-ca4f-40c2-9b7c-c017df3146c0",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.035,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.027695,
+																"tangents/right/x": 0,
+																"time": 0.38001,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.05,
+																"time": 0.42001,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0158,
+																"tangents/right/x": 0,
+																"time": 1.67,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.0158,
+																"time": 2.93,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": -0.0492,
+																"tangents/right/x": 0,
+																"time": 4.18,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": -0.0277,
+																"time": 4.22,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": -0.035,
+																"tangents/right/x": 1.1755e-38,
+																"time": 4.6,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": -40,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 0.4,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": -20,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 2,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.65,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90.7
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 2,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 20,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.95,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 40,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 4.2,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "8d4b3f48-388a-46f4-b099-69631b185066",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.035,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.0277,
+																"tangents/right/x": 0,
+																"time": 0.38001,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.05,
+																"time": 0.42001,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0166,
+																"tangents/right/x": 0,
+																"time": 1.67,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": -0.0158,
+																"time": 2.93,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": -0.0484,
+																"tangents/right/x": 0,
+																"time": 4.18,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.0277,
+																"time": 4.22,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": -0.035,
+																"tangents/right/x": 0,
+																"time": 4.6,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 40,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 0.4,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 20,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": -2,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 1.65,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 2,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": -20,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 2.95,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90.4
+																	}
+																}
+															},
+															{
+																"tangents/left/x": -40,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 4.2,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "772e936e-5d2c-4d16-a7a7-f065a4a3e83f",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": 0.035,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.0277,
+																"tangents/right/x": 0,
+																"time": 0.38001,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": 0.05,
+																"time": 0.42,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0166,
+																"tangents/right/x": 0,
+																"time": 1.67,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": -0.0158,
+																"time": 2.93,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": -0.0476,
+																"tangents/right/x": 0,
+																"time": 4.18,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/right/x": -0.0277,
+																"time": 4.22,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": -0.035,
+																"tangents/right/x": 0,
+																"time": 4.6,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 40,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 0.4,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 20,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 2,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.65,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": -2,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": -20,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.95,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": 90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": -40,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 4.2,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "ea89d8ba-e75c-44ba-83ea-60cff7bc9dc7",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": 0.035,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 0.0285,
+																"tangents/right/x": 0,
+																"time": 0.38,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": 0.05,
+																"time": 0.42,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0166,
+																"tangents/right/x": 0,
+																"time": 1.67,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": -0.0158,
+																"time": 2.93,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.09
+																}
+															},
+															{
+																"tangents/left/x": -0.0508,
+																"tangents/right/x": 0,
+																"time": 4.18,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/right/x": -0.0277,
+																"time": 4.22,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.02
+																}
+															},
+															{
+																"tangents/left/x": -0.035,
+																"tangents/right/x": 0,
+																"time": 4.6,
+																"type": "CubicBezier",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "position"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 0.0008,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": -40,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 0.4,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": -20,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 2,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.65,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90.5
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 1.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.8,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90
+																	}
+																}
+															},
+															{
+																"tangents/left/x": -2,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 20,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 2.95,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -90.4
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 40.001,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 4.2,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 5,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "135c4828-4f83-47f0-b55e-52abcbf87324",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.87925,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 1.2225,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1.15
+																}
+															},
+															{
+																"time": 2.7578,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.7
+																}
+															},
+															{
+																"time": 4.0957,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.3
+																}
+															},
+															{
+																"time": 4.2789,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													},
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1.1,
+																		"y": 1.1
+																	}
+																}
+															},
+															{
+																"time": 5,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1.1,
+																		"y": 1.1
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "particleSize"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "992750f8-cc8b-4c95-adcb-559dddc0e6bc",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.87925,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 1.2,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.8
+																}
+															},
+															{
+																"time": 2.5475,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.5
+																}
+															},
+															{
+																"time": 4.05,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.4
+																}
+															},
+															{
+																"time": 4.2583,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													},
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1,
+																		"y": 1
+																	}
+																}
+															},
+															{
+																"time": 5,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 0.8,
+																		"y": 0.8
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "particleSize"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "2d83dc64-b257-43a4-ae20-f96d2fae94a6",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.87925,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 1.2276,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.9
+																}
+															},
+															{
+																"time": 2.2345,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.5
+																}
+															},
+															{
+																"time": 4.0846,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.4
+																}
+															},
+															{
+																"time": 4.2809,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													},
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 0.9,
+																		"y": 0.9
+																	}
+																}
+															},
+															{
+																"time": 5,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 0.9,
+																		"y": 0.9
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "particleSize"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "a4a28138-abdc-4b68-ba60-68eaf2dce359",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.87925,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 1.2175,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1.16
+																}
+															},
+															{
+																"time": 2.6526,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.9
+																}
+															},
+															{
+																"time": 4.0901,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.52
+																}
+															},
+															{
+																"time": 4.2522,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													},
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1.1,
+																		"y": 1.1
+																	}
+																}
+															},
+															{
+																"time": 5,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1,
+																		"y": 1
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "particleSize"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "34d1e8d3-ed5d-44e2-bdfa-4075f3959db6",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.63,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.82,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.75
+																}
+															},
+															{
+																"time": 2.3807,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.5
+																}
+															},
+															{
+																"time": 3.6723,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.4
+																}
+															},
+															{
+																"time": 3.9811,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													},
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 0.9,
+																		"y": 0.9
+																	}
+																}
+															},
+															{
+																"time": 5,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 0.9,
+																		"y": 0.9
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "particleSize"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "4ab3b86b-50e3-4dd3-8c6b-81ab412a671e",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.63,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.82,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1
+																}
+															},
+															{
+																"time": 3.7079,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.32
+																}
+															},
+															{
+																"time": 3.9811,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													},
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1,
+																		"y": 1
+																	}
+																}
+															},
+															{
+																"time": 5,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1,
+																		"y": 1
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "particleSize"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "15577632-adb6-4885-a068-8056c4df3995",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.63,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.82,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1.2
+																}
+															},
+															{
+																"time": 2.2859,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.7
+																}
+															},
+															{
+																"time": 3.651,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.3
+																}
+															},
+															{
+																"time": 3.98,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													},
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 0.7,
+																		"y": 0.7
+																	}
+																}
+															},
+															{
+																"time": 5,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 0.7,
+																		"y": 0.7
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "particleSize"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 5,
+												"object": "14bf682f-598b-4203-a425-9789bb3ed036",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.63,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 0.82,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.92
+																}
+															},
+															{
+																"time": 2.65,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.6
+																}
+															},
+															{
+																"time": 3.7204,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.2
+																}
+															},
+															{
+																"time": 3.9685,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													},
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1,
+																		"y": 1
+																	}
+																}
+															},
+															{
+																"time": 5,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector2",
+																	"__cvalue__": {
+																		"x": 1,
+																		"y": 1
+																	}
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "particleSize"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 4.99,
+												"object": "7cb46fcb-31ef-4501-bbce-a635193d7e94",
+												"startTime": 0.05
+											}
+										]
+									}
+								],
+								"speed": "1"
+							},
+							"BW::SequenceLayerSwitcherComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"layerIdx": 1,
+								"transitionTime": "0"
+							},
+							"BW::StartAtNodeTransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"nodeName": "G"
+							},
+							"BW::variables::PropertyOnChangeCalculatorComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "vehicle/gun/shellParamsSwitcher/lastActiveShotTimestamp"
+											}
+										},
+										"componentPropertyDest/component": "BW::SequenceLayerSwitcherComponent",
+										"componentPropertyDest/propertyPath": "startTimestamp"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::EqualExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "vehicle/gun/shellParamsSwitcher/lastActiveShotTimestamp"
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": -1000
+																	}
+																}
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantIntExpression",
+															"__cvalue__": {
+																"intValue": 2
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::ConstantIntExpression",
+													"__cvalue__": {
+														"intValue": 2
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::SequenceLayerSwitcherComponent",
+										"componentPropertyDest/propertyPath": "layerIdx"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/shellParamsSwitcher/isActive"
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.4
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.42
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+										"componentPropertyDest/propertyPath": "startupAmplitude"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/shellParamsSwitcher/isActive"
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.1
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.15
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+										"componentPropertyDest/propertyPath": "startupBackoffTime"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/shellParamsSwitcher/isActive"
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 1.5
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1.3
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Gun::RecoilComponent",
+										"componentPropertyDest/propertyPath": "startupReturnTime"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::variables::VariableStorageComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"varInitialValues": []
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0,
+									"y": -0.006447,
+									"z": 3
+								}
+							}
+						},
+						"name": "G",
+						"uuid": "568fd3a1-6e5b-415f-a0a3-1b269f3617fd"
+					}
+				],
+				"components": {
+					"BW::Gun::Effects::CollectorComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::Gun::InstallationComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"shotsPerMinute": "4"
+					},
+					"BW::LocalTransformNodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "Gun"
+					},
+					"BW::StartAtNodeTransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "Gun"
+					},
+					"BW::variables::VariableStorageComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"varInitialValues": [
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 105
+									}
+								},
+								"var/variableName": "vehicle/gun/caliber"
+							},
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 5
+									}
+								},
+								"var/variableName": "vehicle/gun/gunLength"
+							},
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::EnumExpression",
+									"__cvalue__": {
+										"enumName": "muzzleBrakeType",
+										"enumValueName": "horizontal"
+									}
+								},
+								"var/variableName": "vehicle/gun/muzzleBrake"
+							}
+						]
+					},
+					"cgf::TransformComponent": {},
+					"cgf::network::ReplicableComponent": {}
+				},
+				"name": "normal",
+				"uuid": "9b87c21e-355a-4b92-af93-2727d80886c8"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"decorType": "0",
+				"disabledDomains": [
+					"All"
+				],
+				"isOverlayEnabled": "0",
+				"modelName": "vehicles/german/G196_Versuchspanzer_57/normal/lod0/Gun_03.model"
+			},
+			"BW::StateSwitcherComponent": {
+				"critical": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"damaged": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"normal": "9b87c21e-355a-4b92-af93-2727d80886c8",
+				"preview": 1
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::ReplicableComponent": {},
+			"script::VehicleHealthObserverComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"state": "1"
+			}
+		},
+		"name": "gun_10_5_cm_Hochdruck_Panzerkanone_Muster_56_mit_Zusatzkammern_turret_02",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

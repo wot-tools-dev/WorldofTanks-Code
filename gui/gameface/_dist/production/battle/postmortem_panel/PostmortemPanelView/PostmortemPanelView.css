@@ -1,0 +1,430 @@
+.RateButton_base_a1636 {
+    width: 36rem;
+    height: 36rem;
+    border: none;
+    background: url('R.images.gui.maps.icons.battle.commendations.battleWidget.default') no-repeat center / contain;
+    transition: opacity 0.5s ease-out;
+    cursor: pointer;
+}
+
+    .RateButton_base_a1636:hover {
+        background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.hover');
+    }
+
+    .RateButton_base__hovered_ca193.RateButton_base__neutral_b5fdc {
+            background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.default');
+            animation: RateButton_hovered_dd352 0.5s ease-out;
+        }
+
+    .RateButton_base__negative_b2c68 {
+        background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.default');
+        transform: rotate(90deg) translateX(-1rem);
+    }
+
+    .RateButton_base__negative_b2c68.RateButton_base__selected_a2c15 {
+            background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.bad');
+            opacity: 1;
+            transform: rotate(0deg) translate3d(-1rem, -1rem, 0rem);
+            pointer-events: none;
+        }
+
+    .RateButton_base__negative_b2c68.RateButton_base__selected_a2c15.RateButton_base__animate_b1d95 {
+                animation: RateButton_fadeIn_c1261 0.5s ease-out;
+            }
+
+    .RateButton_base__neutral_b5fdc {
+        background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.hover');
+    }
+
+    .RateButton_base__neutral_b5fdc.RateButton_base__selected_a2c15 {
+            background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.normal');
+            opacity: 1;
+            pointer-events: none;
+        }
+
+    .RateButton_base__neutral_b5fdc.RateButton_base__selected_a2c15.RateButton_base__animate_b1d95 {
+                animation: RateButton_fadeIn_c1261 0.5s ease-out;
+            }
+
+    .RateButton_base__neutral_b5fdc:hover {
+            background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.hover');
+        }
+
+    .RateButton_base__positive_e4586 {
+        background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.default');
+        transform: scaleY(-1) rotate(90deg) translateX(-2rem);
+    }
+
+    .RateButton_base__positive_e4586.RateButton_base__selected_a2c15 {
+            background-image: url('R.images.gui.maps.icons.battle.commendations.battleWidget.good');
+            opacity: 1;
+            transform: rotate(0deg) translateX(-1rem);
+            pointer-events: none;
+        }
+
+    .RateButton_base__positive_e4586.RateButton_base__selected_a2c15.RateButton_base__animate_b1d95 {
+                animation: RateButton_fadeIn_c1261 0.5s ease-out;
+            }
+
+    .RateButton_base__disabled_a6e91 {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+
+@keyframes RateButton_fadeIn_c1261 {
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes RateButton_hovered_dd352 {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.BattleRateWidget_base_ce615 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 36rem;
+    padding: 0 20rem;
+    border-radius: 5rem 5rem 0 0;
+    background-color: rgba(0, 0, 0, 0.65);
+    color: #fd9;
+    opacity: 1;
+    position: relative;
+    transition: opacity 0.5s ease-in-out;
+    transition-delay: 10s;
+}
+
+    .BattleRateWidget_base_wrapper_d4613 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .BattleRateWidget_base_selected_f19d0 {
+        opacity: 0;
+    }
+
+    .BattleRateWidget_base__without_delay_c5177 {
+        animation-delay: 0s;
+    }
+
+    .BattleRateWidget_base_widget_a8363 {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .BattleRateWidget_base_text_e12ce {
+        display: flex;
+        align-items: center;
+        max-width: 150rem;
+        height: 100%;
+        font-size: 16rem;
+        line-height: 1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .BattleRateWidget_base_text__negative_cdb85,
+        .BattleRateWidget_base_text__positive_efa62,
+        .BattleRateWidget_base_text__neutral_bc5dd {
+            opacity: 0.8;
+        }
+
+    .BattleRateWidget_base_buttons_b6b9f {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 124rem;
+        height: 100%;
+        margin-right: 20rem;
+    }
+
+@keyframes BattleRateWidget_widgetDisappear_b65ca {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.HintButton_base_b8f09 {
+    margin-right: 5rem;
+    position: relative;
+}
+
+    .HintButton_base__small_a976e .HintButton_btnInner_a1365 {
+            height: 10rem;
+            font-size: 8rem;
+            line-height: 1.1;
+        }
+
+.HintButton_btnOuter_d6179 {
+    display: flex;
+    flex-direction: row;
+    border: 2rem solid #ff981f;
+    border-radius: 6rem;
+}
+
+.HintButton_btnOuter__blink_c47d8 {
+        border: 2rem solid #ffbd1f;
+    }
+
+.HintButton_animationContainer_c28a6 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+}
+
+.HintButton_buttonContainer_fb6b9 {
+    display: flex;
+    flex-direction: row;
+}
+
+.HintButton_btnInner_a1365 {
+    display: flex;
+    flex-direction: row;
+    height: 12rem;
+    margin: 2rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-radius: 2rem;
+    background: #ff981f;
+    color: #000;
+    font-size: 11rem;
+    font-weight: 700;
+    line-height: 12rem;
+}
+
+.HintButton_btnInner__blink_ae582 {
+        background: #ffbd1f;
+    }
+
+.Hint_base_f42d8 {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16rem;
+    font-size: 12rem;
+}
+
+    .Hint_base_f42d8.Hint___small_b2fc3 {
+        padding-bottom: 0;
+    }
+
+    .Hint_base_f42d8.Hint___small_b2fc3 .Hint_header_b0480 {
+            width: 100%;
+            max-width: 145rem;
+            font-size: 16rem;
+            font-weight: 400;
+            line-height: 1.2;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+    .Hint_base_f42d8 .Hint_hint_e550c {
+        flex: 1;
+    }
+
+    .Hint_base_f42d8 .Hint_header_b0480 {
+        color: #ff981f;
+        font-weight: 700;
+        line-height: 11rem;
+        white-space: pre-wrap;
+    }
+
+    .Hint_base_f42d8 .Hint_description_e7d3f {
+        max-width: 110rem;
+        color: #ffeadb;
+        font-weight: 400;
+        line-height: 15rem;
+    }
+
+    .mediaSmall .Hint_base_f42d8 .Hint_description_e7d3f {
+            max-width: 150rem;
+}
+
+.HintBar_base_cfd21 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.HintBar_column_cf514 {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-left: -50rem;
+}
+
+.mediaSmall .HintBar_column_cf514 {
+        margin-left: 0;
+}
+
+.HintBar_rating_dc7f5 {
+    display: flex;
+    align-items: center;
+    height: 60rem;
+    margin-bottom: 8rem;
+    padding: 0 24rem;
+    border-radius: 3rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #e9e2bf;
+    font-size: 16rem;
+    line-height: 20rem;
+}
+
+.HintBar_alignmentContainer_e5173 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.HintBar_container_a603e {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 32rem;
+    padding-left: 16rem;
+    padding-top: 16rem;
+    padding-right: 16rem;
+    border-radius: 4rem;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mediaSmall .HintBar_container_a603e {
+        padding-left: 32rem;
+        padding-right: 32rem;
+}
+
+.HintBar_container_a603e.HintBar___small_aeffe {
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 20rem;
+        border-radius: 0 0 5rem 5rem;
+        line-height: 1;
+        transition: all 1s;
+    }
+
+.HintBar_container_a603e.HintBar___small_aeffe.HintBar___selected_a547b {
+            animation: HintBar_roundOnRatingSelected_dac3c 1s forwards;
+            animation-delay: 10s;
+        }
+
+.HintBar_container_a603e.HintBar___small_aeffe.HintBar___withoutDelay_f4118 {
+            animation-delay: 0s;
+        }
+
+.HintBar_container__side_cb8b7 {
+        display: flex;
+        align-items: center;
+    }
+
+.HintBar_icon_divider_a64b4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    margin-right: 5rem;
+}
+
+.HintBar_icon_divider_a64b4 .HintBar_line_af61f {
+        width: 2rem;
+        height: 22rem;
+        background-color: #ff981f;
+        transform: rotate(10deg);
+    }
+
+.HintBar_btnContainer_f89ac {
+    margin-left: 20rem;
+}
+
+.HintBar_btnContainer__small_b2f8f {
+        margin-left: 0;
+    }
+
+.HintBar_icon_d7c5c {
+    width: 16rem;
+    height: 22rem;
+    margin-right: 5rem;
+    background-position: center;
+    background-size: cover;
+}
+
+.HintBar_seperator_ea432 {
+    margin-left: 16rem;
+}
+
+.mediaSmall .HintBar_seperator_ea432 {
+        margin-left: 24rem;
+}
+
+@keyframes HintBar_roundOnRatingSelected_dac3c {
+    from {
+        border-radius: 3rem;
+    }
+
+    to {
+        border-radius: 5rem;
+    }
+}
+
+.PostmortemPanelViewApp_base_d16b8 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    height: 100%;
+}
+
+.PostmortemPanelViewApp_column_c2dc9 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 380rem;
+    position: relative;
+}
+
+.mediaSmall .PostmortemPanelViewApp_column_c2dc9 {
+        margin-left: 0;
+}
+
+.PostmortemPanelViewApp_bottom_line_d85a4 {
+    width: 100%;
+    height: 1rem;
+    background-color: rgba(254, 254, 236, 0.2);
+    opacity: 1;
+    position: absolute;
+    top: 36rem;
+    left: 50%;
+    z-index: 2;
+    transform: translateX(-50%);
+    transition: opacity 0.5s ease-in-out;
+    transition-delay: 10s;
+}
+
+.PostmortemPanelViewApp_bottom_line__selected_aa8e0 {
+        opacity: 0;
+    }
+

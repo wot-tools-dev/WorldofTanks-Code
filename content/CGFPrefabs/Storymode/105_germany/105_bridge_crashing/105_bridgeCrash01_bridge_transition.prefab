@@ -1,0 +1,154 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "fbx",
+								"lodScale": 1.0,
+								"path": "content/Environment/hd_env_EU_490_MoabitBridgeCrash/normal/lod0/hd_env_EU_490_MoabitBridgeCrash_01_anim.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "dithering",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/Storymode/105_germany/dithering_hd_env_EU_490_MoabitBridgeCrash_01_anim.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/hd_env_EU_490_MoabitBridgeCrash/normal/lod0/hd_env_EU_490_MoabitBridgeCrash_01_anim.model"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 102.58981323242188,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "hd_env_EU_490_MoabitBridgeCrash_01_anim",
+				"uuid": "cb36b8f9-4b87-4e7d-ae5d-f9ce87ee5bbb"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_stone_big",
+						"Object name": "105_BridgeCrush_transition_debris_sfx",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_BridgeCrush_transition_debris_sfx",
+				"uuid": "c08db7aa-2e26-4bba-826e-661b5db8d300"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_stonel_object_breakdown",
+						"Object name": "105_BridgeCrush_transition_debris_sfx",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "105_BridgeCrush_transition_sfx",
+				"uuid": "50e7b5a2-8a46-4a13-bf47-5f70f2a69959"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 20.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 11.300000190734863,
+								"object": "cb36b8f9-4b87-4e7d-ae5d-f9ce87ee5bbb",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 20.0,
+								"object": "c08db7aa-2e26-4bba-826e-661b5db8d300",
+								"parameters": [],
+								"startTime": 2.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "105_BridgeCrush_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

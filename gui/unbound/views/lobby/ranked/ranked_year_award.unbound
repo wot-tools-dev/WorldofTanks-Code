@@ -1,0 +1,386 @@
+(def layout RankedYearAward() entrance=true isReadyTracked=true
+    (name = 'RankedYearAward')
+    (macro RankedYearAwardModel)
+    (macro LootCongratsTypes)
+    (macro RankedAwardTypes)
+    (scope
+        (const BUTTONS_FADE_IN_DUR:number = 0.2)
+        (const COMPENSATION_FADE_IN_DUR:number = 0.2)
+        (const BUTTONS_FADE_IN_DELAY_CONGRATS:number = 0.2)
+        (const COMPENSATION_FADE_IN_DELAY_CONGRATS:number = 0.2)
+        (const BLUR_DURATION:number = 0.5)
+        (const FADE_DURATION:number = 0.3)
+        (const WIDTH_CHANGE_POINT:number = 1360)
+
+        (const STATE_DEFAULT:number = 0)
+        (const STATE_READY:number = 1)
+        (const STATE_APPEAR:number = 2)
+        (const STATE_ACTIVE:number = 3)
+        (const STATE_DISAPPEAR:number = 4)
+
+        (var isInitialized:bool = false)
+        (bind isInitialized true init=false
+            (event "$evReadyChanged")
+        )
+
+        (event evReadyToShow)
+        (event evOnFadeInComplete)
+        (event evOnRewardsAnimationComplete)
+        (event onStartCloseEvent)
+
+        (bind startClose true init=false
+            (event "onStartCloseEvent")
+        )
+
+        (macro BgAspectRatioHelper "evReadyToShow" 10)
+
+        # open or confirm button fade in complete
+        (event evOnBtnFadeInComplete)
+        (event evOnBtnFadeInStart)
+
+        # start show some reward's congratulation
+        (event evNeedChangeCongratRenderer)
+        (var congratsModel:dict = null)
+        (bind congratsModel "$event.congratsModel" init=false
+            (event "evNeedChangeCongratRenderer")
+        )
+
+        (var viewState:number = STATE_DEFAULT)
+        (bind viewState "STATE_READY" init=false
+            (event "evReadyToShow")
+        )
+        (bind viewState "STATE_APPEAR" init=false
+            (event "evOnFadeInComplete")
+        )
+        (bind viewState "STATE_ACTIVE" init=false
+            (event "evOnRewardsAnimationComplete")
+        )
+        (bind viewState "STATE_DISAPPEAR" init=false
+            (bind enabled "startClose")
+        )
+
+        # reward's congrats start showing                                                           
+        (event evOnCongratsLootBoxStartFadeIn)
+
+        (event evOnShineFadeInStart)
+
+        (var blurValue:number = 0)
+        (var alphaValue:number = 0)
+        (controller $Animation
+            (bindcall play duration="BLUR_DURATION" from={blurValue:0} to={blurValue:10}
+                (event "evReadyToShow")
+                (bind enabled "isInitialized")
+            )
+            # fadeIn effect animation
+            (bindcall play duration="FADE_DURATION" from={alphaValue:0} to={alphaValue:1} callbacks="{onComplete: evOnFadeInComplete}"
+                (event "evReadyToShow")
+                (bind enabled "isInitialized")
+            )
+            # start closing with fadeOut effect
+            (bindcall play duration="FADE_DURATION" to={alphaValue:0} callbacks="{onComplete: onDestroyEvent}"
+                (bind enabled "startClose")
+            )
+        )
+
+        (var finalSoundOnShine:bool = false)
+        (bind finalSoundOnShine "true" init=false
+            (bind enabled "congratsModel != null && rewards.length < 5")
+        )
+
+    )
+    (style
+        (align = "center|middle")
+        (bind width "viewSize.width"
+            (event "viewResized")
+        )
+        (bind height "viewSize.height"
+            (event "viewResized")
+        )    
+        (alpha = 0)
+        (bind alpha "alphaValue")
+    )
+
+    
+    # sounds
+    (exec "playSound(R.sounds.gui_random_reward_end())" init = false
+        (event "evOnShineFadeInStart")
+        (enabled = "finalSoundOnShine")
+    )
+
+    (exec "playSound(R.sounds.gui_random_reward_end())" init = false
+        (event "evOnRewardsAnimationComplete")
+        (enabled = "!finalSoundOnShine")
+    )
+
+    # event for ESC
+    (dispatch onStartCloseEvent on='escPressed'
+        (enabled = "viewState == STATE_ACTIVE")
+    )
+
+    (macro ViewTransparentBg)
+    (image
+        (name = 'bgImg')
+        (style
+            (position = "absolute")
+            (hcenter = 0)
+            (vcenter = 0)
+            (bind width "bgW") 
+            (bind height "bgH") 
+                                
+            (filters
+                (blur
+                    (bind blurX "blurValue")
+                    (bind blurY "blurValue")
+                    (quality = 2)
+                )
+            )
+        )
+
+        (dispatch evReadyToShow on='complete')
+        (source = "R.images.gui.maps.icons.rankedBattles.bg.annual_reward()")
+    )
+
+    (block
+        (name = 'contentBlock')
+        (style
+            (align = "center")
+            (position = "absolute")
+            (width = 1024px)
+            (height = 768px)
+            (hcenter = 0)
+            (vcenter = 0)
+        )
+
+        (block
+            (name = 'titleBlock')
+            (style
+                (align = "center")
+                (gap = -30)
+            )
+            (bind class "viewSize.width >= WIDTH_CHANGE_POINT ? 'TitleBlockStyleBig': 'TitleBlockStyleSmall'"
+                (event "viewResized")
+            )
+            (hblock
+                (style
+                    (align = "middle")
+                )
+                (image
+                    (name = 'vehicleTypeImg')
+                    (source = "R.images.gui.maps.icons.battleTypes.c_40x40.ranked()")
+                )
+                (tf
+                    (name = 'rankedLabelTF')
+                    (class PromoSubTitleTextStyle)
+                    (style
+                        (textAlign = "center")
+                    )
+                    (text = "R.strings.ranked_battles.year_award.rankedLabel()")
+                    (antiAliasType = 'normal')
+                )
+            )
+
+            (tf
+                (name = 'titleTF')
+                (style
+                    (marginTop = 20px)
+                )
+                (bind class "viewSize.width >= WIDTH_CHANGE_POINT ? 'CustomTitleTextStyleBig': 'CustomTitleTextStyleSmall'"
+                    (event "viewResized")
+                )
+                (bind text "R.strings.ranked_battles.yearRewards.box[awardType].title()")
+                (bind text "R.strings.ranked_battles.year_award.rewardSelected()"
+                    (bind enabled "isRewardSelected")
+                )
+                (antiAliasType = 'normal')
+            )
+        )
+
+        (block
+            (name = 'rewardsBlock')
+            (style
+                (position = "absolute")
+                (align = "center")
+                (hcenter = 0)
+                (vcenter = 180px)
+                (bind bottom "pointsCompensated > 0 ? 80px : 100px")
+            )
+
+            (block
+                (name = 'rewardImgBlock')
+                (style
+                    (position = "absolute")
+                    (hcenter = 0)
+                    (vcenter = -160px)
+                )
+                (image
+                    (style
+                        (filters
+                            (blur
+                                (bind blurX "blurValue")
+                                (bind blurY "blurValue")
+                                (quality = 2)
+                            )
+                        )
+                    )
+                    (bind source "R.images.gui.maps.icons.rankedBattles.awards.big[awardType].exists() ? 
+                                R.images.gui.maps.icons.rankedBattles.awards.big[awardType]() : ''"
+                        (bind enabled "awardType !=''")
+                    )
+                )
+                (macro EmptyHitAreaMacro)
+            )
+
+            (element RewardsRibbon
+                (name = 'rewardsRibbonElement')
+                (scope
+                    (isOpenBoxAnimPlayed = true)
+                    (canShowCongratsImg = false)
+                    (showVehCongratsTitle = false)
+                    (bind isFadeIn true init=false
+                        (bind enabled "viewState == STATE_APPEAR")
+                    )
+                    (bind rewards "rewards")
+                    (bind blurValue "blurValue")
+                    (shineAnimStyle = 'ShineAnimStyle')
+                    (congratsStyle = 'VehicleCongratsStyle')
+                )
+            )
+
+            (block
+                (name = 'compensationBlock')
+                (style
+                    (marginTop = 16px)
+                    (alpha = 0)
+                )
+                (controller $Animation
+                    (bindcall play delay="congratsModel != null ? COMPENSATION_FADE_IN_DELAY_CONGRATS : 0.05" 
+                                    duration="COMPENSATION_FADE_IN_DUR" 
+                                    to="{alpha:1}" 
+                        (bind enabled "viewState == STATE_ACTIVE")
+                    )
+                )
+                (tf
+                    (name = 'compensationLabelTF')
+                    (class PromoSubTitleTextStyle)
+                    (style
+                        (textAlign = "center")
+                        (autoSize = true)
+                        (wordWrap = true)
+                    )
+                    (bind visible "pointsCompensated > 0 && !isRewardSelected")
+                    (bind htmlText "htmlTextStyle(
+                            formatString(
+                                R.strings.ranked_battles.year_award.compensationLabel(),
+                                [
+                                    {value:pointsTotal, name:'total', style:'HighlightTextStyle'}, 
+                                    {value:R.images.gui.maps.icons.rankedBattles.ranked_point_16x16.tag(), name:'pointsIcon'}, 
+                                    {value:pointsCompensated, name:'compensated', style:'HighlightTextStyle'},
+                                    {value:crystals, name:'crystals', style:'HighlightTextStyle'},
+                                    {value:R.images.gui.maps.icons.library.crystal_16x16.tag(), name:'crystalIcon'}
+                                ],
+                                true
+                            ), 
+                            'MainBigTextStyle'
+                        )"
+                    )
+                    (antiAliasType = 'normal')
+                )
+                (tf
+                    (name = 'rewardsToSelectTF')
+                    (class PromoSubTitleTextStyle)
+                    (style
+                        (textAlign = "center")
+                        (autoSize = true)
+                        (wordWrap = true)
+                    )
+                    (bind visible "rewardsToSelect > 0 && isRewardSelected")
+                    (bind htmlText "htmlTextStyle(
+                            formatString(
+                                R.strings.ranked_battles.year_award.rewardsToSelect(),
+                                [
+                                    {value:rewardsToSelect, name:'count', style:'HighlightTextStyle'}
+                                ],
+                                true
+                            ),
+                            'MainBigTextStyle'
+                        )"
+                    )
+                    (antiAliasType = 'normal')
+                )
+            )
+
+            (block
+                (name = 'buttonBlock')
+                (style
+                    (marginTop = 50px)
+                    (alpha = 0)
+                )
+                (alpha = 0)
+
+                (controller $Animation
+                    (bindcall play delay="congratsModel != null ? 
+                    (pointsCompensated > 0 ? COMPENSATION_FADE_IN_DELAY_CONGRATS + BUTTONS_FADE_IN_DELAY_CONGRATS 
+                    : BUTTONS_FADE_IN_DELAY_CONGRATS) : 0.05" 
+                                    duration="BUTTONS_FADE_IN_DUR" 
+                                    to="{alpha:1}" 
+                                    callbacks="{onComplete:evOnBtnFadeInComplete, onStart:evOnBtnFadeInStart}"
+                        (bind enabled "viewState == STATE_ACTIVE")
+                    )
+                )
+
+                (button 'toHangarButton'
+                    (macro ButtonStylePrimary "BUTTON_SIZE_LARGE")
+                    (enabled = false)
+                    (bind enabled "viewState == STATE_ACTIVE")
+                    (bind label "actionButtonLabel")
+                    (dispatch onActionBtnClick on='clicked')
+                    (bindcall setFocus 
+                        (event "evOnBtnFadeInComplete")
+                    )
+                )
+            )
+        )
+    )
+
+    (text_button 'closeBtn'
+        (macro ButtonCloseStyle)
+        (style
+            (position = "absolute")
+            (right = 30px)
+            (top = 30px)
+        )
+        (label = "R.strings.menu.viewHeader.closeBtn.label()")
+        (dispatch onStartCloseEvent on='clicked'
+            (enabled = "viewState == STATE_ACTIVE")
+        )
+    )
+)
+
+(def css CustomTitleTextStyleBig() #custom text style big
+    (fontFamily = $TitleFont)
+    (fontSize = 85)
+    (textColor = 0xFFFFFF)
+)
+
+(def css CustomTitleTextStyleSmall() #custom text style small 
+    (fontFamily = $TitleFont)
+    (fontSize = 73)
+    (textColor = 0xFFFFFF)
+)
+
+(def css TitleBlockStyleBig() #custom title block style big
+    (marginTop = 20)
+)
+
+(def css TitleBlockStyleSmall() #custom title block style small
+    (marginTop = 40)
+)
+
+(def css VehicleCongratsStyle() #custom vehicle offsets
+    (hcenter = -20px)
+    (bottom = -10px)
+)
+
+(def css ShineAnimStyle() #custom shine offset
+    (vcenter = -10px)
+)

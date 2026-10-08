@@ -1,0 +1,6 @@
+from __future__ import absolute_import
+from battle_royale.notification.actions_handlers import ShowBRProgressionActionHandler
+from gui.shared.system_factory import registerNotificationsActionsHandlers
+
+def registerClientNotificationHandlers():
+    registerNotificationsActionsHandlers((ShowBRProgressionActionHandler,))

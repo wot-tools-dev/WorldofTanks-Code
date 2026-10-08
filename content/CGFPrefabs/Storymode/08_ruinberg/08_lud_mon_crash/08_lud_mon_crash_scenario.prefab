@@ -1,0 +1,161 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -47.10260009765625,
+					"cgf::TransformComponent/position/y": 2.8166000843048096,
+					"cgf::TransformComponent/position/z": 366.0150146484375,
+					"cgf::TransformComponent/rotation/y": -25.409990310668945
+				},
+				"name": "08_lud_mon_crash_complete.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/08_ruinberg/08_lud_mon_crash/08_lud_mon_crash_complete.prefab",
+				"uuid": "0e37be60-e536-4b8d-824c-eee931d0b69b"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -47.10260009765625,
+					"cgf::TransformComponent/position/y": 2.8166000843048096,
+					"cgf::TransformComponent/position/z": 366.0150146484375
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "08_lud_mon_crash_danger_zone_minimap.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/08_ruinberg/08_lud_mon_crash/08_lud_mon_crash_danger_zone_minimap.prefab",
+				"uuid": "4036ca66-2d2a-409c-90b7-3bef62e9e48f"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": 1203.3399658203125,
+					"cgf::TransformComponent/position/y": 167.1580047607422,
+					"cgf::TransformComponent/position/z": 1419.3299560546875
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "08_lud_mon_crash_bombersFlight.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/08_ruinberg/08_lud_mon_crash/08_lud_mon_crash_bombersFlight.prefab",
+				"uuid": "9fa62e8a-21b4-45b8-9e5b-1c389c71d183"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -22.747800827026367,
+					"cgf::TransformComponent/position/y": 71.55249786376953,
+					"cgf::TransformComponent/position/z": 363.6130065917969
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "08_lud_mon_crash_bombs.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/08_ruinberg/08_lud_mon_crash/08_lud_mon_crash_bombs.prefab",
+				"uuid": "0e5574ce-42dd-4b5a-8fe1-9ba51850a572"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 60.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 60.0,
+								"object": "0e37be60-e536-4b8d-824c-eee931d0b69b",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 0.0010000000474974513,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 60.0,
+								"object": "9fa62e8a-21b4-45b8-9e5b-1c389c71d183",
+								"parameters": [],
+								"startTime": 0.0010000000474974513
+							},
+							{
+								"endTime": 60.0,
+								"object": "0e5574ce-42dd-4b5a-8fe1-9ba51850a572",
+								"parameters": [],
+								"startTime": 0.0010000000474974513
+							},
+							{
+								"endTime": 60.0,
+								"object": "4036ca66-2d2a-409c-90b7-3bef62e9e48f",
+								"parameters": [],
+								"startTime": 0.0010000000474974513
+							}
+						]
+					}
+				]
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Client",
+					"Editor"
+				],
+				"path": "story_mode/vscript/plans/Onboarding_vfx_scenarios/08_lud_mon_crash.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::SequenceNetworkSync": {}
+		},
+		"name": "08_lud_mon_crash_scenario",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

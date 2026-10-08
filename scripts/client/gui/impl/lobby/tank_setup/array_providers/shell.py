@@ -1,0 +1,80 @@
+from itertools import chain
+from gui.impl.gen.view_models.views.lobby.tank_setup.sub_views.shell_slot_model import ShellSlotModel
+from gui.impl.lobby.tank_setup.array_providers.base import VehicleBaseArrayProvider
+from gui.impl.lobby.tank_setup.tank_setup_helper import createShellSpecificationModel
+from gui.impl.wrappers.user_compound_price_model import BuyPriceModelBuilder
+from gui.shared.items_parameters.shell_mechanics_helper import getShellParameters
+from gui.shared.items_parameters.shell_params import BASE_SHELL_PARAMETERS, getMechanicParameters
+from post_progression_common import TankSetupGroupsId
+from helpers import dependency
+from skeletons.gui.shared import IItemsCache
+
+class ShellProvider(VehicleBaseArrayProvider):
+    __slots__ = ()
+    _itemsCache = dependency.descriptor(IItemsCache)
+
+    def updateItems(self):
+        pass
+
+    def getItemViewModel(self):
+        return ShellSlotModel()
+
+    def fillArray(self, array, ctx, itemFilter=None):
+        array.clear()
+        for item in self._getCurrentLayout():
+            itemModel = self.getItemViewModel()
+            self.updateSlot(itemModel, item, ctx)
+            array.addViewModel(itemModel)
+
+        array.invalidate()
+
+    def updateArray(self, array, ctx):
+        for item, itemModel in zip(self._getCurrentLayout(), array):
+            self.updateSlot(itemModel, item, ctx)
+
+    def createSlot(self, item, ctx):
+        return self.getItemViewModel()
+
+    def updateSlot(self, model, item, ctx):
+        super(ShellProvider, self).updateSlot(model, item, ctx)
+        buyPrice = item.getBuyPrice()
+        if model.getIntCD() != item.intCD:
+            model.setType(item.type)
+            model.setName(item.userName)
+            model.setIntCD(item.intCD)
+            model.setItemTypeID(item.itemTypeID)
+            model.setImageName(item.descriptor.iconName)
+            BuyPriceModelBuilder.clearPriceModel(model.price)
+            BuyPriceModelBuilder.fillPriceModelByItemPrice(model.price, buyPrice, checkBalanceAvailability=True)
+            self._fillSpecification(model, item)
+        vehicle = self._getVehicle()
+        inTankCount = 0
+        for shell in vehicle.shells.setupLayouts:
+            if shell == item:
+                inTankCount = max(inTankCount, shell.count)
+
+        boughtCount = item.inventoryCount + inTankCount
+        buyCount = max(item.count - boughtCount, 0)
+        model.setCount(item.count)
+        shellsSetupLayouts = vehicle.shells.setupLayouts
+        inTankCount = max(item.count, shellsSetupLayouts.ammoLoadedInOtherSetups(item.intCD))
+        model.setItemsInStorage(max(boughtCount - inTankCount, 0))
+        if vehicle.isSetupSwitchActive(TankSetupGroupsId.EQUIPMENT_AND_SHELLS):
+            model.setItemsInVehicle(inTankCount)
+        else:
+            model.setItemsInVehicle(-1)
+        model.setBuyCount(buyCount)
+        BuyPriceModelBuilder.clearPriceModel(model.totalPrice)
+        if buyCount:
+            BuyPriceModelBuilder.fillPriceModelByItemPrice(model.totalPrice, buyPrice * buyCount, checkBalanceAvailability=True)
+
+    def _fillSpecification(self, model, item):
+        specifications = model.getSpecifications()
+        specifications.clear()
+        vehicle = self._getVehicle()
+        mechanic, parameters = getShellParameters(vehicle, item)
+        for paramName in chain(BASE_SHELL_PARAMETERS, getMechanicParameters(mechanic, parameters)):
+            specificationModel = createShellSpecificationModel(paramName, parameters, mechanic)
+            specifications.addViewModel(specificationModel)
+
+        specifications.invalidate()

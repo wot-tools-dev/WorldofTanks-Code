@@ -1,0 +1,66 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "Gun"
+					},
+					"cgf::TransformComponent": {},
+					"script::SelfBuffNodeComponent": {
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						],
+						"effectPathTemplate": "particles/Environment/Battle_Royal/Concentration/Gun_{}.seq"
+					}
+				},
+				"name": "Gun",
+				"uuid": "10d3e5df-d831-4a6b-9017-bbc90cca438f"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": ""
+			},
+			"cgf::TransformComponent": {},
+			"script::SelfBuffComponent": {
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"gunNode": "10d3e5df-d831-4a6b-9017-bbc90cca438f"
+			}
+		},
+		"name": "selfBuff",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

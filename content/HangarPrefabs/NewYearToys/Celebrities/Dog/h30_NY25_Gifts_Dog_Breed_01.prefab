@@ -1,0 +1,276 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/environment/hangar/ny_collar_appear.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "hangEffect",
+						"uuid": "de7d5ce0-6e6b-35e7-8b05-db0a26fa7b57"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {},
+					"script::HangEffectsOwner": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "hangEffectOwner",
+				"uuid": "2ffe7dea-f09f-3242-9608-d154c1ac1790"
+			},
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"components": {
+											"cgf::TransformComponent": {},
+											"script::NyToyInfoHandlerComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"showHighlight": "1",
+												"type": "collar"
+											}
+										},
+										"uuid": "c7706d8a-f8a9-4c13-b264-c67292968cf6"
+									}
+								],
+								"components": {
+									"BW::NodeFollowerComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"modelLink": "d5fa6b97-de9f-406f-9fff-015b682005c9",
+										"nodeName": "Root_Neck"
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 0.0006980900070630014,
+											"y": 0.7014510035514832,
+											"z": 0.1827470064163208
+										},
+										"rotation": {
+											"x": -71.12928009033203,
+											"y": 11.803102493286133,
+											"z": -25.85334587097168
+										}
+									},
+									"script::NySlotComponent": {
+										"defaultToy": "22",
+										"disabledDomains": [
+											"Server"
+										],
+										"hoverEffect": "particles/eff_sequence/New_Year/ny_slot_collar.seq",
+										"id": "21",
+										"toyType": "dog_collar"
+									}
+								},
+								"name": "HP_collar",
+								"uuid": "a6d8e848-0e0b-407d-a04c-f6253e9405a6"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"cgf::TransformComponent": {},
+											"script::NyToyInfoHandlerComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"showHighlight": "0",
+												"type": "hat"
+											}
+										},
+										"uuid": "390ca928-9748-4759-b781-5d6b0032bc46"
+									}
+								],
+								"components": {
+									"BW::NodeFollowerComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"modelLink": "d5fa6b97-de9f-406f-9fff-015b682005c9",
+										"nodeName": "Root_Head"
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": -0.009731289930641651,
+											"y": 0.8811119794845581,
+											"z": 0.2578260004520416
+										},
+										"rotation": {
+											"x": 8.774104118347168,
+											"y": -9.528861045837402,
+											"z": 0.9081151485443115
+										}
+									},
+									"script::NySlotComponent": {
+										"defaultToy": "22",
+										"disabledDomains": [
+											"Server"
+										],
+										"hoverEffect": "particles/eff_sequence/New_Year/ny_slot_collar.seq",
+										"id": "21",
+										"toyType": "dog_collar"
+									}
+								},
+								"name": "HP_hat",
+								"uuid": "de5e2908-d50d-43e7-a1d3-f49674466463"
+							}
+						],
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"lodScale": 1.0,
+										"path": "content/Hangars/CharacterAnimations/h38_newyear_2025/sequences/NY_2025_Dog/NY25_Dog_All.ssm",
+										"properties": {
+											"delay": "0",
+											"loop": "0",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Hangars/CharacterAnimations/h38_newyear_2025/normal/lod0/NY_2025_Dog_01_anim.model"
+							},
+							"BW::VSEComponent": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								],
+								"path": "holiday_ops/vscript/plans/holiday_ops/Dog.xml"
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": 0.005517010111361742,
+									"y": 0.013441599905490875,
+									"z": -0.058662399649620056
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 179.99986267089844,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 0.8299990296363831,
+									"y": 0.8299999833106995,
+									"z": 0.8299990296363831
+								}
+							},
+							"script::HighlightComponent": {
+								"color": {
+									"w": 1.0,
+									"x": 1.0,
+									"y": 0.7764710187911987,
+									"z": 0.2588239908218384
+								},
+								"colorIndex": "4",
+								"disabledDomains": [
+									"Server"
+								],
+								"drawerMode": "0",
+								"groupName": "Dog",
+								"overridenHighlightModel": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+							},
+							"script::NewYearTagComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"tag": "dog"
+							},
+							"script::SelectionComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"highlight": "1"
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Visual",
+						"uuid": "d5fa6b97-de9f-406f-9fff-015b682005c9"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {},
+					"script::AppearanceDelayComponent": {
+						"delay": 0.5,
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						]
+					}
+				},
+				"name": "appearanceDelayOwner",
+				"uuid": "dbb4b19f-5140-4898-8f1f-512862388847"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

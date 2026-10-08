@@ -1,0 +1,3264 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "aux/hitSparksEmissionRateScale"
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "system/sparksRateParticleQuality"
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1.35
+																	}
+																}
+															}
+														]
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "emissionRate"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/direction"
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "epicenterOffset"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstructVector2Expression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitSparksStartSpeedScale"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitSparksStartSpeedScale"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1.35
+																	}
+																}
+															}
+														]
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "startSpeed"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank_2.0/hits_to_tank/auto/HE_non_p_sparks_ac.eff",
+										"emissionRate": 1,
+										"emissionSize": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"epicenterOffset": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"fps": 1,
+										"gravity": 1,
+										"opacity": 1,
+										"startSpeed": {
+											"x": 1,
+											"y": 1
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1
+									},
+									"BW::RemoveGoDelayedComponent": {
+										"delay": 0.1
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "HE_Sparks_and_Debris",
+								"uuid": "0512ec95-210e-330b-8a94-c39851890630"
+							},
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "aux/hitSparksEmissionRateScale"
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "system/sparksRateParticleQuality"
+																	}
+																}
+															}
+														]
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "emissionRate"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/direction"
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "epicenterOffset"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstructVector2Expression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSparksStartSpeedScale"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSparksStartSpeedScale"
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "startSpeed"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstructVector2Expression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::MultiplyManyExpression",
+															"__cvalue__": {
+																"args": [
+																	{
+																		"expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitNormalDOT"
+																			}
+																		}
+																	},
+																	{
+																		"expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitNormalDOT"
+																			}
+																		}
+																	}
+																]
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::MultiplyManyExpression",
+															"__cvalue__": {
+																"args": [
+																	{
+																		"expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitNormalDOT"
+																			}
+																		}
+																	},
+																	{
+																		"expression": {
+																			"__ctype__": "BW::variables::ConstantFloatExpression",
+																			"__cvalue__": {
+																				"floatValue": 5
+																			}
+																		}
+																	}
+																]
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "tangentSpeed"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank_2.0/hits_to_tank/AP_APCR_non_p_trails.eff",
+										"emissionRate": 1,
+										"emissionSize": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"epicenterOffset": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"fps": 1,
+										"gravity": 1,
+										"opacity": 1,
+										"startSpeed": {
+											"x": 1,
+											"y": 1
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1
+									},
+									"BW::RemoveGoDelayedComponent": {
+										"delay": 0.1
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "Nonp_Trails",
+								"uuid": "5e76a493-5374-3225-8b98-7aaf459936da"
+							}
+						],
+						"name": "Sparks",
+						"uuid": "22da20bc-34fb-317f-bf20-2a8450744319"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstructVector2Expression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitCaliberRatio"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitCaliberRatio"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantVector2Expression",
+																	"__cvalue__": {
+																		"vector2Value/x": 1.5,
+																		"vector2Value/y": 1.5
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1.35
+																	}
+																}
+															}
+														]
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "particleSize"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstructVector2Expression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "startSpeed"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstructVector2Expression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitSmokeScale"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitSmokeScale"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1.35
+																	}
+																}
+															}
+														]
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "lifeTime"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/smokeRateParticleQuality"
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "emissionRate"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank_2.0/hits_to_tank/auto/HE_shell_flashes_ac.eff",
+										"emissionRate": 1,
+										"emissionSize": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"epicenterOffset": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"fps": 1,
+										"gravity": 1,
+										"opacity": 1,
+										"startSpeed": {
+											"x": 1,
+											"y": 1
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1
+									},
+									"BW::RemoveGoDelayedComponent": {
+										"delay": 0.1
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "HE_Explosion_Flashes",
+								"uuid": "7e3a347e-4005-38e6-8fef-07e64d994aec"
+							},
+							{
+								"components": {
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstructVector2Expression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitCaliberRatio"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitCaliberRatio"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantVector2Expression",
+																	"__cvalue__": {
+																		"vector2Value/x": 1.5,
+																		"vector2Value/y": 1.5
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1.35
+																	}
+																}
+															}
+														]
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "particleSize"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstructVector2Expression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitSmokeScale"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitSmokeScale"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1.35
+																	}
+																}
+															}
+														]
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "startSpeed"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstructVector2Expression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitSmokeScale"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/hitSmokeScale"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1.35
+																	}
+																}
+															}
+														]
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "lifeTime"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/smokeRateParticleQuality"
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "emissionRate"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/direction"
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "epicenterOffset"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank_2.0/hits_to_tank/auto/HE_non_p_shell_explosion_ac.eff",
+										"emissionRate": 1,
+										"emissionSize": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"epicenterOffset": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"fps": 1,
+										"gravity": 1,
+										"opacity": 1,
+										"startSpeed": {
+											"x": 1,
+											"y": 1
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1
+									},
+									"BW::RemoveGoDelayedComponent": {
+										"delay": 0.1
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "HE_Explosion_Smoke_01",
+								"uuid": "9249c324-beb9-3897-99ee-7807c633a9a6"
+							},
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"castShadows": "0",
+										"visibleInArcadeMode": "1",
+										"visibleInArtyMode": "1",
+										"visibleInDeathFreeCamMode": "1",
+										"visibleInDualGunMode": false,
+										"visibleInKillCamMode": "1",
+										"visibleInLookAtKillerMode": "1",
+										"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+										"visibleInMapCaseArcadeMode": "1",
+										"visibleInMapCaseMode": true,
+										"visibleInPostmortemMode": "1",
+										"visibleInRespawnDeathMode": "1",
+										"visibleInSmEntityViewMode": "1",
+										"visibleInSmStrategicMode": "1",
+										"visibleInSniperMode": "0",
+										"visibleInStrategicMode": "1",
+										"visibleInTwinGunMode": "0"
+									},
+									"BW::EffectInitPreviewComponent": {
+										"disabledDomains": [
+											"Client",
+											"Server"
+										]
+									},
+									"BW::EffectInitPropertyCalcComponent": {
+										"calcs": [
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstructVector2Expression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "particleSize"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::ConstructVector2Expression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "startSpeed"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::YLookAtPitchYawRollExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/direction"
+															}
+														}
+													}
+												},
+												"componentPropertyDest/component": "cgf::TransformComponent",
+												"componentPropertyDest/propertyPath": "rotation"
+											},
+											{
+												"componentPropertyCalcExpr/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/smokeRateParticleQuality"
+													}
+												},
+												"componentPropertyDest/component": "BW::Particle",
+												"componentPropertyDest/propertyPath": "emissionRate"
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank_2.0/hits_to_tank/Post_effect_nonp_smoke.eff",
+										"emissionRate": 1,
+										"emissionSize": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"epicenterOffset": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"fps": 1,
+										"gravity": 1,
+										"opacity": 1,
+										"startSpeed": {
+											"x": 1,
+											"y": 1
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1
+									},
+									"BW::RemoveGoDelayedComponent": {
+										"delay": 5
+									},
+									"BW::variables::VariableGetterComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {
+										"rotation": {
+											"x": 45,
+											"y": 90,
+											"z": 0
+										}
+									}
+								},
+								"name": "Smoke_After_nonp",
+								"uuid": "73a58df4-a473-3ab8-8ec0-1c094fe971c8"
+							}
+						],
+						"name": "Smokes",
+						"uuid": "ed7eeb91-42ca-3f01-bf07-dcee4f3ca8e9"
+					}
+				],
+				"components": {
+					"BW::GameObjectActivationRulesComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::LessExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "hit/damage"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::MultiplyManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "armorHit/approxAvarageDamageByCaliber"
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.8
+													}
+												}
+											}
+										]
+									}
+								}
+							}
+						},
+						"destroyOnDeactivation": true
+					},
+					"BW::variables::VariableGetterComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "HE_HESH",
+				"uuid": "cdfb1dfb-72dd-4b7f-91f5-6c52699c0084"
+			},
+			{
+				"components": {
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.5
+													}
+												}
+											}
+										]
+									}
+								},
+								"componentPropertyDest/component": "BW::LightParametrizationDataComponent",
+								"componentPropertyDest/propertyPath": "multiplierBase"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::GameObjectActivationRulesComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::EqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "system/particleQuality"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::EnumExpression",
+									"__cvalue__": {
+										"enumName": "particleQuality",
+										"enumValueName": "maximum"
+									}
+								}
+							}
+						},
+						"destroyOnDeactivation": true,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::LightParametrizationDataComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::OmniLightComponent": {
+						"descriptor": {
+							"castHemisphereShadows": true,
+							"commonLightDesc": {
+								"castShadows": false,
+								"color": {
+									"a": 1,
+									"b": 0.50588,
+									"g": 0.83922,
+									"r": 1
+								},
+								"colorTemperature": 1000,
+								"decorType": 0,
+								"disableOnGenLights": true,
+								"drawType": "AUTO",
+								"innerRadius": 1,
+								"isScrollingTexture": "0",
+								"isVolumetric": false,
+								"lodShift": 0,
+								"multiplier": 60000,
+								"outerRadius": 20,
+								"position": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"scrollingDirection": {
+									"x": 1,
+									"y": 0
+								},
+								"scrollingSpeed": "1",
+								"shadowBias": 0.0001,
+								"shadowsQuality": "Low",
+								"shadowsType": "Dynamic",
+								"tilingFactor": {
+									"x": 1,
+									"y": 1
+								},
+								"useColorTemperature": false,
+								"volumetricIntensity": 1
+							}
+						},
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::RemoveGoDelayedComponent": {
+						"delay": 0.1,
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						]
+					},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "HE_Light_Flash",
+				"uuid": "6421e8bc-67d6-3cf5-9701-234cff31d155"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyManyExpression",
+											"__cvalue__": {
+												"args": [
+													{
+														"expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSparksEmissionRateScale"
+															}
+														}
+													},
+													{
+														"expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "system/sparksRateParticleQuality"
+															}
+														}
+													},
+													{
+														"expression": {
+															"__ctype__": "BW::variables::ChooseExpression",
+															"__cvalue__": {
+																"choices": [
+																	{
+																		"condition/expression": {
+																			"__ctype__": "BW::variables::LessEqualExpression",
+																			"__cvalue__": {
+																				"arg0/expression": {
+																					"__ctype__": "BW::variables::UniformRandomFloatExpression",
+																					"__cvalue__": {
+																						"max": 1,
+																						"min": 0
+																					}
+																				},
+																				"arg1/expression": {
+																					"__ctype__": "BW::variables::ConstantFloatExpression",
+																					"__cvalue__": {
+																						"floatValue": 0.2
+																					}
+																				}
+																			}
+																		},
+																		"result/expression": {
+																			"__ctype__": "BW::variables::ConstantFloatExpression",
+																			"__cvalue__": {
+																				"floatValue": 1.3
+																			}
+																		}
+																	}
+																],
+																"defaultResult/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 1
+																	}
+																}
+															}
+														}
+													}
+												]
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "emissionRate"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/direction"
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "epicenterOffset"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSparksStartSpeedScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSparksStartSpeedScale"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "startSpeed"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitNormalDOT"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "aux/hitNormalDOT"
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 2
+																	}
+																}
+															}
+														]
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "tangentSpeed"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Tank_2.0/hits_to_tank/auto/AP_p_sparks_ac.eff",
+								"emissionRate": 1,
+								"emissionSize": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"epicenterOffset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"fps": 1,
+								"gravity": 1,
+								"opacity": 1,
+								"startSpeed": {
+									"x": 1,
+									"y": 1
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1
+							},
+							"BW::RemoveGoDelayedComponent": {
+								"delay": 0.1
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "HE_Sparks(AP)",
+						"uuid": "e26a4420-af4b-3b44-b11f-b72609bb2b5f"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true,
+								"visibleInTwinGunMode": false
+							},
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "particleSize"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "startSpeed"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/direction"
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "epicenterOffset"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "system/smokeRateParticleQuality"
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "emissionRate"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Tank_2.0/hits_to_tank/auto/HE_sparks_bursts_ac.eff",
+								"emissionRate": 1,
+								"emissionSize": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"epicenterOffset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"fps": 1,
+								"gravity": 1,
+								"opacity": 1,
+								"startSpeed": {
+									"x": 1,
+									"y": 1
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1
+							},
+							"BW::RemoveGoDelayedComponent": {
+								"delay": 0.6
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 1.9073e-06,
+									"y": -0.025,
+									"z": 0
+								}
+							}
+						},
+						"name": "HE_Flames_Bursts",
+						"uuid": "8d3e821c-54d3-3489-960f-7418ffaedfad"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"castShadows": "0",
+								"visibleInArcadeMode": "1",
+								"visibleInArtyMode": "1",
+								"visibleInDeathFreeCamMode": "1",
+								"visibleInDualGunMode": false,
+								"visibleInKillCamMode": "1",
+								"visibleInLookAtKillerMode": "1",
+								"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+								"visibleInMapCaseArcadeMode": "1",
+								"visibleInMapCaseMode": true,
+								"visibleInPostmortemMode": "1",
+								"visibleInRespawnDeathMode": "1",
+								"visibleInSmEntityViewMode": "1",
+								"visibleInSmStrategicMode": "1",
+								"visibleInSniperMode": "0",
+								"visibleInStrategicMode": "1",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "particleSize"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "startSpeed"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::YLookAtPitchYawRollExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/direction"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "system/smokeRateParticleQuality"
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "emissionRate"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Tank_2.0/hits_to_tank/auto/Post_effect_p_smoke_ac.eff",
+								"emissionRate": 1,
+								"emissionSize": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"epicenterOffset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"fps": 1,
+								"gravity": 1,
+								"opacity": 1,
+								"startSpeed": {
+									"x": 1,
+									"y": 1
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1
+							},
+							"BW::RemoveGoDelayedComponent": {
+								"delay": 3
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 45,
+									"y": 90,
+									"z": 0
+								}
+							}
+						},
+						"name": "Smoke_After_p",
+						"uuid": "ba253354-d7fd-30f6-b2b4-7e36f38813bf"
+					},
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "startSpeed"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "particleSize"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/direction"
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "epicenterOffset"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector2Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "lifeTime"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "system/smokeRateParticleQuality"
+											}
+										},
+										"componentPropertyDest/component": "BW::Particle",
+										"componentPropertyDest/propertyPath": "emissionRate"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Tank_2.0/hits_to_tank/auto/AP_p_shell_explosion_ac.eff",
+								"emissionRate": 1,
+								"emissionSize": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"epicenterOffset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"fps": 1,
+								"gravity": 1,
+								"opacity": 1,
+								"startSpeed": {
+									"x": 1,
+									"y": 1
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1
+							},
+							"BW::RemoveGoDelayedComponent": {
+								"delay": 0.1
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "HE_Shell_Explosion(AP)",
+						"uuid": "2666e30c-b7b0-3912-9c72-d34afcbcf9c1"
+					}
+				],
+				"components": {
+					"BW::GameObjectActivationRulesComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::GreaterEqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "hit/damage"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::MultiplyManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "armorHit/approxAvarageDamageByCaliber"
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.8
+													}
+												}
+											}
+										]
+									}
+								}
+							}
+						},
+						"destroyOnDeactivation": true
+					},
+					"BW::variables::VariableGetterComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "Penetration",
+				"uuid": "99bb9cf6-9147-3d80-b87e-89ee5636bedc"
+			}
+		],
+		"components": {
+			"BW::EffectInitContextCalcComponent": {
+				"calcs": [
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::DivideExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/caliber"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/speed"
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 187000.0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitSmokeScale"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::DotProductExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::ConstructVector3Expression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::DivideExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VectorXExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::NegateExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/projectile/direction"
+																	}
+																}
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VectorLengthExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/direction"
+															}
+														}
+													}
+												}
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::DivideExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VectorYExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::NegateExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/projectile/direction"
+																	}
+																}
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VectorLengthExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/direction"
+															}
+														}
+													}
+												}
+											}
+										},
+										"arg2/expression": {
+											"__ctype__": "BW::variables::DivideExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VectorZExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::NegateExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/projectile/direction"
+																	}
+																}
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::VectorLengthExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/direction"
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantVector3Expression",
+									"__cvalue__": {
+										"vector3Value/x": 0,
+										"vector3Value/y": 1,
+										"vector3Value/z": 0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitSparksEmissionRateScale"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ChooseExpression",
+							"__cvalue__": {
+								"choices": [
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/type"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "hitType",
+														"enumValueName": "armorNotPierced"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/hitSparksEmissionRateScale"
+											}
+										}
+									}
+								],
+								"defaultResult/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitSparksEmissionRateScale"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ClampExpression",
+							"__cvalue__": {
+								"arg/expression": {
+									"__ctype__": "BW::variables::AddExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::AbsoluteValueExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSparksEmissionRateScale"
+													}
+												}
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 1
+											}
+										}
+									}
+								},
+								"leftBound": 0,
+								"rightBound": 1
+							}
+						},
+						"variableDest/variableName": "aux/hitSparksEmissionRateScale"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "aux/hitSparksEmissionRateScale"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::DivideExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/caliber"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 170
+											}
+										}
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitSparksEmissionRateScale"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::DivideExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "hit/projectile/caliber"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 170
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitCaliberRatio"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::DivideExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "hit/projectile/speed"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 1100
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitSparksStartSpeedScale"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ChooseExpression",
+							"__cvalue__": {
+								"choices": [
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitCaliberRatio"
+													}
+												},
+												"lCheck": "<=",
+												"leftBound": 0,
+												"rCheck": "<=",
+												"rightBound": 0.25
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::AddExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitCaliberRatio"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.6
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.1
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitCaliberRatio"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 0.25,
+												"rCheck": "<=",
+												"rightBound": 0.45
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::SubtractExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitCaliberRatio"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 3.75
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.6875
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitCaliberRatio"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 0.45,
+												"rCheck": "<=",
+												"rightBound": 2
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::AddExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitCaliberRatio"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.52
+													}
+												}
+											}
+										}
+									}
+								],
+								"defaultResult/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitCaliberRatio"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::NegateExpression",
+							"__cvalue__": {
+								"arg/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "hit/projectile/direction"
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "hit/projectile/direction"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ChooseExpression",
+							"__cvalue__": {
+								"choices": [
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"lCheck": "<=",
+												"leftBound": 0,
+												"rCheck": "<=",
+												"rightBound": 0.1
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 2.5
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 0.1,
+												"rCheck": "<=",
+												"rightBound": 0.45
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::AddExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.7143
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.1786
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 0.45,
+												"rCheck": "<=",
+												"rightBound": 1
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::AddExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.9091
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.0909
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/hitSmokeScale"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 1,
+												"rCheck": "<=",
+												"rightBound": 1.28
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::AddExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "aux/hitSmokeScale"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.8929
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.1071
+													}
+												}
+											}
+										}
+									}
+								],
+								"defaultResult/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitSmokeScale"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "aux/hitSparksStartSpeedScale"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "aux/hitCaliberRatio"
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitSparksStartSpeedScale"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::DotProductExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::ConstantVector3Expression",
+									"__cvalue__": {
+										"vector3Value/x": 0,
+										"vector3Value/y": 1,
+										"vector3Value/z": 0
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::UnitVectorExpression",
+									"__cvalue__": {
+										"arg/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/direction"
+											}
+										}
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitNormalDOT"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ChooseExpression",
+							"__cvalue__": {
+								"choices": [
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/particleQuality"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "particleQuality",
+														"enumValueName": "medium"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.7071
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/particleQuality"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "particleQuality",
+														"enumValueName": "high"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.866
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/particleQuality"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "particleQuality",
+														"enumValueName": "maximum"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 1
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/particleQuality"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "particleQuality",
+														"enumValueName": "low"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.6
+											}
+										}
+									}
+								],
+								"defaultResult/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "system/smokeRateParticleQuality"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ChooseExpression",
+							"__cvalue__": {
+								"choices": [
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/particleQuality"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "particleQuality",
+														"enumValueName": "medium"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.375
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/particleQuality"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "particleQuality",
+														"enumValueName": "high"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.619
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/particleQuality"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "particleQuality",
+														"enumValueName": "maximum"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.8
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "system/particleQuality"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "particleQuality",
+														"enumValueName": "low"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 0.13
+											}
+										}
+									}
+								],
+								"defaultResult/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "system/sparksRateParticleQuality"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ChooseExpression",
+							"__cvalue__": {
+								"choices": [
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/type"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "hitType",
+														"enumValueName": "armorPiercedNoDamage"
+													}
+												}
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::EnumExpression",
+											"__cvalue__": {
+												"enumName": "hitType",
+												"enumValueName": "armorNotPierced"
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::AndManyExpression",
+											"__cvalue__": {
+												"args": [
+													{
+														"expression": {
+															"__ctype__": "BW::variables::EqualExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/type"
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::EnumExpression",
+																	"__cvalue__": {
+																		"enumName": "hitType",
+																		"enumValueName": "criticalHit"
+																	}
+																}
+															}
+														}
+													},
+													{
+														"expression": {
+															"__ctype__": "BW::variables::EqualExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/damage"
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 0
+																	}
+																}
+															}
+														}
+													}
+												]
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::EnumExpression",
+											"__cvalue__": {
+												"enumName": "hitType",
+												"enumValueName": "armorNotPierced"
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::AndManyExpression",
+											"__cvalue__": {
+												"args": [
+													{
+														"expression": {
+															"__ctype__": "BW::variables::EqualExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/type"
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::EnumExpression",
+																	"__cvalue__": {
+																		"enumName": "hitType",
+																		"enumValueName": "armorPiercedDeviceDamaged"
+																	}
+																}
+															}
+														}
+													},
+													{
+														"expression": {
+															"__ctype__": "BW::variables::EqualExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/damage"
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 0
+																	}
+																}
+															}
+														}
+													}
+												]
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::EnumExpression",
+											"__cvalue__": {
+												"enumName": "hitType",
+												"enumValueName": "armorNotPierced"
+											}
+										}
+									}
+								],
+								"defaultResult/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "hit/type"
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "hit/type"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ChooseExpression",
+							"__cvalue__": {
+								"choices": [
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/caliber"
+													}
+												},
+												"lCheck": "<=",
+												"leftBound": 0,
+												"rCheck": "<=",
+												"rightBound": 30
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/caliber"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.3
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/caliber"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 30,
+												"rCheck": "<=",
+												"rightBound": 37
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::SubtractExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/caliber"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 21
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/caliber"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 37,
+												"rCheck": "<=",
+												"rightBound": 50
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::AddExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/caliber"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.076923
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 13.154
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/caliber"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 50,
+												"rCheck": "<=",
+												"rightBound": 60
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::SubtractExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/caliber"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 1.9
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 78
+													}
+												}
+											}
+										}
+									},
+									{
+										"condition/expression": {
+											"__ctype__": "BW::variables::BetweenFloatsExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/caliber"
+													}
+												},
+												"lCheck": "<",
+												"leftBound": 60,
+												"rCheck": "<=",
+												"rightBound": 300
+											}
+										},
+										"result/expression": {
+											"__ctype__": "BW::variables::AddExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::MultiplyExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/caliber"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.058333
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 32.5
+													}
+												}
+											}
+										}
+									}
+								],
+								"defaultResult/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "armorHit/approxAvarageDamageByCaliber"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::EffectInitMockVariablesComponent": {
+				"calcs": [
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "hitType",
+								"enumValueName": "armorPierced"
+							}
+						},
+						"variableDest/variableName": "hit/type"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantFloatExpression",
+							"__cvalue__": {
+								"floatValue": 57
+							}
+						},
+						"variableDest/variableName": "hit/projectile/caliber"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantFloatExpression",
+							"__cvalue__": {
+								"floatValue": 940
+							}
+						},
+						"variableDest/variableName": "hit/projectile/speed"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantVector3Expression",
+							"__cvalue__": {
+								"vector3Value/x": -10,
+								"vector3Value/y": -10,
+								"vector3Value/z": 0
+							}
+						},
+						"variableDest/variableName": "hit/projectile/direction"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "shellType",
+								"enumValueName": "highExplosive"
+							}
+						},
+						"variableDest/variableName": "hit/projectile/shellType"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "particleQuality",
+								"enumValueName": "maximum"
+							}
+						},
+						"variableDest/variableName": "system/particleQuality"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantFloatExpression",
+							"__cvalue__": {
+								"floatValue": 0
+							}
+						},
+						"variableDest/variableName": "hit/damage"
+					}
+				],
+				"disabledDomains": [
+					"Client",
+					"Server"
+				]
+			},
+			"BW::EffectInitPreviewComponent": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				]
+			},
+			"BW::GameObjectActivationRulesComponent": {
+				"activationExpression/expression": {
+					"__ctype__": "BW::variables::NotEqualExpression",
+					"__cvalue__": {
+						"arg0/expression": {
+							"__ctype__": "BW::variables::VariableExpression",
+							"__cvalue__": {
+								"variable/variableName": "system/particleQuality"
+							}
+						},
+						"arg1/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "particleQuality",
+								"enumValueName": "off"
+							}
+						}
+					}
+				},
+				"destroyOnDeactivation": true
+			},
+			"BW::RemoveGoDelayedComponent": {
+				"delay": 5,
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			},
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 0.1,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 0.30002,
+								"object": "6421e8bc-67d6-3cf5-9701-234cff31d155",
+								"parameters": [
+									{
+										"component": "BW::LightParametrizationDataComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10000
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.099849,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "multiplierCoef"
+											}
+										]
+									},
+									{
+										"component": "BW::OmniLightComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0,
+												"type": "Hermite",
+												"value": {
+													"__ctype__": "BW::Vector4",
+													"__cvalue__": {
+														"w": 0,
+														"x": 0.92549,
+														"y": 0.58039,
+														"z": 0.38824
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													},
+													"right": {
+														"x": 1.5708,
+														"y": 1.5708,
+														"z": 1.5708
+													}
+												},
+												"time": 0.099849,
+												"type": "Hermite",
+												"value": {
+													"__ctype__": "BW::Vector4",
+													"__cvalue__": {
+														"w": 0,
+														"x": 0.59608,
+														"y": 0.090196,
+														"z": 0.031373
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "descriptor"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "commonLightDesc"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "color"
+											}
+										]
+									}
+								],
+								"startTime": 0
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"BW::variables::VariableGetterComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::variables::VariableStorageComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"varInitialValues": []
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "armor_hit_he_auto",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

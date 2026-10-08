@@ -1,0 +1,193 @@
+from __future__ import absolute_import
+from typing import TYPE_CHECKING
+import skeletons.gui.pet_system
+import constants
+import skeletons.gui.resource_well
+from gui.graphics_optimization_controller.optimization_controller import GraphicsOptimizationController
+from gui.shared.system_factory import collectGameControllers
+from skeletons.gui.challenges import IChallengesController
+if TYPE_CHECKING:
+    from helpers.dependency import DependencyManager
+
+def getGameControllersConfig(manager):
+    from gui.game_control.AOGAS import AOGASController as _AOGAS
+    from gui.game_control.AwardController import AwardController as _Awards
+    from gui.game_control.anonymizer_controller import AnonymizerController as _Anonymizer
+    from gui.game_control.BoostersController import BoostersController as _Boosters
+    from gui.game_control.BrowserController import BrowserController as _Browser
+    from gui.game_control.ChinaController import ChinaController as _China
+    from gui.game_control.ChinaController import NoChinaController as _NoChina
+    from gui.game_control.links_handlers import ExternalLinksHandler as _ExternalLinks
+    from gui.game_control.GameSessionController import GameSessionController as _GameSessions
+    from gui.game_control.IGR import IGRController as _IGR
+    from gui.game_control.links_handlers import InternalLinksHandler as _InternalLinks
+    from gui.game_control.NotifyController import NotifyController as _Notify
+    from gui.game_control.PromoController import PromoController as _Promos
+    from gui.game_control.RentalsController import RentalsController as _Rentals
+    from gui.game_control.seasons_controller import SeasonsController as _Seasons
+    from gui.game_control.ServerStats import ServerStats as _ServerStats
+    from gui.game_control.SoundEventChecker import SoundEventChecker as _Sounds
+    from gui.game_control.clan_lock_controller import ClanLockController as _ClanLocks
+    from gui.game_control.events_notifications import EventsNotificationsController as _EventNotifications
+    from gui.game_control.relogin_controller import ReloginController as _Relogin
+    from gui.game_control.restore_contoller import RestoreController as _Restore
+    from gui.game_control.screencast_controller import ScreenCastController as _ScreenCast
+    from gui.game_control.state_tracker import GameStateTracker
+    from gui.game_control.veh_comparison_basket import VehComparisonBasket as _VehComparison
+    from gui.game_control.wallet import WalletController as _Wallet
+    from gui.game_control.trade_in import TradeInController as _TradeIn
+    from gui.game_control.quests_controller import QuestsController as _Quests
+    from gui.game_control.ranked_battles_controller import RankedBattlesController as _Ranked
+    from gui.game_control.hangar_loading_controller import HangarLoadingController as _HangarLoading
+    from gui.game_control.hero_tank_controller import HeroTankController as _HeroTankController
+    from gui.game_control.platoon_controller import PlatoonController as _PlatoonController
+    from gui.game_control.epic_meta_game_ctrl import EpicBattleMetaGameController as _EpicMeta
+    from gui.game_control.manual_controller import ManualController as _ManualController
+    from gui.marathon.marathon_event_controller import MarathonEventsController as _MarathonEventsController
+    from skeletons.festivity_factory import IFestivityFactory
+    from skeletons.gui import game_control as _interface
+    from gui.game_control.referral_program_controller import ReferralProgramController as _ReferralController
+    from gui.game_control.badges_controller import BadgesController as _Badges
+    from gui.game_control.special_sound_ctrl import SpecialSoundCtrl as _SpecialSoundCtrl
+    from gui.game_control.battle_pass_controller import BattlePassController
+    from gui.game_control.clan_notification_controller import ClanNotificationController as _ClanNotification
+    from gui.game_control.craftmachine_controller import CraftmachineController
+    from gui.game_control.reactive_comm import ReactiveCommunicationService
+    from gui.game_control.maps_training_controller import MapsTrainingController as _MapsTrainingController
+    from gui.game_control.blueprints_convert_sale_controller import BlueprintsConvertSaleController
+    from gui.game_control.mapbox_controller import MapboxController
+    from gui.game_control.overlay import OverlayController as _OverlayController
+    from gui.game_control.account_completion import SteamCompletionController as _SteamCompletionController, DemoAccCompletionController as _DemoAccCompletionController
+    from gui.game_control.veh_post_progression_controller import VehiclePostProgressionController
+    from gui.game_control.wot_plus_controller import WotPlusController
+    from gui.game_control.telecom_rentals_controller import TelecomRentalsNotificationController
+    from gui.game_control.event_battles_controller import EventBattlesController
+    from gui.game_control.gift_system_controller import GiftSystemController
+    from gui.game_control.seniority_awards_controller import SeniorityAwardsController as _SeniorityAwardsController
+    from gui.game_control.rts_battles_controller import RTSBattlesController
+    from gui.game_control.extension_stubs.resource_well_controller import ResourceWellController
+    from gui.game_control.extension_stubs.fun_random_controller import FunRandomController
+    from gui.game_control.extension_stubs.comp7_controller import Comp7Controller
+    from gui.game_control.extension_stubs.comp7_light_controller import Comp7LightController
+    from gui.game_control.hangar_switch_controller import HangarSpaceSwitchController
+    from gui.game_control.lootbox_system_controller import LootBoxSystemController
+    from gui.entitlements.entitlements_controller import EntitlementsController
+    from gui.game_control.winback_controller import WinbackController
+    from gui.game_control.achievements20_controller import Achievements20Controller as _Ach20Ctrl
+    from gui.limited_ui.lui_controller import LimitedUIController
+    from gui.game_control.collections_controller import CollectionsSystemController
+    from gui.hangar_presets.hangar_gui_controller import HangarGuiController
+    from gui.game_control.live_ops_web_events_controller import LiveOpsWebEventsController
+    from gui.game_control.achievements_controller import AchievementsController
+    from gui.game_control.achievements_earning_controller import Achievements20EarningController
+    from gui.game_control.exchange_rates_with_discounts import ExchangeRatesWithDiscountsProvider
+    from gui.game_control.fading_controller import FadingController
+    from gui.game_control.easy_tank_equip_controller import EasyTankEquipController as _EasyTankEquipController
+    from gui.game_control.loadout_controller import LoadoutController
+    from gui.game_control.blur_controller import BlurController
+    from gui.game_control.commendations_controller import CommendationsController
+    from gui.game_control.oit_availability_controller import OitAvailabilityController
+    from gui.game_control.vehicle_playlists_controller import VehiclePlaylistsController
+    from gui.game_control.crew_controller import CrewController
+    from gui.pet_system.pet_controller import PetSystemController
+    from gui.game_control.ingame_tournament_controller import IngameTournamentController
+    from gui.game_control.w2gt_controller import W2GTGameController
+    from gui.game_control.challenges_controller import ChallengesController
+    from gui.game_control.rest_bonus_controller import RestBonusController
+    tracker = GameStateTracker()
+    tracker.init()
+    manager.addInstance(_interface.IGameStateTracker, tracker, finalizer='fini')
+
+    def _config(interface, controller, replace=False):
+        tracker.addController(controller)
+        controller.init()
+        method = manager.replaceInstance if replace else manager.addInstance
+        method(interface, controller, finalizer='fini')
+
+    _config(_interface.IEasyTankEquipController, _EasyTankEquipController())
+    _config(_interface.ISeniorityAwardsController, _SeniorityAwardsController())
+    _config(_interface.IFestivityController, manager.getService(IFestivityFactory).getController())
+    _config(_interface.IReloginController, _Relogin())
+    _config(_interface.IAOGASController, _AOGAS())
+    _config(_interface.IGameSessionController, _GameSessions())
+    _config(_interface.IRentalsController, _Rentals())
+    _config(_interface.IRestoreController, _Restore())
+    _config(_interface.IIGRController, _IGR())
+    _config(_interface.IWalletController, _Wallet())
+    _config(_interface.INotifyController, _Notify())
+    _config(_interface.IExternalLinksController, _ExternalLinks())
+    _config(_interface.IInternalLinksController, _InternalLinks())
+    _config(_interface.ISoundEventChecker, _Sounds())
+    _config(_interface.IServerStatsController, _ServerStats())
+    _config(_interface.IBrowserController, _Browser())
+    _config(_interface.IEventsNotificationsController, _EventNotifications())
+    _config(_interface.IPromoController, _Promos())
+    _config(_interface.IAwardController, _Awards())
+    _config(_interface.IBoostersController, _Boosters())
+    _config(_interface.IScreenCastController, _ScreenCast())
+    _config(_interface.IClanLockController, _ClanLocks())
+    _config(_interface.IVehicleComparisonBasket, _VehComparison())
+    _config(_interface.ITradeInController, _TradeIn())
+    _config(_interface.IQuestsController, _Quests())
+    _config(_interface.IHangarSpaceSwitchController, HangarSpaceSwitchController())
+    _config(_interface.IRankedBattlesController, _Ranked())
+    _config(_interface.IHeroTankController, _HeroTankController())
+    _config(_interface.IPlatoonController, _PlatoonController())
+    _config(_interface.IMarathonEventsController, _MarathonEventsController())
+    _config(_interface.IEpicBattleMetaGameController, _EpicMeta())
+    _config(_interface.IManualController, _ManualController())
+    _config(_interface.IReferralProgramController, _ReferralController())
+    _config(_interface.ISpecialSoundCtrl, _SpecialSoundCtrl())
+    _config(_interface.IBattlePassController, BattlePassController())
+    _config(_interface.IHangarLoadingController, _HangarLoading())
+    if constants.IS_CHINA:
+        _config(_interface.IChinaController, _China())
+    else:
+        _config(_interface.IChinaController, _NoChina())
+    _config(_interface.IMapboxController, MapboxController())
+    _config(_interface.IEventBattlesController, EventBattlesController())
+    _config(_interface.IFunRandomController, FunRandomController())
+    _config(_interface.IComp7Controller, Comp7Controller())
+    _config(_interface.IComp7LightController, Comp7LightController())
+    _config(_interface.ISeasonsController, _Seasons())
+    _config(_interface.IBadgesController, _Badges())
+    _config(_interface.IAnonymizerController, _Anonymizer())
+    _config(_interface.ICraftmachineController, CraftmachineController())
+    _config(_interface.IClanNotificationController, _ClanNotification())
+    _config(_interface.IReactiveCommunicationService, ReactiveCommunicationService())
+    _config(_interface.IMapsTrainingController, _MapsTrainingController())
+    _config(_interface.IBlueprintsConvertSaleController, BlueprintsConvertSaleController())
+    _config(_interface.IOverlayController, _OverlayController())
+    _config(_interface.ISteamCompletionController, _SteamCompletionController())
+    _config(_interface.IDemoAccCompletionController, _DemoAccCompletionController())
+    _config(_interface.IVehiclePostProgressionController, VehiclePostProgressionController())
+    _config(_interface.IWotPlusController, WotPlusController())
+    _config(_interface.ITelecomRentalsNotificationController, TelecomRentalsNotificationController())
+    _config(_interface.IGiftSystemController, GiftSystemController())
+    _config(_interface.IRTSBattlesController, RTSBattlesController())
+    _config(skeletons.gui.resource_well.IResourceWellController, ResourceWellController())
+    _config(_interface.ILootBoxSystemController, LootBoxSystemController())
+    _config(_interface.IEntitlementsController, EntitlementsController())
+    _config(_interface.ICollectionsSystemController, CollectionsSystemController())
+    _config(_interface.IWinbackController, WinbackController())
+    _config(_interface.IAchievements20Controller, _Ach20Ctrl())
+    _config(_interface.ILimitedUIController, LimitedUIController())
+    _config(_interface.IHangarGuiController, HangarGuiController())
+    _config(_interface.IGraphicsOptimizationController, GraphicsOptimizationController())
+    _config(_interface.ILiveOpsWebEventsController, LiveOpsWebEventsController())
+    _config(_interface.IAchievementsController, AchievementsController())
+    _config(_interface.IAchievements20EarningController, Achievements20EarningController())
+    _config(_interface.IExchangeRatesWithDiscountsProvider, ExchangeRatesWithDiscountsProvider())
+    _config(_interface.IFadingController, FadingController())
+    _config(_interface.ILoadoutController, LoadoutController())
+    _config(_interface.IBlurController, BlurController())
+    _config(_interface.ICommendationsController, CommendationsController())
+    _config(_interface.IOitAvailabilityController, OitAvailabilityController())
+    _config(_interface.IVehiclePlaylistsController, VehiclePlaylistsController())
+    _config(_interface.ICrewController, CrewController())
+    _config(_interface.IIngameTournamentController, IngameTournamentController())
+    _config(skeletons.gui.pet_system.IPetSystemController, PetSystemController())
+    _config(_interface.IW2GTGameController, W2GTGameController())
+    _config(IChallengesController, ChallengesController())
+    _config(_interface.IRestBonusController, RestBonusController())
+    collectGameControllers(_config)

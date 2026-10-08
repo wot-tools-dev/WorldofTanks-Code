@@ -1,0 +1,906 @@
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Reward_base_b1fec {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+    .Reward_base__s48x48_ea3ee,
+    .Reward_base__small_d4940 {
+        width: 48rem;
+        height: 48rem;
+    }
+
+    .Reward_base__s80x80_de3ac,
+    .Reward_base__big_a4f0e {
+        width: 80rem;
+        height: 80rem;
+    }
+
+    .Reward_base__s128x100_c29f0 {
+        width: 128rem;
+        height: 100rem;
+    }
+
+    .Reward_base__s180x135_cb4c8 {
+        width: 180rem;
+        height: 135rem;
+    }
+
+    .Reward_base__s232x174_aea24 {
+        width: 232rem;
+        height: 174rem;
+    }
+
+    .Reward_base__s296x222_cbf7c {
+        width: 296rem;
+        height: 222rem;
+    }
+
+    .Reward_base__s400x300_bb29d {
+        width: 400rem;
+        height: 300rem;
+    }
+
+    .Reward_base__s600x450_c4f07 {
+        width: 600rem;
+        height: 450rem;
+    }
+
+.Reward_tooltipWrapper_af665 {
+    height: 100%;
+}
+
+.Reward_icon_b619b {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    position: relative;
+    z-index: 1;
+}
+
+.Reward_overlay_dac5c {
+    background: no-repeat center / 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.Reward_base__s48x48_ea3ee .Reward_overlay_dac5c,
+    .Reward_base__small_d4940 .Reward_overlay_dac5c {
+        width: 96rem;
+        height: 96rem;
+        background-size: 100%;
+        overflow: visible;
+    }
+
+.Reward_base__s80x80_de3ac .Reward_overlay_dac5c,
+    .Reward_base__big_a4f0e .Reward_overlay_dac5c {
+        width: 128rem;
+        height: 128rem;
+    }
+
+.Reward_base__s180x135_cb4c8 .Reward_overlay_dac5c {
+        width: 266rem;
+        height: 241rem;
+    }
+
+.Reward_base__s232x174_aea24 .Reward_overlay_dac5c {
+        width: 344rem;
+        height: 312rem;
+    }
+
+.Reward_base__s296x222_cbf7c .Reward_overlay_dac5c {
+        width: 450rem;
+        height: 408rem;
+    }
+
+.Reward_base__s400x300_bb29d .Reward_overlay_dac5c {
+        width: 618rem;
+        height: 590rem;
+    }
+
+.Reward_base__s600x450_c4f07 .Reward_overlay_dac5c {
+        width: 670rem;
+        height: 575rem;
+    }
+
+.Reward_base__normalize_b8703 .Reward_overlay_dac5c {
+        width: 100%;
+        height: 100%;
+    }
+
+.Reward_highlight_df36b {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    position: absolute;
+    z-index: 0;
+}
+
+.Reward_image_e2997 {
+    position: relative;
+}
+
+.Reward_info_b27d2 {
+    color: #E9E2BF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: -13rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.Reward_base__s48x48_ea3ee .Reward_info_b27d2,
+    .Reward_base__small_d4940 .Reward_info_b27d2 {
+        margin: -10rem -10rem 0;
+    }
+
+.Reward_info__multi_e08a5 {
+        margin-right: 2rem;
+        text-align: right;
+    }
+
+.Reward_base__s48x48_ea3ee .Reward_info__multi_e08a5,
+        .Reward_base__small_d4940 .Reward_info__multi_e08a5 {
+            margin-right: 0;
+        }
+
+.Reward_info__credits_ccc0d {
+        color: #CED9D9;
+    }
+
+.Reward_info__gold_af0a5 {
+        color: #FFC363;
+    }
+
+.Reward_info__bptaler_d4229,
+    .Reward_info__crystal_b0d9d {
+        color: #C9C9B6;
+    }
+
+.Reward_info__premiumTank_f53be {
+        color: #FFDD99;
+    }
+
+.Reward_title_ab4e2 {
+    color: #E9E2BF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    max-width: 80rem;
+    margin: -13rem -16rem 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.mediaMedium .Reward_title_ab4e2 {
+        max-width: 100rem;
+        margin-left: -10rem;
+        margin-right: -10rem;
+}
+
+.Reward_base__s48x48_ea3ee .Reward_title_ab4e2,
+    .Reward_base__small_d4940 .Reward_title_ab4e2 {
+        margin: -10rem -10rem 0;
+    }
+
+.Reward_timer_c097c {
+    background: no-repeat center / contain;
+    position: absolute;
+    z-index: 1;
+}
+
+.Reward_base__s48x48_ea3ee .Reward_timer_c097c,
+    .Reward_base__small_d4940 .Reward_timer_c097c {
+        width: 23rem;
+        height: 23rem;
+        background-image: url('R.images.gui.maps.icons.quests.bonuses.small.timer');
+        top: -6rem;
+        right: -6rem;
+    }
+
+.Reward_base__s80x80_de3ac .Reward_timer_c097c,
+    .Reward_base__big_a4f0e .Reward_timer_c097c {
+        width: 48rem;
+        height: 48rem;
+        background-image: url('R.images.gui.maps.icons.quests.bonuses.big.timer');
+        top: -14rem;
+        right: -14rem;
+    }
+
+.Rewards_base_e6f04 {
+    display: flex;
+}
+
+    .Rewards_base__vertical_e5a54 {
+        flex-direction: column;
+    }
+
+.Rewards_reward_cd984 {
+    margin: 0 10rem;
+}
+
+.Rewards_reward__vertical_d30b6 {
+        margin: 15rem 0;
+    }
+
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+:root {
+    width: 101vw;
+    height: 101vh;
+}
+
+.SubscriptionRewardViewApp_base_aaed2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 75rem;
+    background: url('R.images.gui.maps.icons.player_subscriptions.rewards.rewards_bg') center center / cover no-repeat;
+    overflow: hidden;
+    position: relative;
+    left: -5rem;
+}
+
+.SubscriptionRewardViewApp_close_a82b0 {
+    position: absolute;
+    top: 30rem;
+    right: 24rem;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_close_a82b0 {
+        top: 30rem;
+        right: 55rem;
+}
+
+.SubscriptionRewardViewApp_ribbon_ce691 {
+    width: 1366rem;
+    height: 356rem;
+    background: url('R.images.gui.maps.icons.player_subscriptions.rewards.ribbon') center center / cover no-repeat;
+    position: absolute;
+    top: 50%;
+    z-index: -1;
+    transform: translateY(-60rem);
+}
+
+.mediaSmall .SubscriptionRewardViewApp_ribbon_ce691 {
+        transform: translateY(-25rem);
+}
+
+.mediaMedium .SubscriptionRewardViewApp_ribbon_ce691 {
+        width: 1600rem;
+        height: 417rem;
+        transform: translateY(-88rem);
+}
+
+.mediaLarge .SubscriptionRewardViewApp_ribbon_ce691 {
+        width: 1920rem;
+        height: 500rem;
+        transform: translateY(-100rem);
+}
+
+.SubscriptionRewardViewApp_headerBlock_b9955 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 73rem;
+    padding: 0 20rem;
+    text-align: center;
+    z-index: 1;
+}
+
+.mediaSmall .SubscriptionRewardViewApp_headerBlock_b9955 {
+        margin-bottom: 24rem;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_headerBlock_b9955 {
+        margin-bottom: 70rem;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_headerBlock_b9955 {
+        margin-bottom: 125rem;
+}
+
+.SubscriptionRewardViewApp_rewardTitle_eb004 {
+    color: #F2F2F7;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_rewardTitle_eb004 {
+        color: #F2F2F7;
+        font-size: 24rem;
+        font-weight: 700;
+        line-height: 1.2;
+}
+
+.SubscriptionRewardViewApp_viewTitle_a1986 {
+    color: #F2F2F7;
+    font-size: 56rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 7rem 0;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_viewTitle_a1986 {
+        color: #F2F2F7;
+        font-size: 73rem;
+        font-weight: 700;
+        line-height: 1.1;
+}
+
+.SubscriptionRewardViewApp_rewardSubtitle_d522c {
+    color: #F2F2F7;
+    font-size: 24rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.SubscriptionRewardViewApp_mainRewards_ebd6c {
+    display: flex;
+    flex-direction: row;
+}
+
+.SubscriptionRewardViewApp_heroImageBlock_abf4a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 28rem;
+}
+
+.mediaSmall .SubscriptionRewardViewApp_heroImageBlock_abf4a {
+        margin-bottom: 20rem;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_heroImageBlock_abf4a {
+        margin-bottom: 26rem;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_heroImageBlock_abf4a {
+        margin-bottom: 41rem;
+}
+
+.SubscriptionRewardViewApp_heroImageBlock_abf4a + .SubscriptionRewardViewApp_heroImageBlock_abf4a {
+    margin-left: 20rem;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_heroImageBlock_abf4a + .SubscriptionRewardViewApp_heroImageBlock_abf4a {
+        margin-left: 30rem;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_heroImageBlock_abf4a + .SubscriptionRewardViewApp_heroImageBlock_abf4a {
+        margin-left: 40rem;
+}
+
+.SubscriptionRewardViewApp_heroImage_d273b {
+    width: 232rem;
+    height: 174rem;
+    background: none center bottom / contain no-repeat;
+}
+
+.mediaSmall .SubscriptionRewardViewApp_heroImage_d273b {
+        width: 296rem;
+        height: 222rem;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_heroImage_d273b {
+        width: 400rem;
+        height: 300rem;
+}
+
+.SubscriptionRewardViewApp_heroImageSubtitle_bdec8 {
+    color: #E9E2BF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: 5rem;
+}
+
+.mediaSmall .SubscriptionRewardViewApp_heroImageSubtitle_bdec8 {
+        color: #E9E2BF;
+        font-size: 16rem;
+        font-weight: 400;
+        line-height: 1.25;
+        margin-top: 16rem;
+}
+
+.SubscriptionRewardViewApp_rewardsContainer_a09c8 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 40%;
+    height: 57rem;
+    margin-bottom: 23rem;
+}
+
+.mediaSmall .SubscriptionRewardViewApp_rewardsContainer_a09c8 {
+        margin-bottom: 18rem;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_rewardsContainer_a09c8 {
+        margin-bottom: 28rem;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_rewardsContainer_a09c8 {
+        margin-bottom: 36rem;
+}
+
+.SubscriptionRewardViewApp_footerInfoContainer_bbd27 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 800rem;
+    height: 100rem;
+    margin-bottom: 31rem;
+    background: radial-gradient(100% 100% at 50% 0%, rgba(0, 0, 0, .15) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.mediaSmall .SubscriptionRewardViewApp_footerInfoContainer_bbd27 {
+        margin-bottom: 17rem;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_footerInfoContainer_bbd27 {
+        height: 140rem;
+        margin-bottom: 37rem;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_footerInfoContainer_bbd27 {
+        height: 140rem;
+        margin-bottom: 18rem;
+}
+
+.SubscriptionRewardViewApp_footerInfoContainer__hidden_bbd47 {
+        visibility: hidden;
+    }
+
+.SubscriptionRewardViewApp_footerImage_b8033 {
+    width: 112rem;
+    height: 80rem;
+    background: url('R.images.gui.maps.icons.player_subscriptions.rewards.footer_image_112x80') 0 0 / contain no-repeat;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_footerImage_b8033 {
+        width: 210rem;
+        height: 150rem;
+        background-image: url('R.images.gui.maps.icons.player_subscriptions.rewards.footer_image_210x150');
+}
+
+.mediaLarge .SubscriptionRewardViewApp_footerImage_b8033 {
+        width: 168rem;
+        height: 120rem;
+        background-image: url('R.images.gui.maps.icons.player_subscriptions.rewards.footer_image_168x120');
+}
+
+.SubscriptionRewardViewApp_footerTitle_b38e4 {
+    color: #F2F2F7;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_footerTitle_b38e4 {
+        color: #F2F2F7;
+        font-size: 36rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 6rem;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_footerTitle_b38e4 {
+        color: #F2F2F7;
+        font-size: 28rem;
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 6rem;
+}
+
+.SubscriptionRewardViewApp_footerDescription_a91d4 {
+    color: #E9E2BF;
+    font-size: 12rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_footerDescription_a91d4 {
+        color: #E9E2BF;
+        font-size: 16rem;
+        font-weight: 400;
+        line-height: 1.25;
+        width: 480rem;
+}
+
+.mediaLarge .SubscriptionRewardViewApp_footerDescription_a91d4 {
+        color: #E9E2BF;
+        font-size: 14rem;
+        font-weight: 400;
+        line-height: 1.3;
+        width: 440rem;
+}
+
+.SubscriptionRewardViewApp_chooseButton_af442 {
+    padding: 2rem 29rem 4rem;
+}
+
+.mediaMedium .SubscriptionRewardViewApp_chooseButton_af442 {
+        padding: 7rem 30rem 9rem;
+}
+
+.SubscriptionRewardViewApp_flash_fbbcf {
+    width: 656rem;
+    height: 657rem;
+    background: url('R.images.gui.maps.icons.player_subscriptions.rewards.flash_purple') center center / cover;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 50%;
+    z-index: -2;
+    transform: translateY(-320rem);
+}
+
+.mediaSmall .SubscriptionRewardViewApp_flash_fbbcf {
+        transform: translateY(-280rem);
+}
+
+.mediaMedium .SubscriptionRewardViewApp_flash_fbbcf {
+        width: 997rem;
+        height: 999rem;
+        transform: translateY(-488rem);
+}
+
+.mediaLarge .SubscriptionRewardViewApp_flash_fbbcf {
+        transform: translateY(-500rem);
+}
+

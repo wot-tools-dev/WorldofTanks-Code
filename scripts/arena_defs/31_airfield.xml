@@ -1,0 +1,195 @@
+<31_airfield.xml>
+  <name>	#arenas:31_airfield/name	</name>
+  <description>	#arenas:31_airfield/description	</description>
+  <geometry>	spaces/31_airfield	</geometry>
+  <estimatedLoad>	0.3	</estimatedLoad>
+  <roundLength>	900	</roundLength>
+  <boundingBox>
+    <bottomLeft>	-500.000000 -600.000000	</bottomLeft>
+    <upperRight>	500.000000 400.000000	</upperRight>
+  </boundingBox>
+  <minimap>	spaces/31_airfield/mmap.dds	</minimap>
+  <vehicleCamouflageKind>	desert	</vehicleCamouflageKind>
+  <umbraEnabled>	1	</umbraEnabled>
+  <wwmusicSetup>
+    <wwmusicLoading>	music_airfield_loading_screen	</wwmusicLoading>
+    <wwmusicIntensive>	music_airfield_dron_intensive	</wwmusicIntensive>
+    <wwmusicRelaxed>	music_airfield_dron_relaxed	</wwmusicRelaxed>
+    <wwmusicStop>	music_dron_stop	</wwmusicStop>
+    <wwmusicEndbattleStop>	music_dron_endbattle_stop	</wwmusicEndbattleStop>
+    <wwmusicResultWin>	music_airfield_result_win	</wwmusicResultWin>
+    <wwmusicResultDrawn>	music_airfield_result_drawn	</wwmusicResultDrawn>
+    <wwmusicResultDefeat>	music_airfield_result_defeat	</wwmusicResultDefeat>
+  </wwmusicSetup>
+  <wwambientSound>	ambient_wind_desert_01	</wwambientSound>
+  <soundRemapping>
+    <loadBanks>
+      <bank>
+        <name>	env_Mountain.bnk	</name>
+      </bank>
+    </loadBanks>
+  </soundRemapping>
+  <water>
+    <texScale>	0	</texScale>
+    <freqX>	0	</freqX>
+    <freqZ>	0	</freqZ>
+  </water>
+  <gameplayTypes>
+    <ctf>
+      <teamBasePositions>
+        <team1>
+          <position1>	438.516815 27.826841	</position1>
+        </team1>
+        <team2>
+          <position1>	-383.740051 7.167184	</position1>
+        </team2>
+      </teamBasePositions>
+    </ctf>
+    <comp7>
+      <visualScript>
+        <server>
+          <plan>	PointsOfInterest/pointsOfInterest	</plan>
+        </server>
+      </visualScript>
+      <recon>
+        <flyDirections>
+          <flyDirection>
+            <team>	1	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+          <flyDirection>
+            <team>	2	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+        </flyDirections>
+      </recon>
+      <minimap>	spaces/31_airfield/mmap_comp7.dds	</minimap>
+      <pointsOfInterestUDO>
+        <point>
+          <position>	-8.197907 -462.377441	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	0.803725 187.304993	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	-175.723312 252.749191	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	227.942993 270.816986	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	10.283123 -196.076080	</position>
+          <type>	1	</type>
+        </point>
+      </pointsOfInterestUDO>
+      <teamSpawnPoints>
+        <team1>
+          <position>	442.090454 -55.389954	</position>
+        </team1>
+        <team2>
+          <position>	-402.241943 -73.413071	</position>
+        </team2>
+      </teamSpawnPoints>
+      <controlPoint>	9.124191 16.447800	</controlPoint>
+    </comp7>
+  </gameplayTypes>
+  <mapActivities>
+    <scenario>
+      <name>	warplane1_sc	</name>
+      <startTime>	100.000000 200.000000	</startTime>
+      <possibility>	70.000000	</possibility>
+      <interval>	600.000000	</interval>
+      <trajectories>
+        <warplane>
+          <preset>	airfield_curve	</preset>
+          <position>	0.000000 0.000000 0.000000	</position>
+          <yaw>	0.000000	</yaw>
+          <possibility>	1.000000	</possibility>
+          <startTime>	0.000000 0.000000	</startTime>
+        </warplane>
+      </trajectories>
+    </scenario>
+    <scenario>
+      <name>	warplane2	</name>
+      <startTime>	300.000000 400.000000	</startTime>
+      <possibility>	70.000000	</possibility>
+      <interval>	600.000000	</interval>
+      <trajectories>
+        <warplane>
+          <preset>	airfield_curve1	</preset>
+          <position>	0.000000 0.000000 0.000000	</position>
+          <yaw>	0.000000	</yaw>
+          <possibility>	1.000000	</possibility>
+          <startTime>	0.000000 0.000000	</startTime>
+        </warplane>
+      </trajectories>
+    </scenario>
+  </mapActivities>
+  <modules>
+    <common>
+      <module>	BW::CgfCameraModule	</module>
+      <module>	BW::CollisionSceneModule	</module>
+      <module>	cgf::network::ClientNetworkModule	</module>
+      <module>	BW::CompoundModule	</module>
+      <module>	cgf::network::NetworkModule	</module>
+      <module>	vehicle::hierarchy::EntityHelpersModule	</module>
+      <module>	vehicle::hierarchy::VehicleHierarchyModule	</module>
+      <module>	BW::EffectsDebugModule	</module>
+      <module>	BW::ControlPointModule	</module>
+      <module>	BW::EntityFiltersModule	</module>
+      <module>	BW::EffectHandlersModule	</module>
+      <module>	BW::EffectsModule	</module>
+      <module>	BW::ArmorFlashlight::ArmorFlashlightModule	</module>
+      <module>	BW::VisibilityTunnelModule	</module>
+      <module>	BW::input::InputModule	</module>
+      <module>	BW::RompModule	</module>
+      <module>	cgf::events::EventsModule	</module>
+      <module>	cgf::FoundationModule	</module>
+      <module>	cgf::TriggersModule	</module>
+      <module>	BW::ConstraintsModule	</module>
+      <module>	BW::CGF::GenericComponentsModule	</module>
+      <module>	BW::tags::TagsModule	</module>
+      <module>	BW::variables::VariablesModule	</module>
+      <module>	vehicle::hierarchy::HierarchyModule	</module>
+      <module>	BW::DebugSoundRenderModule	</module>
+      <module>	cgf_debug_render::Module	</module>
+      <module>	BW::VisualScriptModule	</module>
+      <module>	BW::GameLogicModule	</module>
+      <module>	BW::SoundModule	</module>
+      <module>	BW::SoundSpatialModule	</module>
+      <module>	wot_physics::Module	</module>
+      <module>	BW::GpuDecalsModule	</module>
+      <module>	BW::WotRenderModule	</module>
+      <module>	BW::WULF::Module	</module>
+      <module>	BW::VehicleBasicModule	</module>
+      <module>	BW::VehicleCommonModule	</module>
+      <module>	BW::VehicleDrivetrainModule	</module>
+      <module>	BW::VehicleAudioModule	</module>
+      <module>	BW::VehicleTracksModule	</module>
+      <module>	BW::VehicleGunModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::ClientCommonModule	</module>
+      <module>	script::ClientUiModule	</module>
+      <module>	script::VehicleAppearanceModule	</module>
+      <module>	BW::SpaceZonesModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::CommonServerModule	</module>
+      <module>	script::VehicleRuleModule	</module>
+      <module>	script::ClientKillCamModule	</module>
+      <module>	script::ClientAbilitiesModule	</module>
+      <module>	script::RamDebugModule	</module>
+      <module>	script::VehicleSystemsModule	</module>
+      <module>	script::CommonScriptsModule	</module>
+      <module>	BW::ServerModule	</module>
+      <module>	BW::VehicleStatusesModule	</module>
+      <module>	BW::VehicleTriggersModule	</module>
+    </common>
+    <comp7>
+      <module>	script::PointsOfInterestModule	</module>
+    </comp7>
+  </modules>
+</31_airfield.xml>

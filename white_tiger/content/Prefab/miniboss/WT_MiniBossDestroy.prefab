@@ -1,0 +1,81 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "particles/Environment/event_white_tiger/enemies/MiniBoss_destruction/miniboss_destruction_explosion.seq",
+								"properties": {
+									"delay": 0.10000000149011612,
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": 0.800000011920929
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "DestructionVFX",
+				"uuid": "aec9ed63-bc04-458f-bfa6-edf96f2d4c05"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": ""
+			},
+			"BW::RemoveGoDelayedComponent": {
+				"delay": 6.0,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::Sound3DComponent": {
+				"AutoStart": true,
+				"Event name": "ev_white_tiger_gameplay_eo_destroyed",
+				"Fade time": 0.0,
+				"Fade type": 4,
+				"Object name": "MiniBossDestroySFX",
+				"Volume": 1.0,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::WTSoundNotification": {
+				"disabledDomains": [
+					"Server"
+				],
+				"isUnique": "0",
+				"onEnterNotification": "wt_eo_vo_destroyed",
+				"onlyForPlayerVehicle": "0"
+			}
+		},
+		"name": "Root",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

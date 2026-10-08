@@ -1,0 +1,88 @@
+
+
+#-----------------------------------------------#
+#                     BTN_CHECKBOX              #
+#-----------------------------------------------#
+
+(def constant BTN_CHECKBOX {
+        up : {font: ButtonTextStyle, image: {source: "R.atlases.components.checkbox_up()"} },
+        hover : {font: ButtonTextStyle, image: {source: "R.atlases.components.checkbox_hover()"}, sound: "R.sounds.highlight()"},
+        down : {font: ButtonTextStyle, image: {source: "R.atlases.components.checkbox_up()"}, sound: "R.sounds.yes1()"},
+        upSelected : {font: ButtonTextStyle, image: {source: "R.atlases.components.checkbox_up()"}},
+        hoverSelected : {font: ButtonTextStyle, image: {source: "R.atlases.components.checkbox_hover()"}, sound: "R.sounds.highlight()"},
+        downSelected : {font: ButtonTextStyle, image: {source: "R.atlases.components.checkbox_up()"}, sound: "R.sounds.yes1()"},
+        disabled : {font: ButtonTextDisabledStyle, image: {source: "R.atlases.components.checkbox_disable()"}}
+    }
+)
+
+(def css CheckboxStyle()
+    (marginTop = -2px)
+)
+
+#---------------------------------------------------------------------#
+#               Check box state component styles presets            #
+#---------------------------------------------------------------------#
+
+(def constant CHECK_BOX_SIZE_SMALL {size: 12px, fontSize: 14px, textGap: 8, labelTopOffset: -5, 
+    iconOffsets: "[auto, auto, auto, auto]", focusOffsets: "[-3px, -3px, -3px, -3px]",
+    icons: {main: "R.atlases.components.icon_checked_s()", primary: "R.atlases.components.icon_checked_s_green()"},
+    bg: {main: "R.atlases.components.checkbox_s()", primary: "R.atlases.components.checkbox_s_green()"}})
+(def constant CHECK_BOX_SIZE_MEDIUM {size: 18px, fontSize: 14px, textGap: 8, labelTopOffset: -5, 
+    iconOffsets: "[1px, auto, auto, 2px]", focusOffsets: "[-5px, -5px, -5px, -5px]",
+    icons: {main: "R.atlases.components.icon_checked_m()", primary: "R.atlases.components.icon_checked_m_green()"},
+    bg: {main: "R.atlases.components.checkbox_m()", primary: "R.atlases.components.checkbox_m_green()"}})
+(def constant CHECK_BOX_SIZE_LARGE {size: 24px, fontSize: 14px, textGap: 8, labelTopOffset: -5, 
+    iconOffsets: "[3px, auto, auto, 4px]", focusOffsets: "[-5px, -5px, -5px, -5px]",
+    icons: {main: "R.atlases.components.icon_checked_l()", primary: "R.atlases.components.icon_checked_l_green()"},
+    bg: {main: "R.atlases.components.checkbox_l()", primary: "R.atlases.components.checkbox_l_green()"}})
+(def constant CHECK_BOX_SIZE_EXTRA_LARGE {size: 32px, fontSize: 16px, textGap: 8, labelTopOffset: -6, 
+    iconOffsets: "[2px, auto, auto, 4px]", focusOffsets: "[-10px, -10px, -10px, -10px]",
+    icons: {main: "R.atlases.components.icon_checked_xl()", primary: "R.atlases.components.icon_checked_xl_green()"},
+    bg: {main: "R.atlases.components.checkbox_xl()", primary: "R.atlases.components.checkbox_xl_green()"}})
+
+# This macro is used inside other button specific macroses
+(def macro CheckBoxStyles(size:expression, background:expression, icon:expression)
+    (hover source="R.atlases.components.indicator_over()" scale9grid="BUTTON_BACKGROUND_RECT" blend='add' offsets=null)
+    (background source="R.atlases.components.back_ghost()" scale9grid="BUTTON_BACKGROUND_RECT" offsets=null)
+    (down source="R.atlases.components.indicator_down()" scale9grid=null offsets=null)
+
+    (setFocusImage source="R.atlases.components.indicator_focus()" 
+        scale9grid="Rect(15, 7, 135, 5)" 
+        offsets="size['focusOffsets']"
+    )
+    (setFontColors colorUp=0x8c8c7e colorOver=0xc8c8b6 colorSelectedUp=0x8c8c7e colorSelectedOver=0xc8c8b6 colorDisabled=0x37362e)
+    (toggleIndicator source="background"
+        scale9grid=null
+        offsets=[-11px, -11px, -11px, -11px] 
+    )
+    (toggleIcon 
+        sourceToggleOn="icon"
+        sourceToggleOff=null
+        scale9grid=null
+        offsets="size['iconOffsets']"
+    )
+    (textGap = "size['textGap']")
+    (checkBoxSize = "size['size']")
+    (labelTopOffset = "size['labelTopOffset']")
+
+    (label 
+        (style
+            (fontFamily = $FieldFont)
+            (fontSize = "size['fontSize']")
+        )
+    )
+    (style
+        # (backgroundColor = 0xcccccccc)
+    )
+ 
+    (soundDown = "R.sounds.play()")       # sound for 'down' state
+    (soundOver = "R.sounds.highlight()")  # sound fo 'hover' state
+)
+
+(def macro CheckBoxStyleMain(size:expression)
+    (macro CheckBoxStyles "size" "size['bg']['main']" "size['icons']['main']")
+)
+
+(def macro CheckBoxStylePrimary(size:expression)
+    (macro CheckBoxStyles "size" "size['bg']['primary']" "size['icons']['primary']")
+)

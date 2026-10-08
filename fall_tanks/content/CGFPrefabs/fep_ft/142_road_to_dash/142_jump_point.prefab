@@ -1,0 +1,184 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "content/Environment/hd_env_UNI_710_Fallblocks_142/normal/lod0/hd_env_UNI_710_Fallblocks_142_LightStrip_04.model"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -9.655269622802734,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 90.00020599365234,
+							"z": 0.0
+						},
+						"scale": {
+							"x": 5.0,
+							"y": 0.30000001192092896,
+							"z": 1.0
+						}
+					}
+				},
+				"name": "flight_light_02",
+				"uuid": "890af18c-bf84-3d73-8ef2-f48d971ae1b8"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "content/Environment/hd_env_UNI_710_Fallblocks_142/normal/lod0/hd_env_UNI_710_Fallblocks_142_LightStrip_04.model"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -5.428130149841309,
+							"y": 0.0,
+							"z": 49.95940017700195
+						},
+						"scale": {
+							"x": 0.5,
+							"y": 0.30000001192092896,
+							"z": 0.30000001192092896
+						}
+					}
+				},
+				"name": "flight_light_01",
+				"uuid": "49ecefcd-bde6-4719-a15f-e72d32631534"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "content/Environment/hd_env_UNI_710_Fallblocks_142/normal/lod0/hd_env_UNI_710_Fallblocks_142_LightStrip_04.model"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -5.428120136260986,
+							"y": 0.0,
+							"z": -50.125999450683594
+						},
+						"scale": {
+							"x": 0.5,
+							"y": 0.30000001192092896,
+							"z": 0.30000001192092896
+						}
+					}
+				},
+				"name": "flight_light_03",
+				"uuid": "a846160f-76c1-3dd9-85ff-ee874055a357"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"dynamicModelLinkType": "Self",
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/fall_tanks/141_fall_tanks_jump.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 90.00020599365234,
+							"z": 0.0
+						},
+						"scale": {
+							"x": 0.8399999737739563,
+							"y": 1.0,
+							"z": 1.0
+						}
+					}
+				},
+				"name": "Effect",
+				"uuid": "ffc33c41-dd78-4982-b6a9-9901a4333046"
+			}
+		],
+		"components": {
+			"BW::AreaTriggerComponent": {},
+			"BW::SoundZoneComponent": {
+				"Color": {
+					"w": 0.5,
+					"x": 0.0,
+					"y": 0.0,
+					"z": 1.0
+				},
+				"Emitter Event": "ev_fep_fall_jump_platform",
+				"Reverb Level": "1",
+				"Volume Deviation": "0",
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::SquareArea": {
+				"maxBound": {
+					"x": 5.0,
+					"y": 5.0,
+					"z": 50.0
+				},
+				"minBound": {
+					"x": -10.0,
+					"y": -3.0,
+					"z": -50.0
+				}
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Client",
+					"Editor"
+				],
+				"path": "fall_tanks/vscript/plans/fall_tanks/common/fall_tanks_jumppoint.xml"
+			},
+			"BW::VSEParameterComponent": {
+				"disabledDomains": [
+					"Client",
+					"Editor"
+				],
+				"value": "33"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "jumppoint_1",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

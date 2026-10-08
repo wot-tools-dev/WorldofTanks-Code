@@ -1,0 +1,44 @@
+(def element UserName(name:str, txt_style:str = 'PromoSubTitleTextStyle', team_kill_txt_style:expression = '',
+        name_max_width:number=200, show_clan_abbrev:bool = true) layout=true
+    (macro UserNameModel)
+    (name = "name")
+    (scope
+        (var txtStyle:str = "txt_style")
+        (var teamKillTxtStyle:str = "team_kill_txt_style")
+        (var showClanAbbrev:bool = "show_clan_abbrev")
+        (var nameMaxWidth:number = "name_max_width")
+        
+        (var _isNameElided:bool = false)
+    )
+    (style
+        (flow = "Flow.HORIZONTAL")
+    )
+    (tf
+        (name = 'userName')
+        (style
+            (bind maxWidth "nameMaxWidth")
+            (elideMode = true)
+            (autoSize = 'left')
+            (multiline = false)
+        )
+        (bind class "isTeamKiller && teamKillTxtStyle != '' ? teamKillTxtStyle : txtStyle")
+        (bind text "userName" init=false)
+        (sync _isNameElided '$event.value' init=false on='textElideStatus')
+        (controller $ToolTip
+            (args body="userName")
+            (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+            (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            (bind enabled "_isNameElided")
+        )
+    )
+    (controller $Instance layout=true
+        (exprs
+            (tf
+                (name = 'clanAbbrev')
+                (bind class "txtStyle")
+                (bind text "TextFormat(R.strings.common.clanTag(), {abbrev: clanAbbrev})" init=false)
+            )
+        )
+        (bind enabled "showClanAbbrev")
+    )
+)

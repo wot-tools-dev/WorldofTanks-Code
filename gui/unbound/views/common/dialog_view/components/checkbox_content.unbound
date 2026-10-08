@@ -1,0 +1,18 @@
+(def element CheckBoxDialogContent() layout=true entrance=true
+    (macro CheckBoxModel)
+
+    (style
+        (align = "center")
+        (width = 100%)
+        (marginTop = -8px)
+    )
+
+    (check_box
+        (macro CheckBoxStyleMain "CHECK_BOX_SIZE_MEDIUM")
+        (bind label "label")
+        (bind selected "isSelected")
+        (scope
+            (dispatch onSelected init=false on='selectedChanged')
+        )
+    )
+)

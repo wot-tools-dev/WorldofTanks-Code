@@ -1,0 +1,113 @@
+(def element NumericStepper(name:str, 
+		width:number=148, # Stepper width (also can be changed through the style property)
+		height:number=23px, # Stepper height (if you want to change it on runtime use scope variable "componentHeight")
+		btnStle:expression="NUMERIC_STEPPER_BTN_STYLES"	# Visual styles of incement/decrement buttons
+	) layout=true
+	(macro AbstractComponent "INPUT_SIMPLE_STYLES")
+	
+	(scope
+		(var value:number = 0)
+		(event evValueChanged)
+		# (var _isEnabled:bool = true)
+		# (var isEnabled:bool = true)
+		(var componentHeight:number = "height")
+		(bind value "$event.value" init=false (event "evValueChanged"))
+		# (event evBtnFocusChange)
+	)
+
+	(macro InputNumericScope)
+	(scope
+		(bind inputFontSize "componentHeight / 1.7")
+	)
+	(scope
+		(defaultText = '--')
+	)
+
+	(style
+		(width = "width")
+		(bind height "componentHeight")
+	)
+	(numeric_stepper
+		(style
+			(align = "middle")
+			(paddingBottom = 1px)
+		)
+		(bind value "value")
+		(bind minimum "minimum")
+		(bind maximum "maximum")
+
+		(macro InputBackground)
+
+		(element ComponentStateBaseFocusOverlay "NUMERIC_STYLES.focusOverlay"
+			(style
+				(alpha = 0)
+			)
+			(controller $Animation
+				(bindcall play duration=0.3 
+					to="{alpha:$event.newValue ? 1 : 0, visible:$event.newValue ? 1 : 0}" 
+					from="{alpha:$event.newValue ? 0 : 1, visible:$event.newValue ? 0 : 1}" init=false 
+					(event "evBtnFocusChange")
+				)
+			)
+		)
+
+		(dispatch evValueChanged on='valueChanged')
+
+		(btn_padding_top = 2px)
+		(btn_padding_bottom = 2px)
+		(btn_padding_right = 2px)
+		(input_padding = 6px)
+
+		(numeric_input
+			(macro InputNumericLogic)
+			(macro InputBaseLogicStyle)
+			(dispatch evBtnFocusChange on='focusChanged' (enabled="_isEnabled"))
+			(tabEnabled = true)
+		)
+		(btn_incr
+			(style
+				(pivotX = 0%)
+				(pivotY = 100%)	
+			)
+			(element Button 'BtnUp'
+				(macro NumericStepperBtn)
+				(scope
+					(bind _isEnabled "value < maximum && isEnabled")
+				)
+			)
+		)
+		(btn_decr
+			(element Button 'BtnDown'
+				(macro NumericStepperBtn)
+				(scope
+					(bind _isEnabled "value > minimum && isEnabled")
+				)
+			)
+		)
+	)
+)
+
+(def macro NumericStepperBtn()
+    (style
+        (width = 100%)
+        (height = 100%)
+    )
+	(scope
+		(background = "NUMERIC_STEPPER_BTN_STYLES.bg")
+		(label = '')
+	)
+	(view_holder_content 'contentBottom'
+		(style
+			(width = 100%)
+			(height = 100%)
+			(position = "absolute")
+			(align = "middle|center")
+		)
+		(image
+			(name = 'icon')
+			(source = "componentHeight <= NUMERIC_STEPPER_BTN_HEIGHT_BREAK_POINT ? 
+							NUMERIC_STEPPER_BTN_STYLES.iconSmall : 
+							NUMERIC_STEPPER_BTN_STYLES.iconBig")
+		)
+	)
+)

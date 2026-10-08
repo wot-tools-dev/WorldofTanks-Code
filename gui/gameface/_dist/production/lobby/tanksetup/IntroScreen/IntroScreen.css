@@ -1,0 +1,715 @@
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.Layout_base_ee0e1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 996rem;
+    height: 100%;
+    position: relative;
+}
+
+    .Layout_base__small_bee92,
+    .Layout_base__medium_c94b7 {
+        width: 1310rem;
+    }
+
+    .Layout_base__large_ae38a,
+    .Layout_base__huge_d2a83 {
+        width: 1560rem;
+    }
+.Layout_header_ae832 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10rem 0 20rem;
+}
+.Layout_base__compare_ae1ac .Layout_header_ae832 {
+        flex-direction: column;
+        align-items: center;
+    }
+.Layout_header__small_b589f,
+    .Layout_header__tiny_ea38c {
+        margin: 10rem 0 16rem;
+    }
+.Layout_content_d16b9 {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    width: 100%;
+}
+.Layout_base__compare_ae1ac .Layout_content_d16b9 {
+        justify-content: center;
+        margin-top: 7rem;
+        padding-top: 20rem;
+        padding-bottom: 10rem;
+    }
+.Layout_main_ad9fe {
+    width: 596rem;
+    border-top: 1rem solid rgba(255,255,255, .1);
+    border-bottom: 1rem solid rgba(255,255,255, .1);
+}
+.Layout_base__compare_ae1ac .Layout_main_ad9fe {
+        width: 902rem;
+    }
+.Layout_base__small_bee92 .Layout_main_ad9fe,
+    .Layout_base__medium_c94b7 .Layout_main_ad9fe {
+        width: 902rem;
+    }
+.Layout_base__large_ae38a .Layout_main_ad9fe,
+    .Layout_base__huge_d2a83 .Layout_main_ad9fe {
+        width: 1102rem;
+    }
+.Layout_inner_ab43f {
+    margin: 0 -16rem;
+}
+.Layout_base__large_ae38a .Layout_inner_ab43f,
+    .Layout_base__huge_d2a83 .Layout_inner_ab43f {
+        margin: 0 -20rem;
+    }
+.Layout_footer_a41d6 {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 596rem;
+    height: 166rem;
+    padding-top: 20rem;
+}
+.Layout_base__small_bee92 .Layout_footer_a41d6,
+    .Layout_base__medium_c94b7 .Layout_footer_a41d6 {
+        width: 902rem;
+    }
+.Layout_base__large_ae38a .Layout_footer_a41d6,
+    .Layout_base__huge_d2a83 .Layout_footer_a41d6 {
+        width: 1102rem;
+    }
+
+.Slider_base_fb51a {
+    display: flex;
+    align-items: center;
+    width: 960rem;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.Slider_slider_e8000 {
+    min-height: 670rem;
+    position: relative;
+}
+.Slider_pageCounter_d6402 {
+    color: #FEFEEC;
+    font-size: 24rem;
+    font-weight: 400;
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 8rem;
+}
+.Slider_button_f507e {
+    width: 86rem;
+    height: 120rem;
+    margin-top: -40rem;
+    border: none;
+    background: url('R.images.gui.maps.icons.tanksetup.introduction.right_arrow') no-repeat center / contain;
+    opacity: .8;
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    transition: opacity linear .2s;
+    cursor: pointer;
+}
+.Slider_button_f507e:hover {
+        opacity: 1;
+    }
+.Slider_button__back_d7df7 {
+        left: -126rem;
+        transform: rotate(180deg);
+    }
+.Slider_button__forward_eac87 {
+        right: -126rem;
+    }
+.Slider_button__disabled_dd154 {
+        background: url('R.images.gui.maps.icons.tanksetup.introduction.left_disabled_arrow') no-repeat center / contain;
+        opacity: 1;
+        transform: rotate(0);
+        cursor: default;
+    }
+.Slider_button__disabled_dd154.Slider_button__forward_eac87 {
+            transform: rotate(180deg);
+        }
+.Slider_button__small_d2bcf.Slider_button__back_d7df7, .Slider_button__tiny_de1b7.Slider_button__back_d7df7 {
+            left: -40rem;
+        }
+.Slider_button__small_d2bcf.Slider_button__forward_eac87, .Slider_button__tiny_de1b7.Slider_button__forward_eac87 {
+            right: -40rem;
+        }
+.Slider_slide_f329f {
+    opacity: 0;
+}
+.Slider_slide__enter_fc73e {
+        animation: Slider_fade-in_df8c8 .4s;
+    }
+.Slider_slide__exit_eeb5b {
+        opacity: 1;
+    }
+.Slider_slide__exitActive_d94de {
+        opacity: 0;
+        position: absolute;
+        top: 37rem;
+        transition: opacity .2s linear;
+    }
+.Slider_slide__exitDone_b6493 {
+        opacity: 0;
+    }
+@keyframes Slider_fade-in_df8c8 {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.SlideContainer_title_e6759 {
+    color: #F2F2F7;
+    font-size: 36rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 30rem;
+    text-align: center;
+}
+
+    .SlideContainer_title__large_dde2a,
+    .SlideContainer_title__huge_e735f {
+        color: #F2F2F7;
+        font-size: 56rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+.SlideContent_base_f32a9 {
+    text-align: center;
+}
+
+.SlideContent_title_a00d6 {
+    color: #F2F2F7;
+    font-size: 24rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 0;
+}
+
+.SlideContent_description_b248f {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    max-width: 650rem;
+}
+
+.SlideContent_imageWrapper__tiny_e76ab {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+.DeviceCost_row_bff21 {
+    display: flex;
+}
+
+.DeviceCost_cell_c1064 {
+    width: 50%;
+}
+
+.DeviceCost_subtitle_a0b3e {
+    margin-top: 30rem;
+    margin-bottom: 25rem;
+}
+
+.DeviceCost_subtitle__left_fb0dd {
+        padding-right: 30rem;
+    }
+
+.DeviceCost_subtitle__right_d1210 {
+        padding-left: 20rem;
+    }
+
+.DeviceCost_descriptionContainer_cfc63 {
+    max-width: 100%;
+}
+
+.DeviceCost_description_a58ca {
+    max-width: 450rem;
+}
+
+.DeviceCost_description__left_f0afd {
+        margin-right: 20rem;
+    }
+
+.DeviceCost_description__right_e7d07 {
+        margin-left: 30rem;
+    }
+
+.DeviceCost_image_de5c0 {
+    width: 480rem;
+    max-width: 100%;
+    height: 320rem;
+}
+
+.DeviceCost_image__left_e35ca {
+        background: url('R.images.gui.maps.icons.tanksetup.introduction.slides.c_3_left') no-repeat center / contain;
+    }
+
+.DeviceCost_image__right_a47b8 {
+        background: url('R.images.gui.maps.icons.tanksetup.introduction.slides.c_3_right') no-repeat center / contain;
+    }
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.DeviceSlots_image_d6346 {
+    width: 960rem;
+    max-width: 100%;
+    height: 340rem;
+    background: url('R.images.gui.maps.icons.tanksetup.introduction.slides.c_4') no-repeat center / contain;
+}
+
+.DeviceSlots_buttonContainer_ffa51 {
+    display: flex;
+    justify-content: center;
+    margin-top: 90rem;
+}
+
+.DeviceSlots_button_ce5fb {
+    width: 160rem;
+}
+
+.Category_base_c9a69 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+}
+
+.Category_name_f0aab {
+    margin-left: -10rem;
+}
+
+.Category_image_fd8ea {
+    width: 80rem;
+    height: 80rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.NewCategory_categories_a8694 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30rem;
+}
+
+.NewCategory_image_fefbc {
+    width: 960rem;
+    max-width: 100%;
+    height: 280rem;
+    background: url('R.images.gui.maps.icons.tanksetup.introduction.slides.c_2') no-repeat center / contain;
+}
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.NewDevices_deviceName_bbd7f {
+    white-space: nowrap;
+}
+
+.NewDevices_highlighted_bb002 {
+    color: #E9E2BF;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.NewDevices_description_bf235 {
+    display: flex;
+    justify-content: center;
+    min-width: 680rem;
+}
+
+.NewDevices_image_eba7b {
+    width: 960rem;
+    max-width: 100%;
+    height: 460rem;
+    background: url('R.images.gui.maps.icons.tanksetup.introduction.slides.c_1') no-repeat center / contain;
+}
+
+.IntroScreen_base_dd7c7 {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    background: url('R.images.gui.maps.icons.tanksetup.introduction.tantSetupInfopage') no-repeat center / cover;
+    animation: IntroScreen_window-in_ba6b8 .4s both;
+}
+
+.IntroScreen_close_d04da {
+    position: absolute;
+    top: 51rem;
+    right: 20rem;
+    z-index: 1;
+}
+
+@keyframes IntroScreen_window-in_ba6b8 {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+

@@ -1,0 +1,177 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Tank/customization/Ch47_BZ_176_KS_3Dst/ch47_bz_176_ks_3dst_smoke_idle_hangar.eff",
+								"emissionRate": 1,
+								"emissionSize": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"epicenterOffset": {
+									"x": 0,
+									"y": 0,
+									"z": 0
+								},
+								"fps": 1,
+								"gravity": 1,
+								"opacity": 1,
+								"startSpeed": {
+									"x": 1,
+									"y": 1
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0,
+									"y": 0.15768,
+									"z": 3.1986
+								}
+							}
+						},
+						"name": "particles",
+						"uuid": "5901b54e-cf1f-4568-967b-ce74a0eb190d"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": "0",
+								"modelName": "particles/Tank/customization/Ch47_BZ_176_KS_3Dst/Ch47_BZ_176_KS_3Dst_glow.model"
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 0,
+									"y": 180,
+									"z": 0
+								}
+							}
+						},
+						"name": "Hull_idle",
+						"uuid": "f2490f3d-ee3a-4494-a5f2-714a28c2085a"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Ch47_Attachment_Hull"
+					},
+					"BW::SequenceComponent": {
+						"autoStart": true,
+						"layers": [
+							{
+								"alwaysEnabled": false,
+								"duration": 7,
+								"loop": true,
+								"pauseOnEnd": false,
+								"tracks": [
+									{
+										"endTime": 7,
+										"object": "5901b54e-cf1f-4568-967b-ce74a0eb190d",
+										"parameters": [
+											{
+												"component": "BW::Particle",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"time": 2,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"time": 2.1,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"time": 6.9,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"time": 7,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"object": "5901b54e-cf1f-4568-967b-ce74a0eb190d",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "emissionRate"
+													}
+												]
+											}
+										],
+										"startTime": 0
+									}
+								]
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "5044c669-d7e7-45fa-82d3-af5d31fa01be"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"name": "Turret",
+				"uuid": "6d4e7543-34b3-4241-8e3b-b63b74ae84a1"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"decorType": "0",
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"isOverlayEnabled": "0",
+				"modelName": "vehicles/chinese/Ch47_BZ_176/_skins/Ch47_BZ_176_KS_3Dst/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "Ch47_BZ_176_KS_3Dst_hangar",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

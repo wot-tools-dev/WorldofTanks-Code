@@ -1,0 +1,129 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"castShadows": true,
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true
+							},
+							"BW::DynamicModel": {
+								"modelName": "content/3D_Customization/Cus_245_BP21_GB_Radar/normal/lod0/Cus_245_BP21_GB_Radar_01.model"
+							},
+							"BW::VisibilityTunnelComponent": {},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Cus_245_BP21_GB_Radar_01",
+						"uuid": "3199fa96-3516-422b-b2d8-2de0531d3510"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"castShadows": true,
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true
+							},
+							"BW::DynamicModel": {
+								"modelName": "content/3D_Customization/Cus_245_BP21_GB_Radar/normal/lod0/Cus_245_BP21_GB_Radar_02.model"
+							},
+							"BW::VisibilityTunnelComponent": {},
+							"cgf::TransformComponent": {
+								"position/y": 0.38435
+							}
+						},
+						"name": "Cus_245_BP21_GB_Radar_02",
+						"uuid": "3f6504c3-1d51-494d-b98a-d409e22ba655"
+					}
+				],
+				"components": {
+					"BW::SequenceComponent": {
+						"autoStart": true,
+						"layers": [
+							{
+								"duration": 40,
+								"loop": true,
+								"tracks": [
+									{
+										"endTime": 40,
+										"object": "3f6504c3-1d51-494d-b98a-d409e22ba655",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {}
+														}
+													},
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"time": 8,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"y": 360
+															}
+														}
+													}
+												],
+												"object": "3f6504c3-1d51-494d-b98a-d409e22ba655",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											}
+										]
+									}
+								]
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "normal",
+				"uuid": "b1219cb4-e0b1-463c-b1c0-bd751b824353"
+			}
+		],
+		"components": {
+			"BW::StateSwitcherComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"normal": "b1219cb4-e0b1-463c-b1c0-bd751b824353"
+			},
+			"cgf::TransformComponent": {},
+			"script::VehicleHealthObserverComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "Cus_245_BP21_GB_Radar",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

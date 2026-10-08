@@ -1,0 +1,56 @@
+<StaticDeathZone.def>
+  <Implements></Implements>
+  <AppealRadius>	3000	</AppealRadius>
+  <Properties>
+    <zoneId>
+      <Type>	STRING	</Type>
+      <Flags>	ALL_CLIENTS	</Flags>
+    </zoneId>
+    <isActive>
+      <Type>	BOOL	</Type>
+      <Flags>	ALL_CLIENTS	</Flags>
+    </isActive>
+    <vehiclesUnderFire>
+      <Type>	ARRAY	  <of>	VEHICLE_IN_DEATHZONE	</of>
+      </Type>
+      <Flags>	ALL_CLIENTS	</Flags>
+    </vehiclesUnderFire>
+    <maskingPolygonsCount>
+      <Type>	UINT8	</Type>
+      <Flags>	ALL_CLIENTS	</Flags>
+    </maskingPolygonsCount>
+    <proximityMarkerStyle>
+      <Type>	STRING	</Type>
+      <Flags>	ALL_CLIENTS	</Flags>
+      <Editable>	True	</Editable>
+      <Default>	STATIC_DEATH_ZONE_PROXIMITY	</Default>
+    </proximityMarkerStyle>
+    <reactOnTeamIDs>
+      <Type>	ARRAY	  <of>	INT8	</of>
+      </Type>
+      <Flags>	CELL_PRIVATE	</Flags>
+    </reactOnTeamIDs>
+  </Properties>
+  <ClientMethods>
+    <onDeathZoneDamage>
+      <Arg>	OBJECT_ID	</Arg>
+      <Arg>	STRING	</Arg>
+    </onDeathZoneDamage>
+    <onDeathZoneNotification>
+      <Arg>	BOOL	</Arg>
+      <Arg>	OBJECT_ID	</Arg>
+      <Arg>	FLOAT32	</Arg>
+      <Arg>	FLOAT32	</Arg>
+    </onDeathZoneNotification>
+    <onEntityEnteredInZone>
+      <Arg>	OBJECT_ID	</Arg>
+    </onEntityEnteredInZone>
+    <onEntityLeftZone>
+      <Arg>	OBJECT_ID	</Arg>
+    </onEntityLeftZone>
+  </ClientMethods>
+  <TempProperties>
+    <controller></controller>
+    <zoneType></zoneType>
+  </TempProperties>
+</StaticDeathZone.def>

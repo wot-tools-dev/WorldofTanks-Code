@@ -1,0 +1,494 @@
+from __future__ import absolute_import
+import weakref
+from queue import Queue
+from functools import wraps, partial
+import BigWorld
+import Math
+import CGF
+import Event
+import Keys
+import ResMgr
+import constants
+from debug_utils import LOG_DEBUG
+from PlayerEvents import g_playerEvents
+from gui import g_mouseEventHandlers, InputHandler
+from gui.ClientHangarSpace import ClientHangarSpace
+from gui.Scaleform.Waiting import Waiting
+from gui.game_loading.resources.consts import Milestones
+from helpers import dependency, uniprof
+from helpers.statistics import HANGAR_LOADING_STATE
+from MemoryCriticalController import g_critMemHandler
+from shared_utils import BoundMethodWeakref
+from skeletons.gui.app_loader import IAppLoader
+from skeletons.gui.game_control import IGameSessionController, IIGRController, IHangarSpaceSwitchController
+from skeletons.gui.shared.utils import IHangarSpace
+from skeletons.helpers.statistics import IStatisticsCollector
+from gui import g_keyEventHandlers
+from gui.shared import g_eventBus, events
+from constants import IS_DEVELOPMENT
+import AvatarInputHandler
+from AvatarInputHandler.VideoCamera import VideoCamera
+from gui.app_loader import settings as app_settings
+from gui import GUI_CTRL_MODE_FLAG as _CTRL_FLAG
+from gui.hangar_cameras.hangar_camera_common import CameraMovementStates
+from uilogging.performance.hangar.loggers import HangarMetricsLogger
+from uilogging.performance.battle.loggers import BattleMetricsLogger
+from cgf_components.hangar_camera_manager import HangarCameraSystem
+_Q_CHECK_DELAY = 0.0
+
+class _execute_after_hangar_space_inited(object):
+    hangarSpace = dependency.descriptor(IHangarSpace)
+    __slots__ = ('__queue',)
+
+    def __init__(self):
+        self.__queue = Queue()
+
+    def __call__(self, func):
+
+        @wraps(func)
+        def wrapped(*args, **kwargs):
+            self.storeData(func, *args, **kwargs)
+            self.checkConditionForExit()
+
+        return wrapped
+
+    def checkConditionForExit(self):
+        if not self.hangarSpace.spaceInited or not self.hangarSpace.space.getVehicleEntity():
+            BigWorld.callback(_Q_CHECK_DELAY, self.checkConditionForExit)
+            return
+        self.delayCall()
+
+    def storeData(self, func, *args, **kwargs):
+        self.__queue.put((func, args, kwargs))
+
+    def delayCall(self):
+        while not self.__queue.empty():
+            f, f_args, f_kwargs = self.__queue.get()
+            f(*f_args, **f_kwargs)
+
+
+g_execute_after_hangar_space_inited = _execute_after_hangar_space_inited()
+
+class HangarVideoCameraController(object):
+    hangarSpace = dependency.descriptor(IHangarSpace)
+    appLoader = dependency.descriptor(IAppLoader)
+
+    def __init__(self):
+        self.__eventManager = em = Event.EventManager()
+        self.__videoCamera = None
+        self.__enabled = False
+        self.__lastCameraName = None
+        self.__videoCamera = None
+        self.onEnabledChange = Event.SafeEvent(em)
+        return
+
+    @property
+    def isEnabled(self):
+        return self.__enabled
+
+    def init(self):
+        if not IS_DEVELOPMENT:
+            return
+        else:
+            rootSection = ResMgr.openSection(AvatarInputHandler.INPUT_HANDLER_CFG)
+            if rootSection is None:
+                return
+            videoSection = rootSection['videoMode']
+            if videoSection is None:
+                return
+            videoCameraSection = videoSection['camera']
+            self.__videoCamera = VideoCamera(videoCameraSection)
+            InputHandler.g_instance.onKeyDown += self.handleKeyEvent
+            InputHandler.g_instance.onKeyUp += self.handleKeyEvent
+            g_mouseEventHandlers.add(self.handleMouseEvent)
+            return
+
+    def destroy(self):
+        self.__eventManager.clear()
+        if self.__videoCamera is not None:
+            self.__videoCamera.destroy()
+        InputHandler.g_instance.onKeyDown -= self.handleKeyEvent
+        InputHandler.g_instance.onKeyUp -= self.handleKeyEvent
+        g_mouseEventHandlers.discard(self.handleMouseEvent)
+        return
+
+    def handleKeyEvent(self, event):
+        if self.__videoCamera is None:
+            return False
+        else:
+            if BigWorld.isKeyDown(Keys.KEY_CAPSLOCK) and event.isKeyDown() and event.key == Keys.KEY_F3:
+                self.__setEnabled(not self.isEnabled)
+                if self.isEnabled:
+                    self.__enableVideoCamera()
+                else:
+                    self.__disableVideoCamera()
+            return self.__videoCamera.handleKeyEvent(event.key, event.isKeyDown()) if self.isEnabled else False
+
+    def __setEnabled(self, enabled):
+        self.__enabled = enabled
+        self.onEnabledChange(self.__enabled)
+
+    def __enableVideoCamera(self):
+        playerVehicle = self.hangarSpace.space.getVehicleEntity()
+        if playerVehicle is not None and playerVehicle.state != CameraMovementStates.ON_OBJECT:
+            self.__setEnabled(False)
+            return
+        else:
+            cameraManager = CGF.getSystem(self.hangarSpace.spaceID, HangarCameraSystem)
+            if cameraManager:
+                self.__lastCameraName = cameraManager.getCurrentCameraName()
+                cameraManager.onMappingUnloaded()
+            self.__videoCamera.enable()
+            self.appLoader.detachCursor(app_settings.APP_NAME_SPACE.SF_LOBBY)
+            BigWorld.player().objectsSelectionEnabled(False)
+            self.hangarSpace.setSelectionEnabled(False)
+            return
+
+    def __disableVideoCamera(self):
+        self.__videoCamera.disable()
+        cameraManager = CGF.getSystem(self.hangarSpace.spaceID, HangarCameraSystem)
+        if cameraManager:
+            cameraManager.onMappingLoaded()
+            cameraManager.switchByCameraName(self.__lastCameraName)
+        self.appLoader.attachCursor(app_settings.APP_NAME_SPACE.SF_LOBBY, _CTRL_FLAG.GUI_ENABLED)
+        BigWorld.player().objectsSelectionEnabled(True)
+        self.hangarSpace.setSelectionEnabled(True)
+
+    def handleMouseEvent(self, event):
+        if self.__videoCamera is None:
+            return False
+        else:
+            return self.__videoCamera.handleMouseEvent(event.dx, event.dy, event.dz) if self.isEnabled else False
+
+
+class HangarSpace(IHangarSpace):
+    isPremium = property(lambda self: self.__isSpacePremium if self.__spaceInited else self.__delayedIsPremium)
+    gameSession = dependency.descriptor(IGameSessionController)
+    igrCtrl = dependency.descriptor(IIGRController)
+    statsCollector = dependency.descriptor(IStatisticsCollector)
+    hangarSwitchController = dependency.descriptor(IHangarSpaceSwitchController)
+
+    def __init__(self):
+        self.__space = None
+        self.__videoCameraController = HangarVideoCameraController()
+        self.__inited = False
+        self.__spaceInited = False
+        self.__isModelLoaded = False
+        self.__isSpacePremium = False
+        self.__igrSpaceType = constants.IGR_TYPE.NONE
+        self.__environment = ''
+        self.__delayedIsPremium = False
+        self.__delayedForceRefresh = False
+        self.__delayedRefreshCallback = None
+        self.__delayedRecreateCallback = None
+        self.__spaceDestroyedDuringLoad = False
+        self.__lastUpdatedVehicle = None
+        self.__vehicleUpdateRequested = False
+        self.__logStatisticsPostponed = False
+        self.__selectableVehicleFlags = set()
+        self.onSpaceRefresh = Event.Event()
+        self.onSpaceRefreshCompleted = Event.Event()
+        self.onSpaceCreating = Event.Event()
+        self.onSpaceCreate = Event.Event()
+        self.onSpaceDestroy = Event.Event()
+        self.onSpaceChanged = Event.Event()
+        self.onMouseEnter = Event.Event()
+        self.onMouseExit = Event.Event()
+        self.onMouseDown = Event.Event()
+        self.onMouseUp = Event.Event()
+        self.onHeroTankReady = Event.Event()
+        self.onVehicleChanged = Event.Event()
+        self.onVehicleChangeStarted = Event.Event()
+        self.onSpaceChangedByAction = Event.Event()
+        self.onNotifyCursorOver3dScene = Event.Event()
+        self.__isCursorOver3DScene = False
+        self.__isSelectionEnabledCounter = 0
+        self.__selectionLocks = set()
+        self._performanceMetricsLogger = HangarMetricsLogger()
+        self._statisticsLogger = BattleMetricsLogger()
+        return
+
+    @property
+    def videoCameraController(self):
+        return self.__videoCameraController
+
+    @property
+    def space(self):
+        return self.__space if self.spaceInited else None
+
+    @property
+    def spaceID(self):
+        return self.__space.getSpaceID() if self.__space else None
+
+    @property
+    def inited(self):
+        return self.__inited
+
+    @property
+    def spaceInited(self):
+        return self.__spaceInited
+
+    @property
+    def isCursorOver3DScene(self):
+        return self.__isCursorOver3DScene
+
+    @property
+    def isSelectionEnabled(self):
+        return bool(self.__selectionLocks)
+
+    @property
+    def isModelLoaded(self):
+        return self.__isModelLoaded
+
+    @property
+    def spacePath(self):
+        return None if self.__space is None else self.__space.spacePath
+
+    @property
+    def visibilityMask(self):
+        return None if self.__space is None else self.__space.visibilityMask
+
+    def spaceLoading(self):
+        return self.__space.spaceLoading() if self.__space is not None else False
+
+    def getAnchorParams(self, slotId, areaId, regionId):
+        return self.__space.getAnchorParams(slotId, areaId, regionId)
+
+    def updateAnchorsParams(self, *args):
+        self.__space.updateAnchorsParams(*args)
+
+    def setSelectionEnabled(self, enabled):
+        if enabled:
+            self.__isSelectionEnabledCounter += 1
+        else:
+            self.__isSelectionEnabledCounter -= 1
+
+    def setEnvironment(self, environment):
+        self.__environment = environment
+
+    def __onNotifyCursorOver3dScene(self, event):
+        self.__isCursorOver3DScene = event.ctx.get('isOver3dScene', False)
+        self.onNotifyCursorOver3dScene(self.__isCursorOver3DScene)
+
+    @uniprof.regionDecorator(label='hangar.space.loading', scope='enter')
+    def init(self, isPremium):
+        if self.__space is None:
+            self.__space = ClientHangarSpace(BoundMethodWeakref(self._changeDone))
+        self.statsCollector.noteHangarLoadingState(HANGAR_LOADING_STATE.START_LOADING_SPACE)
+        self.__videoCameraController.init()
+        self.__spaceDestroyedDuringLoad = False
+        if not self.__spaceInited:
+            LOG_DEBUG('HangarSpace::init')
+            g_playerEvents.onLoadingMilestoneReached(Milestones.HANGAR_SPACE)
+            Waiting.show('loadHangarSpace')
+            self.__inited = True
+            self.__isSpacePremium = isPremium
+            self.__igrSpaceType = self.igrCtrl.getRoomType()
+            self.__space.create(isPremium, self.__spaceDone, self.__environment)
+            self.onSpaceCreating()
+            if self.__lastUpdatedVehicle is not None:
+                self.startToUpdateVehicle(self.__lastUpdatedVehicle)
+            self.gameSession.onPremiumNotify += self.onPremiumChanged
+            g_keyEventHandlers.add(self.__handleKeyEvent)
+            g_eventBus.addListener(events.LobbySimpleEvent.NOTIFY_CURSOR_OVER_3DSCENE, self.__onNotifyCursorOver3dScene)
+            self._performanceMetricsLogger.initialize()
+            self._statisticsLogger.initialize()
+            g_critMemHandler.initializeLogger()
+        return
+
+    def refreshSpace(self, isPremium, forceRefresh=False):
+        igrType = self.igrCtrl.getRoomType()
+        if self.__isSpacePremium == isPremium and self.__igrSpaceType == igrType and not forceRefresh:
+            return
+        else:
+            self.onSpaceRefresh()
+            if not self.__spaceInited and self.__space.spaceLoading():
+                LOG_DEBUG('HangarSpace::refreshSpace(isPremium={0!r:s}) - is delayed until space load is done'.format(isPremium))
+                if self.__delayedRefreshCallback is None:
+                    self.__delayedRefreshCallback = BigWorld.callback(0.1, self.__delayedRefresh)
+                self.__delayedIsPremium = isPremium
+                self.__delayedForceRefresh = forceRefresh
+                return
+            LOG_DEBUG('HangarSpace::refreshSpace(isPremium={0!r:s})'.format(isPremium))
+            self.destroy()
+            self.init(isPremium)
+            self.__isSpacePremium = isPremium
+            self.__igrSpaceType = igrType
+            self.onSpaceRefreshCompleted()
+            return
+
+    def destroy(self):
+        if self.__inited:
+            g_keyEventHandlers.remove(self.__handleKeyEvent)
+            g_eventBus.removeListener(events.LobbySimpleEvent.NOTIFY_CURSOR_OVER_3DSCENE, self.__onNotifyCursorOver3dScene)
+        self.onSpaceDestroy(self.__spaceInited and not self.__spaceDestroyedDuringLoad)
+        self.__videoCameraController.destroy()
+        self.__isModelLoaded = False
+        self.__isCursorOver3DScene = False
+        if self.__spaceInited:
+            LOG_DEBUG('HangarSpace::destroy')
+            self.__inited = False
+            self.__spaceInited = False
+            self.__space.destroy()
+            self._performanceMetricsLogger.log()
+        elif self.spaceLoading():
+            LOG_DEBUG('HangarSpace::destroy - delayed until space load done')
+            self.__spaceDestroyedDuringLoad = True
+            self.__space.destroy()
+            self.__inited = False
+            self.__spaceInited = False
+            Waiting.hide('loadHangarSpace')
+        if self.__delayedRefreshCallback is not None:
+            BigWorld.cancelCallback(self.__delayedRefreshCallback)
+            self.__delayedRefreshCallback = None
+        if self.__delayedRecreateCallback is not None:
+            BigWorld.cancelCallback(self.__delayedRecreateCallback)
+            self.__delayedRecreateCallback = None
+        self.gameSession.onPremiumNotify -= self.onPremiumChanged
+        return
+
+    @g_execute_after_hangar_space_inited
+    @uniprof.regionDecorator(label='hangar.vehicle.loading', scope='enter')
+    def updateVehicle(self, vehicle, outfit=None):
+        if self.__inited:
+            self.__isModelLoaded = False
+            self.onVehicleChangeStarted()
+            self.statsCollector.noteHangarLoadingState(HANGAR_LOADING_STATE.START_LOADING_VEHICLE)
+            if self.__space.vehicleEntityId and self.getVehicleEntity() is None:
+                if self.__delayedRecreateCallback is None:
+                    self.__delayedRecreateCallback = BigWorld.callback(0.01, partial(self.__delayedRecreate, vehicle.descriptor, vehicle.modelState, outfit))
+            else:
+                self.__space.recreateVehicle(vehicle.descriptor, vehicle.modelState, outfit=outfit)
+            self.__lastUpdatedVehicle = vehicle
+        else:
+            Waiting.hide('loadHangarSpaceVehicle')
+        return
+
+    def startToUpdateVehicle(self, vehicle, outfit=None):
+        g_playerEvents.onLoadingMilestoneReached(Milestones.HANGAR_SPACE_VEHICLE)
+        self.__vehicleUpdateRequested = True
+        Waiting.show('loadHangarSpaceVehicle', isSingle=True)
+        self.updateVehicle(vehicle, outfit)
+
+    def updateVehicleDescriptor(self, descr):
+        if self.__inited:
+            self.__space.updateVehicleDescriptor(descr)
+
+    def __handleKeyEvent(self, event):
+        if event.key == Keys.KEY_LEFTMOUSE:
+            if event.isKeyDown():
+                self.onMouseDown()
+            else:
+                self.onMouseUp()
+
+    @g_execute_after_hangar_space_inited
+    def updatePreviewVehicle(self, vehicle, outfit=None, showWaitingBg=True):
+        if self.__inited:
+            self.__isModelLoaded = False
+            self.onVehicleChangeStarted()
+            Waiting.show('loadHangarSpaceVehicle', isSingle=True, showBg=showWaitingBg)
+            self.__space.recreateVehicle(vehicle.descriptor, vehicle.modelState, outfit=outfit)
+            self.__lastUpdatedVehicle = vehicle
+
+    def getVehicleEntity(self):
+        return self.__space.getVehicleEntity() if self.__inited else None
+
+    def getVehicleEntityAppearance(self):
+        entity = self.getVehicleEntity()
+        return entity.appearance if entity is not None else None
+
+    def updateVehicleOutfit(self, outfit):
+        if self.__inited:
+            self.__space.updateVehicleCustomization(outfit)
+
+    def getCentralPointForArea(self, areaID):
+        return self.__space.getCentralPointForArea(areaID) if self.__inited else Math.Vector3(0.0)
+
+    @g_execute_after_hangar_space_inited
+    def removeVehicle(self):
+        if self.__inited:
+            self.__isModelLoaded = False
+            self.onVehicleChangeStarted()
+            Waiting.show('loadHangarSpaceVehicle', isSingle=True)
+            if self.__space is not None:
+                self.__space.removeVehicle()
+            Waiting.hide('loadHangarSpaceVehicle')
+            self.__isModelLoaded = True
+            self.onVehicleChanged()
+            self.__lastUpdatedVehicle = None
+        return
+
+    def lockVehicleSelectable(self, consumer):
+        self.__selectionLocks.add(weakref.ref(consumer, self.__unlockVehicleOnDel))
+        self.__space.setVehicleSelectable(True)
+
+    def unlockVehicleSelectable(self, consumer):
+        for ref in self.__selectionLocks:
+            if ref() is consumer:
+                self.__selectionLocks.remove(ref)
+                break
+
+        self.__space.setVehicleSelectable(bool(self.__selectionLocks))
+
+    def onPremiumChanged(self, isPremium, attrs, premiumExpiryTime):
+        self.__isSpacePremium = isPremium
+        self.hangarSwitchController.processPossibleSceneChange()
+
+    def resetLastUpdatedVehicle(self):
+        self.__lastUpdatedVehicle = None
+        return
+
+    @uniprof.regionDecorator(label='hangar.space.loading', scope='exit')
+    def __spaceDone(self):
+        self.__spaceInited = True
+        if self.__spaceDestroyedDuringLoad:
+            self.destroy()
+            self.__spaceDestroyedDuringLoad = False
+        self.onSpaceCreate()
+        Waiting.hide('loadHangarSpace')
+        self.statsCollector.noteHangarLoadingState(HANGAR_LOADING_STATE.FINISH_LOADING_SPACE)
+        logStatistics = not self.__vehicleUpdateRequested
+        self.statsCollector.noteHangarLoadingState(HANGAR_LOADING_STATE.HANGAR_READY, showSummaryNow=logStatistics)
+        if logStatistics:
+            self.__logStatistics()
+        else:
+            self.__logStatisticsPostponed = True
+        g_playerEvents.onLoadingMilestoneReached(Milestones.HANGAR_READY)
+        self.onHeroTankReady()
+
+    @uniprof.regionDecorator(label='hangar.vehicle.loading', scope='exit')
+    def _changeDone(self):
+        Waiting.hide('loadHangarSpaceVehicle')
+        self.__isModelLoaded = True
+        self.__vehicleUpdateRequested = False
+        self.onVehicleChanged()
+        self.statsCollector.noteHangarLoadingState(HANGAR_LOADING_STATE.FINISH_LOADING_VEHICLE, showSummaryNow=self.__logStatisticsPostponed)
+        if self.__logStatisticsPostponed:
+            self.__logStatistics()
+        self.__logStatisticsPostponed = False
+        uniprof.exitFromRegion('client.loading')
+
+    def __unlockVehicleOnDel(self, consumer):
+        self.__selectionLocks.discard(consumer)
+        self.__space.setVehicleSelectable(bool(self.__selectionLocks))
+
+    def __logStatistics(self):
+        self._statisticsLogger.log()
+
+    def __delayedRefresh(self):
+        self.__delayedRefreshCallback = None
+        if not self.__spaceInited:
+            self.__delayedRefreshCallback = BigWorld.callback(0.1, self.__delayedRefresh)
+            return
+        else:
+            self.refreshSpace(self.__delayedIsPremium, self.__delayedForceRefresh)
+            return
+
+    def __delayedRecreate(self, descriptor, modelState, outfit):
+        self.__delayedRecreateCallback = None
+        if self.__space:
+            if self.__space.vehicleEntityId and self.getVehicleEntity():
+                self.__space.recreateVehicle(descriptor, modelState, outfit=outfit)
+            else:
+                self.__delayedRecreateCallback = BigWorld.callback(0.01, partial(self.__delayedRecreate, descriptor, modelState, outfit))
+        return

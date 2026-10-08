@@ -1,0 +1,140 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "0",
+						"visibleInKillCamMode": "1",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "0",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSmEntityViewMode": "1",
+						"visibleInSmStrategicMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "0"
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Tank/mechanics/coolingmech_smoke_gun.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"BW::variables::GameObjectOnChangeActivatorComponent": {
+						"activationExpression/expression": {
+							"__ctype__": "BW::variables::GreaterEqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/temperature"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0.75
+									}
+								}
+							}
+						},
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::variables::PropertyOnChangeCalculatorComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::ClampExpression",
+									"__cvalue__": {
+										"arg/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::SubtractExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "vehicle/gun/temperature"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 0.75
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 4.0
+													}
+												}
+											}
+										},
+										"leftBound": null,
+										"rightBound": null
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "opacity"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "coolingmech_smoke_gun",
+				"uuid": "f890520c-2c6b-3e71-99ce-45cde157bd4a"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {}
+		},
+		"name": "cooling",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,95 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"lodScale": 1.0,
+								"path": "particles/Environment/event_white_tiger/player_tank/gun_charge/gun_charge.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::ShotsAnimatorTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"ignorePeriod": "0",
+						"triggerName": "shoot",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 3.0
+						}
+					}
+				},
+				"name": "Animator",
+				"uuid": "fbf6dccb-77a4-42ed-83bf-89a490aebb78"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/russian/R97_Object_140/_skins/R97_Object_140_3Dst_TLXXL/normal/lod0/Gun_03.model"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::WTVehicleSound": {
+				"conditions": "only_for_player",
+				"disabledDomains": [
+					"Server"
+				],
+				"onEnterSound": "ev_white_tiger_gameplay_ob140_enhanced_shot",
+				"useNPCEvents": "0"
+			}
+		},
+		"name": "ExplosiveShot",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

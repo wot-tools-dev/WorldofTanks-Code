@@ -1,0 +1,220 @@
+(def layout VideoPlayer(name:str = '')
+    (scope
+        (var videoName:str ='')
+        (event evStopAnimation)
+        (event evMetaDataChanged)
+        (event evPlaybackStarted)
+        (event evPlaybackPaused)
+        (event evSeekCompleted)
+        (event evSeekStarted)
+        (event evSubtitleChanged)
+
+        (var videoDuration:number = 0)
+        (var videoAspectRatio:number = 0)
+        (bind videoAspectRatio "$event.width/$event.height" init=false
+            (event "evMetaDataChanged")
+        )
+        (bind videoDuration "$event.duration-0.001" init=false
+            (event "evMetaDataChanged")
+        )
+        (var viewRatio:number = "viewSize.width / viewSize.height")
+        (var w:number = 0)
+        (var h:number = 0)
+        (var videoMarginRight:number = 0)
+        (var videoMarginLeft:number = 0)
+
+        (var subtitle:str = "$event.subtitle" init=false
+            (event "evSubtitleChanged")
+        )
+        (var countTracks:number = 0)
+        (bind countTracks "$event.subtitleTracksCount" init=false
+            (event "evMetaDataChanged")
+        )
+        (var track:number = 0)
+        (bind viewRatio "viewSize.width / viewSize.height"
+            (event "viewResized")
+        )
+        (bind w "viewRatio > videoAspectRatio ? viewSize.width : videoAspectRatio * viewSize.height" init=false
+            (event "viewResized")
+            (bind enabled "viewRatio > 0 && videoAspectRatio > 0")
+        )
+        (bind h "viewRatio > videoAspectRatio ? viewSize.width / videoAspectRatio : viewSize.height" init=false
+            (event "viewResized")
+            (bind enabled "viewRatio > 0 && videoAspectRatio > 0")
+        )
+        (bind videoMarginRight "h > viewSize.height ? -(h - viewSize.height >> 1) : 0" watch=false init=false
+            (bind trigger "h")
+        )
+        (bind videoMarginLeft "w > viewSize.width ? -(w - viewSize.width >> 1) : 0" watch=false init=false
+            (bind trigger "w")
+        )
+
+        (var needSeekToEnd:bool = false)
+        (var seekPos:number = 0)
+        (bind seekPos "needSeekToEnd ? videoDuration : 0" init=false
+            (bind trigger "needSeekToEnd")
+        )
+
+        (var needStop:bool = false)
+        (var needPause:bool = false)
+
+        (var playerAlpha:number = 0)
+        (controller $Animation
+            (play duration=0.5 to={playerAlpha:1})
+        )
+    )
+    (style
+        (bind alpha "playerAlpha")
+    )
+
+    (video original_widht=1024 original_height=768
+        (name = 'player')
+        (style
+            (bind width "w")
+            (bind height "h")
+            (bind marginTop "videoMarginRight")
+            (bind marginLeft "videoMarginLeft")
+        )
+
+        # videoSrc from scope
+        (volume = 1)
+        (autoPlay = 1)
+        (seek = 0)
+		(openTimeout = 5)
+        (bind source "videoName")
+
+        (bindcall pause init=false
+            (bind enabled "needPause")
+        )
+        (bindcall resume init=false
+            (bind enabled "!needPause")
+        )
+        (bindcall stop init=false
+            (bind enabled "needStop")
+        )
+        (bind subtitleTrack "track" init=false watch=false
+            (event "evPlaybackStarted")
+        )
+
+        (dispatch evMetaDataChanged dir=1 on='metaDataChanged')
+        (dispatch evPlaybackStarted on='playbackStarted')
+        (dispatch evPlaybackPaused on='playbackPaused')
+        (dispatch evStopAnimation on='playbackStopped')
+        (dispatch evSeekCompleted on='seekCompleted')
+        (dispatch evSubtitleChanged on='subtitleChanged')
+    )
+
+    (block
+        (style
+            (position = "absolute")
+            (bottom = 100px)
+            (bind width "viewSize.width" watch=true
+                (event "viewResized")
+            )
+            (align = "center")
+        )
+        (tf
+            (name = 'subtitle')
+            (class PromoTitleTextStyle)
+            (style
+                (autoSize = true)
+                (wordWrap = true)
+                (width = 900)
+                (textAlign = "center")
+            )
+            (bind text "subtitle")
+        )
+    )
+)
+
+(def layout VideoComponent()
+    (scope
+        (event evNeedStop)
+
+        (var sourceName:str = '')
+        (event evOnStartVideoPlay)
+        (event evOnStopVideoPlay)
+        (event evOnPlaybackStarted)
+        (event evOnPlaybackStopped)
+        (var isVideoPlaying:bool = false)
+        (var canStop:bool = true)
+        (var isVideoPaused:bool = false)
+        (var canClick:bool = true)
+        (var canEscape:bool = false)
+        (var canFadeOut:bool = true)
+        (var seekToEnd:bool = false)
+        (var reset:bool = false)
+        (var subtitleTrack:number = 0)
+        (bind isVideoPlaying "false" init=false
+            (bind enabled "reset")
+        )
+        (var isVideoStarted:bool = false)
+        (bind isVideoStarted "true" init=false
+            (event "evOnPlaybackStarted")
+        )
+        (bind isVideoStarted "false" init=false
+            (event "evOnPlaybackStopped")
+        )
+
+        (var videoAlpha:number = 0)
+        (controller $Animation
+            (bindcall play duration=0.5 from={videoAlpha:1} to={videoAlpha:0} init=false callbacks="{onComplete: evOnStopVideoPlay}"
+                (bind enabled "canFadeOut && !isVideoPlaying")
+             )
+             (bindcall play duration=0.5 from={videoAlpha:0} to={videoAlpha:1} init=false
+                (bind enabled "isVideoPlaying")
+              )
+        )
+    )
+    (style
+        (position = "absolute")
+        (backgroundColor = 0x01000000)
+    )
+
+    (dispatch evOnStartVideoPlay init=false
+        (bind enabled "isVideoPlaying")
+    )
+
+    # Place for entry video
+    (controller $Instance renderer = 'VideoPlayer' layout = true
+        (exprs
+            (scope
+                (bind track "subtitleTrack")
+                (bind videoName "sourceName")
+                (bind needSeekToEnd "seekToEnd")
+                (bind needStop "true" init=false
+                    (event "evNeedStop")
+                )
+                (bind needStop "true" init=false
+                    (bind enabled "!isVideoPlaying && canStop")
+                )
+                (bind needPause "isVideoPaused")
+                (dispatch evOnPlaybackStarted on='evPlaybackStarted')
+                (dispatch evOnPlaybackStopped on='evStopAnimation')
+            )
+            (style
+                (bind alpha "videoAlpha")
+            )
+        )
+        (enabled = false)
+        (bind enabled true init=false
+            (event "evOnStartVideoPlay")
+        )
+        (bind enabled false init=false
+            (event "evOnStopVideoPlay")
+        )
+        (bind enabled "false" init=false
+            (bind enabled "reset")
+        )
+    )
+
+    (dispatch evNeedStop on='stageClick'
+        (enabled = "$event.buttonIdx == MOUSE.LEFT && canClick && canStop && isVideoStarted")
+    )
+    (dispatch evNeedStop on='stageKeyUp'
+        (enabled = "canClick && $event.keyCode == KEYBOARD.SPACE && canStop && isVideoStarted")
+    )
+    (dispatch evNeedStop on='stageKeyUp'
+        (enabled = "$event.keyCode == KEYBOARD.ESCAPE && canStop && canEscape && isVideoStarted")
+    )
+)

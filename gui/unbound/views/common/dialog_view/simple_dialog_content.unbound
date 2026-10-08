@@ -1,0 +1,40 @@
+(def element SimpleDialogContent() layout=true entrance=true
+    (macro SimpleDialogWindowModel)
+
+    (style
+        (align = "middle")
+        (width = 100%)
+        (marginTop = -2px)
+        (marginBottom = 6px)
+    )
+
+    (tf
+        (name = 'description')
+        (style
+            (width = 100%)
+            (textAlign = "center")
+        )
+        (class HighlightTextStyle)
+
+        (bind htmlText "htmlTextStyle(
+                formatString(message, messageFmtArgs, isMessageFmtArgsNamed),
+                'HighlightTextStyle',
+                'center'
+            )"
+            (enabled="messageFmtArgs.length > 0 && formattedMessage == ''")
+        )
+        (bind text "TextFormat(message, messageArgs)"
+            (enabled="messageArgs.length > 0 && formattedMessage == ''")
+        )
+        (bind text "message"
+            (enabled="messageArgs.length == 0 && messageFmtArgs.length == 0 && formattedMessage == ''")
+        )
+        (bind htmlText "htmlTextStyle(
+                formattedMessage,
+                'HighlightTextStyle',
+                'center'
+            )"
+            (enabled="formattedMessage != ''")
+        )
+    )
+)

@@ -1,0 +1,119 @@
+(def element DialogPricesContent(name:str = '') layout=true entrance=true
+    (macro DialogPricesContentModel)
+    (style
+        (width = 100%)
+        (align = "center|bottom")
+        (flow = "Flow.HORIZONTAL")
+        (gap = 4px)
+        (marginTop = -8px)
+        (marginBottom = -8px)
+    )
+
+    (scope
+        (var label:str = "R.strings.dialogs.common.cost()")
+    )
+
+    (tf
+        (name = 'label')
+        (class HighlightTextStyle)
+        (style
+            (marginBottom = 2px)
+        )
+        (bind text "label")
+    )
+
+    (hblock
+        (name = 'constBlock')
+        (style
+            (align = "bottom")
+        )
+        (element DialogContentPriceItem 'valueMain')
+        
+        (block
+            (style
+                (height = 100%)
+                (align = "middle")
+                (paddingTop = 2px)
+            )
+            (image
+                (name = 'plus')
+                (source = "R.atlases.components.plus_small()")
+                (bind visible "hasAdditionalCost")
+            )
+        )
+
+        (element DialogContentPriceItem 'valueAdditional'
+            (bind visible "hasAdditionalCost")
+
+        )
+        (block
+            (name = 'iconInfo')
+            (style
+                (height = 100%)
+                (marginLeft = 3px)
+                (align = "middle")
+            )
+            (image
+                (source = "R.images.gui.maps.icons.library.info()")
+                (bind visible "tooltipId != 0 && hasAdditionalCost")
+            )
+            (controller $ToolTip
+                (delay = "0.4")
+                (bind content "tooltipId")
+                (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            )
+        )
+    )
+)
+
+(def css NotEnoughMoneyTextStyle()
+    (fontFamily = $TitleFont)
+    (fontSize = 22)
+    (textColor = 0xff2717)
+)
+
+
+(def layout DialogContentPriceItem(name:str)
+    (macro ValuePrice)
+
+    (scope
+        (const COST_PRESET:dict = {
+            'notEnough': 'NotEnoughMoneyTextStyle',
+            'custom': 'PromoSubTitleTextStyle',
+            'gold': 'GoldTextBigStyle',
+            'credits': 'CreditsTextBigStyle',
+            'crystal': 'CrystalTextBigStyle',
+            'freeXP': 'ExpTextBigStyle',
+            'xp': 'ExpTextBigStyle'
+        })
+
+        (const ICON_PRESET:dict = {
+            'credits' : "R.images.gui.maps.icons.library.CreditsIconBig_1()",
+            'gold' : "R.images.gui.maps.icons.library.goldIconBig()",
+            'exp' : "R.images.gui.maps.icons.library.XPCostIcon_1()"
+        })
+    )
+
+    (style
+        (gap = 3px)
+        (align = "middle")
+        (flow = "Flow.HORIZONTAL")
+        (paddingTop = 2px)
+    )
+
+    (tf
+        (name = 'costTf')
+        (bind class "COST_PRESET[notEnough ? 'notEnough' : type]")
+        (bind text "value")
+        (mouseEnabled = false)
+    )
+
+    (image
+        (style
+            (align = "middle")
+            (marginTop = 4px)
+        )
+        (name = 'currencyIcon')
+        (bind source "icon != '' ? icon : ICON_PRESET[type]")
+    )
+)

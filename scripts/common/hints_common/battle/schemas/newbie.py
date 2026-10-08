@@ -1,0 +1,16 @@
+from __future__ import absolute_import
+from dict2model import models, fields
+from game_params_common.schema import GameParamsSchema
+
+class NewbieBattleHintsConfigModel(models.Model):
+    __slots__ = ('enabled',)
+
+    def __init__(self, enabled):
+        super(NewbieBattleHintsConfigModel, self).__init__()
+        self.enabled = enabled
+
+    def _reprArgs(self):
+        return 'enabled={}'.format(self.enabled)
+
+
+configSchema = GameParamsSchema[NewbieBattleHintsConfigModel](gameParamsKey='newbie_battle_hints_config', fields={'enabled': fields.Boolean(required=True)}, modelClass=NewbieBattleHintsConfigModel)

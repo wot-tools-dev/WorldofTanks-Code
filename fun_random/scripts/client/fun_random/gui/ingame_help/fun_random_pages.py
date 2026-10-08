@@ -1,0 +1,37 @@
+from __future__ import absolute_import
+from fun_random_common.fun_constants import ARENA_GUI_TYPE
+from fun_random.gui.ingame_help import HelpPagePriority
+from fun_random.gui.feature.util.fun_mixins import FunSubModesWatcher
+from fun_random.gui.feature.util.fun_wrappers import hasBattleSubMode
+from fun_random.gui.Scaleform.daapi.view.battle.hint_panel.hint_panel_plugin import HelpHintContext
+from gui.impl import backport
+from gui.ingame_help.detailed_help_pages import addPage, DetailedHelpPagesBuilder
+from gui.shared.formatters import text_styles
+
+class FunRandomHelpPagesBuilder(DetailedHelpPagesBuilder, FunSubModesWatcher):
+    _SUITABLE_CTX_KEYS = ('isFunRandom',)
+
+    @classmethod
+    def isExclusive(cls):
+        return cls.getBattleSubMode().getConfigurationModel().subMode.isExclusiveHelpPages
+
+    @classmethod
+    def priority(cls):
+        return HelpPagePriority.FUN_RANDOM
+
+    @classmethod
+    @hasBattleSubMode(defReturn=())
+    def buildPages(cls, _):
+        pages = []
+        battleSubMode = cls.getBattleSubMode()
+        iconsRoot = battleSubMode.getIconsResRoot().battle_help
+        localsRoot = battleSubMode.getLocalsResRoot()
+        commonTitle = backport.text(localsRoot.detailsHelpTitle())
+        for pageID, pageRes in sorted(localsRoot.detailsHelp.items()):
+            addPage(pages, commonTitle, backport.text(pageRes.title()), text_styles.mainBig(backport.text(pageRes.description())), [], backport.image(iconsRoot.dyn(pageID)()), hintCtx=HelpHintContext.FUN_RANDOM)
+
+        return pages
+
+    @classmethod
+    def _collectHelpCtx(cls, ctx, arenaVisitor, vehicle):
+        ctx['isFunRandom'] = arenaVisitor.getArenaGuiType() in ARENA_GUI_TYPE.FUN_RANDOM_RANGE

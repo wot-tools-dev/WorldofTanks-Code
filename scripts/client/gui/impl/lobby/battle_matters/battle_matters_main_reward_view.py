@@ -1,0 +1,94 @@
+from __future__ import absolute_import
+import logging
+import typing
+from frameworks.wulf import ViewFlags, ViewSettings
+from gui.impl.gen import R
+from gui.impl.gen.view_models.views.lobby.battle_matters.battle_matters_main_reward_view_model import BattleMattersMainRewardViewModel
+from gui.impl.pub import ViewImpl
+from gui.server_events.events_dispatcher import showBattleMatters
+from gui.server_events.bonuses import VehiclesBonus
+from gui.shared.event_dispatcher import showHangar, selectVehicleInHangar, showVehicleHubOverview
+from gui.impl.lobby.battle_matters.battle_matters_bonus_packer import BattleMattersVehiclesBonusUIPacker
+from helpers import dependency
+from shared_utils import findFirst
+from skeletons.gui.battle_matters import IBattleMattersController
+from skeletons.gui.server_events import IEventsCache
+_logger = logging.getLogger(__name__)
+if typing.TYPE_CHECKING:
+    from typing import Tuple, Sequence, Callable, Optional
+    from Event import Event
+_BATTLEMATTERS_VEHICLES_ORDER = ('Pl19_CS_52_LIS', 'R165_Object_703_II', 'A122_TS-5')
+
+def _vehiclesSortKey(model):
+    firstName = model.getVehName()
+    return _BATTLEMATTERS_VEHICLES_ORDER.index(firstName) if firstName in _BATTLEMATTERS_VEHICLES_ORDER else len(_BATTLEMATTERS_VEHICLES_ORDER)
+
+
+class BattleMattersMainRewardView(ViewImpl):
+    __slots__ = ()
+    __battleMattersController = dependency.descriptor(IBattleMattersController)
+    __eventsCache = dependency.descriptor(IEventsCache)
+
+    def __init__(self):
+        settings = ViewSettings(R.views.lobby.battle_matters.BattleMattersMainRewardView())
+        settings.flags = ViewFlags.VIEW
+        settings.model = BattleMattersMainRewardViewModel()
+        super(BattleMattersMainRewardView, self).__init__(settings)
+
+    @property
+    def viewModel(self):
+        return super(BattleMattersMainRewardView, self).getViewModel()
+
+    def onStateChanged(self):
+        if not self.__battleMattersController.isEnabled():
+            showHangar()
+
+    def onPreview(self, vehCDDict):
+        vehCD = int(vehCDDict.get('vehCD', 0))
+        if findFirst(lambda v: v.getVehCD() == vehCD, self.viewModel.getVehicles()).getIsInHangar():
+            selectVehicleInHangar(vehCD)
+        else:
+            showVehicleHubOverview(vehCD)
+
+    @staticmethod
+    def onBack():
+        showBattleMatters()
+
+    @staticmethod
+    def onClose():
+        showHangar()
+
+    def _initialize(self, *args, **kwargs):
+        super(BattleMattersMainRewardView, self)._initialize(*args, **kwargs)
+        self.__update()
+
+    def _getEvents(self):
+        return ((self.viewModel.onPreview, self.onPreview),
+         (self.viewModel.onBack, self.onBack),
+         (self.viewModel.onClose, self.onClose),
+         (self.__battleMattersController.onStateChanged, self.onStateChanged),
+         (self.__eventsCache.onSyncCompleted, self.__update))
+
+    def __update(self):
+        finalQuest = self.__battleMattersController.getFinalQuest()
+        vehiclesBonus = None
+        if finalQuest:
+            bonuses = finalQuest.getBonuses()
+            for bonus in bonuses:
+                if bonus.getName() == VehiclesBonus.VEHICLES_BONUS:
+                    vehiclesBonus = bonus
+                    break
+
+        if vehiclesBonus is None:
+            _logger.error('Wrong bonus count for Battle Matters main reward view. Exiting.')
+            return
+        else:
+            vehicleVMs = sorted(BattleMattersVehiclesBonusUIPacker.pack(vehiclesBonus), key=_vehiclesSortKey)
+            with self.viewModel.transaction() as tx:
+                vehicles = tx.getVehicles()
+                vehicles.clear()
+                for vehicle in vehicleVMs:
+                    vehicles.addViewModel(vehicle)
+
+                vehicles.invalidate()
+            return

@@ -1,0 +1,261 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "flag",
+										"lodScale": 1.0,
+										"path": "particles/Tank/customization/G42_Maus_SFV_3Dst/StaticFlag.ssm",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "vehicles/german/G42_Maus/_skins/G42_Maus_SFV_3Dst/normal/lod0/flag_anim.model"
+							},
+							"BW::ShotsAnimatorTriggerComponent": {
+								"ignorePeriod": "5",
+								"triggerName": "Shot",
+								"triggerSource": "00000000-0000-0000-0000-000000000000"
+							},
+							"BW::VSEComponent": {
+								"autoStart": true,
+								"path": "vscript/plans/VFX/G42_Maus_SFV_3Dst/staticflag_controller.xml"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": -2.1070001125335693,
+									"z": 1.1449999809265137
+								}
+							}
+						},
+						"name": "Flag",
+						"uuid": "a63d1515-cbc6-4fc7-bcf3-96f3725239a8"
+					}
+				],
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "CoffeMove",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/G42_Maus_SFV_3Dst/turret_move.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "0",
+						"visibleInKillCamMode": "1",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSmEntityViewMode": "1",
+						"visibleInSmStrategicMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "0"
+					},
+					"BW::EngineStateAnimatorTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"highTrigger": "Move",
+						"idleTrigger": "Stop",
+						"mediumTrigger": "Move",
+						"monitorGear": "0",
+						"monitorPhysicLoad": "0",
+						"monitorRelativeRpm": "0",
+						"monitorRpm": "0",
+						"stoppedTrigger": "Stop",
+						"triggerEngineStart": "0",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_G42_Attachment_Turret_01"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Turret",
+				"uuid": "4e77f99c-f348-46b7-b98e-9b34284f6b5d"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"castShadows": "0",
+								"visibleInArcadeMode": "1",
+								"visibleInArtyMode": "1",
+								"visibleInDeathFreeCamMode": "1",
+								"visibleInDualGunMode": "0",
+								"visibleInKillCamMode": "1",
+								"visibleInLookAtKillerMode": "1",
+								"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+								"visibleInMapCaseArcadeMode": "1",
+								"visibleInMapCaseMode": "1",
+								"visibleInPostmortemMode": "1",
+								"visibleInRespawnDeathMode": "1",
+								"visibleInSmEntityViewMode": "1",
+								"visibleInSmStrategicMode": "1",
+								"visibleInSniperMode": "0",
+								"visibleInStrategicMode": "1",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "particles/content_deferred/GFX_models/tank_customization/HeadLight/HeadLight_01/normal/lod0/HeadLight_gap.model"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 1.5065499544143677,
+									"y": 0.7383270263671875,
+									"z": 4.066999912261963
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 179.99986267089844,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 0.490788996219635,
+									"y": 0.4224410057067871,
+									"z": 0.44699999690055847
+								}
+							}
+						},
+						"name": "Headlight_Right",
+						"uuid": "d4b072eb-b3c2-490c-8a7c-eb546545b6b6"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"castShadows": "0",
+								"visibleInArcadeMode": "1",
+								"visibleInArtyMode": "1",
+								"visibleInDeathFreeCamMode": "1",
+								"visibleInDualGunMode": "0",
+								"visibleInKillCamMode": "1",
+								"visibleInLookAtKillerMode": "1",
+								"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+								"visibleInMapCaseArcadeMode": "1",
+								"visibleInMapCaseMode": "1",
+								"visibleInPostmortemMode": "1",
+								"visibleInRespawnDeathMode": "1",
+								"visibleInSmEntityViewMode": "1",
+								"visibleInSmStrategicMode": "1",
+								"visibleInSniperMode": "0",
+								"visibleInStrategicMode": "1",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "particles/content_deferred/GFX_models/tank_customization/HeadLight/HeadLight_01/normal/lod0/HeadLight_gap.model"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -1.5069999694824219,
+									"y": 0.7383270263671875,
+									"z": 4.066830158233643
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 179.99986267089844,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 0.490788996219635,
+									"y": 0.4224410057067871,
+									"z": 0.44659900665283203
+								}
+							}
+						},
+						"name": "Headlight_Left",
+						"uuid": "804f9f57-4a70-4bc3-ac3f-53b7667b5249"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_G42_Attachment_Hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "2834610a-2bbb-4041-a2ab-469758716e18"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/german/G42_Maus/_skins/G42_Maus_SFV_3Dst/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "G42_Maus_SFV_3Dst",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

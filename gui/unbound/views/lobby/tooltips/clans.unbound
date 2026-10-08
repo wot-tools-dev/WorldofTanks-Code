@@ -1,0 +1,21 @@
+(def layout ClanShortInfoTooltipContent() entrance=true
+    (macro ClanShortInfoContentModel)
+    (style
+        (flow = "Flow.HORIZONTAL")
+        (align = "middle")
+        (gap = 5px)
+    )
+    (image
+        (style
+            (width = 24px)
+            (height = 24px)
+        )
+        (bind source "'img://' + emblem" 
+            (bind enabled "emblem != ''")
+        )
+    )
+    (tf
+        (class VehicleStatusSimpleTextStyle)
+        (bind text "fullName")
+    )
+)

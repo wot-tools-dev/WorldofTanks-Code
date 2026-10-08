@@ -1,0 +1,599 @@
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.App_base_e7731 {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.App_animationMain_b6814 {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    animation: App_fadeIn_daeef .4s ease-in .4s 1 forwards;
+}
+
+.App_mainBg_cc5f9 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / 1264rem 736rem;
+    filter: blur(3px);
+    position: absolute;
+}
+
+.mediaMedium .App_mainBg_cc5f9 {
+        background-size: 1738rem 1012rem;
+}
+
+.mediaLarge .App_mainBg_cc5f9 {
+        background-size: 2133rem 1242rem;
+}
+
+.App_base__ultraSize_f8894 .App_mainBg_cc5f9 {
+        background-size: 3160rem 1840rem;
+    }
+
+.App_darkBg_cefe3 {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .7);
+    pointer-events: none;
+}
+
+.App_animationBg_dc357 {
+    width: 100%;
+    height: 100%;
+    background-color: #111;
+    position: absolute;
+    animation: App_fadeIn_daeef .3s ease-in 0s 1 forwards;
+    pointer-events: none;
+}
+
+.App_close_f3b77 {
+    position: absolute;
+    top: 42rem;
+    right: 42rem;
+    z-index: 1;
+}
+
+@keyframes App_fadeIn_daeef {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.HorizontalBar_base_fa517 {
+    display: flex;
+    width: 100%;
+    height: 13rem;
+    visibility: hidden;
+    position: relative;
+}
+
+    .HorizontalBar_base__active_ad89b {
+        visibility: visible;
+    }
+
+    .HorizontalBar_base_fa517 .disable,
+    .HorizontalBar_base_fa517 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.HorizontalBar_leftButton_eb8c3,
+.HorizontalBar_rightButton_f5116 {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transform: rotate(-90deg);
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_leftButton_eb8c3:hover, .HorizontalBar_rightButton_f5116:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_leftButton_eb8c3 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.HorizontalBar_rightButton_f5116 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.HorizontalBar_track_fd3af {
+    flex: 1;
+    margin: 0 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0 {
+    display: none;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 20rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb_horizontal') no-repeat center / 8rem 7rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_rail_a3d9e {
+    height: 0;
+    border-top: 1rem solid #2f2e24;
+    position: absolute;
+    top: 6rem;
+    right: 5rem;
+    left: 5rem;
+}
+
+.HorizontalBar_rail_a3d9e:hover {
+        opacity: .7;
+    }
+
+
+.HorizontalScroll_base_a33a9 {
+    width: 100%;
+}
+
+.HorizontalScroll_wrapper_b622e {
+    display: flex;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.HorizontalScroll_defaultScrollArea_a2315 {
+    width: 100%;
+    margin-bottom: 7rem;
+}
+
+.VerticalBar_base_b5610 {
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    height: 100%;
+    visibility: hidden;
+    position: relative;
+}
+
+    .VerticalBar_base__active_be260 {
+        visibility: visible;
+    }
+
+    .VerticalBar_base_b5610 .disable,
+    .VerticalBar_base_b5610 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.VerticalBar_topButton_c2227,
+.VerticalBar_bottomButton_ef09b {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_topButton_c2227:hover, .VerticalBar_bottomButton_ef09b:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_topButton_c2227 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.VerticalBar_bottomButton_ef09b {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.VerticalBar_track_e3345 {
+    flex: 1;
+    margin: 1rem 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7 {
+    display: none;
+    flex: 0 0 13rem;
+    width: 13rem;
+    height: 100%;
+    min-height: 20rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb') no-repeat center / 7rem 8rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_rail_ff232 {
+    width: 0;
+    height: 100%;
+    border-left: 1rem solid #2f2e24;
+    border-top: 5rem solid transparent;
+    border-bottom: 5rem solid transparent;
+    position: absolute;
+    top: 0;
+    left: 6rem;
+    z-index: 0;
+}
+
+.VerticalBar_rail_ff232:hover {
+        opacity: .7;
+    }
+
+
+.VerticalScroll_content_fe263 {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.VerticalScroll_defaultScroll_e27f5 {
+    display: flex;
+}
+
+.VerticalScroll_bar_b8700 {
+    flex: 1;
+    margin-left: 7rem;
+}
+
+.VerticalScroll_area_b5a82 {
+    flex: 1;
+}
+
+.ElementDescription_base_eb538 {
+    width: 620rem;
+    height: 200rem;
+    margin-top: 20rem;
+}
+    .mediaLarge .ElementDescription_base_eb538 {
+        width: 800rem;
+        height: 300rem;
+}
+    .ElementDescription_base__scroll_fefdf {
+        height: 260rem;
+        margin-top: 15rem;
+        padding-right: 30rem;
+        mask-image: linear-gradient(to bottom, #000 90%, transparent 100%);
+        mask-repeat: no-repeat;
+    }
+    .mediaSmall .ElementDescription_base__scroll_fefdf {
+            margin-top: 20rem;
+}
+
+.ElementDescription_text_d0ee2 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    padding-bottom: 20rem;
+}
+
+.ElementDescription_scrollBarPosition_d0db7 {
+    max-height: 85%;
+    position: relative;
+    top: 15rem;
+    right: -30rem;
+}
+
+.LoupeButton_base_d3a6f {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.LoupeButton_icon_a118b {
+    width: 100rem;
+    height: 100rem;
+    background: url('R.images.gui.maps.icons.collections.overlays.loupe') center / contain no-repeat;
+    position: absolute;
+    bottom: -50rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.mediaLarge .LoupeButton_icon_a118b {
+        bottom: -40rem;
+}
+
+.LoupeButton_iconHover_adb5a {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.collections.overlays.loupe_hover') center / contain no-repeat;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+}
+
+.LoupeButton_base_d3a6f:hover .LoupeButton_iconHover_adb5a {
+        opacity: 1;
+    }
+
+.LoupeButton_base_d3a6f:active .LoupeButton_iconHover_adb5a {
+        opacity: .5;
+    }
+
+.LoupeButton_hoverText_a4c4c {
+    color: #FFDD99;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    text-shadow: 0 0 4rem rgba(255, 127, 0, .25), 0 0 8rem #ff2a00, 0 0 15rem #e52;
+    opacity: 0;
+    position: absolute;
+    bottom: -35rem;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity .2s ease-in-out;
+}
+
+.mediaLarge .LoupeButton_hoverText_a4c4c {
+        bottom: -28rem;
+}
+
+.LoupeButton_base_d3a6f:hover .LoupeButton_hoverText_a4c4c {
+        opacity: 1;
+    }
+
+.LoupeButton_base_d3a6f:active .LoupeButton_hoverText_a4c4c {
+        opacity: .5;
+    }
+
+.VehicleInfo_base_e09e8 {
+    display: flex;
+}
+
+.VehicleInfo_type_c5aa8 {
+    margin: 0 -10rem;
+    position: relative;
+    top: -15rem;
+}
+
+.VehicleInfo_type_c5aa8[lang=ko] {
+        transform: translateY(-2rem);
+    }
+
+.VehicleInfo_ico_fafa6 {
+    width: 65rem;
+    height: 65rem;
+    background: no-repeat center / contain;
+}
+
+.CollectionElement_base_bc368 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CollectionElement_image_ae1b8 {
+    width: 400rem;
+    height: 300rem;
+    margin-bottom: 50rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+.mediaLarge .CollectionElement_image_ae1b8 {
+        width: 600rem;
+        height: 450rem;
+        margin-bottom: 30rem;
+}
+
+.mediaExtraLarge .CollectionElement_image_ae1b8 {
+        margin-bottom: 50rem;
+}
+
+.CollectionElement_base__style3d_e2bb1 .CollectionElement_image_ae1b8,
+    .CollectionElement_base__style2d_aa76c .CollectionElement_image_ae1b8 {
+        filter: brightness(.87);
+        transition: filter .3s ease-in;
+    }
+
+.CollectionElement_base__style3d_e2bb1 .CollectionElement_image_ae1b8:hover, .CollectionElement_base__style2d_aa76c .CollectionElement_image_ae1b8:hover {
+            filter: brightness(1);
+        }
+
+.mediaExtraLarge .CollectionElement_base__style3d_e2bb1 .CollectionElement_image_ae1b8, .mediaExtraLarge .CollectionElement_base__style2d_aa76c .CollectionElement_image_ae1b8 {
+            width: 1000rem;
+            height: 680rem;
+}
+
+.mediaExtraLarge .CollectionElement_base__photo_b3ac5 .CollectionElement_image_ae1b8, .mediaExtraLarge .CollectionElement_base__note_ce21d .CollectionElement_image_ae1b8 {
+            width: 1000rem;
+            height: 680rem;
+}
+
+.CollectionElement_title_aac9f {
+    color: #E9E2BF;
+    font-size: 28rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.CollectionElement_title__style3d_eeab4 {
+        margin-bottom: -30rem;
+    }
+
+.CollectionElement_vehicleString_d83e7 {
+    margin-left: 5rem;
+}
+
+.CollectionElement_type_bcaa6 {
+    margin: 15rem 0 20rem;
+    color: #595950;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+

@@ -1,0 +1,1 @@
+import"./vendor.js";import{b as e,B as s}from"./lib.js";const i=i=>i.weight>=e.extraLarge.weight?s.sizes.large:i.weight>=e.large.weight?s.sizes.medium:i.weight>=e.medium.weight?s.sizes.small:s.sizes.extraSmall,t=["ja","ko","zh_tw","zh_sg","zh_cn","vi","th"].includes(R.strings.settings.LANGUAGE_CODE().toLowerCase());export{i as g,t as i};

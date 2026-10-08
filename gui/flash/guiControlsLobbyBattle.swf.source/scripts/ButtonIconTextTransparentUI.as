@@ -1,0 +1,84 @@
+package
+{
+   import net.wg.gui.components.controls.ButtonIconTextTransparent;
+   
+   [Embed(source="/_assets/assets.swf", symbol="symbol800")]
+   public dynamic class ButtonIconTextTransparentUI extends ButtonIconTextTransparent
+   {
+      
+      public function ButtonIconTextTransparentUI()
+      {
+         addFrameScript(9,this.frame10,19,this.frame20,29,this.frame30,39,this.frame40,49,this.frame50,59,this.frame60,69,this.frame70,79,this.frame80);
+         super();
+         this.__setProp_disableMc_ButtonIconTextTransparentUI_disableMc_0();
+      }
+      
+      internal function __setProp_disableMc_ButtonIconTextTransparentUI_disableMc_0() : *
+      {
+         try
+         {
+            disableMc["componentInspectorSetting"] = true;
+         }
+         catch(e:Error)
+         {
+         }
+         disableMc.UIID = 42074115;
+         disableMc.enabled = true;
+         disableMc.enableInitCallback = false;
+         disableMc.heightFill = 10;
+         disableMc.repeat = "all";
+         disableMc.source = "BtnDisableBmp";
+         disableMc.startPos = "TL";
+         disableMc.visible = true;
+         disableMc.widthFill = 100;
+         try
+         {
+            disableMc["componentInspectorSetting"] = false;
+         }
+         catch(e:Error)
+         {
+         }
+      }
+      
+      internal function frame10() : *
+      {
+         stop();
+      }
+      
+      internal function frame20() : *
+      {
+         stop();
+      }
+      
+      internal function frame30() : *
+      {
+         stop();
+      }
+      
+      internal function frame40() : *
+      {
+         stop();
+      }
+      
+      internal function frame50() : *
+      {
+         stop();
+      }
+      
+      internal function frame60() : *
+      {
+         stop();
+      }
+      
+      internal function frame70() : *
+      {
+         stop();
+      }
+      
+      internal function frame80() : *
+      {
+         stop();
+      }
+   }
+}
+

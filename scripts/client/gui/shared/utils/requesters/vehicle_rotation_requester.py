@@ -1,0 +1,37 @@
+from __future__ import absolute_import
+import BigWorld
+from gui.shared.utils.requesters.abstract import AbstractSyncDataRequester
+from skeletons.gui.shared.utils.requesters import IVehicleRotationRequester
+
+class VehicleRotationRequester(AbstractSyncDataRequester, IVehicleRotationRequester):
+
+    def getBattlesCount(self, groupNum):
+        battlesCount = self._groupLocks['groupBattles']
+        groupIdx = max(0, groupNum - 1)
+        return battlesCount[groupIdx] if len(battlesCount) > groupIdx else -1
+
+    def isGroupLocked(self, groupNum):
+        if groupNum == 0:
+            return False
+        groupsLocks = self._groupLocks['isGroupLocked']
+        groupIdx = max(0, groupNum - 1)
+        return groupsLocks[groupIdx] if len(groupsLocks) > groupIdx else False
+
+    def getGroupNum(self, vehIntCD):
+        return self.getCacheValue('vehiclesGroupMapping', {}).get(vehIntCD, 0)
+
+    def isInfinite(self, groupNum):
+        return self.getBattlesCount(groupNum) == -1
+
+    def unlockedBy(self, groupNum):
+        playGroupsToUnlock = self._groupLocks['unlockedBy']
+        return playGroupsToUnlock.get(groupNum, -1)
+
+    @property
+    def _groupLocks(self):
+        return self.getCacheValue('groupLocks', {'groupBattles': [],
+         'isGroupLocked': [],
+         'unlockedBy': {}})
+
+    def _requestCache(self, callback=None):
+        BigWorld.player().vehicleRotation.getCache(lambda resID, value: self._response(resID, value, callback))

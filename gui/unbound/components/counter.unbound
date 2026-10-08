@@ -1,0 +1,48 @@
+(def macro CounterMacro(
+	image:expression,
+	radius:number, padding:number, scale9grid:expression, 
+	marginH:number, marginV:number, fontStyle:str)
+	(macro CounterModel)
+	(style
+		(minWidth = "radius")
+		(height = "radius")
+		(align = "center|middle")
+		(pivotX = "50%")
+		(pivotY = "50%")
+		(bind paddingLeft "value < 10 && value != -1 ? 0 : padding")
+		(bind paddingRight "value < 10 && value != -1 ? 0 : padding")
+	)
+	(image
+		(source = "image")
+		(style
+			(scale9grid = "scale9grid")
+			(position = "absolute")
+			(left = "marginH")
+			(right = "marginH")
+			(top = "marginV")
+			(bottom = "marginV")
+		)
+	)
+	(tf
+		(class = "fontStyle")
+		(bind text "value == -1 ? R.strings.menu.counter.newCounter() : value == 0 || fontStyle == 'CounterSmallStyle' ? '' : value")
+	)
+
+	(controller $Animation
+		(bindcall play duration=0.2 to={alpha:0,visible:0} init=false
+			(bind trigger "value == 0")
+		)
+	)
+)
+
+(def element CounterX05()
+	(macro CounterMacro "R.atlases.components.new_anchor_text_bubble_x05()" 12px 4px "Rect(23,24,22,1)" -17px -18px 'CounterSmallStyle')
+)
+
+(def element CounterX1()
+	(macro CounterMacro "R.atlases.components.new_anchor_text_bubble_x1()" 14px 7px "Rect(25,26,28,1)" -18px -19px 'CounterMediumStyle')
+)
+
+(def element CounterX2()
+	(macro CounterMacro "R.atlases.components.new_anchor_text_bubble_x2()" 20px 10px "Rect(28,28,38,1)" -18px -19px 'CounterBigStyle')
+)

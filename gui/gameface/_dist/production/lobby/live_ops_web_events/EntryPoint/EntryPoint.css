@@ -1,0 +1,308 @@
+@keyframes App_blinking_dc1d4 {
+    0% {
+        filter: brightness(2);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
+@keyframes App_FirstShow_ab8db {
+    0% {
+        opacity: 0;
+        top: -81rem;
+    }
+
+    90% {
+        opacity: 1;
+        top: -81rem;
+    }
+
+    100% {
+        opacity: 1;
+        top: 5rem;
+    }
+}
+
+@keyframes App_blinker_c6ea4 {
+    0% {
+        transform: rotate(45deg) translate(-200rem, 0rem);
+    }
+
+    30% {
+        transform: rotate(45deg) translate(200rem, 0rem);
+    }
+
+    100% {
+        transform: rotate(45deg) translate(200rem, 0rem);
+    }
+}
+
+@keyframes App_shine_a24a8 {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(53%);
+    }
+}
+
+@keyframes App_shineAppear_dc810 {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+
+    13% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    63% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(53%);
+    }
+}
+
+@keyframes App_bgAppear_ece46 {
+    0% {
+        opacity: 0;
+        transform: translateY(-20rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body {
+    margin: 1rem;
+    overflow: hidden;
+}
+
+.App_base_e2b5f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 46rem;
+    height: 81rem;
+    position: relative;
+}
+
+.App_base__big_d2d33 {
+        width: 66rem;
+        height: 113rem;
+        margin-left: 1rem;
+        margin-top: 1rem;
+    }
+
+.App_flag_cdbcd {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.liveOps.entryPoint.flag') no-repeat center / cover;
+    position: absolute;
+    transition: filter 200ms cubic-bezier(.17, .67, .82, .76);
+}
+
+.App_base__big_d2d33 .App_flag_cdbcd {
+        background-image: url('R.images.gui.maps.icons.liveOps.entryPoint.flag_big');
+    }
+
+.App_base__firstShow_d47d3 .App_flag_cdbcd {
+        animation: App_FirstShow_ab8db 600ms cubic-bezier(.44, .88, .61, 1.23);
+    }
+
+.App_base__firstShowBig_fca39 .App_flag_cdbcd {
+        transform-origin: center top;
+        animation: App_bgAppear_ece46 0.2s cubic-bezier(.6, .04, .98, .34) 0.2s backwards;
+    }
+
+.App_base__preEvent_bd7e6 .App_flag_cdbcd,
+    .App_base__eventActive_e6e82 .App_flag_cdbcd {
+        filter: brightness(1) grayscale(0);
+    }
+
+.App_base__postEvent_de8c0 .App_flag_cdbcd {
+        filter: brightness(0.8) grayscale(1);
+    }
+
+.App_flagHover_ecea0 {
+    width: 46rem;
+    height: 81rem;
+    background: url('R.images.gui.maps.icons.liveOps.entryPoint.flag_hover') no-repeat center / cover;
+    opacity: 0;
+    position: absolute;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.App_base__big_d2d33 .App_flagHover_ecea0 {
+        width: 66rem;
+        height: 113rem;
+        background-image: url('R.images.gui.maps.icons.liveOps.entryPoint.flag_hover_big');
+        mix-blend-mode: overlay;
+    }
+
+.App_base_e2b5f:hover .App_flagHover_ecea0 {
+        opacity: 1;
+    }
+
+.App_content_df450 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.App_base__firstShow_d47d3 .App_content_df450 {
+        animation: App_FirstShow_ab8db 600ms cubic-bezier(.44, .88, .61, 1.23);
+    }
+
+.App_base__firstShowBig_fca39 .App_content_df450 {
+        animation: App_bgAppear_ece46 0.2s cubic-bezier(.6, .04, .98, .34) 0.2s backwards;
+    }
+
+.App_calendarIcon_af4e9 {
+    width: 24rem;
+    height: 24rem;
+    background: url('R.images.gui.maps.icons.liveOps.entryPoint.calendar') no-repeat center / cover;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    transition: top 200ms cubic-bezier(.17, .67, .82, .76);
+    pointer-events: none;
+}
+
+.App_base__big_d2d33 .App_calendarIcon_af4e9 {
+        width: 40rem;
+        height: 40rem;
+        background-image: url('R.images.gui.maps.icons.liveOps.entryPoint.calendar_big');
+        top: 42%;
+    }
+
+.App_base__eventActive_e6e82 .App_calendarIcon_af4e9 {
+        animation: App_blinking_dc1d4 500ms cubic-bezier(.45, .88, .69, .83);
+        animation-delay: 200ms;
+    }
+
+.App_base__preEvent_bd7e6 .App_calendarIcon_af4e9,
+    .App_base__postEvent_de8c0 .App_calendarIcon_af4e9 {
+        top: 30%;
+    }
+
+.App_statusIcon_c681e {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+    bottom: 30rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(50%);
+    transition: bottom 0.2s ease-in-out, opacity 0.2s ease-in-out;
+    pointer-events: none;
+}
+
+.App_base__big_d2d33 .App_statusIcon_c681e {
+        bottom: 43rem;
+    }
+
+.App_base__eventActive_e6e82 .App_statusIcon_c681e {
+        opacity: 0;
+        bottom: 0;
+    }
+
+.App_base__preEvent_bd7e6 .App_statusIcon_c681e {
+        width: 38rem;
+        height: 38rem;
+        background-image: url('R.images.gui.maps.icons.liveOps.icons.time_ico');
+        opacity: 1;
+    }
+
+.App_base__postEvent_de8c0 .App_statusIcon_c681e {
+        width: 32rem;
+        height: 32rem;
+        background-image: url('R.images.gui.maps.icons.liveOps.icons.done_ico');
+        opacity: 1;
+    }
+
+.App_blinkShape_d957d {
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(0 0, 100% 0, 100% 86%, 0% 99%, 0 0);
+    position: absolute;
+    top: 0;
+    left: 0;
+    mask-image: linear-gradient(180deg, transparent 0%, #000000 50%);
+    mask-repeat: no-repeat;
+    pointer-events: none;
+}
+
+.App_base__big_d2d33 .App_blinkShape_d957d {
+        clip-path: polygon(0 0, 100% 0, 100% 83%, 0% 99%, 0 0);
+    }
+
+.App_base_e2b5f:hover .App_blinkShape_d957d {
+        mask-image: none;
+    }
+
+.App_blink_ea281 {
+    width: 14rem;
+    height: 300rem;
+    background: #1ae0b1;
+    filter: blur(7px);
+    opacity: 0.5;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 99;
+    transform: rotate(45deg) translate(-200rem, 0rem);
+    transform-origin: center;
+    animation: App_blinker_c6ea4 6s linear 4s infinite;
+}
+
+.App_shine_a24a8 {
+    width: 80rem;
+    height: 128rem;
+    background: url('R.images.gui.maps.icons.liveOps.entryPoint.shine') no-repeat center / contain;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: -52rem;
+    animation: App_shine_a24a8 2s linear .8s infinite alternate backwards;
+    pointer-events: none;
+}
+
+.App_shine__left_bb1ee {
+        left: -38rem;
+    }
+
+.App_shine__right_de0a9 {
+        right: -38rem;
+        animation-direction: alternate-reverse;
+    }
+
+.App_shine__appear_f78ab {
+        animation: App_shineAppear_dc810 .8s ease-out 0.2s both;
+    }
+

@@ -1,0 +1,3594 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_building",
+						"Fade time": 2.0,
+						"Fade type": 4,
+						"Object name": "112_bridge_bombing_01_bridge_transition_debri_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -15.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_debri_sfx",
+				"uuid": "938a54d3-e13e-38c2-ae84-ef2828643527"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/environment/random_events/112_eiffel_tower_ctf_collapse_dust.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -11.623700141906738,
+							"y": 2.377000093460083,
+							"z": 2.9968600273132324
+						},
+						"rotation": {
+							"x": -1.5848357293180015e-07,
+							"y": 33.971412658691406,
+							"z": -1.2400181503835483e-06
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "bridge_transition_dust_01",
+				"uuid": "62c2089e-dc09-439e-a7f0-6b23571dcf23"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_impact_distant",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "112_bridge_bombing_01_bridge_transition_impact_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_impact_sfx",
+				"uuid": "f5d9c4d5-544c-4b7e-99ae-f8d955432175"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"dynamicModelLinkType": "Self",
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "bridge_transition_animation",
+								"lodScale": 1.0,
+								"path": "content/animation/112_eiffel_tower/bridge_destruction/animation/lod0/eiffel_tower_112_bridge_destruction.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "content/animation/112_eiffel_tower/bridge_destruction/normal/lod0/eiffel_tower_112_bridge_destruction.model"
+					},
+					"BW::ModelPropertyChanger": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "bridge_transition",
+				"uuid": "928c1f3d-1579-473a-8776-1af51b8d71d9"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_Abutment_destroyed.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_Abutment_destroyed.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -11.265399932861328,
+							"y": 12.855199813842773,
+							"z": 2.8080101013183594
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -52.84000015258789,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "70ff07be-e889-4aae-b46b-bd99ade446ff",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "hd_env_UNI_195_WideBridge_01_Abutment_destroyed",
+				"uuid": "70ff07be-e889-4aae-b46b-bd99ade446ff"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_explosion_large",
+						"Fade time": 2.0,
+						"Fade type": 4,
+						"Object name": "112_bridge_bombing_01_bridge_transition_expl_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 2.0,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_expl_sfx",
+				"uuid": "25885c3f-ba5e-3ed3-a135-4646eec36c4a"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_stone_large",
+						"Fade time": 2.0,
+						"Fade type": 4,
+						"Object name": "112_bridge_bombing_01_bridge_transition_debri2_sfx",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 15.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_debri2_sfx",
+				"uuid": "670c4a43-d43a-3e4c-9b08-0dd93b262238"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_destroyed_02.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_destroyed_02.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -11.265399932861328,
+							"y": 12.855500221252441,
+							"z": 2.8080101013183594
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -52.84000015258789,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "28be04f7-cb09-45b4-82a8-5ef5c2dd9a74",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "hd_env_UNI_195_WideBridge_01_destroyed_02",
+				"uuid": "28be04f7-cb09-45b4-82a8-5ef5c2dd9a74"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_SideWall_destroyed.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_SideWall_destroyed.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -11.265399932861328,
+							"y": 12.855500221252441,
+							"z": 2.8080101013183594
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -52.84000015258789,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "e1f942b4-d137-4ed2-b864-31ba8e4f5b76",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "hd_env_UNI_195_WideBridge_01_SideWall_destroyed",
+				"uuid": "e1f942b4-d137-4ed2-b864-31ba8e4f5b76"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/environment/random_events/112_eiffel_tower_ctf_smoke_after.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -11.623700141906738,
+							"y": 6.573669910430908,
+							"z": 2.9968600273132324
+						},
+						"rotation": {
+							"x": -1.5848414136598876e-07,
+							"y": 33.971412658691406,
+							"z": -1.2400181503835483e-06
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "smoke_after",
+				"uuid": "2b7ce136-69c6-4aa2-8ef3-a3bfa79c18c4"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::BoxColliderDesc",
+								"__cvalue__": {
+									"transform": "(( 42.4361,       0,-32.3035,       0), (       0,  1.9107,       0,       0), ( 18.5063,       0, 24.3111,       0), (-1.31429, 20.0777,-4.68762,       1))"
+								}
+							},
+							{
+								"__ctype__": "BW::BoxColliderDesc",
+								"__cvalue__": {
+									"transform": "((  60.949,       0,-46.3971,       0), (       0,  1.9107,       0,       0), ( 32.5389,       0, 42.7444,       0), (-10.3653, 10.6001, 3.06738,       1))"
+								}
+							},
+							{
+								"__ctype__": "BW::BoxColliderDesc",
+								"__cvalue__": {
+									"transform": "(( 16.5646,       0,-12.6097,       0), (       0,  1.9107,       0,       0), ( 9.69995,       0, 12.7422,       0), (-29.0068, 20.0524, 25.7812,       1))"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::RigidBodyComponent": {
+						"bodiesFrictionFactor": 0.30000001192092896,
+						"centerOfMass": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"collideWithBodies": false,
+						"collideWithDestructibles": true,
+						"collideWithOnlyLeavesTrees": true,
+						"collideWithSimulationObjects": false,
+						"collideWithStatics": false,
+						"collideWithTerrain": false,
+						"collideWithVehicles": false,
+						"destructiblesFrictionFactor": 1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"generateVelocities": false,
+						"inertiaFactors": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						},
+						"isTrigger": true,
+						"mass": 100.0,
+						"simulationObjectsFrictionFactor": 0.30000001192092896,
+						"state": "Kinematic",
+						"staticsFrictionFactor": 1.0,
+						"terrainFrictionFactor": 1.0,
+						"vehiclesFrictionFactors": 0.30000001192092896
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_collision_with_destructibles",
+				"uuid": "58f77543-4e1f-44df-80cd-eb1e79a2fd2a"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+									"moduleName": "default"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"cameraName": "112_bridge_bombing_01_camera_01",
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 1.1741000413894653,
+							"y": 12.600799560546875,
+							"z": -6.684140205383301
+						},
+						"rotation": {
+							"x": 5.134171715326374e-06,
+							"y": 38.82018280029297,
+							"z": -9.872979717329144e-06
+						},
+						"scale": {
+							"x": 9.452520370483398,
+							"y": 1.5426299571990967,
+							"z": 9.036580085754395
+						}
+					},
+					"script::VehicleDamageLoggerComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_kill_collision_top_01",
+				"uuid": "cda6baa8-88bf-4125-9b72-7b1e05a09954"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+									"moduleName": "default"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"cameraName": "112_bridge_bombing_01_camera_01",
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -20.77120018005371,
+							"y": 12.60099983215332,
+							"z": 19.21619987487793
+						},
+						"rotation": {
+							"x": 5.134171715326374e-06,
+							"y": 38.82018280029297,
+							"z": -9.873037015495356e-06
+						},
+						"scale": {
+							"x": 6.892690181732178,
+							"y": 1.5429999828338623,
+							"z": 4.953050136566162
+						}
+					},
+					"script::VehicleDamageLoggerComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_kill_collision_top_02",
+				"uuid": "4da72854-797c-490d-8e36-67d390cc72ce"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_destroyed_03.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -11.265399932861328,
+									"y": 12.855500221252441,
+									"z": 2.8080101013183594
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": -52.84000015258789,
+									"z": 0.0
+								}
+							},
+							"script::ShootingObstacle": {
+								"colliders": "18a9f712-1edd-4d69-ac20-9bf92a4b3514",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "00000000-0000-0000-0000-000000000000"
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_UNI_195_WideBridge_01_destroyed_03_invisible",
+						"uuid": "18a9f712-1edd-4d69-ac20-9bf92a4b3514"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 2.741300106048584,
+									"y": 3.119119882583618,
+									"z": -6.467160224914551
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 38.820011138916016,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 4.562190055847168,
+									"y": 3.0801498889923096,
+									"z": 9.737350463867188
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_114_18_ConcreteSlab_04_Box_invisible_01",
+						"uuid": "992f8b61-479e-44b4-9fc6-4e90c2d391a5"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 4.049079895019531,
+									"y": 1.5298000574111938,
+									"z": 14.39900016784668
+								},
+								"rotation": {
+									"x": -5.60007219974068e-06,
+									"y": 50.864097595214844,
+									"z": 1.9101094039797317e-06
+								},
+								"scale": {
+									"x": 1.1716099977493286,
+									"y": 4.1242499351501465,
+									"z": 1.564460039138794
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_114_18_ConcreteSlab_04_Box_invisible_06",
+						"uuid": "50fda61b-9de4-39f6-8eeb-32c7d00f2b2f"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -25.57110023498535,
+									"y": 2.556849956512451,
+									"z": 22.262500762939453
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 38.820011138916016,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 6.486400127410889,
+									"y": 3.3578600883483887,
+									"z": 6.278659820556641
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_114_18_ConcreteSlab_04_Box_invisible_02",
+						"uuid": "a202f55e-ee0f-301e-957b-13db94878672"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -8.259940147399902,
+									"y": 1.7732000350952148,
+									"z": 10.304100036621094
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 38.820011138916016,
+									"z": -0.0
+								},
+								"scale": {
+									"x": 6.486400127410889,
+									"y": 3.3578600883483887,
+									"z": 5.224730014801025
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_114_18_ConcreteSlab_04_Box_invisible_03",
+						"uuid": "5e30abdd-63ed-324b-8561-c71d6a3a6e14"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_destroyed_01.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -11.265399932861328,
+									"y": 12.855500221252441,
+									"z": 2.8080101013183594
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": -52.84000015258789,
+									"z": 0.0
+								}
+							},
+							"script::ShootingObstacle": {
+								"colliders": "d4a1f504-d531-4868-a855-065994b061ee",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "00000000-0000-0000-0000-000000000000"
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_UNI_195_WideBridge_01_destroyed_01_invisible",
+						"uuid": "d4a1f504-d531-4868-a855-065994b061ee"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_UNI_195_WideBridge/normal/lod0/hd_env_UNI_195_WideBridge_01_destroyed_04.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -11.265399932861328,
+									"y": 12.855500221252441,
+									"z": 2.8080101013183594
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": -52.84000015258789,
+									"z": 0.0
+								}
+							},
+							"script::ShootingObstacle": {
+								"colliders": "6e6fadd2-40ad-42e7-8350-738c0d455f0f",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "00000000-0000-0000-0000-000000000000"
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_UNI_195_WideBridge_01_destroyed_04_invisible",
+						"uuid": "6e6fadd2-40ad-42e7-8350-738c0d455f0f"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -11.834199905395508,
+									"y": 1.7732000350952148,
+									"z": -6.7565598487854
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 26.827774047851563,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 5.555019855499268,
+									"y": 4.1242499351501465,
+									"z": 5.4296698570251465
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_114_18_ConcreteSlab_04_Box_invisible_04",
+						"uuid": "93736f45-f6a5-3be2-ad34-641273396d28"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -33.672298431396484,
+									"y": 1.5298000574111938,
+									"z": -5.766510009765625
+								},
+								"rotation": {
+									"x": -4.098711087863194e-06,
+									"y": 41.59473419189453,
+									"z": 2.3605516616953537e-06
+								},
+								"scale": {
+									"x": 1.0002000331878662,
+									"y": 4.1242499351501465,
+									"z": 1.3473199605941772
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_114_18_ConcreteSlab_04_Box_invisible_05",
+						"uuid": "d5b65615-a3c8-3867-8569-db15633d348c"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -11.170999526977539,
+									"y": 2.020169973373413,
+									"z": 31.10930061340332
+								},
+								"rotation": {
+									"x": -1.2496782801463269e-05,
+									"y": 59.18596649169922,
+									"z": -8.335963684658054e-06
+								},
+								"scale": {
+									"x": 1.668429970741272,
+									"y": 4.1242499351501465,
+									"z": 2.932889938354492
+								}
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "hd_env_114_18_ConcreteSlab_04_Box_invisible_07",
+						"uuid": "4cfb825b-a1d1-3af1-b29b-02c4f30c2408"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "invisible_walls",
+				"uuid": "aef6a706-e485-49a5-b107-8c574078acec"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+									"moduleName": "default"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"cameraName": "112_bridge_bombing_01_camera_01",
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -2.8992300033569336,
+							"y": 2.6683099269866943,
+							"z": -1.589900016784668
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 38.820011138916016,
+							"z": -0.0
+						},
+						"scale": {
+							"x": 7.783100128173828,
+							"y": 1.5,
+							"z": 10.66510009765625
+						}
+					},
+					"script::VehicleDamageLoggerComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_kill_collision_bottom_01",
+				"uuid": "afcbee55-6d95-4eec-b724-2185c4c6d565"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+									"moduleName": "default"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"cameraName": "112_bridge_bombing_01_camera_01",
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -21.67620086669922,
+							"y": 2.556839942932129,
+							"z": -10.29640007019043
+						},
+						"rotation": {
+							"x": 4.4202433855389245e-06,
+							"y": 94.25498962402344,
+							"z": -1.9634118871181272e-05
+						},
+						"scale": {
+							"x": 2.271790027618408,
+							"y": 1.5,
+							"z": 3.690609931945801
+						}
+					},
+					"script::VehicleDamageLoggerComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_kill_collision_bottom_05",
+				"uuid": "445d9d49-a08a-354e-a106-7da70b1260d6"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+									"moduleName": "default"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"cameraName": "112_bridge_bombing_01_camera_01",
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -21.947099685668945,
+							"y": 2.556849956512451,
+							"z": 19.436399459838867
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 38.820011138916016,
+							"z": 0.0
+						},
+						"scale": {
+							"x": 6.486400127410889,
+							"y": 1.5,
+							"z": 7.253310203552246
+						}
+					},
+					"script::VehicleDamageLoggerComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_kill_collision_bottom_02",
+				"uuid": "d0119cb1-1ca9-4532-af00-f99b8919fc2a"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+									"moduleName": "default"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"cameraName": "112_bridge_bombing_01_camera_01",
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -12.479499816894531,
+							"y": 2.556849956512451,
+							"z": 30.57819938659668
+						},
+						"rotation": {
+							"x": -1.2315842468524352e-05,
+							"y": 59.725120544433594,
+							"z": -4.939159680361627e-06
+						},
+						"scale": {
+							"x": 1.7024600505828857,
+							"y": 1.5,
+							"z": 3.690609931945801
+						}
+					},
+					"script::VehicleDamageLoggerComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_kill_collision_bottom_03",
+				"uuid": "f4c4bbc7-eb22-398f-96a7-d21397c76afc"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+									"moduleName": "default"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"cameraName": "112_bridge_bombing_01_camera_01",
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 3.800299882888794,
+							"y": 2.6339800357818604,
+							"z": 12.983599662780762
+						},
+						"rotation": {
+							"x": -2.341340405109804e-05,
+							"y": 44.28746032714844,
+							"z": -1.5161724149947986e-05
+						},
+						"scale": {
+							"x": 1.5354000329971313,
+							"y": 1.5,
+							"z": 2.5736100673675537
+						}
+					},
+					"script::VehicleDamageLoggerComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_kill_collision_bottom_04",
+				"uuid": "ed6d32a6-f211-36aa-b70f-7a149e14a4c6"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+									"moduleName": "default"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"cameraName": "112_bridge_bombing_01_camera_01",
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -31.10849952697754,
+							"y": 2.556849956512451,
+							"z": -6.072509765625
+						},
+						"rotation": {
+							"x": 4.4202433855389245e-06,
+							"y": 94.25498962402344,
+							"z": -1.9634118871181272e-05
+						},
+						"scale": {
+							"x": 1.5513999462127686,
+							"y": 1.5,
+							"z": 2.9463000297546387
+						}
+					},
+					"script::VehicleDamageLoggerComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "112_bridge_bombing_01_bridge_transition_kill_collision_bottom_06",
+				"uuid": "14e3f116-65eb-3677-b4a7-f290996b8fa8"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "particles/content_deferred/GFX_models/environment/ngm_destructions/112_eiffel_tower/normal/lod0/eiffel_tower_112_bridge_destruction_vat.model"
+					},
+					"BW::ModelPropertyChanger": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.006492610089480877,
+							"y": -0.004548000171780586,
+							"z": 0.0020141599234193563
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 179.99986267089844,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "bridge_transition_VAT",
+				"uuid": "3ff4e742-bc4d-3cf9-ac3e-b0a7fb77d378"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "content/animation/112_eiffel_tower/bridge_destruction/normal/lod0/eiffel_tower_112_bridge_destruction_static_03.model"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -11.269700050354004,
+							"y": 12.852999687194824,
+							"z": 2.794800043106079
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -52.84000015258789,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static",
+					"SelfInactive"
+				],
+				"name": "bridge_transition_static_patch",
+				"uuid": "366b2f45-01e4-4fab-b7b5-098c659aa7d9"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -25.57110023498535,
+									"y": 2.556849956512451,
+									"z": 22.262500762939453
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 38.820011138916016,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 6.486400127410889,
+									"y": 1.651769995689392,
+									"z": 6.278659820556641
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_02",
+						"uuid": "7690d953-cb74-3035-b2fb-39b8b136f110"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -21.46809959411621,
+									"y": 3.8114500045776367,
+									"z": -2.826479911804199
+								},
+								"rotation": {
+									"x": -9.263466927222908e-05,
+									"y": 32.77851486206055,
+									"z": -21.323026657104492
+								},
+								"scale": {
+									"x": 1.0446699857711792,
+									"y": 1.5,
+									"z": 2.1810200214385986
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_05",
+						"uuid": "a75ab026-5464-3cce-b930-fd542ac6149f"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -11.67549991607666,
+									"y": 2.556849956512451,
+									"z": 30.866600036621094
+								},
+								"rotation": {
+									"x": 7.646980520803481e-06,
+									"y": 61.1620979309082,
+									"z": -7.806034773238935e-06
+								},
+								"scale": {
+									"x": 1.4684900045394897,
+									"y": 1.651769995689392,
+									"z": 2.7097198963165283
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_07",
+						"uuid": "19ab837b-e9de-3932-9f13-8442b3d3d6aa"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -28.344600677490234,
+									"y": 1.7513400316238403,
+									"z": -6.427090167999268
+								},
+								"rotation": {
+									"x": -1.2761202924593817e-05,
+									"y": 12.899744033813477,
+									"z": -5.3257058425515424e-06
+								},
+								"scale": {
+									"x": 3.2975800037384033,
+									"y": 3.0031700134277344,
+									"z": 1.6328699588775635
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_10",
+						"uuid": "7f13681c-251e-3930-bcf1-80518464f7fa"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -22.538299560546875,
+									"y": 4.176609992980957,
+									"z": 29.638500213623047
+								},
+								"rotation": {
+									"x": -6.580763816833496,
+									"y": -48.315067291259766,
+									"z": -0.581449031829834
+								},
+								"scale": {
+									"x": 1.0446699857711792,
+									"y": 1.9737600088119507,
+									"z": 2.8180201053619385
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_06",
+						"uuid": "3b0fb76c-6709-39c7-903d-5784c0acc9a9"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 3.2237401008605957,
+									"y": 2.556849956512451,
+									"z": 12.996199607849121
+								},
+								"rotation": {
+									"x": 2.0429497453733347e-06,
+									"y": 42.22595977783203,
+									"z": -2.3497228539781645e-05
+								},
+								"scale": {
+									"x": 1.1470999717712402,
+									"y": 1.651769995689392,
+									"z": 2.5017199516296387
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_08",
+						"uuid": "8fc2afee-1e57-3fe7-90ab-008e9a63ba15"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 2.741300106048584,
+									"y": 3.119119882583618,
+									"z": -6.467160224914551
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 38.820011138916016,
+									"z": 0.0
+								},
+								"scale": {
+									"x": 4.562190055847168,
+									"y": 0.9134470224380493,
+									"z": 9.737350463867188
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_01",
+						"uuid": "c159b5fe-13c7-322c-a0a3-a345df057e1a"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -0.6379780173301697,
+									"y": 2.721709966659546,
+									"z": 11.694299697875977
+								},
+								"rotation": {
+									"x": 5.282349775370676e-06,
+									"y": 36.93910598754883,
+									"z": -8.702942068339325e-06
+								},
+								"scale": {
+									"x": 1.4684900045394897,
+									"y": 1.651769995689392,
+									"z": 1.9373300075531006
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_09",
+						"uuid": "b9735d15-b8a3-3d27-88d6-9fd7747531c5"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 9.711420059204102,
+									"y": 3.8498499393463135,
+									"z": 3.5391499996185303
+								},
+								"rotation": {
+									"x": 12.335896492004395,
+									"y": 44.86448669433594,
+									"z": 14.385194778442383
+								},
+								"scale": {
+									"x": 3.1950199604034424,
+									"y": 1.651769995689392,
+									"z": 2.501729965209961
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_11",
+						"uuid": "a2391869-2f07-34dd-8008-a35f0aa6cafc"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -17.643699645996094,
+									"y": 1.5346499681472778,
+									"z": 1.0730299949645996
+								},
+								"rotation": {
+									"x": 2.0358509573270567e-05,
+									"y": 35.819374084472656,
+									"z": 2.0903104086755775e-05
+								},
+								"scale": {
+									"x": 1.6194299459457397,
+									"y": 3.3578600883483887,
+									"z": 6.2786102294921875
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_03",
+						"uuid": "121a05e7-7a0d-37c1-879e-6754ebf2fc14"
+					},
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_114_18_ConcreteSlab/normal/lod0/hd_env_114_18_ConcreteSlab_04_Box.model",
+											"moduleName": "default"
+										}
+									}
+								],
+								"disabledDomains": [
+									"Client"
+								]
+							},
+							"BW::StaticObstacleComponent": {
+								"cameraName": "112_bridge_bombing_01_camera_01",
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "KILL_AND_FREEZE"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -14.961999893188477,
+									"y": 1.6645599603652954,
+									"z": -7.041959762573242
+								},
+								"rotation": {
+									"x": 2.0111448975512758e-05,
+									"y": 37.00132751464844,
+									"z": 2.1241894501144998e-05
+								},
+								"scale": {
+									"x": 2.093410015106201,
+									"y": 3.3578600883483887,
+									"z": 2.599410057067871
+								}
+							},
+							"script::VehicleDamageLoggerComponent": {
+								"disabledDomains": [
+									"Client"
+								]
+							}
+						},
+						"flags": [
+							"Static",
+							"SelfInactive"
+						],
+						"name": "112_bridge_bombing_01_bridge_transition_kill_freeze_collision_04",
+						"uuid": "a478701a-576c-33a9-a8ef-99f9a296d5eb"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "kill_freeze_collisions",
+				"uuid": "7da20844-3403-4744-8c3a-417c82b7c27b"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 9.100000381469727,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 9.100000381469727,
+								"object": "928c1f3d-1579-473a-8776-1af51b8d71d9",
+								"parameters": [
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.100000381469727,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd5_skinned"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_ditherCoeff"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.100000381469727,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd8_skinned"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_ditherCoeff"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.100000381469727,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd0_skinned"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_ditherCoeff"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.100000381469727,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd6_skinned"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_ditherCoeff"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.100000381469727,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd1_skinned"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_ditherCoeff"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.100000381469727,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd4_skinned"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_ditherCoeff"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 8.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 100.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.100000381469727,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd2_skinned"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_ditherCoeff"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::Animator",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.009999999776482582,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.100000381469727,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 9.100000381469727
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "time"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 4.74960994720459,
+								"object": "62c2089e-dc09-439e-a7f0-6b23571dcf23",
+								"parameters": [],
+								"startTime": 0.09961199760437012
+							},
+							{
+								"endTime": 9.0,
+								"object": "f5d9c4d5-544c-4b7e-99ae-f8d955432175",
+								"parameters": [],
+								"startTime": 0.10000000149011612
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "25885c3f-ba5e-3ed3-a135-4646eec36c4a",
+								"parameters": [
+									{
+										"component": "BW::Sound3DComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 6.699999809265137,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Fade Activated"
+											}
+										]
+									}
+								],
+								"startTime": 0.4000000059604645
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "938a54d3-e13e-38c2-ae84-ef2828643527",
+								"parameters": [
+									{
+										"component": "BW::Sound3DComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 6.099999904632568,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Fade Activated"
+											}
+										]
+									}
+								],
+								"startTime": 1.0
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "670c4a43-d43a-3e4c-9b08-0dd93b262238",
+								"parameters": [
+									{
+										"component": "BW::Sound3DComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 5.599999904632568,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Fade Activated"
+											}
+										]
+									}
+								],
+								"startTime": 1.5
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "70ff07be-e889-4aae-b46b-bd99ade446ff",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "28be04f7-cb09-45b4-82a8-5ef5c2dd9a74",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "e1f942b4-d137-4ed2-b864-31ba8e4f5b76",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "2b7ce136-69c6-4aa2-8ef3-a3bfa79c18c4",
+								"parameters": [],
+								"startTime": 5.800000190734863
+							},
+							{
+								"endTime": 2.831049919128418,
+								"object": "58f77543-4e1f-44df-80cd-eb1e79a2fd2a",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 2.609100103378296,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": -10.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "y"
+											}
+										]
+									}
+								],
+								"startTime": 0.21113400161266327
+							},
+							{
+								"endTime": 1.399999976158142,
+								"object": "cda6baa8-88bf-4125-9b72-7b1e05a09954",
+								"parameters": [],
+								"startTime": 0.05999999865889549
+							},
+							{
+								"endTime": 1.399999976158142,
+								"object": "4da72854-797c-490d-8e36-67d390cc72ce",
+								"parameters": [],
+								"startTime": 0.05999999865889549
+							},
+							{
+								"endTime": 5.0,
+								"object": "afcbee55-6d95-4eec-b724-2185c4c6d565",
+								"parameters": [],
+								"startTime": 1.0
+							},
+							{
+								"endTime": 5.0,
+								"object": "d0119cb1-1ca9-4532-af00-f99b8919fc2a",
+								"parameters": [],
+								"startTime": 1.0
+							},
+							{
+								"endTime": 5.0,
+								"object": "f4c4bbc7-eb22-398f-96a7-d21397c76afc",
+								"parameters": [],
+								"startTime": 3.0999999046325684
+							},
+							{
+								"endTime": 5.0,
+								"object": "ed6d32a6-f211-36aa-b70f-7a149e14a4c6",
+								"parameters": [],
+								"startTime": 3.4700000286102295
+							},
+							{
+								"endTime": 5.0,
+								"object": "445d9d49-a08a-354e-a106-7da70b1260d6",
+								"parameters": [],
+								"startTime": 3.0
+							},
+							{
+								"endTime": 5.0,
+								"object": "14e3f116-65eb-3677-b4a7-f290996b8fa8",
+								"parameters": [],
+								"startTime": 2.259999990463257
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "3ff4e742-bc4d-3cf9-ac3e-b0a7fb77d378",
+								"parameters": [
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd0"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_destroyTime"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd8"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_destroyTime"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd2"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_destroyTime"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd4"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_destroyTime"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd1"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_destroyTime"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									},
+									{
+										"component": "BW::ModelPropertyChanger",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 0.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 9.0,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 1.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "s_nd6"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "Common Properties"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "g_destroyTime"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "value"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "d4a1f504-d531-4868-a855-065994b061ee",
+								"parameters": [],
+								"startTime": 1.0499999523162842
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "18a9f712-1edd-4d69-ac20-9bf92a4b3514",
+								"parameters": [],
+								"startTime": 1.0499999523162842
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "6e6fadd2-40ad-42e7-8350-738c0d455f0f",
+								"parameters": [],
+								"startTime": 1.0499999523162842
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "992f8b61-479e-44b4-9fc6-4e90c2d391a5",
+								"parameters": [],
+								"startTime": 1.0499999523162842
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "a202f55e-ee0f-301e-957b-13db94878672",
+								"parameters": [],
+								"startTime": 1.0499999523162842
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "5e30abdd-63ed-324b-8561-c71d6a3a6e14",
+								"parameters": [],
+								"startTime": 1.0499999523162842
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "93736f45-f6a5-3be2-ad34-641273396d28",
+								"parameters": [],
+								"startTime": 1.0499999523162842
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "d5b65615-a3c8-3867-8569-db15633d348c",
+								"parameters": [],
+								"startTime": 2.309999942779541
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "50fda61b-9de4-39f6-8eeb-32c7d00f2b2f",
+								"parameters": [],
+								"startTime": 3.5199999809265137
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "4cfb825b-a1d1-3af1-b29b-02c4f30c2408",
+								"parameters": [],
+								"startTime": 3.1500000953674316
+							},
+							{
+								"endTime": 9.100000381469727,
+								"object": "366b2f45-01e4-4fab-b7b5-098c659aa7d9",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 5.0,
+								"object": "c159b5fe-13c7-322c-a0a3-a345df057e1a",
+								"parameters": [],
+								"startTime": 1.0099999904632568
+							},
+							{
+								"endTime": 5.0,
+								"object": "7690d953-cb74-3035-b2fb-39b8b136f110",
+								"parameters": [],
+								"startTime": 1.0099999904632568
+							},
+							{
+								"endTime": 5.0,
+								"object": "121a05e7-7a0d-37c1-879e-6754ebf2fc14",
+								"parameters": [],
+								"startTime": 1.0099999904632568
+							},
+							{
+								"endTime": 5.0,
+								"object": "a75ab026-5464-3cce-b930-fd542ac6149f",
+								"parameters": [],
+								"startTime": 1.0099999904632568
+							},
+							{
+								"endTime": 5.0,
+								"object": "3b0fb76c-6709-39c7-903d-5784c0acc9a9",
+								"parameters": [],
+								"startTime": 1.0099999904632568
+							},
+							{
+								"endTime": 5.0,
+								"object": "19ab837b-e9de-3932-9f13-8442b3d3d6aa",
+								"parameters": [],
+								"startTime": 3.109999895095825
+							},
+							{
+								"endTime": 5.0,
+								"object": "8fc2afee-1e57-3fe7-90ab-008e9a63ba15",
+								"parameters": [],
+								"startTime": 3.4800000190734863
+							},
+							{
+								"endTime": 5.0,
+								"object": "b9735d15-b8a3-3d27-88d6-9fd7747531c5",
+								"parameters": [],
+								"startTime": 1.0099999904632568
+							},
+							{
+								"endTime": 5.0,
+								"object": "7f13681c-251e-3930-bcf1-80518464f7fa",
+								"parameters": [],
+								"startTime": 2.2699999809265137
+							},
+							{
+								"endTime": 5.0,
+								"object": "a2391869-2f07-34dd-8008-a35f0aa6cafc",
+								"parameters": [],
+								"startTime": 1.0099999904632568
+							},
+							{
+								"endTime": 5.0,
+								"object": "a478701a-576c-33a9-a8ef-99f9a296d5eb",
+								"parameters": [],
+								"startTime": 1.0099999904632568
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "112_bridge_bombing_01_bridge_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,151 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Sound3DComponent": {
+								"AutoStart": true,
+								"Event name": "style_cust_A140_stove",
+								"Object name": "style_cust_A140_stove",
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 2.1546900272369385
+								}
+							}
+						},
+						"name": "style_cust_A140_stove",
+						"uuid": "363f64c3-e2fc-3924-b360-25091ea20579"
+					}
+				],
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "oven_light",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A140_ASTRON_REX_105mm_SPD_3DSt/oven_lighting.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_A140_attachment_hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "056d97d0-fb24-33ab-bf20-9a0cad29decb"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "turret_seq",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A140_ASTRON_REX_105mm_SPD_3DSt/arrow_anim.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "turret_steam_seq",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/A140_ASTRON_REX_105mm_SPD_3DSt/turret_steam_fx.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_A140_attachment_turret"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Turret",
+				"uuid": "0eabb588-948d-3326-b09d-3da761818fa1"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": false,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "0",
+						"lodScale": 1.0,
+						"path": "vehicles/american/A140_ASTRON_REX_105mm/_skins/A140_ASTRON_REX_105mm_SPD_3DSt/normal/lod0/Hull_anim.fbx",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/american/A140_ASTRON_REX_105mm/_skins/A140_ASTRON_REX_105mm_SPD_3DSt/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "A140_ASTRON_REX_105mm_SPD_3DSt_hangar",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

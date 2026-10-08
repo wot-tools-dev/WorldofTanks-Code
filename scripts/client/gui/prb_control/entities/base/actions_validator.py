@@ -1,0 +1,145 @@
+import typing
+import logging
+import weakref
+from CurrentVehicle import g_currentPreviewVehicle, g_currentVehicle
+from gui.lobby_state_machine.states import LobbyStateFlags
+from gui.prb_control.items import ValidationResult
+from gui.prb_control.settings import PREBATTLE_RESTRICTION
+from helpers import dependency
+from skeletons.tutorial import ITutorialLoader
+from soft_exception import SoftException
+if typing.TYPE_CHECKING:
+    from typing import Optional
+    from gui.shared.gui_items.Vehicle import Vehicle
+_logger = logging.getLogger(__name__)
+
+class IActionsValidator(object):
+
+    def canPlayerDoAction(self):
+        raise NotImplementedError
+
+
+class NotSupportedActionsValidator(IActionsValidator):
+
+    def canPlayerDoAction(self):
+        return ValidationResult(False)
+
+
+class BaseActionsValidator(IActionsValidator):
+
+    def __init__(self, entity):
+        super(BaseActionsValidator, self).__init__()
+        self._entity = weakref.proxy(entity)
+
+    def canPlayerDoAction(self, ignoreEnable=False):
+        return self._validate() if ignoreEnable or self._isEnabled() else None
+
+    def _validate(self):
+        return None
+
+    def _isEnabled(self):
+        return True
+
+
+class CurrentPreviewVehicleActionsValidator(BaseActionsValidator):
+
+    def _validate(self):
+        if not g_currentVehicle.isReadyToFight():
+            from gui.Scaleform.lobby_entry import getLobbyStateMachine
+            lsm = getLobbyStateMachine()
+            inPBS = any((s.getFlags() & LobbyStateFlags.POST_BATTLE_RESULTS for s in lsm.getNonEmptyEnteredStates(onlyLeaves=False)))
+            if g_currentPreviewVehicle.isPresent() and not inPBS:
+                return ValidationResult(False, PREBATTLE_RESTRICTION.PREVIEW_VEHICLE_IS_PRESENT)
+        return super(CurrentPreviewVehicleActionsValidator, self)._validate()
+
+
+class VehicleActionsValidator(object):
+
+    @classmethod
+    def validateVehicle(cls, vehicle):
+        if not vehicle.isReadyToFight:
+            if vehicle.isInBattle or vehicle.isDisabled:
+                return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_IN_BATTLE)
+            if not vehicle.isCrewFull:
+                return ValidationResult(False, PREBATTLE_RESTRICTION.CREW_NOT_FULL)
+            if vehicle.isBroken:
+                return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_BROKEN)
+            if vehicle.isDisabledInRoaming:
+                return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_ROAMING)
+            if vehicle.isDisabledInPremIGR:
+                return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_IN_PREMIUM_IGR_ONLY)
+            if vehicle.rentalIsOver:
+                if vehicle.isPremiumIGR:
+                    return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_IGR_RENTALS_IS_OVER)
+                if vehicle.isTelecom:
+                    return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_TELECOM_RENTALS_IS_OVER)
+                if vehicle.isWotPlus:
+                    return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_WOT_PLUS_EXCLUSIVE_UNAVAILABLE)
+                return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_RENTALS_IS_OVER)
+            if vehicle.isRotationGroupLocked:
+                return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_ROTATION_GROUP_LOCKED)
+        return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_NOT_SUPPORTED) if vehicle.isUnsuitableToQueue else None
+
+    @classmethod
+    def validateVehicleBool(cls, vehicle):
+        return cls.validateVehicle(vehicle) is None
+
+
+class CurrentVehicleActionsValidator(BaseActionsValidator):
+
+    def _validate(self):
+        vehicle = g_currentVehicle.item
+        if vehicle is None:
+            return ValidationResult(False, PREBATTLE_RESTRICTION.VEHICLE_NOT_PRESENT)
+        else:
+            res = VehicleActionsValidator.validateVehicle(vehicle)
+            return res if res is not None else super(CurrentVehicleActionsValidator, self)._validate()
+
+
+class TutorialActionsValidator(BaseActionsValidator):
+    __tutorialLoader = dependency.descriptor(ITutorialLoader)
+
+    def _validate(self):
+        tutorial = self.__tutorialLoader.tutorial
+        return ValidationResult(False, PREBATTLE_RESTRICTION.TUTORIAL_NOT_FINISHED) if tutorial is not None and not tutorial.isAllowedToFight() else super(TutorialActionsValidator, self)._validate()
+
+
+class ActionsValidatorComposite(BaseActionsValidator):
+
+    def __init__(self, entity, validators=None, warnings=None):
+        super(ActionsValidatorComposite, self).__init__(entity)
+        self.__validators = validators or []
+        self.__warnings = warnings or []
+
+    def addValidator(self, validator):
+        if isinstance(validator, IActionsValidator):
+            self.__validators.append(validator)
+        else:
+            _logger.error('Validator should extends IActionsValidator: %r', validator)
+
+    def removeValidator(self, validator):
+        self.__validators.remove(validator)
+
+    def addWarning(self, warning):
+        if isinstance(warning, IActionsValidator):
+            self.__warnings.append(warning)
+        else:
+            _logger.error('Warning object should extends IActionsValidator: %r', warning)
+
+    def removeWarning(self, warning):
+        self.__warnings.remove(warning)
+
+    def _validate(self):
+        for validator in self.__validators:
+            result = validator.canPlayerDoAction()
+            if result is not None:
+                return result
+
+        for warning in self.__warnings:
+            result = warning.canPlayerDoAction()
+            if result is not None:
+                if not result.isValid:
+                    raise SoftException('Warnings could not be invalid!')
+                return result
+
+        return super(ActionsValidatorComposite, self)._validate()

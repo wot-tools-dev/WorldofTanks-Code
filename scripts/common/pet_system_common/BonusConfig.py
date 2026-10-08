@@ -1,0 +1,19 @@
+from __future__ import absolute_import
+import typing
+from pet_system_common.pet_constants import PetBonusesConsts as pc
+if typing.TYPE_CHECKING:
+    from typing import Dict
+
+class BonusConfig(object):
+
+    def __init__(self, config):
+        self._config = config
+
+    def getBonuses(self):
+        return self._config
+
+    def getBonusById(self, bonusID):
+        return self._config.get(bonusID, {})
+
+    def getBonusResources(self, bonusID):
+        return self.getBonusById(bonusID).get(pc.BONUS_RESOURCE, pc.EMPTY_BONUS)

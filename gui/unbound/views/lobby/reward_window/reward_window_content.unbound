@@ -1,0 +1,310 @@
+(def macro RewardWindowBase(descText:expression, rendererName:str='RewardRenderer')
+    (style
+        (width = 445px)
+        (minHeight = 300px)
+    )
+
+    # block image, desc and btn
+    (block
+        (name = 'contentBlock')
+        (style
+            (width = 100%)
+            (align = "center")
+            (paddingBottom = 30px)
+        )
+
+        (image
+            (name = 'bgImg')
+            (bind source "R.images.gui.maps.icons.windows.rewardWindow[eventName+'_background']()" init=false)
+        )
+
+        (block
+            (name = 'ribbon')
+            (bind visible "showRewards")
+            (image
+                (source = "R.images.gui.maps.icons.windows.rewardWindow.awardRibbon()")
+            )
+
+            (group 'rewardsList'
+                (renderer = "rendererName")
+                (container
+                    (style
+                        (bind flow "Flow.HORIZONTAL")
+                        (gap = 16px)
+                        (paddingTop = 5px)
+                    )
+                )
+                (style
+                    (position = 'absolute')
+                    (align = "center")
+                    (width = 100%)
+                    (height = 100%)
+                )
+            )
+        )
+
+        (element Separator sepWidth=445)
+
+        (tf
+            (name = 'descTF')
+            (style
+                (marginTop = 20px)
+                (marginBottom = 15px)
+                (width = 405px)
+            )
+
+            (bind htmlText "htmlTextStyle(descText, 'MainTextStyle', 'center')"
+                (enabled = "descText != ''")
+            )
+            (dispatch onHyperLinkClicked on='link')
+        )
+
+    (hblock
+        (name = 'buttons')
+        (style
+            (gap = 10px)
+        )
+            (button 'confirmBtn'
+                (macro ButtonStylePrimary "BUTTON_SIZE_LARGE")
+                (style
+                    (width = 160px)
+                )
+                (bind label "R.strings.ingame_gui.rewardWindow[eventName].btnLabel()"  init=false)
+                (dispatch onConfirmBtnClicked on='clicked')
+            )
+
+            (button 'secondBtn'
+                (macro ButtonStyleSecondary "BUTTON_SIZE_LARGE")
+                (style
+                    (width = 160px)
+                )
+                (bind label "R.strings.ingame_gui.rewardWindow[eventName].secondBtnLabel.exists() ? R.strings.ingame_gui.rewardWindow[eventName].secondBtnLabel() : ''" init=false)
+                (dispatch onSecondBtnClicked on='clicked')
+                (bind visible "R.strings.ingame_gui.rewardWindow[eventName].secondBtnLabel.exists()")
+            )
+        )
+    )
+
+    # block with title text
+    (block
+        (name = 'titleBlock')
+        (style
+            (position = "absolute")
+            (width = 100%)
+            (height = 300px)
+            (align = "center")
+            (marginTop = 23px)
+            (gap = -5px)
+        )
+
+        (tf
+            (name = 'subHeaderTF')
+            (class VehicleStatusSimpleTextStyle)
+            (bind text "R.strings.ingame_gui.rewardWindow[eventName].subHeaderText()"  init=false)
+        )
+        (tf
+            (name = 'headerTF')
+            (class SuperPromoTitleTextStyle)
+            (bind text "R.strings.ingame_gui.rewardWindow[eventName].headerText()"  init=false)
+        )
+    )
+)
+
+(def element RewardWindowContent() layout=true entrance=true
+    (macro RewardWindowContentModel)
+    (scope
+        (var descTxt:str = "R.strings.ingame_gui.rewardWindow[eventName].descText()")
+    )
+    (macro RewardWindowBase descText="descTxt")
+)
+
+(def element RewardRenderer() layout=true
+    (macro RewardRendererModel)
+    (scope
+        (var textAlignMap:dict = {
+            'left': "left",
+            'right': "right",
+            'center': "center"
+        })
+    )
+    (style
+        (align = "center")
+        (width = 48px)
+        (height = 68px)
+    )
+    (mouseChildren = false)
+
+    (image
+        (style
+            (hcenter = 0)
+            (vcenter = 0)
+            (position = "absolute")
+        )
+        (name = 'highlightType')
+        (bind source "highlightType" init=false)
+        (bind visible "highlightType != ''")
+    )
+
+    (image
+        (style
+            (position = "absolute")
+            (hcenter = 0px)
+            (vcenter = 0px)
+        )
+        (name = 'icon')
+        (bind source "icon" init=false)
+    )
+
+    (image
+        (style
+            (hcenter = 0px)
+            (vcenter = 0px)
+            (position = "absolute")
+        )
+        (name = 'overlayType')
+        (bind source "overlayType" init=false)
+        (bind visible "overlayType != ''")
+    )
+
+    (image
+        (style
+            (marginTop = 8px)
+            (right = 0)
+            (position = "absolute")
+        )
+        (name = 'hasCompensation')
+        (bind source "R.images.gui.maps.icons.library.store.condition_on()")
+        (bind visible "hasCompensation")
+    )
+
+    (hblock
+        (name = 'labelBlock')
+        (style
+            (position = "absolute")
+            (top = 48px)
+            (hcenter = 0)
+            (minWidth = 48px)
+            (align = "center")
+            (bind align "textAlignMap[labelAlign]" init=false)
+        )
+        (tf
+            (name = 'label')
+            (bind htmlText "labelStr")
+        )
+        (bind visible "labelStr != ''")
+    )
+
+    (controller $ToolTip
+        (args tooltipId="tooltipId")
+        (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+    )
+)
+
+(def element BigRewardRenderer() layout=true
+    (macro RewardRendererModel)
+    (style
+         (align = "center|middle")
+        (flow = "Flow.HORIZONTAL")
+        (top = 18px)
+    )
+
+    (tf
+        (name = 'label')
+        (style
+            (position = "absolute")
+            (hcenter = 0px)
+            (vcenter = 40px)
+        )
+        (bind htmlText "htmlTextStyle(labelStr, 'GrandTitleTextStyle')" init=false)
+    )
+
+    (image
+        (style
+            (position = "absolute")
+            (hcenter = 0px)
+            (vcenter = 0px)
+        )
+        (name = 'highlightType')
+        (bind source "highlightType" init=false)
+        (bind visible "highlightType != ''")
+    )
+
+    (image
+        (name = 'icon')
+        (bind source "icon" init=false)
+    )
+
+    (image
+        (style
+            (position = "absolute")
+            (hcenter = 0px)
+            (vcenter = 0px)
+        )
+        (name = 'overlayType')
+        (bind source "overlayType" init=false)
+        (bind visible "overlayType != ''")
+    )
+
+    (block
+        (name = 'hit')
+        (style
+            (position = "absolute")
+            (width = 100%)
+            (height = 100%)
+            (backgroundColor=0xFF000000)
+            (alpha = 0)
+        )
+    )
+    (hitArea = "$target.hit")
+    (mouseChildren = false)
+
+    (controller $ToolTip
+        (args tooltipId="tooltipId")
+        (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+    )
+)
+
+(def element PiggyBankRewardRenderer() layout=true
+    (macro RewardRendererModel)
+    (style
+        (position = "absolute")
+        (hcenter = 0px)
+        (top = 16px)
+        (flow = "Flow.HORIZONTAL")
+    )
+    (mouseChildren = false)
+
+    (tf
+        (name = 'label')
+        (bind htmlText "htmlTextStyle(labelStr, 'GrandTitleTextStyle')" init=false)
+    )
+
+    (image
+        (style
+            (marginTop = 1px)
+        )
+        (name = 'icon')
+        (bind source "icon" init=false)
+    )
+
+    (controller $ToolTip
+        (args tooltipId="tooltipId")
+        (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+    )
+)
+
+(def element Separator(sepWidth:number=445) layout=true
+    (mouseChildren = false)
+    (mouseEnabled = false)
+    (image
+        (name = 'separator')
+        (style
+            (marginTop = -85px)
+            (width = "sepWidth")
+        )
+        (source = "R.atlases.components.separator()")
+    )
+)

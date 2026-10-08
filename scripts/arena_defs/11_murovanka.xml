@@ -1,0 +1,189 @@
+<11_murovanka.xml>
+  <name>	#arenas:11_murovanka/name	</name>
+  <description>	#arenas:11_murovanka/description	</description>
+  <geometry>	spaces/11_murovanka	</geometry>
+  <estimatedLoad>	0.3	</estimatedLoad>
+  <roundLength>	900	</roundLength>
+  <boundingBox>
+    <bottomLeft>	-500.000000 -500.000000	</bottomLeft>
+    <upperRight>	500.000000 500.000000	</upperRight>
+  </boundingBox>
+  <minimap>	spaces/11_murovanka/mmap.dds	</minimap>
+  <vehicleCamouflageKind>	summer	</vehicleCamouflageKind>
+  <defaultGroundEffect>	None	</defaultGroundEffect>
+  <umbraEnabled>	1	</umbraEnabled>
+  <batchingEnabled>	0	</batchingEnabled>
+  <wwmusicSetup>
+    <wwmusicLoading>	music_murovanka_loading_screen	</wwmusicLoading>
+    <wwmusicIntensive>	music_murovanka_dron_intensive	</wwmusicIntensive>
+    <wwmusicRelaxed>	music_murovanka_dron_relaxed	</wwmusicRelaxed>
+    <wwmusicStop>	music_dron_stop	</wwmusicStop>
+    <wwmusicEndbattleStop>	music_dron_endbattle_stop	</wwmusicEndbattleStop>
+    <wwmusicResultWin>	music_murovanka_result_win	</wwmusicResultWin>
+    <wwmusicResultDrawn>	music_murovanka_result_drawn	</wwmusicResultDrawn>
+    <wwmusicResultDefeat>	music_murovanka_result_defeat	</wwmusicResultDefeat>
+  </wwmusicSetup>
+  <wwambientSound>	ambient_wind_autumn_01	</wwambientSound>
+  <water>
+    <texScale>	0	</texScale>
+    <freqX>	0	</freqX>
+    <freqZ>	0	</freqZ>
+  </water>
+  <gameplayTypes>
+    <ctf>
+      <teamBasePositions>
+        <team1>
+          <position1>	-55.000191 417.299988	</position1>
+        </team1>
+        <team2>
+          <position1>	-55.000278 -407.199982	</position1>
+        </team2>
+      </teamBasePositions>
+    </ctf>
+    <domination>
+      <teamSpawnPoints>
+        <team1>
+          <position>	-144.346268 428.046478	</position>
+        </team1>
+        <team2>
+          <position>	-183.125580 -387.177063	</position>
+        </team2>
+      </teamSpawnPoints>
+      <controlPoint>	-373.270294 9.961809	</controlPoint>
+    </domination>
+    <assault2>
+      <winnerIfTimeout>	1	</winnerIfTimeout>
+      <winnerIfExtermination>	1	</winnerIfExtermination>
+      <teamSpawnPoints>
+        <team1>
+          <position>	-101.549004 -428.605988	</position>
+        </team1>
+        <team2>
+          <position>	-27.412001 293.697998	</position>
+        </team2>
+      </teamSpawnPoints>
+      <teamBasePositions>
+        <team1>
+          <position1>	-379.172791 5.871974	</position1>
+          <position2>	131.785217 -307.999268	</position2>
+        </team1>
+        <team2></team2>
+      </teamBasePositions>
+    </assault2>
+    <comp7>
+      <visualScript>
+        <server>
+          <plan>	PointsOfInterest/pointsOfInterest	</plan>
+        </server>
+      </visualScript>
+      <recon>
+        <flyDirections>
+          <flyDirection>
+            <team>	1	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+          <flyDirection>
+            <team>	2	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+        </flyDirections>
+      </recon>
+      <minimap>	spaces/11_murovanka/mmap_comp7.dds	</minimap>
+      <pointsOfInterestUDO>
+        <point>
+          <position>	0.364715 208.672653	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	-48.209579 1.488499	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	-25.792994 -186.689484	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	169.309250 22.241888	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	-467.118958 5.488902	</position>
+          <type>	2	</type>
+        </point>
+      </pointsOfInterestUDO>
+      <teamSpawnPoints>
+        <team1>
+          <position>	-168.181549 385.068298	</position>
+        </team1>
+        <team2>
+          <position>	-209.966751 -368.118164	</position>
+        </team2>
+      </teamSpawnPoints>
+      <controlPoint>	-326.377045 6.085840	</controlPoint>
+    </comp7>
+  </gameplayTypes>
+  <mapActivities></mapActivities>
+  <modules>
+    <common>
+      <module>	BW::CgfCameraModule	</module>
+      <module>	BW::CollisionSceneModule	</module>
+      <module>	cgf::network::ClientNetworkModule	</module>
+      <module>	BW::CompoundModule	</module>
+      <module>	cgf::network::NetworkModule	</module>
+      <module>	vehicle::hierarchy::EntityHelpersModule	</module>
+      <module>	vehicle::hierarchy::VehicleHierarchyModule	</module>
+      <module>	BW::EffectsDebugModule	</module>
+      <module>	BW::ControlPointModule	</module>
+      <module>	BW::EntityFiltersModule	</module>
+      <module>	BW::EffectHandlersModule	</module>
+      <module>	BW::EffectsModule	</module>
+      <module>	BW::ArmorFlashlight::ArmorFlashlightModule	</module>
+      <module>	BW::VisibilityTunnelModule	</module>
+      <module>	BW::input::InputModule	</module>
+      <module>	BW::RompModule	</module>
+      <module>	cgf::events::EventsModule	</module>
+      <module>	cgf::FoundationModule	</module>
+      <module>	cgf::TriggersModule	</module>
+      <module>	BW::ConstraintsModule	</module>
+      <module>	BW::CGF::GenericComponentsModule	</module>
+      <module>	BW::tags::TagsModule	</module>
+      <module>	BW::variables::VariablesModule	</module>
+      <module>	vehicle::hierarchy::HierarchyModule	</module>
+      <module>	BW::DebugSoundRenderModule	</module>
+      <module>	cgf_debug_render::Module	</module>
+      <module>	BW::VisualScriptModule	</module>
+      <module>	BW::GameLogicModule	</module>
+      <module>	BW::SoundModule	</module>
+      <module>	BW::SoundSpatialModule	</module>
+      <module>	wot_physics::Module	</module>
+      <module>	BW::GpuDecalsModule	</module>
+      <module>	BW::WotRenderModule	</module>
+      <module>	BW::WULF::Module	</module>
+      <module>	BW::VehicleBasicModule	</module>
+      <module>	BW::VehicleCommonModule	</module>
+      <module>	BW::VehicleDrivetrainModule	</module>
+      <module>	BW::VehicleAudioModule	</module>
+      <module>	BW::VehicleTracksModule	</module>
+      <module>	BW::VehicleGunModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::ClientCommonModule	</module>
+      <module>	script::ClientUiModule	</module>
+      <module>	script::VehicleAppearanceModule	</module>
+      <module>	BW::SpaceZonesModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::CommonServerModule	</module>
+      <module>	script::VehicleRuleModule	</module>
+      <module>	script::ClientKillCamModule	</module>
+      <module>	script::ClientAbilitiesModule	</module>
+      <module>	script::RamDebugModule	</module>
+      <module>	script::VehicleSystemsModule	</module>
+      <module>	script::CommonScriptsModule	</module>
+      <module>	BW::ServerModule	</module>
+      <module>	BW::VehicleStatusesModule	</module>
+      <module>	BW::VehicleTriggersModule	</module>
+    </common>
+    <comp7>
+      <module>	script::PointsOfInterestModule	</module>
+    </comp7>
+  </modules>
+</11_murovanka.xml>

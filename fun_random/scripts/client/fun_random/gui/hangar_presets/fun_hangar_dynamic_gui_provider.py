@@ -1,0 +1,18 @@
+from __future__ import absolute_import
+from fun_random_common.fun_constants import ARENA_BONUS_TYPE
+from fun_random.gui.feature.util.fun_wrappers import hasDesiredSubMode
+from fun_random.gui.feature.util.fun_mixins import FunSubModesWatcher
+from fun_random.gui.Scaleform.daapi.view.lobby.header.helpers.controls_helpers import FunRandomLobbyHeaderHelper
+from fun_random.gui.impl.lobby.hangar.presenters.fun_random_vehicle_menu_helper import FunRandomHangarVehicleMenuHelper
+from gui.hangar_presets.providers.base_dynamic_gui_provider import BaseHangarDynamicGuiProvider
+from gui.impl.lobby.missions.missions_helpers import DefaultMissionsGuiHelper
+
+class FunRandomHangarDynamicGuiProvider(BaseHangarDynamicGuiProvider, FunSubModesWatcher):
+    _BONUS_TYPES = (ARENA_BONUS_TYPE.FUN_RANDOM,)
+    _LOBBY_HEADER_HELPER = FunRandomLobbyHeaderHelper
+    _MISSIONS_HELPER = DefaultMissionsGuiHelper
+    _VEHICLE_MENU_HELPER = FunRandomHangarVehicleMenuHelper
+
+    @hasDesiredSubMode(abortAction='getDefaultBattleModifiers')
+    def getBattleModifiers(self):
+        return self.getDesiredSubMode().getModifiersDataProvider().getModifiers()

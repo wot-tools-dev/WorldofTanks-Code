@@ -1,0 +1,81 @@
+(def constant SLOT_PADDING 12px)
+
+(def macro SlotButtonFade(statesDict:expression)
+    (scope
+        (var fadeStates:dict = "statesDict")
+
+        (var currFadeStateClass:dict = "fadeStates.normal" watch=true)
+
+        (bind currFadeStateClass "selected ? fadeStates.selected : fadeStates.normal" init=false (event "evBtnOutEvent"))
+        (bind currFadeStateClass "selected ? fadeStates.selected : fadeStates.normal" watch=false init=false (event "evBtnOverEvent"))
+    )
+
+    (block
+        (class AbsPositionFullSizeStyle)
+        (block
+            (style
+                (width = 100%) (height = 100%)
+                (backgroundSize = "fill")
+            )
+            (bind class "currFadeStateClass.style")
+            (alpha = 0)
+            (controller $Animation
+                (bindcall stop watch=false (event "evBtnDownEvent") (enabled="isFocused"))
+                (bindcall play duration=0.2 to={alpha:0} (event "evBtnOutEvent") (enabled="!isFocused"))
+                (bindcall play duration=0.2 to={alpha:0} (event "evBtnDownEvent") (enabled="isFocused"))
+                (bindcall play duration=0.2 to={alpha:1} (event "evBtnUpEvent") (enabled="isFocused"))
+                (bindcall play duration=0.2 to={alpha:1} (event "evBtnOverEvent"))
+                (bindcall play duration=0.2 to={alpha:1} watch=false (event "evBtnFocusChange") (enabled="isFocused"))
+                (bindcall play duration=0.2 to={alpha:0} watch=false (event "evBtnFocusChange") (enabled="!isFocused"))
+            )
+        )
+    )
+)
+
+(def element HitMC(name:str) layout=true
+    (name = "name")
+    (style
+        (position = "absolute")
+        (width = 100%) (height = 100%)
+        (backgroundColor=0xff00ff00)
+        (alpha = 0)
+    )
+)
+
+(def macro SlotButtonBasic() layout = true
+    (macro ButtonModel)
+    (macro ComponentStateBaseLogic "SLOT_BTN_FRAME")
+
+    (scope
+        (bind _isEnabled "isEnabled")
+    )
+    (block
+        (view_holder 'background'
+            (style
+                (position = "absolute")
+            )
+            (controller $Animation
+                (bindcall play duration=0.2 to={alpha:1.0} (event "evBtnOutEvent"))
+                (bindcall play duration=0.2 to={alpha:0.5} (event "evBtnDownEvent"))
+                (bindcall play duration=0.2 to={alpha:0.5} (event "evBtnOverEvent") (bind enabled "_isPressed"))
+                (bindcall play duration=0.2 to={alpha:1} (event "evBtnUpEvent"))
+                (bindcall play duration=0.2 to={alpha:1} (event "evBtnEnabledEvent"))
+            )
+        )
+        (view_holder 'content')
+    )
+    (macro ComponentStateBaseContent)
+    (macro SlotButtonFade "SLOT_BTN_FADE")
+    
+    (view_holder 'overlay'
+        (style
+            (position = "absolute")
+        )
+    )
+
+    (bind alpha "_isEnabled ? 1.0 : 0.6")
+    (element HitMC 'hitMc')
+    (hitArea = "$target.hitMc")
+    (mouseChildren = false)
+    (buttonMode = true)
+)

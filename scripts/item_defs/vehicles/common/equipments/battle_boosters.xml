@@ -1,0 +1,692 @@
+<battle_boosters.xml>
+  <improvedConfigurationBattleBooster>
+    <id>	103	</id>
+    <userString>	#artefacts:improvedConfigurationBattleBooster/name	</userString>
+    <description>	#artefacts:improvedConfigurationBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:improvedConfigurationBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:improvedConfigurationBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	improvedConfiguration	</icon>
+    <price>	6	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <vehicleFilter>
+      <include>
+        <vehicle>
+          <minLevel>	5	</minLevel>
+        </vehicle>
+      </include>
+    </vehicleFilter>
+    <tags>	notForSale equipmentBattleBooster armor	</tags>
+    <script>	FactorBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	improvedConfiguration	</required>
+            <incompatible>	deluxe	</incompatible>
+          </tags>
+        </deviceFilter>
+        <attribute>	repairSpeed	</attribute>
+        <factor>	1.1	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	improvedConfiguration deluxe	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	repairSpeed	</attribute>
+        <factor>	1.1	</factor>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	vehicleRepairSpeed	</name>
+        <value>	1.1	</value>
+      </mul>
+    </kpi>
+  </improvedConfigurationBattleBooster>
+  <improvedVentilationBattleBooster>
+    <id>	104	</id>
+    <userString>	#artefacts:improvedVentilationBattleBooster/name	</userString>
+    <description>	#artefacts:improvedVentilationBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:improvedVentilationBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:improvedVentilationBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	improvedVentilation	</icon>
+    <price>	12	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <vehicleFilter>
+      <include>
+        <vehicle>
+          <tags>	improvedVentilation_class1_user improvedVentilation_class2_user improvedVentilation_class3_user	</tags>
+        </vehicle>
+      </include>
+    </vehicleFilter>
+    <tags>	notForSale equipmentBattleBooster armor firepower camouflage reconnaissance mobility	</tags>
+    <script>	AdditiveBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	ventilation	</required>
+            <incompatible>	deluxe	</incompatible>
+          </tags>
+        </deviceFilter>
+        <attribute>	crewLevelIncrease	</attribute>
+        <value>	2.5	</value>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	ventilation deluxe	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	crewLevelIncrease	</attribute>
+        <value>	2.5	</value>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	crewLevel	</name>
+        <value>	1.025	</value>
+      </mul>
+    </kpi>
+    <tooltipSection>	crew_mastery	</tooltipSection>
+  </improvedVentilationBattleBooster>
+  <rammerBattleBooster>
+    <id>	105	</id>
+    <userString>	#artefacts:rammerBattleBooster/name	</userString>
+    <description>	#artefacts:rammerBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:rammerBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:rammerBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	rammer	</icon>
+    <price>	12	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <vehicleFilter>
+      <include>
+        <vehicle>
+          <tags>	tankRammer_class1_user tankRammer_class2_user	</tags>
+        </vehicle>
+      </include>
+    </vehicleFilter>
+    <tags>	notForSale equipmentBattleBooster firepower	</tags>
+    <script>	FactorBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	rammer	</required>
+            <incompatible>	deluxe trophyUpgraded	</incompatible>
+          </tags>
+        </deviceFilter>
+        <attribute>	gun/reloadTime	</attribute>
+        <factor>	0.972	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	rammer deluxe	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	gun/reloadTime	</attribute>
+        <factor>	0.971	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	rammer trophyUpgraded	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	gun/reloadTime	</attribute>
+        <factor>	0.971	</factor>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	vehicleGunReloadTime	</name>
+        <value>	0.975	</value>
+      </mul>
+    </kpi>
+  </rammerBattleBooster>
+  <coatedOpticsBattleBooster>
+    <id>	106	</id>
+    <userString>	#artefacts:coatedOpticsBattleBooster/name	</userString>
+    <description>	#artefacts:coatedOpticsBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:coatedOpticsBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:coatedOpticsBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	coatedOptics	</icon>
+    <price>	8	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale equipmentBattleBooster reconnaissance	</tags>
+    <script>	FactorBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	coatedOptics	</required>
+            <incompatible>	deluxe	</incompatible>
+          </tags>
+        </deviceFilter>
+        <attribute>	circularVisionRadius	</attribute>
+        <factor>	1.023	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	coatedOptics deluxe	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	circularVisionRadius	</attribute>
+        <factor>	1.023	</factor>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	vehicleCircularVisionRadius	</name>
+        <value>	1.025	</value>
+      </mul>
+    </kpi>
+  </coatedOpticsBattleBooster>
+  <aimingStabilizerBattleBooster>
+    <id>	107	</id>
+    <userString>	#artefacts:aimingStabilizerBattleBooster/name	</userString>
+    <description>	#artefacts:aimingStabilizerBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:aimingStabilizerBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:aimingStabilizerBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	aimingStabilizer	</icon>
+    <price>	10	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <vehicleFilter>
+      <include>
+        <vehicle>
+          <tags>	aimingStabilizer_class1_user aimingStabilizer_class2_user	</tags>
+        </vehicle>
+      </include>
+    </vehicleFilter>
+    <tags>	notForSale equipmentBattleBooster firepower	</tags>
+    <script>	FactorBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	aimingStabilizer	</required>
+            <incompatible>	deluxe	</incompatible>
+          </tags>
+        </deviceFilter>
+        <attribute>	additiveShotDispersionFactor	</attribute>
+        <factor>	0.938	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	aimingStabilizer deluxe	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	additiveShotDispersionFactor	</attribute>
+        <factor>	0.933	</factor>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	vehicleGunShotDispersion	</name>
+        <value>	0.95	</value>
+      </mul>
+    </kpi>
+  </aimingStabilizerBattleBooster>
+  <enhancedAimDrivesBattleBooster>
+    <id>	108	</id>
+    <userString>	#artefacts:enhancedAimDrivesBattleBooster/name	</userString>
+    <description>	#artefacts:enhancedAimDrivesBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:enhancedAimDrivesBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:enhancedAimDrivesBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	enhancedAimDrives	</icon>
+    <price>	10	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale equipmentBattleBooster firepower	</tags>
+    <script>	FactorBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	enhancedAimDrives	</required>
+            <incompatible>	deluxe trophyUpgraded	</incompatible>
+          </tags>
+        </deviceFilter>
+        <attribute>	gun/aimingTime	</attribute>
+        <factor>	0.978	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	enhancedAimDrives deluxe	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	gun/aimingTime	</attribute>
+        <factor>	0.98	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	enhancedAimDrives trophyUpgraded	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	gun/aimingTime	</attribute>
+        <factor>	0.98	</factor>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	vehicleGunAimSpeed	</name>
+        <value>	1.025	</value>
+      </mul>
+    </kpi>
+  </enhancedAimDrivesBattleBooster>
+  <camouflageBattleBooster>
+    <id>	109	</id>
+    <userString>	#artefacts:camouflageBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:camouflageBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:camouflageBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	naturalCover	</icon>
+    <price>	20000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster camouflage	</tags>
+    <script>	FactorSkillBattleBooster	  <skillName>	camouflage	</skillName>
+      <efficiencyFactor>	1.1	</efficiencyFactor>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillCamouflage	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	vehicleCamouflage	</name>
+          <value>	1.1	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </camouflageBattleBooster>
+  <smoothTurretBattleBooster>
+    <id>	110	</id>
+    <userString>	#artefacts:smoothTurretBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:smoothTurretBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:smoothTurretBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	gunner_smoothTurret	</icon>
+    <price>	10000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster firepower	</tags>
+    <script>	SkillEquipment	  <skillName>	gunner_smoothTurret	</skillName>
+      <perkLevelMultiplier>	2.0	</perkLevelMultiplier>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillSmoothTurret	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	crewSkillSmoothTurret	</name>
+          <value>	2	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </smoothTurretBattleBooster>
+  <virtuosoBattleBooster>
+    <id>	111	</id>
+    <userString>	#artefacts:virtuosoBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:virtuosoBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:virtuosoBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	driver_virtuoso	</icon>
+    <price>	10000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster mobility	</tags>
+    <script>	SkillEquipment	  <skillName>	driver_virtuoso	</skillName>
+      <perkLevelMultiplier>	2.0	</perkLevelMultiplier>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillVirtuoso	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	crewSkillVirtuoso	</name>
+          <value>	2	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </virtuosoBattleBooster>
+  <smoothDrivingBattleBooster>
+    <id>	112	</id>
+    <userString>	#artefacts:smoothDrivingBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:smoothDrivingBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:smoothDrivingBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	driver_smoothDriving	</icon>
+    <price>	10000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster firepower	</tags>
+    <script>	SkillEquipment	  <skillName>	driver_smoothDriving	</skillName>
+      <perkLevelMultiplier>	2.0	</perkLevelMultiplier>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillSmoothRiding	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	crewSkillSmoothRiding	</name>
+          <value>	2	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </smoothDrivingBattleBooster>
+  <fireFightingBattleBooster>
+    <id>	113	</id>
+    <userString>	#artefacts:fireFightingBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:fireFightingBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:fireFightingBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	fireFighting	</icon>
+    <price>	20000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster armor	</tags>
+    <script>	SkillEquipment	  <skillName>	fireFighting	</skillName>
+      <efficiencyFactor>	1.5	</efficiencyFactor>
+      <perkLevelMultiplier>	1.5	</perkLevelMultiplier>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillFireFighting	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	crewSkillFireFighting	</name>
+          <value>	1.5	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </fireFightingBattleBooster>
+  <sixthSenseBattleBooster>
+    <id>	114	</id>
+    <userString>	#artefacts:sixthSenseBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:sixthSenseBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:sixthSenseBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	commander_sixthSense	</icon>
+    <price>	20000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster armor notBuyWhenAutoEquip hideIfNotInShop builtinPerkBooster	</tags>
+    <notInShop>	true	</notInShop>
+    <script>	SixthSenseBattleBooster	  <skillName>	commander_sixthSense	</skillName>
+      <delay>	2	</delay>
+    </script>
+  </sixthSenseBattleBooster>
+  <rancorousBattleBooster>
+    <id>	115	</id>
+    <userString>	#artefacts:rancorousBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:rancorousBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:rancorousBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	gunner_rancorous	</icon>
+    <price>	20000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster reconnaissance	</tags>
+    <script>	SkillEquipment	  <skillName>	gunner_rancorous	</skillName>
+      <perkLevelMultiplier>	2	</perkLevelMultiplier>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillRancorous	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	crewSkillRancorousDuration	</name>
+          <value>	2	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </rancorousBattleBooster>
+  <pedantBattleBooster>
+    <id>	116	</id>
+    <userString>	#artefacts:pedantBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:pedantBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:pedantBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	loader_pedant	</icon>
+    <price>	10000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster armor	</tags>
+    <script>	SkillEquipment	  <skillName>	loader_pedant	</skillName>
+      <perkLevelMultiplier>	3.0	</perkLevelMultiplier>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillPedant	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	vehicleAmmoBayStrength	</name>
+          <value>	3.0	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </pedantBattleBooster>
+  <lastEffortBattleBooster>
+    <id>	117	</id>
+    <userString>	#artefacts:lastEffortBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:lastEffortBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:lastEffortBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	radioman_lastEffort	</icon>
+    <price>	10000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster notBuyWhenAutoEquip hideIfNotInShop reconnaissance	</tags>
+    <notInShop>	true	</notInShop>
+    <script>	LastEffortBattleBooster	  <skillName>	radioman_lastEffort	</skillName>
+      <durationPerLevel>	0.03	</durationPerLevel>
+      <chanceToHitPerLevel>	0.0	</chanceToHitPerLevel>
+      <perkLevelMultiplier>	1.5	</perkLevelMultiplier>
+    </script>
+  </lastEffortBattleBooster>
+  <turbochargerBattleBooster>
+    <id>	202	</id>
+    <userString>	#artefacts:turbochargerBattleBooster/name	</userString>
+    <description>	#artefacts:turbochargerBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:turbochargerBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:turbochargerBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	turbocharger	</icon>
+    <price>	12	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale equipmentBattleBooster turbocharger notBuyWhenAutoEquip	</tags>
+    <notInShop>	true	</notInShop>
+    <vehicleFilter>
+      <exclude>
+        <vehicle>
+          <mandatoryTags>	wheeledVehicle lightTank	</mandatoryTags>
+        </vehicle>
+      </exclude>
+    </vehicleFilter>
+    <script>	FactorBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	turbocharger	</required>
+            <incompatible>	deluxe trophyUpgraded	</incompatible>
+          </tags>
+        </deviceFilter>
+        <attribute>	engine/power	</attribute>
+        <factor>	1.037	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	turbocharger deluxe	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	engine/power	</attribute>
+        <factor>	1.036	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	turbocharger trophyUpgraded	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	engine/power	</attribute>
+        <factor>	1.036	</factor>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	vehicleEnginePower	</name>
+        <value>	1.04	</value>
+      </mul>
+    </kpi>
+  </turbochargerBattleBooster>
+  <improvedSightsBattleBooster>
+    <id>	203	</id>
+    <userString>	#artefacts:improvedSightsBattleBooster/name	</userString>
+    <description>	#artefacts:improvedSightsBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:improvedSightsBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:improvedSightsBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	improvedSights	</icon>
+    <price>	10	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale equipmentBattleBooster improvedSights notBuyWhenAutoEquip	</tags>
+    <notInShop>	true	</notInShop>
+    <vehicleFilter>
+      <include>
+        <vehicle>
+          <tags>	lightTank mediumTank heavyTank AT-SPG	</tags>
+        </vehicle>
+      </include>
+    </vehicleFilter>
+    <script>	FactorBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	improvedSights	</required>
+            <incompatible>	deluxe trophyUpgraded	</incompatible>
+          </tags>
+        </deviceFilter>
+        <attribute>	multShotDispersionFactor	</attribute>
+        <factor>	0.979	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	improvedSights trophyUpgraded	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	multShotDispersionFactor	</attribute>
+        <factor>	0.978	</factor>
+      </level>
+      <level>
+        <deviceFilter>
+          <tags>
+            <required>	improvedSights deluxe	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	multShotDispersionFactor	</attribute>
+        <factor>	0.978	</factor>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	vehicleGunShotFullDispersion	</name>
+        <value>	0.98	</value>
+      </mul>
+    </kpi>
+  </improvedSightsBattleBooster>
+  <additInvisibilityDeviceBattleBooster>
+    <id>	204	</id>
+    <userString>	#artefacts:additInvisibilityDeviceBattleBooster/name	</userString>
+    <description>	#artefacts:additInvisibilityDeviceBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:additInvisibilityDeviceBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:additInvisibilityDeviceBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	additionalInvisibilityDevice	</icon>
+    <price>	10	  <crystal></crystal>
+    </price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale equipmentBattleBooster additInvisibilityDevice notBuyWhenAutoEquip	</tags>
+    <notInShop>	true	</notInShop>
+    <script>	InvisibilityBattleBooster	  <level>
+        <deviceFilter>
+          <tags>
+            <required>	additInvisibilityDevice	</required>
+          </tags>
+        </deviceFilter>
+        <attribute>	invisibility	</attribute>
+        <factors>	0.02 1.0	</factors>
+      </level>
+    </script>
+    <kpi>
+      <mul>
+        <name>	vehicleCamouflage	</name>
+        <value>	1.02	</value>
+      </mul>
+    </kpi>
+  </additInvisibilityDeviceBattleBooster>
+  <practicalityBattleBooster>
+    <id>	205	</id>
+    <userString>	#artefacts:practicalityBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:practicalityBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:practicalityBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	commander_practical	</icon>
+    <price>	20000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster armor	</tags>
+    <script>	SkillEquipment	  <skillName>	commander_practical	</skillName>
+      <perkLevelMultiplier>	2.0	</perkLevelMultiplier>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillPractical	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	crewSkillPractical	</name>
+          <value>	2.0	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </practicalityBattleBooster>
+  <enemyShotPredictorBattleBooster>
+    <id>	206	</id>
+    <userString>	#artefacts:enemyShotPredictorBattleBooster/name	</userString>
+    <description>	#artefacts:crewBattleBooster/descr	</description>
+    <shortDescriptionSpecial>	#artefacts:enemyShotPredictorBattleBooster/short_special	</shortDescriptionSpecial>
+    <longDescriptionSpecial>	#artefacts:enemyShotPredictorBattleBooster/long_special	</longDescriptionSpecial>
+    <icon>	commander_enemyShotPredictor	</icon>
+    <price>	10000	</price>
+    <type>	battleBoosters	</type>
+    <tags>	notForSale crewSkillBattleBooster armor	</tags>
+    <script>	SkillEquipment	  <skillName>	commander_enemyShotPredictor	</skillName>
+      <perkLevelMultiplier>	1.5	</perkLevelMultiplier>
+    </script>
+    <kpi>
+      <oneOf>
+        <boostSkill>
+          <name>	crewSkillStunResistance	</name>
+          <value>	1	</value>
+        </boostSkill>
+        <mul>
+          <name>	crewSkillStunResistance	</name>
+          <value>	1.5	</value>
+        </mul>
+      </oneOf>
+    </kpi>
+    <tooltipSection>	skills	</tooltipSection>
+  </enemyShotPredictorBattleBooster>
+</battle_boosters.xml>

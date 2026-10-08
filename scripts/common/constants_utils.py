@@ -1,0 +1,1081 @@
+from __future__ import absolute_import
+import types
+import typing
+from past.builtins import long
+from future.utils import viewitems, viewvalues
+import arena_bonus_type_caps
+import constants
+from UnitBase import CMD_NAMES, ROSTER_TYPE, PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER, PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER_EXT, ROSTER_TYPE_TO_CLASS, UNIT_MGR_FLAGS_TO_PREBATTLE_TYPE, UNIT_MGR_FLAGS_TO_UNIT_MGR_ENTITY_NAME, UNIT_MGR_FLAGS_TO_INVITATION_TYPE, QUEUE_TYPE_BY_UNIT_MGR_ROSTER, UNIT_ERROR, VEHICLE_TAGS_GROUP_BY_UNIT_MGR_FLAGS, UNIT_ASSEMBLER_IMPL_TO_CONFIG, PREBATTLE_TYPE_TO_UNIT_ASSEMBLER, UNIT_ASSEMBLER_IMPL_NAMES, UNIT_ASSEMBLER_IMPL_IDS
+from constants import ARENA_GUI_TYPE, ARENA_GUI_TYPE_LABEL, ARENA_BONUS_TYPE, ARENA_BONUS_TYPE_NAMES, ARENA_BONUS_TYPE_IDS, ARENA_BONUS_MASK, QUEUE_TYPE, QUEUE_TYPE_NAMES, PREBATTLE_TYPE, PREBATTLE_TYPE_NAMES, INVITATION_TYPE, BATTLE_MODE_VEHICLE_TAGS, SEASON_TYPE_BY_NAME, SEASON_NAME_BY_TYPE, QUEUE_TYPE_IDS, ARENA_BONUS_TYPE_TO_QUEUE_TYPE, ATTACK_REASONS, ATTACK_REASON_INDICES, DAMAGE_INFO_CODES, DAMAGE_INFO_INDICES, DAMAGE_INFO_CODES_PER_ATTACK_REASON, IS_CLIENT, INBATTLE_CONFIGS, IS_DEVELOPMENT, IS_CELLAPP
+from BattleFeedbackCommon import BATTLE_EVENT_TYPE
+from debug_utils import LOG_DEBUG
+from py2to3.patched_future import with_metaclass
+from soft_exception import SoftException
+if typing.TYPE_CHECKING:
+    from typing import Dict, Callable
+
+class ConstInjectorMeta(type):
+
+    def __new__(cls, clsname, bases, attrs):
+        attrs['_extra_attrs'] = tuple((attr for attr in attrs if attr[0] != '_'))
+        return super(ConstInjectorMeta, cls).__new__(cls, clsname, bases, attrs)
+
+
+class ConstInjector(with_metaclass(ConstInjectorMeta, object)):
+    _extra_attrs = ()
+    _const_type = (int, long)
+
+    @classmethod
+    def inject(cls, personality=None):
+        origin = cls.__bases__[0]
+        originValues = {originValue for originAttr, originValue in viewitems(origin.__dict__) if originAttr[0] != '_' and cls._isEligible(originValue)}
+        for attr in cls._extra_attrs:
+            value = getattr(cls, attr)
+            msg = "{cls}: origin {origin} already has attr '{attr}' with value '{value}'"
+            if hasattr(origin, attr) and cls._isEligible(value):
+                raise SoftException(msg.format(cls=cls, origin=origin, attr=attr, value=getattr(origin, attr)))
+            if value in originValues:
+                raise SoftException(msg.format(cls=cls, origin=origin, attr=attr, value=value))
+            setattr(origin, attr, value)
+
+        LOG_DEBUG('{extraAttrs} was injected to {origin}. Personality: {personality}'.format(extraAttrs=cls.getExtraAttrs(), origin=origin, personality=personality))
+
+    @classmethod
+    def getExtraAttrs(cls):
+        return {attr:getattr(cls, attr) for attr in cls._extra_attrs if cls._isEligible(getattr(cls, attr))}
+
+    @classmethod
+    def _isEligible(cls, value):
+        return isinstance(value, cls._const_type)
+
+
+def addArenaGuiTypesFromExtension(extArenaGuiType, personality):
+    extraAttrs = extArenaGuiType.getExtraAttrs()
+    extraValues = tuple(viewvalues(extraAttrs))
+    extArenaGuiType.inject(personality)
+    ARENA_GUI_TYPE.RANGE += extraValues
+    ARENA_GUI_TYPE.VOIP_SUPPORTED += extraValues
+    ARENA_GUI_TYPE.BATTLE_CHAT_SETTING_SUPPORTED += extraValues
+    ARENA_GUI_TYPE_LABEL.LABELS.update({value:attr.lower() for attr, value in viewitems(extraAttrs)})
+
+
+def addArenaBonusTypesFromExtension(extArenaBonusType, personality):
+    extraAttrs = extArenaBonusType.getExtraAttrs()
+    extraValues = tuple(viewvalues(extraAttrs))
+    extArenaBonusType.inject(personality)
+    ARENA_BONUS_TYPE.RANGE += extraValues
+    ARENA_BONUS_TYPE_NAMES.update(extraAttrs)
+    ARENA_BONUS_TYPE_IDS.update({value:attr for attr, value in viewitems(extraAttrs)})
+    ARENA_BONUS_MASK.reInit()
+
+
+def addArenaBonusCapsFromExtension(extArenaBonusCaps, personality):
+    extraAttrs = extArenaBonusCaps.getExtraAttrs()
+    extraValues = tuple(viewvalues(extraAttrs))
+    extArenaBonusCaps.inject(personality)
+    arena_bonus_type_caps.ALLOWED_ARENA_BONUS_TYPE_CAPS |= frozenset(extraValues)
+
+
+def addQueueTypesFromExtension(extQueueType, personality):
+    extraAttrs = extQueueType.getExtraAttrs()
+    extraValues = tuple(viewvalues(extraAttrs))
+    extQueueType.inject(personality)
+    QUEUE_TYPE.ALL += extraValues
+    QUEUE_TYPE_NAMES.update({value:attr for attr, value in viewitems(extraAttrs)})
+    QUEUE_TYPE_IDS.update({attr.lower():value for attr, value in viewitems(extraAttrs)})
+    QUEUE_TYPE.BASE_ON_DEQUEUE += extraValues
+
+
+def addPrebattleTypesFromExtension(extPrebattleType, personality):
+    extraAttrs = extPrebattleType.getExtraAttrs()
+    extraValues = tuple(viewvalues(extraAttrs))
+    extPrebattleType.inject(personality)
+    PREBATTLE_TYPE.RANGE += extraValues
+    PREBATTLE_TYPE.SQUAD_PREBATTLES += extraValues
+    PREBATTLE_TYPE.UNIT_MGR_PREBATTLES += extraValues
+    PREBATTLE_TYPE.CREATE_FROM_CLIENT += extraValues
+    PREBATTLE_TYPE.CREATE_EX_FROM_SERVER += extraValues
+    PREBATTLE_TYPE.JOIN_EX += extraValues
+    PREBATTLE_TYPE_NAMES.update({value:attr for attr, value in viewitems(extraAttrs)})
+
+
+def addBattleEventTypesFromExtension(extBattleEventType, personality):
+    extraAttrs = extBattleEventType.getExtraAttrs()
+    extBattleEventType.inject(personality)
+    BATTLE_EVENT_TYPE.ALL |= frozenset(viewvalues(extraAttrs))
+
+
+def addRosterTypes(extRosterType, personality):
+    extraAttrs = extRosterType.getExtraAttrs()
+    extRosterType.inject(personality)
+    for value in viewvalues(extraAttrs):
+        ROSTER_TYPE._MASK |= value
+
+
+def addInvitationTypes(extInvitationType, personality):
+    extraAttrs = extInvitationType.getExtraAttrs()
+    extInvitationType.inject(personality)
+    INVITATION_TYPE.RANGE += tuple(viewvalues(extraAttrs))
+
+
+def addClientUnitCmd(extClientUnitCmd, personality):
+    extraAttrs = extClientUnitCmd.getExtraAttrs()
+    extClientUnitCmd.inject(personality)
+    CMD_NAMES.update({value:attr for attr, value in viewitems(extraAttrs)})
+
+
+def addAttackReasonTypesFromExtension(extAttackReasonType, personality):
+    extraAttrs = extAttackReasonType.getExtraAttrs()
+    extraValues = sorted(viewvalues(extraAttrs))
+    extAttackReasonType.inject(personality)
+    ATTACK_REASONS.extend(extraValues)
+    ATTACK_REASON_INDICES.update(dict(((value, index) for index, value in enumerate(ATTACK_REASONS))))
+
+
+def addDamageResistanceReasonsFromExtension(extDmgResistReasonType, personality):
+    extDmgResistReasonType.inject(personality)
+
+
+def addBattleProgressCategory(extBattleProgressCategory, personality):
+    extBattleProgressCategory.inject(personality)
+
+
+def addDamageInfoCodes(infoCodesPerAttackReason, personality):
+    for _, damageInfoCode in sorted(viewitems(infoCodesPerAttackReason)):
+        if damageInfoCode in DAMAGE_INFO_INDICES:
+            continue
+        DAMAGE_INFO_INDICES[damageInfoCode] = len(DAMAGE_INFO_CODES)
+        DAMAGE_INFO_CODES.append(damageInfoCode)
+
+    DAMAGE_INFO_CODES_PER_ATTACK_REASON.update(infoCodesPerAttackReason)
+
+
+def addPrbTypeByUnitMgrRoster(prbType, unitMgrFlag, personality):
+    if prbType in PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER:
+        raise SoftException('PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER already has prbType:{prbType}. Personality: {p}'.format(prbType=prbType, p=personality))
+    PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER.update({prbType: unitMgrFlag})
+    msg = 'prbType:{prbType} was added to PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER. Personality: {p}'.format(prbType=prbType, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addQueueTypeByUnitMgrRoster(queueType, rosterType, personality):
+    if queueType in QUEUE_TYPE_BY_UNIT_MGR_ROSTER:
+        raise SoftException('QUEUE_TYPE_BY_UNIT_MGR_ROSTER already has queueType:{queueType}. Personality: {p}'.format(queueType=queueType, p=personality))
+    QUEUE_TYPE_BY_UNIT_MGR_ROSTER.update({queueType: rosterType})
+    msg = 'queueType:{queueType} was added to QUEUE_TYPE_BY_UNIT_MGR_ROSTER. Personality: {p}'.format(queueType=queueType, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addPrbTypeByUnitMgrRosterExt(prbType, unitMgrFlag, personality):
+    if prbType in PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER_EXT:
+        raise SoftException('PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER_EXT already has prbType:{prbType}. Personality: {p}'.format(prbType=prbType, p=personality))
+    PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER_EXT.update({prbType: unitMgrFlag})
+    msg = 'prbType:{prbType} was added to PREBATTLE_TYPE_BY_UNIT_MGR_ROSTER_EXT. Personality: {p}'.format(prbType=prbType, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addRosterTypeToClass(rosterType, rosterClass, personality):
+    if rosterType in ROSTER_TYPE_TO_CLASS:
+        raise SoftException('ROSTER_TYPE_TO_CLASS already has rosterType:{rosterType}. Personality: {p}'.format(rosterType=rosterType, p=personality))
+    ROSTER_TYPE_TO_CLASS.update({rosterType: rosterClass})
+    msg = 'rosterType:{rosterType} was added to ROSTER_TYPE_TO_CLASS. Personality: {p}'.format(rosterType=rosterType, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addUnitMgrFlagToPrbType(prbType, unitMgrFlag, personality):
+    if unitMgrFlag in UNIT_MGR_FLAGS_TO_PREBATTLE_TYPE:
+        raise SoftException('UNIT_MGR_FLAGS_TO_PREBATTLE_TYPE already has unitMgrFlag:{unitMgrFlag}. Personality: {p}'.format(unitMgrFlag=unitMgrFlag, p=personality))
+    UNIT_MGR_FLAGS_TO_PREBATTLE_TYPE.update({unitMgrFlag: prbType})
+    msg = 'unitMgrFlag:{unitMgrFlag} was added to UNIT_MGR_FLAGS_TO_PREBATTLE_TYPE. Personality: {p}'.format(unitMgrFlag=unitMgrFlag, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addUnitMgrFlagsToUnitMgrEntityName(unitMgrFlag, entityName, personality):
+    if unitMgrFlag in UNIT_MGR_FLAGS_TO_UNIT_MGR_ENTITY_NAME:
+        raise SoftException('UNIT_MGR_FLAGS_TO_UNIT_MGR_ENTITY_NAME already has unitMgrFlag:{unitMgrFlag}. Personality: {p}'.format(unitMgrFlag=unitMgrFlag, p=personality))
+    UNIT_MGR_FLAGS_TO_UNIT_MGR_ENTITY_NAME.update({unitMgrFlag: entityName})
+    msg = 'unitMgrFlag:{flag}->{name} was added to UNIT_MGR_FLAGS_TO_UNIT_MGR_ENTITY_NAME. Personality: {p}'.format(flag=unitMgrFlag, name=entityName, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addUnitMgrFlagToInvitationType(unitMgrFlag, invType, personality):
+    if unitMgrFlag in UNIT_MGR_FLAGS_TO_INVITATION_TYPE:
+        raise SoftException('UNIT_MGR_FLAGS_TO_INVITATION_TYPE already has unitMgrFlag:{unitMgrFlag}. Personality: {p}'.format(unitMgrFlag=unitMgrFlag, p=personality))
+    UNIT_MGR_FLAGS_TO_INVITATION_TYPE.update({unitMgrFlag: invType})
+    msg = 'unitMgrFlag:{flag}->{invType} was added to UNIT_MGR_FLAGS_TO_INVITATION_TYPE. Personality: {p}'.format(flag=unitMgrFlag, invType=invType, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addArenaBonusTypeToQueueType(bonusType, queueType, personality):
+    if bonusType in ARENA_BONUS_TYPE_TO_QUEUE_TYPE:
+        raise SoftException('ARENA_BONUS_TYPE_TO_QUEUE_TYPE already has bonusType:{bonusType}. Personality: {p}'.format(bonusType=bonusType, p=personality))
+    ARENA_BONUS_TYPE_TO_QUEUE_TYPE.update({bonusType: queueType})
+    msg = 'bonusType:{bonusType}->{queueType} was added to ARENA_BONUS_TYPE_TO_QUEUE_TYPE. Personality: {p}'.format(bonusType=bonusType, queueType=queueType, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addInvitationTypeFromArenaBonusTypeMapping(arenaBonusType, invitationType, personality):
+    if arenaBonusType in INVITATION_TYPE.INVITATION_TYPE_FROM_ARENA_BONUS_TYPE_MAPPING:
+        raise SoftException('INVITATION_TYPE_FROM_ARENA_BONUS_TYPE_MAPPING already has ARENA_BONUS_TYPE:{arenaBonusType}. Personality: {p}'.format(arenaBonusType=arenaBonusType, p=personality))
+    INVITATION_TYPE.INVITATION_TYPE_FROM_ARENA_BONUS_TYPE_MAPPING.update({arenaBonusType: invitationType})
+    msg = 'ARENA_BONUS_TYPE:{arenaBonusType} was added to INVITATION_TYPE_FROM_ARENA_BONUS_TYPE_MAPPING. Personality: {p}'.format(arenaBonusType=arenaBonusType, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addVehicleTags(unitMgrFlag, requiredTags, forbiddenTags, newTags, personality):
+    BATTLE_MODE_VEHICLE_TAGS.update(newTags)
+    if unitMgrFlag in VEHICLE_TAGS_GROUP_BY_UNIT_MGR_FLAGS:
+        raise SoftException('VEHICLE_TAGS_GROUP_BY_UNIT_MGR_FLAGS already has unitMgrFlag:{unitMgrFlag}. Personality: {p}'.format(unitMgrFlag=unitMgrFlag, p=personality))
+    VEHICLE_TAGS_GROUP_BY_UNIT_MGR_FLAGS.update({unitMgrFlag: (requiredTags, forbiddenTags)})
+    msg = 'unitMgrFlag:{unitMgrFlag} was added to VEHICLE_TAGS_GROUP_BY_UNIT_MGR_FLAGS. Personality: {p}'.format(unitMgrFlag=unitMgrFlag, p=personality)
+    LOG_DEBUG(msg)
+
+
+def addBattleResultsConfig(arenaBonusType, config):
+    if config is None:
+        LOG_DEBUG('initBattleResultsConfigFromExtension: config is None')
+        return
+    else:
+        from battle_results import battle_results_constants
+        module = config.__name__
+        battle_results_constants.PATH_TO_CONFIG.setdefault(arenaBonusType, []).append(module)
+        return
+
+
+def addBattleChatCommands(commands):
+    import messenger_common_chat2
+    from chat_commands_consts import extendCommandMarkerTypes
+    from chat_shared import CHAT_COMMANDS
+    for command in commands:
+        CHAT_COMMANDS.inject([(command.name, {'battleCmd': 1})])
+        extendCommandMarkerTypes(command)
+        messenger_common_chat2.addBattleChatCommand(command)
+
+    if constants.IS_BASEAPP:
+        from messenger_helpers_chat2 import ArenaChat
+        ArenaChat.addExtendedBattleChatCommands(commands)
+
+
+def addBonusReaders(bonusReaders, personality):
+    import bonus_readers
+    bonusNames = bonusReaders.keys()
+    for bonusName in bonusNames:
+        if bonusName in bonus_readers._BONUS_READERS:
+            raise SoftException('_BONUS_READERS already has bonusName:{bonusName}. Personality: {p}'.format(bonusName=bonusName, p=personality))
+
+    bonus_readers._BONUS_READERS.update(bonusReaders)
+    bonus_readers._SUPPORTED_BONUSES |= frozenset(bonusNames)
+    sortedBonuses = sorted(bonus_readers._SUPPORTED_BONUSES)
+    bonus_readers._SUPPORTED_BONUSES_IDS.update({n:i for i, n in enumerate(sortedBonuses)})
+    bonus_readers._SUPPORTED_BONUSES_NAMES.update(dict(enumerate(sortedBonuses)))
+    LOG_DEBUG('bonusNames:{bonusNames} was added to SUPPORTED_BONUSES. Personality: {p}'.format(bonusNames=bonusNames, p=personality))
+
+
+def addBonusMerger(bonusMergers, personality):
+    from optional_bonuses import BONUS_MERGERS
+    bonusNames = bonusMergers
+    for bonusName in bonusNames:
+        if bonusName in BONUS_MERGERS:
+            raise SoftException('BONUS_MERGERS already has bonusName:{bonusName}. Personality: {p}'.format(bonusName=bonusName, p=personality))
+
+    BONUS_MERGERS.update(bonusMergers)
+    LOG_DEBUG('bonusNames:{bonusNames} was added to BONUS_MERGERS. Personality: {p}'.format(bonusNames=bonusNames, p=personality))
+
+
+def addItemInventoryCheckers(itemName, checker, personality):
+    from optional_bonuses import ITEM_INVENTORY_CHECKERS
+    if itemName in ITEM_INVENTORY_CHECKERS:
+        raise SoftException('ITEM_INVENTORY_CHECKERS already has itemName:{itemName}. Personality: {p}'.format(itemName=itemName, p=personality))
+    ITEM_INVENTORY_CHECKERS.update({itemName: checker})
+    LOG_DEBUG('itemName:{itemName} was added to ITEM_INVENTORY_CHECKERS. Personality: {p}'.format(itemName=itemName, p=personality))
+
+
+def addQuestBonusTypes(bonusNames, personality):
+    from constants import QUEST_BONUS_TYPES
+    for bonusName in bonusNames:
+        if bonusName in QUEST_BONUS_TYPES:
+            raise SoftException('QUEST_BONUS_TYPES already has bonusName:{bonusName}. Personality: {p}'.format(bonusName=bonusName, p=personality))
+
+    QUEST_BONUS_TYPES.update(bonusNames)
+    LOG_DEBUG('bonusNames:{bonusNames} was added to QUEST_BONUS_TYPES. Personality: {p}'.format(bonusNames=bonusNames, p=personality))
+
+
+def initCommonTypes(extConstants, personality):
+    addArenaGuiTypesFromExtension(extConstants.ARENA_GUI_TYPE, personality)
+    addArenaBonusCapsFromExtension(extConstants.ARENA_BONUS_TYPE_CAPS, personality)
+    addArenaBonusTypesFromExtension(extConstants.ARENA_BONUS_TYPE, personality)
+    addQueueTypesFromExtension(extConstants.QUEUE_TYPE, personality)
+    addPrebattleTypesFromExtension(extConstants.PREBATTLE_TYPE, personality)
+
+
+def initSquadCommonTypes(extConstants, personality):
+    extConstants.UNIT_MGR_FLAGS.inject(personality)
+    addRosterTypes(extConstants.ROSTER_TYPE, personality)
+    addInvitationTypes(extConstants.INVITATION_TYPE, personality)
+    addClientUnitCmd(extConstants.CLIENT_UNIT_CMD, personality)
+
+
+def initSquadAssemblerCommonTypes(extConstants, personality):
+    extraAttrs = extConstants.UnitAssemblerImplType.getExtraAttrs()
+    extraAttrs = {k.lower():v for k, v in viewitems(extraAttrs)}
+    extConstants.UnitAssemblerImplType.inject(personality)
+    UNIT_ASSEMBLER_IMPL_NAMES.update(extraAttrs)
+    UNIT_ASSEMBLER_IMPL_IDS.update({value:attr for attr, value in viewitems(extraAttrs)})
+    UNIT_ASSEMBLER_IMPL_TO_CONFIG.update(extConstants.UNIT_ASSEMBLER_IMPL_TO_CONFIG)
+    msg = 'UNIT_ASSEMBLER_IMPL_TO_CONFIG:{data} was added to UNIT_ASSEMBLER_IMPL_TO_CONFIG. Personality: {p}'.format(data=extConstants.UNIT_ASSEMBLER_IMPL_TO_CONFIG, p=personality)
+    LOG_DEBUG(msg)
+    PREBATTLE_TYPE_TO_UNIT_ASSEMBLER.update(extConstants.PREBATTLE_TYPE_TO_UNIT_ASSEMBLER)
+    msg = 'PREBATTLE_TYPE_TO_UNIT_ASSEMBLER:{data} was added to PREBATTLE_TYPE_TO_UNIT_ASSEMBLER. Personality: {p}'.format(data=extConstants.PREBATTLE_TYPE_TO_UNIT_ASSEMBLER, p=personality)
+    LOG_DEBUG(msg)
+
+
+def getUsedInReplaysConfigKeys():
+    from schema_manager import getSchemaManager
+    usedInReplayKeys = getSchemaManager().getUsedInReplayKeys().copy()
+    usedInReplayKeys.update(INBATTLE_CONFIGS)
+    return usedInReplayKeys
+
+
+class AbstractBattleMode(object):
+    _PREBATTLE_TYPE = None
+    _QUEUE_TYPE = None
+    _ARENA_BONUS_TYPE = None
+    _ARENA_GUI_TYPE = None
+    _BATTLE_MGR_NAME = None
+    _UNIT_MGR_NAME = None
+    _UNIT_MGR_FLAGS = None
+    _ROSTER_TYPE = None
+    _GAME_PARAMS_KEY = None
+    _REQUIRED_VEHICLE_TAGS = tuple()
+    _FORBIDDEN_VEHICLE_TAGS = BATTLE_MODE_VEHICLE_TAGS
+    _NEW_VEHICLES_TAGS = set()
+    _BASE_CHAT_LOG_FLAGS = None
+    _BASE_QUEUE_CONTROLLER_CLASS = None
+    _BASE_WINNER_PROCESSOR_CLASS = None
+    _INVITATION_TYPE = None
+    _CLIENT_BATTLE_PAGE = None
+    _CLIENT_PRB_ACTION_NAME = None
+    _CLIENT_PRB_ACTION_NAME_SQUAD = None
+    _CLIENT_BANNER_ENTRY_POINT_ALIAS = None
+    _CLIENT_REPLAY_MODE_TAG = ''
+    _BATTLE_RESULTS_CONFIG = None
+    _VSE_BATTLE_RESULTS_PARSER = None
+    _CLIENT_GAME_SEASON_TYPE = None
+    _SEASON_TYPE_BY_NAME = None
+    _SEASON_TYPE = None
+    _SEASON_MANAGER_TYPE = None
+    _SM_TYPE_BATTLE_RESULT = None
+    _SM_TYPE_AUTO_MAINTENANCE = None
+    _SM_TYPES = []
+    _CLIENT_SM_TYPES = []
+    _FAIRPLAY_VEHICLE_BATTLE_STATS_COMPONENT = None
+    _CLIENT_SETTINGS_VIEW_ALIAS = None
+
+    def __init__(self, personality):
+        self._personality = personality
+
+    @property
+    def _rosterClass(self):
+        return None
+
+    @property
+    def _battleMgrConfig(self):
+        from server_constants import SINGLETON_DEFAULT_GROUP, SERVER_MODES
+        return (self._BATTLE_MGR_NAME,
+         0.2,
+         SINGLETON_DEFAULT_GROUP,
+         (SERVER_MODES.META, SERVER_MODES.STANDALONE))
+
+    @property
+    def _client_prbEntityClass(self):
+        return None
+
+    @property
+    def _client_canSelectPrbEntity(self):
+        return lambda *args, **kwargs: True
+
+    @property
+    def _client_prbEntryPointClass(self):
+        return None
+
+    @property
+    def _client_selectorColumn(self):
+        return None
+
+    @property
+    def _client_selectorItemsCreator(self):
+        return None
+
+    @property
+    def _client_modeSelectorItemsClass(self):
+        return None
+
+    @property
+    def _client_bannerEntryPointValidatorMethod(self):
+        return None
+
+    @property
+    def _client_bannerEntryPointLUIRule(self):
+        return None
+
+    @property
+    def _client_prbSquadEntityClass(self):
+        return None
+
+    @property
+    def _client_prbSquadEntryPointClass(self):
+        return None
+
+    @property
+    def _client_selectorSquadItemsCreator(self):
+        return None
+
+    @property
+    def _client_platoonViewClass(self):
+        return None
+
+    @property
+    def _client_platoonWelcomeViewClass(self):
+        return None
+
+    @property
+    def _client_platoonSearchViewClass(self):
+        return None
+
+    @property
+    def _client_platoonLayouts(self):
+        return None
+
+    @property
+    def _client_unitMembersOrderKey(self):
+        return None
+
+    @property
+    def _client_readyVehicleCheckers(self):
+        return []
+
+    @property
+    def _client_gameControllers(self):
+        return tuple()
+
+    @property
+    def _client_battleControllersRepository(self):
+        return None
+
+    @property
+    def _client_sharedControllersRepository(self):
+        return None
+
+    @property
+    def _client_providerBattleQueue(self):
+        return None
+
+    @property
+    def _client_arenaDescrClass(self):
+        return None
+
+    @property
+    def _client_squadFinderClass(self):
+        return None
+
+    @property
+    def _client_battleResultStatsCtrlClass(self):
+        return None
+
+    @property
+    def _client_battleResultsEntryState(self):
+        return None
+
+    @property
+    def _client_battleResultsReusables(self):
+        return {}
+
+    @property
+    def _client_seasonControllerHandler(self):
+        return lambda *args, **kwargs: None
+
+    @property
+    def _client_lobbyRequiredLibraries(self):
+        return []
+
+    @property
+    def _client_battleRequiredLibraries(self):
+        return []
+
+    @property
+    def _client_battleEntry(self):
+        pass
+
+    @property
+    def _client_notificationActionHandlers(self):
+        return []
+
+    @property
+    def _client_messengerClientFormatters(self):
+        return {}
+
+    @property
+    def _client_messengerServerFormatters(self):
+        return {}
+
+    @property
+    def _client_tokenQuestsSubFormatters(self):
+        return []
+
+    @property
+    def _client_bonusTokens(self):
+        return []
+
+    @property
+    def _client_viewsForMonitoring(self):
+        return []
+
+    @property
+    def _client_dynamicViewsForMonitoring(self):
+        return []
+
+    @property
+    def _client_gfNotifications(self):
+        return {}
+
+    @property
+    def _client_awardControllerHandlers(self):
+        return []
+
+    @property
+    def _client_lootBoxAutoOpenSubFormatters(self):
+        return []
+
+    @property
+    def _client_LobbyContextMenuOptions(self):
+        return tuple()
+
+    @property
+    def _client_DynamicObjectCacheClass(self):
+        return None
+
+    @property
+    def _client_advancedChatComponent(self):
+        return None
+
+    @property
+    def _client_battleChannelController(self):
+        return (None, None)
+
+    @property
+    def _client_attackReasonToCode(self):
+        return {}
+
+    @property
+    def _client_equipmentTriggers(self):
+        return []
+
+    @property
+    def _client_equipmentItems(self):
+        return []
+
+    @property
+    def _client_equipmentItemsTooltipMovies(self):
+        return ({}, {})
+
+    @property
+    def _client_lowPriorityWulfWindows(self):
+        return []
+
+    @property
+    def _client_guiItemsCacheInvalidators(self):
+        return []
+
+    @property
+    def _server_canCreateUnitMgr(self):
+        return lambda *args, **kwargs: (UNIT_ERROR.OK, '')
+
+    @property
+    def _server_unitConnector(self):
+        from unitmgr_helpers.connectors import SquadConnector
+        return SquadConnector()
+
+    @property
+    def _server_unitChecker(self):
+        return lambda *args, **kwargs: (True, '')
+
+    @property
+    def _server_invitationSquadExtraHandler(self):
+        return None
+
+    @property
+    def _server_unitCmdHandlers(self):
+        return []
+
+    @property
+    def _server_unitAssemblerImpl(self):
+        return []
+
+    @property
+    def _server_unitAssemblerImplToQueue(self):
+        return []
+
+    @property
+    def _server_unitAssemblerImplToChecker(self):
+        return []
+
+    @property
+    def _server_unitMethodRoles(self):
+        return []
+
+    @property
+    def _client_limitedUITokensInfos(self):
+        return []
+
+    @property
+    def _client_ammunitionPanelViews(self):
+        return []
+
+    @property
+    def _client_ammunitionSetupViews(self):
+        return []
+
+    @property
+    def _client_vehicleViewStates(self):
+        return []
+
+    @property
+    def _client_customizationHangarDisabled(self):
+        return lambda *args, **kwargs: True
+
+    @property
+    def _client_hangarPresetsReader(self):
+        return None
+
+    @property
+    def _client_hangarDynamicGuiProvider(self):
+        return None
+
+    @property
+    def _client_controlModes(self):
+        return {}
+
+    @property
+    def _client_arenaInfoKeys(self):
+        return None
+
+    @property
+    def _client_hangarEventBannerType(self):
+        return None
+
+    @property
+    def _client_displayedClassTagGetter(self):
+        return None
+
+    @property
+    def _client_prebattleCtrlMode(self):
+        return None
+
+    @property
+    def _client_modeHiddenVehiclesCriteria(self):
+        return None
+
+    @property
+    def _client_userMissionPlugins(self):
+        return []
+
+    def registerHangarEventBanner(self):
+        if IS_CLIENT:
+            if self._client_hangarEventBannerType is not None:
+                from gui.impl.lobby.user_missions.hangar_widget.event_banners.event_banners_container import EventBannersContainer
+                EventBannersContainer().registerEventBanner(self._client_hangarEventBannerType)
+        return
+
+    def registerSquadTypes(self):
+        addQueueTypeByUnitMgrRoster(self._QUEUE_TYPE, self._ROSTER_TYPE, self._personality)
+        addPrbTypeByUnitMgrRoster(self._PREBATTLE_TYPE, self._ROSTER_TYPE, self._personality)
+        addPrbTypeByUnitMgrRosterExt(self._PREBATTLE_TYPE, self._ROSTER_TYPE, self._personality)
+        addRosterTypeToClass(self._ROSTER_TYPE, self._rosterClass, self._personality)
+        addUnitMgrFlagToPrbType(self._PREBATTLE_TYPE, self._UNIT_MGR_FLAGS, self._personality)
+        addUnitMgrFlagToInvitationType(self._UNIT_MGR_FLAGS, self._PREBATTLE_TYPE, self._personality)
+        addInvitationTypeFromArenaBonusTypeMapping(self._ARENA_BONUS_TYPE, self._INVITATION_TYPE, self._personality)
+        addUnitMgrFlagsToUnitMgrEntityName(self._UNIT_MGR_FLAGS, self._UNIT_MGR_NAME, self._personality)
+
+    def registerBase(self):
+        import server_constants_utils as scu
+        scu.addQueueController(self._QUEUE_TYPE, self._BASE_QUEUE_CONTROLLER_CLASS, self._personality)
+        scu.addBattleManagerNameByQueueType(self._QUEUE_TYPE, self._BATTLE_MGR_NAME, self._personality)
+        scu.addSingletonsToStart(self._BATTLE_MGR_NAME, self._battleMgrConfig, self._personality)
+        scu.addBattlesConfigToList(self._GAME_PARAMS_KEY, self._personality)
+        scu.addPreBattleTypeToChatLogFlags(self._PREBATTLE_TYPE, self._BASE_CHAT_LOG_FLAGS, self._personality)
+        self.registerWinnerProcessor()
+
+    def registerCell(self):
+        self.registerVseBattleResultsParser()
+        self.registerBattleResultsConfig()
+
+    def registerVseBattleResultsParser(self):
+        if IS_CELLAPP:
+            import helpers.VseBattleResultParser
+            helpers.VseBattleResultParser.registerVseBattleResultsParser(self._ARENA_BONUS_TYPE, self._VSE_BATTLE_RESULTS_PARSER)
+
+    def registerWinnerProcessor(self):
+        import server_constants_utils as scu
+        if self._BASE_WINNER_PROCESSOR_CLASS:
+            scu.addWinnerProcessor(self._ARENA_BONUS_TYPE, self._BASE_WINNER_PROCESSOR_CLASS, self._personality)
+
+    def registerCommon(self):
+        addArenaBonusTypeToQueueType(self._ARENA_BONUS_TYPE, self._QUEUE_TYPE, self._personality)
+
+    def registerBaseUnit(self):
+        import server_constants_utils as scu
+        scu.addCanCreateUnitMgrHandler(self._ROSTER_TYPE, self._server_canCreateUnitMgr, self._personality)
+        scu.addSquadConnector(self._UNIT_MGR_FLAGS, self._server_unitConnector, self._personality)
+        scu.addUnitVehicleChecker(self._UNIT_MGR_FLAGS, self._server_unitChecker, self._personality)
+        scu.addInvitationSquadExtraHandler(self._INVITATION_TYPE, self._server_invitationSquadExtraHandler, self._personality)
+        if self._server_unitCmdHandlers:
+            scu.addUnitCmdHandlers(self._server_unitCmdHandlers, self._personality)
+        if self._server_unitMethodRoles:
+            scu.addUnitMethodRoles(self._server_unitMethodRoles, self._personality)
+        if self._server_unitAssemblerImpl:
+            scu.addUnitAssemblerImpl(self._server_unitAssemblerImpl, self._personality)
+        if self._server_unitAssemblerImplToQueue:
+            scu.addUnitAssemblerImplToQueue(self._server_unitAssemblerImplToQueue, self._personality)
+        if self._server_unitAssemblerImplToChecker:
+            scu.addUnitAssemblerImplTypeToVehicleChecker(self._server_unitAssemblerImplToChecker, self._personality)
+
+    def registerClient(self):
+        from gui.prb_control import prb_utils
+        prb_utils.addArenaGUITypeByQueueType(self._QUEUE_TYPE, self._ARENA_GUI_TYPE, self._personality)
+        prb_utils.addQueueTypeToPrbType(self._QUEUE_TYPE, self._PREBATTLE_TYPE, self._personality)
+        prb_utils.addPrbTypeToQueueType(self._QUEUE_TYPE, self._PREBATTLE_TYPE, self._personality)
+        self.registerGuiType()
+
+    def registerGuiType(self):
+        from gui.prb_control import prb_utils
+        from gui.Scaleform.daapi.settings.views import addViewBattlePageAliasByArenaGUIType
+        prb_utils.addArenaDescrs(self._ARENA_GUI_TYPE, self._client_arenaDescrClass, self._personality)
+        addViewBattlePageAliasByArenaGUIType(self._ARENA_GUI_TYPE, self._CLIENT_BATTLE_PAGE, self._personality)
+
+    def registerClientSelector(self):
+        from gui.prb_control import prb_utils
+        prb_utils.addBattleItemToColumnSelector(self._CLIENT_PRB_ACTION_NAME, self._client_selectorColumn, self._personality)
+        prb_utils.addBattleSelectorItem(self._CLIENT_PRB_ACTION_NAME, self._client_selectorItemsCreator, self._personality)
+        prb_utils.addModeSelectorItem(self._CLIENT_PRB_ACTION_NAME, self._client_modeSelectorItemsClass, self._personality)
+        prb_utils.addSupportedEntryByAction(self._CLIENT_PRB_ACTION_NAME, self._client_prbEntryPointClass, self._personality)
+        prb_utils.addSupportedQueues(self._QUEUE_TYPE, self._client_prbEntityClass, self._client_canSelectPrbEntity, self._personality)
+
+    def registerBannerEntryPointValidatorMethod(self):
+        from gui.prb_control import prb_utils
+        prb_utils.addBannerEntryPointValidatorMethod(self._CLIENT_BANNER_ENTRY_POINT_ALIAS, self._client_bannerEntryPointValidatorMethod, self._personality)
+
+    def registerBannerEntryPointLUIRule(self):
+        from gui.prb_control import prb_utils
+        prb_utils.addBannerEntryPointLUIRule(self._CLIENT_BANNER_ENTRY_POINT_ALIAS, self._client_bannerEntryPointLUIRule, self._personality)
+
+    def registerProviderBattleQueue(self):
+        from gui.prb_control import prb_utils
+        prb_utils.addProviderBattleQueueCls(self._QUEUE_TYPE, self._client_providerBattleQueue, self._personality)
+
+    def registerClientPlatoon(self):
+        from gui.impl.lobby.platoon import platoon_config
+        platoon_config.addQueueTypeToPrbSquadActionName(self._QUEUE_TYPE, self._CLIENT_PRB_ACTION_NAME_SQUAD, self._personality)
+        if self._client_platoonViewClass:
+            platoon_config.addPlatoonViewByPrbType(self._PREBATTLE_TYPE, self._client_platoonViewClass, self._personality)
+        if self._client_platoonWelcomeViewClass:
+            platoon_config.addPlatoonWelcomeViewByPrbType(self._PREBATTLE_TYPE, self._client_platoonWelcomeViewClass, self._personality)
+        if self._client_platoonSearchViewClass:
+            platoon_config.addPlatoonSearchViewByPrbType(self._PREBATTLE_TYPE, self._client_platoonSearchViewClass, self._personality)
+        if self._client_platoonLayouts:
+            platoon_config.addPlatoonLayoutData(self._PREBATTLE_TYPE, self._client_platoonLayouts, self._personality)
+
+    def registerClientSquadSelector(self):
+        from gui.prb_control import prb_utils
+        prb_utils.addSupportedUnitEntryByAction(self._CLIENT_PRB_ACTION_NAME_SQUAD, self._client_prbSquadEntryPointClass, self._personality)
+        prb_utils.addSupportedUnitEntryByType(self._PREBATTLE_TYPE, self._client_prbSquadEntryPointClass, self._personality)
+        prb_utils.addSupportedUnitByType(self._PREBATTLE_TYPE, self._client_prbSquadEntityClass, self._personality)
+        prb_utils.addBattleSelectorSquadItem(self._CLIENT_PRB_ACTION_NAME_SQUAD, self._client_selectorSquadItemsCreator, self._personality)
+        prb_utils.addPrbClientCombinedIds(self._PREBATTLE_TYPE, PREBATTLE_TYPE.UNIT, self._personality)
+        self.registerClientSquadFinder()
+        if self._client_readyVehicleCheckers:
+            from gui.shared.system_factory import registerReadyVehicleChekers
+            registerReadyVehicleChekers(self._QUEUE_TYPE, self._client_readyVehicleCheckers)
+        if self._client_unitMembersOrderKey:
+            from gui.shared.system_factory import registerUnitMembersOrderKey
+            registerUnitMembersOrderKey(self._QUEUE_TYPE, self._client_unitMembersOrderKey)
+
+    def registerClientSquadFinder(self):
+        from gui.prb_control import prb_utils
+        prb_utils.addSquadFinder(self._ARENA_GUI_TYPE, self._client_squadFinderClass, self._rosterClass, self._personality)
+
+    def registerClientReplay(self):
+        from gui.shared.system_factory import registerReplayModeTag
+        registerReplayModeTag(self._ARENA_GUI_TYPE, self._CLIENT_REPLAY_MODE_TAG)
+
+    def registerClientArenaInfoKeys(self):
+        from gui.shared.system_factory import registerGameModeArenaInfoKeys
+        registerGameModeArenaInfoKeys(self._ARENA_GUI_TYPE, self._client_arenaInfoKeys)
+
+    def registerGameControllers(self):
+        from gui.shared.system_factory import registerGameControllers
+        registerGameControllers(self._client_gameControllers)
+
+    def registerBattleControllersRepository(self):
+        from gui.shared.system_factory import registerBattleControllerRepo
+        registerBattleControllerRepo(self._ARENA_GUI_TYPE, self._client_battleControllersRepository)
+
+    def registerSharedControllersRepository(self):
+        from gui.shared.system_factory import registerSharedControllerRepo
+        registerSharedControllerRepo(self._ARENA_GUI_TYPE, self._client_sharedControllersRepository)
+
+    def registerBattleResultsConfig(self):
+        if self._BATTLE_RESULTS_CONFIG is not None:
+            addBattleResultsConfig(self._ARENA_BONUS_TYPE, self._BATTLE_RESULTS_CONFIG)
+        return
+
+    def registerClientBattleResultsCtrl(self):
+        from gui.shared.system_factory import registerBattleResultStatsCtrl
+        registerBattleResultStatsCtrl(self._ARENA_BONUS_TYPE, self._client_battleResultStatsCtrlClass)
+
+    def registerBattleResultsEntryState(self):
+        from gui.shared.system_factory import registerBattleResultsEntryState
+        if self._client_battleResultsEntryState is not None:
+            registerBattleResultsEntryState(self._ARENA_BONUS_TYPE, self._client_battleResultsEntryState)
+        return
+
+    def registerClientBattleResultReusabled(self):
+        from gui.battle_results.reusable import ReusableInfoFactory
+        for key, infoCls in viewitems(self._client_battleResultsReusables):
+            ReusableInfoFactory.addForBonusType(self._ARENA_BONUS_TYPE, key, infoCls)
+
+    def registerVehicleTags(self):
+        addVehicleTags(self._UNIT_MGR_FLAGS, self._REQUIRED_VEHICLE_TAGS, self._FORBIDDEN_VEHICLE_TAGS, self._NEW_VEHICLES_TAGS, self._personality)
+
+    def registerClientVehicleTags(self, extConstants):
+        extConstants.VEHICLE_TAGS.inject(self._personality)
+        if self._client_modeHiddenVehiclesCriteria is not None:
+            from gui.shared.system_factory import registerModeHiddenVehiclesCriteria
+            registerModeHiddenVehiclesCriteria(self._ARENA_BONUS_TYPE, self._client_modeHiddenVehiclesCriteria)
+        return
+
+    def registerClientSeasonType(self, extConstants):
+        extConstants.GameSeasonType.inject(self._personality)
+        from gui.shared.system_factory import registerSeasonProviderHandler
+        registerSeasonProviderHandler(self._CLIENT_GAME_SEASON_TYPE, self._client_seasonControllerHandler)
+
+    def registerBaseSeasonType(self, extConstants):
+        extConstants.GameSeasonType.inject(self._personality)
+        if self._SEASON_TYPE_BY_NAME is not None:
+            SEASON_TYPE_BY_NAME.update({self._SEASON_TYPE_BY_NAME: self._SEASON_TYPE})
+            SEASON_NAME_BY_TYPE.update({self._SEASON_TYPE: self._SEASON_TYPE_BY_NAME})
+        return
+
+    def registerBaseSeasonManager(self):
+        if self._SEASON_MANAGER_TYPE is not None:
+            import season_helpers
+            season_helpers.registerSeasonManager(*self._SEASON_MANAGER_TYPE)
+        return
+
+    def registerScaleformRequiredLibraries(self):
+        if self._client_lobbyRequiredLibraries:
+            from gui.Scaleform.required_libraries_config import addLobbyRequiredLibraries
+            addLobbyRequiredLibraries(self._client_lobbyRequiredLibraries, self._personality)
+        if self._client_battleRequiredLibraries:
+            from gui.Scaleform.required_libraries_config import addBattleRequiredLibraries
+            addBattleRequiredLibraries(self._client_battleRequiredLibraries, self._ARENA_GUI_TYPE, self._personality)
+
+    def registerBattleEntry(self):
+        if self._client_battleEntry:
+            from gui.shared.system_factory import registerBattleEntry
+            registerBattleEntry(self._ARENA_GUI_TYPE, self._client_battleEntry)
+
+    def registerLobbyContextMenuOptions(self):
+        from gui.shared.system_factory import registerLobbyContexMenuOptionBuilder, registerLobbyContexMenuHandler
+        for optionID, builder, handler in self._client_LobbyContextMenuOptions:
+            registerLobbyContexMenuOptionBuilder(builder)
+            registerLobbyContexMenuHandler(optionID, handler)
+
+    def registerDynamicObjectCache(self):
+        from gui.shared.system_factory import registerDynObjCache
+        registerDynObjCache(self._ARENA_GUI_TYPE, self._client_DynamicObjectCacheClass)
+
+    def registerSystemMessagesTypes(self):
+        from chat_shared import SYS_MESSAGE_TYPE
+        SYS_MESSAGE_TYPE.inject(self._SM_TYPES)
+
+    def registerClientSystemMessagesTypes(self):
+        from gui.SystemMessages import SM_TYPE
+        SM_TYPE.inject(self._CLIENT_SM_TYPES)
+
+    def registerClientEquipmentTriggers(self):
+        from gui.shared.system_factory import registerEquipmentTrigger
+        for prefix, _class, replayClass in self._client_equipmentTriggers:
+            registerEquipmentTrigger(prefix, _class, replayClass)
+
+    def registerClientEquipmentItems(self):
+        from gui.shared.system_factory import registerEquipmentItem
+        from gui.shared.tooltips.advanced import MODULE_MOVIES
+        from gui.Scaleform.daapi.settings.config import ADVANCED_COMPLEX_TOOLTIPS
+        for prefix, _class, replayClass in self._client_equipmentItems:
+            registerEquipmentItem(prefix, _class, replayClass)
+
+        moduleMovies, advancedTooltips = self._client_equipmentItemsTooltipMovies
+        MODULE_MOVIES.update(moduleMovies)
+        ADVANCED_COMPLEX_TOOLTIPS.update(advancedTooltips)
+
+    def registerBattleResultSysMsgType(self):
+        from battle_results import ARENA_BONUS_TYPE_TO_SM_TYPE_BATTLE_RESULT
+        from chat_shared import SYS_MESSAGE_TYPE
+        if self._ARENA_BONUS_TYPE in ARENA_BONUS_TYPE_TO_SM_TYPE_BATTLE_RESULT:
+            raise SoftException('ARENA_BONUS_TYPE_TO_SM_TYPE_BATTLE_RESULT already has ARENA_BONUS_TYPE:{t}. Personality: {p}'.format(t=self._ARENA_BONUS_TYPE, p=self._personality))
+        try:
+            msgTypeIndex = SYS_MESSAGE_TYPE.__getattr__(self._SM_TYPE_BATTLE_RESULT).index()
+        except AttributeError:
+            raise SoftException('No index for {attr} found. Use registerSystemMessagesTypes before')
+
+        ARENA_BONUS_TYPE_TO_SM_TYPE_BATTLE_RESULT.update({self._ARENA_BONUS_TYPE: msgTypeIndex})
+        msg = ('ARENA_BONUS_TYPE:{type}->{sysMsg} was added to ARENA_BONUS_TYPE_TO_SM_TYPE_BATTLE_RESULT. ' + 'Personality: {p}').format(type=self._ARENA_BONUS_TYPE, sysMsg=self._SM_TYPE_BATTLE_RESULT, p=self._personality)
+        LOG_DEBUG(msg)
+
+    def registerAutoMaintenanceSysMsgType(self):
+        from battle_results.battle_results_constants import ARENA_BONUS_TYPE_TO_SM_TYPE_AUTO_MAINTENANCE
+        from chat_shared import SYS_MESSAGE_TYPE
+        if self._ARENA_BONUS_TYPE in ARENA_BONUS_TYPE_TO_SM_TYPE_AUTO_MAINTENANCE:
+            raise SoftException('ARENA_BONUS_TYPE_TO_SM_TYPE_AUTO_MAINTENANCE already has ARENA_BONUS_TYPE:{t}. Personality: {p}'.format(t=self._ARENA_BONUS_TYPE, p=self._personality))
+        try:
+            msgTypeIndex = SYS_MESSAGE_TYPE.__getattr__(self._SM_TYPE_AUTO_MAINTENANCE).index()
+        except AttributeError:
+            raise SoftException('No index for {attr} found. Use registerSystemMessagesTypes before')
+
+        ARENA_BONUS_TYPE_TO_SM_TYPE_AUTO_MAINTENANCE.update({self._ARENA_BONUS_TYPE: msgTypeIndex})
+        msg = ('ARENA_BONUS_TYPE:{type}->{sysMsg} was added to ARENA_BONUS_TYPE_TO_SM_TYPE_AUTO_MAINTENANCE. ' + 'Personality: {p}').format(type=self._ARENA_BONUS_TYPE, sysMsg=self._SM_TYPE_AUTO_MAINTENANCE, p=self._personality)
+        LOG_DEBUG(msg)
+
+    def registerClientNotificationHandlers(self):
+        from gui.shared.system_factory import registerNotificationsActionsHandlers
+        registerNotificationsActionsHandlers(self._client_notificationActionHandlers)
+
+    def registerMessengerClientFormatters(self, extGuiConstants):
+        extGuiConstants.SCH_CLIENT_MSG_TYPE.inject(self._personality)
+        from gui.shared.system_factory import registerMessengerClientFormatter
+        for sysMsgType, formatter in viewitems(self._client_messengerClientFormatters):
+            registerMessengerClientFormatter(sysMsgType, formatter)
+
+    def registerMessengerServerFormatters(self):
+        from gui.shared.system_factory import registerMessengerServerFormatter
+        for sysMsgType, formatter in viewitems(self._client_messengerServerFormatters):
+            registerMessengerServerFormatter(sysMsgType, formatter, True)
+
+    def registerClientGamefaceNotifications(self):
+        from gui.shared.system_factory import registerGamefaceNotifications
+        registerGamefaceNotifications(self._client_gfNotifications)
+
+    def registerClientTokenQuestsSubFormatters(self):
+        from gui.shared.system_factory import registerTokenQuestsSubFormatters
+        registerTokenQuestsSubFormatters(self._client_tokenQuestsSubFormatters)
+
+    def registerClientBonusTokens(self):
+        from gui.shared.system_factory import registerBonusTokens
+        registerBonusTokens(self._client_bonusTokens)
+
+    def registerClientViewsForMonitoring(self):
+        from gui.shared.system_factory import registerViewsForMonitoring
+        registerViewsForMonitoring(self._client_viewsForMonitoring)
+
+    def registerClientDynamicViewsForMonitoring(self):
+        from gui.shared.system_factory import registerDynamicViewsForMonitoring
+        registerDynamicViewsForMonitoring(self._client_dynamicViewsForMonitoring)
+
+    def registerClientAwardControllerHandlers(self):
+        from gui.shared.system_factory import registerAwardControllerHandlers
+        registerAwardControllerHandlers(self._client_awardControllerHandlers)
+
+    def registerClientLootBoxAutoOpenSubFormatters(self):
+        from gui.shared.system_factory import registerLootBoxAutoOpenSubFormatters
+        registerLootBoxAutoOpenSubFormatters(self._client_lootBoxAutoOpenSubFormatters)
+
+    def registerLimitedUITokens(self):
+        tokensInfos = self._client_limitedUITokensInfos
+        if tokensInfos:
+            from gui.shared.system_factory import registerLimitedUITokens
+            registerLimitedUITokens(tokensInfos)
+
+    def registerAmmunitionPanelViews(self):
+        from gui.shared.system_factory import registerAmmunitionPanelView
+        for viewCls in self._client_ammunitionPanelViews:
+            registerAmmunitionPanelView(viewCls)
+
+    def registerAmmunitionSetupViews(self):
+        from gui.shared.system_factory import registerAmmunitionSetupView
+        for viewCls in self._client_ammunitionSetupViews:
+            registerAmmunitionSetupView(viewCls)
+
+    def registerVehicleViewStates(self):
+        from gui.shared.system_factory import registerVehicleViewState
+        for viewState in self._client_vehicleViewStates:
+            registerVehicleViewState(viewState)
+
+    def registerClientAdvancedChatComponent(self):
+        from gui.shared.system_factory import registerAdvancedChatComponent
+        registerAdvancedChatComponent(self._ARENA_BONUS_TYPE, self._client_advancedChatComponent)
+
+    def registerBattleChannelController(self):
+        from gui.shared.system_factory import registerBattleChanelController
+        registerBattleChanelController(self._ARENA_GUI_TYPE, *self._client_battleChannelController)
+
+    def registerCustomizationHangarDecorator(self):
+        from gui.shared.system_factory import registerCustomizationHangarDecorator
+        registerCustomizationHangarDecorator(self._client_customizationHangarDisabled)
+
+    def registerAttackReasonToCode(self):
+        from gui.battle_control.controllers.msgs_ctrl import _ATTACK_REASON_CODE
+        _ATTACK_REASON_CODE.update(self._client_attackReasonToCode)
+
+    def registerFairplayVehicleBattleStats(self):
+        from server_constants_utils import addFairplayVehicleBattleStats
+        addFairplayVehicleBattleStats(self._ARENA_BONUS_TYPE, self._FAIRPLAY_VEHICLE_BATTLE_STATS_COMPONENT, self._personality)
+
+    def registerClientHangarPresets(self):
+        if self._client_hangarPresetsReader:
+            from gui.shared.system_factory import registerHangarPresetsReader
+            registerHangarPresetsReader(self._client_hangarPresetsReader)
+        if self._client_hangarDynamicGuiProvider:
+            from gui.shared.system_factory import registerHangarDynamicGuiProvider
+            registerHangarDynamicGuiProvider(self._QUEUE_TYPE, self._client_hangarDynamicGuiProvider)
+
+    def registerNonReplayMode(self):
+        ARENA_GUI_TYPE.REPLAY_DISABLE_RANGE.append(self._ARENA_GUI_TYPE)
+
+    def registerDevReplayMode(self):
+        if not IS_DEVELOPMENT:
+            self.registerNonReplayMode()
+
+    def registerControlModes(self):
+        from AvatarInputHandler import OVERWRITE_CTRLS_DESC_MAP, addEmptyIfNotExits
+        for name in self._client_controlModes:
+            addEmptyIfNotExits(name)
+
+        OVERWRITE_CTRLS_DESC_MAP[self._ARENA_BONUS_TYPE] = self._client_controlModes
+
+    def registerLowPriorityWulfWindows(self):
+        from gui.shared.system_factory import registerLowPriorityWulfWindows
+        registerLowPriorityWulfWindows(self._client_lowPriorityWulfWindows)
+
+    def registerGuiItemsCacheInvalidators(self):
+        from gui.shared.system_factory import registerGuiItemsCacheInvalidators
+        registerGuiItemsCacheInvalidators(self._client_guiItemsCacheInvalidators)
+
+    def registerPrbTypeForWotPlusAssistant(self, loadoutType):
+        from gui.game_control.wot_plus.wot_plus_assistant import registerAllowedPrebattleType
+        registerAllowedPrebattleType(self._PREBATTLE_TYPE, loadoutType)
+
+    def registerPrebattleCtrlMode(self):
+        from gui.shared.system_factory import registerPrebattleCtrlMode
+        registerPrebattleCtrlMode(self._ARENA_BONUS_TYPE, self._client_prebattleCtrlMode)
+
+    def registerDisplayedClassTagGetter(self):
+        from gui.shared.system_factory import registerDisplayedClassTagGetter
+        registerDisplayedClassTagGetter(self._ARENA_GUI_TYPE, self._client_displayedClassTagGetter)
+
+    def registerSettingsWindow(self):
+        from gui.Scaleform.daapi.view.lobby.lobby_constants import registerSettingsWindow
+        registerSettingsWindow(self._PREBATTLE_TYPE, self._CLIENT_SETTINGS_VIEW_ALIAS)
+
+    def registerClientUserMissionPlugins(self):
+        from gui.shared.system_factory import registerUserMissionPlugins
+        registerUserMissionPlugins(self._client_userMissionPlugins)

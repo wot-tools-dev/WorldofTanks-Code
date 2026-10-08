@@ -1,0 +1,15 @@
+# This file was generated using wgpygen
+#   template: configs/templates/view_model.unbound.jinja2
+#   source: configs/definitions/views/selected_filters_model.yaml
+# Please, don't edit this file manually.
+(def macro SelectedFiltersModel()
+    (scope
+        (event onFilterChanged)
+        (event onFilterReset)
+
+        (var selectedFilterCount:number = 0)
+        (var totalFilterCount:number = 0)
+        (var filterIsEnabled:bool = false)
+        (var filters:array = [])
+    )
+)

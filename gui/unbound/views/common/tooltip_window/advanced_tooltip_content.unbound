@@ -1,0 +1,103 @@
+(def layout AdvandcedTooltipContent() entrance=true
+    (macro AdvancedTooltipContentModel)
+
+    (scope
+        (event evAltToolTipOn)
+        (event evAltToolTipOff)
+
+        (var _isAltDown:bool = false)
+        (bind _isAltDown "true" (event "evAltToolTipOn"))
+        (bind _isAltDown "false" (event "evAltToolTipOff"))
+    )
+
+    # Process Alt-key press
+    (dispatch evAltToolTipOn on='stageKeyDown' dir=0 (enabled="$event.keyCode == KEYBOARD.ALT_LEFT"))
+    (dispatch evAltToolTipOff on='stageKeyUp' dir=0 (enabled="$event.keyCode == KEYBOARD.ALT_LEFT"))
+
+    (macro TooltipDefaultConstraints)
+    
+    # Normal content view holder
+    (view_holder
+        (name = "R.dynamic_ids.tooltip.normal_content()")
+        (bind visible "!_isAltDown")
+    )
+
+    # Advanced content view holder
+    (view_holder
+        (name = "R.dynamic_ids.tooltip.advanced_content()")
+        (bind visible "_isAltDown")
+    )
+
+    # Bottom block with Alt-key info
+    (block
+        (name = 'Alt-key block')
+        (style
+            (width = 100%)
+            (gap = 10px)
+        )
+        (element TooltipSplitter)
+
+        (hblock
+            (style 
+                (width = 100%)
+                (gap = 13px)
+            )
+            (image
+                (source = "R.images.gui.maps.icons.lobby.iconBtnAlt()")
+            )
+            (mc 'AnimationAdvancedKeyUI'
+                (style
+                    (position = "absolute")
+                )
+                (bind visible "showAnim")
+            )
+
+            (tf
+                (class MainTextStyle)
+                (text = "R.strings.tooltips.advanced.info()")
+            )
+        )
+        (bind visible "!_isAltDown")
+    )
+)
+
+(def layout AdvandcedAnimatedTooltipContent() entrance=true
+    (macro AdvancedAnimatedTooltipContentModel)
+
+    (style
+        (gap = 10px)
+        (paddingLeft = -14px)
+        (paddingRight = -14px)
+    )
+    
+    (block
+        (style
+            (paddingLeft = 14px)
+            (paddingRight = 14px)
+        )
+        (macro TooltipTextBlock "header" MiddleTitleTextStyle 0px)
+    )
+
+    # Animation
+    (block
+        (name = 'Animation')
+        (element TooltipSplitter)
+        
+        (swf
+            (bind source "animation" init=false)
+        )
+
+        (element TooltipSplitter)
+    )
+
+    (block
+        (name = 'Description')
+        (style
+            (paddingTop = 10px)
+            (paddingBottom = 10px)
+            (paddingLeft = 14px)
+            (paddingRight = 14px)
+        )
+        (macro TooltipTextBlock "body" MainTextStyle 0px)
+    )
+)

@@ -1,0 +1,49 @@
+import typing
+from frameworks.wulf.view.array import fillViewModelsArray
+from gui.impl.gen.view_models.common.vehicle_mechanic_model import VehicleMechanicModel, MechanicsRank, MechanicsEnum
+from gui.impl.gen.view_models.views.lobby.common.vehicle_model import VehicleModel
+from gui.impl.lobby.platoon.platoon_helpers import removeNationFromTechName
+from gui.shared.gui_items.Vehicle import Vehicle
+from gui.shared.utils.functions import replaceHyphenToUnderscore
+if typing.TYPE_CHECKING:
+    from frameworks.wulf import Array
+    from typing import Optional, Iterable, List
+    from gui.shared.gui_items.vehicle_mechanics.vehicle_mechanic_item import VehicleMechanicItem
+
+def fillVehicleModel(model, vehicleItem, tags=None):
+    model.setIsPremium(vehicleItem.isElite)
+    model.setName(vehicleItem.descriptor.type.shortUserString)
+    model.setLongName(vehicleItem.descriptor.type.userString)
+    model.setTechName(replaceHyphenToUnderscore(removeNationFromTechName(vehicleItem.name)))
+    model.setTier(vehicleItem.level)
+    model.setRoleKey(vehicleItem.roleLabel)
+    model.setType(vehicleItem.type)
+    model.setNation(vehicleItem.nationName)
+    model.setVehicleCD(vehicleItem.compactDescr)
+    if not tags:
+        return
+    model.setTags(','.join(frozenset(tags) & vehicleItem.tags))
+
+
+def fillVehicleMechanicModel(mechanicModel, mechanicItem):
+    mechanicModel.setName(mechanicItem.guiName)
+    mechanicModel.setPriority(mechanicItem.priority)
+    mechanicModel.setRank(mechanicItem.rank)
+    mechanicModel.setHasVideo(mechanicItem.hasVideo)
+
+
+def clearVehicleMechanicModel(mechanicModel):
+    mechanicModel.setName(MechanicsEnum.UNKNOWN)
+    mechanicModel.setPriority(0)
+    mechanicModel.setRank(MechanicsRank.UNDEFINED)
+    mechanicModel.setHasVideo(False)
+
+
+def fillVehicleMechanicsArray(mechanicsArray, vehicleItem):
+    mechanics = []
+    for mechanic in (item for item in vehicleItem.getVehicleMechanicItems() if not item.isHidden):
+        mechanicModel = VehicleMechanicModel()
+        fillVehicleMechanicModel(mechanicModel, mechanic)
+        mechanics.append(mechanicModel)
+
+    fillViewModelsArray(mechanics, mechanicsArray)

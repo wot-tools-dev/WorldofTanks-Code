@@ -1,0 +1,59 @@
+package net.wg.last_stand.gui.battle.views.consumablesPanel
+{
+   import net.wg.gui.battle.components.BattleUIComponent;
+   
+   public class LSGlowBase extends BattleUIComponent
+   {
+      
+      private var _isActive:Boolean;
+      
+      public function LSGlowBase()
+      {
+         super();
+      }
+      
+      public function showGlow(param1:int) : void
+      {
+      }
+      
+      public function hideGlow() : void
+      {
+      }
+      
+      public function showKeyIndicatorBack(param1:Boolean) : void
+      {
+      }
+      
+      public function showAnimation(param1:String) : void
+      {
+         if(currentLabel != param1)
+         {
+            gotoAndPlay(param1);
+         }
+      }
+      
+      public function get isActive() : Boolean
+      {
+         return this._isActive;
+      }
+      
+      final public function set isActive(param1:Boolean) : void
+      {
+         if(this._isActive == param1)
+         {
+            return;
+         }
+         this._isActive = param1;
+         this.onActiveChanged();
+      }
+      
+      public function setBindKeyText(param1:String) : void
+      {
+      }
+      
+      protected function onActiveChanged() : void
+      {
+      }
+   }
+}
+

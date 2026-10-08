@@ -1,0 +1,60 @@
+(def macro AbstractComponentWithoutModel(styleComponent:expression = "ABSTRACT_BTN") layout=true
+    (macro ComponentStateBaseLogic "styleComponent")
+
+    # Background layer that is shown below all content
+    (view_holder 'background'
+        (class AbsPositionFullSizeStyle)
+    )
+
+    # Standard content with component states and focus indicator and its logic
+    (macro ComponentStateBaseContent)
+    
+    # Indicator stroke (could become blinking in special cases)
+    (view_holder 'indicator'
+        (class AbsPositionFullSizeStyle)
+    )
+
+    # Content layer below "Disable overlay"
+    (view_holder 'contentBottom'
+        (class AbsPositionFullSizeStyle)
+    )
+    # Disable overlay (is shown when the component is disabled)
+    (block
+        (style
+            (macro AbsPositionFullSize)
+            (align = "middle|center")
+            (padding = 1px)
+        )
+        (block 
+            (bind class "states.disabledOverlay.style" (bind enabled "states['disabledOverlay'] != null"))
+            (bind visible "!_isEnabled && states['disabledOverlay']")
+        )
+    )
+
+    # Content layer above "Disable overlay"
+    (view_holder 'contentTop'
+        (style
+            (width = 100%)
+            (height = 100%)
+        )
+    )
+
+    # Layer for any top level animations like blink animation"
+    (view_holder 'animation'
+        (class AbsPositionFullSizeStyle)
+    )
+    (buttonMode = true)
+    (mouseChildren = false)
+)
+
+#USE THIS MACRO EVER BEFORE USING HOLDERS!!!!!!!
+# Basic macros for any interactive UI component.
+# Should be inserted in the beginning of any custom element to inherit its behavior
+(def macro AbstractComponent(styleComponent:expression = "ABSTRACT_BTN") layout=true
+    # Scope vars and events of component and basic style
+    (macro ButtonModel)
+    (macro AbstractComponentWithoutModel "styleComponent")
+    (scope
+        (bind _isEnabled "isEnabled")
+    )
+)

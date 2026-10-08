@@ -1,0 +1,19 @@
+#This test element was create for perf test (cut version can have only icon)
+(def element ButtonIcon(name:str = '') layout=true
+	(macro AbstractComponent)
+	(macro ButtonInner)
+    (macro ButtonIconContent)
+)
+
+
+(def macro ButtonIconContent()
+    (view_holder_content 'contentTop'
+        (style
+            (align = "middle|center")
+        )
+        (image
+            (name = 'icon')
+            (bind source "icon")
+        )
+    )
+)

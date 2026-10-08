@@ -1,0 +1,60 @@
+<freeXPToTManXPRate.xml>
+  <default-scene>	DefaultScene	</default-scene>
+  <initial-scene>	Hangar	</initial-scene>
+  <scenes>
+    <scene>	Hangar	  <post-effects></post-effects>
+      <runtime-effects>
+        <show-hint>	CrewBooksBtnHint	  <condition>
+            <active>	CrewBooksBtnOnScene	</active>
+          </condition>
+        </show-hint>
+      </runtime-effects>
+      <gui-items>
+        <gui-item>	CrewBooksBtn	  <on-scene-effects>
+            <activate>	CrewBooksBtnOnScene	</activate>
+          </on-scene-effects>
+          <not-on-scene-effects>
+            <inactivate>	CrewBooksBtnOnScene	</inactivate>
+          </not-on-scene-effects>
+        </gui-item>
+      </gui-items>
+    </scene>
+    <scene>	DefaultScene	  <post-effects>
+        <refuse-training></refuse-training>
+      </post-effects>
+      <runtime-effects></runtime-effects>
+      <gui-items></gui-items>
+    </scene>
+  </scenes>
+  <has-id>
+    <hint>	CrewBooksBtnHint	  <item-id>	CrewBooksBtn	</item-id>
+      <text>	#quests:action/chain/hint/openCrewBooks	</text>
+      <arrow>
+        <direction>	R	</direction>
+        <loop>	True	</loop>
+      </arrow>
+      <padding>
+        <left>	0	</left>
+        <top>	0	</top>
+        <right>	0	</right>
+        <bottom>	0	</bottom>
+      </padding>
+      <actions>
+        <click>	CrewBooksBtn	  <effects>
+            <refuse-training></refuse-training>
+          </effects>
+        </click>
+        <click-outside>	CrewBooksBtn	  <effects>
+            <refuse-training></refuse-training>
+          </effects>
+        </click-outside>
+        <esc>	CrewBooksBtn	  <effects>
+            <refuse-training></refuse-training>
+          </effects>
+        </esc>
+      </actions>
+    </hint>
+  </has-id>
+  <triggers></triggers>
+  <vars></vars>
+</freeXPToTManXPRate.xml>

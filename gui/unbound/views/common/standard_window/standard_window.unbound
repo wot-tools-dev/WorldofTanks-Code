@@ -1,0 +1,160 @@
+# Simple animated btn from Flash MovieClip
+(def element AnimBtn(mcName:str) layout=true
+    (name = "mcName")
+    (scope
+        (event evBtnLeftClickEvent)
+        (event evBtnRightClickEvent)
+    )
+    (mc "mcName")
+    (dispatch evBtnLeftClickEvent on='click' (enabled="$event.buttonIdx == 0"))
+    (dispatch evBtnRightClickEvent on='click' (enabled="$event.buttonIdx == 1"))
+)
+
+# HitArea that allows dragging
+(def element hitArea() layout=true
+    (name = 'Hit area')
+    (scope
+        (event onHeaderPressed)
+        (event onHeaderReleased)
+    )
+
+    (style
+        (width = 100%)
+        (padding = 10px)
+        (position = "absolute")
+    )
+    (block
+        (style
+            (backgroundColor = 0xcccccccc)
+            (width = 100%)
+            (height = 30px)
+        )
+        (buttonMode=true)
+    )
+    (alpha = 0)
+    (dispatch onHeaderPressed on='mouseDown' dir=1
+        (enabled="$event.buttonIdx == MOUSE.LEFT")
+    )
+    (dispatch onHeaderReleased on='mouseUp' dir=1)
+)
+
+(def element StandardWindow() layout=true isReadyTracked=true entrance=true loadOrder="LoadOrder.NOT_WAITING_FIRST"
+    (macro WindowModel)
+    (scope
+        (var content:object = null)
+        (event onHeaderPressed)
+        (event onHeaderReleased)
+    )
+    (name = 'StandardWindow')
+    (bindcall startDrag (event "onHeaderPressed"))
+    (bindcall stopDrag (event "onHeaderReleased"))
+
+    (dispatch onClosed on='escPressed')
+
+    (style
+        (position = "absolute")
+    )
+
+    # Stretched window background
+    (mc 'Window_BG'
+        (name = 'bg')
+        (style
+            (width=100%)
+            (height=100%)
+            (position = "absolute")
+        )
+    )
+
+    # Header hit area
+    (element hitArea)
+
+    # Main window block
+    (block
+        (name = 'Wnd content')
+        (mouseEnabled = false)
+        (style
+            (padding = 6px)
+        )
+
+        # Window header block
+        (hblock
+            (name = 'Header')
+            (mouseEnabled = false)
+            (style
+                (width = 100%)
+            )
+
+            # Title block
+            (block
+                (name = 'Title block')
+                (mouseEnabled = false)
+                (style
+                    # (backgroundColor = 0xcccccccc)
+                    (align = "left")
+                    (width = 100%)
+                    (paddingLeft = 6px)
+                    (paddingTop = 4px)
+                )
+                (tf
+                    (name = 'Tf Title')
+                    (style
+                        (fontFamily = $TitleFont)
+                        (fontSize = 18)
+                        (textColor = 0xE9E9DA)
+                    )
+                    (selectable = false)
+                    (mouseEnabled = false)
+                    (bind text "title!='' ? title : rawTitle")
+                )
+            )
+
+            # Block with buttons attached to the right border (minimize/close)
+            (hblock
+                (name = 'Buttons block')
+                (style
+                    (align = "right|bottom")
+                    (height = 100%)
+                    (paddingRight = 12px)
+                    (paddingBottom = 4px)
+                )
+                (element AnimBtn 'MinimizeButton'
+                    (style
+                        (marginRight = 4px)
+                    )
+                    (bind visible "canMinimize")
+                    (scope
+                        (dispatch onMinimized args="{}" on='evBtnLeftClickEvent')
+                    )
+                )
+                (element AnimBtn 'CloseButton'
+                    (scope
+                        (dispatch onClosed args="{}" on='evBtnLeftClickEvent')
+                    )
+                )
+            )
+        )
+
+        # Window content block
+        (block
+            (name = 'Content')
+            (style
+                (padding = 4px)
+                (backgroundImage = 'symbol:Window_BGForm')
+                (backgroundSize = "fill")
+                (marginLeft = 5px)
+                (marginRight = 5px)
+                (marginBottom = 9px)
+            )
+            (view_holder
+                (name = 'View holder')
+                (bind content "content" init=false)
+            )
+        )
+    )
+
+    (controller $Animation
+        (bindcall play duration=0.01 delay=0.1 to={alpha:1} from={alpha:0} init=false 
+            (event "$evReadyChanged")
+        )
+    )
+)

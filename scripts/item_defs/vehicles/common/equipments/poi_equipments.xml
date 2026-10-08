@@ -1,0 +1,104 @@
+<poi_equipments.xml>
+  <poi_artillery_aoe>
+    <id>	9401	</id>
+    <userString>	#artefacts:poi_artillery_aoe/name	</userString>
+    <description>	#artefacts:poi_artillery_aoe/descr	</description>
+    <icon>	poi_artillery 0 0	</icon>
+    <price>	0	</price>
+    <notInShop>	true	</notInShop>
+    <tags>	notForSale poiEquipment	</tags>
+    <type>	battleAbilities	</type>
+    <messagePostfix>	artillery	</messagePostfix>
+    <soundNotification>	comp_7_ability_ready	</soundNotification>
+    <script>	PoiArtilleryEquipment	  <visualScript>
+        <server>
+          <plan>	PointsOfInterest/abilities/artillery_server	</plan>
+        </server>
+      </visualScript>
+      <delay>	3	  <exports>	vse tooltip	</exports>
+      </delay>
+      <radius>	25	  <exports>	vse tooltip	</exports>
+      </radius>
+      <damage>	425	  <exports>	vse tooltip	</exports>
+      </damage>
+      <stunDuration>	10	  <exports>	vse tooltip	</exports>
+      </stunDuration>
+      <fraction>	0	  <exports>	vse tooltip	</exports>
+      </fraction>
+      <areaShow>	always	</areaShow>
+      <duration>	1.0	</duration>
+      <areaVisual>	content/Interface/TargetPoint/circle_shot_area.visual	</areaVisual>
+      <areaUsedPrefab>	content/CGFPrefabs/Battle/Consumables/shot_area.prefab	</areaUsedPrefab>
+      <areaColor>	0xFF25FF25	</areaColor>
+      <requireAssists>	true	</requireAssists>
+      <effects>
+        <action>
+          <shotEffects>	epicArtilleryStrike	</shotEffects>
+          <offsetDeviation>	30	</offsetDeviation>
+          <repeatCount>	15	</repeatCount>
+          <repeatDelay>	0	</repeatDelay>
+          <repeatDelayDeviationPercent>	0	</repeatDelayDeviationPercent>
+        </action>
+      </effects>
+    </script>
+  </poi_artillery_aoe>
+  <poi_radar>
+    <id>	9402	</id>
+    <userString>	#artefacts:poi_radar/name	</userString>
+    <description>	#artefacts:poi_radar/descr	</description>
+    <icon>	poi_radar 0 0	</icon>
+    <price>	0	</price>
+    <notInShop>	true	</notInShop>
+    <tags>	notForSale poiEquipment	</tags>
+    <type>	battleAbilities	</type>
+    <soundNotification>	comp_7_ability_ready	</soundNotification>
+    <script>	PoiRadarEquipment	  <visualScript>
+        <server>
+          <plan>	PointsOfInterest/abilities/radar_server	</plan>
+        </server>
+      </visualScript>
+      <duration>	3	  <exports>	vse tooltip	</exports>
+      </duration>
+    </script>
+  </poi_radar>
+  <poi_illumination_flare>
+    <id>	9403	</id>
+    <userString>	#artefacts:poi_illumination_flare/name	</userString>
+    <description>	#artefacts:poi_illumination_flare/descr	</description>
+    <icon>	poi_illumination_flare 0 0	</icon>
+    <price>	0	</price>
+    <notInShop>	true	</notInShop>
+    <tags>	notForSale poiEquipment	</tags>
+    <type>	battleAbilities	</type>
+    <soundNotification>	comp_7_ability_ready	</soundNotification>
+    <script>	PoiIlluminationFlareEquipment	  <visualScript>
+        <server>
+          <plan>	PointsOfInterest/abilities/illuminate_flare_server	</plan>
+        </server>
+      </visualScript>
+      <duration>	25	  <exports>	vse tooltip	</exports>
+      </duration>
+      <delay>	2	  <exports>	vse tooltip	</exports>
+      </delay>
+      <startRadius>	100	  <exports>	vse tooltip	</exports>
+      </startRadius>
+      <endRadius>	30	  <exports>	vse tooltip	</exports>
+      </endRadius>
+      <startYFlare>	25	  <exports>	vse tooltip	</exports>
+      </startYFlare>
+      <endYFlare>	12	  <exports>	vse tooltip	</exports>
+      </endYFlare>
+      <unSpotDuration>	3	  <exports>	vse tooltip	</exports>
+      </unSpotDuration>
+      <damageIncomeFactor>	1.1	  <exports>	vse tooltip	</exports>
+      </damageIncomeFactor>
+      <decayPhaseDuration>	4.3	  <exports>	vse tooltip	</exports>
+      </decayPhaseDuration>
+      <areaVisual>	content/Interface/TargetPoint/signal_flare.visual	</areaVisual>
+      <areaUsedPrefab>	content/CGFPrefabs/Battle/Consumables/illumination_flare.prefab	</areaUsedPrefab>
+      <areaPrefabColorAlly>	0x4C25FF25	</areaPrefabColorAlly>
+      <areaPrefabColorEnemy>	0xAFFF0000	</areaPrefabColorEnemy>
+      <areaPrefabColorEnemyCB>	0xAF5438FF	</areaPrefabColorEnemyCB>
+    </script>
+  </poi_illumination_flare>
+</poi_equipments.xml>

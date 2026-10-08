@@ -1,0 +1,219 @@
+/*
+Gameface can't calculate gradient biggest than 8128px
+in JS 8000 reserved like anchor for start optimization
+ */
+/* stylelint-disable-line */
+/* TODO: move pattern-gradient from ProgressBar component to separate file and import it here */
+.EditableProgress_base_c8d8a {
+    width: 100%;
+    height: 12rem;
+    position: relative;
+}
+.EditableProgress_base__small_c8a92 {
+        height: 2rem;
+    }
+.EditableProgress_glow_d75d8 {
+    width: 19rem;
+    height: 37rem;
+    background: no-repeat center / contain;
+    mix-blend-mode: additive;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-18rem);
+    pointer-events: none;
+}
+.EditableProgress_glow__left_caa3d {
+        background-image: url('R.images.gui.maps.icons.battlePass.buy.confirm.Flare_left');
+        right: 100%;
+    }
+.EditableProgress_glow__right_fe227 {
+        background-image: url('R.images.gui.maps.icons.battlePass.buy.confirm.Flare_right');
+        left: 100%;
+    }
+.EditableProgress_base__disabled_ff454 .EditableProgress_glow_d75d8,
+    .EditableProgress_base__finished_d0b17 .EditableProgress_glow_d75d8 {
+        display: none;
+    }
+.EditableProgress_picker_fe9be {
+    position: absolute;
+    top: 6rem;
+    right: -2rem;
+    z-index: 2;
+    transform: translate(50%, -50%);
+    cursor: pointer;
+}
+.EditableProgress_progressBar_d03d8 {
+    background-image: linear-gradient(90deg, var(--progress-base) 60%, transparent 40%);
+    background-repeat: repeat no-repeat;
+    background-position: 0 50%;
+    background-size: 3rem 10rem;
+}
+.EditableProgress_line_c3910 {
+    max-width: 8001px;
+    height: 100%;
+    background-color: var(--progress-line-base);
+    position: relative;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1.39);
+    transition-property: width;
+}
+.EditableProgress_base__disabled_ff454 .EditableProgress_line_c3910 {
+        background-color: var(--progress-line-disabled);
+    }
+.EditableProgress_base__finished_d0b17 .EditableProgress_line_c3910 {
+        background-color: var(--progress-line-finished);
+    }
+.EditableProgress_pattern_fb3d1 {
+    background-image: linear-gradient(90deg, var(--progress-pattern-base) 60%, transparent 40%);
+    max-width: 8001px;
+    background-repeat: repeat no-repeat;
+    background-position: 0 50%;
+    background-size: 3rem 10rem;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+}
+.EditableProgress_base__small_c8a92 .EditableProgress_pattern_fb3d1 {
+        top: 0;
+        bottom: 0;
+    }
+.EditableProgress_base__disabled_ff454 .EditableProgress_pattern_fb3d1 {
+    background-image: linear-gradient(90deg, var(--progress-pattern-disabled) 60%, transparent 40%);
+    }
+.EditableProgress_base__finished_d0b17 .EditableProgress_pattern_fb3d1 {
+    background-image: linear-gradient(90deg, var(--progress-pattern-finished) 60%, transparent 40%);
+    }
+.EditableProgress_delta_c80bc {
+    width: 0;
+    max-width: 8001px;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1.39), cubic-bezier(.21, .61, .35, 1);
+    transition-property: width, transform;
+}
+.EditableProgress_gradient_ab4f8 {
+    max-width: 8001px;
+    background-image: linear-gradient(90deg, rgba(0,0,0, .5), rgba(255,255,255, .75));
+    mix-blend-mode: overlay;
+    position: absolute;
+    top: 1rem;
+    right: 0;
+    bottom: 1rem;
+    left: 0;
+}
+.EditableProgress_base__small_c8a92 .EditableProgress_gradient_ab4f8 {
+        top: 0;
+        bottom: 0;
+    }
+.EditableProgress_base__disabled_ff454 .EditableProgress_gradient_ab4f8 {
+        display: none;
+    }
+.EditableProgress_base__finished_d0b17 .EditableProgress_gradient_ab4f8 {
+        background-image: linear-gradient(90deg, rgba(0,0,0, .5), rgba(255,255,255, .75), rgba(0,0,0, .5));
+    }
+
+.SlideControl_base_b2a97 {
+    width: 11rem;
+    height: 26rem;
+    position: relative;
+}
+
+.SlideControl_image_b1267 {
+    width: 15rem;
+    height: 30rem;
+    background: url('R.images.gui.maps.icons.tanksetup.shells.slider_control_normal') no-repeat center / contain;
+    position: absolute;
+    top: -2rem;
+    left: -2rem;
+    pointer-events: none;
+}
+
+.SlideControl_image__hover_ccd96 {
+        background-image: url('R.images.gui.maps.icons.tanksetup.shells.slider_control_hover');
+    }
+
+.SlideControl_image__active_be467 {
+        background-image: url('R.images.gui.maps.icons.tanksetup.shells.slider_control_active');
+    }
+
+.Slider_base_a8958 {
+    display: flex;
+    height: 36rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.Slider_workArea_c58ef {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.Slider_slideArea_bb10b {
+    display: flex;
+    padding-top: 12rem;
+    position: relative;
+    z-index: 1;
+}
+
+.Slider_editor_af772 {
+    width: 36rem;
+    height: 36rem;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .3s;
+}
+
+.Slider_base_a8958:hover .Slider_editor_af772 {
+        opacity: .99; /* causes a bug if set to 1 */
+    }
+
+.Slider_editor__minus_e5a49 {
+        left: -32rem;
+    }
+
+.Slider_editor__plus_b1065 {
+        right: -34rem;
+    }
+
+.StepEditor_base_bc980 {
+    width: 36rem;
+    height: 36rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+    .StepEditor_base__enabled_cec0c:hover {
+            filter: brightness(1.35);
+        }
+
+    .StepEditor_base__enabled_cec0c:active {
+            filter: none;
+        }
+
+    .StepEditor_base__minusOff_a8bc8 {
+        background-image: url('R.images.gui.maps.icons.tanksetup.shells.minus_off');
+    }
+
+    .StepEditor_base__minusOn_d34d0 {
+        background-image: url('R.images.gui.maps.icons.tanksetup.shells.minus_on');
+    }
+
+    .StepEditor_base__plusOff_b0456 {
+        background-image: url('R.images.gui.maps.icons.tanksetup.shells.plus_off');
+    }
+
+    .StepEditor_base__plusOn_e3f65 {
+        background-image: url('R.images.gui.maps.icons.tanksetup.shells.plus_on');
+    }
+

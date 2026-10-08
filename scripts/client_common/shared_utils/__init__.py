@@ -1,0 +1,370 @@
+from __future__ import absolute_import
+import time
+import itertools
+import logging
+import typing
+import weakref
+from builtins import filter
+from functools import partial, wraps
+from future.utils import viewitems
+from past.builtins import basestring, long
+import BigWorld
+from adisp import adisp_async
+from constants import IS_EDITOR
+from math_common import decimal_round
+from debug_utils import LOG_CURRENT_EXCEPTION
+if typing.TYPE_CHECKING:
+    from typing import Any, Callable, Dict, Iterable, List, Optional, Sequence, Tuple, Type, TypeVar, Union
+    T = TypeVar('T')
+    R = TypeVar('R')
+_logger = logging.getLogger(__name__)
+ScalarTypes = (int,
+ long,
+ float,
+ bool,
+ basestring)
+IntegralTypes = (int, long)
+
+def makeTupleByDict(ntClass, data):
+    unsupportedFields = set(data) - set(ntClass._fields)
+    supported = {}
+    for k, v in viewitems(data):
+        if k not in unsupportedFields:
+            supported[k] = v
+
+    return ntClass(**supported)
+
+
+class BoundMethodWeakref(object):
+
+    def __init__(self, func):
+        self.methodName = func.__name__
+        self.wrefCls = weakref.ref(func.__self__)
+
+    def __call__(self, *args, **kwargs):
+        ref = self.wrefCls()
+        return getattr(ref, self.methodName)(*args, **kwargs) if ref is not None else None
+
+
+def forEach(function, sequence):
+    for e in sequence:
+        function(e)
+
+
+def safeForEach(function, sequence):
+    for e in sequence:
+        try:
+            function(e)
+        except Exception:
+            LOG_CURRENT_EXCEPTION()
+
+
+def safeExecute(function):
+    try:
+        function()
+    except Exception:
+        LOG_CURRENT_EXCEPTION()
+
+
+def isEmpty(sequence):
+    try:
+        next(sequence)
+    except StopIteration:
+        return True
+
+    return False
+
+
+def safeCancelCallback(callbackID):
+    try:
+        BigWorld.cancelCallback(callbackID)
+    except ValueError:
+        _logger.error('Cannot cancel BigWorld callback: incorrect callback ID.')
+
+
+def prettyPrint(dictValue, sort_keys=True, indent=4):
+    import json
+    return json.dumps(dictValue, sort_keys=sort_keys, indent=indent)
+
+
+def findFirst(function_or_None, sequence, default=None):
+    return next(filter(function_or_None, sequence), default)
+
+
+def first(sequence, default=None):
+    return findFirst(None, sequence, default)
+
+
+def safeIndexOf(item, collection, default=None):
+    return collection.index(item) if item in collection else default
+
+
+def safeCall(function, *args, **kwargs):
+    return function(*args, **kwargs) if callable(function) else None
+
+
+def notImplementedCall(taskID, onNotImplementedCall=None):
+
+    def decorator(call):
+
+        @wraps(call)
+        def wrapper(*args, **kwargs):
+            if callable(onNotImplementedCall):
+                onNotImplementedCall(call.__name__, taskID)
+            _logger.error('"%s" is not implemented, will done in "%s"', call.__name__, taskID)
+            return call(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
+def collapseIntervals(sequence):
+    result = []
+    prevElement = []
+    for periodStart, periodEnd in sorted(sequence):
+        if prevElement and periodStart <= prevElement[1]:
+            prevElement[1] = periodEnd
+        prevElement = [periodStart, periodEnd]
+        result.append(prevElement)
+
+    return result
+
+
+def getSafeFromCollection(lst, ndx, default=None):
+    return lst[ndx] if 0 <= ndx < len(lst) else default
+
+
+def allEqual(sequence, accessor=None):
+    iterable = iter(sequence)
+    try:
+        first_ = next(iterable)
+    except StopIteration:
+        return True
+
+    return all((accessor(first_) == accessor(rest) for rest in iterable)) if accessor else all((first_ == rest for rest in iterable))
+
+
+class CONST_CONTAINER(object):
+    __keyByValue = None
+
+    @classmethod
+    def getIterator(cls):
+        attrs = itertools.chain.from_iterable([ viewitems(c.__dict__) for c in itertools.chain([cls], cls.__bases__) ])
+        for k, v in attrs:
+            if not k.startswith('_') and isinstance(v, ScalarTypes):
+                yield (k, v)
+
+    @classmethod
+    def getKeyByValue(cls, value):
+        cls.__doInit()
+        return cls.__keyByValue.get(value)
+
+    @classmethod
+    def hasKey(cls, key):
+        return key in dir(cls)
+
+    @classmethod
+    def hasValue(cls, value):
+        cls.__doInit()
+        return value in cls.__keyByValue
+
+    @classmethod
+    def ALL(cls):
+        return tuple((v for _, v in cls.getIterator()))
+
+    @classmethod
+    def __doInit(cls):
+        if cls.__keyByValue is None:
+            cls.__keyByValue = dict(((v, k) for k, v in cls.getIterator()))
+        return
+
+
+def _getBitIndexesMap(capacity):
+    result = {}
+    for index in range(1, capacity + 1):
+        key = (1 << index) - 1
+        result[key] = index - 1
+
+    return result
+
+
+_INT64_SET_BITS_INDEXES_MAP = _getBitIndexesMap(64)
+
+class BitmaskHelper(object):
+
+    @classmethod
+    def add(cls, mask, flag):
+        if not mask & flag:
+            mask |= flag
+            return mask
+
+    @classmethod
+    def addIfNot(cls, mask, flag):
+        if not mask & flag:
+            mask |= flag
+        return mask
+
+    @classmethod
+    def remove(cls, mask, flag):
+        if mask & flag > 0:
+            mask ^= flag
+            return mask
+
+    @classmethod
+    def removeIfHas(cls, mask, flag):
+        if mask & flag > 0:
+            mask ^= flag
+        return mask
+
+    @classmethod
+    def hasAllBitsSet(cls, number, mask):
+        return number & mask == mask
+
+    @classmethod
+    def hasAnyBitSet(cls, number, mask):
+        return number & mask > 0
+
+    @classmethod
+    def isBitSet(cls, number, bitIndex):
+        return number & 1 << bitIndex > 0
+
+    @classmethod
+    def getSetBitsCount(cls, mask):
+        count = 0
+        while mask:
+            count += 1
+            mask &= mask - 1
+
+        return count
+
+    @classmethod
+    def getSetBitIndexes(cls, mask):
+        return list(BitmaskHelper.iterateSetBitsIndexes(mask))
+
+    @classmethod
+    def iterateSetBitsIndexes(cls, number):
+        counter = 0
+        while number:
+            if number & 1:
+                yield counter
+            counter += 1
+            number >>= 1
+
+    @classmethod
+    def iterateInt64SetBitsIndexes(cls, number):
+        while number:
+            submask = number - 1
+            yield _INT64_SET_BITS_INDEXES_MAP[number ^ submask]
+            number &= submask
+
+
+class AlwaysValidObject(object):
+
+    def __init__(self, name=''):
+        self.__name = name
+
+    def __getattr__(self, item):
+        return self.__dict__[item] if item in self.__dict__ else AlwaysValidObject(self._makeName(self.__name, item))
+
+    def __getitem__(self, item):
+        pass
+
+    def __call__(self, *args, **kwargs):
+        return AlwaysValidObject()
+
+    def __len__(self):
+        pass
+
+    def __eq__(self, other):
+        return False
+
+    def __hash__(self):
+        return id(self)
+
+    def __add__(self, other):
+        return AlwaysValidObject()
+
+    def __sub__(self, other):
+        return AlwaysValidObject()
+
+    def __mul__(self, mul):
+        return AlwaysValidObject()
+
+    def __floordiv__(self, mul):
+        return AlwaysValidObject()
+
+    def __truediv__(self, mul):
+        return AlwaysValidObject()
+
+    def getName(self):
+        return self.__name
+
+    @classmethod
+    def _makeName(cls, parentName, nodeName):
+        return '%s/%s' % (parentName, nodeName)
+
+
+def updateDict(sourceDict, diffDict):
+    if isinstance(diffDict, dict):
+        for key, value in viewitems(diffDict):
+            if value is None:
+                sourceDict.pop(key, None)
+                continue
+            if isinstance(value, dict):
+                sourceDict.setdefault(key, {})
+                sourceDict[key].update(value)
+            sourceDict[key] = value
+
+    return sourceDict
+
+
+def isDefaultDict(sourceDict, defaultDict):
+    for k, v in viewitems(defaultDict):
+        if k not in sourceDict:
+            return False
+        if sourceDict[k] != v:
+            return False
+
+    return True
+
+
+def nextTick(func):
+
+    def wrapper(*args, **kwargs):
+        BigWorld.callback(0.01, lambda : func(*args, **kwargs))
+
+    return wrapper
+
+
+@adisp_async
+def awaitNextFrame(callback):
+    BigWorld.callback(0.0, partial(callback, None))
+    return
+
+
+def timeit(method):
+
+    def timed(*args, **kw):
+        ts = time.time()
+        result = method(*args, **kw)
+        te = time.time()
+        rt = te - ts
+        _logger.info('%s elapsed time: %s sec', method.__name__, rt)
+        return result
+
+    return timed
+
+
+def inPercents(fraction, digitsToRound=1):
+    return decimal_round(fraction * 100, digitsToRound)
+
+
+def skipInEditor(method):
+
+    @wraps(method)
+    def wrapper(*args, **kwargs):
+        if not IS_EDITOR:
+            method(*args, **kwargs)
+
+    return wrapper

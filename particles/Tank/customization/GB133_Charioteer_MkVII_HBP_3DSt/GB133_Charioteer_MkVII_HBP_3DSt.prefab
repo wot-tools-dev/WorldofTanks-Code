@@ -1,0 +1,138 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Coals_SSM",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/GB133_Charioteer_MkVII_HBP_3DSt/GB133_Charioteer_MkVII_HBP_3DSt_hull_move.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "0",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::EngineStateAnimatorTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"highTrigger": "Move",
+						"idleTrigger": "Stop",
+						"mediumTrigger": "Move",
+						"monitorGear": "0",
+						"monitorPhysicLoad": "0",
+						"monitorRelativeRpm": "0",
+						"monitorRpm": "0",
+						"stoppedTrigger": "Stop",
+						"triggerEngineStart": "0",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_GB133_Attachment"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "CoalsState",
+				"uuid": "24f502b5-89f8-4225-9b2c-caab6a4769ba"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "VehicleStop",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/GB133_Charioteer_MkVII_HBP_3DSt/GB133_Charioteer_MkVII_HBP_3DSt_Stoplights.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_GB133_Attachment"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "VehicleState",
+				"uuid": "27124579-59a1-4117-ad0c-5780d78a371d"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/british/GB133_Charioteer_MkVII/_skins/GB133_Charioteer_MkVII_HBP_3DSt/normal/lod0/Hull.model"
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"path": "vscript/plans/VFX/GB133_Charioteer_MkVII_HBP_3DSt/gb133_move_control.xml"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "gb133_root",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,308 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": "0",
+								"modelName": "content/Environment/hd_env_UNI_710_Fallblocks/normal/lod0/hd_env_UNI_710_Fallblocks_Obstacle_09.model"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.0,
+									"y": -25.0,
+									"z": 0.0
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 0.0,
+									"z": -90.00020599365234
+								},
+								"scale": {
+									"x": 0.5,
+									"y": 1.0,
+									"z": 0.5
+								}
+							}
+						},
+						"name": "142_push_platform_axe_01",
+						"uuid": "32362ad2-da4e-3b41-a789-a31b151c844c"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": "0",
+								"modelName": "content/Environment/hd_env_UNI_710_Fallblocks/normal/lod0/hd_env_UNI_710_Fallblocks_Obstacle_02.model"
+							},
+							"BW::SoundZoneComponent": {
+								"Color": {
+									"w": 0.5,
+									"x": 0.0,
+									"y": 0.0,
+									"z": 1.0
+								},
+								"Emitter Event": "ev_fep_fall_loop_platform",
+								"Reverb Level": "1",
+								"Volume Deviation": "0",
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::SquareArea": {
+								"maxBound": {
+									"x": 3.0,
+									"y": 1.0,
+									"z": 3.0
+								},
+								"minBound": {
+									"x": -3.0,
+									"y": 0.0,
+									"z": -3.0
+								}
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 3.25,
+									"y": -49.935001373291016,
+									"z": -7.629389983776491e-06
+								},
+								"rotation": {
+									"x": 5.266364951239666e-06,
+									"y": -3.0268557793533546e-07,
+									"z": 15.499998092651367
+								}
+							}
+						},
+						"name": "142_push_platform_axe_02",
+						"uuid": "e41974a5-bd54-4ec7-9bae-a246a7ea377f"
+					}
+				],
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::BoxColliderDesc",
+								"__cvalue__": {
+									"transform": "(( 19.2726, 5.34476,       0,       0), (-2.67238, 9.63631,       0,       0), (       0,       0,      20,       0), (    1.75,-45.1696,       0,       1))"
+								}
+							},
+							{
+								"__ctype__": "BW::BoxColliderDesc",
+								"__cvalue__": {
+									"transform": "((       1,       0,       0,       0), (       0,      50,       0,       0), (       0,       0,      10,       0), (     0.5,     -25,       0,       1))"
+								}
+							}
+						]
+					},
+					"cgf::network::NetworkKinematicTransformComponent": {
+						"disabledDomains": [
+							"Client",
+							"Editor"
+						]
+					},
+					"BW::RigidBodyComponent": {
+						"bodiesFrictionFactor": 0.30000001192092896,
+						"centerOfMass": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"collideWithBodies": true,
+						"collideWithDestructibles": false,
+						"collideWithOnlyLeavesTrees": false,
+						"collideWithSimulationObjects": true,
+						"collideWithStatics": false,
+						"collideWithTerrain": false,
+						"collideWithVehicles": true,
+						"destructiblesFrictionFactor": 1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"generateVelocities": true,
+						"inertiaFactors": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						},
+						"isTrigger": false,
+						"mass": 100.0,
+						"simulationObjectsFrictionFactor": 0.30000001192092896,
+						"state": "Kinematic",
+						"staticsFrictionFactor": 1.0,
+						"terrainFrictionFactor": 1.0,
+						"vehiclesFrictionFactors": 0.30000001192092896
+					},
+					"BW::VisibilityObstacleComponent": {
+						"collidersLink": "2759011d-04d6-4945-a20b-adb9bfae3ecb",
+						"disabledDomains": [
+							"Client"
+						],
+						"prismAreaLink": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": 30.000015258789063,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"cgf::network::NetworkComponent": {
+						"disabledDomains": [
+							"Editor"
+						]
+					},
+					"cgf::network::NetworkEntity": {
+						"disabledDomains": [
+							"Editor"
+						]
+					},
+					"cgf::network::NetworkTransformComponent": {
+						"detailed": false,
+						"disabledDomains": [
+							"Editor"
+						],
+						"filterType": "LINEAR_FILTER"
+					},
+					"script::ShootingObstacle": {
+						"colliders": "2759011d-04d6-4945-a20b-adb9bfae3ecb",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "2759011d-04d6-4945-a20b-adb9bfae3ecb"
+					},
+					"script::ShotsReceiver": {}
+				},
+				"name": "142_push_axe_logic",
+				"uuid": "2759011d-04d6-4945-a20b-adb9bfae3ecb"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"disabledDomains": [
+					"Client"
+				],
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 9.0,
+						"loop": true,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 9.0,
+								"object": "2759011d-04d6-4945-a20b-adb9bfae3ecb",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													}
+												},
+												"time": 0.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 30.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													}
+												},
+												"time": 4.5,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": -30.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													}
+												},
+												"time": 9.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 30.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "142_push_platform_axe",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

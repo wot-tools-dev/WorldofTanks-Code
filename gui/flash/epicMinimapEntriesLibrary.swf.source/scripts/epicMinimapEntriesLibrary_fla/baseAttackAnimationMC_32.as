@@ -1,0 +1,30 @@
+package epicMinimapEntriesLibrary_fla
+{
+   import flash.display.MovieClip;
+   
+   [Embed(source="/_assets/assets.swf", symbol="symbol32")]
+   public dynamic class baseAttackAnimationMC_32 extends MovieClip
+   {
+      
+      public var animation:MovieClip;
+      
+      public var animationItem:MovieClip;
+      
+      public function baseAttackAnimationMC_32()
+      {
+         super();
+         addFrameScript(166,this.frame167,186,this.frame187);
+      }
+      
+      internal function frame167() : *
+      {
+         stop();
+      }
+      
+      internal function frame187() : *
+      {
+         stop();
+      }
+   }
+}
+

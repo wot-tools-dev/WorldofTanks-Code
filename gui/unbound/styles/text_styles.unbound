@@ -1,0 +1,562 @@
+#original documentation with text styles in confluence  https://confluence.wargaming.net/pages/viewpage.action?pageId=60888183
+
+(def css EpicTitleTextStyle() #0.1 - number of text style in documentation
+    (fontFamily = $TitleFont)
+    (fontSize = 73)
+    (textColor = 0xF2F2F7)
+)
+
+(def css EpicTitleYellowTextStyle()  #0.1
+    (fontFamily = $TitleFont)
+    (fontSize = 73)
+    (textColor = 0xf5eed5)
+)
+
+(def css HeroTitleTextStyle()  #0.2
+    (fontFamily = $TitleFont)
+    (fontSize = 56)
+    (textColor = 0xF2F2F7)
+)
+
+(def css HeroTitleYellowTextStyle()  #0.2
+    (fontFamily = $TitleFont)
+    (fontSize = 56)
+    (textColor = 0xf5eed5)
+)
+
+(def css HeroTitleTKTextStyle()  #0.2
+    (extends 'HeroTitleTextStyle')
+    (textColor = "TEAM_KILLER_TEXT_COLOR")
+)
+
+(def css GrandTitleTextStyle()  #0.3
+    (fontFamily = $TitleFont)
+    (fontSize = 36)
+    (textColor = 0xF2F2F7)
+)
+
+(def css GrandTitleYellowTextStyle()  #0.3
+    (fontFamily = $TitleFont)
+    (fontSize = 36)
+    (textColor = 0xf5eed5)
+)
+
+(def css GrandTitleTKTextStyle()  #0.3
+    (extends 'GrandTitleTextStyle')
+    (textColor = "TEAM_KILLER_TEXT_COLOR")
+)
+
+(def css SuperPromoTitleTextStyle()  #0
+    (fontFamily = $TitleFont)
+    (fontSize = 28)
+    (textColor = 0xF2F2F7)
+)
+
+(def css SuperPromoTitleTextStyleEm()  #0
+    (fontFamily = $TitleFont)
+    (fontSize = 28)
+    (textColor = 0xf5eed5)
+)
+
+(def css PromoTitleTextStyle()  #1
+    (fontFamily = $TitleFont)
+    (fontSize = 24)
+    (textColor = 0xF2F2E7)
+)
+
+(def css PromoSubTitleTextStyle()  #2
+    (fontFamily = $FieldFont)
+    (fontSize = 24)
+    (textColor = 0xFEFEEC)
+)
+
+(def css HighTitleTextStyle()  #3
+    (fontFamily = $TitleFont)
+    (fontSize = 18)
+    (textColor = 0xE9E2BF)
+)
+
+(def css MiddleTitleTextStyle()  #4
+    (fontFamily = $TitleFont)
+    (fontSize = 15)
+    (textColor = 0xE9E2BF)
+)
+
+(def css StatusCriticalTextStyle()  #4.1
+    (fontFamily = $TitleFont)
+    (fontSize = 14)
+    (textColor = 0xff2717)
+)
+
+(def css StatusWarningTextStyle()  #4.2
+    (fontFamily = $TitleFont)
+    (fontSize = 14)
+    (textColor = 0xf5f0e5)
+)
+
+(def css StatusInfoTextStyle()  #4.3
+    (fontFamily = $TitleFont)
+    (fontSize = 14)
+    (textColor = 0x7ab300)
+)
+
+(def css StatusAttentionTextStyle()  #4.4
+    (fontFamily = $TitleFont)
+    (fontSize = 14)
+    (textColor = 0xfeab34)
+)
+
+(def css VehicleStatusInfoTextStyle()  #4.5
+    (fontFamily = $TitleFont)
+    (fontSize = 15)
+    (textColor = 0xCFC7A8)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (angle = 90)
+            (color = 0)
+            (blurX = 12)
+            (blurY = 12)
+            (strength = 1.8)
+            (quality = 2)
+        )
+    )
+)
+
+(def css VehicleStatusSimpleTextStyle()  #4.5.1
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xCFC7A8)
+)
+
+(def css VehicleStatusCriticalTextStyle()  #4.6
+    (fontFamily = $TitleFont)
+    (fontSize = 15)
+    (textColor = 0xffe0b6)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (angle = 90)
+            (color = 0x960306)
+            (blurX = 12)
+            (blurY = 12)
+            (strength = 1.8)
+            (quality = 2)
+        )
+    )
+)
+
+
+(def css VehicleStatusCriticalSmallTextStyle()  # 4.6.1 no name
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xffe0b6)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (angle = 90)
+            (color = 0x960306)
+            (blurX = 12)
+            (blurY = 12)
+            (strength = 1.8)
+            (quality = 2)
+        )
+    )
+)
+
+(def css DropShadowCriticalTextStyle()  #4.7
+    (fontFamily = $FieldFont)
+    (fontSize = 16)
+    (textColor = 0xffffff)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (color = 0xff7d00)
+            (alpha = 0.5)
+            (blurX = 5)
+            (blurY = 5)
+            (strength = 3)
+            (quality = 2)
+        )
+        (dropShadow
+            (distance = 0)
+            (color = 0xff3600)
+            (blurX = 15)
+            (blurY = 15)
+            (strength = 3)
+            (quality = 2)
+        )
+    )
+)
+
+(def css MainTextStyle()  #5
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0x8C8C7E)
+)
+
+(def css MainBigTextStyle()  #5.1
+    (fontFamily = $FieldFont)
+    (fontSize = 16)
+    (textColor = 0x8C8C7E)
+)
+
+(def css StandardTextStyle()  #6
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0x595950)
+)
+
+(def css DisabledTextStyle()  #7
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0x37362E)
+)
+
+(def css HighlightTextStyle()  #7.1
+    (fontFamily = $FieldFont)
+    (fontSize = 16)
+    (textColor = 0xe9e2bf)
+)
+
+(def css SuccessTextStyle()  #8
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0x497212)
+)
+
+(def css StatsIncreaseTextStyle()  #8.1
+    (fontFamily = $FieldFont)
+    (fontSize = 16)
+    (textColor = 0x80D43A)
+)
+
+(def css AlertTextStyle()  #9
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xEE7000)
+)
+
+(def css AlertBigTextStyle()  #9.1
+    (fontFamily = $FieldFont)
+    (fontSize = 16)
+    (textColor = 0xEE7000)
+)
+
+(def css ErrorTextStyle()  #10
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xff2717)
+)
+
+(def css NeutralTextStyle()  #11
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xCBAC77)
+)
+
+(def css NeutralTextBigStyle()  #11.1
+    (fontFamily = $FieldFont)
+    (fontSize = 16)
+    (textColor = 0xCBAC77)
+)
+
+(def css GoodPingTextStyle()  ### there is no number in the doc
+    (fontFamily = $TextFont)
+    (fontSize = 11)
+    (textColor = 0x497212)
+)
+
+(def css StandartPingtextStyle()  ### there is no number in the doc
+    (fontFamily = $TextFont)
+    (fontSize = 11)
+    (textColor = 0x595950)
+)
+
+(def css DefresTextStyle()  #12
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xA29B70)
+)
+
+(def css GoldTextStyle()  #12.1
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xFFC363)
+)
+
+(def css GoldTextBigStyle()  #12.1.1
+    (fontFamily = $TitleFont)
+    (fontSize = 22)
+    (textColor = 0xFFC363)
+)
+
+(def css CreditsTextStyle()  #12.2
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xCED9D9)
+)
+
+(def css CreditsTextBigStyle()  #12.2.1
+    (fontFamily = $TitleFont)
+    (fontSize = 22)
+    (textColor = 0xCED9D9)
+)
+
+(def css ExpTextStyle()  #12.3
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xC9C9B6)
+)
+
+(def css ExpTextBigStyle()  #12.3.1
+    (fontFamily = $TitleFont)
+    (fontSize = 22)
+    (textColor = 0xC9C9B6)
+)
+
+(def css ErrCurrencyTextBigStyle()  #12.4
+    (fontFamily = $TitleFont)
+    (fontSize = 22)
+    (textColor = 0xB70000)
+)
+
+(def css CrystalTextStyle()  #12.5
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xC9C9B6)
+)
+
+(def css CrystalTextBigStyle()  #12.5
+    (fontFamily = $TitleFont)
+    (fontSize = 18)
+    (textColor = 0xC9C9B6)
+)
+
+(def css StatsTextStyle()  #13
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xE9E2BF)
+)
+
+# 14 There is no name for this style in the doc. There is no underline in a style
+
+(def css PlayerOnlineTextStyle()  #15
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xC9C9B6)
+)
+
+(def css PlayerOfflineTextStyle()  #15
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0x505050)
+)
+
+(def css CounterTextStyle()  #16
+    (fontFamily = $FieldFont)
+    (fontSize = 12)
+    (textColor = 0x8C8C7C)
+)
+
+(def css BoosterTextStyle()  #16.1
+    (fontFamily = $FieldFont)
+    (fontSize = 12)
+    (textColor = 0xccffff)
+)
+
+(def css CounterLabelTextStyle()  #16.2
+    (fontFamily = $FieldFont)
+    (fontSize = 11)
+    (textColor = 0xfff5e2)
+)
+
+(def css TutorialTextStyle()  #17
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xffdd99)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (angle = 0)
+            (color = 0xff0000)
+            (blurX = 16)
+            (blurY = 16)
+            (strength = 2.0)
+            (quality = 3)
+        )
+    )
+)
+
+(def css ButtonTextStyle()  #18 there is no name in a doc
+    (fontSize = 13)
+    (textColor = 0xF2F1E1)
+    (fontFamily = $TitleFont)
+)
+
+(def css ButtonTextDisabledStyle()  # there is no such style in doc
+    (fontSize = 13)
+    (textColor = 0xFF9F9C93)
+    (fontFamily = $TitleFont)
+)
+
+(def css BonusLocalTextStyle()  #19
+    (fontFamily = $FieldFont)
+    (fontSize = 20)
+    (textColor = 0xFEFEEC)
+)
+
+(def css BonusAppliedTextStyle()  #20
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0x9ed038)
+)
+
+(def css BonusPreviewTextStyle()  #21
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0xFEAB34)
+)
+
+(def css PremiumVehicleNameTextStyle()  #22
+    (fontFamily = $FieldFont)
+    (fontSize = 15)
+    (textColor = 0xffa759)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (angle = 90)
+            (color = 0xff3000)
+            (alpha = 0.7)
+            (blurX = 12)
+            (blurY = 12)
+            (strength = 3.0)
+            (quality = 2)
+        )
+    )
+)
+
+(def css VehicleNameTextStyle()  #23
+    (fontFamily = $FieldFont)
+    (fontSize = 15)
+    (textColor = 0xc9c9b6)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (angle = 90)
+            (color = 0xc9c9b6)
+            (alpha = 0.2)
+            (blurX = 8)
+            (blurY = 8)
+            (strength = 4.0)
+            (quality = 2)
+        )
+    )
+)
+
+(def css UnavailableTextStyle()  #24
+    (fontFamily = $TitleFont)
+    (fontSize = 18)
+    (textColor = 0xff2717)
+)
+
+(def css MissionStatusAvailableTextStyle()  #25
+    (fontFamily = $TitleFont)
+    (fontSize = 18)
+    (textColor = 0x7ab300)
+)
+
+(def css CheckBoxTexeDisableStyle()
+    (fontFamily = $FieldFont)
+    (fontSize = 14)
+    (textColor = 0x969687)
+    (alpha = 0.5)
+)
+
+(def css ContextMenuItemEnabledStyle()
+    (fontFamily = $FieldFont)
+    (fontSize = 13)
+    (textColor = 0x969687)
+)
+
+(def css ContextMenuItemDisabledStyle()
+    (fontFamily = $FieldFont)
+    (fontSize = 13)
+    (textColor = 0x505050)
+)
+
+(def css DropDownMenuStyle()
+    (fontFamily = $TextFont)
+    (fontSize = 12)
+    (textColor = 0x969687)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (blurX = 3)
+            (blurY = 3)
+            (strength = 0.5)
+            (quality = 2)
+        )
+    )
+)
+
+(def css DropDownMenuItemNormalStyle()
+    (fontFamily = $TextFont)
+    (fontSize = 12)
+    (textColor = 0x969687)
+    (alpha = 1)
+)
+
+(def css DropDownMenuItemDownStyle()
+    (fontFamily = $TextFont)
+    (fontSize = 12)
+    (textColor = 0xFFFFFF)
+    (alpha = 1)
+)
+
+(def css DropDownMenuItemDisabledStyle()
+    (fontFamily = $TextFont)
+    (fontSize = 12)
+    (textColor = 0x595950)
+    (alpha = 0.6)
+)
+
+(def css DropDownMenuItemSelectedStyle()
+    (fontFamily = $TextFont)
+    (fontSize = 12)
+    (textColor = 0xFFFFFF)
+    (alpha = 1)
+    (filters
+        (dropShadow
+            (distance = 0)
+            (color = 0xFFFFFF)
+            (blurX = 5)
+            (blurY = 5)
+            (strength = 0.5)
+            (quality = 2)
+        )
+    )
+)
+
+# Counter styles
+(def css CounterSmallStyle()
+    (fontFamily = $FieldFont)
+    (textColor = 0xFFF5E2)
+    (fontSize = 9)
+)
+
+(def css CounterMediumStyle()
+    (extends 'CounterSmallStyle')
+    (fontSize = 11)
+)
+
+(def css CounterBigStyle()
+    (extends 'CounterSmallStyle')
+    (fontSize = 14)
+)
+
+(def css CongratsTextStyle() # 0.01
+    (fontFamily = $TitleFont)
+    (fontSize = 144)
+    (textColor = 0xffffff)
+)

@@ -1,0 +1,1540 @@
+.ButtonsBar_base_a334c {
+    display: flex;
+    flex-direction: row;
+    width: 336rem;
+    height: 35rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.background') no-repeat center / contain;
+    position: relative;
+}
+
+.ButtonsBar_button_e9b92 {
+    width: 44rem;
+    height: 20rem;
+    margin-top: 7rem;
+    position: relative;
+}
+
+.ButtonsBar_button__crewOperaions_c9f4b {
+        margin-left: 8rem;
+    }
+
+.ButtonsBar_button__crewBooks_bc020 {
+        margin-left: 12rem;
+        z-index: 2;
+    }
+
+.ButtonsBar_button__toggle_e2abd {
+        margin-left: 6rem;
+        z-index: 1;
+    }
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Counter_base_b457c {
+    display: flex;
+    min-width: 14rem;
+    height: 14rem;
+    position: relative;
+    z-index: 0;
+    animation: Counter_show_a62c2 ease-in-out forwards;
+}
+
+    .Counter_base__big_d6a57 {
+        min-width: 21rem;
+        height: 21rem;
+    }
+
+    .Counter_base__small_ea547 {
+        min-width: 13rem;
+        height: 13rem;
+    }
+
+    .Counter_base__empty_c2ad2 {
+        min-width: 6rem;
+        height: 6rem;
+    }
+
+    .Counter_base__animated_fb5ef {
+        animation-duration: .2s;
+    }
+
+    .Counter_base__hidden_b1e71 {
+        animation-name: Counter_hide_d1bf0;
+    }
+.Counter_bg_f25ac {
+    border: 1rem solid #fe4e0f;
+    border-radius: 7rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, .3),
+            0 0 6rem rgba(254,103,0, .2),
+            0 0 12rem 4rem rgba(249,0,0, .3);
+    background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.Counter_base__big_d6a57 .Counter_bg_f25ac {
+        border-radius: 11rem;
+    }
+.Counter_base__small_ea547 .Counter_bg_f25ac {
+        border-radius: 7rem;
+    }
+.Counter_value_d1de3 {
+    display: flex;
+    padding: 0 4rem;
+    color: #fefeec;
+    font-size: 11rem;
+    line-height: 13rem;
+    white-space: nowrap;
+}
+.Counter_base__big_d6a57 .Counter_value_d1de3 {
+        padding: 0 7rem;
+        font-size: 14rem;
+        line-height: 20rem;
+    }
+.Counter_base__small_ea547 .Counter_value_d1de3 {
+        font-size: 9rem;
+        line-height: 12rem;
+    }
+.Counter_value__text_bb007 {
+        padding: 0 7rem;
+    }
+.Counter_base__big_d6a57 .Counter_value__text_bb007 {
+            padding: 0 10rem;
+        }
+.Counter_base__small_ea547 .Counter_value__text_bb007 {
+            padding: 0 5rem;
+            font-size: 10rem;
+        }
+.Counter_base__pattern_d1fff .Counter_value_d1de3 {
+        display: none;
+    }
+.Counter_plus_a405c {
+    position: relative;
+    top: -1rem;
+}
+.Counter_pattern_a4be2 {
+    display: none;
+}
+.Counter_base__pattern_d1fff .Counter_pattern_a4be2 {
+        display: block;
+        border-radius: 50%;
+        background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+        opacity: .8;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+@keyframes Counter_show_a62c2 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes Counter_hide_d1bf0 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+.CrewBookButton_base_c164f {
+    position: relative;
+}
+
+.CrewBookButton_button_d9fd1 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CrewBookButton_icon_ab8c8 {
+    width: 32rem;
+    height: 22rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.icons.crewBooks') no-repeat center / contain;
+    position: relative;
+}
+
+.CrewBookButton_discount_c10b8 {
+    width: 44rem;
+    height: 42rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.discount') no-repeat center / contain;
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    transform: translateY(28%);
+    pointer-events: none;
+}
+
+.CrewBookButton_counter_f96bf {
+    position: absolute;
+    top: -6rem;
+    right: 2rem;
+    pointer-events: none;
+}
+
+.PopoverDecorator_base_d0107 {
+    display: flex;
+    position: absolute;
+}
+
+.PopoverDecorator_decorator_b4f33 {
+    padding: 58rem;
+    border-image-source: url('R.images.gui.maps.icons.popovers.popover_bg');
+    border-image-slice: 90 fill;
+    border-image-width: 90rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+.PopoverDecorator_arrow_ef5d0 {
+    background: no-repeat 0 0 / contain;
+    position: absolute;
+}
+
+.PopoverDecorator_arrow__bottom_ebbbc,
+    .PopoverDecorator_arrow__top_bb330 {
+        width: 301rem;
+        height: 90rem;
+        margin: 0 58rem;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_top');
+        left: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2,
+    .PopoverDecorator_arrow__right_ffef7 {
+        width: 84rem;
+        height: 181rem;
+        margin: 58rem 0;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_left');
+        top: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2 {
+        right: 10rem;
+        transform: scaleX(-1) translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__right_ffef7 {
+        left: 10rem;
+        transform: translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__top_bb330 {
+        bottom: 8rem;
+        transform: scaleY(-1) translateX(-150rem);
+    }
+
+.PopoverDecorator_arrow__bottom_ebbbc {
+        top: 8rem;
+        transform: translateX(-150rem);
+    }
+
+.PopoverDecorator_closeBtn_dbed5 {
+    width: 18rem;
+    height: 18rem;
+    background: url('R.images.gui.maps.icons.popovers.close_button_slim_up') no-repeat 0 0 / contain;
+    position: absolute;
+    top: 6rem;
+    right: 6rem;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.PopoverDecorator_closeBtn_dbed5:hover {
+        filter: brightness(160%);
+    }
+
+.PopoverDecorator_closeBtn_dbed5:active {
+        background-image: url('R.images.gui.maps.icons.popovers.close_button_slim_press');
+        filter: brightness(100%);
+    }
+
+.PopoverDecorator_content_bc28d {
+    position: relative;
+    z-index: 2;
+}
+
+.CrewOperationsButton_base_b94ad {
+    position: relative;
+}
+
+.CrewOperationsButton_button_bbefd {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CrewOperationsButton_icon_c8815 {
+    width: 32rem;
+    height: 22rem;
+    margin-top: 1rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.icons.crewOperations') no-repeat center / contain;
+    position: relative;
+}
+
+.CrewOperationsButton_autoReturnIcon_c15c7 {
+    width: 42rem;
+    height: 42rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.arrows') no-repeat center / contain;
+    position: absolute;
+    top: -21rem;
+    right: -14rem;
+    pointer-events: none;
+}
+
+.ToggleButton_base_fc1bf {
+    border-radius: 2rem;
+    position: relative;
+}
+
+.ToggleButton_overlay_c47e8 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2rem;
+    pointer-events: none;
+}
+
+.ToggleButton_base__active_f778a .ToggleButton_overlay_c47e8 {
+        border: 1rem solid rgba(255, 195, 99, .75);
+        box-shadow: 0 0 0 1rem rgba(0, 0, 0, .6), 0 0 7px rgba(238, 112, 0, .5);
+        background: linear-gradient(
+            180deg,
+            rgba(255, 42, 0, .1) 0%,
+            rgba(255, 42, 0, 0) .01%,
+            rgba(255, 127, 0, .1) 100%
+        );
+    }
+
+.ToggleButton_button_c99e5 {
+    padding: 0;
+}
+
+.ToggleButton_indicator_a32b9 {
+    width: 40rem;
+    height: 29rem;
+    background: url('R.images.gui.maps.icons.buttons.toggle_indicator') no-repeat center / contain;
+    position: absolute;
+    bottom: -14rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    pointer-events: none;
+}
+
+.ToggleButton_base__active_f778a .ToggleButton_indicator_a32b9 {
+        background-image: url('R.images.gui.maps.icons.buttons.toggle_indicator_active');
+    }
+
+.ToggleButton_counter_ee31b {
+    position: absolute;
+    top: -6rem;
+    right: -3rem;
+    pointer-events: none;
+}
+
+.CrewToggleButton_base_dda9e {
+    position: relative;
+}
+
+.CrewToggleButton_button_da7b6 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CrewToggleButton_iconContainer_c57f5 {
+    width: 32rem;
+    height: 20rem;
+    position: relative;
+}
+
+.CrewToggleButton_icon_e87ff {
+    width: 32rem;
+    height: 22rem;
+    background: no-repeat 50% / contain;
+    position: relative;
+}
+
+.CrewWidgetApp_base_f92d4 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.CrewWidgetApp_buttonsBar_f19e8 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.CrewWidgetApp_slotsList_b0e26 {
+    margin-top: 38rem;
+}
+
+.TankmanIcon_base_cfe24 {
+    background: no-repeat center / contain;
+}
+
+    .TankmanIcon_base__big_e204e {
+        width: 158rem;
+        height: 118rem;
+    }
+
+    .TankmanIcon_base__small_fcd32,
+    .TankmanIcon_base__barracks_f68cc {
+        width: 100rem;
+        height: 60rem;
+    }
+
+    .TankmanIcon_base__special_fa28e {
+        width: 444rem;
+        height: 300rem;
+    }
+
+    .TankmanIcon_base__c_204x256_a5ad6 {
+        width: 204rem;
+        height: 256rem;
+    }
+
+.WidgetTankmanIcon_icon_a00b6 {
+    width: 108rem;
+    height: 80rem;
+}
+
+    .WidgetTankmanIcon_icon__small_a3cf7 {
+        width: 100rem;
+        height: 60rem;
+    }
+
+    .WidgetTankmanIcon_icon__cropped_dda9c {
+        margin-top: -10rem;
+        clip-path: inset(10rem 0 0 0);
+    }
+
+.Layer_base_c2d41 {
+    opacity: 0;
+    top: 0;
+    left: 0;
+    transition: opacity .3s;
+    pointer-events: none;
+}
+
+    .Layer_base__visible_e8083 {
+        opacity: 1;
+    }
+.Layer_content_b8246 {
+    background: no-repeat center / contain;
+    position: absolute;
+}
+.Layer_content__hoverGlow_a6444,
+    .Layer_content__selectedGlow_d6c71 {
+        width: 360rem;
+        height: 88rem;
+        top: -14rem;
+        left: -14rem;
+    }
+.Layer_content__hoverGlowHigh_aef19,
+    .Layer_content__selectedGlowHigh_bbd57 {
+        width: 360rem;
+        height: 108rem;
+        top: -14rem;
+        left: -14rem;
+    }
+.Layer_content__disabledLayer_ee2c7 {
+        width: 370rem;
+        height: 60rem;
+    }
+.Layer_content__disabledLayerHigh_c2066 {
+        width: 370rem;
+        height: 80rem;
+    }
+.Layer_content__selectedTankmanHighlight_ea3bb,
+    .Layer_content__selectedTankmanHighlight2_a6442,
+    .Layer_content__untrainedTankmanHighlight_faabb {
+        width: 340rem;
+        height: 60rem;
+    }
+.Layer_content__selectedTankmanHighlightHigh_e653f,
+    .Layer_content__selectedTankmanHighlightHigh2_ae2fd,
+    .Layer_content__untrainedTankmanHighlightHigh_a2854 {
+        width: 340rem;
+        height: 80rem;
+    }
+.Layer_content__tankmanSlotHover_c2279 {
+        width: 300rem;
+        height: 60rem;
+    }
+.Layer_content__tankmanSlotHoverHigh_dfffc {
+        width: 300rem;
+        height: 80rem;
+    }
+.Layer_base__big_ebabc .Layer_content__hoverGlow_a6444,
+        .Layer_base__big_ebabc .Layer_content__selectedGlow_d6c71 {
+            width: 360rem;
+            height: 98rem;
+            top: -14rem;
+            left: -14rem;
+        }
+.Layer_base__big_ebabc .Layer_content__hoverGlowHigh_aef19,
+        .Layer_base__big_ebabc .Layer_content__selectedGlowHigh_bbd57 {
+            width: 360rem;
+            height: 118rem;
+            top: -14rem;
+            left: -14rem;
+        }
+.Layer_base__big_ebabc .Layer_content__disabledLayer_ee2c7 {
+            width: 370rem;
+            height: 70rem;
+        }
+.Layer_base__big_ebabc .Layer_content__disabledLayerHigh_c2066 {
+            width: 370rem;
+            height: 90rem;
+        }
+.Layer_base__big_ebabc .Layer_content__selectedTankmanHighlight_ea3bb,
+        .Layer_base__big_ebabc .Layer_content__selectedTankmanHighlight2_a6442,
+        .Layer_base__big_ebabc .Layer_content__untrainedTankmanHighlight_faabb {
+            width: 340rem;
+            height: 70rem;
+        }
+.Layer_base__big_ebabc .Layer_content__selectedTankmanHighlightHigh_e653f,
+        .Layer_base__big_ebabc .Layer_content__selectedTankmanHighlightHigh2_ae2fd,
+        .Layer_base__big_ebabc .Layer_content__untrainedTankmanHighlightHigh_a2854 {
+            width: 340rem;
+            height: 90rem;
+        }
+.Layer_base__big_ebabc .Layer_content__tankmanSlotHover_c2279 {
+            width: 300rem;
+            height: 70rem;
+        }
+.Layer_base__big_ebabc .Layer_content__tankmanSlotHoverHigh_dfffc {
+            width: 300rem;
+            height: 90rem;
+        }
+
+.BaseSlot_base_c0c56 {
+    display: flex;
+    width: 370rem;
+    background: linear-gradient(90deg, rgba(0,0,0, 0.6) 0%, rgba(0,0,0, 0.4) 57.74%, rgba(0,0,0, 0) 100%);
+    position: relative;
+    cursor: pointer;
+}
+
+    .BaseSlot_base__hovered_a5f52 {
+        background: linear-gradient(90deg, rgba(0,0,0, 0.9) 0%, rgba(0,0,0, 0.5) 57.74%, rgba(0,0,0, 0) 100%);
+    }
+
+    .BaseSlot_base__inactive_c6e27 {
+        cursor: initial;
+    }
+
+.BaseSlot_content_df6d6 {
+    display: flex;
+    height: 61rem;
+}
+
+.BaseSlot_content__high_fa4f5 {
+        height: 81rem;
+    }
+
+.BaseSlot_base__big_a7b41 .BaseSlot_content_df6d6 {
+        height: 71rem;
+    }
+
+.BaseSlot_base__big_a7b41 .BaseSlot_content__high_fa4f5 {
+            height: 91rem;
+        }
+
+.BaseSlot_delimiter_f33c7 {
+    width: 230rem;
+    height: 1rem;
+    background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 53.57%, rgba(255, 255, 255, 0) 100%);
+    opacity: .1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.BaseSlot_layer_a7292 {
+    position: absolute;
+}
+
+.DogSlot_base_f5b97 {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.DogSlot_icon_c6797 {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+}
+
+.DogSlot_container_a4722 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 104rem;
+}
+
+.DogSlot_roleAndName_cad2d {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7rem;
+    position: relative;
+}
+
+.DogSlot_role_c10c5 {
+    width: 18rem;
+    height: 18rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.dogPaw') no-repeat center / contain;
+    position: relative;
+}
+
+.DogSlot_name_e7463 {
+    color: #C9C9B6;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-left: 4rem;
+    position: relative;
+}
+
+.DogSlot_btnDetails_c8e4c {
+    width: 118rem;
+    height: 20rem;
+    margin-top: 8rem;
+}
+
+.ChangeCrewButton_base_ea1a6 {
+    width: 44rem;
+    height: 42rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .ChangeCrewButton_base__inactive_c685f {
+        cursor: initial;
+    }
+
+.ChangeCrewButton_normalState_f5f68 {
+    width: 44rem;
+    height: 42rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.btn_crew_change_default') no-repeat center / contain;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity .3s;
+}
+
+.ChangeCrewButton_normalState__hide_c4c91 {
+        opacity: 0;
+    }
+
+.ChangeCrewButton_hoverState_e9871 {
+    width: 74rem;
+    height: 72rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.btn_crew_change_hover') no-repeat center / cover;
+    opacity: 0;
+    position: absolute;
+    top: -15rem;
+    left: -15rem;
+    transition: opacity .3s;
+}
+
+.ChangeCrewButton_hoverState__show_fc6b1 {
+        opacity: 1;
+    }
+
+.ChangeCrewButton_hoverState_e9871 {
+    pointer-events: none;
+}
+
+.CrewSlot_base_bfce7 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.CrewSlot_changeCrew_ce523 {
+    margin: -1rem 0 0 8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.CrewSlot_content_aee79 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.CrewSlot_content__withChangeCrewButton_c149b {
+        right: 41rem;
+    }
+
+.CrewSlot_layer_e5ffa {
+    position: absolute;
+}
+
+.SpecializationAndName_base_eefbf {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.SpecializationAndName_roleWrapper_a6d80 {
+    display: flex;
+    pointer-events: auto;
+}
+
+.SpecializationAndName_role_da143 {
+    width: 18rem;
+    height: 18rem;
+    background: no-repeat 50% / contain;
+    opacity: .4;
+    position: relative;
+}
+
+.SpecializationAndName_role__withGap_f50bd {
+        margin-left: 5rem;
+    }
+
+.SpecializationAndName_name_fe082 {
+    color: #C9C9B6;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    flex: 1;
+    margin-left: 4rem;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 8rem #333;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.SpecializationAndName_name__highlighted_e7e81 {
+        color: #FFFFFF;
+        text-shadow: 0 0 14rem rgba(255,153,0, .8), 0 0 4rem rgba(251,120,0, .5);
+    }
+
+.EmptySlotContent_base_bbe4e {
+    width: 370rem;
+    position: relative;
+}
+
+.EmptySlotContent_content_a2bd7 {
+    height: 61rem;
+}
+
+.EmptySlotContent_content__high_ce5ed {
+        height: 81rem;
+    }
+
+.EmptySlotContent_base__big_aa39e .EmptySlotContent_content_a2bd7 {
+        height: 71rem;
+    }
+
+.EmptySlotContent_base__big_aa39e .EmptySlotContent_content__high_ce5ed {
+            height: 91rem;
+        }
+
+.EmptySlotContent_tankmanIcon_dd58d {
+    margin-left: 3rem;
+    position: relative;
+}
+
+.EmptySlotContent_icon_d9c17 {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+}
+
+.EmptySlotContent_iconContainer_e91f5 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.EmptySlotContent_specialization_b7742 {
+    position: absolute;
+    top: 7rem;
+    left: 105rem;
+}
+
+.EmptySlotContent_specialization__disabled_f782a {
+        opacity: 0.5;
+    }
+
+.EmptySlotContent_vehicle_a1fd8 {
+    color: #CBAC77;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    width: 224rem;
+    position: absolute;
+    top: 30rem;
+    left: 106rem;
+}
+
+.EfficiencyIndicator_base_ce16e {
+    display: flex;
+    justify-content: center;
+    width: 32rem;
+    height: 22rem;
+    border-radius: 2rem;
+    background-color: rgba(0,0,0, .4);
+    position: relative;
+    pointer-events: auto;
+}
+
+    .EfficiencyIndicator_base__big_a8d2d {
+        align-items: center;
+        height: 26rem;
+    }
+
+    .EfficiencyIndicator_base__large_ac512 {
+        align-items: center;
+        width: auto;
+        height: 32rem;
+        padding: 0 2rem;
+    }
+
+    .EfficiencyIndicator_base__large_ac512.EfficiencyIndicator_base__untrained_f15c6 {
+            width: 42rem;
+        }
+
+.EfficiencyIndicator_percent_a552f {
+    margin-top: 2rem;
+    text-shadow: 0 0 12rem rgba(255, 0, 0, 0.7), 0 0 8rem rgba(226, 0, 0, 0.7);
+    position: relative;
+    color: #FFC3BE;
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.EfficiencyIndicator_percent__full_d0b31 {
+        color: #FFFFFF;
+        text-shadow: 0 0 15rem rgb(238, 85, 34), 0 0 8rem rgba(254, 171, 52, 0.6), 0 0 4rem rgba(255, 127, 0, 0.25);
+        letter-spacing: -1rem;
+    }
+
+.EfficiencyIndicator_base__big_a8d2d .EfficiencyIndicator_percent_a552f {
+        position: relative;
+        top: -1rem;
+    }
+
+.EfficiencyIndicator_base__large_ac512 .EfficiencyIndicator_percent_a552f {
+        font-size: 22rem;
+        position: relative;
+        top: -2rem;
+    }
+
+.EfficiencyIndicator_icon_ec21c {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.untrained') no-repeat center / 44rem 36rem;
+}
+
+.AcceleratedTrainingIcon_base_bb7ea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 16rem;
+    height: 16rem;
+    pointer-events: auto;
+}
+
+.AcceleratedTrainingIcon_icon_dce04 {
+    width: 34rem;
+    height: 34rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.speedXpIcon') no-repeat center / contain;
+}
+
+.AnimatedLostSkill_base_f71f5 {
+    display: flex;
+    position: relative;
+}
+
+    .AnimatedLostSkill_base__c_24x24_fe08e {
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .AnimatedLostSkill_base__c_44x44_b4351 {
+        width: 44rem;
+        height: 44rem;
+    }
+
+.AnimatedLostSkill_icon_fcca6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.AnimatedLostSkill_base__c_24x24_fe08e .AnimatedLostSkill_icon_fcca6 {
+        position: absolute;
+        top: -20rem;
+        right: -20rem;
+        bottom: -20rem;
+        left: -20rem;
+    }
+
+.AnimatedLostSkill_base__c_44x44_b4351 .AnimatedLostSkill_icon_fcca6 {
+        position: absolute;
+        top: -26rem;
+        right: -26rem;
+        bottom: -26rem;
+        left: -26rem;
+    }
+
+.AnimatedNewSkill_base_e010d {
+    width: 24rem;
+    height: 24rem;
+}
+
+.SkillIcon_base_a1c9a {
+    display: flex;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+    .SkillIcon_base__c_22x22_dcf9f {
+        width: 22rem;
+        height: 22rem;
+    }
+
+    .SkillIcon_base__medium_d67ae {
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .SkillIcon_base__c_36x36_flat_e0291 {
+        width: 36rem;
+        height: 36rem;
+    }
+
+    .SkillIcon_base__big_b5b33 {
+        width: 52rem;
+        height: 52rem;
+    }
+
+    .SkillIcon_base__c_80x80_ee59c {
+        width: 80rem;
+        height: 80rem;
+    }
+
+    .SkillIcon_base__c_120x90_cc537 {
+        width: 120rem;
+        height: 90rem;
+    }
+
+    .SkillIcon_base__dialogs_a9262 {
+        width: 180rem;
+        height: 135rem;
+    }
+
+.Skill_base_c2b05 {
+    display: flex;
+    position: relative;
+}
+
+    .Skill_base__c_24x24_a6dee {
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .Skill_base__c_44x44_e4048 {
+        width: 44rem;
+        height: 44rem;
+    }
+
+.Skill_background_fb177 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1rem solid rgba(255,255,255, .2);
+    border-radius: 2rem;
+    background: rgba(0,0,0, .3);
+}
+
+.Skill_base__borderLightYellow_d60ed .Skill_background_fb177 {
+        border-color: #FFDD99;
+    }
+
+.Skill_base__borderYellow_bf2cc .Skill_background_fb177 {
+        border-color: #FEAB34;
+    }
+
+.Skill_base__borderRed_a4df6 .Skill_background_fb177 {
+        border-color: #FF2717;
+    }
+
+.Skill_base__typeBonus_e228b .Skill_background_fb177 {
+        border: none;
+        background: no-repeat 0 / cover;
+    }
+
+.Skill_base__disabled_ac718 .Skill_background_fb177 {
+        background-color: rgba(0,0,0, .5);
+        opacity: .6;
+    }
+
+.Skill_base__disabled_ac718.Skill_base__borderYellow_bf2cc .Skill_background_fb177 {
+        background-color: rgba(0,0,0, .5);
+        opacity: 1;
+    }
+
+.Skill_newSkillHighLight_d6dae {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    background: #ff5c00;
+    opacity: .25;
+}
+
+.Skill_icon_a5b2d {
+    position: absolute;
+}
+
+.Skill_base__disabled_ac718 .Skill_icon_a5b2d {
+        opacity: .3;
+    }
+
+.Skill_base__c_24x24_a6dee .Skill_icon_a5b2d {
+        width: 22rem;
+        height: 22rem;
+        top: 1rem;
+        left: 1rem;
+    }
+
+.Skill_base__c_44x44_e4048 .Skill_icon_a5b2d {
+        width: 34rem;
+        height: 34rem;
+        top: 5rem;
+        left: 5rem;
+    }
+
+.Skill_disabledOverlay_e2b1e {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    background: url('R.images.gui.maps.icons.crew.skillsFrame.disabled') center / cover;
+}
+
+.LostLevelAnimation_base_c6848 {
+    display: flex;
+    align-items: center;
+    width: 0;
+    position: relative;
+}
+
+.LostLevelAnimation_level_e804d {
+    color: #FEAB34;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    display: flex;
+    position: absolute;
+}
+
+.LostLevelAnimation_level__skillLost_a1467 {
+        color: #FF2717;
+    }
+
+.LostLevelAnimation_level__skillBlur_e15fa {
+        text-shadow: 0 0 20rem rgba(255,255,255, .9);
+        filter: blur(5rem);
+        opacity: 0;
+    }
+
+.LostLevelAnimation_base__c_24x24_da578 .LostLevelAnimation_level_e804d {
+        left: 4rem;
+    }
+
+.LostLevelAnimation_base__c_44x44_e9708 .LostLevelAnimation_level_e804d {
+        font-size: 24rem;
+        left: 6rem;
+    }
+
+.SkillLevel_base_e2248 {
+    color: #FEAB34;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+    .SkillLevel_base__highlighted_c4737 {
+        color: #FEFEEC;
+        text-shadow: 0 0 15rem #e52, 0 0 8rem #ff2a00, 0 0 4rem rgba(255, 127, 0, .25);
+    }
+
+.Row_base_de020 {
+    display: flex;
+    align-items: center;
+}
+
+.Row_skill_a8b94 {
+    overflow: hidden;
+}
+
+.Row_skill_a8b94 + .Row_skill_a8b94 {
+        margin-left: 2rem;
+    }
+
+.Row_base__c_44x44_b19d9 .Row_skill_a8b94 + .Row_skill_a8b94 {
+            margin-left: 4rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseNoMargins_c10ff .Row_skill_a8b94 + .Row_skill_a8b94 {
+            margin-left: -1rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill_a8b94 + .Row_skill_a8b94 {
+            margin-left: 0;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseReducedMargins_e1948 .Row_skill_a8b94 + .Row_skill_a8b94 {
+            margin-left: 1rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill_a8b94 {
+        width: 20rem;
+    }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill__last_cece2,
+        .Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill__lastLearnedSkill_c917d {
+            width: 24rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill__lastLearnedSkill_c917d {
+            margin-right: 2rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOnlyLearningOverlap_ac76c .Row_skill__stateLearning_f8148 {
+            width: 20rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOnlyLearningOverlap_ac76c .Row_skill__stateLearning_f8148 + .Row_skill__stateLearning_f8148 {
+                margin-left: 0;
+            }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOnlyLearningOverlap_ac76c .Row_skill_a8b94.Row_skill__last_cece2 {
+            width: 24rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlap_cd20f .Row_skill_a8b94 {
+        width: 19rem;
+    }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithLevel_b8bc2 .Row_skill_a8b94,
+    .Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithEfficiency_f5c0b .Row_skill_a8b94 {
+        width: 15rem;
+    }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithLevelAndEfficiency_eb584 .Row_skill_a8b94 {
+        width: 14rem;
+    }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlap_cd20f .Row_skill__last_cece2, .Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithLevel_b8bc2 .Row_skill__last_cece2, .Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithEfficiency_f5c0b .Row_skill__last_cece2, .Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithLevelAndEfficiency_eb584 .Row_skill__last_cece2 {
+            width: 24rem;
+        }
+
+.Row_base__c_24x24_a1b44 .Row_level_ddaff {
+        margin-left: 4rem;
+        position: relative;
+        top: -1rem;
+    }
+
+.Row_base__c_44x44_b19d9 .Row_level_ddaff {
+        margin-left: 6rem;
+        font-size: 24rem;
+    }
+
+.Row_acceleratedTrainingIcon_cdfb1 {
+    margin-left: 9rem;
+}
+
+.Row_lostSkill_d0ede {
+    margin-left: 2rem;
+}
+
+.Row_base__c_44x44_b19d9 .Row_lostSkill_d0ede {
+        margin-left: 4rem;
+    }
+
+.Skills_base_abf76 {
+    display: flex;
+    align-items: center;
+}
+
+.Skills_efficiency_b3734 {
+    margin-right: 4rem;
+}
+
+.Skills_base__c_44x44_d4037 .Skills_efficiency_b3734 {
+        margin-right: 8rem;
+    }
+
+.Skills_rows_f44e0 {
+    display: flex;
+    flex-direction: column;
+}
+
+.Skills_bonusRow_d65a0 {
+    margin-top: 2rem;
+}
+
+.Skills_base__c_44x44_d4037 .Skills_bonusRow_d65a0 {
+        margin-top: 4rem;
+    }
+
+.TankmanInfo_base_a03a7 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .TankmanInfo_base__disabled_eb99e {
+        opacity: 0.5;
+    }
+
+.TankmanInfo_tankmanTooltipHoverArea_ab6d8 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.TankmanInfo_specialization_ba9a0 {
+    flex: 1;
+    margin-left: 105rem;
+    margin-top: 7rem;
+    position: relative;
+    pointer-events: none;
+}
+
+.TankmanInfo_specialization__withBonusSkills_d1c7f {
+        margin-top: 4rem;
+    }
+
+.TankmanInfo_base__big_bac57 .TankmanInfo_specialization_ba9a0 {
+        margin-top: 11rem;
+    }
+
+.TankmanInfo_base__big_bac57 .TankmanInfo_specialization__withBonusSkills_d1c7f {
+            margin-top: 8rem;
+        }
+
+.TankmanInfo_skillsContainer_ed558 {
+    position: absolute;
+    top: 31rem;
+    left: 102rem;
+}
+
+.TankmanInfo_skillsContainer__withBonusSkills_d044e {
+        top: 26rem;
+    }
+
+.TankmanInfo_base__big_bac57 .TankmanInfo_skillsContainer_ed558 {
+        top: 35rem;
+    }
+
+.TankmanInfo_base__big_bac57 .TankmanInfo_skillsContainer__withBonusSkills_d044e {
+            top: 32rem;
+        }
+
+.QuickTrainingTankmanSlotContent_base_b2239 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.QuickTrainingTankmanSlotContent_arrow_efc81 {
+    width: 57rem;
+    height: 96rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.xp_arrow_small') no-repeat 50% / contain;
+    position: absolute;
+    top: 0;
+    left: -6rem;
+    pointer-events: none;
+}
+
+.QuickTrainingTankmanSlotContent_iconContainer_d932e {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.QuickTrainingTankmanSlotContent_icon_f958b {
+    position: absolute !important;
+    bottom: 1rem;
+    left: 0;
+}
+
+.QuickTrainingTankmanSlotContent_layer_b8bac {
+    position: absolute;
+}
+
+.TankmanSlotContent_base_b5927 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.TankmanSlotContent_icon_a25f0 {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+}
+
+.SlotsList_base_a82a1 {
+    width: 370rem;
+    position: relative;
+}
+
+    .SlotsList_base__hangar_c097e {
+        width: 408rem;
+    }
+
+.HangarCrewWidgetApp_base_f662f {
+    padding: 1rem;
+    overflow: hidden;
+    position: relative;
+}
+

@@ -1,0 +1,63 @@
+from enum import Enum
+
+class CameraMover(object):
+
+    def moveCamera(self, cameraManager, cameraName):
+        cameraManager.switchByCameraName(cameraName)
+
+    def moveCameraFailed(self):
+        pass
+
+
+class SmoothCameraMover(CameraMover):
+
+    def moveCamera(self, cameraManager, cameraName):
+        cameraManager.switchByCameraName(cameraName, False)
+
+
+class SubhangarStateGroupConfig(object):
+
+    def __init__(self, stateGroups=(), cameraMover=CameraMover(), environmentName=None):
+        self.stateGroups = stateGroups
+        self.cameraMover = cameraMover
+        self.environmentName = environmentName
+
+
+class SubhangarStateGroupConfigProvider(object):
+
+    def getSubhangarStateGroupConfig(self):
+        raise NotImplementedError
+
+
+class SubhangarStateGroups(Enum):
+    Customization = 'CustomizationStates'
+    PersonalMissions = 'PersonalMissionsStates'
+    VehicleHub = 'VehicleHubStates'
+    PetDenStorage = 'PetDenStorage'
+    VehicleHubOverviewLargeTank = 'VehicleHubOverviewLargeTankStates'
+    VehicleHubModulesLargeTank = 'VehicleHubModulesLargeTankStates'
+    VehicleHubUpgradesLargeTank = 'VehicleHubUpgradesLargeTankStates'
+    VehicleHubArmorLargeTank = 'VehicleHubArmorLargeTankStates'
+    VehicleHubStatsLargeTank = 'VehicleHubStatsLargeTankStates'
+    VehicleHubOverviewMediumTank = 'VehicleHubOverviewMediumTankStates'
+    VehicleHubModulesMediumTank = 'VehicleHubModulesMediumTankStates'
+    VehicleHubUpgradesMediumTank = 'VehicleHubUpgradesMediumTankStates'
+    VehicleHubStatsMediumTank = 'VehicleHubStatsMediumTankStates'
+    VehicleHubArmorMediumTank = 'VehicleHubArmorMediumTankStates'
+    VehicleHubOverviewSmallTank = 'VehicleHubOverviewSmallTankStates'
+    VehicleHubModulesSmallTank = 'VehicleHubModulesSmallTankStates'
+    VehicleHubUpgradesSmallTank = 'VehicleHubUpgradesSmallTankStates'
+    VehicleHubStatsSmallTank = 'VehicleHubStatsSmallTankStates'
+    VehicleHubArmorSmallTank = 'VehicleHubArmorSmallTankStates'
+    PostBattleSmall = 'PostBattleSmallStates'
+    PostBattleMedium = 'PostBattleMediumStates'
+    PostBattleLarge = 'PostBattleLargeStates'
+    PostBattleVictory = 'PostBattleVictoryStates'
+    PostBattleDefeat = 'PostBattleDefeatStates'
+    PostBattleCommon = 'PostBattleCommonStates'
+    Comp7PostBattleSmall = 'Comp7PostBattleSmallStates'
+    Comp7PostBattleMedium = 'Comp7PostBattleMediumStates'
+    Comp7PostBattleLarge = 'Comp7PostBattleLargeStates'
+    Comp7PostBattleVictory = 'Comp7PostBattleVictoryStates'
+    Comp7PostBattleDefeat = 'Comp7PostBattleDefeatStates'
+    Comp7PostBattleCommon = 'Comp7PostBattleCommonStates'

@@ -1,0 +1,21 @@
+from gui.Scaleform.framework.entities.BaseDAAPIComponent import BaseDAAPIComponent
+
+class ToolTipMgrMeta(BaseDAAPIComponent):
+
+    def onCreateComplexTooltip(self, tooltipId, stateType):
+        self._printOverrideError('onCreateComplexTooltip')
+
+    def onCreateTypedTooltip(self, tooltipType, args, stateType):
+        self._printOverrideError('onCreateTypedTooltip')
+
+    def onHideTooltip(self, tooltipId):
+        self._printOverrideError('onHideTooltip')
+
+    def onCreateWulfTooltip(self, tooltipType, args, x, y):
+        self._printOverrideError('onCreateWulfTooltip')
+
+    def as_showS(self, tooltipData, linkage, redraw=False):
+        return self.flashObject.as_show(tooltipData, linkage, redraw) if self._isDAAPIInited() else None
+
+    def as_hideS(self):
+        return self.flashObject.as_hide() if self._isDAAPIInited() else None

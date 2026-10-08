@@ -1,0 +1,164 @@
+<23_westfeld.xml>
+  <name>	#arenas:23_westfeld/name	</name>
+  <description>	#arenas:23_westfeld/description	</description>
+  <geometry>	spaces/23_westfeld	</geometry>
+  <estimatedLoad>	0.3	</estimatedLoad>
+  <boundingBox>
+    <bottomLeft>	-500.000000 -500.000000	</bottomLeft>
+    <upperRight>	500.000000 500.000000	</upperRight>
+  </boundingBox>
+  <roundLength>	900	</roundLength>
+  <minimap>	spaces/23_westfeld/mmap.dds	</minimap>
+  <vehicleCamouflageKind>	summer	</vehicleCamouflageKind>
+  <umbraEnabled>	1	</umbraEnabled>
+  <batchingEnabled>	0	</batchingEnabled>
+  <maxPlayersInTeam>	15	</maxPlayersInTeam>
+  <wwmusicSetup>
+    <wwmusicLoading>	music_westfield_loading_screen	</wwmusicLoading>
+    <wwmusicIntensive>	music_westfield_dron_intensive	</wwmusicIntensive>
+    <wwmusicRelaxed>	music_westfield_dron_relaxed	</wwmusicRelaxed>
+    <wwmusicStop>	music_dron_stop	</wwmusicStop>
+    <wwmusicEndbattleStop>	music_dron_endbattle_stop	</wwmusicEndbattleStop>
+    <wwmusicResultWin>	music_westfield_result_win	</wwmusicResultWin>
+    <wwmusicResultDrawn>	music_westfield_result_drawn	</wwmusicResultDrawn>
+    <wwmusicResultDefeat>	music_westfield_result_defeat	</wwmusicResultDefeat>
+  </wwmusicSetup>
+  <wwambientSound>	amb_map_23_westfield_wind_spring	</wwambientSound>
+  <gameplayTypes>
+    <ctf>
+      <teamBasePositions>
+        <team1>
+          <position1>	-300.099518 -339.599609	</position1>
+        </team1>
+        <team2>
+          <position1>	339.399506 299.766785	</position1>
+        </team2>
+      </teamBasePositions>
+    </ctf>
+    <domination>
+      <teamSpawnPoints>
+        <team1>
+          <position>	-399.898010 57.212002	</position>
+        </team1>
+        <team2>
+          <position>	-33.141998 407.045990	</position>
+        </team2>
+      </teamSpawnPoints>
+      <controlPoint>	57.832760 -26.880875	</controlPoint>
+    </domination>
+    <comp7>
+      <teamSpawnPoints>
+        <team1>
+          <position>	8.621536 405.434967	</position>
+        </team1>
+        <team2>
+          <position>	-398.561005 -21.989000	</position>
+        </team2>
+      </teamSpawnPoints>
+      <visualScript>
+        <server>
+          <plan>	PointsOfInterest/pointsOfInterest	</plan>
+        </server>
+      </visualScript>
+      <recon>
+        <flyDirections>
+          <flyDirection>
+            <team>	1	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+          <flyDirection>
+            <team>	2	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+        </flyDirections>
+      </recon>
+      <minimap>	spaces/23_westfeld/mmap_comp7.dds	</minimap>
+      <pointsOfInterestUDO>
+        <point>
+          <position>	66.308998 -43.206001	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	124.584000 91.253998	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	-117.147003 -132.162003	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	-136.295120 126.955276	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	-412.713318 376.435913	</position>
+          <type>	2	</type>
+        </point>
+      </pointsOfInterestUDO>
+      <controlPoint>	-290.223999 275.864014	</controlPoint>
+    </comp7>
+  </gameplayTypes>
+  <modules>
+    <common>
+      <module>	BW::CgfCameraModule	</module>
+      <module>	BW::CollisionSceneModule	</module>
+      <module>	cgf::network::ClientNetworkModule	</module>
+      <module>	BW::CompoundModule	</module>
+      <module>	cgf::network::NetworkModule	</module>
+      <module>	vehicle::hierarchy::EntityHelpersModule	</module>
+      <module>	vehicle::hierarchy::VehicleHierarchyModule	</module>
+      <module>	BW::EffectsDebugModule	</module>
+      <module>	BW::ControlPointModule	</module>
+      <module>	BW::EntityFiltersModule	</module>
+      <module>	BW::EffectHandlersModule	</module>
+      <module>	BW::EffectsModule	</module>
+      <module>	BW::ArmorFlashlight::ArmorFlashlightModule	</module>
+      <module>	BW::VisibilityTunnelModule	</module>
+      <module>	BW::input::InputModule	</module>
+      <module>	BW::RompModule	</module>
+      <module>	cgf::events::EventsModule	</module>
+      <module>	cgf::FoundationModule	</module>
+      <module>	cgf::TriggersModule	</module>
+      <module>	BW::ConstraintsModule	</module>
+      <module>	BW::CGF::GenericComponentsModule	</module>
+      <module>	BW::tags::TagsModule	</module>
+      <module>	BW::variables::VariablesModule	</module>
+      <module>	vehicle::hierarchy::HierarchyModule	</module>
+      <module>	BW::DebugSoundRenderModule	</module>
+      <module>	cgf_debug_render::Module	</module>
+      <module>	BW::VisualScriptModule	</module>
+      <module>	BW::GameLogicModule	</module>
+      <module>	BW::SoundModule	</module>
+      <module>	BW::SoundSpatialModule	</module>
+      <module>	wot_physics::Module	</module>
+      <module>	BW::GpuDecalsModule	</module>
+      <module>	BW::WotRenderModule	</module>
+      <module>	BW::WULF::Module	</module>
+      <module>	BW::VehicleBasicModule	</module>
+      <module>	BW::VehicleCommonModule	</module>
+      <module>	BW::VehicleDrivetrainModule	</module>
+      <module>	BW::VehicleAudioModule	</module>
+      <module>	BW::VehicleTracksModule	</module>
+      <module>	BW::VehicleGunModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::ClientCommonModule	</module>
+      <module>	script::ClientUiModule	</module>
+      <module>	script::VehicleAppearanceModule	</module>
+      <module>	BW::SpaceZonesModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::CommonServerModule	</module>
+      <module>	script::VehicleRuleModule	</module>
+      <module>	script::ClientKillCamModule	</module>
+      <module>	script::ClientAbilitiesModule	</module>
+      <module>	script::RamDebugModule	</module>
+      <module>	script::VehicleSystemsModule	</module>
+      <module>	script::CommonScriptsModule	</module>
+      <module>	BW::ServerModule	</module>
+      <module>	BW::VehicleStatusesModule	</module>
+      <module>	BW::VehicleTriggersModule	</module>
+    </common>
+    <comp7>
+      <module>	script::PointsOfInterestModule	</module>
+    </comp7>
+  </modules>
+</23_westfeld.xml>

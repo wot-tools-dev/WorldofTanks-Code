@@ -1,0 +1,1969 @@
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.App_base_f83f9 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-top: 30rem;
+    background: url('R.images.gui.maps.icons.storage.background') no-repeat center / cover;
+    position: relative;
+    animation-name: App_windowIn_ae51b;
+    animation-duration: .5s;
+    animation-fill-mode: both;
+}
+
+.App_shadow_a602b {
+    background-color: rgba(0,0,0, .1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.App_close_f4def {
+    position: absolute;
+    top: 13rem;
+    right: 8rem;
+}
+
+@keyframes App_windowIn_ae51b {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.HorizontalBar_base_fa517 {
+    display: flex;
+    width: 100%;
+    height: 13rem;
+    visibility: hidden;
+    position: relative;
+}
+
+    .HorizontalBar_base__active_ad89b {
+        visibility: visible;
+    }
+
+    .HorizontalBar_base_fa517 .disable,
+    .HorizontalBar_base_fa517 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.HorizontalBar_leftButton_eb8c3,
+.HorizontalBar_rightButton_f5116 {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transform: rotate(-90deg);
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_leftButton_eb8c3:hover, .HorizontalBar_rightButton_f5116:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_leftButton_eb8c3 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.HorizontalBar_rightButton_f5116 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.HorizontalBar_track_fd3af {
+    flex: 1;
+    margin: 0 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0 {
+    display: none;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 20rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb_horizontal') no-repeat center / 8rem 7rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_rail_a3d9e {
+    height: 0;
+    border-top: 1rem solid #2f2e24;
+    position: absolute;
+    top: 6rem;
+    right: 5rem;
+    left: 5rem;
+}
+
+.HorizontalBar_rail_a3d9e:hover {
+        opacity: .7;
+    }
+
+
+.HorizontalScroll_base_a33a9 {
+    width: 100%;
+}
+
+.HorizontalScroll_wrapper_b622e {
+    display: flex;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.HorizontalScroll_defaultScrollArea_a2315 {
+    width: 100%;
+    margin-bottom: 7rem;
+}
+
+.VerticalBar_base_b5610 {
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    height: 100%;
+    visibility: hidden;
+    position: relative;
+}
+
+    .VerticalBar_base__active_be260 {
+        visibility: visible;
+    }
+
+    .VerticalBar_base_b5610 .disable,
+    .VerticalBar_base_b5610 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.VerticalBar_topButton_c2227,
+.VerticalBar_bottomButton_ef09b {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_topButton_c2227:hover, .VerticalBar_bottomButton_ef09b:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_topButton_c2227 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.VerticalBar_bottomButton_ef09b {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.VerticalBar_track_e3345 {
+    flex: 1;
+    margin: 1rem 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7 {
+    display: none;
+    flex: 0 0 13rem;
+    width: 13rem;
+    height: 100%;
+    min-height: 20rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb') no-repeat center / 7rem 8rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_rail_ff232 {
+    width: 0;
+    height: 100%;
+    border-left: 1rem solid #2f2e24;
+    border-top: 5rem solid transparent;
+    border-bottom: 5rem solid transparent;
+    position: absolute;
+    top: 0;
+    left: 6rem;
+    z-index: 0;
+}
+
+.VerticalBar_rail_ff232:hover {
+        opacity: .7;
+    }
+
+
+.VerticalScroll_content_fe263 {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.VerticalScroll_defaultScroll_e27f5 {
+    display: flex;
+}
+
+.VerticalScroll_bar_b8700 {
+    flex: 1;
+    margin-left: 7rem;
+}
+
+.VerticalScroll_area_b5a82 {
+    flex: 1;
+}
+
+.Currency_base_ed02c {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.Currency_icon_d34e3 {
+    width: 16rem;
+    height: 16rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    z-index: 1;
+}
+.Currency_base__small_af876 .Currency_icon_d34e3,
+    .Currency_base__big_f6388 .Currency_icon_d34e3,
+    .Currency_base__large_fb228 .Currency_icon_d34e3,
+    .Currency_base__extraLarge_d0b11 .Currency_icon_d34e3 {
+        transform: translateY(3rem);
+    }
+.Currency_icon__credits-small_cb645 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+    }
+.Currency_icon__credits-big_bb614 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_1');
+    }
+.Currency_icon__credits-large_b65af {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_silver');
+    }
+.Currency_base__large_fb228 .Currency_icon__credits-large_b65af {
+            transform: translateY(4rem);
+        }
+.Currency_icon__credits-extraLarge_a4a53 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.credits_icon_80x80');
+    }
+.Currency_icon__gold-small_eee32 {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__gold-small_eee32 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__gold-big_e419a {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_1');
+    }
+.Currency_base__big_f6388 .Currency_icon__gold-big_e419a {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-large_c3a99 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_gold');
+    }
+.Currency_base__large_fb228 .Currency_icon__gold-large_c3a99 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-extraLarge_f2852 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.gold_icon_80x80');
+    }
+.Currency_icon__crystal-small_d8644 {
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__crystal-small_d8644 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__crystal-big_f2873 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__crystal-big_f2873 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__crystal-large_cf068 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_bonds');
+    }
+.Currency_icon__crystal-extraLarge_a9843 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__crystal-extraLarge_a9843 {
+            transform: translateY(7rem);
+        }
+.Currency_icon__xp-small_f3b46 {
+        background-image: url('R.images.gui.maps.icons.library.NormalXpIcon');
+    }
+.Currency_base__small_af876 .Currency_icon__xp-small_f3b46 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__xp-big_c984a {
+        width: 23rem;
+        height: 22rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xpIcon_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__xp-big_c984a {
+            transform: translateY(2rem);
+        }
+.Currency_icon__xp-large_e9a09 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.exp');
+    }
+.Currency_icon__xp-extraLarge_f90f7 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xp_tank_icon_80x80');
+    }
+.Currency_icon__freeXP-small_bcda1 {
+        background-image: url('R.images.gui.maps.icons.library.freeXPIcon16x16');
+    }
+.Currency_base__small_af876 .Currency_icon__freeXP-small_bcda1 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__freeXP-big_eb64e {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.freeXPIconBig24x24');
+    }
+.Currency_icon__freeXP-large_e46b0 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.freeExp');
+    }
+.Currency_icon__freeXP-extraLarge_e41b1 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.free_xp_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__freeXP-extraLarge_e41b1 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__eliteXP-small_c4a51 {
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIcon-2');
+    }
+.Currency_base__small_af876 .Currency_icon__eliteXP-small_c4a51 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__eliteXP-big_eceb0 {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIconBig');
+    }
+.Currency_icon__eliteXP-large_e35ab {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_48x48');
+    }
+.Currency_icon__eliteXP-extraLarge_a17d5 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__eliteXP-extraLarge_a17d5 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__equipCoin-small_d3b9a {
+        width: 16rem;
+        height: 16rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_1');
+    }
+.Currency_base__small_af876 .Currency_icon__equipCoin-small_d3b9a {
+            transform: translateX(-1rem) translateY(1rem);
+        }
+.Currency_icon__equipCoin-big_c34e1 {
+        width: 24rem;
+        height: 24rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoinBig');
+    }
+.Currency_base__big_f6388 .Currency_icon__equipCoin-big_c34e1 {
+            transform: translateX(-5rem) translateY(3rem);
+        }
+.Currency_icon__equipCoin-large_b1b5e {
+        width: 48rem;
+        height: 48rem;
+        margin-right: 2rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.equipCoin');
+    }
+.Currency_icon__equipCoin-extraLarge_a7b90 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: 8rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__equipCoin-extraLarge_a7b90 {
+            transform: translateX(2rem) translateY(4rem);
+        }
+.Currency_value_bb176 {
+    /* font-size inherit does not work here, so 1em means the size does not change */
+    /* stylelint-disable-next-line */
+    font-size: 1em;
+    position: relative;
+    z-index: 2;
+}
+.Currency_base__small_af876 .Currency_value_bb176 {
+        padding-right: 2rem;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 {
+        padding-right: 5rem;
+        font-size: 24rem;
+        font-weight: 700;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 24rem;
+        }
+.Currency_base__large_fb228 .Currency_value_bb176 {
+        font-size: 36rem;
+        font-weight: 700;
+    }
+.Currency_base__large_fb228 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 36rem;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value_bb176 {
+        font-size: 56rem;
+        font-weight: 700;
+    }
+.Currency_value__freeXP_db401 {
+        color: #F2F2F7;
+    }
+.Currency_value__credits_c98c5 {
+        color: #CED9D9;
+    }
+.Currency_value__gold_b8214 {
+        color: #FFC363;
+    }
+.Currency_value__xp_eda0a,
+    .Currency_value__crystal_cf72e,
+    .Currency_value__equipCoin_cb08d,
+    .Currency_value__eliteXP_de450 {
+        color: #C9C9B6;
+    }
+.Currency_base__small_af876 .Currency_value__notEnough_db10a {
+            color: #FF2717;
+        }
+.Currency_base__big_f6388 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__large_fb228 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_stock_bffbc {
+    height: 13rem;
+    color: #FFDD99;
+    font-size: 13rem;
+    line-height: 1;
+    position: relative;
+    z-index: 0;
+    pointer-events: none;
+}
+.Currency_stock__indent_c4c0d {
+        margin-left: 2rem;
+    }
+.Currency_base__small_af876 .Currency_stock_bffbc {
+        transform: translateY(0rem);
+    }
+.Currency_base__big_f6388 .Currency_stock_bffbc {
+        transform: translateY(4rem);
+    }
+.Currency_base__large_fb228 .Currency_stock_bffbc {
+        transform: translateY(10rem);
+    }
+.Currency_base__extraLarge_d0b11 .Currency_stock_bffbc {
+        transform: translateY(18rem);
+    }
+.Currency_stock__interactive_e78a9 {
+        pointer-events: auto;
+    }
+.Currency_stockBackground_c8ab1 {
+    width: 80rem;
+    height: 45rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: -27rem;
+    bottom: 0;
+    z-index: -1;
+    transform: translateY(17rem);
+}
+
+.TankName_base_e9676 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    line-height: 1.3;
+}
+
+    .TankName_base__sizeMedium_be079 {
+        color: #FEFEEC;
+        font-size: 24rem;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    .TankName_base__sizBig_b71dc {
+        color: #F2F2F7;
+        font-size: 36rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    .TankName_base__typeWhite_af1ba {
+        color: #F2F2F7;
+    }
+
+    .TankName_base__typeWhiteSpanish_c7979 {
+        color: #E9E2BF;
+    }
+
+    .TankName_base__typeWhiteOrange_eb635 {
+        color: #FEFEEC;
+    }
+
+.TankName_base__typeColored_efc8d .TankName_level_fb3d0 {
+        color: #E9E2BF;
+    }
+
+.TankName_type_f3426 {
+    width: 42rem;
+    height: 38rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+.TankName_type__extraSmall_a1019 {
+        margin: 0 -9rem;
+        top: -8rem;
+    }
+
+.TankName_type__medium_ad9e8 {
+        top: -16rem;
+    }
+
+.TankName_type__big_cbcfe {
+        top: -10rem;
+    }
+
+.TankName_type__medium_ad9e8,
+    .TankName_type__big_cbcfe {
+        width: 83rem;
+        height: 73rem;
+        margin: 0 -23rem;
+    }
+
+.TankName_type__eliteExtraSmall_af236 {
+        margin: 0 -6rem;
+    }
+
+.TankName_type__eliteMedium_b273d {
+        margin: 0 -16rem;
+    }
+
+.TankName_type__eliteBig_a7f6c {
+        margin: 0 -13rem;
+    }
+
+.TankName_base__typeColored_efc8d .TankName_name_e6ffb {
+        color: #8C8C7E;
+    }
+
+.TankName_premiumIGR_bd935 {
+    width: 10rem;
+    height: 10rem;
+    margin: 0 3rem 0 -2rem;
+    background: url('R.images.gui.maps.icons.library.premium_igr_ico') no-repeat center / contain;
+    position: relative;
+    top: 5rem;
+}
+
+.ShortenedText_base_d255a {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    max-height: 18rem;
+    opacity: 0;
+    overflow: hidden;
+    transition: opacity ease .2s;
+}
+
+    .ShortenedText_base__shown_f9822 {
+        opacity: 1;
+    }
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.FormatTextWithColorTags_blackReal_ae104 {
+    color: #000000;
+}
+
+.FormatTextWithColorTags_whiteReal_c12a8 {
+    color: #FFFFFF;
+}
+
+.FormatTextWithColorTags_white_c5665 {
+    color: #F2F2F7;
+}
+
+.FormatTextWithColorTags_whiteOrange_fff65 {
+    color: #FEFEEC;
+}
+
+.FormatTextWithColorTags_whiteSpanish_d24b3 {
+    color: #E9E2BF;
+}
+
+.FormatTextWithColorTags_par_ee7d9 {
+    color: #8C8C7E;
+}
+
+.FormatTextWithColorTags_parSecondary_a5b8c {
+    color: #595950;
+}
+
+.FormatTextWithColorTags_parTertiary_a0c09 {
+    color: #37362E;
+}
+
+.FormatTextWithColorTags_red_ad70c {
+    color: #FF2717;
+}
+
+.FormatTextWithColorTags_redDark_afb30 {
+    color: #B70000;
+}
+
+.FormatTextWithColorTags_yellow_e47d1 {
+    color: #FEAB34;
+}
+
+.FormatTextWithColorTags_orange_e08c4 {
+    color: #EE7000;
+}
+
+.FormatTextWithColorTags_cream_f2e96 {
+    color: #FFDD99;
+}
+
+.FormatTextWithColorTags_brown_ed7be {
+    color: #CBAC77;
+}
+
+.FormatTextWithColorTags_greenBright_b0875 {
+    color: #80D43A;
+}
+
+.FormatTextWithColorTags_green_d0263 {
+    color: #7AB300;
+}
+
+.FormatTextWithColorTags_greenDark_f19b8 {
+    color: #497212;
+}
+
+.FormatTextWithColorTags_blueBooster_fd3be {
+    color: #CCFFFF;
+}
+
+.FormatTextWithColorTags_blueTeamkiller_fd915 {
+    color: #09E2FF;
+}
+
+.FormatTextWithColorTags_cred_fdafa {
+    color: #CED9D9;
+}
+
+.FormatTextWithColorTags_gold_ab90e {
+    color: #FFC363;
+}
+
+.FormatTextWithColorTags_bond_e83f5 {
+    color: #C9C9B6;
+}
+
+.FormatTextWithColorTags_prom_aa30c {
+    color: #A29B70;
+}
+
+/* This specific rule is used to fix https://jira.wargaming.net/browse/WOTPRG-9871 */
+
+.FormatTextWithColorTags_parNoWidth_bf7ac {
+    width: 0;
+    color: #8C8C7E;
+}
+
+.SelectButton_base_e2c95 {
+    width: 46rem;
+    height: 42rem;
+    margin: 0 14rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+    .SelectButton_base__plus_b838d {
+        background-image: url('R.images.gui.maps.icons.selectableReward.reward.selectButton.plus_enabled');
+    }
+
+    .SelectButton_base__plus_b838d:hover {
+            background-image: url('R.images.gui.maps.icons.selectableReward.reward.selectButton.plus_hover');
+        }
+
+    .SelectButton_base__plus_b838d.SelectButton_base__disabled_f1cc0 {
+            background-image: url('R.images.gui.maps.icons.selectableReward.reward.selectButton.plus_disabled');
+            cursor: default;
+        }
+
+    .SelectButton_base__minus_f151d {
+        background-image: url('R.images.gui.maps.icons.selectableReward.reward.selectButton.minus_enabled');
+    }
+
+    .SelectButton_base__minus_f151d:hover {
+            background-image: url('R.images.gui.maps.icons.selectableReward.reward.selectButton.minus_hover');
+        }
+
+    .SelectButton_base__minus_f151d.SelectButton_base__disabled_f1cc0 {
+            background-image: url('R.images.gui.maps.icons.selectableReward.reward.selectButton.minus_disabled');
+            cursor: default;
+        }
+
+.Location_base_fc9a2 {
+    display: flex;
+    align-items: center;
+}
+
+    .Location_base__countFirst_cfa10 {
+        flex-direction: row-reverse;
+    }
+
+.Location_icon_b69e6 {
+    width: 34rem;
+    height: 24rem;
+    background: no-repeat center / contain;
+}
+
+.Location_base__countFirst_cfa10 .Location_icon_b69e6 {
+        transform: translateY(4rem);
+    }
+
+.Location_base__storage_e4a74 .Location_icon_b69e6 {
+        background-image: url('R.images.gui.maps.icons.library.storage_icon');
+    }
+
+.Location_base__vehicle_f5008 .Location_icon_b69e6 {
+        background-image: url('R.images.gui.maps.icons.tanksetup.proposals.location.tank');
+    }
+
+.Location_count_e7c86 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.Location_base__countFirst_cfa10 .Location_count_e7c86 {
+        color: #C9C9B6;
+        font-size: 24rem;
+        font-weight: 700;
+        line-height: 1.2;
+        line-height: 1;
+    }
+
+.Location_count__zero_a5474 {
+        color: #B70000;
+    }
+
+.Price_base_eae94 {
+    display: flex;
+    position: relative;
+}
+
+.Price_currency_abc18 {
+    display: flex;
+}
+
+.Price_currency__discounted_a21df {
+        padding-right: 20rem;
+    }
+
+.Availability_base_ea15c {
+    width: 30rem;
+    height: 30rem;
+    background: url('R.images.gui.maps.icons.customization.installed_on_tank_icon') no-repeat center / contain;
+}
+
+.Options_base_f3836 {
+    display: flex;
+}
+
+    .Options_base__visually_a63b0 {
+        margin-bottom: -8rem;
+    }
+
+    .Options_base__hidden_f3f1f {
+        opacity: 0;
+        animation: Options_options-hide_d2bcc .25s;
+    }
+
+    .Options_base__shown_ae369 {
+        animation: Options_options-show_c2db5 .25s;
+    }
+@keyframes Options_options-show_c2db5 {
+    0% {
+        opacity: 0;
+        transform: translateY(6rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes Options_options-hide_d2bcc {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(6rem);
+    }
+}
+
+.Layout_base_ee0e1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 996rem;
+    height: 100%;
+    position: relative;
+}
+
+    .Layout_base__small_bee92,
+    .Layout_base__medium_c94b7 {
+        width: 1310rem;
+    }
+
+    .Layout_base__large_ae38a,
+    .Layout_base__huge_d2a83 {
+        width: 1560rem;
+    }
+.Layout_header_ae832 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 10rem 0 20rem;
+}
+.Layout_base__compare_ae1ac .Layout_header_ae832 {
+        flex-direction: column;
+        align-items: center;
+    }
+.Layout_header__small_b589f,
+    .Layout_header__tiny_ea38c {
+        margin: 10rem 0 16rem;
+    }
+.Layout_content_d16b9 {
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+    width: 100%;
+}
+.Layout_base__compare_ae1ac .Layout_content_d16b9 {
+        justify-content: center;
+        margin-top: 7rem;
+        padding-top: 20rem;
+        padding-bottom: 10rem;
+    }
+.Layout_main_ad9fe {
+    width: 596rem;
+    border-top: 1rem solid rgba(255,255,255, .1);
+    border-bottom: 1rem solid rgba(255,255,255, .1);
+}
+.Layout_base__compare_ae1ac .Layout_main_ad9fe {
+        width: 902rem;
+    }
+.Layout_base__small_bee92 .Layout_main_ad9fe,
+    .Layout_base__medium_c94b7 .Layout_main_ad9fe {
+        width: 902rem;
+    }
+.Layout_base__large_ae38a .Layout_main_ad9fe,
+    .Layout_base__huge_d2a83 .Layout_main_ad9fe {
+        width: 1102rem;
+    }
+.Layout_inner_ab43f {
+    margin: 0 -16rem;
+}
+.Layout_base__large_ae38a .Layout_inner_ab43f,
+    .Layout_base__huge_d2a83 .Layout_inner_ab43f {
+        margin: 0 -20rem;
+    }
+.Layout_footer_a41d6 {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 596rem;
+    height: 166rem;
+    padding-top: 20rem;
+}
+.Layout_base__small_bee92 .Layout_footer_a41d6,
+    .Layout_base__medium_c94b7 .Layout_footer_a41d6 {
+        width: 902rem;
+    }
+.Layout_base__large_ae38a .Layout_footer_a41d6,
+    .Layout_base__huge_d2a83 .Layout_footer_a41d6 {
+        width: 1102rem;
+    }
+
+.Bonus_base_cdcd2 {
+    max-width: 100%;
+}
+
+.Bonus_text_f4b67 {
+    flex: 1;
+}
+
+.Unit_base_e905f {
+    color: #80D43A;
+    position: relative;
+}
+
+    .Unit_base__special_fef12 {
+        color: #b4ff48;
+    }
+.Unit_glow_d2a14 {
+    width: 60rem;
+    height: 60rem;
+    background: url('R.images.gui.maps.icons.tanksetup.hangar.bonus_glow') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+}
+.Unit_base__special_fef12 .Unit_glow_d2a14 {
+        opacity: 1;
+        animation: Unit_glow_d2a14 .25s;
+    }
+@keyframes Unit_glow_d2a14 {
+    0% {
+        opacity: 0;
+    }
+
+    10%,
+    100% {
+        opacity: 1;
+    }
+}
+
+.Bonuses_base_c554d {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    line-height: 18rem;
+}
+.Bonuses_bonus_d22f8 {
+    display: flex;
+}
+.Bonuses_text_c77fe {
+    flex: 1;
+}
+.Bonuses_effect_bc5af {
+    color: #FFC363;
+}
+.Bonuses_icon_eb7a6 {
+    width: 10rem;
+    height: 16rem;
+    background: url('R.images.gui.maps.icons.tanksetup.cards.effect') no-repeat center / contain;
+    position: relative;
+    top: 2rem;
+    left: -2rem;
+}
+
+.EquipmentSlot_base_ecaf3 {
+    transition-timing-function: ease-in-out;
+    transition-duration: .16s;
+    transition-property: border;
+    width: 420rem;
+    height: 200rem;
+    border: 1rem solid rgba(0,0,0, 0);
+    border-radius: 3rem;
+    background-color: rgba(255,255,255, .05);
+    position: relative;
+    cursor: pointer;
+}
+
+    .EquipmentSlot_base_ecaf3:hover {
+        background-color: rgba(255,255,255, .1);
+    }
+
+    .EquipmentSlot_base__selected_ad45e,
+    .EquipmentSlot_base__selected_ad45e:hover {
+        border: 1rem solid #a48b72;
+        box-shadow: inset 0 0 20rem rgba(255, 77, 0, .25);
+        background: rgba(255, 140, 109, .12);
+        filter: drop-shadow(0 0 0 #f00);
+    }
+
+.EquipmentSlot_container_a4a0d {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+}
+
+.EquipmentSlot_glowContainer_a1975 {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+}
+
+.EquipmentSlot_outerGlow_f6648 {
+    width: 100%;
+    height: 100%;
+    transition-timing-function: ease-in-out;
+    transition-duration: .16s;
+    transition-property: opacity;
+    border: 2rem solid #f9c96f;
+    border-radius: 3rem;
+    filter: blur(5px);
+    opacity: 0;
+    position: absolute;
+    transform: matrix(-1, 0, 0, 1, 0, 0);
+}
+
+.EquipmentSlot_base__selected_ad45e .EquipmentSlot_outerGlow_f6648 {
+        opacity: .5;
+    }
+
+.EquipmentSlot_selectedGlow_d076e {
+    width: 300rem;
+    height: 300rem;
+    transition-timing-function: ease-in-out;
+    transition-duration: .16s;
+    transition-property: opacity;
+    background: no-repeat center / contain;
+    background-image: url('R.images.gui.maps.icons.tanksetup.cards.selected_glow');
+    opacity: 0;
+    position: absolute;
+    top: -90rem;
+    right: -90rem;
+}
+
+.EquipmentSlot_base__selected_ad45e .EquipmentSlot_selectedGlow_d076e {
+        opacity: .5;
+    }
+
+.EquipmentSlot_image_b4054 {
+    width: 80rem;
+    height: 80rem;
+    background: no-repeat center / contain;
+    position: absolute;
+    top: 15rem;
+    right: 20rem;
+}
+
+.EquipmentSlot_types_ace94 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.EquipmentSlot_overlay_de868 {
+    width: 128rem;
+    height: 128rem;
+    background: no-repeat center / contain;
+    position: absolute;
+    top: -11rem;
+    right: 5rem;
+}
+
+.EquipmentSlot_name_afc7d {
+    display: flex;
+    width: 186rem;
+    color: #C9C9B6;
+    font-size: 15rem;
+    line-height: 17rem;
+    position: absolute;
+    top: 20rem;
+    left: 20rem;
+}
+
+.EquipmentSlot_details_f98f9 {
+    position: absolute;
+    top: 66rem;
+    right: 125rem;
+    bottom: 62rem;
+    left: 20rem;
+}
+
+.EquipmentSlot_options_c0042 {
+    display: flex;
+    position: absolute;
+    right: 20rem;
+    bottom: 17rem;
+}
+
+.EquipmentSlot_vehicleName_a4637 {
+    display: flex;
+    position: absolute;
+    right: 19rem;
+    bottom: -4rem;
+}
+
+.EquipmentSlot_price_e1090 {
+    display: flex;
+    opacity: 1;
+    position: absolute;
+    bottom: 17rem;
+    left: 20rem;
+}
+
+.EquipmentSlot_countText_efa59 {
+    transition-timing-function: ease-in-out;
+    transition-duration: .16s;
+    transition-property: opacity;
+    color: #F2F2F7;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: center;
+    opacity: 0;
+    position: absolute;
+    bottom: 17rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.EquipmentSlot_base__selected_ad45e .EquipmentSlot_countText_efa59,
+    .EquipmentSlot_base_ecaf3:hover .EquipmentSlot_countText_efa59 {
+        opacity: 1;
+    }
+
+.EquipmentSlot_select_b8af3 {
+    transition-timing-function: ease-in-out;
+    transition-duration: .16s;
+    transition-property: opacity;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    opacity: 0;
+    position: absolute;
+    bottom: 4rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.EquipmentSlot_base_ecaf3:hover .EquipmentSlot_select_b8af3 {
+        opacity: 1;
+    }
+
+.EquipmentSlot_glow_c5f7b {
+    transition-timing-function: ease-in-out;
+    transition-duration: .16s;
+    transition-property: opacity;
+    width: 206rem;
+    height: 78rem;
+    background: url('R.images.gui.maps.icons.tanksetup.cards.amount_glow') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.EquipmentSlot_base__selected_ad45e .EquipmentSlot_glow_c5f7b,
+    .EquipmentSlot_base_ecaf3:hover .EquipmentSlot_glow_c5f7b {
+        opacity: 1;
+    }
+
+.EquipmentGroup_base_d893f {
+    display: flex;
+    flex-direction: column;
+}
+.EquipmentGroup_slotsContainer_fc181 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-left: -16rem;
+    margin-right: -16rem;
+    padding-top: 16rem;
+    overflow: hidden;
+}
+.EquipmentGroup_slot_ed758 {
+    margin: 0 0 16rem 16rem;
+}
+
+.EquipmentHeader_base_ce3c2 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 30rem;
+    border-bottom: 1rem solid rgba(255,255,255, .1);
+    transition: opacity .15s ease-in-out;
+}
+
+    .EquipmentHeader_base__hidden_e1a19 {
+        opacity: 0;
+    }
+.EquipmentHeader_lineBlock_f7648 {
+    display: flex;
+}
+.EquipmentHeader_label_b03ab {
+    color: #C9C9B6;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+.EquipmentHeader_labelValue_dc676 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+.EquipmentHeader_vehicleNameLabel_f75c7 {
+    color: #C9C9B6;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-left: 20rem;
+    margin-right: 6rem;
+}
+.EquipmentHeader_vehicleInfo_acf01 {
+    margin-top: 1rem;
+}
+
+.CurrencyBlock_base_e001f {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.CurrencyBlock_currency_b7b25 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-right: 8rem;
+    margin-bottom: 1rem;
+}
+
+.Content_base_fc3d8 {
+    width: 856rem;
+}
+
+    .mediaSmall .Content_base_fc3d8 {
+        width: 1292rem;
+}
+.Content_base_fc3d8 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    border-bottom: 1rem solid rgba(255,255,255, .1);
+    position: relative;
+}
+.Content_headerContainer_d2ec7 {
+    width: 100%;
+    height: 30rem;
+    position: relative;
+}
+.Content_topHeader_e7138 {
+    width: 100%;
+    position: absolute;
+}
+.Content_header_e89bb {
+    margin-right: 12rem;
+}
+.Content_currencyBlock_d7de1 {
+    position: absolute;
+    right: -7rem;
+    bottom: 10rem;
+}
+.Content_currency_f9d3c {
+    color: #C9C9B6;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+.Content_scrollArea_d6bae {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.Content_bar_bbbdc {
+    margin-right: -25rem;
+}
+.Content_gap_e7488 {
+    margin-bottom: 23rem;
+}
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.FormatTextWithColorTags_blackReal_a7528 {
+    color: #000000;
+}
+
+.FormatTextWithColorTags_whiteReal_c93c4 {
+    color: #FFFFFF;
+}
+
+.FormatTextWithColorTags_white_bff67 {
+    color: #F2F2F7;
+}
+
+.FormatTextWithColorTags_whiteOrange_ba20a {
+    color: #FEFEEC;
+}
+
+.FormatTextWithColorTags_whiteSpanish_d6685 {
+    color: #E9E2BF;
+}
+
+.FormatTextWithColorTags_par_b2500 {
+    color: #8C8C7E;
+}
+
+.FormatTextWithColorTags_parSecondary_b5531 {
+    color: #595950;
+}
+
+.FormatTextWithColorTags_parTertiary_f91eb {
+    color: #37362E;
+}
+
+.FormatTextWithColorTags_red_ef6d4 {
+    color: #FF2717;
+}
+
+.FormatTextWithColorTags_redDark_fab5f {
+    color: #B70000;
+}
+
+.FormatTextWithColorTags_yellow_b7f3d {
+    color: #FEAB34;
+}
+
+.FormatTextWithColorTags_orange_c4526 {
+    color: #EE7000;
+}
+
+.FormatTextWithColorTags_cream_ae09d {
+    color: #FFDD99;
+}
+
+.FormatTextWithColorTags_brown_dd780 {
+    color: #CBAC77;
+}
+
+.FormatTextWithColorTags_greenBright_f7a10 {
+    color: #80D43A;
+}
+
+.FormatTextWithColorTags_green_f840d {
+    color: #7AB300;
+}
+
+.FormatTextWithColorTags_greenDark_d2b50 {
+    color: #497212;
+}
+
+.FormatTextWithColorTags_blueBooster_de02c {
+    color: #CCFFFF;
+}
+
+.FormatTextWithColorTags_blueTeamkiller_ab670 {
+    color: #09E2FF;
+}
+
+.FormatTextWithColorTags_cred_c1b4e {
+    color: #CED9D9;
+}
+
+.FormatTextWithColorTags_gold_e35db {
+    color: #FFC363;
+}
+
+.FormatTextWithColorTags_bond_bdcc0 {
+    color: #C9C9B6;
+}
+
+.FormatTextWithColorTags_prom_e0cfe {
+    color: #A29B70;
+}
+
+.FooterIconValue_base_c57af {
+    display: flex;
+    flex-direction: row;
+}
+
+.FooterIconValue_label_a2c73 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    display: none;
+    margin-right: 4rem;
+}
+
+.mediaMediumWidth .FooterIconValue_label_a2c73 {
+        display: block;
+}
+
+.FooterIconValue_value_c72fd {
+    color: #C9C9B6;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-right: 2rem;
+}
+
+.FooterIconValue_icon_dfecc {
+    width: 30rem;
+    height: 24rem;
+    background: no-repeat center / contain;
+}
+
+.Footer_base_e89b3 {
+    width: 856rem;
+}
+
+    .mediaSmall .Footer_base_e89b3 {
+        width: 1292rem;
+}
+
+.Footer_base_e89b3 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20rem;
+    padding-bottom: 40rem;
+}
+
+.mediaLarge .Footer_base_e89b3 {
+        padding-bottom: 70rem;
+}
+
+.Footer_leftBlock_fa880 {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 5rem;
+}
+
+.Footer_rightBlock_ce8bf {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.Footer_currencyBlock_ed521 {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10rem;
+    padding-top: 5rem;
+}
+
+.Footer_price_dfd14 {
+    margin-top: -8rem;
+}
+
+.Footer_notEnoughMoney_f059c {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-left: 4rem;
+}
+
+.Footer_btnHangar_a02e0 {
+    margin-right: 22rem;
+}
+
+.Footer_button_d4f7d {
+    min-width: 125rem;
+}
+
+.Footer_button_d4f7d + .Footer_button_d4f7d {
+        margin-left: 10rem;
+    }
+
+.Header_base_c416a {
+    width: 856rem;
+}
+
+    .mediaSmall .Header_base_c416a {
+        width: 1292rem;
+}
+
+.Header_base_c416a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.Header_titleBlock_e34a7 {
+    margin-bottom: 7rem;
+}
+
+.Header_base__notEnoughMoney_cff51 .Header_titleBlock_e34a7 {
+        margin-bottom: 17rem;
+    }
+
+.Header_title_bad94 {
+    color: #F2F2F7;
+    font-size: 56rem;
+    font-weight: 700;
+    line-height: 1.1;
+    display: flex;
+    justify-content: center;
+}
+
+.Header_base__notEnoughMoney_cff51 .Header_title_bad94 {
+        color: #F2F2F7;
+        font-size: 28rem;
+        font-weight: 700;
+        line-height: 1.1;
+        width: 1024rem;
+    }
+
+.Header_subTitle_fbb4e {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    display: flex;
+    justify-content: center;
+    width: 800rem;
+    margin-bottom: 20rem;
+}
+
+.Header_base__notEnoughMoney_cff51 .Header_subTitle_fbb4e {
+        margin-bottom: 15rem;
+        color: #EE7000;
+    }
+
+.Header_equipCoinIcon_c894d {
+    width: 16rem;
+    height: 16rem;
+    margin-top: 4rem;
+    margin-right: 1rem;
+    background: url('R.images.gui.maps.icons.library.equipCoin_1') no-repeat center / contain;
+}
+
+.Header_base__notEnoughMoney_cff51 .Header_equipCoinIcon_c894d {
+        width: 23rem;
+        height: 23rem;
+        margin-top: 1rem;
+        margin-right: -2rem;
+        background: url('R.images.gui.maps.icons.library.alertIcon1') no-repeat center / contain;
+    }
+

@@ -1,0 +1,222 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::AnimationSynchronizer": {
+						"ModelLink": "00000000-0000-0000-0000-000000000000",
+						"Syncs": [
+							{
+								"AnimationLayer": "VFX_Hull_R",
+								"IsAbsoluteRotation": "1",
+								"SyncAxis": "X",
+								"SyncMultiplier": 0.10000000149011612,
+								"SyncNodeName": "WD_R7"
+							},
+							{
+								"AnimationLayer": "VFX_Hull_L",
+								"IsAbsoluteRotation": "1",
+								"SyncAxis": "X",
+								"SyncMultiplier": 0.10000000149011612,
+								"SyncNodeName": "WD_L7"
+							},
+							{
+								"AnimationLayer": "VFX_Hull_sync",
+								"IsAbsoluteRotation": "1",
+								"SyncAxis": "X",
+								"SyncMultiplier": "1",
+								"SyncNodeName": "WD_R7"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"clip": "<Default Clip>",
+								"layerName": "VFX_Hull_R",
+								"path": "particles/Tank/customization/GB83_FV4005_3DSt_MD_21_XXII/Hull_R_sync.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"clip": "<Default Clip>",
+								"layerName": "VFX_Hull_Static",
+								"path": "particles/Tank/customization/GB83_FV4005_3DSt_MD_21_XXII/Hull.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"clip": "<Default Clip>",
+								"layerName": "VFX_Hull_L",
+								"path": "particles/Tank/customization/GB83_FV4005_3DSt_MD_21_XXII/Hull_L_sync.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"clip": "<Default Clip>",
+								"layerName": "VFX_Hull_sync",
+								"path": "particles/Tank/customization/GB83_FV4005_3DSt_MD_21_XXII/Hull_sync.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"clip": "<Default Clip>",
+								"layerName": "Hull_Arrows",
+								"path": "particles/Tank/customization/GB83_FV4005_3DSt_MD_21_XXII/Hull_Arrows.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::EngineStateAnimatorTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"highTrigger": "Move",
+						"idleTrigger": "Stop",
+						"mediumTrigger": "Move",
+						"monitorGear": "0",
+						"monitorPhysicLoad": "0",
+						"monitorRelativeRpm": "0",
+						"monitorRpm": "0",
+						"stoppedTrigger": "Stop",
+						"triggerEngineStart": "0",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "V"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": 0.0,
+							"y": 1.1758099794387817,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Hull",
+				"uuid": "c13e9d03-d65e-4eba-b890-78693b494c80"
+			}
+		],
+		"components": {
+			"BW::AnimationSynchronizer": {
+				"ModelLink": "00000000-0000-0000-0000-000000000000",
+				"Syncs": [
+					{
+						"AnimationLayer": "left",
+						"IsAbsoluteRotation": "0",
+						"SyncAxis": "X",
+						"SyncMultiplier": "-1",
+						"SyncNodeName": "WD_L7"
+					},
+					{
+						"AnimationLayer": "right",
+						"IsAbsoluteRotation": "0",
+						"SyncAxis": "X",
+						"SyncMultiplier": "-1",
+						"SyncNodeName": "WD_R7"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"clip": "<Default Clip>",
+						"layerName": "left",
+						"path": "vehicles/british/GB83_FV4005/_skin/GB83_FV4005_3DSt_MD_21_XXII/normal/lod0/Chassis_lever_L.fbx",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					},
+					{
+						"clip": "<Default Clip>",
+						"layerName": "right",
+						"path": "vehicles/british/GB83_FV4005/_skin/GB83_FV4005_3DSt_MD_21_XXII/normal/lod0/Chassis_lever_R.fbx",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/british/GB83_FV4005/_skin/GB83_FV4005_3DSt_MD_21_XXII/normal/lod0/Chassis.model"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::VehicleCustomEffectsSettings": {
+				"additionalEngineSoundNPC": "style_cust_steam_engine_NPC",
+				"additionalEngineSoundPC": "style_cust_steam_engine_PC",
+				"disableDefaultChassis": "0",
+				"disableDefaultHull": "1",
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

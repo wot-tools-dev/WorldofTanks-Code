@@ -1,0 +1,21 @@
+package crosshairControls_fla
+{
+   import flash.display.MovieClip;
+   
+   [Embed(source="/_assets/assets.swf", symbol="symbol292")]
+   public dynamic class butnout_flash_162 extends MovieClip
+   {
+      
+      public function butnout_flash_162()
+      {
+         super();
+         addFrameScript(0,this.frame1);
+      }
+      
+      internal function frame1() : *
+      {
+         stop();
+      }
+   }
+}
+

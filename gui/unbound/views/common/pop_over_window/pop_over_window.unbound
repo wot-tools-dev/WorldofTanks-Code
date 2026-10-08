@@ -1,0 +1,117 @@
+(def constant POP_OVER_SHADOW_OFFSET 60px)
+(def constant POP_OVER_CONTENT_PADDING 20px)
+
+(def element PopOverWindow() layout=true entrance=true
+    (macro PopOverWindowModel)
+    (scope
+        (var content:object = null)
+    )
+
+    (style
+        (paddingBottom = "- POP_OVER_SHADOW_OFFSET * 2")
+        (paddingRight = "- POP_OVER_SHADOW_OFFSET * 2")
+    )
+    (element HitArea)
+    (hitArea = "$target.hitElement")
+    
+    (block
+        (style
+            (paddingLeft = "POP_OVER_CONTENT_PADDING")
+            (paddingTop = "POP_OVER_CONTENT_PADDING")
+            (paddingBottom = "POP_OVER_SHADOW_OFFSET * 2 + POP_OVER_CONTENT_PADDING")
+            (paddingRight = "POP_OVER_SHADOW_OFFSET * 2 + POP_OVER_CONTENT_PADDING")
+        )
+
+        # Stretched window background
+        (image
+            (source = "R.atlases.components.popoverBg()")
+            (name = 'bg')
+            (style
+                (scale9grid = "Rect(100, 100, 200, 130)")
+                (width="100%")
+                (height="100%")
+                (left = "- POP_OVER_SHADOW_OFFSET")
+                (top = "- POP_OVER_SHADOW_OFFSET")
+                (position = "absolute")
+            )
+        )
+        (mouseEnabled = false)
+
+        # Close btn
+        (block
+            (style
+                (width = 100%)
+            )
+            (element CloseBtnSlim
+                (style
+                    (position = "absolute")
+                    (right = -16px)
+                    (top = -16px)
+                )
+                (bind visible "isCloseBtnVisible")
+                (scope
+                    (dispatch onClosed args="{}" on='evBtnUpEvent')
+                )
+            )
+        )
+
+        # Place PopOver content here
+        (view_holder
+            (name = 'View holder')
+            (bind content "content" init=false)
+        )
+    )
+
+    # Adjust PopOver and arrow positions according to flow type
+    (controller $AdjustPopOverPosition
+        (arrows up='PopOverBtnUp' down='PopOverBtnDown' left='PopOverBtnLeft' right='PopOverBtnRight')
+        (bindcall bounds x="boundX" y="boundY" width="boundWidth" height="boundHeight" init=false)
+        (bind direction "directionType")
+        (arrowDepthOffset = 15)
+        (arrowHalfWidth = 36)
+        (minSideOffset = 20)
+    )
+
+    # PopOver fade out animation on show
+    (controller $Animation
+        (bindcall play duration=0.1 delay=0.1 to={alpha:1} from={alpha:0} init=true)
+    )
+)
+
+(def macro PopOverArrowBtn(source:expression, pivotX:number, pivotY:number)
+    (style
+        (position = "absolute")
+        (pivotX = "pivotX")
+        (pivotY = "pivotY")
+    )
+    (image
+        (source = "source")
+    )
+    (mouseEnabled = false)
+    (mouseChildren = false)
+)
+
+(def element PopOverBtnUp() layout=true
+    (macro PopOverArrowBtn "R.atlases.components.popover_arrow_up()" 50% 52px)
+)
+
+(def element PopOverBtnDown() layout=true
+    (macro PopOverArrowBtn "R.atlases.components.popover_arrow_up()" 50% 52px)
+
+    (style
+        (scaleY = -1)
+        (bottom = 0)
+    )
+)
+
+(def element PopOverBtnLeft() layout=true
+    (macro PopOverArrowBtn "R.atlases.components.popover_arrow_left()" 50px 50%)
+)
+
+(def element PopOverBtnRight() layout=true
+    (macro PopOverArrowBtn "R.atlases.components.popover_arrow_left()" 50px 50%)
+    (style
+        (scaleX = -1)
+        (right = 0)
+    )
+)

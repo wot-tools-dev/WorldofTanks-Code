@@ -1,0 +1,13 @@
+from __future__ import absolute_import
+from gui.Scaleform.daapi import LobbySubView
+
+class Profile(LobbySubView):
+
+    def __init__(self):
+        LobbySubView.__init__(self)
+
+    def _populate(self):
+        LobbySubView._populate(self)
+
+    def _dispose(self):
+        LobbySubView._dispose(self)

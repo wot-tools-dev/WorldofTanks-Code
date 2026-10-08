@@ -1,0 +1,216 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Buildings/hd_bld_EU_084_BHouse/normal/lod0/hd_bld_EU_084_BHouse_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_084_BHouse/normal/lod0/hd_bld_EU_084_BHouse_01.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 43.4739990234375,
+							"y": 0.06489939987659454,
+							"z": -13.681599617004395
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -131.19989013671875,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "4dbaaf17-0d6b-40b8-a2cf-b67bcf65bbb6",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "84_house_static",
+				"uuid": "4dbaaf17-0d6b-40b8-a2cf-b67bcf65bbb6"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Bombardment",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/Onboarding/108_normandy_artillery_hit_the_city.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "city_firing_effects",
+				"uuid": "e40dcc7a-4533-4d84-a8c7-f18ba0d52e42"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "FBX",
+										"lodScale": 1.0,
+										"path": "content/Buildings/hd_bld_EU_084_BHouse/normal/lod0/hd_bld_EU_084_BHouse_crash_skinned_anim_01.fbx",
+										"properties": {
+											"delay": 4.739999771118164,
+											"loop": "0",
+											"loopCount": "1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Buildings/hd_bld_EU_084_BHouse/normal/lod0/hd_bld_EU_084_BHouse_crash_skinned_01.model"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "84_house_animation",
+						"uuid": "1ec5c1f6-63fa-330f-b129-2404c648776f"
+					}
+				],
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Buildings/hd_bld_EU_084_BHouse/normal/lod0/hd_bld_EU_084_BHouse_crash_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_084_BHouse/normal/lod0/hd_bld_EU_084_BHouse_crash_01.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 43.4739990234375,
+							"y": 0.06489939987659454,
+							"z": -13.681599617004395
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -131.19989013671875,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "93e598e7-985c-338b-a12b-b593f06c76d9",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "84_house_crash",
+				"uuid": "93e598e7-985c-338b-a12b-b593f06c76d9"
+			}
+		],
+		"components": {
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"path": "story_mode/vscript/plans/Onboarding_vfx_scenarios/108_city_firing.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "5_city_firing",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

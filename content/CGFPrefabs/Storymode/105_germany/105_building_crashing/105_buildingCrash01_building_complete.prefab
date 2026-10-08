@@ -1,0 +1,102 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {},
+				"name": "105_buildingCrash01_building_normal.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_building_crashing/105_buildingCrash01_building_normal.prefab",
+				"uuid": "cfc8a27c-7eaf-4526-97c6-9458f7ec5698"
+			},
+			{
+				"components": {},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "05_buildingCrash01_building_destroyed.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_building_crashing/105_buildingCrash01_building_destroyed.prefab",
+				"uuid": "27d58922-c66f-4427-ab50-1f1ae03654fe"
+			},
+			{
+				"components": {},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "05_buildingCrash01_building_transition.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_building_crashing/105_buildingCrash01_building_transition.prefab",
+				"uuid": "1ca5cb2f-8f77-4b62-b73e-b36ba089f6d6"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 21.399999618530273,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 21.399999618530273,
+								"object": "27d58922-c66f-4427-ab50-1f1ae03654fe",
+								"parameters": [],
+								"startTime": 9.0
+							},
+							{
+								"endTime": 9.300000190734863,
+								"object": "cfc8a27c-7eaf-4526-97c6-9458f7ec5698",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 0.0010000000474974513,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 21.399999618530273,
+								"object": "1ca5cb2f-8f77-4b62-b73e-b36ba089f6d6",
+								"parameters": [],
+								"startTime": 9.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "105_buildingCrash01_building_complete",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

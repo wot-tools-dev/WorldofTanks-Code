@@ -1,0 +1,68 @@
+(def layout NationChangeInstruction(name:str= 'instructionSlot')
+    (name = "name")
+    (macro NationChangeTooltips)
+    (macro NationChangeInstructionModel)
+    (scope
+        (var vehicleIntCD:number = 0)
+    )
+    (style
+        (width = 45px)
+        (height = 45px)
+    )
+    (bind visible "isInstalled")
+  
+    (block
+        (style
+            (position="absolute")
+            (width = 100%) 
+            (height = 100%)
+            (align = "center|middle")
+        )
+        (image
+            (style
+                (width = 100%)
+                (height = 100%)
+            )
+            (bind source "image")
+        )
+    )
+    (block 
+        (bind visible "isActive") 
+        (block
+            (style
+                (position = "absolute")
+                (marginTop = -20px)
+                (marginLeft = -15px)
+            )
+            (macro EmptyHitAreaMacro)
+            (image
+                (bind source "isPerkReplace ? 
+                    R.images.gui.maps.icons.artefact.battleBooster_replace_overlay() :
+                    R.images.gui.maps.icons.artefact.battleBooster_overlay()")
+            )
+        )
+    )
+    (block
+        (bind visible "!isActive") 
+        (style
+            (width = 100%) 
+            (height = 100%)
+            (align = "center|middle")
+            (position = "absolute")
+        )
+        (image
+            (source = "R.images.gui.maps.icons.library.icon_alert_32x32()")
+        )
+    )
+    
+    (controller $ToolTip
+        (args 
+            tooltipId = "TOOLTIP_NC_BATTLEBOOSTER"
+            intCD = "intCD"
+            vehicleIntCD = "vehicleIntCD"
+            layoutIDx = "layoutIDx"
+        )   
+        (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+    )
+)

@@ -1,0 +1,548 @@
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.FormatTextWithColorTags_blackReal_ae104 {
+    color: #000000;
+}
+
+.FormatTextWithColorTags_whiteReal_c12a8 {
+    color: #FFFFFF;
+}
+
+.FormatTextWithColorTags_white_c5665 {
+    color: #F2F2F7;
+}
+
+.FormatTextWithColorTags_whiteOrange_fff65 {
+    color: #FEFEEC;
+}
+
+.FormatTextWithColorTags_whiteSpanish_d24b3 {
+    color: #E9E2BF;
+}
+
+.FormatTextWithColorTags_par_ee7d9 {
+    color: #8C8C7E;
+}
+
+.FormatTextWithColorTags_parSecondary_a5b8c {
+    color: #595950;
+}
+
+.FormatTextWithColorTags_parTertiary_a0c09 {
+    color: #37362E;
+}
+
+.FormatTextWithColorTags_red_ad70c {
+    color: #FF2717;
+}
+
+.FormatTextWithColorTags_redDark_afb30 {
+    color: #B70000;
+}
+
+.FormatTextWithColorTags_yellow_e47d1 {
+    color: #FEAB34;
+}
+
+.FormatTextWithColorTags_orange_e08c4 {
+    color: #EE7000;
+}
+
+.FormatTextWithColorTags_cream_f2e96 {
+    color: #FFDD99;
+}
+
+.FormatTextWithColorTags_brown_ed7be {
+    color: #CBAC77;
+}
+
+.FormatTextWithColorTags_greenBright_b0875 {
+    color: #80D43A;
+}
+
+.FormatTextWithColorTags_green_d0263 {
+    color: #7AB300;
+}
+
+.FormatTextWithColorTags_greenDark_f19b8 {
+    color: #497212;
+}
+
+.FormatTextWithColorTags_blueBooster_fd3be {
+    color: #CCFFFF;
+}
+
+.FormatTextWithColorTags_blueTeamkiller_fd915 {
+    color: #09E2FF;
+}
+
+.FormatTextWithColorTags_cred_fdafa {
+    color: #CED9D9;
+}
+
+.FormatTextWithColorTags_gold_ab90e {
+    color: #FFC363;
+}
+
+.FormatTextWithColorTags_bond_e83f5 {
+    color: #C9C9B6;
+}
+
+.FormatTextWithColorTags_prom_aa30c {
+    color: #A29B70;
+}
+
+/* This specific rule is used to fix https://jira.wargaming.net/browse/WOTPRG-9871 */
+
+.FormatTextWithColorTags_parNoWidth_bf7ac {
+    width: 0;
+    color: #8C8C7E;
+}
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.StateWidget_base_f5c1d {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 19rem;
+}
+
+.StateWidget_spacer_fb6b9 {
+    margin-left: auto;
+}
+
+.StateWidget_left_group_deec1,
+.StateWidget_right_group_d947e {
+    display: flex;
+    align-items: center;
+}
+
+.StateWidget_details_button_bed6d {
+    width: 100rem;
+    height: 24rem;
+    margin-left: 10rem;
+    margin-bottom: -2rem;
+}
+
+.StateWidget_icon_fb085 {
+    width: 48rem;
+    height: 48rem;
+    position: relative;
+}
+
+.StateWidget_icon__wotPlus_bf572 {
+        background: url('R.images.gui.maps.icons.account_dashboard.daily_experience.wotPlus_active') center center / contain no-repeat;
+    }
+
+.StateWidget_icon__wotPremium_d61cb {
+        background: url('R.images.gui.maps.icons.account_dashboard.daily_experience.noPremium') center center / contain no-repeat;
+    }
+
+.StateWidget_check_icon_ea7cb {
+    width: 48rem;
+    height: 48rem;
+    margin-left: 15rem;
+    margin-top: 17rem;
+}
+
+.StateWidget_check_icon__unlocked_a02ab {
+        background: url('R.images.gui.maps.icons.account_dashboard.daily_experience.item_recieved') center center / contain no-repeat;
+    }
+
+.StateWidget_check_icon__locked_dd36d {
+        background: url('R.images.gui.maps.icons.account_dashboard.daily_experience.lock') center center / contain no-repeat;
+    }
+
+.StateWidget_heading_c2c5b {
+    color: #FFDD99;
+    font-size: 15rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-left: 8rem;
+}
+
+.mediaMedium .StateWidget_heading_c2c5b {
+        color: #FFDD99;
+        font-size: 15rem;
+        font-weight: 700;
+        line-height: 1.15;
+}
+
+.StateWidget_description_ee96d {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.mediaMedium .StateWidget_description_ee96d {
+        color: #8C8C7E;
+        font-size: 16rem;
+        font-weight: 400;
+        line-height: 1.25;
+}
+
+.StateWidget_application_cd8ca {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.mediaMedium .StateWidget_application_cd8ca {
+        color: #8C8C7E;
+        font-size: 16rem;
+        font-weight: 400;
+        line-height: 1.25;
+}
+
+.StateWidget_plus_sign_c05bc {
+    width: 16rem;
+    height: 16rem;
+    margin-top: 4rem;
+    background: url('R.images.gui.maps.icons.account_dashboard.daily_experience.plus') center center / contain no-repeat;
+}
+
+.DailyExperienceApp_base_cac82 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: #000 url('R.images.gui.maps.icons.account_dashboard.daily_experience.Background') no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.DailyExperienceApp_content_b6d8f {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex: 1 1 auto;
+    width: 100%;
+    z-index: 1;
+}
+
+.DailyExperienceApp_center_container_b301a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    margin-top: 80rem;
+}
+
+.DailyExperienceApp_multiplier_container_d35b6 {
+    display: flex;
+}
+
+.DailyExperienceApp_backBtnWrapper_cf610 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20rem;
+    position: absolute;
+    top: 60rem;
+    left: 10rem;
+    z-index: 2;
+}
+
+.DailyExperienceApp_multiplier_left_ff142 {
+    display: block;
+    width: 440rem;
+    height: 440rem;
+}
+
+.DailyExperienceApp_multiplier_left__standard_ff576 {
+        background: url('R.images.gui.maps.icons.account_dashboard.bonus_xp.bonus_440_x3') center center / cover
+            no-repeat;
+    }
+
+.DailyExperienceApp_multiplier_left__wotPlus_bf26c {
+        background: url('R.images.gui.maps.icons.account_dashboard.bonus_xp.bonus_440_x3_wotplus') center center / cover
+            no-repeat;
+    }
+
+.DailyExperienceApp_multiplier_right_fa227 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 605rem;
+    margin-left: 20rem;
+    margin-top: 66rem;
+}
+
+.DailyExperienceApp_heading_bcca2 {
+    color: #FEFEEC;
+    font-size: 28rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.DailyExperienceApp_description_b63e8 {
+    color: #8C8C7E;
+    font-size: 20rem;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-top: 16rem;
+}
+
+.DailyExperienceApp_daily_unlock_c988f {
+    display: flex;
+    align-items: flex-end;
+}
+
+.DailyExperienceApp_daily_unlock_text_c613c {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-top: 40rem;
+}
+
+.DailyExperienceApp_gridSeparator_a3f5f {
+    width: 250rem;
+    height: 1rem;
+    margin-left: 35rem;
+    background: url('R.images.gui.maps.icons.dogtags.grid_bottom_separator') center no-repeat;
+}
+
+.DailyExperienceApp_state_widget_dacf9 {
+    display: flex;
+    flex-direction: column;
+    width: 451rem;
+}
+
+.DailyExperienceApp_footer_efbc9 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 600rem;
+    margin-bottom: 60rem;
+    text-align: center;
+    text-shadow: 0 0 14rem #000;
+}
+
+.DailyExperienceApp_dotted_divider_f54ff {
+    width: 452rem;
+    height: 10rem;
+    margin-top: 5rem;
+    margin-bottom: -15rem;
+    background: url('R.images.gui.maps.icons.account_dashboard.daily_experience.dividerDotty') center no-repeat;
+}
+

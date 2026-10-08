@@ -1,0 +1,25 @@
+(def layout BitmapDigits()
+    (name = 'digits')
+    (scope
+        (var text:str = '')
+        (var size:str = '')
+    )
+
+    (style
+        (flow = "Flow.HORIZONTAL")
+    )
+
+    (controller $Repeat layout=true
+        (bind count "text.length"
+            (bind enabled "text!=''")
+        )
+        (exprs
+            (bind name "'digit_' + $index")
+            (image
+                (bind source "R.atlases.digits['size_' + size + '_digit_' + text[$index]]()" 
+                    (bind enabled "size != '' && text != ''")
+                )
+            )
+        )
+    )
+)

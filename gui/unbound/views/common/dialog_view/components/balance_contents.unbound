@@ -1,0 +1,25 @@
+(def layout CommonBalanceContent() entrance=true
+    (macro CommonBalanceContentModel)
+    (image
+        (name = 'currencyBackground')
+        (source = "R.atlases.components.top_balance_bg()")
+    )
+    
+    (group name='currency'
+        (renderer = 'CurrencyItem')
+        (style
+            (position = "absolute")
+            (vcenter = 0px)
+            (right = 20px)
+        )
+        (container
+            (style
+                (flow = "Flow.HORIZONTAL")
+                (gap = 15px)
+            )
+        )
+    )
+
+    (tabEnabled = false)
+    (tabChildren = false)
+)

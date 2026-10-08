@@ -1,0 +1,7 @@
+from __future__ import absolute_import
+from fun_random.gui.server_events.event_items import FunProgressionTriggerQuestBuilder, FunProgressionUnlimitedTriggerQuestBuilder
+from gui.shared.system_factory import registerQuestBuilder
+
+def registerFunRandomQuests():
+    registerQuestBuilder(FunProgressionTriggerQuestBuilder)
+    registerQuestBuilder(FunProgressionUnlimitedTriggerQuestBuilder)

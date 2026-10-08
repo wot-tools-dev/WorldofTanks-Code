@@ -1,0 +1,120 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/MilitaryEnvironment/hd_mle_UNI_075_PillboxBunker/normal/lod0/hd_mle_UNI_075_PillboxBunker_crash_01.model",
+											"moduleName": "default"
+										}
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/MilitaryEnvironment/hd_mle_UNI_075_PillboxBunker/normal/lod0/hd_mle_UNI_075_PillboxBunker_crash_01.model"
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {},
+							"script::ShootingObstacle": {
+								"colliders": "ff336a59-1632-429a-931f-2c9b17244a4d",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "00000000-0000-0000-0000-000000000000"
+							}
+						},
+						"flags": [
+							"Static"
+						],
+						"name": "hd_mle_UNI_075_PillboxBunker_crash_01.model",
+						"uuid": "ff336a59-1632-429a-931f-2c9b17244a4d"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "hd_mle_UNI_075_PillboxBunker_crash",
+				"uuid": "38a21d11-8867-43eb-81d0-9323cb9c2111"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/environment/interior/14_siegfried_line_firesmoke_long.eff",
+						"emissionRate": 1.0
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -3.6433401107788086,
+							"y": 0.5274580121040344,
+							"z": -6.069699764251709
+						}
+					}
+				},
+				"name": "Firesmoke",
+				"uuid": "d7805679-562b-45bf-9b9c-2ee8aa2d899f"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 10.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": []
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::SequenceNetworkSync": {},
+			"script::ShotsReceiver": {}
+		},
+		"name": "101_hd_mle_UNI_075_PillboxBunker_destroyed",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

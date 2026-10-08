@@ -1,0 +1,134 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_explosion_epic",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "101_hd_mle_UNI_076_PillboxTank_transition_sfx",
+						"Volume": 4.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "101_hd_mle_UNI_076_PillboxTank_transition_sfx",
+				"uuid": "111e94d2-3584-4f08-bdd4-99752104cc54"
+			},
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "content/MilitaryEnvironment/hd_mle_UNI_076_PillboxTank/normal/lod0/hd_mle_UNI_076_PillboxTank_anim_01.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/MilitaryEnvironment/hd_mle_UNI_076_PillboxTank/normal/lod0/hd_mle_UNI_076_PillboxTank_anim_01.model"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "hd_mle_UNI_076_PillboxTank_anim_01",
+				"uuid": "6d6824ad-c4a9-4af8-8a33-c3f2599aa564"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/Storymode/101_dday_bunker_explosion_01.eff",
+						"emissionRate": 1.0
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "bunker_explosion",
+				"uuid": "936a78b9-a2f7-4e63-8129-b15ed44712a1"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 5.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 10.0,
+								"object": "6d6824ad-c4a9-4af8-8a33-c3f2599aa564",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 5.0,
+								"object": "111e94d2-3584-4f08-bdd4-99752104cc54",
+								"parameters": [],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			}
+		},
+		"name": "101_hd_mle_UNI_076_PillboxTank_transition",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

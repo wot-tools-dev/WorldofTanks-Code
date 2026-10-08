@@ -1,0 +1,127 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Tank/customization/GB133_Charioteer_MkVII_HBP_3DSt/GB133_Charioteer_MkVII_HBP_3DSt_coals.eff",
+								"emissionRate": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 1.2936700582504272,
+									"y": 0.49063101410865784,
+									"z": -2.016930103302002
+								}
+							}
+						},
+						"name": "Eff_sparks_and_dust",
+						"uuid": "b7ffac85-1935-40bc-8766-feef2a3acfe1"
+					},
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Tank/customization/GB133_Charioteer_MkVII_HBP_3DSt/GB133_Charioteer_MkVII_HBP_3DSt_smoke.eff",
+								"emissionRate": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 1.2936700582504272,
+									"y": 0.49063101410865784,
+									"z": -2.016930103302002
+								}
+							}
+						},
+						"name": "Smoke",
+						"uuid": "730d80b1-cd4f-4156-b33f-f223af619bc0"
+					}
+				],
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/GB133_Charioteer_MkVII_HBP_3DSt/GB133_Charioteer_MkVII_HBP_3DSt_moving_coals.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_GB133_Attachment"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "gb133_hull",
+				"uuid": "27124579-59a1-4117-ad0c-5780d78a371d"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "style_cust_GB133_Charioteer_grill",
+						"Object name": "style_cust_GB133_Charioteer_grill",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 1.2325999736785889,
+							"y": 0.5852929949760437,
+							"z": -1.9737900495529175
+						}
+					}
+				},
+				"name": "style_cust_GB133_Charioteer_grill",
+				"uuid": "ea0054a5-ce3f-49e6-8039-cc31cd70cff7"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/british/GB133_Charioteer_MkVII/_skins/GB133_Charioteer_MkVII_HBP_3DSt/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "gb133_root",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

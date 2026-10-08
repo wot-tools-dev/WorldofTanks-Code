@@ -1,0 +1,26 @@
+package sniperCrosshair_fla
+{
+   import flash.display.MovieClip;
+   
+   [Embed(source="/_assets/assets.swf", symbol="symbol17")]
+   public dynamic class reloadingBarSniper_4 extends MovieClip
+   {
+      
+      public function reloadingBarSniper_4()
+      {
+         super();
+         addFrameScript(0,this.frame1,30,this.frame31);
+      }
+      
+      internal function frame1() : *
+      {
+         stop();
+      }
+      
+      internal function frame31() : *
+      {
+         stop();
+      }
+   }
+}
+

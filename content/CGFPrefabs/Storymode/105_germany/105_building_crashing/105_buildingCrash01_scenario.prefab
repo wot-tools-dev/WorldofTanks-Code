@@ -1,0 +1,141 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -143.76600646972656,
+					"cgf::TransformComponent/position/y": 33.507999420166016,
+					"cgf::TransformComponent/position/z": 220.68299865722656
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_buildingCrash01_bomb.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_building_crashing/105_buildingCrash01_bomb.prefab",
+				"uuid": "f73ac048-7bba-4639-b235-a5b41c9d20c7"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -386.08099365234375,
+					"cgf::TransformComponent/position/y": 8.155030250549316,
+					"cgf::TransformComponent/position/z": 805.718994140625
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_buildingCrash01_il2_flight.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_building_crashing/105_buildingCrash01_il2_flight.prefab",
+				"uuid": "0f71afdb-683a-442d-80f9-59de811284ec"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": -122.4020004272461,
+					"cgf::TransformComponent/position/y": -2.2555999755859375,
+					"cgf::TransformComponent/position/z": 177.05099487304688,
+					"cgf::TransformComponent/rotation/y": -125.0302734375
+				},
+				"name": "105_buildingCrash01_building_complete.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_building_crashing/105_buildingCrash01_building_complete.prefab",
+				"uuid": "1bd5e3a0-12c7-4eb6-9888-cc92a92fdd3e"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 21.5,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 21.5,
+								"object": "0f71afdb-683a-442d-80f9-59de811284ec",
+								"parameters": [],
+								"startTime": 0.0010000000474974513
+							},
+							{
+								"endTime": 8.899999618530273,
+								"object": "f73ac048-7bba-4639-b235-a5b41c9d20c7",
+								"parameters": [],
+								"startTime": 8.166669845581055
+							},
+							{
+								"endTime": 28.0,
+								"object": "1bd5e3a0-12c7-4eb6-9888-cc92a92fdd3e",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.009999999776482582,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Client",
+					"Editor"
+				],
+				"path": "story_mode/vscript/plans/Onboarding_vfx_scenarios/105_bigCityBombing_cornerBuilding_01.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::SequenceNetworkSync": {}
+		},
+		"name": "105_buildingCrash01_scenario",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

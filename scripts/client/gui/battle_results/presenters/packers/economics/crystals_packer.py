@@ -1,0 +1,13 @@
+from gui.impl.gen import R
+from gui.battle_results.presenters.packers.economics.currency_packers import CurrencyPacker, CurrencyGroup
+from gui.battle_results.presenters.packers.economics.crystals_records import ORIGINAL_CRYSTALS, EVENT_CRYSTALS, AUTO_EQUIP_CRYSTALS, TOTAL_CRYSTALS
+_STR_PATH = R.strings.battle_results.details.calculations
+
+class CrystalsPacker(CurrencyPacker):
+    _EARNED = CurrencyGroup(label=_STR_PATH.title.base, records=(ORIGINAL_CRYSTALS, EVENT_CRYSTALS))
+    _EXPENSES = CurrencyGroup(label=_STR_PATH.title.expenses, records=(AUTO_EQUIP_CRYSTALS,))
+    _TOTAL = CurrencyGroup(label=None, records=(TOTAL_CRYSTALS,))
+
+    @classmethod
+    def _getExtractors(cls, currencyType, battleResults):
+        return ((lambda _: battleResults.reusable.personal.getCrystalDetailsRecords(),), zip)

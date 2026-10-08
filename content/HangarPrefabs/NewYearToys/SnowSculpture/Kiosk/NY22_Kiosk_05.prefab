@@ -1,0 +1,217 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"components": {
+											"BW::DynamicModel": {
+												"castShadows": false,
+												"disabledDomains": [
+													"Server"
+												],
+												"modelName": "content/Hangars/h_newyear/customization/Installation/Kiosk/normal/lod0/NY22_Kiosk_05_Outline.model"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "outline",
+										"uuid": "611cffa8-4ad2-465a-817f-4c53a84b3354"
+									}
+								],
+								"components": {
+									"BW::Animator": {
+										"autoStart": false,
+										"disabledDomains": [
+											"Server"
+										],
+										"layers": [
+											{
+												"autoStart": true,
+												"clip": "<Default Clip>",
+												"graphicsPreset": "TYPE_NULL_SHADING",
+												"layerName": "0",
+												"lodScale": 1.0,
+												"path": "particles/eff_sequence/New_Year/NY22_Kiosk_05.seq",
+												"properties": {
+													"delay": "0",
+													"loop": "1",
+													"loopCount": "-1",
+													"speed": "1"
+												},
+												"weight": 1.0
+											}
+										]
+									},
+									"BW::Colliders": {
+										"colliders": [
+											{
+												"__ctype__": "BW::MeshColliderDesc",
+												"__cvalue__": {
+													"modelName": "content/Hangars/h_newyear/customization/Installation/Kiosk/normal/lod0/NY22_Kiosk_05_Outline.model",
+													"moduleName": "default"
+												}
+											}
+										],
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::DynamicModel": {
+										"castShadows": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"modelName": "content/Hangars/h_newyear/customization/Installation/Kiosk/normal/lod0/NY22_Kiosk_05.model"
+									},
+									"BW::VSEComponent": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server",
+											"Editor"
+										],
+										"path": "holiday_ops/vscript/plans/holiday_ops/SnowSculpture.xml"
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"script::HighlightComponent": {
+										"color": {
+											"w": 1.0,
+											"x": 0.21199999749660492,
+											"y": 0.8429999947547913,
+											"z": 1.0
+										},
+										"colorIndex": "4",
+										"disabledDomains": [
+											"Server"
+										],
+										"drawerMode": "0",
+										"groupName": "Installation",
+										"overridenHighlightModel": "611cffa8-4ad2-465a-817f-4c53a84b3354"
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "appearance",
+								"uuid": "27fdaafa-570e-41da-b9ab-9d2fb9ad714c"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::AppearanceDelayComponent": {
+								"delay": 0.5,
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "appearanceDelayOwner",
+						"uuid": "fdeeffc7-eb45-4075-963f-8b6d5123de5b"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Environment/hangar/new_year_cust_sculpture_g5.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "hangEffectObject",
+								"uuid": "201e6bc8-a7d0-4513-bab2-589977bf445c"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::HangEffectsOwner": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "hangEffectOwner",
+						"uuid": "cbd29de0-ce5b-4e98-a3d7-1e3247cb661b"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": -2.0084400177001953,
+							"y": -7.15256010153098e-06,
+							"z": 0.675777018070221
+						},
+						"rotation": {
+							"x": 3.611719876062125e-06,
+							"y": 0.05186683312058449,
+							"z": 5.9152167608544914e-08
+						}
+					}
+				},
+				"name": "Transform",
+				"uuid": "5130c752-9baa-4e50-af76-e7dee47b3180"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

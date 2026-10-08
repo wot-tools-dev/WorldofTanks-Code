@@ -1,0 +1,1307 @@
+.Countdown_base_d0c0c {
+    display: flex;
+    align-items: center;
+}
+
+.Countdown_icon_a453a {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+}
+
+.Countdown_description_ee2e0 {
+    color: #FFDD99;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Currency_base_ed02c {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.Currency_icon_d34e3 {
+    width: 16rem;
+    height: 16rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    z-index: 1;
+}
+.Currency_base__small_af876 .Currency_icon_d34e3,
+    .Currency_base__big_f6388 .Currency_icon_d34e3,
+    .Currency_base__large_fb228 .Currency_icon_d34e3,
+    .Currency_base__extraLarge_d0b11 .Currency_icon_d34e3 {
+        transform: translateY(3rem);
+    }
+.Currency_icon__credits-small_cb645 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+    }
+.Currency_icon__credits-big_bb614 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_1');
+    }
+.Currency_icon__credits-large_b65af {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_silver');
+    }
+.Currency_base__large_fb228 .Currency_icon__credits-large_b65af {
+            transform: translateY(4rem);
+        }
+.Currency_icon__credits-extraLarge_a4a53 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.credits_icon_80x80');
+    }
+.Currency_icon__gold-small_eee32 {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__gold-small_eee32 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__gold-big_e419a {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_1');
+    }
+.Currency_base__big_f6388 .Currency_icon__gold-big_e419a {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-large_c3a99 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_gold');
+    }
+.Currency_base__large_fb228 .Currency_icon__gold-large_c3a99 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-extraLarge_f2852 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.gold_icon_80x80');
+    }
+.Currency_icon__crystal-small_d8644 {
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__crystal-small_d8644 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__crystal-big_f2873 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__crystal-big_f2873 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__crystal-large_cf068 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_bonds');
+    }
+.Currency_icon__crystal-extraLarge_a9843 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__crystal-extraLarge_a9843 {
+            transform: translateY(7rem);
+        }
+.Currency_icon__xp-small_f3b46 {
+        background-image: url('R.images.gui.maps.icons.library.NormalXpIcon');
+    }
+.Currency_base__small_af876 .Currency_icon__xp-small_f3b46 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__xp-big_c984a {
+        width: 23rem;
+        height: 22rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xpIcon_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__xp-big_c984a {
+            transform: translateY(2rem);
+        }
+.Currency_icon__xp-large_e9a09 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.exp');
+    }
+.Currency_icon__xp-extraLarge_f90f7 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xp_tank_icon_80x80');
+    }
+.Currency_icon__freeXP-small_bcda1 {
+        background-image: url('R.images.gui.maps.icons.library.freeXPIcon16x16');
+    }
+.Currency_base__small_af876 .Currency_icon__freeXP-small_bcda1 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__freeXP-big_eb64e {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.freeXPIconBig24x24');
+    }
+.Currency_icon__freeXP-large_e46b0 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.freeExp');
+    }
+.Currency_icon__freeXP-extraLarge_e41b1 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.free_xp_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__freeXP-extraLarge_e41b1 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__eliteXP-small_c4a51 {
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIcon-2');
+    }
+.Currency_base__small_af876 .Currency_icon__eliteXP-small_c4a51 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__eliteXP-big_eceb0 {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIconBig');
+    }
+.Currency_icon__eliteXP-large_e35ab {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_48x48');
+    }
+.Currency_icon__eliteXP-extraLarge_a17d5 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__eliteXP-extraLarge_a17d5 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__equipCoin-small_d3b9a {
+        width: 16rem;
+        height: 16rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_1');
+    }
+.Currency_base__small_af876 .Currency_icon__equipCoin-small_d3b9a {
+            transform: translateX(-1rem) translateY(1rem);
+        }
+.Currency_icon__equipCoin-big_c34e1 {
+        width: 24rem;
+        height: 24rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoinBig');
+    }
+.Currency_base__big_f6388 .Currency_icon__equipCoin-big_c34e1 {
+            transform: translateX(-5rem) translateY(3rem);
+        }
+.Currency_icon__equipCoin-large_b1b5e {
+        width: 48rem;
+        height: 48rem;
+        margin-right: 2rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.equipCoin');
+    }
+.Currency_icon__equipCoin-extraLarge_a7b90 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: 8rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__equipCoin-extraLarge_a7b90 {
+            transform: translateX(2rem) translateY(4rem);
+        }
+.Currency_value_bb176 {
+    /* font-size inherit does not work here, so 1em means the size does not change */
+    /* stylelint-disable-next-line */
+    font-size: 1em;
+    position: relative;
+    z-index: 2;
+}
+.Currency_base__small_af876 .Currency_value_bb176 {
+        padding-right: 2rem;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 {
+        padding-right: 5rem;
+        font-size: 24rem;
+        font-weight: 700;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 24rem;
+        }
+.Currency_base__large_fb228 .Currency_value_bb176 {
+        font-size: 36rem;
+        font-weight: 700;
+    }
+.Currency_base__large_fb228 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 36rem;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value_bb176 {
+        font-size: 56rem;
+        font-weight: 700;
+    }
+.Currency_value__freeXP_db401 {
+        color: #F2F2F7;
+    }
+.Currency_value__credits_c98c5 {
+        color: #CED9D9;
+    }
+.Currency_value__gold_b8214 {
+        color: #FFC363;
+    }
+.Currency_value__xp_eda0a,
+    .Currency_value__crystal_cf72e,
+    .Currency_value__equipCoin_cb08d,
+    .Currency_value__eliteXP_de450 {
+        color: #C9C9B6;
+    }
+.Currency_base__small_af876 .Currency_value__notEnough_db10a {
+            color: #FF2717;
+        }
+.Currency_base__big_f6388 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__large_fb228 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_stock_bffbc {
+    height: 13rem;
+    color: #FFDD99;
+    font-size: 13rem;
+    line-height: 1;
+    position: relative;
+    z-index: 0;
+    pointer-events: none;
+}
+.Currency_stock__indent_c4c0d {
+        margin-left: 2rem;
+    }
+.Currency_base__small_af876 .Currency_stock_bffbc {
+        transform: translateY(0rem);
+    }
+.Currency_base__big_f6388 .Currency_stock_bffbc {
+        transform: translateY(4rem);
+    }
+.Currency_base__large_fb228 .Currency_stock_bffbc {
+        transform: translateY(10rem);
+    }
+.Currency_base__extraLarge_d0b11 .Currency_stock_bffbc {
+        transform: translateY(18rem);
+    }
+.Currency_stock__interactive_e78a9 {
+        pointer-events: auto;
+    }
+.Currency_stockBackground_c8ab1 {
+    width: 80rem;
+    height: 45rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: -27rem;
+    bottom: 0;
+    z-index: -1;
+    transform: translateY(17rem);
+}
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBar_base_c37bf {
+    width: 100%;
+    height: var(--progress-bg-height);
+    position: relative;
+}
+.ProgressBar_base__small_af6d6 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_background_a4e18 {
+    width: 100%;
+    max-width: 8001px;
+    height: 100%;
+    background-image: var(--progress-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ProgressBar_background__small_e2b95 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_lineWrapper_e670c {
+    display: flex;
+    flex: 1;
+}
+
+
+.ProgressBarBlink_base_d7125 {
+    width: var(--progress-glow-width);
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    pointer-events: none;
+}
+
+    .ProgressBarBlink_base__small_b92f8 {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressLineImpose_base_a3558 {
+    max-width: 8001px;
+    height: 100%;
+    background-color: var(--progress-line-base);
+    filter: var(--progress-line-filter);
+    position: relative;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressLineImpose_base__disabled_a9e8e {
+        background-color: var(--progress-line-disabled);
+    }
+.ProgressLineImpose_base__finished_f889e {
+        background-color: var(--progress-line-finished);
+    }
+.ProgressLineImpose_base__withoutBounce_c0ff9 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressLineImpose_pattern_a4023 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: var(--progress-pattern-border-size);
+    bottom: var(--progress-pattern-border-size);
+    left: var(--progress-pattern-border-size);
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_pattern_a4023 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-disabled);
+        left: 0;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-finished);
+    }
+.ProgressLineImpose_gradient_f73c0 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-gradient);
+    mix-blend-mode: var(--progress-pattern-gradient-mixBlendMode);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: 0;
+    bottom: var(--progress-pattern-border-size);
+    left: 0;
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_gradient_f73c0 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_gradient_f73c0 {
+        display: none;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_gradient_f73c0 {
+        background-image: var(--progress-pattern-gradient-finished);
+    }
+.ProgressLineImpose_glow_f237a {
+    width: var(--progress-glow-width);
+    max-width: 8001px;
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.ProgressLineImpose_glow__left_b7ffa {
+        left: var(--progress-pattern-border-size);
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_glow_f237a,
+    .ProgressLineImpose_base__finished_f889e .ProgressLineImpose_glow_f237a {
+        display: none;
+    }
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_glow_f237a {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaGrow_base_f4d46 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressBarDeltaGrow_glow_c912d {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 .ProgressBarDeltaGrow_glow_c912d {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaSimple_base_cfcd3 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.ProgressBarDeltaSimple_delta_dc2b6 {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1), cubic-bezier(.21, .61, .35, 1);
+    transition-property: width, transform;
+}
+
+.CurrencyReserve_base_ade47 {
+    --spacing: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 360rem;
+    height: 565rem;
+    padding-top: 75rem;
+    padding-bottom: 130rem;
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.03) 51.93%,
+        rgba(255, 255, 255, 0) 100%
+    );
+}
+
+.CurrencyReserve_mainContainer_dc8be {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120rem;
+}
+
+.CurrencyReserve_headerBlock_c2ac9 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.CurrencyReserve_heading_a0b89 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.CurrencyReserve_heading_glow_cf680 {
+        width: 360rem;
+        height: 90rem;
+        background: url('R.images.gui.maps.icons.currency_reserves.wotplus_glow') center center / cover no-repeat;
+        position: absolute;
+        top: -10rem;
+        z-index: -1;
+    }
+
+.CurrencyReserve_base__credits_d3a2a .CurrencyReserve_heading_glow_cf680 {
+            background: url('R.images.gui.maps.icons.currency_reserves.premium_glow') center center / cover no-repeat;
+        }
+
+.CurrencyReserve_heading_text_fdc91 {
+        color: #FEFEEC;
+        font-size: 28rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+.CurrencyReserve_subheader_ff176 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 16rem;
+    position: relative;
+}
+
+.CurrencyReserve_subheader_icon_a3f00 {
+        width: 16rem;
+        height: 16rem;
+        margin-right: 6rem;
+    }
+
+.CurrencyReserve_subheader_text_ccc96 {
+        color: #FFC363;
+        font-size: 14rem;
+        font-weight: 400;
+        line-height: 1.3;
+    }
+
+.CurrencyReserve_infoButton_a4d20 {
+    width: 24rem;
+    height: 24rem;
+    margin-left: 10rem;
+    margin-bottom: 2rem;
+}
+
+.CurrencyReserve_infoIcon_d6ea9 {
+    width: 52rem;
+    height: 51rem;
+    margin: 7rem 8rem 5rem;
+    background: url('R.images.gui.maps.icons.currency_reserves.icon_info') center center / cover no-repeat;
+}
+
+.CurrencyReserve_description_ebdc3 {
+    color: #E9E2BF;
+    font-size: 20rem;
+    font-weight: 400;
+    line-height: 1.2;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    padding-left: calc(var(--spacing)*2);
+    padding-right: calc(var(--spacing)*2);
+    filter: drop-shadow(0 0 4rem #000);
+}
+
+.CurrencyReserve_progress_d5423 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 260rem;
+    position: relative;
+}
+
+.CurrencyReserve_progress__locked_b3c13 {
+        margin-top: 58rem;
+    }
+
+.CurrencyReserve_progress_content_ab39b {
+    position: relative;
+}
+
+.CurrencyReserve_progress_label_faaea {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1.15;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: var(--spacing);
+}
+
+.CurrencyReserve_progress_highlight_b05d6 {
+    --highlight-width: 186rem;
+    --highlight-height: 68rem;
+    width: var(--highlight-width);
+    height: var(--highlight-height);
+    position: absolute;
+    bottom: 26rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.CurrencyReserve_progress_highlight_background_afefe {
+        width: var(--highlight-width);
+        height: var(--highlight-height);
+        mix-blend-mode: screen;
+    }
+
+.CurrencyReserve_progress_highlight__locked_d7d44 .CurrencyReserve_progress_highlight_background_afefe {
+            background: url('R.images.gui.maps.icons.currency_reserves.highlight_inactive') center bottom / contain
+                no-repeat;
+        }
+
+.CurrencyReserve_progress_highlight__locked_d7d44 .CurrencyReserve_progress_highlight_icon_a0752 {
+            width: 33rem;
+            height: 36rem;
+            background: url('R.images.gui.maps.icons.currency_reserves.lock') center center / contain no-repeat;
+            transform: translate(-50%, 45%);
+        }
+
+.CurrencyReserve_progress_highlight__cancelled_d8f7b .CurrencyReserve_progress_highlight_background_afefe {
+            background: url('R.images.gui.maps.icons.currency_reserves.highlight_alert') center bottom / contain
+                no-repeat;
+        }
+
+.CurrencyReserve_progress_highlight__cancelled_d8f7b .CurrencyReserve_progress_highlight_icon_a0752 {
+            width: 21rem;
+            height: 20rem;
+            background: url('R.images.gui.maps.icons.currency_reserves.alert') center center / contain no-repeat;
+            transform: translate(-50%, 42%);
+        }
+
+.CurrencyReserve_progress_highlight__full_d2c33 .CurrencyReserve_progress_highlight_background_afefe {
+            background: url('R.images.gui.maps.icons.currency_reserves.highlight_full') center bottom / contain
+                no-repeat;
+        }
+
+.CurrencyReserve_progress_highlight__full_d2c33 .CurrencyReserve_progress_highlight_icon_a0752 {
+            width: 64rem;
+            height: 28rem;
+            background: url('R.images.gui.maps.icons.currency_reserves.check') center center / contain no-repeat;
+        }
+
+.CurrencyReserve_progress_highlight_icon_a0752 {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    transform: translate(-50%, 50%);
+}
+
+.CurrencyReserve_amount_f43bf {
+    color: #CED9D9;
+    font-size: 36rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 12rem;
+}
+
+.CurrencyReserve_amount__inactive_c5786 {
+        opacity: 0.5;
+    }
+
+.CurrencyReserve_maxAmount_b55fd {
+    color: #80D43A;
+}
+
+.CurrencyReserve_disabled_c1fe4 {
+    color: #EE7000;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    padding-left: 25rem;
+    background: url('R.images.gui.maps.icons.currency_reserves.alert') left center / 24rem 24rem no-repeat;
+    text-shadow: 0 0 14rem #f00;
+}
+
+.CurrencyReserve_suspended_f7a4b {
+    color: #FFDD99;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    flex: 1 0 0;
+    margin-top: var(--spacing);
+    margin-bottom: calc(var(--spacing)*2);
+    padding-left: calc(var(--spacing)*7);
+    padding-right: calc(var(--spacing)*7);
+    text-align: center;
+}
+
+.CurrencyReserve_suspended__accumulating_c5a1f {
+        color: #EE7000;
+        text-align: center;
+        text-shadow: 0 0 14rem #f00;
+    }
+
+.CurrencyReserve_suspended__full_e371a {
+        color: #8C8C7E;
+    }
+
+.CurrencyReserve_actionButton_ec2c1 {
+    width: 145rem;
+    height: 30rem;
+    padding-left: 52rem;
+    padding-right: 52rem;
+}
+
+.CurrencyReserve_footer_a2b7c {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100rem;
+}
+
+.media__medium .CurrencyReserve_base_ade47, .media__large .CurrencyReserve_base_ade47, .media__extraLarge .CurrencyReserve_base_ade47 {
+        height: 565rem;
+        padding-top: 79rem;
+        padding-bottom: 87rem;
+    }
+
+.media__medium .CurrencyReserve_progress__locked_b3c13, .media__large .CurrencyReserve_progress__locked_b3c13, .media__extraLarge .CurrencyReserve_progress__locked_b3c13 {
+            margin-top: 90rem;
+        }
+
+.media__medium .CurrencyReserve_heading_text_fdc91, .media__large .CurrencyReserve_heading_text_fdc91, .media__extraLarge .CurrencyReserve_heading_text_fdc91 {
+        color: #FEFEEC;
+        font-size: 36rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+.media__medium .CurrencyReserve_infoButton_a4d20, .media__large .CurrencyReserve_infoButton_a4d20, .media__extraLarge .CurrencyReserve_infoButton_a4d20 {
+        margin-left: 10rem;
+        margin-bottom: 2rem;
+    }
+
+.media__medium .CurrencyReserve_suspended_f7a4b, .media__large .CurrencyReserve_suspended_f7a4b, .media__extraLarge .CurrencyReserve_suspended_f7a4b {
+        margin-top: 0;
+        padding-left: calc(var(--spacing)*4);
+        padding-right: calc(var(--spacing)*4);
+    }
+
+.media__medium .CurrencyReserve_description_ebdc3, .media__large .CurrencyReserve_description_ebdc3, .media__extraLarge .CurrencyReserve_description_ebdc3 {
+        padding-left: calc(var(--spacing)*3);
+        padding-right: calc(var(--spacing)*3);
+    }
+
+.CurrencyReservesApp_base_e1ebe {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 1 0 auto;
+    width: 100%;
+    height: 100%;
+    min-height: 710rem;
+    background: #000 url('R.images.gui.maps.icons.currency_reserves.background') center center / cover no-repeat;
+    position: relative;
+}
+
+    .mediaExtraLarge .CurrencyReservesApp_base_e1ebe {
+        background-size: 2560rem 1440rem;
+}
+
+.CurrencyReservesApp_mediaWrapper_dd265 {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex: 1 0 auto;
+}
+
+.CurrencyReservesApp_close_fbd23 {
+    align-self: flex-start;
+    padding-left: 40rem;
+    padding-top: 50rem;
+    z-index: 2;
+}
+
+.CurrencyReservesApp_content_fd7f4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex: 1 1 auto;
+    width: 100%;
+    z-index: 1;
+}
+
+.CurrencyReservesApp_reserves_fc49f {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 1 auto;
+    margin-top: 80rem;
+}
+
+.CurrencyReservesApp_openTime_fa903 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 120rem;
+    padding-top: 24rem;
+    padding-bottom: 50rem;
+}
+
+.CurrencyReservesApp_openTime_text_cf9d4 {
+        color: #FFDD99;
+        font-size: 16rem;
+        font-weight: 400;
+        line-height: 1.25;
+        text-align: center;
+    }
+
+.CurrencyReservesApp_openTime_countdown_e5fe6 {
+        color: #FFFFFF;
+        font-size: 20rem;
+        font-weight: 400;
+        line-height: 1.2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 200rem;
+        position: relative;
+    }
+
+.CurrencyReservesApp_openTime_highlight_fd6ff {
+        width: 400rem;
+        height: 300rem;
+        background: url('R.images.gui.maps.icons.currency_reserves.highlight_countdown') center center / contain no-repeat;
+        mix-blend-mode: screen;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+.CurrencyReservesApp_countdownText_d9b95 {
+    color: #FFFFFF;
+    font-size: 20rem;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.CurrencyReservesApp_footer_bf83d {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 1240rem;
+    padding-top: 20rem;
+    border-top: 1rem solid;
+    border-image-source: linear-gradient(to right, rgba(0, 0, 0, .05) 0%, rgba(255, 255, 255, .1) 50%, rgba(0, 0, 0, .05) 100%);
+    border-image-slice: 3;
+    background: linear-gradient(to right, rgba(0, 0, 0, .05) 0%, rgba(0, 0, 0, .4) 50%, rgba(0, 0, 0, .05) 100%);
+    text-align: center;
+    text-shadow: 0 0 14rem #000;
+}
+
+.CurrencyReservesApp_footer_text_dcae8 {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 54rem;
+    }
+
+.CurrencyReservesApp_footer_interval_e06b3 {
+        color: #FEFEEC;
+    }
+
+.media__medium .CurrencyReservesApp_content_fd7f4, .media__large .CurrencyReservesApp_content_fd7f4, .media__extraLarge .CurrencyReservesApp_content_fd7f4 {
+        padding: 0 15%;
+    }
+
+.media__medium .CurrencyReservesApp_reserves_fc49f, .media__large .CurrencyReservesApp_reserves_fc49f, .media__extraLarge .CurrencyReservesApp_reserves_fc49f {
+        margin-top: 80rem;
+    }
+
+.media__medium .CurrencyReservesApp_footer_bf83d, .media__large .CurrencyReservesApp_footer_bf83d, .media__extraLarge .CurrencyReservesApp_footer_bf83d {
+        min-height: 75rem;
+    }
+

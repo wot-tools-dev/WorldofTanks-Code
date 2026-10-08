@@ -1,0 +1,542 @@
+(def element BlueprintScreenInteractiveItems() layout = true
+    (macro BlueprintScreenTooltips)
+    (scope
+        (event onItemReceivedAnimationComplete)
+        (event onReceivedAnimationComplete)
+
+        (var items:array = [])
+        (var itemsCols:number = 0)
+        (var itemsCount:number = 0)
+        (var itemWidth:number = 0)
+        (var itemHeight:number = 0)
+        (var schemeWidth:number = 0)
+        (var schemeHeight:number = 0)
+        (var conversionAvailable:bool = false)
+        (var isItemsUnlock:bool = false)
+        (var scrScale:number = 1)
+        (var enableTutorialHint:bool = false)
+        (var filledCount:number = 0)
+        
+        (event onGoToConversionScreen)
+
+        (var _tutorialWasSetted:bool = false)
+        (bind _tutorialWasSetted false init=false
+            (bind enabled "!enableTutorialHint")
+        )
+
+        # Dispatch complete last animation
+        (var receivedCount:number = 0)
+        (bind receivedCount 0 init=false
+            (event "onReceivedAnimationComplete")
+        )
+
+        (var currentReceivedCount:number = 0)
+        (bind currentReceivedCount 0 init=false
+            (event "onReceivedAnimationComplete")
+        )
+        (bind currentReceivedCount "currentReceivedCount + 1" init=false watch=false 
+            (event "onItemReceivedAnimationComplete")
+        )
+
+        (dispatch onReceivedAnimationComplete dir=1 
+            (enabled="receivedCount!=0 && currentReceivedCount!=0 && receivedCount == currentReceivedCount")
+            (event "onItemReceivedAnimationComplete")
+        )
+    )
+    (style
+        (width = "100% + 2px")  # 2px size fix for tile layout
+        (height = "100% + 2px")
+        (flow = "Flow.TILE_HORIZONTAL")
+    )
+
+    (exec "playSound(R.sounds.play())"
+        (event "onGoToConversionScreen")
+    )
+
+    (controller $Repeat renderer='BlueprintScreenInteractiveItem'
+        (bind count "items.length > 0 ? itemsCount : 0" init=false)
+        (exprs
+            (scope
+                (bind itemW "itemWidth")
+                (bind itemH "itemHeight")
+                (bind schemeWidth "schemeWidth")
+                (bind schemeHeight "schemeHeight")
+                (bind itemCol "$index % itemsCols")
+                (bind itemRow "floor($index / itemsCols)")
+                (bind itemReceived "items[$index].received")
+                (bind itemNew "items[$index].isNew")
+                (bind itemConversionAvailable "conversionAvailable")
+                (bind itemsGreedsCount "itemsCount")
+                (bind isItemUnlock "isItemsUnlock")
+                (bind scrScale "scrScale")
+                (bind _tutorialWasSetted true init=false on='evTutorilaWasSetted')
+                (bind enableTutorialHint "enableTutorialHint"
+                    (bind enabled "!_tutorialWasSetted && filledCount == $index")
+                )
+                (bind receivedCount "receivedCount")
+            )
+            (style
+                (bind zindex "items[$index].isNew ? ZIndex.FOREGROUND : ZIndex.BACKGROUND")
+            )
+            (dispatch onGoToConversionScreen args="{value:$index}" on='click'
+                (enabled="!items[$index].received && conversionAvailable && $event.buttonIdx == MOUSE.LEFT")
+            )
+            (controller $ToolTip
+                (delay = 0.4)
+                (args tooltipId="items[$index].received ? TOOLTIP_BLUEPRINT : TOOLTIP_BLUEPRINT_ITEM_PLACE")
+                (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+                (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            )
+        )
+    )
+)
+
+(def element BlueprintScreenInteractiveItem() layout = true
+    (name = 'BlueprintScreenInteractiveItem')
+    (scope
+        # used outside
+        (var itemReceived:bool = false)
+        (var itemConversionAvailable:bool = false)
+        (var itemCol:number = -1)
+        (var itemRow:number = -1)
+        (var itemW:number = 0)
+        (var itemH:number = 0)
+        (var itemNew:bool = false)
+        (var isItemUnlock:bool = false)
+        (var schemeWidth:number = 0)
+        (var schemeHeight:number = 0)
+        (var itemPartNumber:str = '')
+        (var itemsGreedsCount:number = 10)
+        (var enableTutorialHint:bool = false)
+        (var scrScale:number = 1)
+        (var receivedCount:number = 0)
+        (const ANM_DRTN:number = 0.4)
+        (const ANM_DELAY:number = 0.2)
+        (const TF_VCENTER_SHOW:number = 30)
+        (const TF_VCENTER_HIDE:number = 40)
+        
+        (event evTutorilaWasSetted)
+        (var _enabledTutorial:bool = false)
+        (bind _enabledTutorial "enableTutorialHint && !itemReceived && itemConversionAvailable" init=false)
+        (dispatch evTutorilaWasSetted init=false
+            (bind enabled "_enabledTutorial")
+        )
+        
+        (event evItemOver)
+		(event evItemOut)
+        (event onShowCorner)
+        (var overProgress:number = 0.0)
+        (var overDelayedProgress:number = 0.0)
+        (var overMaskProgress:number = 0.0)
+        (controller $Animation
+            (bindcall play duration="ANM_DRTN" to="{overProgress:1.0}" id=ANM_OVER_ID easing="Easing.cubic_out"
+                (event "evItemOver")
+            )
+            (bindcall play duration="ANM_DRTN" to="{overMaskProgress:1.0}" id=ANM_OVER_ID easing="Easing.cubic_in"
+                (event "evItemOver")
+            )
+            (bindcall play duration="ANM_DRTN" to="{overMaskProgress:0.0}" id=ANM_OUT_ID easing="Easing.cubic_in"
+                (event "evItemOut")
+            )
+            (bindcall play duration="ANM_DRTN" delay="ANM_DELAY" to="{overDelayedProgress:1.0}" id=ANM_OVER_DLD_ID easing="Easing.cubic_out"
+                (event "evItemOver")
+            )
+            (bindcall play duration="ANM_DRTN" to="{overProgress:0.0, overDelayedProgress:0.0}" id=ANM_OUT_ID easing="Easing.cubic_out"
+                (event "evItemOut")
+            )
+            (bindcall stop ANM_OVER_ID 
+                (event "evItemOut")
+            )
+            (bindcall stop ANM_OVER_DLD_ID
+                (event "evItemOut")
+            )
+            (bindcall stop ANM_OUT_ID
+                (event "evItemOver")
+            )
+        )
+    )
+    (style
+        (bind width "itemW")
+        (bind height "itemH")
+        (align = "middle|center")
+    )
+
+    (bind class "itemReceived || itemConversionAvailable ? 'OffFilterStyle' : 'BluePrintBlackHoverStyle'")
+
+    (dispatch evItemOver on='rollOver' 
+        (bind enabled "!itemReceived")
+    )
+    (dispatch evItemOut on='rollOut'
+        (bind enabled "!itemReceived")
+    )
+
+    (exec "playSound(R.sounds['gui_blueprint_desk_research' + (itemConversionAvailable ? '' : '_n_a') + '_rollover']())" watch=false
+        (event "evItemOver")
+    )
+
+    (block
+        (image
+            (style
+                (blendMode = 'multiply')
+            )
+            (bind source "R.images.gui.maps.icons.blueprints.blueprintScreen.numbering['c_' + ($index + 1)]()")
+        )
+        (macro EmptyHitAreaMacro)
+    )
+
+    (image
+        (name = 'fragmentCorner')
+        (style
+            (position = "absolute")
+            (right = 0px)
+            (bottom = 0px)
+            (bind alpha "isItemUnlock ? 1 : 0")
+        )
+        (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.fragmentCorner()")
+        (controller $Animation
+            (bindcall play duration=0.1 from={alpha:1} to={alpha:0} easing="Easing.cubic_out" id=ANIM_CORNER_OVER_ID
+                (event "evItemOver")
+            )
+            (bindcall play delay=0.3 duration=0.1 from={alpha:0} to={alpha:1} easing="Easing.cubic_out" id=ANIM_CORNER_OUT_ID
+                (event "evItemOut")
+            )
+
+            (bindcall stop id=ANIM_CORNER_OUT_ID
+                (event "evItemOver")
+            )
+            (bindcall stop id=ANIM_CORNER_OVER_ID
+                (event "evItemOut")
+            )
+
+            (bindcall play duration=1.5 from={alpha:0.0} to={alpha:1} easing="Easing.cubic_out"
+                (event "onShowCorner")
+            )
+        )
+        (bind visible "!itemReceived")
+    )
+
+    (element BlueprintScreenInteractiveItemMask
+        (name = 'animationShemeItem')
+        (style
+            (position = "absolute")
+        )
+        (scope
+            (bind itemW "itemW")
+            (bind itemH "itemH")
+            (bind schemeWidth "schemeWidth")
+            (bind schemeHeight "schemeHeight")
+            (bind itemCol "itemCol")
+            (bind itemRow "itemRow")
+            (bind isItemNew "itemNew")
+            (bind itemResearch "itemReceived")
+            (bind animationProgress "overMaskProgress")
+            (bind itemNotConversionAvalible "!itemReceived && !itemConversionAvailable")
+            (bind greedsCount "itemsGreedsCount")
+            (bind scrScale "scrScale")
+            (bind receivedCount "receivedCount")
+        )
+        (mouseEnabled = false)
+        (mouseChildren = false)
+    )
+    
+    (image
+        (style
+            (position = "absolute")
+            (width = 100%)
+            (height = 100%)
+            (scale9grid = "Rect(30, 30, 80, 168)")
+            (alpha = 0)
+        )
+        (bind source "R.images.gui.maps.icons.blueprints.blueprintScreen['item_hover_' + (!itemReceived && !itemConversionAvailable ? 'black' : 'blue')]()")
+        (controller $Animation
+            (bindcall play delay=0.2 duration=0.2 from={alpha:0} to={alpha:1} id=ANM_ITEM_OVER_ID easing="Easing.cubic_in"
+                (event "evItemOver")
+            )
+            (bindcall play duration=0.4 to={alpha:0} id=ANM_ITEM_OUT_ID easing="Easing.cubic_in"
+                (event "evItemOut")
+            )
+            (bindcall stop ANM_ITEM_OVER_ID
+                (event "evItemOut")
+            )
+            (bindcall stop ANM_ITEM_OUT_ID
+                (event "evItemOver")
+            )
+        )
+    )
+    (block
+        (style
+            (width = 100%)
+            (height = 100%)
+            (position = "absolute")
+            (align = "right|bottom")
+        )
+        (mouseEnabled = false)
+        (mouseChildren = false)
+        (block
+            (style
+                (width = 100%)
+                (height = 100%)
+                (position = "absolute")
+                (align = "right|bottom")
+            )
+            (image
+                (name = 'compassIcon')
+                (style
+                    (blendMode = 'add')
+                    (bind alpha "(1 - overProgress) * 0.25")
+                    (bind alpha "isItemUnlock ? 0.3:0")
+                )
+                (bind visible "!itemReceived && 1.0 - overProgress")
+                (bind source "R.images.gui.maps.icons.blueprints.blueprintScreen[itemConversionAvailable ? 'addIcon' : 'notAvailableIcon']()")
+                (controller $Animation
+                    (bindcall play duration=1.5 from={alpha:0.0} to={alpha:0.3} easing="Easing.cubic_out"
+                        (event "onShowCorner")
+                    )
+                )
+            )
+            
+        )
+        (image
+            (name = 'availableIcon')
+            (style
+                (blendMode = 'add')
+                (bind alpha "overProgress")
+            )
+            (bind visible "true")
+            (bind source "R.images.gui.maps.icons.blueprints.blueprintScreen[itemConversionAvailable ? 'addIcon' : 'notAvailableIcon']()")
+        )
+    )
+    (tf
+        (name = 'statusLabel')
+        (mouseEnabled = false)
+        (style
+            (position = "absolute")
+            (textAlign = "center")
+            (hcenter = 0)
+            (width = 100%)
+            (bind height "itemConversionAvailable ? 20 : 60")
+            (bind vcenter "TF_VCENTER_HIDE - (TF_VCENTER_HIDE - TF_VCENTER_SHOW) * overDelayedProgress - 30")
+            (bind alpha "overDelayedProgress")
+            (filters
+                (glow
+                    (blurX = 10)
+                    (blurY = 10)
+                    (strength = 2)
+                    (bind color "itemConversionAvailable? 0x3366CC : 0x000000")
+                    (bind quality "itemConversionAvailable ? 2 : 0")
+                )
+            )
+        )
+        (class StatusWarningTextStyle)
+        (bind text "!itemReceived ? R.strings.blueprints.blueprintScreen[itemConversionAvailable ? 'createFragment' : 'notAvailable']() : ''")
+        (bind visible "overDelayedProgress")
+    )
+
+    (block
+        (name = 'tutorialClickArea')
+        (style
+            (width = 100%)
+            (height = 100%)
+            (position = "absolute")
+            (backgroundColor = 0x000000ff)
+        )
+        (controller $Tutorial viewTutorialId='BlueprintScreen' controlID='fragmentItem' enabled=false
+            (bind enabled "_enabledTutorial" init=false)
+        )
+        (bind buttonMode "!itemReceived && itemConversionAvailable")
+    )
+)
+
+(def element BlueprintScreenInteractiveItemMask() layout = true
+    (scope
+        (event __szChanged)
+        (var itemW:number = 0
+            (dispatch __szChanged on='evChanged')
+        )
+        (var itemH:number = 0
+            (dispatch __szChanged on='evChanged')
+        )
+        (event onLoadSwf)
+        (event onAnimationComplete)
+        (event onItemReceivedAnimationComplete)
+        (event onReceivedAnimationStart)
+        (var itemCol:number = -1)
+        (var itemRow:number = -1)
+        (var schemeWidth:number = 0)
+        (var schemeHeight:number = 0)
+        (var animationProgress:number = 0.0)
+        (var itemNotConversionAvalible:bool = false)
+        (var itemResearch:bool = false)
+        (var isItemNew:bool = false)
+        (var greedsCount:number = 10)
+        (var scrScale:number = 1)
+        (var receivedCount:number = 0)
+
+        (const __CORNER_HEIGHT:number = 73)
+
+        (event onPlayAnimation)
+        (var fakeVar:number = 0)
+        (controller $Animation
+            (bindcall play duration="receivedCount > 1 ? 0.1 + 0.1 * $index : 0.01" from="{fakeVar:0}" to="{fakeVar:1}" watch=false
+                callbacks="{onComplete:onPlayAnimation}"
+                (event "onLoadSwf")
+            )
+        )
+
+        (var __animMask:gfx = null)
+        (bind __animMask "$event.mask" init=false 
+            (event "onLoadSwf")
+        )
+    )
+    (style
+        (bind width "itemW")
+        (bind height "itemH")
+        (bind alpha "itemResearch ? 1 : animationProgress < 0.2 ? animationProgress * 5 : 1.0")
+    )
+    
+    (block
+        (name = 'content')
+        (style
+            (width = 100%)
+            (height = 100%)
+        )
+        (block
+            (name = 'itemMask')
+            (style
+                (width = 100%)
+                (height = 100%)
+                (backgroundColor = 0x00cccccc)
+                (blendMode = 'add')
+            )
+        )
+        (mask = "$target.itemMask")
+        
+        (block
+            (style
+                (position = "absolute")
+                (width = 100%)
+                (height = 100%)
+            )
+            (block
+                (name = 'anmMask')
+                (style
+                    (position = "absolute")
+                    (bind top "itemH - __CORNER_HEIGHT - animationProgress * (itemW + itemH - __CORNER_HEIGHT)")
+                )
+                (.graphics
+                    (bindcall clear (event "__szChanged"))
+                    (bindcall beginFill "0" "1" (event "__szChanged"))
+                    (bindcall moveTo "itemW" 0 watch=false (event "__szChanged"))
+                    (bindcall lineTo 0 "itemW" watch=false (event "__szChanged"))
+                    (bindcall lineTo 0 "itemH + itemW" watch=false (event "__szChanged"))
+                    (bindcall lineTo "itemW" "itemH + itemW" watch=false (event "__szChanged"))
+                    (bindcall bindcall lineTo "itemW" 0 watch=false (event "__szChanged"))
+                    (bindcall endFill (event "__szChanged"))
+                )
+            )
+            (bind mask "$target.anmMask"
+                (bind enabled "!itemResearch && !isItemNew")
+            )
+            
+            (block
+                (name = 'researchMask')
+                (style
+                    (width = 100%)
+                    (height = 100%)
+                    (backgroundColor = 0x00000000)
+                )
+            )
+            (bind mask "$target.researchMask" (bind enabled "itemResearch"))
+            
+            (image
+                (name = 'scheme')
+                (style
+                    (position = "absolute")
+                    (bind top "-itemH*itemRow")
+                    (bind left "-itemW*itemCol")
+                    (bind alpha "itemNotConversionAvalible ? 0.5 : 1")
+                    (bind width "schemeWidth")
+                    (bind height "schemeHeight")
+                )
+                (source = "BLUEPRINT_BACKGROUND")
+            )
+            (bind mask "__animMask" init=false
+                (event "onLoadSwf")
+                (enabled="isItemNew")
+            )
+        )
+    )
+    (swf
+        (name = 'swfAnim')
+        (style
+            (position = "absolute")
+            (bind scaleX "scrScale")
+            (bind scaleY "scrScale")
+        )
+        (bind source "R.animations.blueprints['receive_' + greedsCount + '_parts']()" init=false watch=false
+            (bind enabled "isItemNew")
+        )
+        (addFrameEvent "$lastFrame" "onAnimationComplete")
+        (dispatch onLoadSwf args="{mask:$target.content.contentMask}" init=false on='complete')
+
+        (stop)
+
+        (bindcall stop
+            (event "onAnimationComplete")
+        )
+
+        (bindcall gotoAndPlay 'start'
+            (event "onPlayAnimation")
+        )
+    )
+
+    (dispatch onReceivedAnimationStart dir=1
+        (bind enabled "isItemNew")
+    )
+
+    (dispatch onItemReceivedAnimationComplete dir=1
+        (event "onAnimationComplete")
+    )
+
+    (element HitArea)
+    (hitArea = "$target.hitElement")
+)
+
+(def css BluePrintBlackHoverStyle()
+    (filters
+        (colorMatrix
+            (matrix = [0.86,  0.118, 0.022, 0,
+                       0,     0.06,  0.918, 0.022,
+                       0,     0,     0.06,  0.118,
+                       0.822, 0,     0,     0,
+                       0,     0,     1,     0]
+            )
+        )
+        (glow
+            (blurX = 5)
+            (blurY = 5)
+            (strength = 0.5)
+            (color = 0xffffff)
+            (quality = 1)
+            (inner = true)
+        )
+        (dropShadow
+            (angle = 90)
+            (blurX = 1)
+            (blurY = 1)
+            (strength = 0.5)
+            (distance = 1)
+            (color = 0)
+            (quality = 1)
+        )
+        (dropShadow
+            (angle = 90)
+            (blurX = 5)
+            (blurY = 5)
+            (strength = 0.25)
+            (distance = 2)
+            (color = 0)
+            (quality = 1)
+        )
+    )
+)

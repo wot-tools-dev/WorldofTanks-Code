@@ -1,0 +1,242 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_DEFERRED_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/Cz20_ShPTK_TVP_100_mm_CO_3DSt/Cz20_ShPTK_TVP_100_mm_CO_3DSt_stop_hull_idle.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::EngineStateAnimatorTriggerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"highTrigger": "Move",
+						"idleTrigger": "Stop",
+						"mediumTrigger": "Move",
+						"monitorGear": "0",
+						"monitorPhysicLoad": "0",
+						"monitorRelativeRpm": "0",
+						"monitorRpm": "0",
+						"stoppedTrigger": "Stop",
+						"triggerEngineStart": "0",
+						"triggerSource": "00000000-0000-0000-0000-000000000000"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Cz20_Attachment_hull"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Hull_idle",
+				"uuid": "251e02c3-6243-49fa-bfe0-f370c5fd665c"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_DEFERRED_SHADING",
+										"layerName": "light_def",
+										"lodScale": 1.0,
+										"path": "particles/Tank/customization/Cz20_ShPTK_TVP_100_mm_CO_3DSt/Cz20_ShPTK_TVP_100_mm_CO_3DSt_head_light.ssm",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									},
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_FORWARD_SHADING",
+										"layerName": "light_fwd",
+										"lodScale": 1.0,
+										"path": "particles/Tank/customization/Cz20_ShPTK_TVP_100_mm_CO_3DSt/Cz20_ShPTK_TVP_100_mm_CO_3DSt_head_light_fwd.ssm",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::ProjectileHitsReceivedAnimatorTriggerComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"ignorePeriod": "2",
+								"triggerName": "Hit",
+								"triggerSource": "00000000-0000-0000-0000-000000000000"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -0.7501749992370605,
+									"y": 0.38681700825691223,
+									"z": 3.2126200199127197
+								}
+							}
+						},
+						"name": "Left_light",
+						"uuid": "266b5bb1-966c-40e3-a9ac-73081b4c4144"
+					},
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_DEFERRED_SHADING",
+										"layerName": "light",
+										"lodScale": 1.0,
+										"path": "particles/Tank/customization/Cz20_ShPTK_TVP_100_mm_CO_3DSt/Cz20_ShPTK_TVP_100_mm_CO_3DSt_head_light.ssm",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									},
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_FORWARD_SHADING",
+										"layerName": "light_fwd",
+										"lodScale": 1.0,
+										"path": "particles/Tank/customization/Cz20_ShPTK_TVP_100_mm_CO_3DSt/Cz20_ShPTK_TVP_100_mm_CO_3DSt_head_light_fwd.ssm",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::ProjectileHitsReceivedAnimatorTriggerComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"ignorePeriod": "2",
+								"triggerName": "Hit",
+								"triggerSource": "00000000-0000-0000-0000-000000000000"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0.75,
+									"y": 0.3859660029411316,
+									"z": 3.212019920349121
+								}
+							}
+						},
+						"name": "Right_light",
+						"uuid": "a186debc-23a8-4be7-a756-b45004af7c90"
+					}
+				],
+				"components": {
+					"BW::ComponentsVisibilityController": {
+						"disabledDomains": [
+							"Server"
+						],
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Cz20_Attachment_hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull_lights",
+				"uuid": "dadbdc13-f1a0-415a-bb6d-94211a0be345"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/czech/Cz20_ShPTK_TVP_100_mm/_skins/Cz20_ShPTK_TVP_100_mm_CO_3DSt/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::VehicleCustomEffectsSettings": {
+				"additionalEngineSoundNPC": "style_cust_ShPTK_idle",
+				"additionalEngineSoundPC": "style_cust_ShPTK_idle",
+				"disableDefaultChassis": "0",
+				"disableDefaultHull": "0",
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			}
+		},
+		"name": "Cz20_Jozin_z_bazin_GO_hangar",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

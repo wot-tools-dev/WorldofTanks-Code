@@ -1,0 +1,228 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Buildings/hd_bld_EU_033_KitCrashHouses/normal/lod0/hd_bld_EU_033_KitCrashHouses_Interior_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_033_KitCrashHouses/normal/lod0/hd_bld_EU_033_KitCrashHouses_Interior_01.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -2.3550100326538086,
+							"y": -3.555459976196289,
+							"z": 8.304800033569336
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 80.7899169921875,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "5b61187a-1267-4658-8fda-01d24423bd01",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "[COL_02]_08_crashingWall_03_normal_KitCrashHouses_Interior_01",
+				"uuid": "5b61187a-1267-4658-8fda-01d24423bd01"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Buildings/hd_bld_EU_088_CrashWall/normal/lod0/hd_bld_EU_088_CrashWall_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 169.14974975585938,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "cfe3183b-460d-4fa8-9c62-826bf6df9461",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "[COL_01]_08_crashingWall_03_normal_088_CrashWall_01",
+				"uuid": "cfe3183b-460d-4fa8-9c62-826bf6df9461"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_088_CrashWall/normal/lod0/hd_bld_EU_088_CrashWall_01.model"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 169.14974975585938,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "08_crashingWall_03_normal_088_CrashWall_01_dyn_model",
+				"uuid": "d9597f7f-3e45-31b7-8167-39e0b12946b9"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Environment/hd_env440_borders/normal/lod0/hd_env440_borders_20m.model"
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -1.180999994277954,
+									"y": 0.2111400067806244,
+									"z": -15.659299850463867
+								},
+								"rotation": {
+									"x": -0.23485024273395538,
+									"y": -101.47025299072266,
+									"z": -1.5074577959239832e-06
+								}
+							}
+						},
+						"flags": [
+							"Static"
+						],
+						"name": "hd_env440_borders_20m_corner_01_09",
+						"uuid": "ebde6691-4c26-3a05-b90b-e730addbbdda"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "08_crashingWall_03_normal_borders",
+				"uuid": "cb99d830-4287-33f9-8b05-0a9d87211ce9"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 25.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 22.13330078125,
+								"object": "d9597f7f-3e45-31b7-8167-39e0b12946b9",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 22.13330078125,
+								"object": "5b61187a-1267-4658-8fda-01d24423bd01",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 24.033300399780273,
+								"object": "cfe3183b-460d-4fa8-9c62-826bf6df9461",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 23.13330078125,
+								"object": "cb99d830-4287-33f9-8b05-0a9d87211ce9",
+								"parameters": [],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "08_bigCityBombing_crashingWall_03_normal",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

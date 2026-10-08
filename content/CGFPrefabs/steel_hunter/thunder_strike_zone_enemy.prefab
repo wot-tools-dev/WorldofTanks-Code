@@ -1,0 +1,88 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::LifecycleEffectSpawner": {
+						"EndEffect": "particles/Environment/Battle_Royal/Lighting/Border_lighting_end_enemy.seq",
+						"EndLifetime": 1.9666600227355957,
+						"IdleEffect": "particles/Environment/Battle_Royal/Lighting/Border_lighting_cycle_enemy.seq",
+						"SpawnIntoThis": "1",
+						"StartEffect": "particles/Environment/Battle_Royal/Lighting/Border_lighting_start_enemy.seq",
+						"StartLifetime": 0.4666599929332733,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": 0.0,
+							"y": -3.0,
+							"z": 0.0
+						},
+						"scale": {
+							"x": 1.0,
+							"y": 6.0,
+							"z": 1.0
+						}
+					}
+				},
+				"name": "Zone",
+				"uuid": "3de6ede4-566a-4c8e-8931-a9a2d05fc86e"
+			}
+		],
+		"components": {
+			"BW::LifecycleEffectSpawner": {
+				"EndEffect": "particles/Environment/Battle_Royal/Lighting/Center_energy_end.seq",
+				"EndLifetime": 59.96659851074219,
+				"IdleEffect": "particles/Environment/Battle_Royal/Lighting/Center_energy_cycle.seq",
+				"SpawnIntoThis": "1",
+				"StartEffect": "particles/Environment/Battle_Royal/Lighting/Center_energy_start.seq",
+				"StartLifetime": 0.9666000008583069,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::StaticDecalComponent": {
+				"diffuseTexture": "maps/fx/PBS_ASH_01_AM.dds",
+				"disabledDomains": [
+					"Server"
+				],
+				"extent": 2.0,
+				"lifetime": 1.0,
+				"normalTexture": "maps/fx/PBS_ASH_01_NM.dds",
+				"placementDelay": 1.0,
+				"size": {
+					"x": 15.0,
+					"y": 15.0
+				},
+				"specularTexture": "maps/fx/PBS_ASH_01_GMM.dds"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::AreaAbilityVisualizer": {
+				"areaTransform": "3de6ede4-566a-4c8e-8931-a9a2d05fc86e",
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::ThunderStrikeVisualizer": {
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"strikePrefab": "content/CGFPrefabs/steel_hunter/lightning_enemy.prefab"
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

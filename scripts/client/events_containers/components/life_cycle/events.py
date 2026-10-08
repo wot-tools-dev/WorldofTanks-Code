@@ -1,0 +1,69 @@
+from __future__ import absolute_import
+import typing
+import weakref
+from events_containers.common.containers import ClientEventsContainer
+from events_containers.components.common import ClientComponentEventsDebugger
+from events_containers.components.life_cycle.interfaces import IComponentLifeCycleEventsLogic
+if typing.TYPE_CHECKING:
+    from events_containers.components.life_cycle.interfaces import ILifeCycleComponent, IComponentLifeCycleListener
+
+class ComponentLifeCycleEvents(ClientEventsContainer, IComponentLifeCycleEventsLogic):
+
+    def __init__(self, component):
+        super(ComponentLifeCycleEvents, self).__init__()
+        self.__componentRef = weakref.ref(component)
+        self.__isParamsCollected = self.__isAppearanceReady = False
+        self.onComponentAvatarReady = self._createEvent()
+        self.onComponentParamsCollected = self._createLateEvent(self.__lateParamsCollected)
+        self.onComponentAppearanceReady = self._createLateEvent(self.__lateAppearanceReady)
+        self.onComponentAppearanceReset = self._createEvent()
+        self.onComponentDestroyed = self._createEvent()
+
+    def destroy(self):
+        self.onComponentDestroyed(self._getComponent())
+        self.__componentRef, self.__isParamsCollected, self.__isAppearanceReady = None, False, False
+        super(ComponentLifeCycleEvents, self).destroy()
+        return
+
+    def lateSubscribe(self, listener):
+        self.__lateParamsCollected(listener.onComponentParamsCollected)
+        self.__lateAppearanceReady(listener.onComponentAppearanceReady)
+        super(ComponentLifeCycleEvents, self).lateSubscribe(listener)
+
+    def processComponentAvatarReady(self):
+        self.onComponentAvatarReady(self._getComponent())
+
+    def processAppearanceReady(self):
+        self.__isAppearanceReady = True
+        self.onComponentAppearanceReady(self._getComponent())
+
+    def processAppearanceReset(self):
+        self.onComponentAppearanceReset(self._getComponent())
+        self.__isAppearanceReady = False
+
+    def processParamsCollected(self):
+        self.__isParamsCollected = True
+        self.onComponentParamsCollected(self._getComponent().getComponentParams())
+
+    def _createEventsDebugger(self):
+        return ComponentLifeCycleEventsDebugger(self, self._getComponent())
+
+    def _getComponent(self):
+        return self.__componentRef() if self.__componentRef is not None else None
+
+    def __lateAppearanceReady(self, handler):
+        if self.__isAppearanceReady and self._getComponent() is not None:
+            handler(self._getComponent())
+        return
+
+    def __lateParamsCollected(self, handler):
+        if self.__isParamsCollected and self._getComponent() is not None:
+            handler(self._getComponent().getComponentParams())
+        return
+
+
+class ComponentLifeCycleEventsDebugger(ClientComponentEventsDebugger):
+    _EVENTS_DEBUG_PREFIX = 'COMPONENT_LC'
+
+    def onComponentDestroyed(self, _):
+        self.onDestroyed()

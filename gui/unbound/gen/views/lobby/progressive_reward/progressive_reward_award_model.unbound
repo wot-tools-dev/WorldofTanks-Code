@@ -1,0 +1,20 @@
+# This file was generated using wgpygen
+#   template: configs/templates/view_model.unbound.jinja2
+#   source: configs/definitions/views/lobby/progressive_reward/progressive_reward_award_model.yaml
+# Please, don't edit this file manually.
+(def macro ProgressiveRewardAwardModel()
+    (scope
+        (event onCloseAction)
+        (event onSpecialActionBtnClick)
+        (event onDestroyEvent)
+
+        (var awardType:str = '')
+        (var steps:array = [])
+        (var stepIdx:number = 0)
+        (var hardReset:bool = false)
+        (var fadeOut:bool = false)
+        (var rewards:array = [])
+        (var specialRewardType:str = '')
+        (var initialCongratsType:str = '')
+    )
+)

@@ -1,0 +1,8 @@
+(def element TwitchRewardWindowContent() layout=true entrance=true
+    (macro RewardWindowContentModel)
+    (scope
+        (var descTxtStr:str = '')
+        (bind descTxtStr "R.strings.ingame_gui.rewardWindow[eventName].descText()" init=false)
+    )
+    (macro RewardWindowBase descText="descTxtStr")
+)

@@ -1,0 +1,1 @@
+import{j as r}from"./vendor.js";import{D as s}from"./divider2.js";import{a as o}from"./resources.js";const e={images:{divider:"common.noise"}};function i({eventName:i,...m}){const{images:n}=o(e,i);return r.jsx(s,{...m,src:n.divider})}export{i as D};

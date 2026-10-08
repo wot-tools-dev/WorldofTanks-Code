@@ -1,0 +1,59 @@
+# A drop down button with a drop down menu
+(def layout DropDown(name:str, 
+        binder:str='drop_down',
+        buttonRenderer:str='DefaultDropDownButton'
+    )
+    (name = "name")
+
+    (scope
+        (event onSelectionChanged)
+        (var isEnabled:bool = true)
+        (event onSetFocus)
+    )
+
+    (style
+        (minWidth = 100px)
+    )
+
+    (drop_down
+        (style
+            (width = 100%)
+        )
+        (bind contentResId "R.views.common.drop_down_menu_window.drop_down_menu_content.DropDownMenuContent.resId")
+        (bind decoratorResId "R.views.common.drop_down_menu_window.drop_down_menu_window.DropDownMenuWindow.resId")
+        (bind isEnabled "isEnabled")
+        (button
+            (style
+                (width = 100%)
+            )
+            (controller $Instance renderer="buttonRenderer"
+                (exprs
+                    (scope 
+                        (bind _isEnabled "isEnabled")
+                        (bind itemData "$event" init=false (event "onSelectionChanged"))
+                    )
+                    (bindcall setFocus init=false (event "onSetFocus"))
+                )
+            )
+        )
+    )
+)
+
+# A drop down menu content
+(def layout DropDownMenuContent() entrance=true
+    (macro DropDownMenuContentModel)
+
+    (style
+        (width = 100%) 
+    )
+
+    (element List 'dropDownList' 'none'
+        vscroll_policy='auto' hscroll_policy='off' list_height="auto"
+        (scope
+            (listRendererName = 'DefaultDropDownMenuItem')
+            (listVirtualLayout = false)
+            (containerWidth = 100%)
+            (containerMaxHeight = "DROP_DOWN_LIST_MAX_HEIGHT")
+        )
+    )
+)

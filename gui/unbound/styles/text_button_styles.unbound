@@ -1,0 +1,83 @@
+(def macro TextButtonStyle()
+	(style
+		(gap = 7px)
+	)
+	(label
+		(class TextButtonMainTextStyle)
+	)
+	(labelDisabled
+		(class TextButtonDisabledTextStyle)
+	)
+	(labelAdditional
+		(class TextButtonAdditionalTextStyle)
+	)
+
+	(disableOverlay source='bitmap:BtnDisableTexture' padding=1px)
+
+	(stroke source="R.atlases.components.text_btn_stroke()" scale9grid="BUTTON_BACKGROUND_RECT" offsets=null)
+
+	(soundDown = "R.sounds.play()")       # sound for 'down' state
+	(soundOver = "R.sounds.highlight()")  # sound fo 'hover' state
+)
+
+(def macro ButtonBackStyle()
+	(macro TextButtonStyle)
+	(icon
+		(style
+			(margin = -10px)
+			(marginRight = -14px)
+		)
+	)
+	(iconDisabled
+		(style
+			(margin = -10px)
+			(marginRight = -14px)
+		)
+	)
+	(label
+		(style
+			(marginLeft = -3px)
+		)
+	)
+	(labelDisabled
+		(style
+			(marginLeft = -3px)
+		)
+	)
+	(labelAdditional
+		(style
+			(marginLeft = -4px)
+		)
+	)
+
+	(hover source="R.atlases.components.botton_back_shine()" scale9grid=null blend='add' offsets="[-10px, auto, auto, auto, auto, 0px]")
+	(icon="R.atlases.components.botton_back_arrow()")
+	(iconDisabled="R.atlases.components.arrow_disable()")
+)
+
+(def macro ButtonCloseStyle()
+	(macro TextButtonStyle)
+
+	(iconAlign = "right")
+
+	(icon
+		(style
+			(marginTop = -10px)
+			(marginLeft = -11px)
+			(marginRight = -8px)
+			(marginBottom = -9px)
+		)
+	)
+	(iconDisabled
+		(style
+			(marginTop = -10px)
+			(marginLeft = -11px)
+			(marginRight = -9px)
+			(marginBottom = -9px)
+		)
+	)
+	
+	(hover source="R.atlases.components.button_back_shine_flipped()" scale9grid=null blend='add' offsets="[auto, auto, -10px, auto, auto, 0px]")
+	(icon="R.atlases.components.closeBtnIcon()")
+	(iconDisabled="R.atlases.components.closeBtnIcon()")
+)

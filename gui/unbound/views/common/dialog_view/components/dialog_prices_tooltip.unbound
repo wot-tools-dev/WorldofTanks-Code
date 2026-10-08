@@ -1,0 +1,75 @@
+(def layout DialogPricesTooltip() entrance=true
+    (macro DialogPricesTooltipModel)
+    (style
+
+    )
+
+    (element DialogPricesTooltipItem
+        (name = 'mainCost')
+        (scope
+            (bind value "valueMainCost")
+            (bind icon "iconMainCost")
+            (bind label "labelMainCost")
+        )
+    )
+
+    (element DialogPricesTooltipItem
+        (name = 'additionalCost')
+        (scope
+            (bind value "valueAdditionalCost")
+            (bind icon "iconAdditionalCost")
+            (bind label "labelAdditionalCost")
+        )
+    )
+
+    (element DialogPricesTooltipItem
+        (name = 'totalCost')
+        (scope
+            (bind value "totalCost")
+            (bind icon "R.images.gui.maps.icons.library.PowerlevelIcon_1()")
+            (bind label "labelTotalCost")
+        )
+    )
+)
+
+(def layout DialogPricesTooltipItem()
+    (style
+        (flow = "Flow.HORIZONTAL")
+        (hgap = 5px)
+        (align = "middle")
+        
+    )
+
+    (scope
+        (var value:str = '')
+        (var icon:str = '')
+        (var label:str = '')
+    )
+
+    (tf
+        (name = 'value')
+        (class MainTextStyle)
+        (style
+            (textAlign = "right")
+            (minWidth = 40px)
+        )
+        (bind text "value")
+    )
+
+    (block
+        (style
+            (width = 24px)
+            (align = "center")
+        )
+        (image
+            (name = 'icon')
+            (bind source "icon")
+        )
+    )
+
+    (tf
+        (name = 'label')
+        (class MainTextStyle)
+        (bind text "label")
+    )
+)

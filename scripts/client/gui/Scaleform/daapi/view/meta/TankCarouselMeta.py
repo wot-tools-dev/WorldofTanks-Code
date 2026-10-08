@@ -1,0 +1,36 @@
+from gui.Scaleform.daapi.view.common.vehicle_carousel.carousel_environment import CarouselEnvironment
+
+class TankCarouselMeta(CarouselEnvironment):
+
+    def restoreTank(self):
+        self._printOverrideError('restoreTank')
+
+    def buyTank(self):
+        self._printOverrideError('buyTank')
+
+    def buySlot(self):
+        self._printOverrideError('buySlot')
+
+    def buyRentPromotion(self, intCD):
+        self._printOverrideError('buyRentPromotion')
+
+    def selectTelecomRentalVehicle(self, intCD):
+        self._printOverrideError('selectTelecomRentalVehicle')
+
+    def getCarouselAlias(self):
+        self._printOverrideError('getCarouselAlias')
+
+    def setFilter(self, id):
+        self._printOverrideError('setFilter')
+
+    def as_rowCountS(self, value):
+        return self.flashObject.as_rowCount(value) if self._isDAAPIInited() else None
+
+    def as_setSmallDoubleCarouselS(self, value):
+        return self.flashObject.as_setSmallDoubleCarousel(value) if self._isDAAPIInited() else None
+
+    def as_useExtendedCarouselS(self, value):
+        return self.flashObject.as_useExtendedCarousel(value) if self._isDAAPIInited() else None
+
+    def as_scrollToSlotS(self, slotIdx):
+        return self.flashObject.as_scrollToSlot(slotIdx) if self._isDAAPIInited() else None

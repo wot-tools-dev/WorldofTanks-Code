@@ -1,0 +1,2887 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 1,
+														"min": -1
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 180
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "damageSticker/isActive"
+											}
+										},
+										"componentPropertyDest/component": "BW::GpuDecalComponent",
+										"componentPropertyDest/propertyPath": "emissionConfig/enabled"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::AndManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::AndManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::NotEqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "hit/type"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "hitType",
+																				"enumValueName": "intermediateRicochet"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::NotEqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "hit/type"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "hitType",
+																				"enumValueName": "finalRicochet"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::NotEqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "hit/type"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "hitType",
+																				"enumValueName": "armorNotPierced"
+																			}
+																		}
+																	}
+																}
+															}
+														]
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "damageSticker/angled"
+													}
+												}
+											}
+										]
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": 0.13,
+									"emissionType": "Temperature",
+									"enabled": true,
+									"gradient": "|(0.0470588, 0, 0, 0)0.000000|(0.137255, 0.027451, 0.0117647, 0.101961)0.115385|(0.392157, 0.117647, 0.113725, 0.4)0.504808|(0.898039, 0.372549, 0.14902, 0.501961)0.894231|(0.968627, 0.662745, 0.431373, 0.6)1.000000|",
+									"power": "15"
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "3",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/AP/AP_angled_1/AP_angled_1_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/AP/AP_angled_1/AP_angled_1_GMM.dds",
+									"normal": "maps/fx/damage_stickers/AP/AP_angled_1/AP_angled_1_NM.dds",
+									"temperature": "maps/fx/damage_stickers/Emissive/AP_angled_1_EM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.12,
+									"enabled": "1",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90,
+									"y": 179.09,
+									"z": 0
+								},
+								"scale": {
+									"x": 1.05,
+									"y": 1.05,
+									"z": 1.05
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Penetration_Angled_AP+HE+APCR_decal",
+						"uuid": "f460d07d-c3d2-3412-b2ec-3334efeaee21"
+					},
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 359,
+														"min": 0
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::AndExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/type"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "hitType",
+														"enumValueName": "armorNotPierced"
+													}
+												}
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::NotExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "damageSticker/angled"
+													}
+												}
+											}
+										}
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": "10",
+									"emissionType": "Temperature",
+									"enabled": "0",
+									"power": 1.63
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "3",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/AP/AP_flat_nonpen/AP_flat_nonpen_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/AP/AP_flat_nonpen/AP_flat_nonpen_GMM.dds",
+									"normal": "maps/fx/damage_stickers/AP/AP_flat_nonpen/AP_flat_nonpen_NM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.3,
+									"enabled": "1",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90,
+									"y": -122.16,
+									"z": 0
+								},
+								"scale": {
+									"x": 1.05,
+									"y": 1.05,
+									"z": 1.05
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Non-penetration_AP_decal",
+						"uuid": "bff33ae9-2b9d-4261-a35c-323c095d46a5"
+					},
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.8
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.8
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.8
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 359,
+														"min": 0
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "damageSticker/isActive"
+											}
+										},
+										"componentPropertyDest/component": "BW::GpuDecalComponent",
+										"componentPropertyDest/propertyPath": "emissionConfig/enabled"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::AndManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::AndManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::NotEqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "hit/type"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "hitType",
+																				"enumValueName": "intermediateRicochet"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::NotEqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "hit/type"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "hitType",
+																				"enumValueName": "finalRicochet"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::NotEqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "hit/type"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "hitType",
+																				"enumValueName": "armorNotPierced"
+																			}
+																		}
+																	}
+																}
+															}
+														]
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::NotExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "damageSticker/angled"
+															}
+														}
+													}
+												}
+											}
+										]
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": 0.13,
+									"emissionType": "Temperature",
+									"enabled": "1",
+									"gradient": "|(0.0470588, 0, 0, 0)0.000000|(0.137255, 0.027451, 0.0117647, 0.101961)0.115385|(0.392157, 0.117647, 0.113725, 0.4)0.504808|(0.898039, 0.372549, 0.14902, 0.501961)0.894231|(0.968627, 0.662745, 0.431373, 0.6)1.000000|",
+									"power": "15"
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "3",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/AP/AP_flat_1/AP_flat_1_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/AP/AP_flat_1/AP_flat_1_GMM.dds",
+									"normal": "maps/fx/damage_stickers/AP/AP_flat_1/AP_flat_1_NM.dds",
+									"temperature": "maps/fx/damage_stickers/Emissive/AP_flat_1_EM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.49,
+									"enabled": "1",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90,
+									"y": 46.484,
+									"z": 0
+								},
+								"scale": {
+									"x": 0.84,
+									"y": 0.84,
+									"z": 0.84
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Penetration_AP+HE_decal",
+						"uuid": "4e0199b6-0bd4-4e84-a552-0d83ee88bbd8"
+					},
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 1,
+														"min": -1
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 180
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::AndExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/type"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "hitType",
+														"enumValueName": "armorNotPierced"
+													}
+												}
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "damageSticker/angled"
+											}
+										}
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": "10",
+									"emissionType": "Temperature",
+									"enabled": "0",
+									"power": 1.63
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "3",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/AP/AP_angled_nonpen/AP_angled_nonpen_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/AP/AP_angled_nonpen/AP_angled_nonpen_GMM.dds",
+									"normal": "maps/fx/damage_stickers/AP/AP_angled_nonpen/AP_angled_nonpen_NM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.1,
+									"enabled": "1",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90,
+									"y": 179.08,
+									"z": 0
+								},
+								"scale": {
+									"x": 1.05,
+									"y": 1.05,
+									"z": 1.05
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Non-penetration_Angled_AP_decal",
+						"uuid": "2e02c0be-016f-3df0-b205-746a2b4a7216"
+					}
+				],
+				"components": {
+					"BW::EffectInitPreviewComponent": {},
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::AddExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 1
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::SubtractExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::DotProductExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::ConstantVector3Expression",
+															"__cvalue__": {
+																"vector3Value/y": 1
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::UnitVectorExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::NegateExpression",
+																	"__cvalue__": {
+																		"arg/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "hit/projectile/direction"
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "cgf::TransformComponent",
+								"componentPropertyDest/propertyPath": "scale/z"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::YLookAtPitchYawRollExpression",
+									"__cvalue__": {
+										"arg/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "damageSticker/halfVecHN"
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "cgf::TransformComponent",
+								"componentPropertyDest/propertyPath": "rotation"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::AddManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::SubtractExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 1.25
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::AbsoluteValueExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::MultiplyManyExpression",
+																	"__cvalue__": {
+																		"args": [
+																			{
+																				"expression": {
+																					"__ctype__": "BW::variables::VariableExpression",
+																					"__cvalue__": {
+																						"variable/variableName": "aux/hitNormalDOT"
+																					}
+																				}
+																			},
+																			{
+																				"expression": {
+																					"__ctype__": "BW::variables::ConstantFloatExpression",
+																					"__cvalue__": {
+																						"floatValue": 1.25
+																					}
+																				}
+																			}
+																		]
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										]
+									}
+								},
+								"componentPropertyDest/component": "cgf::TransformComponent",
+								"componentPropertyDest/propertyPath": "scale/y"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": 42.145,
+							"y": -90,
+							"z": -2.303e-06
+						},
+						"scale": {
+							"x": 1,
+							"y": 1,
+							"z": 1
+						}
+					}
+				},
+				"name": "AP",
+				"uuid": "92df43da-dcb1-446d-b157-a3a5bf280640"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"decorType": "0",
+						"disabledDomains": [
+							"Client",
+							"Server"
+						],
+						"isOverlayEnabled": "0",
+						"modelName": "vehicles/german/G42_Maus/normal/lod0/Hull.model"
+					},
+					"BW::FashionComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"BW::GpuDecalsReceiverComponent": {
+						"disabledDomains": [
+							"Client",
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.086548,
+							"y": -0.84992,
+							"z": 1.0398
+						}
+					}
+				},
+				"uuid": "51665276-a144-4ce3-b85c-91e48efcd777"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 359
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::AndManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::OrManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::EqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "system/particleQuality"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "particleQuality",
+																				"enumValueName": "high"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::EqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "system/particleQuality"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "particleQuality",
+																				"enumValueName": "maximum"
+																			}
+																		}
+																	}
+																}
+															}
+														]
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::NotExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "damageSticker/angled"
+															}
+														}
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::NotEqualExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/type"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::EnumExpression",
+															"__cvalue__": {
+																"enumName": "hitType",
+																"enumValueName": "intermediateRicochet"
+															}
+														}
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::NotEqualExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/type"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::EnumExpression",
+															"__cvalue__": {
+																"enumName": "hitType",
+																"enumValueName": "finalRicochet"
+															}
+														}
+													}
+												}
+											}
+										]
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": "10",
+									"emissionType": "Temperature",
+									"enabled": "0",
+									"power": 1.63
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "1",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/Paint_chip_decals/Hit_decal_background_1/Hit_decal_background_1_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/Paint_chip_decals/Hit_decal_background_1/Hit_decal_background_1_GMM.dds",
+									"normal": "maps/fx/damage_stickers/Paint_chip_decals/Hit_decal_background_1/Hit_decal_background_1_NM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.49,
+									"enabled": "0",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90,
+									"y": -112.32,
+									"z": 0
+								},
+								"scale": {
+									"x": 1.05,
+									"y": 1.05,
+									"z": 1.05
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Paint_chip_decal",
+						"uuid": "ccc77ee3-2ebb-314e-8bd8-d9f1785efa49"
+					},
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "aux/energy"
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 5,
+														"min": -5
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 180
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::OrExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/type"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "hitType",
+														"enumValueName": "intermediateRicochet"
+													}
+												}
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::EqualExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/type"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::EnumExpression",
+													"__cvalue__": {
+														"enumName": "hitType",
+														"enumValueName": "finalRicochet"
+													}
+												}
+											}
+										}
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": "10",
+									"emissionType": "Temperature",
+									"enabled": "0",
+									"power": 1.63
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "3",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/AP/AP_ricochet/AP_ricochet_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/AP/AP_ricochet/AP_ricochet_GMM.dds",
+									"normal": "maps/fx/damage_stickers/AP/AP_ricochet/AP_ricochet_NM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.17,
+									"enabled": "1",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90,
+									"y": 177.99,
+									"z": 0
+								},
+								"scale": {
+									"x": 0.4375,
+									"y": 0.4375,
+									"z": 0.4375
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Ricochet_decal",
+						"uuid": "b737e26b-630e-3f5f-ac89-91efb07f7258"
+					},
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 2.5
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 2.5
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 2.5
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 359
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::AndManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::NotExpression",
+													"__cvalue__": {
+														"arg/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "damageSticker/angled"
+															}
+														}
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::AndExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::NotEqualExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/type"
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::EnumExpression",
+																	"__cvalue__": {
+																		"enumName": "hitType",
+																		"enumValueName": "intermediateRicochet"
+																	}
+																}
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::NotEqualExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/type"
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::EnumExpression",
+																	"__cvalue__": {
+																		"enumName": "hitType",
+																		"enumValueName": "finalRicochet"
+																	}
+																}
+															}
+														}
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::EqualExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "system/particleQuality"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::EnumExpression",
+															"__cvalue__": {
+																"enumName": "particleQuality",
+																"enumValueName": "maximum"
+															}
+														}
+													}
+												}
+											}
+										]
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": "10",
+									"emissionType": "Temperature",
+									"enabled": "0",
+									"power": 1.63
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "2",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/Soot/Soot_flat/Soot_flat_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/Soot/Soot_flat/Soot_flat_GMM.dds",
+									"normal": "maps/fx/damage_stickers/Soot/Soot_flat/Soot_flat_NM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.49,
+									"enabled": "0",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90,
+									"y": 160.4,
+									"z": 0
+								},
+								"scale": {
+									"x": 1.0938,
+									"y": 1.0938,
+									"z": 1.0938
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Soot_decal",
+						"uuid": "e9492116-eb49-324a-bd8e-74a9b3af2407"
+					},
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 2
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/y"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 2
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/x"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "aux/energy"
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 2
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale/z"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 5,
+														"min": -5
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 180
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::MultiplyManyExpression",
+											"__cvalue__": {
+												"args": [
+													{
+														"expression/floatValue": 0.15
+													},
+													{
+														"expression": {
+															"__ctype__": "BW::variables::DivideExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/projectile/caliber"
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::ConstantFloatExpression",
+																	"__cvalue__": {
+																		"floatValue": 240
+																	}
+																}
+															}
+														}
+													}
+												]
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "position/z"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::AndManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::NotEqualExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/type"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::EnumExpression",
+															"__cvalue__": {
+																"enumName": "hitType",
+																"enumValueName": "intermediateRicochet"
+															}
+														}
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::NotEqualExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/type"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::EnumExpression",
+															"__cvalue__": {
+																"enumName": "hitType",
+																"enumValueName": "finalRicochet"
+															}
+														}
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "damageSticker/angled"
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::EqualExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "system/particleQuality"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::EnumExpression",
+															"__cvalue__": {
+																"enumName": "particleQuality",
+																"enumValueName": "maximum"
+															}
+														}
+													}
+												}
+											}
+										]
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": "10",
+									"emissionType": "Temperature",
+									"enabled": "0",
+									"power": 1.63
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "2",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/Soot/Soot_angled/Soot_angled_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/Soot/Soot_angled/Soot_angled_GMM.dds",
+									"normal": "maps/fx/damage_stickers/Soot/Soot_angled/Soot_angled_NM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.49,
+									"enabled": "0",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 3.0518e-05,
+									"y": 0,
+									"z": 0
+								},
+								"rotation": {
+									"x": 90,
+									"y": 177.25,
+									"z": 0
+								},
+								"scale": {
+									"x": 0.875,
+									"y": 0.875,
+									"z": 0.875
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Soot_angled_decal",
+						"uuid": "b02a43cd-a64a-3647-bae1-0cea48566117"
+					},
+					{
+						"components": {
+							"BW::EffectInitPreviewComponent": {
+								"disabledDomains": [
+									"Client",
+									"Server"
+								]
+							},
+							"BW::EffectInitPropertyCalcComponent": {
+								"calcs": [
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ConstructVector3Expression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 90
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::UniformRandomFloatExpression",
+													"__cvalue__": {
+														"max": 1,
+														"min": -1
+													}
+												},
+												"arg2/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 180
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "rotation"
+									},
+									{
+										"componentPropertyCalcExpr/expression": {
+											"__ctype__": "BW::variables::ChooseExpression",
+											"__cvalue__": {
+												"choices": [
+													{
+														"condition/expression": {
+															"__ctype__": "BW::variables::OrManyExpression",
+															"__cvalue__": {
+																"args": [
+																	{
+																		"expression": {
+																			"__ctype__": "BW::variables::EqualExpression",
+																			"__cvalue__": {
+																				"arg0/expression": {
+																					"__ctype__": "BW::variables::VariableExpression",
+																					"__cvalue__": {
+																						"variable/variableName": "hit/type"
+																					}
+																				},
+																				"arg1/expression": {
+																					"__ctype__": "BW::variables::EnumExpression",
+																					"__cvalue__": {
+																						"enumName": "hitType",
+																						"enumValueName": "finalRicochet"
+																					}
+																				}
+																			}
+																		}
+																	},
+																	{
+																		"expression": {
+																			"__ctype__": "BW::variables::EqualExpression",
+																			"__cvalue__": {
+																				"arg0/expression": {
+																					"__ctype__": "BW::variables::VariableExpression",
+																					"__cvalue__": {
+																						"variable/variableName": "hit/type"
+																					}
+																				},
+																				"arg1/expression": {
+																					"__ctype__": "BW::variables::EnumExpression",
+																					"__cvalue__": {
+																						"enumName": "hitType",
+																						"enumValueName": "intermediateRicochet"
+																					}
+																				}
+																			}
+																		}
+																	}
+																]
+															}
+														},
+														"result/expression": {
+															"__ctype__": "BW::variables::MultiplyManyExpression",
+															"__cvalue__": {
+																"args": [
+																	{
+																		"expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "aux/energy"
+																			}
+																		}
+																	},
+																	{
+																		"expression/floatValue": 0.7
+																	},
+																	{
+																		"expression": {
+																			"__ctype__": "BW::variables::ConstantVector3Expression",
+																			"__cvalue__": {
+																				"vector3Value/x": 1,
+																				"vector3Value/y": 1,
+																				"vector3Value/z": 1
+																			}
+																		}
+																	}
+																]
+															}
+														}
+													}
+												],
+												"defaultResult/expression": {
+													"__ctype__": "BW::variables::MultiplyManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "aux/energy"
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::ConstantVector3Expression",
+																	"__cvalue__": {
+																		"vector3Value/x": 1,
+																		"vector3Value/y": 1,
+																		"vector3Value/z": 1
+																	}
+																}
+															}
+														]
+													}
+												}
+											}
+										},
+										"componentPropertyDest/component": "cgf::TransformComponent",
+										"componentPropertyDest/propertyPath": "scale"
+									}
+								],
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GameObjectActivationRulesComponent": {
+								"activationExpression/expression": {
+									"__ctype__": "BW::variables::AndManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "damageSticker/angled"
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::OrManyExpression",
+													"__cvalue__": {
+														"args": [
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::EqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "system/particleQuality"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "particleQuality",
+																				"enumValueName": "high"
+																			}
+																		}
+																	}
+																}
+															},
+															{
+																"expression": {
+																	"__ctype__": "BW::variables::EqualExpression",
+																	"__cvalue__": {
+																		"arg0/expression": {
+																			"__ctype__": "BW::variables::VariableExpression",
+																			"__cvalue__": {
+																				"variable/variableName": "system/particleQuality"
+																			}
+																		},
+																		"arg1/expression": {
+																			"__ctype__": "BW::variables::EnumExpression",
+																			"__cvalue__": {
+																				"enumName": "particleQuality",
+																				"enumValueName": "maximum"
+																			}
+																		}
+																	}
+																}
+															}
+														]
+													}
+												}
+											}
+										]
+									}
+								},
+								"destroyOnDeactivation": true,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"BW::GpuDecalComponent": {
+								"animationConfig": {
+									"animationMask": "0",
+									"count": "0",
+									"duration": "0",
+									"enabled": "0",
+									"grid": {
+										"x": 0,
+										"y": 0
+									}
+								},
+								"disabledDomains": [
+									"Server"
+								],
+								"emissionConfig": {
+									"attenuationFactor": "10",
+									"emissionType": "Temperature",
+									"enabled": "0",
+									"power": 1.63
+								},
+								"generalConfig": {
+									"applyMask": "63",
+									"compoundOverlay": "1",
+									"cutoffAngle": "50",
+									"influenceMask": "31",
+									"projectionType": "Orthonormal",
+									"sortOrder": "1",
+									"tintColor": {
+										"w": 1,
+										"x": 1,
+										"y": 1,
+										"z": 1
+									}
+								},
+								"mapsConfig": {
+									"albedo": "maps/fx/damage_stickers/Paint_chip_decals/Hit_decal_background_6/Hit_decal_background_6_AM.dds",
+									"glossMetallic": "maps/fx/damage_stickers/Paint_chip_decals/Hit_decal_background_6/Hit_decal_background_6_GMM.dds",
+									"normal": "maps/fx/damage_stickers/Paint_chip_decals/Hit_decal_background_6/Hit_decal_background_6_NM.dds"
+								},
+								"parallaxConfig": {
+									"amplitude": 0.49,
+									"enabled": "0",
+									"offset": 0.5
+								},
+								"receiverLink": "51665276-a144-4ce3-b85c-91e48efcd777"
+							},
+							"BW::GpuDecalLinkerComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								]
+							},
+							"BW::variables::VariableGetterComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 90,
+									"y": 179.16,
+									"z": 0
+								},
+								"scale": {
+									"x": 1,
+									"y": 1,
+									"z": 1
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Paint_chip_angled_decal",
+						"uuid": "5f22112d-5223-3e9f-aa0c-a095a3e7d578"
+					}
+				],
+				"components": {
+					"BW::EffectInitPropertyCalcComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::AddExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 1
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::MultiplyExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::SubtractExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 1
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::DotProductExpression",
+															"__cvalue__": {
+																"arg0/expression": {
+																	"__ctype__": "BW::variables::ConstantVector3Expression",
+																	"__cvalue__": {
+																		"vector3Value/x": 0,
+																		"vector3Value/y": 1,
+																		"vector3Value/z": 0
+																	}
+																},
+																"arg1/expression": {
+																	"__ctype__": "BW::variables::UnitVectorExpression",
+																	"__cvalue__": {
+																		"arg/expression": {
+																			"__ctype__": "BW::variables::NegateExpression",
+																			"__cvalue__": {
+																				"arg/expression": {
+																					"__ctype__": "BW::variables::VariableExpression",
+																					"__cvalue__": {
+																						"variable/variableName": "hit/projectile/direction"
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 0.65
+													}
+												}
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "cgf::TransformComponent",
+								"componentPropertyDest/propertyPath": "scale/z"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::YLookAtPitchYawRollExpression",
+									"__cvalue__": {
+										"arg/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "damageSticker/halfVecHN"
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "cgf::TransformComponent",
+								"componentPropertyDest/propertyPath": "rotation"
+							},
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::AddManyExpression",
+									"__cvalue__": {
+										"args": [
+											{
+												"expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1
+													}
+												}
+											},
+											{
+												"expression": {
+													"__ctype__": "BW::variables::SubtractExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::ConstantFloatExpression",
+															"__cvalue__": {
+																"floatValue": 1.25
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::AbsoluteValueExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::MultiplyManyExpression",
+																	"__cvalue__": {
+																		"args": [
+																			{
+																				"expression": {
+																					"__ctype__": "BW::variables::VariableExpression",
+																					"__cvalue__": {
+																						"variable/variableName": "aux/hitNormalDOT"
+																					}
+																				}
+																			},
+																			{
+																				"expression": {
+																					"__ctype__": "BW::variables::ConstantFloatExpression",
+																					"__cvalue__": {
+																						"floatValue": 1.25
+																					}
+																				}
+																			}
+																		]
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										]
+									}
+								},
+								"componentPropertyDest/component": "cgf::TransformComponent",
+								"componentPropertyDest/propertyPath": "scale/y"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::variables::VariableGetterComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": 44.714,
+							"y": -90,
+							"z": 0
+						},
+						"scale": {
+							"x": 1,
+							"y": 1,
+							"z": 1
+						}
+					}
+				},
+				"name": "Common",
+				"uuid": "4dba21fe-7a9a-4967-907e-f2d349aec04d"
+			}
+		],
+		"components": {
+			"BW::EffectInitContextCalcComponent": {
+				"calcs": [
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::DivideExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "hit/projectile/caliber"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 160
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0.7
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/energy"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::LessEqualExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::AbsoluteValueExpression",
+									"__cvalue__": {
+										"arg/expression": {
+											"__ctype__": "BW::variables::DotProductExpression",
+											"__cvalue__": {
+												"arg0/expression": {
+													"__ctype__": "BW::variables::DivideExpression",
+													"__cvalue__": {
+														"arg0/expression": {
+															"__ctype__": "BW::variables::VariableExpression",
+															"__cvalue__": {
+																"variable/variableName": "hit/projectile/direction"
+															}
+														},
+														"arg1/expression": {
+															"__ctype__": "BW::variables::VectorLengthExpression",
+															"__cvalue__": {
+																"arg/expression": {
+																	"__ctype__": "BW::variables::VariableExpression",
+																	"__cvalue__": {
+																		"variable/variableName": "hit/projectile/direction"
+																	}
+																}
+															}
+														}
+													}
+												},
+												"arg1/expression": {
+													"__ctype__": "BW::variables::ConstantVector3Expression",
+													"__cvalue__": {
+														"vector3Value/x": 0,
+														"vector3Value/y": 1,
+														"vector3Value/z": 0
+													}
+												}
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0.5
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "damageSticker/angled"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ZLookAtPitchYawRollExpression",
+							"__cvalue__": {
+								"arg/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "hit/projectile/direction"
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "damageSticker/rotation"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::LerpExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::UnitVectorExpression",
+									"__cvalue__": {
+										"arg/expression": {
+											"__ctype__": "BW::variables::NegateExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/direction"
+													}
+												}
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantVector3Expression",
+									"__cvalue__": {
+										"vector3Value/x": 0,
+										"vector3Value/y": 1,
+										"vector3Value/z": 0
+									}
+								},
+								"arg2/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 0.5
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "damageSticker/halfVecHN"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::DotProductExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::NegateExpression",
+									"__cvalue__": {
+										"arg/expression": {
+											"__ctype__": "BW::variables::UnitVectorExpression",
+											"__cvalue__": {
+												"arg/expression": {
+													"__ctype__": "BW::variables::VariableExpression",
+													"__cvalue__": {
+														"variable/variableName": "hit/projectile/direction"
+													}
+												}
+											}
+										}
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantVector3Expression",
+									"__cvalue__": {
+										"vector3Value/x": 0,
+										"vector3Value/y": 1,
+										"vector3Value/z": 0
+									}
+								}
+							}
+						},
+						"variableDest/variableName": "aux/hitNormalDOT"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::EffectInitMockVariablesComponent": {
+				"calcs": [
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "hitType",
+								"enumValueName": "armorNotPierced"
+							}
+						},
+						"variableDest/variableName": "hit/type"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantVector3Expression",
+							"__cvalue__": {
+								"vector3Value/x": 5,
+								"vector3Value/y": -1,
+								"vector3Value/z": 0
+							}
+						},
+						"variableDest/variableName": "hit/projectile/direction"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantFloatExpression",
+							"__cvalue__": {
+								"floatValue": 160
+							}
+						},
+						"variableDest/variableName": "hit/projectile/caliber"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "shellType",
+								"enumValueName": "armorPiercing"
+							}
+						},
+						"variableDest/variableName": "hit/projectile/shellType"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::EnumExpression",
+							"__cvalue__": {
+								"enumName": "particleQuality",
+								"enumValueName": "maximum"
+							}
+						},
+						"variableDest/variableName": "system/particleQuality"
+					},
+					{
+						"variableCalcExpr/expression": {
+							"__ctype__": "BW::variables::ConstantBoolExpression",
+							"__cvalue__": {
+								"boolValue": true
+							}
+						},
+						"variableDest/variableName": "damageSticker/isActive"
+					}
+				],
+				"disabledDomains": [
+					"Client",
+					"Server"
+				]
+			},
+			"BW::EffectInitPreviewComponent": {
+				"disabledDomains": [
+					"Client",
+					"Server"
+				]
+			},
+			"BW::variables::VariableGetterComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::variables::VariableStorageComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"varInitialValues": []
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "armor_hit_decal_ap",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

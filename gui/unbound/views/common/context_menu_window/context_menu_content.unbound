@@ -1,0 +1,244 @@
+(def element ContextMenuContent() layout=true entrance=true
+    (macro ContextMenuContentModel)
+
+    (style
+        (width = "CONTEXT_MENU_ITEM_WIDTH")
+        (paddingTop = "CONTEXT_MENU_PADDING")
+        (paddingBottom = "CONTEXT_MENU_PADDING")
+    )
+
+    (group 'contextMenuList'
+        (renderer = 'ContextMenuItem')
+        (container)
+    )
+)
+
+(def element ContextMenuItem() layout=true
+    (macro ContextMenuItemModel)
+
+    (scope
+        (event evToggleSubList)
+        (var isSubListVisible:bool = false)
+        (bind isSubListVisible "!isSubListVisible" watch=false init=false (event "evToggleSubList"))
+
+        # Animate sub items list opeing/closing
+        (var groupHeight:number = 0)
+        (controller $Animation
+            (bindcall play duration=0.2 easing="Easing.cubic_out" to="{groupHeight:isSubListVisible ? subItemsCount*CONTEXT_MENU_ITEM_HEIGHT : 0}")
+        )
+    )
+
+    # Main item
+    (element ContextMenuMainItem
+        (scope
+            (dispatch evToggleSubList args="{}" on='evBtnLeftClickEvent' (enabled = "subItemsCount > 0"))
+
+            (bind _isEnabled "isEnabled")
+            (bind label "label")
+            (bind icon "icon")
+            (bind isSeparator "isSeparator")
+        )
+    )
+    # Arrow icon for sub list
+    (controller $Instance layout = true
+        (exprs
+            (style
+                (position = "absolute")
+                (left = 14)
+                (width = 5)
+                (height = "CONTEXT_MENU_ITEM_HEIGHT")
+                (align = "center|middle")
+            )
+            (image
+                (name = 'arrow')
+                (bind source "isSubListVisible ? R.atlases.components.cm_item_arrow_down() : R.atlases.components.cm_item_arrow_right()")
+            )
+        )
+        (bind enabled "subItemsCount > 0")
+    )
+
+    # Sub items
+    (block
+        (style
+            (width = "CONTEXT_MENU_ITEM_WIDTH")
+        )
+
+        # Mask for items list
+        (element HitArea
+            (style
+                (bind height "groupHeight")
+            )
+        )
+        (mask = "$target.hitElement")
+        #
+
+        (group 'subItemsList'
+            (renderer = 'ContextMenuSubItem')
+            (style
+                (bind height "groupHeight")
+            )
+            (container)
+        )
+    )
+)
+
+(def element ContextMenuMainItem() layout=true
+    (macro ContextMenuItemModel)
+
+    (macro ComponentStateBaseLogic "CONTEXT_MENU_ITEM")
+    (macro ContextMenuItemHover)
+    (macro ContextMenuItemDown)
+    (macro ComponentStateBaseContent)
+
+    (buttonMode = true)
+    (mouseChildren = false)
+
+    # Show button if item is not separator
+    (controller $Instance layout = true
+        (exprs
+            (class ContextMenuItemStyle)
+
+            # Icon
+            (macro ContextMenuItemIcon)
+
+            # Label
+            (macro ContextMenuItemLabel)
+        )
+        (bind enabled "!isSeparator")
+    )
+    # else show separator
+    (controller $Instance layout = true
+        (exprs
+            (image
+                (name = 'separator')
+                (source = "R.atlases.components.cm_separate_bg()")
+            )
+        )
+        (bind enabled "isSeparator")
+    )
+)
+
+(def element ContextMenuSubItem() layout=true
+    (macro ContextMenuSubItemModel)
+
+    (macro ComponentStateBaseLogic "CONTEXT_MENU_SUB_ITEM")
+    (macro ContextMenuItemHover)
+    (macro ContextMenuItemDown)
+    (macro ComponentStateBaseContent)
+
+    (scope
+        (bind _isEnabled "isEnabled")
+    )
+
+    (buttonMode = true)
+    (mouseChildren = false)
+
+    (block
+        (class ContextMenuItemStyle)
+
+        # Icon
+        (macro ContextMenuItemIcon)
+
+        # Marker
+        (block
+            (style
+                (width = 10px)
+            )
+            (image
+                (name = 'marker')
+                (source = "R.atlases.components.cm_item_sub_circle()")
+            )
+        )
+
+        # Label
+        (macro ContextMenuItemLabel)
+    )
+)
+
+# Style
+(def css ContextMenuItemStyle()
+    (flow = "Flow.HORIZONTAL")
+    (width = "CONTEXT_MENU_ITEM_WIDTH")
+    (height = "CONTEXT_MENU_ITEM_HEIGHT")
+    (paddingLeft = "CONTEXT_MENU_LABEL_PADDING")
+    (align = "left|middle")
+)
+
+# Icon
+(def macro ContextMenuItemIcon()
+    (block
+        (style
+            (width = "CONTEXT_MENU_ICON_WIDTH")
+            (align = "center")
+        )
+        # show image if there is icon
+        (controller $Instance layout = true
+            (exprs
+                (image
+                    (name = 'icon')
+                    (bind source "icon")
+                )
+            )
+            (bind enabled "icon != null")
+        )
+    )
+)
+
+# Label
+(def macro ContextMenuItemLabel()
+    (tf
+        (style
+            (width = 100%)
+            (elideMode = true)
+            (multiline = false)
+        )
+        (name = 'label')
+        (bind class "_isEnabled ? currStateClass.font : states.disabled.font" $enabled = "(_isEnabled ? currStateClass.font : states.disabled.font) != null")
+        (bind text "label == '' ? label : label")
+    )
+)
+
+# Items animations
+(def macro ContextMenuItemHover()
+    (image
+        (name = 'HoverImage')
+        (style
+            (position = "absolute")
+            (left = 0px)
+            (right = 1px)
+            (width = 100%)
+            (height = 100%)
+            (alpha = 0)
+        )
+        (alpha = 0)
+        (controller $Animation
+            (bindcall stop (event "evBtnOutEvent"))
+            (bindcall play duration=0.2 to={alpha:0} easing="Easing.cubic_in" (event "evBtnOutEvent"))
+            (bindcall play duration=0.2 to={alpha:0} easing="Easing.cubic_in" (event "evBtnDownEvent"))
+            (bindcall play duration=0.2 to={alpha:1} easing="Easing.cubic_in" (event "evBtnUpEvent"))
+            (bindcall play duration=0.2 to={alpha:1} easing="Easing.cubic_out" (event "evBtnOverEvent"))
+        )
+        (source = "R.atlases.components.cm_item_over()")
+    )
+)
+
+(def macro ContextMenuItemDown()
+    (block
+        (name = 'ItemDown')
+        (style
+            (backgroundColor = 0xFF000000)
+            (width = 100%)
+            (height = 100%)
+            (position = "absolute")
+            (alpha = 0)
+        )
+        (alpha = 0)
+        (controller $Animation
+            (bindcall stop (event "evBtnOutEvent"))
+            (bindcall play duration=0.2 to={alpha:0} easing="Easing.cubic_in" (event "evBtnOutEvent"))
+            (bindcall play duration=0.2 to={alpha:1} easing="Easing.cubic_in" (event "evBtnDownEvent"))
+            (bindcall play duration=0.2 to={alpha:0} easing="Easing.cubic_in" (event "evBtnUpEvent"))
+            (bindcall play duration=0.2 to={alpha:0} easing="Easing.cubic_out" (event "evBtnOverEvent"))
+        )
+    )
+)

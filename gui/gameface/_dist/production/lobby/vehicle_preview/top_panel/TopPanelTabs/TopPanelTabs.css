@@ -1,0 +1,279 @@
+html {
+    overflow: hidden;
+}
+
+body {
+    margin: 1rem;
+}
+
+.Tabs_base_a18c6 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+    .Tabs_base__vertical_ed80b {
+        flex-direction: row;
+    }
+
+.Tabs_list_bb783 {
+    display: flex;
+    position: relative;
+}
+
+.Tabs_list__centered_b2a97 {
+        justify-content: center;
+        align-items: center;
+    }
+
+.Tabs_wrapper_c23cb {
+    display: flex;
+}
+
+.Tabs_wrapper__centered_c4ed4 {
+        justify-content: center;
+        align-items: center;
+    }
+
+.Tabs_wrapper__vertical_dea61 {
+        flex-direction: column;
+    }
+
+.Counter_base_b457c {
+    display: flex;
+    min-width: 14rem;
+    height: 14rem;
+    position: relative;
+    z-index: 0;
+    animation: Counter_show_a62c2 ease-in-out forwards;
+}
+
+    .Counter_base__big_d6a57 {
+        min-width: 21rem;
+        height: 21rem;
+    }
+
+    .Counter_base__small_ea547 {
+        min-width: 13rem;
+        height: 13rem;
+    }
+
+    .Counter_base__empty_c2ad2 {
+        min-width: 6rem;
+        height: 6rem;
+    }
+
+    .Counter_base__animated_fb5ef {
+        animation-duration: .2s;
+    }
+
+    .Counter_base__hidden_b1e71 {
+        animation-name: Counter_hide_d1bf0;
+    }
+.Counter_bg_f25ac {
+    border: 1rem solid #fe4e0f;
+    border-radius: 7rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, .3),
+            0 0 6rem rgba(254,103,0, .2),
+            0 0 12rem 4rem rgba(249,0,0, .3);
+    background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.Counter_base__big_d6a57 .Counter_bg_f25ac {
+        border-radius: 11rem;
+    }
+.Counter_base__small_ea547 .Counter_bg_f25ac {
+        border-radius: 7rem;
+    }
+.Counter_value_d1de3 {
+    display: flex;
+    padding: 0 4rem;
+    color: #fefeec;
+    font-size: 11rem;
+    line-height: 13rem;
+    white-space: nowrap;
+}
+.Counter_base__big_d6a57 .Counter_value_d1de3 {
+        padding: 0 7rem;
+        font-size: 14rem;
+        line-height: 20rem;
+    }
+.Counter_base__small_ea547 .Counter_value_d1de3 {
+        font-size: 9rem;
+        line-height: 12rem;
+    }
+.Counter_value__text_bb007 {
+        padding: 0 7rem;
+    }
+.Counter_base__big_d6a57 .Counter_value__text_bb007 {
+            padding: 0 10rem;
+        }
+.Counter_base__small_ea547 .Counter_value__text_bb007 {
+            padding: 0 5rem;
+            font-size: 10rem;
+        }
+.Counter_base__pattern_d1fff .Counter_value_d1de3 {
+        display: none;
+    }
+.Counter_plus_a405c {
+    position: relative;
+    top: -1rem;
+}
+.Counter_pattern_a4be2 {
+    display: none;
+}
+.Counter_base__pattern_d1fff .Counter_pattern_a4be2 {
+        display: block;
+        border-radius: 50%;
+        background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+        opacity: .8;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+@keyframes Counter_show_a62c2 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes Counter_hide_d1bf0 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+.Tab_base_b84ed {
+    display: flex;
+    align-items: center;
+    height: 32rem;
+    padding: 0 32rem 1rem;
+    background-color: rgba(0,0,0, .3);
+    color: rgba(255,255,229, .4);
+    font-size: 14rem;
+    position: relative;
+    z-index: 0;
+    transition: color .16s ease-in-out;
+    cursor: pointer;
+}
+
+    .Tab_base_b84ed:hover {
+        color: #ffdaab;
+    }
+
+    .Tab_base__first_dbec5 {
+        border-top-left-radius: 2rem;
+        border-bottom-left-radius: 2rem;
+    }
+
+    .Tab_base__last_ccad2 {
+        border-top-right-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+    }
+
+    .Tab_base__medium_f2f83 {
+        height: 46rem;
+        padding-bottom: 2rem;
+        font-size: 16rem;
+    }
+
+    .Tab_base__active_ac921 {
+        color: #ffe0b6;
+        cursor: default;
+        pointer-events: none;
+    }
+.Tab_divider_d8c51 {
+    width: 1rem;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.components.tabs.tab.separator') no-repeat 50% 50%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: -1rem;
+    transition: opacity .16s ease-in-out;
+}
+.Tab_divider__show_a4b86 {
+        opacity: 1;
+    }
+.Tab_state_e1cec {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: background-color .16s ease-in-out;
+    pointer-events: none;
+}
+.Tab_base_b84ed:hover .Tab_state_e1cec,
+    .Tab_base__active_ac921 .Tab_state_e1cec {
+        background-color: rgba(255,85,0, .06);
+        opacity: 1;
+    }
+.Tab_base__active_ac921 .Tab_state_e1cec {
+        border: 1rem solid rgba(255,85,0, .2);
+        opacity: 1;
+    }
+.Tab_stateHighlight_fef32 {
+    width: 337rem;
+    height: 168rem;
+    background: url('R.images.gui.maps.icons.components.tabs.tab.highlight') 50% 50% no-repeat;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .16s ease-in-out;
+}
+.Tab_base__active_ac921 .Tab_stateHighlight_fef32 {
+        opacity: 1;
+    }
+.Tab_stateBorder_a721a {
+    width: 1rem;
+    background: url('R.images.gui.maps.icons.components.tabs.tab.border') 0 50% no-repeat;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    transition: opacity .16s ease-in-out;
+}
+.Tab_base__active_ac921 .Tab_stateBorder_a721a {
+        opacity: 1;
+    }
+.Tab_stateBorder__positionLeft_ce34f {
+        left: -1rem;
+    }
+.Tab_stateBorder__positionRight_d2bf9 {
+        right: -1rem;
+    }
+.Tab_counter_cd558 {
+    position: absolute;
+    top: 0;
+    right: 10rem;
+    transform: translateY(-50%);
+}
+
+.Content_base_acab1 {
+    width: 100%;
+    height: 100%;
+}
+
+.Content_tabs_fc8fd {
+    margin-top: 40rem;
+}
+

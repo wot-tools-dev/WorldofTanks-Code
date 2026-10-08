@@ -1,0 +1,474 @@
+from __future__ import absolute_import, print_function
+import functools
+import locale
+import sys
+import zlib
+import typing
+from future.moves import pickle
+import Account
+import AreaDestructibles
+import BigWorld
+import CommandMapping
+import Input
+import GUI
+import MusicControllerWWISE
+import Settings
+import SoundGroups
+import TriggersManager
+import VOIP
+import WebBrowser
+import constants
+import persistent_data_cache as pdc
+import services_config
+from MemoryCriticalController import g_critMemHandler
+from debug_utils import LOG_CURRENT_EXCEPTION, LOG_DEBUG, LOG_ERROR, LOG_NOTE
+from gui import onRepeatKeyEvent, g_keyEventHandlers, g_mouseEventHandlers, InputHandler
+from gui.game_loading import loading as gameLoading
+from gui.impl.dialogs import dialogs
+from gui.shared import personality as gui_personality
+from helpers import RSSDownloader, OfflineMode, LightingGenerationMode
+from helpers import dependency, log
+from messenger import MessengerEntry
+from skeletons.connection_mgr import IConnectionManager
+from skeletons.gameplay import IGameplayLogic
+from system_events import g_systemEvents
+from wg_async import wg_async, wg_await
+if typing.TYPE_CHECKING:
+    from BigWorld import KeyEvent, MouseEvent, AxisEvent
+try:
+    locale.setlocale(locale.LC_TIME, '')
+except locale.Error:
+    LOG_CURRENT_EXCEPTION()
+
+class ServiceLocator(object):
+    connectionMgr = dependency.descriptor(IConnectionManager)
+    gameplay = dependency.descriptor(IGameplayLogic)
+
+
+g_replayCtrl = None
+
+def autoFlushPythonLog():
+    BigWorld.flushPythonLog()
+    BigWorld.callback(5.0, autoFlushPythonLog)
+
+
+def init(scriptConfig, engineConfig, userPreferences):
+    global g_replayCtrl
+    try:
+        log.config.setupFromXML()
+        gameLoading.step()
+        pdc.init(scriptConfig, engineConfig, userPreferences, gameLoading.step)
+        import extension_rules
+        extension_rules.init()
+        import python_macroses
+        python_macroses.init()
+        import arena_bonus_type_caps
+        arena_bonus_type_caps.init()
+        import fairplay_violation_types
+        fairplay_violation_types.init()
+        if constants.IS_DEVELOPMENT:
+            autoFlushPythonLog()
+            from development_features import initDevBonusTypes
+            initDevBonusTypes()
+        BigWorld.wg_initCustomSettings()
+        Settings.g_instance = Settings.Settings(scriptConfig, engineConfig, userPreferences)
+        CommandMapping.g_instance = CommandMapping.CommandMapping()
+        Input.loadProfiles()
+        gameLoading.step()
+        from helpers import DecalMap
+        DecalMap.init(scriptConfig['decal'])
+        gameLoading.step()
+        from helpers import EdgeDetectColorController
+        EdgeDetectColorController.g_instance = EdgeDetectColorController.EdgeDetectColorController(scriptConfig['silhouetteColors'])
+        SoundGroups.g_instance = SoundGroups.SoundGroups()
+        gameLoading.startSound()
+        import BattleReplay
+        g_replayCtrl = BattleReplay.g_replayCtrl = BattleReplay.BattleReplay()
+        g_replayCtrl.registerWotReplayFileExtension()
+        import nation_change
+        nation_change.init()
+        gameLoading.step()
+        import items
+        items.init(True, None if not constants.IS_DEVELOPMENT else {}, gameLoading.step)
+        gameLoading.step()
+        import battle_results
+        battle_results.init()
+        import win_points
+        win_points.init()
+        import rage
+        rage.init()
+        gameLoading.step()
+        import ArenaType
+        ArenaType.init()
+        import dossiers2
+        dossiers2.init()
+        gameLoading.step()
+        import achievements20
+        achievements20.init()
+        import personal_missions
+        personal_missions.init()
+        import motivation_quests
+        motivation_quests.init()
+        import customization_quests
+        customization_quests.init()
+        import static_quests
+        static_quests.init()
+        import game_params_configs
+        game_params_configs.init()
+        BigWorld.worldDrawEnabled(False)
+        gameLoading.step()
+        manager = dependency.configure(services_config.getClientServicesConfig)
+        g_systemEvents.onDependencyConfigReady(manager)
+        SoundGroups.g_instance.startListeningGUISpaceChanges()
+        gameLoading.step()
+        gui_personality.init()
+        gameLoading.step()
+        EdgeDetectColorController.g_instance.create()
+        g_replayCtrl.subscribe()
+        gameLoading.step()
+        MessengerEntry.g_instance.init()
+        AreaDestructibles.init()
+        MusicControllerWWISE.create()
+        gameLoading.step()
+        TriggersManager.init()
+        RSSDownloader.init()
+        items.clearXMLCache()
+        import player_ranks
+        player_ranks.init()
+        import destructible_entities
+        destructible_entities.init()
+        from dyn_components_groups import DynComponentsGroupsRepo
+        DynComponentsGroupsRepo.init()
+        import hints_common.prebattle.manager
+        hints_common.prebattle.manager.init()
+        from hints.battle import manager as battleHintsModelsMgr
+        battleHintsModelsMgr.init()
+        from arena_vscript_config import config as arenaVScriptsConfig
+        arenaVScriptsConfig.init()
+        from AvatarInputHandler.cameras import FovExtended
+        FovExtended.instance().resetFov()
+        BigWorld.pauseDRRAutoscaling(True)
+        from gui.shared.gui_items import marker_items
+        marker_items.init()
+        if constants.HAS_DEV_RESOURCES:
+            import development
+            development.init()
+        gameLoading.step()
+    except Exception:
+        LOG_CURRENT_EXCEPTION()
+        BigWorld.quit()
+
+    return
+
+
+def start():
+    LOG_DEBUG('start')
+    pdc.start()
+    checkBotNet()
+    if OfflineMode.onStartup():
+        gameLoading.getLoader().idle()
+        LOG_DEBUG('OfflineMode')
+        return
+    if LightingGenerationMode.onStartup():
+        gameLoading.getLoader().idle()
+        LOG_DEBUG('LightingGenerationMode')
+        return
+    ServiceLocator.connectionMgr.onConnected += onConnected
+    ServiceLocator.connectionMgr.onDisconnected += onDisconnected
+    ServiceLocator.gameplay.start()
+    BigWorld.loginEntered()
+    if not g_replayCtrl.isPlaying:
+        WebBrowser.initExternalCache()
+
+
+def abort():
+    BigWorld.callback(0.0, fini)
+
+
+def fini():
+    global g_replayCtrl
+    LOG_DEBUG('fini')
+    pdc.fini()
+    if g_replayCtrl is not None:
+        g_replayCtrl.stop(isDestroyed=True)
+    BigWorld.wg_setScreenshotNotifyCallback(None)
+    g_critMemHandler.restore()
+    g_critMemHandler.destroy()
+    MusicControllerWWISE.destroy()
+    if RSSDownloader.g_downloader is not None:
+        RSSDownloader.g_downloader.destroy()
+    if dependency.isConfigured():
+        ServiceLocator.connectionMgr.onConnected -= onConnected
+        ServiceLocator.connectionMgr.onDisconnected -= onDisconnected
+    if dependency.isConfigured():
+        MessengerEntry.g_instance.fini()
+    from helpers import EdgeDetectColorController
+    if EdgeDetectColorController.g_instance is not None:
+        EdgeDetectColorController.g_instance.destroy()
+        EdgeDetectColorController.g_instance = None
+    BigWorld.resetEntityManager(False, False)
+    BigWorld.clearAllSpaces()
+    if TriggersManager.g_manager is not None:
+        TriggersManager.g_manager.destroy()
+        TriggersManager.g_manager = None
+    Input.unloadProfiles()
+    if g_replayCtrl is not None:
+        g_replayCtrl.unsubscribe()
+    if dependency.isConfigured():
+        gui_personality.fini()
+    from predefined_hosts import g_preDefinedHosts
+    if g_preDefinedHosts is not None:
+        g_preDefinedHosts.fini()
+    if SoundGroups.g_instance is not None:
+        SoundGroups.g_instance.stopListeningGUISpaceChanges()
+    dependency.clear()
+    if g_replayCtrl is not None:
+        g_replayCtrl.destroy()
+        g_replayCtrl = None
+    voipRespHandler = VOIP.getVOIPManager()
+    if voipRespHandler is not None:
+        voipRespHandler.destroy()
+    if SoundGroups.g_instance is not None:
+        SoundGroups.g_instance.destroy()
+    if Settings.g_instance is not None:
+        Settings.g_instance.save()
+    WebBrowser.destroyExternalCache()
+    gameLoading.getLoader().stop()
+    if constants.HAS_DEV_RESOURCES:
+        import development
+        development.fini()
+    return
+
+
+def onChangeEnvironments(inside):
+    pass
+
+
+def onBeforeSend():
+    g_systemEvents.onBeforeSend()
+
+
+def onRecreateDevice():
+    gui_personality.onRecreateDevice()
+
+
+def onStreamComplete(streamID, desc, data):
+    try:
+        origPacketLen, origCrc32 = pickle.loads(desc)
+    except Exception:
+        origPacketLen, origCrc32 = (-1, -1)
+
+    packetLen = len(data)
+    crc32 = zlib.crc32(data)
+    isCorrupted = origPacketLen != packetLen or origCrc32 != crc32
+    desc = (isCorrupted,
+     origPacketLen,
+     packetLen,
+     origCrc32,
+     crc32)
+    player = BigWorld.player()
+    if player is None:
+        LOG_ERROR('onStreamComplete: no player entity available for process stream (%d, %s) data' % (streamID, desc))
+    else:
+        player.onStreamComplete(streamID, desc, data)
+    return
+
+
+def onLoginToCellFailed():
+    BigWorld.player().onLoginToCellFailed()
+
+
+def onConnected():
+    gui_personality.onConnected()
+    VOIP.getVOIPManager().onConnected()
+    gameLoading.getLoader().onConnected()
+
+
+def onGeometryMapped(spaceID, path):
+    SoundGroups.g_instance.unloadAll()
+    LOG_NOTE('[SPACE] Loading space: ' + path)
+    arenaName = path.split('/')[-1]
+    BigWorld.notifySpaceChange(path)
+    SoundGroups.g_instance.preloadSoundGroups(arenaName)
+    from ArenaType import g_geometryNamesToIDs
+    return None if arenaName not in g_geometryNamesToIDs else g_geometryNamesToIDs[arenaName]
+
+
+def onDisconnected():
+    BigWorld.loginEntered()
+    gui_personality.onDisconnected()
+    VOIP.getVOIPManager().logout()
+    VOIP.getVOIPManager().onDisconnected()
+    gameLoading.getLoader().onDisconnected()
+
+
+def onFini():
+    Account.delAccountRepository()
+
+
+def onCameraChange(oldCamera):
+    pass
+
+
+def handleAxisEvent(event):
+    inputHandler = getattr(BigWorld.player(), 'inputHandler', None)
+    if inputHandler is not None:
+        if inputHandler.handleAxisEvent(event):
+            return True
+    return False
+
+
+def handleKeyEvent(event):
+    guiHandled = False
+    if event.isMouseButton():
+        guiHandled = True
+        if GUI.handleKeyEvent(event):
+            return True
+    if constants.HAS_DEV_RESOURCES:
+        from development.dev_input_handler import g_devInputHandlerInstance
+        g_devInputHandlerInstance.handleKeyEvent(event)
+        from helpers import DevHotkeysController
+        DevHotkeysController.handleKeyEvent(event)
+    if OfflineMode.handleKeyEvent(event):
+        return True
+    elif LightingGenerationMode.handleKeyEvent(event):
+        return True
+    else:
+        isDown, key, mods, isRepeat = convertKeyEvent(event)
+        if WebBrowser.g_mgr.handleKeyEvent(event):
+            return True
+        if g_replayCtrl.isPlaying:
+            if g_replayCtrl.handleKeyEvent(isDown, key, mods, isRepeat, event):
+                return True
+        if isRepeat:
+            if onRepeatKeyEvent(event):
+                return True
+        if not isRepeat:
+            InputHandler.g_instance.handleKeyEvent(event)
+            if not guiHandled and GUI.handleKeyEvent(event):
+                return True
+        if not isRepeat:
+            if MessengerEntry.g_instance.gui.handleKey(event):
+                return True
+        inputHandler = getattr(BigWorld.player(), 'inputHandler', None)
+        if inputHandler is not None:
+            if inputHandler.handleKeyEvent(event):
+                return True
+        for handler in g_keyEventHandlers:
+            try:
+                if handler(event):
+                    return True
+            except Exception:
+                LOG_CURRENT_EXCEPTION()
+
+        return False
+
+
+def handleMouseEvent(event):
+    if GUI.handleMouseEvent(event):
+        return True
+    elif OfflineMode.handleMouseEvent(event):
+        return True
+    elif LightingGenerationMode.handleMouseEvent(event):
+        return True
+    else:
+        dx, dy, dz, _ = convertMouseEvent(event)
+        if g_replayCtrl.isPlaying:
+            if g_replayCtrl.handleMouseEvent(dx, dy, dz):
+                return True
+        inputHandler = getattr(BigWorld.player(), 'inputHandler', None)
+        if inputHandler is not None:
+            if inputHandler.handleMouseEvent(event):
+                return True
+        for handler in g_mouseEventHandlers:
+            try:
+                if handler(event):
+                    return True
+            except Exception:
+                LOG_CURRENT_EXCEPTION()
+
+        return False
+
+
+def handleInputLangChangeEvent():
+    return False
+
+
+def getAuthRealm():
+    return constants.AUTH_REALM
+
+
+@wg_async
+def requestQuit():
+    BigWorld.WGWindowsNotifier.onBattleBeginning()
+    isOk = yield wg_await(dialogs.quitGame())
+    if isOk:
+        BigWorld.quit()
+
+
+def addChatMsg(*msg):
+    print('Message:', msg)
+
+
+def expandMacros(line):
+    import re
+    from python_macroses import g_macroses
+    patt = '\\$(' + functools.reduce(lambda x, y: x + '|' + y, g_macroses) + ')(\\W|\\Z)'
+
+    def repl(match):
+        return g_macroses[match.group(1)] + match.group(2)
+
+    return re.sub(patt, repl, line)
+
+
+def wg_onChunkLoad(spaceID, chunkID, numDestructibles, isOutside):
+    if not isOutside:
+        return
+    if spaceID != AreaDestructibles.g_destructiblesManager.getSpaceID():
+        AreaDestructibles.g_destructiblesManager.startSpace(spaceID)
+    AreaDestructibles.g_destructiblesManager.onChunkLoad(chunkID, numDestructibles)
+
+
+def wg_onChunkLoose(spaceID, chunkID, isOutside):
+    if not isOutside:
+        return
+    if spaceID == AreaDestructibles.g_destructiblesManager.getSpaceID():
+        AreaDestructibles.g_destructiblesManager.onChunkLoose(chunkID)
+
+
+def wg_playModuleDestructionAnimation(chunkID, destrIndex, moduleIndex, isShotDamage, isHavokSpawnedDestructibles):
+    AreaDestructibles.g_destructiblesManager.onPlayModuleDestructionAnimation(chunkID, destrIndex, moduleIndex, isShotDamage, isHavokSpawnedDestructibles)
+
+
+def convertKeyEvent(event):
+    isDown = event.isKeyDown()
+    key = event.key
+    isRepeat = event.isRepeatedEvent()
+    mods = 1 if event.isShiftDown() else (2 if event.isCtrlDown() else (4 if event.isAltDown() else 0))
+    return (isDown,
+     key,
+     mods,
+     isRepeat)
+
+
+def convertMouseEvent(event):
+    return (event.dx,
+     event.dy,
+     event.dz,
+     event.cursorPosition)
+
+
+def onMemoryCritical():
+    g_critMemHandler()
+
+
+def checkBotNet():
+    botArg = 'botExecute'
+    if botArg not in sys.argv:
+        return
+    sys.path.append('test_libs')
+    from path_manager import g_pathManager
+    g_pathManager.setPathes()
+    from test_player import g_testPlayer
+    port = int(sys.argv[sys.argv.index(botArg) + 1])
+    g_testPlayer.initTestPlayer(port)

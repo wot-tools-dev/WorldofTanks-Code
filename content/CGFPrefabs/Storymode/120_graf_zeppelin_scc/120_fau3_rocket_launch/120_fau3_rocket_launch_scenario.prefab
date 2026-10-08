@@ -1,0 +1,98 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent/position/x": 302.0,
+					"cgf::TransformComponent/position/y": 24.0,
+					"cgf::TransformComponent/position/z": 20.0
+				},
+				"name": "120_fau3_rocket_launch_complete.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/120_graf_zeppelin_scc/120_fau3_rocket_launch/120_fau3_rocket_launch_complete.prefab",
+				"uuid": "4b148a7f-8426-4f8d-9549-aa3a76bd0849"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 48.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 48.0,
+								"object": "4b148a7f-8426-4f8d-9549-aa3a76bd0849",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.009999999776482582,
+												"type": "Step",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"path": "story_mode/vscript/plans/StoryMode_vfx_scenarios/120_fau3_rocket_launch_scenario.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::SequenceNetworkSync": {}
+		},
+		"name": "120_fau3_rocket_launch_scenario",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

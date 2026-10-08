@@ -1,0 +1,90 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "turret_idle",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/G164_Kpz_Pr_68_P_N23_3Dst/G164_Kpz_Pr_68_P_N23_3Dst_headlight_turret.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_G164_Kpz_attachment_turret"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Turret",
+				"uuid": "d73c375d-c98e-4e38-8392-d4faade6e623"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "idle/move",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/G164_Kpz_Pr_68_P_N23_3Dst/G164_Kpz_Pr_68_P_N23_3Dst_stoplight_hull.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_G164_Kpz_attachment_hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "EngineState",
+				"uuid": "1bece5cb-7d2d-4366-98e1-7c26f83e9923"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/german/G164_Kpz_Pr_68_P/_skins/G164_Kpz_Pr_68_P_N23_3Dst/normal/lod0/Hull.model"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "G164_Kpz_Pr_68_P_N23_3Dst",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

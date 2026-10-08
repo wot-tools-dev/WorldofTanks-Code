@@ -1,0 +1,1 @@
+import{j as e,a3 as s}from"./vendor.js";const a="Diff_8f04feea",i="Diff_base__negative_ebb1426",f="Diff_base__positive_36979f4d";function c({value:c,className:n}){return c<0?e.jsx("div",{className:s(a,i,n),children:`${c}`}):c>0?e.jsx("div",{className:s(a,f,n),children:`+${c}`}):e.jsx("div",{className:s(a,n),children:c})}export{c as D};

@@ -1,0 +1,383 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"components": {
+											"BW::AxisRotatorComponent": {
+												"AxisType": "Z",
+												"CyclesPerMinute/x": 4,
+												"CyclesPerMinute/y": 4,
+												"RotationType": "Randomize on init",
+												"StartingAngle/y": 360,
+												"disabledDomains": []
+											},
+											"BW::ComponentsVisibilityController": {
+												"castShadows": false,
+												"visibleInDualGunMode": false,
+												"visibleInMapCaseMode": true
+											},
+											"BW::DynamicModel": {
+												"castShadows": false,
+												"modelName": "particles/3D_Customization/Cus_267_WT_Trap/Cus_267_FX_mesh.model"
+											},
+											"cgf::TransformComponent": {
+												"position/x": -0.058447,
+												"position/y": 0.25989,
+												"position/z": 0.0024776,
+												"rotation/y": 0,
+												"rotation/z": -1.0926,
+												"scale/x": 1,
+												"scale/y": 1
+											}
+										},
+										"name": "Hologram",
+										"uuid": "2ad1bcb7-bae8-484e-b274-50613202aa31"
+									},
+									{
+										"components": {
+											"BW::ComponentsVisibilityController": {
+												"castShadows": true,
+												"visibleInDualGunMode": false,
+												"visibleInMapCaseMode": true
+											},
+											"BW::Particle": {
+												"effect": "particles/3D_Customization/Cus_267_WT_Trap/cus_267_ElectroCharge.eff"
+											},
+											"cgf::TransformComponent": {
+												"position/x": -0.057551,
+												"position/y": 0.27059,
+												"position/z": -0.0062141,
+												"rotation/z": -90
+											}
+										},
+										"name": "Cus_267_Particles",
+										"uuid": "10d3e623-f613-43d4-b053-de4a74402733"
+									}
+								],
+								"components": {
+									"BW::SequenceComponent": {
+										"autoStart": false,
+										"layers": [
+											{
+												"duration": 5,
+												"tracks": [
+													{
+														"endTime": 5,
+														"object": "2ad1bcb7-bae8-484e-b274-50613202aa31",
+														"parameters": [
+															{
+																"component": "cgf::TransformComponent",
+																"keys": [
+																	{
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1
+																		}
+																	},
+																	{
+																		"time": 0.59972,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1.5
+																		}
+																	},
+																	{
+																		"time": 5,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1
+																		}
+																	}
+																],
+																"object": "2ad1bcb7-bae8-484e-b274-50613202aa31",
+																"property": [
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "scale"
+																	},
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "x"
+																	}
+																]
+															},
+															{
+																"component": "cgf::TransformComponent",
+																"keys": [
+																	{
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1
+																		}
+																	},
+																	{
+																		"time": 0.59972,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1.5
+																		}
+																	},
+																	{
+																		"time": 5,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1
+																		}
+																	}
+																],
+																"object": "2ad1bcb7-bae8-484e-b274-50613202aa31",
+																"property": [
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "scale"
+																	},
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "y"
+																	}
+																]
+															},
+															{
+																"component": "cgf::TransformComponent",
+																"keys": [
+																	{
+																		"time": 0.0034025,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1
+																		}
+																	},
+																	{
+																		"time": 0.60313,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1.4
+																		}
+																	},
+																	{
+																		"time": 5,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 1
+																		}
+																	}
+																],
+																"object": "2ad1bcb7-bae8-484e-b274-50613202aa31",
+																"property": [
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "scale"
+																	},
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "z"
+																	}
+																]
+															}
+														]
+													},
+													{
+														"endTime": 5,
+														"object": "10d3e623-f613-43d4-b053-de4a74402733",
+														"parameters": [
+															{
+																"component": "BW::Particle",
+																"keys": [
+																	{
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 0.7
+																		}
+																	},
+																	{
+																		"time": 0.59976,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 4
+																		}
+																	},
+																	{
+																		"time": 5,
+																		"value": {
+																			"__ctype__": "float",
+																			"__cvalue__": 0.7
+																		}
+																	}
+																],
+																"object": "10d3e623-f613-43d4-b053-de4a74402733",
+																"property": [
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "emissionRate"
+																	}
+																]
+															},
+															{
+																"component": "BW::Particle",
+																"keys": [
+																	{
+																		"type": "Hermite",
+																		"value": {
+																			"__ctype__": "BW::Vector2",
+																			"__cvalue__": {
+																				"x": 1,
+																				"y": 1
+																			}
+																		}
+																	},
+																	{
+																		"time": 0.60653,
+																		"type": "Hermite",
+																		"value": {
+																			"__ctype__": "BW::Vector2",
+																			"__cvalue__": {
+																				"x": 2,
+																				"y": 2
+																			}
+																		}
+																	},
+																	{
+																		"time": 4.9991,
+																		"type": "Hermite",
+																		"value": {
+																			"__ctype__": "BW::Vector2",
+																			"__cvalue__": {
+																				"x": 1,
+																				"y": 1
+																			}
+																		}
+																	}
+																],
+																"object": "10d3e623-f613-43d4-b053-de4a74402733",
+																"property": [
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "particleSize"
+																	}
+																]
+															},
+															{
+																"component": "BW::Particle",
+																"keys": [
+																	{
+																		"type": "Hermite",
+																		"value": {
+																			"__ctype__": "BW::Vector4",
+																			"__cvalue__": {
+																				"w": 1,
+																				"x": 1,
+																				"y": 1,
+																				"z": 1
+																			}
+																		}
+																	},
+																	{
+																		"time": 0.61492,
+																		"type": "Hermite",
+																		"value": {
+																			"__ctype__": "BW::Vector4",
+																			"__cvalue__": {
+																				"w": 1,
+																				"x": 1,
+																				"y": 0.5,
+																				"z": 1
+																			}
+																		}
+																	},
+																	{
+																		"time": 4.9957,
+																		"type": "Hermite",
+																		"value": {
+																			"__ctype__": "BW::Vector4",
+																			"__cvalue__": {
+																				"w": 1,
+																				"x": 1,
+																				"y": 1,
+																				"z": 1
+																			}
+																		}
+																	}
+																],
+																"object": "10d3e623-f613-43d4-b053-de4a74402733",
+																"property": [
+																	{
+																		"__ctype__": "std::string",
+																		"__cvalue__": "tintColorVec4"
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "trigger",
+								"uuid": "087a1dae-6365-4c48-8b49-af08c3d34a8c"
+							}
+						],
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"castShadows": true,
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true,
+								"visibleInSniperMode": false,
+								"visibleInTwinGunMode": false
+							},
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"modelName": "content/3D_Customization/Cus_267_WT_Trap/normal/lod0/Cus_267_WT_Trap_01.model"
+							},
+							"BW::VSEComponent": {
+								"disabledDomains": [
+									"Editor"
+								],
+								"path": "vscript/plans/3D_Customization/Cus_267_WT_Trap.xml"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Cus_267_WT_Trap_01",
+						"uuid": "dbd4b982-7c34-49e5-9e58-dcc12bfe4290"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "normal",
+				"uuid": "48f69e4b-fc09-4919-99f1-50710f0b561c"
+			}
+		],
+		"components": {
+			"BW::StateSwitcherComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"normal": "48f69e4b-fc09-4919-99f1-50710f0b561c",
+				"preview": 1
+			},
+			"cgf::TransformComponent": {},
+			"script::VehicleHealthObserverComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"state": 1
+			}
+		},
+		"name": "Cus_267_WT_Trap",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

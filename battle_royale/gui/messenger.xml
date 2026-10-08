@@ -1,0 +1,101 @@
+<messenger.xml>
+  <htmlTemplatesSimple>
+    <StPCoinReceived>	&lt;font color='#8C8C7E'&gt;%(text)s&lt;/font&gt;	</StPCoinReceived>
+    <battleResultBrcoin>	&lt;br/&gt;%(brcoin)s	</battleResultBrcoin>
+    <battleResultStpcoin>	&lt;br/&gt;%(stpcoin)s	</battleResultStpcoin>
+  </htmlTemplatesSimple>
+  <htmlTemplates>
+    <stPatrickVictoryResult>
+      <type>	battleResult	</type>
+      <icon>	BattleResultIcon	</icon>
+      <bgIcon>	st_patrick_notification_background	</bgIcon>
+      <bgIconHeight>	100	</bgIconHeight>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#messenger:serviceChannelMessages/battleResults/button)	</label>
+          <action>	showBattleResults	</action>
+        </button>
+      </buttonsLayout>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;_(#messenger:serviceChannelMessages/BRbattleResults/victory)&lt;/font&gt;
+&lt;font color='#929290'&gt;_(#messenger:serviceChannelMessages/battleResults/battle): %(arenaName)s &lt;/font&gt;
+&lt;font color='#929290'&gt;_(#messenger:serviceChannelMessages/battleResults/tanks): %(vehicleNames)s&lt;/font&gt;&lt;font color='#929290'&gt;%(stpcoin)s&lt;/font&gt;&lt;font color='#929290'&gt;%(xp)s%(xpEx)s&lt;/font&gt;%(crystalStr)s%(gold)s&lt;font color='#929290'&gt;%(credits)s%(creditsEx)s&lt;/font&gt;&lt;font color='#929290'&gt;%(brcoin)s&lt;/font&gt;&lt;font color='#929290'&gt;%(battlePassProgress)s&lt;/font&gt;&lt;font color='#929290'&gt;%(brAwardTokens)s&lt;/font&gt;%(rankedProgress)s%(rankedBonusBattles)s%(achieves)s%(lock)s%(quests)s%(piggyBank)s	</message>
+    </stPatrickVictoryResult>
+    <stPatrickDefeatResult>
+      <type>	battleResult	</type>
+      <icon>	BattleResultIcon	</icon>
+      <bgIcon>	st_patrick_notification_background	</bgIcon>
+      <bgIconHeight>	100	</bgIconHeight>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#messenger:serviceChannelMessages/battleResults/button)	</label>
+          <action>	showBattleResults	</action>
+        </button>
+      </buttonsLayout>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;_(#messenger:serviceChannelMessages/BRbattleResults/ended)&lt;/font&gt;
+&lt;font color='#929290'&gt;_(#messenger:serviceChannelMessages/battleResults/battle): %(arenaName)s &lt;/font&gt;
+&lt;font color='#929290'&gt;_(#messenger:serviceChannelMessages/battleResults/tanks): %(vehicleNames)s&lt;/font&gt;&lt;font color='#929290'&gt;%(stpcoin)s&lt;/font&gt;&lt;font color='#929290'&gt;%(xp)s%(xpEx)s&lt;/font&gt;%(crystalStr)s%(gold)s&lt;font color='#929290'&gt;%(credits)s%(creditsEx)s&lt;/font&gt;&lt;font color='#929290'&gt;%(brcoin)s&lt;/font&gt;&lt;/font&gt;&lt;font color='#929290'&gt;%(battlePassProgress)s&lt;/font&gt;&lt;font color='#929290'&gt;%(brAwardTokens)s&lt;/font&gt;%(rankedProgress)s%(rankedBonusBattles)s%(achieves)s%(lock)s%(quests)s%(piggyBank)s	</message>
+    </stPatrickDefeatResult>
+    <stPatrickProgressionSystemMessage>
+      <type>	grey	</type>
+      <icon>	br_progression_icon	</icon>
+      <bgIcon>	st_patrick_notification_background	</bgIcon>
+      <priority>	low	</priority>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;%(header)s&lt;/font&gt;&lt;br/&gt;&lt;font color='#8C8C7E'&gt;%(body)s&lt;/font&gt;&lt;br/&gt;&lt;font color='#8C8C7E'&gt;_(#battle_royale.battle_royale_extention:serviceChannelMessages/awards)&lt;/font&gt;&lt;br/&gt;%(awards)s	</message>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#battle_royale.battle_royale_extention:serviceChannelMessages/progressionButton)	</label>
+          <action>	showBattleRoyaleProgression	</action>
+        </button>
+      </buttonsLayout>
+    </stPatrickProgressionSystemMessage>
+    <battleRoyaleVictoryResult>
+      <type>	battleResult	</type>
+      <icon>	BattleResultIcon	</icon>
+      <bgIcon>	br_notification_background	</bgIcon>
+      <bgIconHeight>	100	</bgIconHeight>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#messenger:serviceChannelMessages/battleResults/button)	</label>
+          <action>	showBattleResults	</action>
+        </button>
+      </buttonsLayout>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;_(#messenger:serviceChannelMessages/BRbattleResults/victory)&lt;/font&gt;
+_(#messenger:serviceChannelMessages/battleResults/battle): %(arenaName)s 
+_(#messenger:serviceChannelMessages/battleResults/tanks): %(vehicleNames)s%(xp)s%(xpEx)s%(crystalStr)s%(gold)s%(credits)s%(creditsEx)s%(brcoin)s%(battlePassProgress)s%(brAwardTokens)s%(rankedProgress)s%(rankedBonusBattles)s%(achieves)s%(lock)s%(quests)s%(piggyBank)s	</message>
+    </battleRoyaleVictoryResult>
+    <battleRoyaleDefeatResult>
+      <type>	battleResult	</type>
+      <icon>	BattleResultIcon	</icon>
+      <bgIcon>	br_notification_background	</bgIcon>
+      <bgIconHeight>	100	</bgIconHeight>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#messenger:serviceChannelMessages/battleResults/button)	</label>
+          <action>	showBattleResults	</action>
+        </button>
+      </buttonsLayout>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;_(#messenger:serviceChannelMessages/BRbattleResults/ended)&lt;/font&gt;
+_(#messenger:serviceChannelMessages/battleResults/battle): %(arenaName)s 
+_(#messenger:serviceChannelMessages/battleResults/tanks): %(vehicleNames)s%(xp)s%(xpEx)s%(crystalStr)s%(gold)s%(credits)s%(creditsEx)s%(brcoin)s%(battlePassProgress)s%(brAwardTokens)s%(rankedProgress)s%(rankedBonusBattles)s%(achieves)s%(lock)s%(quests)s%(piggyBank)s	</message>
+    </battleRoyaleDefeatResult>
+    <battleRoyaleProgressionSystemMessage>
+      <type>	grey	</type>
+      <icon>	br_progression_icon	</icon>
+      <bgIcon>	br_notification_background	</bgIcon>
+      <priority>	low	</priority>
+      <message>	&lt;font face="$TitleFont" size="15" color="#E9E2BF"&gt;%(header)s&lt;/font&gt;&lt;br/&gt;&lt;font color='#8C8C7E'&gt;%(body)s&lt;/font&gt;&lt;br/&gt;&lt;font color='#8C8C7E'&gt;_(#battle_royale.battle_royale_extention:serviceChannelMessages/awards)&lt;/font&gt;&lt;br/&gt;%(awards)s	</message>
+      <buttonsLayout>
+        <button>
+          <type>	submit	</type>
+          <label>	_(#battle_royale.battle_royale_extention:serviceChannelMessages/progressionButton)	</label>
+          <action>	showBattleRoyaleProgression	</action>
+        </button>
+      </buttonsLayout>
+    </battleRoyaleProgressionSystemMessage>
+  </htmlTemplates>
+</messenger.xml>

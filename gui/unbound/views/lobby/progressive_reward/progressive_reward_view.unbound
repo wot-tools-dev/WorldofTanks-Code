@@ -1,0 +1,330 @@
+(def layout ProgressiveRewardView() entrance=true
+    (macro ProgressiveRewardViewModel)
+    (scope
+        (const SCREEN_HEIGHT_POINT:number = 900)
+        (const PROB_MED:str = 'prob_med')
+        (const PROB_MAX:str = 'prob_max')
+
+        (event evOnFadeInComplete)
+        (event evReadyToShow)
+        (event evOnCloseAction)
+        (event evStepsAnimationComplete)
+        (event evOnStepsVisible)
+        (event evOnLockAnimStarted)
+
+        (macro BgAspectRatioHelper "evReadyToShow")
+        (var currentStep:dict = null)
+        (bind currentStep "steps[stepIdx]" init=false)
+        (var lockAlpha:number = 1)
+        (var lockScale:number = 1)
+        (bind lockAlpha "currentStep.stepState == PROB_MAX ? 1 : 0.7" init=false)
+        (bind lockScale "currentStep.stepState == PROB_MAX ? 1.6 : (currentStep.stepState == PROB_MED ? 1 : 0.8)" init=false)
+
+        (const ANIM_STEP1_DURATION:number = 0.1)
+        (const ANIM_STEP1_LOCK_SCALE:number = 1.05)
+        (const ANIM_STEP2_DURATION:number = 1)
+        (const ANIM_STEP2_LOCK_SCALE:number = 1)
+
+        (var colorAdd:number = 0.0)
+        (controller $Animation
+            (bindcall playSeq "[
+                    {duration:ANIM_STEP1_DURATION, to:{colorAdd:50}},
+                    {duration:ANIM_STEP2_DURATION, to:{colorAdd:0}, easing:Easing.cubic_out}
+                ]"
+                (event "evOnStepsVisible")
+            )
+        )
+    )
+    (style
+        (align = "center|middle")
+        (alpha = 0)
+        (width = 100%)
+        (height = 100%)
+    )
+
+    # sounds
+    (exec "playSound(R.sounds.gui_random_reward_locked())"
+        (event "evOnLockAnimStarted")
+    )
+    
+    (bind mouseChildren "true" init=false
+        (event "evOnFadeInComplete")
+    )
+
+    # Close button and event for ESC
+    (dispatch evOnCloseAction on='escPressed'
+        (enabled = "!fadeOut")
+    )
+
+    (controller $Animation
+        # fadeIn effect animation
+        (bindcall play duration=0.3 from={alpha:0} to={alpha:1} callbacks="{onComplete: evOnFadeInComplete}" init=false
+            (event "evReadyToShow")
+        )
+        # starts closing by button
+        (bindcall play duration=0.3 to={alpha:0} callbacks="{onComplete: onCloseAction}" init=false
+            (event "evOnCloseAction")
+        )
+        # starts closing by python
+        (bindcall play duration=0.3 to={alpha:0} callbacks="{onComplete: onCloseAction}" init=false
+            (bind enabled "hardReset")
+        )
+        # ends closing with fadeOut effect
+        (bindcall play duration=0.3 to={alpha:0} callbacks="{onComplete: onDestroyEvent}" init=false
+            (bind enabled "fadeOut")
+        )
+    )
+
+    (macro ViewTransparentBg)
+    (image
+        (name = 'bgImg')
+        (style
+            (position = "absolute")
+            (hcenter = 0)
+            (vcenter = 0)
+            (bind width "bgW") 
+            (bind height "bgH") 
+        )
+
+        (dispatch evReadyToShow on='complete')
+        (bind source "R.images.gui.maps.icons.progressiveReward.screenBg.hidden()")
+    )
+
+    (block
+        (name = 'contentBlock')
+        (style
+            (align = "center|middle")
+            (width = 1000px)
+            (position = "absolute")
+            (hcenter = 0)
+            (vcenter = 0)
+        )
+
+        (block
+            (name = 'header')
+            (style
+                (position = "absolute")
+                (bind top "viewSize.height < SCREEN_HEIGHT_POINT ? 0 : -50"
+                    (event "viewResized")
+                )
+                (hcenter = 0)
+                (align = "center")
+            )
+            (tf
+                (name = 'randomRewardLabel')
+                (antiAliasType = 'normal')
+                (bind class "viewSize.height < SCREEN_HEIGHT_POINT ? 'HeroTitleTextStyle' : 'EpicTitleTextStyle'"
+                    (event "viewResized")
+                )
+                (text = "R.strings.progressive_reward.progressiveReward.rewardLabel()")
+            )
+
+            (element ProgressiveRewardProgressBlock
+                (name = 'progressBlock')
+                (style
+                    (alpha = 0)
+                )
+                (scope
+                    (bind progress_steps "steps")
+                )
+
+                (controller $Animation
+                    (bindcall play duration=0.2 to={alpha:1} callbacks="{onComplete:evOnStepsVisible}"
+                        (event "evStepsAnimationComplete")
+                    )
+                )
+            )
+        )
+
+        (block
+            (name = 'rewardBlock')
+            (style
+                (align = "center")
+                (marginTop = 120)
+            )
+            (image
+                (name = 'rewardsImg')
+                (bind source "R.images.gui.maps.icons.progressiveReward.rewards.big[currentStep.rewardType].exists() ? 
+                            R.images.gui.maps.icons.progressiveReward.rewards.big[currentStep.rewardType]() : ''" 
+                            init=false)
+            )
+
+            (block
+                (name = 'lockBlock')
+                (style
+                    (hcenter = 0)
+                    (vcenter = -100)
+
+                    (position = "absolute")
+                )
+
+                (image
+                    (name = 'lockImg')
+                    (style
+                        (pivotX = 50%)
+                        (pivotY = 50%)
+                        (alpha = 0)
+                    )
+                    (bind source "R.images.gui.maps.icons.progressiveReward['big_lock_'+ currentStep.stepState].exists() ? 
+                            R.images.gui.maps.icons.progressiveReward['big_lock_'+ currentStep.stepState]() : ''" 
+                            init=false)
+
+                    (bind colorTransform
+                        "{
+                            redMultiplier:1.0,
+                            greenMultiplier:1.0,
+                            blueMultiplier:1.0,
+                            alphaMultiplier:1.0,
+                            redOffset:colorAdd,
+                            greenOffset:colorAdd,
+                            blueOffset:colorAdd
+                        }"
+                    )
+
+                    (controller $Animation
+                        (bindcall playSeq "[
+                                {
+                                    duration:ANIM_STEP1_DURATION,
+                                    to:{alpha:1, scaleX:ANIM_STEP1_LOCK_SCALE, scaleY:ANIM_STEP1_LOCK_SCALE}
+                                },
+                                {
+                                    duration:ANIM_STEP2_DURATION,
+                                    to:{scaleX:ANIM_STEP2_LOCK_SCALE, scaleY:ANIM_STEP2_LOCK_SCALE},
+                                    easing:Easing.cubic_out
+                                }
+                            ]"
+                            callbacks="{onStart: evOnLockAnimStarted}"
+                            (event "evOnStepsVisible")
+                        )
+                    )
+                )
+
+                (image
+                    (name = 'highlight')
+                    (style
+                        (position = "absolute")
+                        (hcenter = 0)
+                        (vcenter = 10)
+                        (blendMode = 'add')
+                        (pivotX = 50%)
+                        (pivotY = 50%)
+                        (alpha = 0)
+                    )
+                    (source = "R.images.gui.maps.icons.progressiveReward.light()")
+
+                    (controller $Animation
+                        (bindcall playSeq "[
+                                {duration:ANIM_STEP1_DURATION, to:{alpha:lockAlpha, scaleX:lockScale, scaleY:lockScale}},
+                                {duration:ANIM_STEP2_DURATION, to:{alpha:0}, easing:Easing.cubic_out}
+                            ]"
+                            watch = false
+                            (event "evOnStepsVisible")
+                        )
+                    )
+                )
+            )
+        )
+
+        (hblock
+            (name = 'rulesBlock')
+            (style
+                (position = "absolute")
+                (hcenter = 0)
+                (bind bottom "viewSize.height < SCREEN_HEIGHT_POINT ? 20 : -30"
+                    (event "viewResized")
+                )
+                (gap = 50)
+            )
+                
+            (hblock
+                (name = 'leftRule')
+                (block
+                    (name = 'imgsBlock')
+                    (image
+                        (name = 'itemLightImg')
+                        (style
+                            (position = "absolute")
+                            (vcenter = 0)
+                            (hcenter = 0)
+                        )
+                        (source = "R.images.gui.maps.icons.progressiveReward.rule_bg()")
+                    )
+                    (block
+                        (name = 'lockBlock')
+                        (image
+                            (name = 'lockImg')
+                            (source = "R.images.gui.maps.icons.progressiveReward.lock()")
+                        )
+                    )
+                )
+                (block
+                    (name = 'textsBlock')
+                    (tf
+                        (name = 'headerText')
+                        (class HighlightTextStyle)
+                        (text = "R.strings.progressive_reward.progressiveReward.fightAndGotRewards()")
+                    )
+                    (tf
+                        (name = 'descText')
+                        (style
+                            (width = 300)
+                        )
+                        (class MainBigTextStyle)
+                        (text = "R.strings.progressive_reward.progressiveReward.ifEffectiveAttack()")
+                    )
+                )
+            )
+            (hblock
+                (name = 'rightRule')
+                (block
+                    (name = 'imgsBlock')
+                    (image
+                        (name = 'itemLightImg')
+                        (style
+                            (position = "absolute")
+                            (vcenter = 0)
+                            (hcenter = 0)
+                        )
+                        (source = "R.images.gui.maps.icons.progressiveReward.rule_bg()")
+                    )
+                    (block
+                        (name = 'lockBlock')
+                        (image
+                            (name = 'lockImg')
+                            (source = "R.images.gui.maps.icons.progressiveReward.reward_repeat()")
+                        )
+                    )
+                )
+                (block
+                    (name = 'textsBlock')
+                    (tf
+                        (name = 'headerText')
+                        (class HighlightTextStyle)
+                        (text = "R.strings.progressive_reward.progressiveReward.roundRewards()")
+                    )
+                    (tf
+                        (name = 'descText')
+                        (style
+                            (width = 300)
+                        )
+                        (class MainBigTextStyle)
+                        (text = "R.strings.progressive_reward.progressiveReward.afterFourRewards()")
+                    )
+                )
+            )
+        )
+    )
+    
+    (text_button 'closeBtn'
+        (macro ButtonCloseStyle)
+        (style
+            (position = "absolute")
+            (right = 30px)
+            (top = 30px)
+        )
+        (label = "R.strings.menu.viewHeader.closeBtn.label()")
+        (dispatch evOnCloseAction on='clicked'
+            (enabled = "!fadeOut")
+        )
+    )
+)

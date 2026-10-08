@@ -1,0 +1,1 @@
+import{r as s,j as n}from"../../../chunks/vendor.js";import{r}from"../../../chunks/lib.js";const t={};function c(){const[r,c]=s.useState(0);return n.jsxs("div",{className:t.base,children:[n.jsx("div",{children:"Template"}),n.jsxs("button",{onClick:()=>c(s=>s+1),children:["count is ",r,"!"]})]})}r(n.jsx(c,{}));

@@ -1,0 +1,263 @@
+package net.wg.gui.lobby.storage.categories.cards
+{
+   import flash.display.MovieClip;
+   import flash.events.Event;
+   import flash.events.MouseEvent;
+   import flash.geom.Point;
+   import net.wg.gui.components.controls.Image;
+   import net.wg.gui.components.controls.SoundButtonEx;
+   import net.wg.gui.lobby.storage.categories.cards.configs.CardConfigs;
+   import net.wg.infrastructure.managers.ITooltipMgr;
+   import net.wg.utils.ICommons;
+   import scaleform.clik.constants.InvalidationType;
+   import scaleform.clik.motion.Tween;
+   
+   public class CustomizationCard extends BaseCard
+   {
+      
+      public var previewButton:SoundButtonEx = null;
+      
+      public var progressiveLevelIcon:Image = null;
+      
+      public var rarityIcon:Image = null;
+      
+      public var rarityBackgroundIcon:Image = null;
+      
+      public var rentIcon:MovieClip;
+      
+      private var _typedData:CustomizationCardVO = null;
+      
+      private var _progressiveLevelPosition:Point = null;
+      
+      private var _commons:ICommons = App.utils.commons;
+      
+      private var _toolTipMgr:ITooltipMgr = App.toolTipMgr;
+      
+      private const RARITY_OFFSET_X:Number = -35;
+      
+      private const RARITY_OFFSET_Y:Number = -15;
+      
+      private const RARITY_OFFSET_SMALL_Y:Number = -10;
+      
+      public function CustomizationCard()
+      {
+         super();
+      }
+      
+      override protected function configUI() : void
+      {
+         super.configUI();
+         this.previewButton.visible = false;
+         this.previewButton.addEventListener(MouseEvent.CLICK,this.onPreviewButtonClick);
+         this.previewButton.addEventListener(MouseEvent.ROLL_OVER,this.onPreviewButtonRollOver);
+         this.previewButton.addEventListener(MouseEvent.ROLL_OUT,this.onPreviewButtonRollOut);
+         this.rentIcon.mouseEnabled = this.rentIcon.mouseChildren = false;
+         this.rarityIcon.mouseEnabled = this.rarityIcon.mouseChildren = false;
+         this.rarityBackgroundIcon.mouseEnabled = this.rarityBackgroundIcon.mouseChildren = false;
+         this.progressiveLevelIcon.mouseEnabled = this.progressiveLevelIcon.mouseChildren = false;
+         this.progressiveLevelIcon.addEventListener(Event.CHANGE,this.onProgressionIconLoaded);
+      }
+      
+      override protected function onDispose() : void
+      {
+         this.previewButton.removeEventListener(MouseEvent.CLICK,this.onPreviewButtonClick);
+         this.previewButton.removeEventListener(MouseEvent.ROLL_OVER,this.onPreviewButtonRollOver);
+         this.previewButton.removeEventListener(MouseEvent.ROLL_OUT,this.onPreviewButtonRollOut);
+         this.previewButton.dispose();
+         this.previewButton = null;
+         this.progressiveLevelIcon.removeEventListener(Event.CHANGE,this.onProgressionIconLoaded);
+         this.progressiveLevelIcon.dispose();
+         this.progressiveLevelIcon = null;
+         this.rarityIcon.dispose();
+         this.rarityIcon = null;
+         this._commons = null;
+         this._toolTipMgr = null;
+         this.rarityBackgroundIcon.dispose();
+         this.rarityBackgroundIcon = null;
+         this.rentIcon = null;
+         this._typedData = null;
+         this._progressiveLevelPosition = null;
+         super.onDispose();
+      }
+      
+      override protected function draw() : void
+      {
+         super.draw();
+         if(this._typedData != null)
+         {
+            if(isInvalid(InvalidationType.DATA))
+            {
+               buttonMode = this._typedData.enabled || this._typedData.previewAvailable;
+               this.progressiveLevelIcon.source = this._typedData.progressiveLevelIcon;
+               inInventoryIcon.visible = !this._typedData.isRentable;
+               this.rentIcon.visible = this._typedData.isRentable;
+               this.rarityIcon.visible = this.rarityBackgroundIcon.visible = this._typedData.hasRarity;
+               if(this._typedData.hasRarity)
+               {
+                  this.rarityIcon.source = this._typedData.rarityIcon;
+                  this.rarityBackgroundIcon.source = this._typedData.rarityBackground;
+               }
+               invalidateLayout();
+            }
+            if(isInvalid(InvalidationType.SIZE))
+            {
+               this.previewButton.x = width >> 1;
+               this.rentIcon.x = inInventoryIcon.x;
+               this.rentIcon.y = inInventoryIcon.y;
+               this.onImageComplete();
+            }
+            if(isInvalid(InvalidationType.LAYOUT))
+            {
+               this._progressiveLevelPosition = CardConfigs.getInstance().progressionLevelPosition.getConfig(_stageWidthBoundary,this._typedData.formfactor);
+               this.progressiveLevelIcon.x = this._progressiveLevelPosition.x;
+               this.progressiveLevelIcon.y = this._progressiveLevelPosition.y;
+            }
+         }
+      }
+      
+      override protected function onImageComplete() : void
+      {
+         super.onImageComplete();
+         this.rarityIcon.x = image.x + this.RARITY_OFFSET_X;
+         this.rarityIcon.y = image.y + this.RARITY_OFFSET_Y;
+         if(_sizeVO.size.width < CARD_SMALL_WIDTH)
+         {
+            this.rarityIcon.y = image.y + this.RARITY_OFFSET_SMALL_Y;
+         }
+      }
+      
+      override protected function setData(param1:BaseCardVO) : void
+      {
+         super.setData(param1);
+         this._typedData = param1 as CustomizationCardVO;
+      }
+      
+      override protected function getRollOverTweens() : Vector.<Tween>
+      {
+         var _loc1_:Vector.<Tween> = super.getRollOverTweens();
+         if(this.rentIcon.visible)
+         {
+            _loc1_.push(new Tween(FIRST_ANIMATION_DURATION,this.rentIcon,{"alpha":0},{
+               "fastTransform":false,
+               "delay":ROLL_OVER_ANIMATION_DELAY
+            }));
+         }
+         _loc1_.push(new Tween(FIRST_ANIMATION_DURATION,this.progressiveLevelIcon,{"alpha":0.1},{
+            "fastTransform":false,
+            "delay":ROLL_OVER_ANIMATION_DELAY
+         }));
+         if(this.rarityIcon.visible)
+         {
+            _loc1_.push(new Tween(FIRST_ANIMATION_DURATION,this.rarityIcon,{"alpha":0.5},{
+               "fastTransform":false,
+               "delay":ROLL_OVER_ANIMATION_DELAY
+            }));
+         }
+         if(this.rarityBackgroundIcon.visible)
+         {
+            _loc1_.push(new Tween(FIRST_ANIMATION_DURATION,this.rarityBackgroundIcon,{"alpha":0.3},{
+               "fastTransform":false,
+               "delay":ROLL_OVER_ANIMATION_DELAY
+            }));
+         }
+         return _loc1_;
+      }
+      
+      override protected function getRollOutTweens() : Vector.<Tween>
+      {
+         var _loc1_:Vector.<Tween> = super.getRollOutTweens();
+         if(this.rentIcon.visible)
+         {
+            _loc1_.push(new Tween(FIRST_ANIMATION_DURATION,this.rentIcon,{"alpha":1},{"fastTransform":false}));
+         }
+         _loc1_.push(new Tween(FIRST_ANIMATION_DURATION,this.progressiveLevelIcon,{"alpha":1},{"fastTransform":false}));
+         if(this.rarityIcon.visible)
+         {
+            _loc1_.push(new Tween(FIRST_ANIMATION_DURATION,this.rarityIcon,{"alpha":1},{"fastTransform":false}));
+         }
+         if(this.rarityBackgroundIcon.visible)
+         {
+            _loc1_.push(new Tween(FIRST_ANIMATION_DURATION,this.rarityBackgroundIcon,{"alpha":1},{"fastTransform":false}));
+         }
+         return _loc1_;
+      }
+      
+      override protected function onClick(param1:MouseEvent) : void
+      {
+         if(this._typedData == null)
+         {
+            return;
+         }
+         if(this._commons.isRightButton(param1))
+         {
+            if(this._typedData.contextMenuId)
+            {
+               dispatchEvent(new CardEvent(CardEvent.SHOW_CONTEXT_MENU,_data));
+            }
+         }
+         else if(this._typedData.enabled)
+         {
+            dispatchEvent(new CardEvent(CardEvent.SELL,_data));
+         }
+         else if(this._typedData.previewAvailable)
+         {
+            dispatchEvent(new CardEvent(CardEvent.PREVIEW,_data));
+         }
+      }
+      
+      override protected function onRollOver() : void
+      {
+         super.onRollOver();
+         this.previewButton.visible = this._typedData.previewAvailable;
+      }
+      
+      override protected function onRollOut() : void
+      {
+         super.onRollOut();
+         this.previewButton.visible = false;
+      }
+      
+      private function onPreviewButtonClick(param1:MouseEvent) : void
+      {
+         if(this._commons.isLeftButton(param1))
+         {
+            param1.stopImmediatePropagation();
+            dispatchEvent(new CardEvent(CardEvent.PREVIEW,_data));
+         }
+      }
+      
+      private function onPreviewButtonRollOver(param1:MouseEvent) : void
+      {
+         this._toolTipMgr.show(this._typedData.previewTooltip);
+      }
+      
+      private function onPreviewButtonRollOut(param1:MouseEvent) : void
+      {
+         this._toolTipMgr.hide();
+      }
+      
+      private function onProgressionIconLoaded(param1:Event) : void
+      {
+         invalidateLayout();
+      }
+      
+      override public function setStateSizeBoundaries(param1:int, param2:int) : void
+      {
+         super.setStateSizeBoundaries(param1,param2);
+         _imageSizeVO = CardConfigs.getInstance().customizationCardImage.getConfig(_stageWidthBoundary);
+         invalidateLayout();
+      }
+      
+      override public function set data(param1:Object) : void
+      {
+         var _loc2_:CustomizationCardVO = param1 as CustomizationCardVO;
+         if(Boolean(this._typedData) && this._typedData.isEqual(_loc2_))
+         {
+            return;
+         }
+         this.setData(_loc2_);
+         invalidateData();
+      }
+   }
+}
+

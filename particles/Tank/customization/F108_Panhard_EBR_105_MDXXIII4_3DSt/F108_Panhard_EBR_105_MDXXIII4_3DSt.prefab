@@ -1,0 +1,168 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "VehicleStop",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/F108_Panhard_EBR_105_MDXXIII4_3DSt/vehicle_stop.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "VehicleStopFadeIn",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/F108_Panhard_EBR_105_MDXXIII4_3DSt/vehicle_stop_fadein.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "VehicleStopFadeOut",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/F108_Panhard_EBR_105_MDXXIII4_3DSt/vehicle_stop_fadeout.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_F108_Attachment"
+					},
+					"BW::VSEComponent": {
+						"autoStart": true,
+						"path": "vscript/plans/VFX/F108_Panhard_EBR_105_MDXXIII4_3DSt/F108_move_control.xml"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "VehicleState",
+				"uuid": "3f86541f-bcbe-4958-be9d-a87e4c9ab728"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": false,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "EngineIdle",
+						"lodScale": 1.0,
+						"path": "particles/Tank/customization/F108_Panhard_EBR_105_MDXXIII4_3DSt/engine_idle.seq",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					},
+					{
+						"autoStart": false,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "EngineLoad",
+						"lodScale": 1.0,
+						"path": "particles/Tank/customization/F108_Panhard_EBR_105_MDXXIII4_3DSt/engine_load.seq",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					},
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "EngineStart",
+						"lodScale": 1.0,
+						"path": "particles/Tank/customization/F108_Panhard_EBR_105_MDXXIII4_3DSt/engine_start.ssm",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/french/F108_Panhard_EBR_105/_skins/F108_Panhard_EBR_105_MDXXIII4_3DSt/normal/lod0/Hull.model"
+			},
+			"BW::EngineStateAnimatorTriggerComponent": {
+				"monitorGear": "0",
+				"monitorPhysicLoad": "0",
+				"monitorRelativeRpm": "0",
+				"monitorRpm": "0",
+				"triggerEngineStart": "1",
+				"triggerSource": "00000000-0000-0000-0000-000000000000"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::VehicleCustomEffectsSettings": {
+				"additionalEngineSoundNPC": "style_cust_F108_Panhard_NPC",
+				"additionalEngineSoundPC": "style_cust_F108_Panhard_PC",
+				"disableDefaultChassis": "0",
+				"disableDefaultHull": "0",
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			}
+		},
+		"name": "F108_Root",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

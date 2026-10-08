@@ -1,0 +1,185 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Environment/hd_env_UNI_198_MetalTruss/normal/lod0/hd_env_UNI_198_MetalTruss_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/hd_env_UNI_198_MetalTruss/normal/lod0/hd_env_UNI_198_MetalTruss_01.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 179.99986267089844,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "a0b66b9e-93c9-40f7-a5a1-874fba47bbca",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "hd_env_UNI_198_MetalTruss_01",
+				"uuid": "a0b66b9e-93c9-40f7-a5a1-874fba47bbca"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/environment/storymode/120_graf_zeppelin_rocket_steam_large_03.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -9.519530296325684,
+									"y": 12.224699974060059,
+									"z": 0.7344819903373718
+								},
+								"rotation": {
+									"x": -0.0,
+									"y": 3.9835290908813477,
+									"z": -0.0
+								}
+							}
+						},
+						"name": "Pipe_steam_02",
+						"uuid": "9e5246d7-750c-464b-a551-01fa9550970b"
+					},
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/environment/storymode/120_graf_zeppelin_rocket_steam_large_02.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 6.917819976806641,
+									"y": 12.889200210571289,
+									"z": 0.5069429874420166
+								},
+								"rotation": {
+									"x": -14.710290908813477,
+									"y": 87.18870544433594,
+									"z": -2.1184941942919977e-05
+								}
+							}
+						},
+						"name": "Pipe_steam_01",
+						"uuid": "716f6fd1-af48-49d4-8b90-7907768b625a"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"name": "Steam",
+				"uuid": "748e5ff0-7ac3-4437-829a-7cb2fbb49ca1"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "120_metal_truss_crashing_normal",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

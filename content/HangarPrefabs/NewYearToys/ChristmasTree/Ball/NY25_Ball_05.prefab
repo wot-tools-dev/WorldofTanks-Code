@@ -1,0 +1,170 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/hangar/h07_new_year_ball_appear_g5.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "hangEffect",
+						"uuid": "22240b56-162f-4300-983f-e7d3b72b5b29"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"script::HangEffectsOwner": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "hangEffectOwner",
+				"uuid": "16c5f871-bc7d-45e9-adab-ea48a69c119f"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": false,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "Click",
+										"lodScale": 1.0,
+										"path": "particles/eff_sequence/New_Year/ny_onclick_bell_05.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "0",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									},
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "Default",
+										"lodScale": 1.0,
+										"path": "particles/eff_sequence/New_Year/NY25_Ball_05.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/Hangars/h_newyear/customization/Fir/Ball/normal/lod0/NY25_Ball_05.model"
+							},
+							"BW::VSEComponent": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"path": "holiday_ops/vscript/plans/holiday_ops/new_balls_fx_plan.xml"
+							},
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"script::SelectionComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"highlight": "1"
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "Visual",
+						"uuid": "930d78be-60d2-45c5-97c2-850524117d47"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"script::AppearanceDelayComponent": {
+						"delay": 0.5,
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "appearanceDelayOwner",
+				"uuid": "ad10ca0b-043c-4680-aaaa-9b8900000578"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

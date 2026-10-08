@@ -1,0 +1,55 @@
+from __future__ import absolute_import
+from gui.Scaleform.daapi.view.battle_results_window import IBattleResultsComponent
+from gui.Scaleform.daapi.view.meta.EpicQuestProgressInfoMeta import EpicQuestProgressInfoMeta
+from gui.shared import g_eventBus, events
+from helpers import dependency
+from skeletons.gui.battle_results import IBattleResultsService
+
+class EpicQuestProgressView(EpicQuestProgressInfoMeta, IBattleResultsComponent):
+    __slots__ = ()
+    __battleResults = dependency.descriptor(IBattleResultsService)
+
+    def showQuestById(self, questId, eventType):
+        g_eventBus.handleEvent(events.LobbySimpleEvent(events.LobbySimpleEvent.BATTLE_RESULTS_SHOW_QUEST, ctx={'questId': questId,
+         'eventType': eventType}))
+
+    def setArenaUniqueID(self, arenaUniqueID):
+        self.updateQuestsInfo(arenaUniqueID)
+
+    def updateQuestsInfo(self, arenaUniqueID):
+        battleResultsVO = self.__battleResults.getResultsVO(arenaUniqueID)
+        if not battleResultsVO:
+            return
+        quests = []
+        quests.extend(battleResultsVO.get('battlePass', []))
+        quests.extend(battleResultsVO.get('quests', []))
+        questsArray = []
+        for quest in quests:
+            questInfo = quest['questInfo']
+            questModel = {'id': questInfo['questID'],
+             'eventType': questInfo['eventType'],
+             'name': quest.get('title', '') or questInfo.get('description', ''),
+             'progressList': quest['progressList'],
+             'status': questInfo['status'],
+             'statusTooltip': questInfo.get('statusTooltip', '')}
+            rewards = self.__getRewards(quest)
+            if rewards:
+                questModel['rewards'] = [{'linkage': 'EpicQuestTextAwardBlockUI',
+                  'items': [', '.join(rewards)]}]
+            questsArray.append(questModel)
+
+        self.as_updateDataS(questsArray)
+
+    @staticmethod
+    def __getRewards(quest):
+        awards = quest.get('awards', [])
+        if not awards:
+            return []
+        rewards = []
+        for award in awards:
+            if 'items' in award:
+                rewards.extend(award['items'])
+            if 'list' in award:
+                rewards.extend((item.get('description', '') for item in award['list']))
+
+        return rewards

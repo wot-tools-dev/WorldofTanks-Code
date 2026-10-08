@@ -1,0 +1,163 @@
+import types
+from debug_utils import LOG_WARNING
+from gui.shared.notifications import NotificationPriorityLevel, NotificationGroup
+from helpers.html import translation as html_translation, templates
+
+class _MessageTemplate(templates.Template):
+
+    def __init__(self, source, data, priority, groupID):
+        super(_MessageTemplate, self).__init__({'message': source})
+        self.data = data
+        self.priority = priority
+        self.groupID = groupID
+
+    @property
+    def lifeTime(self):
+        return self.data.get('lifeTime', 0)
+
+    def format(self, ctx=None, data=None):
+        vo = self.data.copy()
+        if isinstance(data, types.DictionaryType):
+            for key, value in data.iteritems():
+                if key in vo:
+                    vo[key] = value
+
+            if 'buttonsStates' in data:
+                vo['buttonsStates'] = data['buttonsStates']
+            else:
+                vo['buttonsStates'] = {}
+            if 'bgIconHeight' in data:
+                vo['bgIconHeight'] = data['bgIconHeight']
+            if 'linkageData' in data:
+                vo['linkageData'] = data['linkageData']
+        vo['message'] = super(_MessageTemplate, self).format(ctx=ctx, sourceKey='message')
+        return vo
+
+
+class MessageTemplates(templates.XMLCollection):
+
+    def format(self, key, ctx=None, **kwargs):
+        bgIconSource = kwargs.pop('bgIconSource', None)
+        formatted = super(MessageTemplates, self).format(key, ctx, **kwargs)
+        if 'bgIcon' in formatted:
+            source = formatted['bgIcon']
+        else:
+            source = {}
+        if bgIconSource in source:
+            formatted['bgIcon'] = source[bgIconSource]
+        else:
+            formatted['bgIcon'] = source.get(None, '')
+        return formatted
+
+    def priority(self, key):
+        return self[key].priority
+
+    def groupID(self, key):
+        return self[key].groupID
+
+    def lifeTime(self, key):
+        return self[key].lifeTime
+
+    def __missing__(self, key):
+        self[key] = value = _MessageTemplate(key, {}, NotificationPriorityLevel.MEDIUM, NotificationGroup.INFO)
+        return value
+
+    def _make(self, source):
+        sourceID = source.name
+        data = {'type': source.readString('type'),
+         'linkage': source.readString('linkage'),
+         'timestamp': -1,
+         'savedData': None,
+         'bgIcon': self._makeBgIconsData(source['bgIcon']),
+         'bgIconSizeAuto': source.readBool('bgIconSizeAuto'),
+         'icon': source.readString('icon'),
+         'defaultIcon': source.readString('defaultIcon'),
+         'filters': [],
+         'buttonsLayout': [],
+         'buttonsAlign': source.readString('buttonsAlign', 'left'),
+         'lifeTime': source.readInt('lifeTime'),
+         'gfViewName': source.readString('gfViewName')}
+        priority = source.readString('priority', NotificationPriorityLevel.MEDIUM)
+        if priority not in NotificationPriorityLevel.RANGE:
+            LOG_WARNING('Priority is invalid', sourceID, priority)
+            priority = NotificationPriorityLevel.MEDIUM
+        groupID = source.readString('groupID', NotificationGroup.INFO)
+        if groupID not in NotificationGroup.ALL:
+            LOG_WARNING('GroupID is invalid', sourceID, groupID)
+            groupID = NotificationGroup.INFO
+        message = html_translation(source.readString('message'))
+        section = source['filters']
+        if section is None:
+            section = {}
+        for _, subSec in section.items():
+            data['filters'].append({'name': subSec.readString('name'),
+             'color': subSec.readString('color')})
+
+        section = source['bgIconHeight']
+        if section is not None:
+            data['bgIconHeight'] = source.readInt('bgIconHeight')
+        section = source['buttonsLayout']
+        if section is not None:
+            layout = data['buttonsLayout']
+            buttonTypes = set([])
+            for _, subSec in section.items():
+                button = self._makeButtonData(sourceID, subSec)
+                if button is None:
+                    continue
+                buttonType = button['type']
+                if buttonType in buttonTypes:
+                    LOG_WARNING('Duplicated type of button', sourceID, buttonType)
+                    continue
+                buttonTypes.add(buttonType)
+                layout.append(button)
+
+        return _MessageTemplate(message, data, priority, groupID)
+
+    def _makeButtonData(self, sourceID, section):
+        action = section.readString('action')
+        if not action:
+            LOG_WARNING('button/action is not defined', sourceID)
+            return None
+        else:
+            label = html_translation(section.readString('label'))
+            if not label:
+                LOG_WARNING('button/label is not defined', sourceID)
+                return None
+            buttonType = section.readString('type')
+            if not buttonType and buttonType not in ('submit', 'cancel'):
+                LOG_WARNING('button/type is not defined or invalid', sourceID, buttonType)
+                return None
+            result = {'label': label,
+             'type': buttonType,
+             'action': action}
+            width = section.readInt('width')
+            if width > 0:
+                result['width'] = width
+            textYPadding = section.readInt('textYPadding')
+            if textYPadding > 0:
+                result['textYPadding'] = textYPadding
+            paddingHorizontal = section.readInt('paddingHorizontal')
+            if paddingHorizontal > 0:
+                result['paddingHorizontal'] = paddingHorizontal
+            dynamicSizeByText = section.readBool('dynamicSizeByText')
+            if dynamicSizeByText > 0:
+                result['dynamicSizeByText'] = dynamicSizeByText
+            return result
+
+    def _makeBgIconsData(self, section):
+        result = {}
+        if section is not None:
+            result[None] = section.readString('')
+            if section.items():
+                for secName, subSec in section.items():
+                    result[secName] = subSec.readString('')
+
+        return result
+
+
+def loadForMessage(_, section, settings):
+    settings.msgTemplates.load(section=section)
+
+
+def loadForOthers(_, section, settings):
+    settings.htmlTemplates.load(section=section)

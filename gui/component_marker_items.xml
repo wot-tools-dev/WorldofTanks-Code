@@ -1,0 +1,948 @@
+<component_marker_items.xml>
+  <DEFAULT>
+    <visible>	true	</visible>
+    <areaRadius>	5.0	</areaRadius>
+    <disappearingRadius>	0.0	</disappearingRadius>
+    <reverseDisappearing>	false	</reverseDisappearing>
+    <offset>	0 10 0	</offset>
+    <components>
+      <MARKER_2D>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.World2DMarkerComponent	</class>
+          <config>
+            <shape>	arrow	</shape>
+            <min_distance>	0.0	</min_distance>
+            <max_distance>	0.0	</max_distance>
+            <distance>	0.0	</distance>
+            <display_distance>	true	</display_distance>
+            <distanceFieldColor>	white	</distanceFieldColor>
+            <symbol>	StaticObjectMarker	</symbol>
+          </config>
+        </item>
+      </MARKER_2D>
+      <DIRECTION_INDICATOR>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.DirectionIndicatorMarkerComponent	</class>
+          <config>
+            <dIndicatorShapes>
+              <default>	green	</default>
+              <colorBlind>	green	</colorBlind>
+            </dIndicatorShapes>
+            <swf>	battleDirectionIndicatorApp.swf	</swf>
+            <mcName>	_root.directionalIndicatorMc	</mcName>
+          </config>
+        </item>
+      </DIRECTION_INDICATOR>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.MinimapMarkerComponent	</class>
+          <config>
+            <symbol>	ArtyMarkerMinimapEntry	</symbol>
+            <container>	personal	</container>
+            <onlyTranslation>	false	</onlyTranslation>
+          </config>
+        </item>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.MinimapMarkerComponent	</class>
+          <config>
+            <symbol>	BomberEntry	</symbol>
+            <container>	equipments	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <ANIM_SEQUENCE_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.AnimationSequenceMarkerComponent	</class>
+          <config>
+            <path>	content/Interface/Arrow/animations/bootcamp_arrow.seq	</path>
+          </config>
+        </item>
+      </ANIM_SEQUENCE_MARKER>
+      <TERRAIN_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.TerrainMarkerComponent	</class>
+          <config>
+            <path>	content/Interface/TargetPoint/TargetPoint_red.visual	</path>
+            <size>	50.0 20.0	</size>
+            <direction>	1.0 0.0 0.0	</direction>
+            <objDirection>	true	</objDirection>
+            <color>	0xFFFFFFFF	</color>
+          </config>
+        </item>
+      </TERRAIN_MARKER>
+    </components>
+  </DEFAULT>
+  <STATIC_DEATH_ZONE_PROXIMITY>
+    <visible>	true	</visible>
+    <areaRadius>	5.0	</areaRadius>
+    <disappearingRadius>	50.0	</disappearingRadius>
+    <reverseDisappearing>	true	</reverseDisappearing>
+    <offset>	0 10 0	</offset>
+    <components>
+      <MARKER_2D>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.World2DMarkerComponent	</class>
+          <config>
+            <shape>	deathZone	</shape>
+            <min_distance>	0.0	</min_distance>
+            <max_distance>	0.0	</max_distance>
+            <distance>	0.0	</distance>
+            <distanceFieldColor>	orange	</distanceFieldColor>
+            <symbol>	StaticObjectMarker	</symbol>
+          </config>
+        </item>
+      </MARKER_2D>
+    </components>
+  </STATIC_DEATH_ZONE_PROXIMITY>
+  <MINEFIELD_PROXIMITY>
+    <visible>	true	</visible>
+    <areaRadius>	5.0	</areaRadius>
+    <disappearingRadius>	50.0	</disappearingRadius>
+    <reverseDisappearing>	true	</reverseDisappearing>
+    <offset>	0 10 0	</offset>
+    <components>
+      <MARKER_2D>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.World2DMarkerComponent	</class>
+          <config>
+            <shape>	deathZone	</shape>
+            <min_distance>	0.0	</min_distance>
+            <max_distance>	0.0	</max_distance>
+            <distance>	0.0	</distance>
+            <distanceFieldColor>	green	</distanceFieldColor>
+            <symbol>	StaticObjectMarker	</symbol>
+          </config>
+        </item>
+      </MARKER_2D>
+    </components>
+  </MINEFIELD_PROXIMITY>
+  <COMP7_RECON>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.MinimapMarkerComponent	</class>
+          <config>
+            <symbol>	Comp7PointReconMinimapEntryUI	</symbol>
+            <container>	equipments	</container>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+    </components>
+  </COMP7_RECON>
+  <POLYGONAL_ZONE>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.PolygonalZoneMinimapMarkerComponent	</class>
+          <config>
+            <symbol>	CustomDeathZoneMinimapEntryUI	</symbol>
+            <container>	flags	</container>
+            <color>
+              <default>
+                <fillColor>	0xff4646	</fillColor>
+                <fillAlpha>	0.25	</fillAlpha>
+                <fillBlendMode>	normal	</fillBlendMode>
+                <outlineColor>	0xff7267	</outlineColor>
+                <outlineAlpha>	0.45	</outlineAlpha>
+                <outlineBlendMode>	normal	</outlineBlendMode>
+                <lineThickness>	3.0	</lineThickness>
+                <useGradient>	false	</useGradient>
+                <gradientColor>	0x3e0f0f	</gradientColor>
+                <gradientAlpha>	1.0	</gradientAlpha>
+              </default>
+              <colorBlind>
+                <fillColor>	0x685fff	</fillColor>
+                <fillAlpha>	0.4	</fillAlpha>
+                <fillBlendMode>	normal	</fillBlendMode>
+                <outlineColor>	0xb1acff	</outlineColor>
+                <outlineAlpha>	0.6	</outlineAlpha>
+                <outlineBlendMode>	normal	</outlineBlendMode>
+                <lineThickness>	3.0	</lineThickness>
+                <useGradient>	false	</useGradient>
+                <gradientColor>	0x2e2a78	</gradientColor>
+                <gradientAlpha>	1.0	</gradientAlpha>
+              </colorBlind>
+            </color>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+    </components>
+  </POLYGONAL_ZONE>
+  <STATIC_DEATH_ZONE>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.StaticDeathZoneMinimapMarkerComponent	</class>
+          <config>
+            <symbol>	CustomDeathZoneMinimapEntryUI	</symbol>
+            <container>	flags	</container>
+            <color>
+              <default>
+                <fillColor>	0xff4646	</fillColor>
+                <fillAlpha>	0.25	</fillAlpha>
+                <fillBlendMode>	normal	</fillBlendMode>
+                <outlineColor>	0xff7267	</outlineColor>
+                <outlineAlpha>	0.45	</outlineAlpha>
+                <outlineBlendMode>	normal	</outlineBlendMode>
+                <lineThickness>	3.0	</lineThickness>
+                <useGradient>	false	</useGradient>
+                <gradientColor>	0x3e0f0f	</gradientColor>
+                <gradientAlpha>	1.0	</gradientAlpha>
+              </default>
+              <colorBlind>
+                <fillColor>	0x685fff	</fillColor>
+                <fillAlpha>	0.4	</fillAlpha>
+                <fillBlendMode>	normal	</fillBlendMode>
+                <outlineColor>	0xb1acff	</outlineColor>
+                <outlineAlpha>	0.6	</outlineAlpha>
+                <outlineBlendMode>	normal	</outlineBlendMode>
+                <lineThickness>	3.0	</lineThickness>
+                <useGradient>	false	</useGradient>
+                <gradientColor>	0x2e2a78	</gradientColor>
+                <gradientAlpha>	1.0	</gradientAlpha>
+              </colorBlind>
+            </color>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+    </components>
+  </STATIC_DEATH_ZONE>
+  <POLYGONAL_ZONE_WITH_MASKS>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.PolygonalZoneMinimapMarkerComponent	</class>
+          <config>
+            <symbol>	CustomDeathZoneMinimapEntryUI	</symbol>
+            <container>	flags	</container>
+            <color>
+              <default>
+                <fillColor>	0xff4646	</fillColor>
+                <fillAlpha>	0.25	</fillAlpha>
+                <fillBlendMode>	multiply	</fillBlendMode>
+                <outlineColor>	0xff7267	</outlineColor>
+                <outlineAlpha>	0.45	</outlineAlpha>
+                <outlineBlendMode>	normal	</outlineBlendMode>
+                <lineThickness>	3.0	</lineThickness>
+                <useGradient>	true	</useGradient>
+                <gradientColor>	0x3e0f0f	</gradientColor>
+                <gradientAlpha>	1.0	</gradientAlpha>
+              </default>
+              <colorBlind>
+                <fillColor>	0x685fff	</fillColor>
+                <fillAlpha>	0.4	</fillAlpha>
+                <fillBlendMode>	multiply	</fillBlendMode>
+                <outlineColor>	0xb1acff	</outlineColor>
+                <outlineAlpha>	0.6	</outlineAlpha>
+                <outlineBlendMode>	normal	</outlineBlendMode>
+                <lineThickness>	3.0	</lineThickness>
+                <useGradient>	true	</useGradient>
+                <gradientColor>	0x2e2a78	</gradientColor>
+                <gradientAlpha>	1.0	</gradientAlpha>
+              </colorBlind>
+            </color>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+    </components>
+  </POLYGONAL_ZONE_WITH_MASKS>
+  <STATIC_DEATH_ZONE_WITH_MASKS>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.StaticDeathZoneMinimapMarkerComponent	</class>
+          <config>
+            <symbol>	CustomDeathZoneMinimapEntryUI	</symbol>
+            <container>	flags	</container>
+            <color>
+              <default>
+                <fillColor>	0xff4646	</fillColor>
+                <fillAlpha>	0.25	</fillAlpha>
+                <fillBlendMode>	multiply	</fillBlendMode>
+                <outlineColor>	0xff7267	</outlineColor>
+                <outlineAlpha>	0.45	</outlineAlpha>
+                <outlineBlendMode>	normal	</outlineBlendMode>
+                <lineThickness>	3.0	</lineThickness>
+                <useGradient>	true	</useGradient>
+                <gradientColor>	0x3e0f0f	</gradientColor>
+                <gradientAlpha>	1.0	</gradientAlpha>
+              </default>
+              <colorBlind>
+                <fillColor>	0x685fff	</fillColor>
+                <fillAlpha>	0.4	</fillAlpha>
+                <fillBlendMode>	multiply	</fillBlendMode>
+                <outlineColor>	0xb1acff	</outlineColor>
+                <outlineAlpha>	0.6	</outlineAlpha>
+                <outlineBlendMode>	normal	</outlineBlendMode>
+                <lineThickness>	3.0	</lineThickness>
+                <useGradient>	true	</useGradient>
+                <gradientColor>	0x2e2a78	</gradientColor>
+                <gradientAlpha>	1.0	</gradientAlpha>
+              </colorBlind>
+            </color>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+    </components>
+  </STATIC_DEATH_ZONE_WITH_MASKS>
+  <TARGET_POINT>
+    <visible>	true	</visible>
+    <areaRadius>	5.0	</areaRadius>
+    <disappearingRadius>	0.0	</disappearingRadius>
+    <reverseDisappearing>	false	</reverseDisappearing>
+    <offset>	0 10 0	</offset>
+    <components>
+      <MARKER_2D>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.World2DActionMarkerComponent	</class>
+          <config>
+            <shape>	targetPoint	</shape>
+            <shapeReplyMe>	targetPointReplyMe	</shapeReplyMe>
+            <shapeHighlight>	targetPointHighlight	</shapeHighlight>
+            <min_distance>	0.0	</min_distance>
+            <max_distance>	0.0	</max_distance>
+            <distance>	0.0	</distance>
+            <distanceFieldColor>	white	</distanceFieldColor>
+            <symbol>	TargetPointMarkerUI	</symbol>
+            <is_sticky>	true	</is_sticky>
+            <cull_distance>	18000.0	</cull_distance>
+            <min_scale>	100.0	</min_scale>
+            <bounds>	30 30 30 30	</bounds>
+            <inner_bounds>	17 17 18 18	</inner_bounds>
+            <bounds_min_scale>	1.0 1.0	</bounds_min_scale>
+          </config>
+        </item>
+      </MARKER_2D>
+    </components>
+  </TARGET_POINT>
+  <TARGET_LOCATION_POINT>
+    <visible>	true	</visible>
+    <disappearingRadius>	50	</disappearingRadius>
+    <reverseDisappearing>	false	</reverseDisappearing>
+    <offset>	0 0 0	</offset>
+    <components>
+      <MARKER_2D>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.World2DLocationMarkerComponent	</class>
+          <config>
+            <symbol>	LocationMarkerUI	</symbol>
+            <is_sticky>	true	</is_sticky>
+            <min_y_offset>	1.2	</min_y_offset>
+            <max_y_offset>	3.2	</max_y_offset>
+            <max_y_boost>	1.4	</max_y_boost>
+            <distance_for_min_y_offset>	400	</distance_for_min_y_offset>
+            <boost_start>	120	</boost_start>
+            <cull_distance>	18000.0	</cull_distance>
+            <min_scale>	50.0	</min_scale>
+            <bounds>	30 30 90 -15	</bounds>
+            <inner_bounds>	15 15 70 -35	</inner_bounds>
+            <bounds_min_scale>	1.0 0.8	</bounds_min_scale>
+          </config>
+        </item>
+      </MARKER_2D>
+    </components>
+  </TARGET_LOCATION_POINT>
+  <PVE_ATTACK_DIRECTION_EXTRA_SMALL>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_extra_small	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_extra_small	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_EXTRA_SMALL>
+  <PVE_ATTACK_DIRECTION_EXTRA_SMALL_FLIPPED>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_extra_small	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_extra_small	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_EXTRA_SMALL_FLIPPED>
+  <PVE_ATTACK_DIRECTION_SMALL>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_small	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_small	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_SMALL>
+  <PVE_ATTACK_DIRECTION_SMALL_FLIPPED>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_small	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_small	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_SMALL_FLIPPED>
+  <PVE_ATTACK_DIRECTION_MEDIUM>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_medium	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_medium	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_MEDIUM>
+  <PVE_ATTACK_DIRECTION_MEDIUM_FLIPPED>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_medium	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_medium	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_MEDIUM_FLIPPED>
+  <PVE_ATTACK_DIRECTION_LARGE>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_large	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrow_large	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_LARGE>
+  <PVE_ATTACK_DIRECTION_DIVERGENT>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_divergent	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_divergent	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_DIVERGENT>
+  <PVE_ATTACK_DIRECTION_DIVERGENT_FLIPPED>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_divergent	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_divergent	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_DIVERGENT_FLIPPED>
+  <PVE_ATTACK_DIRECTION_CONVERGENT>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_convergent	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_convergent	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_CONVERGENT>
+  <PVE_ATTACK_DIRECTION_CONVERGENT_FLIPPED>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_convergent	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_convergent	</bitmapName>
+            <isFlipped>	True	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_CONVERGENT_FLIPPED>
+  <PVE_ATTACK_DIRECTION_TRIPLE>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionMinimapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_triple	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAttackDirectionFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttackDirectionUI	</symbol>
+            <container>	arrows	</container>
+            <bitmapName>	pve_minimap_arrows_triple	</bitmapName>
+            <isFlipped>	False	</isFlipped>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTACK_DIRECTION_TRIPLE>
+  <PVE_ATTENTION>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.MinimapMarkerComponent	</class>
+          <config>
+            <symbol>	PveAttentionAnimationUI	</symbol>
+            <container>	attention	</container>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.FullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAttentionAnimationUI	</symbol>
+            <container>	attention	</container>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ATTENTION>
+  <PVE_ENEMY_SPAWN>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.MinimapMarkerComponent	</class>
+          <config>
+            <symbol>	PveEnemySpawnAnimationUI	</symbol>
+            <container>	enemy	</container>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.FullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveEnemySpawnAnimationUI	</symbol>
+            <container>	enemy	</container>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ENEMY_SPAWN>
+  <PVE_ALLY_DAMAGED>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.MinimapMarkerComponent	</class>
+          <config>
+            <symbol>	PveAllyDamagedUI	</symbol>
+            <container>	ally	</container>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.FullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveAllyDamagedUI	</symbol>
+            <container>	ally	</container>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ALLY_DAMAGED>
+  <PVE_PERSONAL_DEATH_ZONE>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.MinimapMarkerComponent	</class>
+          <config>
+            <symbol>	PvePersonalDeathZoneAnimationUI	</symbol>
+            <container>	deathZone	</container>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.FullscreenMapComponent	</class>
+          <config>
+            <symbol>	PvePersonalDeathZoneAnimationUI	</symbol>
+            <container>	deathZone	</container>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_PERSONAL_DEATH_ZONE>
+  <PVE_FLAG>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveFlagMinimapComponent	</class>
+          <config>
+            <symbol>	PveFlagAnimationUI	</symbol>
+            <container>	flags	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveFlagFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveFlagAnimationUI	</symbol>
+            <container>	flags	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_FLAG>
+  <PVE_VEHICLE_FLAG>
+    <visible>	true	</visible>
+    <components>
+      <MARKER_2D>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveFlagVehicleMarkerComponent	</class>
+          <config>
+            <symbol>	GoalFlagMarkerUI	</symbol>
+            <symbolIndex>	5	</symbolIndex>
+            <symbolOffset>	-17	</symbolOffset>
+            <is_sticky>	true	</is_sticky>
+            <cull_distance>	18000.0	</cull_distance>
+          </config>
+        </item>
+      </MARKER_2D>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveTargetFlagMinimapComponent	</class>
+          <config>
+            <symbol>	PveFlagAnimationUI	</symbol>
+            <container>	flags	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveTargetFlagFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveFlagAnimationUI	</symbol>
+            <container>	flags	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_VEHICLE_FLAG>
+  <PVE_GROUND_FLAG>
+    <visible>	true	</visible>
+    <components>
+      <MARKER_2D>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveFlagLocationMarkerComponent	</class>
+          <config>
+            <symbol>	GoalMarkerUI	</symbol>
+            <is_sticky>	true	</is_sticky>
+            <cull_distance>	18000.0	</cull_distance>
+          </config>
+        </item>
+      </MARKER_2D>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveTargetFlagMinimapComponent	</class>
+          <config>
+            <symbol>	PveFlagAnimationUI	</symbol>
+            <container>	flags	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveTargetFlagFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveFlagAnimationUI	</symbol>
+            <container>	flags	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_GROUND_FLAG>
+  <PVE_ANIMATED_FLAG>
+    <visible>	true	</visible>
+    <components>
+      <MARKER_2D>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveAnimatedFlagMarkerComponent	</class>
+          <config>
+            <symbol>	GoalMarkerUI	</symbol>
+            <is_sticky>	true	</is_sticky>
+            <cull_distance>	18000.0	</cull_distance>
+          </config>
+        </item>
+      </MARKER_2D>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveFlagMinimapComponent	</class>
+          <config>
+            <symbol>	PveFlagAnimationUI	</symbol>
+            <container>	flags	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+      <FULLSCREEN_MAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.pve_base.component_marker.markers_components.PveFlagFullscreenMapComponent	</class>
+          <config>
+            <symbol>	PveFlagAnimationUI	</symbol>
+            <container>	flags	</container>
+            <onlyTranslation>	true	</onlyTranslation>
+          </config>
+        </item>
+      </FULLSCREEN_MAP_MARKER>
+    </components>
+  </PVE_ANIMATED_FLAG>
+  <W2GT_BATTLE_ZONE>
+    <visible>	true	</visible>
+    <components>
+      <MINIMAP_MARKER>
+        <item>
+          <class>	gui.Scaleform.daapi.view.battle.shared.component_marker.markers_components.W2GTBattleZoneMinimapMarkerComponent	</class>
+          <config>
+            <symbol>	W2GTBattleZoneMinimapEntryUI	</symbol>
+            <container>	flags	</container>
+            <color>
+              <fillColor>	0xffdd99	</fillColor>
+              <fillAlpha>	0	</fillAlpha>
+              <fillBlendMode>	normal	</fillBlendMode>
+              <outlineStyle>	dotted	</outlineStyle>
+              <outlineThickness>	1	</outlineThickness>
+              <outlineColor>	0xffdd99	</outlineColor>
+              <outlineAlpha>	0.8	</outlineAlpha>
+              <dotRadius>	0.5	</dotRadius>
+              <dotGap>	1.0	</dotGap>
+              <outlineBlendMode>	normal	</outlineBlendMode>
+            </color>
+            <colorBlind>
+              <fillColor>	0xffdd99	</fillColor>
+              <fillAlpha>	0	</fillAlpha>
+              <fillBlendMode>	normal	</fillBlendMode>
+              <outlineStyle>	dotted	</outlineStyle>
+              <outlineThickness>	1	</outlineThickness>
+              <outlineColor>	0xffdd99	</outlineColor>
+              <outlineAlpha>	0.8	</outlineAlpha>
+              <dotRadius>	1.0	</dotRadius>
+              <dotGap>	1.0	</dotGap>
+              <outlineBlendMode>	normal	</outlineBlendMode>
+            </colorBlind>
+            <states>
+              <default>
+                <fillAlpha>	0	</fillAlpha>
+              </default>
+              <active>
+                <fillAlpha>	0.35	</fillAlpha>
+              </active>
+              <highlight>
+                <fillAlpha>	0.5	</fillAlpha>
+              </highlight>
+            </states>
+          </config>
+        </item>
+      </MINIMAP_MARKER>
+    </components>
+  </W2GT_BATTLE_ZONE>
+</component_marker_items.xml>

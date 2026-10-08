@@ -1,0 +1,152 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Gun::AuditionComponent": {
+						"activationSoundNPC": "ev_fep_fall_impulse_gunshot_large_NPC",
+						"activationSoundPC": "ev_fep_fall_impulse_gunshot_large_PC",
+						"disabledDomains": [
+							"Server"
+						],
+						"isPlayer": "0"
+					},
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "1"
+					},
+					"BW::variables::PropertyOnChangeCalculatorComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/lowChargeShot/quickShot"
+									}
+								},
+								"componentPropertyDest/component": "BW::Gun::Effects::EffectComponent",
+								"componentPropertyDest/propertyPath": "singleShot"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "quickshot_sound_event",
+				"uuid": "7374c687-13b9-0a85-1a6c-ef2fc12e76f4"
+			},
+			{
+				"components": {
+					"BW::Gun::AuditionComponent": {
+						"activationSoundNPC": "ev_fep_fall_impulse_gunshot_large_NPC",
+						"activationSoundPC": "ev_fep_fall_impulse_gunshot_large_PC",
+						"disabledDomains": [
+							"Server"
+						],
+						"isPlayer": "0"
+					},
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "1"
+					},
+					"BW::variables::PropertyOnChangeCalculatorComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/lowChargeShot/fullShot"
+									}
+								},
+								"componentPropertyDest/component": "BW::Gun::Effects::EffectComponent",
+								"componentPropertyDest/propertyPath": "singleShot"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "fullshot_sound_event",
+				"uuid": "71b32429-67c0-0b58-1a5a-3b4493669cc8"
+			}
+		],
+		"components": {
+			"BW::Gun::DistanceToCannonGetterComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::RTPCComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"rtpcs": {
+					"RTPC_ext_control_reflections_priority": {
+						"type": 4,
+						"value": 0
+					},
+					"RTPC_ext_weapon_energy": {
+						"type": 0,
+						"value": 0
+					}
+				}
+			},
+			"BW::SoundObject3DComponent": {
+				"aux": "1",
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::variables::PropertyOnChangeCalculatorComponent": {
+				"calcs": [
+					{
+						"componentPropertyCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/caliber"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/gunLength"
+									}
+								}
+							}
+						},
+						"componentPropertyDest/component": "BW::RTPCComponent",
+						"componentPropertyDest/propertyPath": "rtpcs/RTPC_ext_weapon_energy/value"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "sound_155mm_AT_Gun_T7E8",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,95 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Gun::AuditionComponent": {
+						"activationSoundNPC": "wpn_automatic_NPC",
+						"activationSoundPC": "wpn_automatic_PC",
+						"disabledDomains": [
+							"Server"
+						],
+						"isPlayer": "0"
+					},
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "1"
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "single_shot_sound_event",
+				"uuid": "e2d00818-e51d-09d8-07f0-e9af3d97fb94"
+			}
+		],
+		"components": {
+			"BW::Gun::DistanceToCannonGetterComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::RTPCComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"rtpcs": {
+					"RTPC_ext_control_reflections_priority": {
+						"type": 4,
+						"value": 0
+					},
+					"RTPC_ext_weapon_energy": {
+						"type": 0,
+						"value": 0
+					}
+				}
+			},
+			"BW::SoundObject3DComponent": {
+				"aux": "1",
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::variables::PropertyOnChangeCalculatorComponent": {
+				"calcs": [
+					{
+						"componentPropertyCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/caliber"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/gunLength"
+									}
+								}
+							}
+						},
+						"componentPropertyDest/component": "BW::RTPCComponent",
+						"componentPropertyDest/propertyPath": "rtpcs/RTPC_ext_weapon_energy/value"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "sound_small",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

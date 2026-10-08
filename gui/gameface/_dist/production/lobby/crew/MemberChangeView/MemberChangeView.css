@@ -1,0 +1,3464 @@
+.PopoverDecorator_base_d0107 {
+    display: flex;
+    position: absolute;
+}
+
+.PopoverDecorator_decorator_b4f33 {
+    padding: 58rem;
+    border-image-source: url('R.images.gui.maps.icons.popovers.popover_bg');
+    border-image-slice: 90 fill;
+    border-image-width: 90rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+.PopoverDecorator_arrow_ef5d0 {
+    background: no-repeat 0 0 / contain;
+    position: absolute;
+}
+
+.PopoverDecorator_arrow__bottom_ebbbc,
+    .PopoverDecorator_arrow__top_bb330 {
+        width: 301rem;
+        height: 90rem;
+        margin: 0 58rem;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_top');
+        left: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2,
+    .PopoverDecorator_arrow__right_ffef7 {
+        width: 84rem;
+        height: 181rem;
+        margin: 58rem 0;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_left');
+        top: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2 {
+        right: 10rem;
+        transform: scaleX(-1) translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__right_ffef7 {
+        left: 10rem;
+        transform: translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__top_bb330 {
+        bottom: 8rem;
+        transform: scaleY(-1) translateX(-150rem);
+    }
+
+.PopoverDecorator_arrow__bottom_ebbbc {
+        top: 8rem;
+        transform: translateX(-150rem);
+    }
+
+.PopoverDecorator_closeBtn_dbed5 {
+    width: 18rem;
+    height: 18rem;
+    background: url('R.images.gui.maps.icons.popovers.close_button_slim_up') no-repeat 0 0 / contain;
+    position: absolute;
+    top: 6rem;
+    right: 6rem;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.PopoverDecorator_closeBtn_dbed5:hover {
+        filter: brightness(160%);
+    }
+
+.PopoverDecorator_closeBtn_dbed5:active {
+        background-image: url('R.images.gui.maps.icons.popovers.close_button_slim_press');
+        filter: brightness(100%);
+    }
+
+.PopoverDecorator_content_bc28d {
+    position: relative;
+    z-index: 2;
+}
+
+.HorizontalBar_base_fa517 {
+    display: flex;
+    width: 100%;
+    height: 13rem;
+    visibility: hidden;
+    position: relative;
+}
+
+    .HorizontalBar_base__active_ad89b {
+        visibility: visible;
+    }
+
+    .HorizontalBar_base_fa517 .disable,
+    .HorizontalBar_base_fa517 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.HorizontalBar_leftButton_eb8c3,
+.HorizontalBar_rightButton_f5116 {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transform: rotate(-90deg);
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_leftButton_eb8c3:hover, .HorizontalBar_rightButton_f5116:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_leftButton_eb8c3 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.HorizontalBar_rightButton_f5116 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.HorizontalBar_track_fd3af {
+    flex: 1;
+    margin: 0 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0 {
+    display: none;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 20rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb_horizontal') no-repeat center / 8rem 7rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_rail_a3d9e {
+    height: 0;
+    border-top: 1rem solid #2f2e24;
+    position: absolute;
+    top: 6rem;
+    right: 5rem;
+    left: 5rem;
+}
+
+.HorizontalBar_rail_a3d9e:hover {
+        opacity: .7;
+    }
+
+
+.HorizontalScroll_base_a33a9 {
+    width: 100%;
+}
+
+.HorizontalScroll_wrapper_b622e {
+    display: flex;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.HorizontalScroll_defaultScrollArea_a2315 {
+    width: 100%;
+    margin-bottom: 7rem;
+}
+
+.VerticalBar_base_b5610 {
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    height: 100%;
+    visibility: hidden;
+    position: relative;
+}
+
+    .VerticalBar_base__active_be260 {
+        visibility: visible;
+    }
+
+    .VerticalBar_base_b5610 .disable,
+    .VerticalBar_base_b5610 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.VerticalBar_topButton_c2227,
+.VerticalBar_bottomButton_ef09b {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_topButton_c2227:hover, .VerticalBar_bottomButton_ef09b:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_topButton_c2227 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.VerticalBar_bottomButton_ef09b {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.VerticalBar_track_e3345 {
+    flex: 1;
+    margin: 1rem 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7 {
+    display: none;
+    flex: 0 0 13rem;
+    width: 13rem;
+    height: 100%;
+    min-height: 20rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb') no-repeat center / 7rem 8rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_rail_ff232 {
+    width: 0;
+    height: 100%;
+    border-left: 1rem solid #2f2e24;
+    border-top: 5rem solid transparent;
+    border-bottom: 5rem solid transparent;
+    position: absolute;
+    top: 0;
+    left: 6rem;
+    z-index: 0;
+}
+
+.VerticalBar_rail_ff232:hover {
+        opacity: .7;
+    }
+
+
+.VerticalScroll_content_fe263 {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.VerticalScroll_defaultScroll_e27f5 {
+    display: flex;
+}
+
+.VerticalScroll_bar_b8700 {
+    flex: 1;
+    margin-left: 7rem;
+}
+
+.VerticalScroll_area_b5a82 {
+    flex: 1;
+}
+
+.ExtendedText_base_d9fc1 {
+    display: flex;
+    line-height: 1.2;
+    position: relative;
+}
+
+    .ExtendedText_base__zeroPadding_d1a1c {
+        padding: 0;
+    }
+
+    .ExtendedText_base__isTruncationAvailable_cb880 {
+        width: 100%;
+    }
+
+.ExtendedText_truncated_a4268 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.ExtendedText_truncated__hide_d75b4 {
+        opacity: 0;
+    }
+
+.ExtendedText_unTruncated_ff478 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-content: flex-start;
+    color: #FF2717;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.ExtendedText_tooltip_b5abd {
+    display: flex;
+}
+
+.ExtendedText_tooltip__justify-flex-start_ade81 {
+        justify-content: flex-start;
+    }
+
+.ExtendedText_tooltip__justify-center_aa541 {
+        justify-content: center;
+    }
+
+.ExtendedText_tooltip__justify-flex-end_af6c3 {
+        justify-content: flex-end;
+    }
+
+.ExtendedText_tooltip__align-flex-start_fbfc0 {
+        align-content: flex-start;
+    }
+
+.ExtendedText_tooltip__align-center_d5b4a {
+        align-content: center;
+    }
+
+.ExtendedText_tooltip__align-flex-end_fc0e0 {
+        align-content: flex-end;
+    }
+
+.colors_blackReal_a68be {
+    color: #000000;
+}
+
+.colors_whiteReal_f79f8 {
+    color: #FFFFFF;
+}
+
+.colors_white_b5c87 {
+    color: #F2F2F7;
+}
+
+.colors_whiteOrange_ba58d {
+    color: #FEFEEC;
+}
+
+.colors_whiteSpanish_fd764 {
+    color: #E9E2BF;
+}
+
+.colors_par_e836f {
+    color: #8C8C7E;
+}
+
+.colors_parSecondary_f260a {
+    color: #595950;
+}
+
+.colors_parTertiary_d47f7 {
+    color: #37362E;
+}
+
+.colors_red_c02cb {
+    color: #FF2717;
+}
+
+.colors_redDark_cdd63 {
+    color: #B70000;
+}
+
+.colors_yellow_ec93b {
+    color: #FEAB34;
+}
+
+.colors_orange_bbde2 {
+    color: #EE7000;
+}
+
+.colors_cream_e3bb8 {
+    color: #FFDD99;
+}
+
+.colors_brown_bcb6a {
+    color: #CBAC77;
+}
+
+.colors_greenBright_e6055 {
+    color: #80D43A;
+}
+
+.colors_green_b6f21 {
+    color: #7AB300;
+}
+
+.colors_greenDark_ce9bf {
+    color: #497212;
+}
+
+.colors_blueBooster_b2848 {
+    color: #CCFFFF;
+}
+
+.colors_blueTeamkiller_e7dd8 {
+    color: #09E2FF;
+}
+
+.colors_cred_ddb07 {
+    color: #CED9D9;
+}
+
+.colors_gold_c405a {
+    color: #FFC363;
+}
+
+.colors_bond_bb139 {
+    color: #C9C9B6;
+}
+
+.colors_prom_d1186 {
+    color: #A29B70;
+}
+
+.renderers_noBreakWrapper_d986b {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.renderers_lineBreak_f90ed {
+    width: 100%;
+    height: 0;
+}
+
+.renderers_newLine_ee778 {
+    flex: 1;
+    width: 100%;
+}
+
+.renderers_word_ac32d {
+    white-space: pre;
+    overflow-wrap: normal;
+}
+
+.BuffIcon_base_fd223 {
+    width: 16rem;
+    height: 16rem;
+    margin-right: -8rem;
+    background: no-repeat 50% / contain;
+}
+
+    .BuffIcon_base__increase_ce5ca {
+        background-image: url('R.images.gui.maps.icons.vehParams.icon_increase');
+    }
+
+    .BuffIcon_base__decrease_aaf38 {
+        background-image: url('R.images.gui.maps.icons.vehParams.icon_decrease');
+    }
+
+    .BuffIcon_base__mixed_c6ffb {
+        background-image: url('R.images.gui.maps.icons.vehParams.icon_mixed');
+    }
+
+.Delta_base_bdd65 {
+    width: 0;
+    height: 3rem;
+    position: absolute;
+    top: 3rem;
+}
+
+    .Delta_base__positive_e7872 {
+        box-shadow: 0 0 4rem rgba(128,212,58, .5), 0 0 15rem #80D43A;
+        background-color: #7AB300;
+        left: 2rem;
+    }
+
+    .Delta_base__negative_f6bd3 {
+        box-shadow: 0 0 4rem rgba(255,39,23, .5), 0 0 15rem #FF2717;
+        background-color: #FF2717;
+        left: 0;
+    }
+
+.Indicator_base_ebbc8 {
+    display: flex;
+    align-items: flex-end;
+    height: 15rem;
+    padding-left: 20rem;
+}
+
+.Indicator_progress_a3876 {
+    width: 258rem;
+    height: 3rem;
+    background: rgba(254,254,236, .15);
+    position: relative;
+}
+
+.Indicator_progressMarker_d76c0 {
+    width: 258rem;
+    height: 10rem;
+    overflow: hidden;
+    position: absolute;
+    top: -3rem;
+}
+
+.Indicator_indicator_dbfc7 {
+    width: 2rem;
+    height: 3rem;
+    background-color: #E9E2BF;
+    position: absolute;
+    top: 0;
+}
+
+.Indicator_indicator__start_bc71f {
+        left: 0;
+    }
+
+.Indicator_indicator__end_ace85 {
+        right: 0;
+    }
+
+.Indicator_marker_dd8e0 {
+    width: 2rem;
+    height: 9rem;
+    background-color: #E9E2BF;
+    position: absolute;
+    top: 0;
+    left: 2rem;
+}
+
+.Indicator_valueLine_d6967 {
+    width: 0;
+    height: 3rem;
+    background-color: #E9E2BF;
+    position: absolute;
+}
+
+.Param_base_d29f9 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 39rem;
+    position: relative;
+}
+
+.Param_valueWrapper_d897b {
+    display: flex;
+    width: 85rem;
+}
+
+.Param_value_c760c {
+    color: #E9E2BF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    position: absolute;
+    top: 2rem;
+    right: 3rem;
+}
+
+.Param_icon_acb3d {
+    width: 24rem;
+    height: 24rem;
+    background: no-repeat 50% / contain;
+}
+
+.Param_name_d4c3d {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    width: 240rem;
+    margin: 1rem 0 0 5rem;
+}
+
+.Param_highlight_d47ba {
+    width: 100%;
+    height: 24rem;
+    background: no-repeat 50% / 100% 200%;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+}
+
+.Param_highlight__increase_ff4f5 {
+        background-image: url('R.images.gui.maps.icons.library.green_glow');
+    }
+
+.Param_highlight__decrease_f883b {
+        background-image: url('R.images.gui.maps.icons.library.red_glow');
+    }
+
+.Param_highlight__situational_d35b5 {
+        background-image: url('R.images.gui.maps.icons.library.yellow_glow');
+    }
+
+.Group_base_b756b {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.Group_group_b2cea {
+    height: 48rem;
+    margin-left: 107rem;
+    position: relative;
+}
+
+.Group_group_b2cea:hover {
+        cursor: pointer;
+    }
+
+.Group_hoverBg_fafa3 {
+    background: linear-gradient(90deg, rgba(165, 165, 165, 0) 0%, #a5a5a5 32.81%, #a5a5a5 100%);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: opacity .1s ease-in-out;
+}
+
+.Group_group_b2cea:hover .Group_hoverBg_fafa3 {
+        opacity: .15;
+    }
+
+.Group_hoverBg__scrollable_ae1c3 {
+        right: 21rem;
+    }
+
+.Group_groupHeader_f8c82 {
+    display: flex;
+    align-items: flex-end;
+    width: 278rem;
+    position: relative;
+}
+
+.Group_name_a5e65 {
+    color: #E9E2BF;
+    font-size: 15rem;
+    font-weight: 700;
+    line-height: 1.15;
+    position: relative;
+    top: 2rem;
+}
+
+.Group_arrow_d6ffb {
+    width: 17rem;
+    height: 13rem;
+    background: url('R.images.gui.maps.icons.library.arrow_ttc') no-repeat 50% / contain;
+    transform: rotate(-90deg);
+    transition: transform .2s ease-in;
+}
+
+.Group_arrow__opened_a5040 {
+        transform: rotate(0);
+    }
+
+.Group_params_f9a3e {
+    display: none;
+    padding-bottom: 0;
+}
+
+.Group_params__opened_ce274 {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 24rem;
+    }
+
+.Group_separator_e023d {
+    width: 260rem;
+    height: 1rem;
+    margin: 11rem 0 11rem 121rem;
+    background: rgba(140,140,126, .3);
+}
+
+.Group_right_ec5c5 {
+    display: flex;
+    position: absolute;
+    top: 2rem;
+    right: 0;
+}
+
+.Group_situational_fd346 {
+    width: 16rem;
+    height: 16rem;
+    margin: 1rem 4rem 0 0;
+    background: url('R.images.gui.maps.icons.tooltip.asterisk_optional') no-repeat 50% / contain;
+}
+
+.Group_buff_da02a {
+    margin: 1rem 4rem 0 0;
+}
+
+.Group_value_f45fb {
+    color: #F2F2F7;
+    font-size: 15rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.Group_value__additional_f44df {
+        margin-right: 5rem;
+    }
+
+.VehicleParams_base_f2ee9 {
+    width: 415rem;
+    height: auto;
+    padding-top: 10rem;
+    position: relative;
+}
+
+    .VehicleParams_base__bg_d0d53 {
+        background: linear-gradient(
+            90deg,
+            rgba(0,0,0, 0) 0%,
+            rgba(0,0,0, .6) 32%,
+            rgba(0,0,0, .6) 100%
+        );
+    }
+
+.VehicleParams_scroll_f81e8 {
+    height: auto;
+    max-height: 100%;
+    padding-bottom: 10rem;
+}
+
+.VehicleParams_content_d6339 {
+    height: auto;
+    max-height: 100%;
+}
+
+.VehicleParams_barBase_c6baf {
+    height: auto;
+    position: absolute;
+    top: 10rem;
+    right: 8rem;
+    bottom: 0;
+}
+
+.FlagIcon_base_f548c {
+    background: no-repeat top center / cover;
+}
+
+    .FlagIcon_base__c_1080x454_e8eeb {
+        width: 1080rem;
+        height: 454rem;
+    }
+
+    .FlagIcon_base__c_240x118_d9935 {
+        width: 240rem;
+        height: 118rem;
+    }
+
+    .FlagIcon_base__c_155x31_e84a4 {
+        width: 155rem;
+        height: 31rem;
+    }
+
+.TankName_base_e9676 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    line-height: 1.3;
+}
+
+    .TankName_base__sizeMedium_be079 {
+        color: #FEFEEC;
+        font-size: 24rem;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    .TankName_base__sizBig_b71dc {
+        color: #F2F2F7;
+        font-size: 36rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    .TankName_base__typeWhite_af1ba {
+        color: #F2F2F7;
+    }
+
+    .TankName_base__typeWhiteSpanish_c7979 {
+        color: #E9E2BF;
+    }
+
+    .TankName_base__typeWhiteOrange_eb635 {
+        color: #FEFEEC;
+    }
+
+.TankName_base__typeColored_efc8d .TankName_level_fb3d0 {
+        color: #E9E2BF;
+    }
+
+.TankName_type_f3426 {
+    width: 42rem;
+    height: 38rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+.TankName_type__extraSmall_a1019 {
+        margin: 0 -9rem;
+        top: -8rem;
+    }
+
+.TankName_type__medium_ad9e8 {
+        top: -16rem;
+    }
+
+.TankName_type__big_cbcfe {
+        top: -10rem;
+    }
+
+.TankName_type__medium_ad9e8,
+    .TankName_type__big_cbcfe {
+        width: 83rem;
+        height: 73rem;
+        margin: 0 -23rem;
+    }
+
+.TankName_type__eliteExtraSmall_af236 {
+        margin: 0 -6rem;
+    }
+
+.TankName_type__eliteMedium_b273d {
+        margin: 0 -16rem;
+    }
+
+.TankName_type__eliteBig_a7f6c {
+        margin: 0 -13rem;
+    }
+
+.TankName_base__typeColored_efc8d .TankName_name_e6ffb {
+        color: #8C8C7E;
+    }
+
+.TankName_premiumIGR_bd935 {
+    width: 10rem;
+    height: 10rem;
+    margin: 0 3rem 0 -2rem;
+    background: url('R.images.gui.maps.icons.library.premium_igr_ico') no-repeat center / contain;
+    position: relative;
+    top: 5rem;
+}
+
+.VehicleParamsDecorator_base_c6df9 {
+    display: flex;
+    flex-direction: column;
+}
+
+.VehicleParamsDecorator_vehicleInfo_dc92c {
+    margin: 18rem 30rem -8rem 0;
+}
+
+.VehicleParamsDecorator_tankName_f50d3 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.VehicleParamsDecorator_tankLvl_c1826 {
+    color: #E9E2BF;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.VehicleParamsDecorator_type_fb9ce {
+    top: -8rem;
+}
+
+.VehicleParamsDecorator_tip_a33d1 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    align-self: flex-end;
+    width: 300rem;
+    margin: 8rem 15rem 0 0;
+    text-align: right;
+}
+
+.ButtonsBar_base_a334c {
+    display: flex;
+    flex-direction: row;
+    width: 336rem;
+    height: 35rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.background') no-repeat center / contain;
+    position: relative;
+}
+
+.ButtonsBar_button_e9b92 {
+    width: 44rem;
+    height: 20rem;
+    margin-top: 7rem;
+    position: relative;
+}
+
+.ButtonsBar_button__crewOperaions_c9f4b {
+        margin-left: 8rem;
+    }
+
+.ButtonsBar_button__crewBooks_bc020 {
+        margin-left: 12rem;
+        z-index: 2;
+    }
+
+.ButtonsBar_button__toggle_e2abd {
+        margin-left: 6rem;
+        z-index: 1;
+    }
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Counter_base_b457c {
+    display: flex;
+    min-width: 14rem;
+    height: 14rem;
+    position: relative;
+    z-index: 0;
+    animation: Counter_show_a62c2 ease-in-out forwards;
+}
+
+    .Counter_base__big_d6a57 {
+        min-width: 21rem;
+        height: 21rem;
+    }
+
+    .Counter_base__small_ea547 {
+        min-width: 13rem;
+        height: 13rem;
+    }
+
+    .Counter_base__empty_c2ad2 {
+        min-width: 6rem;
+        height: 6rem;
+    }
+
+    .Counter_base__animated_fb5ef {
+        animation-duration: .2s;
+    }
+
+    .Counter_base__hidden_b1e71 {
+        animation-name: Counter_hide_d1bf0;
+    }
+.Counter_bg_f25ac {
+    border: 1rem solid #fe4e0f;
+    border-radius: 7rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, .3),
+            0 0 6rem rgba(254,103,0, .2),
+            0 0 12rem 4rem rgba(249,0,0, .3);
+    background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.Counter_base__big_d6a57 .Counter_bg_f25ac {
+        border-radius: 11rem;
+    }
+.Counter_base__small_ea547 .Counter_bg_f25ac {
+        border-radius: 7rem;
+    }
+.Counter_value_d1de3 {
+    display: flex;
+    padding: 0 4rem;
+    color: #fefeec;
+    font-size: 11rem;
+    line-height: 13rem;
+    white-space: nowrap;
+}
+.Counter_base__big_d6a57 .Counter_value_d1de3 {
+        padding: 0 7rem;
+        font-size: 14rem;
+        line-height: 20rem;
+    }
+.Counter_base__small_ea547 .Counter_value_d1de3 {
+        font-size: 9rem;
+        line-height: 12rem;
+    }
+.Counter_value__text_bb007 {
+        padding: 0 7rem;
+    }
+.Counter_base__big_d6a57 .Counter_value__text_bb007 {
+            padding: 0 10rem;
+        }
+.Counter_base__small_ea547 .Counter_value__text_bb007 {
+            padding: 0 5rem;
+            font-size: 10rem;
+        }
+.Counter_base__pattern_d1fff .Counter_value_d1de3 {
+        display: none;
+    }
+.Counter_plus_a405c {
+    position: relative;
+    top: -1rem;
+}
+.Counter_pattern_a4be2 {
+    display: none;
+}
+.Counter_base__pattern_d1fff .Counter_pattern_a4be2 {
+        display: block;
+        border-radius: 50%;
+        background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+        opacity: .8;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+@keyframes Counter_show_a62c2 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes Counter_hide_d1bf0 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+.CrewBookButton_base_c164f {
+    position: relative;
+}
+
+.CrewBookButton_button_d9fd1 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CrewBookButton_icon_ab8c8 {
+    width: 32rem;
+    height: 22rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.icons.crewBooks') no-repeat center / contain;
+    position: relative;
+}
+
+.CrewBookButton_discount_c10b8 {
+    width: 44rem;
+    height: 42rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.discount') no-repeat center / contain;
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    transform: translateY(28%);
+    pointer-events: none;
+}
+
+.CrewBookButton_counter_f96bf {
+    position: absolute;
+    top: -6rem;
+    right: 2rem;
+    pointer-events: none;
+}
+
+.CrewOperationsButton_base_b94ad {
+    position: relative;
+}
+
+.CrewOperationsButton_button_bbefd {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CrewOperationsButton_icon_c8815 {
+    width: 32rem;
+    height: 22rem;
+    margin-top: 1rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.icons.crewOperations') no-repeat center / contain;
+    position: relative;
+}
+
+.CrewOperationsButton_autoReturnIcon_c15c7 {
+    width: 42rem;
+    height: 42rem;
+    background: url('R.images.gui.maps.icons.crewWidget.buttonsBar.arrows') no-repeat center / contain;
+    position: absolute;
+    top: -21rem;
+    right: -14rem;
+    pointer-events: none;
+}
+
+.ToggleButton_base_fc1bf {
+    border-radius: 2rem;
+    position: relative;
+}
+
+.ToggleButton_overlay_c47e8 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2rem;
+    pointer-events: none;
+}
+
+.ToggleButton_base__active_f778a .ToggleButton_overlay_c47e8 {
+        border: 1rem solid rgba(255, 195, 99, .75);
+        box-shadow: 0 0 0 1rem rgba(0, 0, 0, .6), 0 0 7px rgba(238, 112, 0, .5);
+        background: linear-gradient(
+            180deg,
+            rgba(255, 42, 0, .1) 0%,
+            rgba(255, 42, 0, 0) .01%,
+            rgba(255, 127, 0, .1) 100%
+        );
+    }
+
+.ToggleButton_button_c99e5 {
+    padding: 0;
+}
+
+.ToggleButton_indicator_a32b9 {
+    width: 40rem;
+    height: 29rem;
+    background: url('R.images.gui.maps.icons.buttons.toggle_indicator') no-repeat center / contain;
+    position: absolute;
+    bottom: -14rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    pointer-events: none;
+}
+
+.ToggleButton_base__active_f778a .ToggleButton_indicator_a32b9 {
+        background-image: url('R.images.gui.maps.icons.buttons.toggle_indicator_active');
+    }
+
+.ToggleButton_counter_ee31b {
+    position: absolute;
+    top: -6rem;
+    right: -3rem;
+    pointer-events: none;
+}
+
+.CrewToggleButton_base_dda9e {
+    position: relative;
+}
+
+.CrewToggleButton_button_da7b6 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CrewToggleButton_iconContainer_c57f5 {
+    width: 32rem;
+    height: 20rem;
+    position: relative;
+}
+
+.CrewToggleButton_icon_e87ff {
+    width: 32rem;
+    height: 22rem;
+    background: no-repeat 50% / contain;
+    position: relative;
+}
+
+.CrewWidgetApp_base_f92d4 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.CrewWidgetApp_buttonsBar_f19e8 {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.CrewWidgetApp_slotsList_b0e26 {
+    margin-top: 38rem;
+}
+
+.TankmanIcon_base_cfe24 {
+    background: no-repeat center / contain;
+}
+
+    .TankmanIcon_base__big_e204e {
+        width: 158rem;
+        height: 118rem;
+    }
+
+    .TankmanIcon_base__small_fcd32,
+    .TankmanIcon_base__barracks_f68cc {
+        width: 100rem;
+        height: 60rem;
+    }
+
+    .TankmanIcon_base__special_fa28e {
+        width: 444rem;
+        height: 300rem;
+    }
+
+    .TankmanIcon_base__c_204x256_a5ad6 {
+        width: 204rem;
+        height: 256rem;
+    }
+
+.WidgetTankmanIcon_icon_a00b6 {
+    width: 108rem;
+    height: 80rem;
+}
+
+    .WidgetTankmanIcon_icon__small_a3cf7 {
+        width: 100rem;
+        height: 60rem;
+    }
+
+    .WidgetTankmanIcon_icon__cropped_dda9c {
+        margin-top: -10rem;
+        clip-path: inset(10rem 0 0 0);
+    }
+
+.Layer_base_c2d41 {
+    opacity: 0;
+    top: 0;
+    left: 0;
+    transition: opacity .3s;
+    pointer-events: none;
+}
+
+    .Layer_base__visible_e8083 {
+        opacity: 1;
+    }
+.Layer_content_b8246 {
+    background: no-repeat center / contain;
+    position: absolute;
+}
+.Layer_content__hoverGlow_a6444,
+    .Layer_content__selectedGlow_d6c71 {
+        width: 360rem;
+        height: 88rem;
+        top: -14rem;
+        left: -14rem;
+    }
+.Layer_content__hoverGlowHigh_aef19,
+    .Layer_content__selectedGlowHigh_bbd57 {
+        width: 360rem;
+        height: 108rem;
+        top: -14rem;
+        left: -14rem;
+    }
+.Layer_content__disabledLayer_ee2c7 {
+        width: 370rem;
+        height: 60rem;
+    }
+.Layer_content__disabledLayerHigh_c2066 {
+        width: 370rem;
+        height: 80rem;
+    }
+.Layer_content__selectedTankmanHighlight_ea3bb,
+    .Layer_content__selectedTankmanHighlight2_a6442,
+    .Layer_content__untrainedTankmanHighlight_faabb {
+        width: 340rem;
+        height: 60rem;
+    }
+.Layer_content__selectedTankmanHighlightHigh_e653f,
+    .Layer_content__selectedTankmanHighlightHigh2_ae2fd,
+    .Layer_content__untrainedTankmanHighlightHigh_a2854 {
+        width: 340rem;
+        height: 80rem;
+    }
+.Layer_content__tankmanSlotHover_c2279 {
+        width: 300rem;
+        height: 60rem;
+    }
+.Layer_content__tankmanSlotHoverHigh_dfffc {
+        width: 300rem;
+        height: 80rem;
+    }
+.Layer_base__big_ebabc .Layer_content__hoverGlow_a6444,
+        .Layer_base__big_ebabc .Layer_content__selectedGlow_d6c71 {
+            width: 360rem;
+            height: 98rem;
+            top: -14rem;
+            left: -14rem;
+        }
+.Layer_base__big_ebabc .Layer_content__hoverGlowHigh_aef19,
+        .Layer_base__big_ebabc .Layer_content__selectedGlowHigh_bbd57 {
+            width: 360rem;
+            height: 118rem;
+            top: -14rem;
+            left: -14rem;
+        }
+.Layer_base__big_ebabc .Layer_content__disabledLayer_ee2c7 {
+            width: 370rem;
+            height: 70rem;
+        }
+.Layer_base__big_ebabc .Layer_content__disabledLayerHigh_c2066 {
+            width: 370rem;
+            height: 90rem;
+        }
+.Layer_base__big_ebabc .Layer_content__selectedTankmanHighlight_ea3bb,
+        .Layer_base__big_ebabc .Layer_content__selectedTankmanHighlight2_a6442,
+        .Layer_base__big_ebabc .Layer_content__untrainedTankmanHighlight_faabb {
+            width: 340rem;
+            height: 70rem;
+        }
+.Layer_base__big_ebabc .Layer_content__selectedTankmanHighlightHigh_e653f,
+        .Layer_base__big_ebabc .Layer_content__selectedTankmanHighlightHigh2_ae2fd,
+        .Layer_base__big_ebabc .Layer_content__untrainedTankmanHighlightHigh_a2854 {
+            width: 340rem;
+            height: 90rem;
+        }
+.Layer_base__big_ebabc .Layer_content__tankmanSlotHover_c2279 {
+            width: 300rem;
+            height: 70rem;
+        }
+.Layer_base__big_ebabc .Layer_content__tankmanSlotHoverHigh_dfffc {
+            width: 300rem;
+            height: 90rem;
+        }
+
+.BaseSlot_base_c0c56 {
+    display: flex;
+    width: 370rem;
+    background: linear-gradient(90deg, rgba(0,0,0, 0.6) 0%, rgba(0,0,0, 0.4) 57.74%, rgba(0,0,0, 0) 100%);
+    position: relative;
+    cursor: pointer;
+}
+
+    .BaseSlot_base__hovered_a5f52 {
+        background: linear-gradient(90deg, rgba(0,0,0, 0.9) 0%, rgba(0,0,0, 0.5) 57.74%, rgba(0,0,0, 0) 100%);
+    }
+
+    .BaseSlot_base__inactive_c6e27 {
+        cursor: initial;
+    }
+
+.BaseSlot_content_df6d6 {
+    display: flex;
+    height: 61rem;
+}
+
+.BaseSlot_content__high_fa4f5 {
+        height: 81rem;
+    }
+
+.BaseSlot_base__big_a7b41 .BaseSlot_content_df6d6 {
+        height: 71rem;
+    }
+
+.BaseSlot_base__big_a7b41 .BaseSlot_content__high_fa4f5 {
+            height: 91rem;
+        }
+
+.BaseSlot_delimiter_f33c7 {
+    width: 230rem;
+    height: 1rem;
+    background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 53.57%, rgba(255, 255, 255, 0) 100%);
+    opacity: .1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.BaseSlot_layer_a7292 {
+    position: absolute;
+}
+
+.DogSlot_base_f5b97 {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.DogSlot_icon_c6797 {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+}
+
+.DogSlot_container_a4722 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 104rem;
+}
+
+.DogSlot_roleAndName_cad2d {
+    display: flex;
+    flex-direction: row;
+    margin-top: 7rem;
+    position: relative;
+}
+
+.DogSlot_role_c10c5 {
+    width: 18rem;
+    height: 18rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.dogPaw') no-repeat center / contain;
+    position: relative;
+}
+
+.DogSlot_name_e7463 {
+    color: #C9C9B6;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-left: 4rem;
+    position: relative;
+}
+
+.DogSlot_btnDetails_c8e4c {
+    width: 118rem;
+    height: 20rem;
+    margin-top: 8rem;
+}
+
+.ChangeCrewButton_base_ea1a6 {
+    width: 44rem;
+    height: 42rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .ChangeCrewButton_base__inactive_c685f {
+        cursor: initial;
+    }
+
+.ChangeCrewButton_normalState_f5f68 {
+    width: 44rem;
+    height: 42rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.btn_crew_change_default') no-repeat center / contain;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity .3s;
+}
+
+.ChangeCrewButton_normalState__hide_c4c91 {
+        opacity: 0;
+    }
+
+.ChangeCrewButton_hoverState_e9871 {
+    width: 74rem;
+    height: 72rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.btn_crew_change_hover') no-repeat center / cover;
+    opacity: 0;
+    position: absolute;
+    top: -15rem;
+    left: -15rem;
+    transition: opacity .3s;
+}
+
+.ChangeCrewButton_hoverState__show_fc6b1 {
+        opacity: 1;
+    }
+
+.ChangeCrewButton_hoverState_e9871 {
+    pointer-events: none;
+}
+
+.CrewSlot_base_bfce7 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.CrewSlot_changeCrew_ce523 {
+    margin: -1rem 0 0 8rem;
+    position: relative;
+    z-index: 1;
+}
+
+.CrewSlot_content_aee79 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.CrewSlot_content__withChangeCrewButton_c149b {
+        right: 41rem;
+    }
+
+.CrewSlot_layer_e5ffa {
+    position: absolute;
+}
+
+.SpecializationAndName_base_eefbf {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.SpecializationAndName_roleWrapper_a6d80 {
+    display: flex;
+    pointer-events: auto;
+}
+
+.SpecializationAndName_role_da143 {
+    width: 18rem;
+    height: 18rem;
+    background: no-repeat 50% / contain;
+    opacity: .4;
+    position: relative;
+}
+
+.SpecializationAndName_role__withGap_f50bd {
+        margin-left: 5rem;
+    }
+
+.SpecializationAndName_name_fe082 {
+    color: #C9C9B6;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    flex: 1;
+    margin-left: 4rem;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 8rem #333;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+}
+
+.SpecializationAndName_name__highlighted_e7e81 {
+        color: #FFFFFF;
+        text-shadow: 0 0 14rem rgba(255,153,0, .8), 0 0 4rem rgba(251,120,0, .5);
+    }
+
+.EmptySlotContent_base_bbe4e {
+    width: 370rem;
+    position: relative;
+}
+
+.EmptySlotContent_content_a2bd7 {
+    height: 61rem;
+}
+
+.EmptySlotContent_content__high_ce5ed {
+        height: 81rem;
+    }
+
+.EmptySlotContent_base__big_aa39e .EmptySlotContent_content_a2bd7 {
+        height: 71rem;
+    }
+
+.EmptySlotContent_base__big_aa39e .EmptySlotContent_content__high_ce5ed {
+            height: 91rem;
+        }
+
+.EmptySlotContent_tankmanIcon_dd58d {
+    margin-left: 3rem;
+    position: relative;
+}
+
+.EmptySlotContent_icon_d9c17 {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+}
+
+.EmptySlotContent_iconContainer_e91f5 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.EmptySlotContent_specialization_b7742 {
+    position: absolute;
+    top: 7rem;
+    left: 105rem;
+}
+
+.EmptySlotContent_specialization__disabled_f782a {
+        opacity: 0.5;
+    }
+
+.EmptySlotContent_vehicle_a1fd8 {
+    color: #CBAC77;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    width: 224rem;
+    position: absolute;
+    top: 30rem;
+    left: 106rem;
+}
+
+.EfficiencyIndicator_base_ce16e {
+    display: flex;
+    justify-content: center;
+    width: 32rem;
+    height: 22rem;
+    border-radius: 2rem;
+    background-color: rgba(0,0,0, .4);
+    position: relative;
+    pointer-events: auto;
+}
+
+    .EfficiencyIndicator_base__big_a8d2d {
+        align-items: center;
+        height: 26rem;
+    }
+
+    .EfficiencyIndicator_base__large_ac512 {
+        align-items: center;
+        width: auto;
+        height: 32rem;
+        padding: 0 2rem;
+    }
+
+    .EfficiencyIndicator_base__large_ac512.EfficiencyIndicator_base__untrained_f15c6 {
+            width: 42rem;
+        }
+
+.EfficiencyIndicator_percent_a552f {
+    margin-top: 2rem;
+    text-shadow: 0 0 12rem rgba(255, 0, 0, 0.7), 0 0 8rem rgba(226, 0, 0, 0.7);
+    position: relative;
+    color: #FFC3BE;
+    font-size: 14rem;
+    font-weight: 700;
+    line-height: 1.15;
+}
+
+.EfficiencyIndicator_percent__full_d0b31 {
+        color: #FFFFFF;
+        text-shadow: 0 0 15rem rgb(238, 85, 34), 0 0 8rem rgba(254, 171, 52, 0.6), 0 0 4rem rgba(255, 127, 0, 0.25);
+        letter-spacing: -1rem;
+    }
+
+.EfficiencyIndicator_base__big_a8d2d .EfficiencyIndicator_percent_a552f {
+        position: relative;
+        top: -1rem;
+    }
+
+.EfficiencyIndicator_base__large_ac512 .EfficiencyIndicator_percent_a552f {
+        font-size: 22rem;
+        position: relative;
+        top: -2rem;
+    }
+
+.EfficiencyIndicator_icon_ec21c {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.untrained') no-repeat center / 44rem 36rem;
+}
+
+.AcceleratedTrainingIcon_base_bb7ea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 16rem;
+    height: 16rem;
+    pointer-events: auto;
+}
+
+.AcceleratedTrainingIcon_icon_dce04 {
+    width: 34rem;
+    height: 34rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.speedXpIcon') no-repeat center / contain;
+}
+
+.AnimatedLostSkill_base_f71f5 {
+    display: flex;
+    position: relative;
+}
+
+    .AnimatedLostSkill_base__c_24x24_fe08e {
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .AnimatedLostSkill_base__c_44x44_b4351 {
+        width: 44rem;
+        height: 44rem;
+    }
+
+.AnimatedLostSkill_icon_fcca6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.AnimatedLostSkill_base__c_24x24_fe08e .AnimatedLostSkill_icon_fcca6 {
+        position: absolute;
+        top: -20rem;
+        right: -20rem;
+        bottom: -20rem;
+        left: -20rem;
+    }
+
+.AnimatedLostSkill_base__c_44x44_b4351 .AnimatedLostSkill_icon_fcca6 {
+        position: absolute;
+        top: -26rem;
+        right: -26rem;
+        bottom: -26rem;
+        left: -26rem;
+    }
+
+.AnimatedNewSkill_base_e010d {
+    width: 24rem;
+    height: 24rem;
+}
+
+.SkillIcon_base_a1c9a {
+    display: flex;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+    .SkillIcon_base__c_22x22_dcf9f {
+        width: 22rem;
+        height: 22rem;
+    }
+
+    .SkillIcon_base__medium_d67ae {
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .SkillIcon_base__c_36x36_flat_e0291 {
+        width: 36rem;
+        height: 36rem;
+    }
+
+    .SkillIcon_base__big_b5b33 {
+        width: 52rem;
+        height: 52rem;
+    }
+
+    .SkillIcon_base__c_80x80_ee59c {
+        width: 80rem;
+        height: 80rem;
+    }
+
+    .SkillIcon_base__c_120x90_cc537 {
+        width: 120rem;
+        height: 90rem;
+    }
+
+    .SkillIcon_base__dialogs_a9262 {
+        width: 180rem;
+        height: 135rem;
+    }
+
+.Skill_base_c2b05 {
+    display: flex;
+    position: relative;
+}
+
+    .Skill_base__c_24x24_a6dee {
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .Skill_base__c_44x44_e4048 {
+        width: 44rem;
+        height: 44rem;
+    }
+
+.Skill_background_fb177 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1rem solid rgba(255,255,255, .2);
+    border-radius: 2rem;
+    background: rgba(0,0,0, .3);
+}
+
+.Skill_base__borderLightYellow_d60ed .Skill_background_fb177 {
+        border-color: #FFDD99;
+    }
+
+.Skill_base__borderYellow_bf2cc .Skill_background_fb177 {
+        border-color: #FEAB34;
+    }
+
+.Skill_base__borderRed_a4df6 .Skill_background_fb177 {
+        border-color: #FF2717;
+    }
+
+.Skill_base__typeBonus_e228b .Skill_background_fb177 {
+        border: none;
+        background: no-repeat 0 / cover;
+    }
+
+.Skill_base__disabled_ac718 .Skill_background_fb177 {
+        background-color: rgba(0,0,0, .5);
+        opacity: .6;
+    }
+
+.Skill_base__disabled_ac718.Skill_base__borderYellow_bf2cc .Skill_background_fb177 {
+        background-color: rgba(0,0,0, .5);
+        opacity: 1;
+    }
+
+.Skill_newSkillHighLight_d6dae {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    background: #ff5c00;
+    opacity: .25;
+}
+
+.Skill_icon_a5b2d {
+    position: absolute;
+}
+
+.Skill_base__disabled_ac718 .Skill_icon_a5b2d {
+        opacity: .3;
+    }
+
+.Skill_base__c_24x24_a6dee .Skill_icon_a5b2d {
+        width: 22rem;
+        height: 22rem;
+        top: 1rem;
+        left: 1rem;
+    }
+
+.Skill_base__c_44x44_e4048 .Skill_icon_a5b2d {
+        width: 34rem;
+        height: 34rem;
+        top: 5rem;
+        left: 5rem;
+    }
+
+.Skill_disabledOverlay_e2b1e {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
+    background: url('R.images.gui.maps.icons.crew.skillsFrame.disabled') center / cover;
+}
+
+.LostLevelAnimation_base_c6848 {
+    display: flex;
+    align-items: center;
+    width: 0;
+    position: relative;
+}
+
+.LostLevelAnimation_level_e804d {
+    color: #FEAB34;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    display: flex;
+    position: absolute;
+}
+
+.LostLevelAnimation_level__skillLost_a1467 {
+        color: #FF2717;
+    }
+
+.LostLevelAnimation_level__skillBlur_e15fa {
+        text-shadow: 0 0 20rem rgba(255,255,255, .9);
+        filter: blur(5rem);
+        opacity: 0;
+    }
+
+.LostLevelAnimation_base__c_24x24_da578 .LostLevelAnimation_level_e804d {
+        left: 4rem;
+    }
+
+.LostLevelAnimation_base__c_44x44_e9708 .LostLevelAnimation_level_e804d {
+        font-size: 24rem;
+        left: 6rem;
+    }
+
+.SkillLevel_base_e2248 {
+    color: #FEAB34;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+    .SkillLevel_base__highlighted_c4737 {
+        color: #FEFEEC;
+        text-shadow: 0 0 15rem #e52, 0 0 8rem #ff2a00, 0 0 4rem rgba(255, 127, 0, .25);
+    }
+
+.Row_base_de020 {
+    display: flex;
+    align-items: center;
+}
+
+.Row_skill_a8b94 {
+    overflow: hidden;
+}
+
+.Row_skill_a8b94 + .Row_skill_a8b94 {
+        margin-left: 2rem;
+    }
+
+.Row_base__c_44x44_b19d9 .Row_skill_a8b94 + .Row_skill_a8b94 {
+            margin-left: 4rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseNoMargins_c10ff .Row_skill_a8b94 + .Row_skill_a8b94 {
+            margin-left: -1rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill_a8b94 + .Row_skill_a8b94 {
+            margin-left: 0;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseReducedMargins_e1948 .Row_skill_a8b94 + .Row_skill_a8b94 {
+            margin-left: 1rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill_a8b94 {
+        width: 20rem;
+    }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill__last_cece2,
+        .Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill__lastLearnedSkill_c917d {
+            width: 24rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOverlap_f5514 .Row_skill__lastLearnedSkill_c917d {
+            margin-right: 2rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOnlyLearningOverlap_ac76c .Row_skill__stateLearning_f8148 {
+            width: 20rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOnlyLearningOverlap_ac76c .Row_skill__stateLearning_f8148 + .Row_skill__stateLearning_f8148 {
+                margin-left: 0;
+            }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseOnlyLearningOverlap_ac76c .Row_skill_a8b94.Row_skill__last_cece2 {
+            width: 24rem;
+        }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlap_cd20f .Row_skill_a8b94 {
+        width: 19rem;
+    }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithLevel_b8bc2 .Row_skill_a8b94,
+    .Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithEfficiency_f5c0b .Row_skill_a8b94 {
+        width: 15rem;
+    }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithLevelAndEfficiency_eb584 .Row_skill_a8b94 {
+        width: 14rem;
+    }
+
+.Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlap_cd20f .Row_skill__last_cece2, .Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithLevel_b8bc2 .Row_skill__last_cece2, .Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithEfficiency_f5c0b .Row_skill__last_cece2, .Row_base__c_24x24_a1b44.Row_base__collapseExtraOverlapWithLevelAndEfficiency_eb584 .Row_skill__last_cece2 {
+            width: 24rem;
+        }
+
+.Row_base__c_24x24_a1b44 .Row_level_ddaff {
+        margin-left: 4rem;
+        position: relative;
+        top: -1rem;
+    }
+
+.Row_base__c_44x44_b19d9 .Row_level_ddaff {
+        margin-left: 6rem;
+        font-size: 24rem;
+    }
+
+.Row_acceleratedTrainingIcon_cdfb1 {
+    margin-left: 9rem;
+}
+
+.Row_lostSkill_d0ede {
+    margin-left: 2rem;
+}
+
+.Row_base__c_44x44_b19d9 .Row_lostSkill_d0ede {
+        margin-left: 4rem;
+    }
+
+.Skills_base_abf76 {
+    display: flex;
+    align-items: center;
+}
+
+.Skills_efficiency_b3734 {
+    margin-right: 4rem;
+}
+
+.Skills_base__c_44x44_d4037 .Skills_efficiency_b3734 {
+        margin-right: 8rem;
+    }
+
+.Skills_rows_f44e0 {
+    display: flex;
+    flex-direction: column;
+}
+
+.Skills_bonusRow_d65a0 {
+    margin-top: 2rem;
+}
+
+.Skills_base__c_44x44_d4037 .Skills_bonusRow_d65a0 {
+        margin-top: 4rem;
+    }
+
+.TankmanInfo_base_a03a7 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+    .TankmanInfo_base__disabled_eb99e {
+        opacity: 0.5;
+    }
+
+.TankmanInfo_tankmanTooltipHoverArea_ab6d8 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.TankmanInfo_specialization_ba9a0 {
+    flex: 1;
+    margin-left: 105rem;
+    margin-top: 7rem;
+    position: relative;
+    pointer-events: none;
+}
+
+.TankmanInfo_specialization__withBonusSkills_d1c7f {
+        margin-top: 4rem;
+    }
+
+.TankmanInfo_base__big_bac57 .TankmanInfo_specialization_ba9a0 {
+        margin-top: 11rem;
+    }
+
+.TankmanInfo_base__big_bac57 .TankmanInfo_specialization__withBonusSkills_d1c7f {
+            margin-top: 8rem;
+        }
+
+.TankmanInfo_skillsContainer_ed558 {
+    position: absolute;
+    top: 31rem;
+    left: 102rem;
+}
+
+.TankmanInfo_skillsContainer__withBonusSkills_d044e {
+        top: 26rem;
+    }
+
+.TankmanInfo_base__big_bac57 .TankmanInfo_skillsContainer_ed558 {
+        top: 35rem;
+    }
+
+.TankmanInfo_base__big_bac57 .TankmanInfo_skillsContainer__withBonusSkills_d044e {
+            top: 32rem;
+        }
+
+.QuickTrainingTankmanSlotContent_base_b2239 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.QuickTrainingTankmanSlotContent_arrow_efc81 {
+    width: 57rem;
+    height: 96rem;
+    background: url('R.images.gui.maps.icons.crewWidget.slot.xp_arrow_small') no-repeat 50% / contain;
+    position: absolute;
+    top: 0;
+    left: -6rem;
+    pointer-events: none;
+}
+
+.QuickTrainingTankmanSlotContent_iconContainer_d932e {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.QuickTrainingTankmanSlotContent_icon_f958b {
+    position: absolute !important;
+    bottom: 1rem;
+    left: 0;
+}
+
+.QuickTrainingTankmanSlotContent_layer_b8bac {
+    position: absolute;
+}
+
+.TankmanSlotContent_base_b5927 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.TankmanSlotContent_icon_a25f0 {
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+}
+
+.SlotsList_base_a82a1 {
+    width: 370rem;
+    position: relative;
+}
+
+    .SlotsList_base__hangar_c097e {
+        width: 408rem;
+    }
+
+.FilterTitle_base_f4afa {
+    display: flex;
+}
+
+.FilterTitle_label_f8725 {
+    color: #595950;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+}
+
+.FilterTitle_discount_cb9ec {
+    height: 18rem;
+    position: relative;
+}
+
+.FilterTitle_discountIcon_e6a48 {
+    width: 48rem;
+    height: 34rem;
+    background: url('R.images.gui.maps.icons.crew.filter.popover.discount') no-repeat center / contain;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: -6rem;
+    left: -23rem;
+    pointer-events: none;
+}
+
+.ToggleIcon_base_c4a23 {
+    width: 34rem;
+    height: 24rem;
+}
+
+    .ToggleIcon_base__small_b667d {
+        width: 30rem;
+        height: 20rem;
+    }
+
+.ToggleIcon_icon_dcc68 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: no-repeat 50% / 34rem 24rem;
+}
+
+.VehicleTier_base_ed8c9 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34rem;
+    height: 24rem;
+    color: #FEFEEC;
+    font-size: 11rem;
+    font-weight: 400;
+}
+
+    .VehicleTier_base__small_d51ad {
+        width: 30rem;
+        height: 20rem;
+    }
+
+.ToggleButtonIcon_icon__vehicleType_fc2d7 {
+        background-size: 9rem 12rem;
+    }
+    .ToggleButtonIcon_icon__nation_b8861,
+    .ToggleButtonIcon_icon__vehicleGradePrimary_f499e {
+        background-size: 26rem 16rem;
+    }
+    .ToggleButtonIcon_icon__tankmanRole_a35dd {
+        background-size: 14rem 14rem;
+        opacity: .6;
+    }
+    .ToggleButtonIcon_icon__selected_a2f18 .ToggleButtonIcon_icon__tankmanRole_a35dd {
+            opacity: 1;
+        }
+    .ToggleButtonIcon_icon__tankmanKind_fe2ac,
+    .ToggleButtonIcon_icon__vehicleGradeElite_a9afe,
+    .ToggleButtonIcon_icon__locationRecruit_f38c2,
+    .ToggleButtonIcon_icon__locationTankman_b4c9a {
+        background-size: 24rem 24rem;
+    }
+    .ToggleButtonIcon_icon__personalDataType_e15fc,
+    .ToggleButtonIcon_icon__tankmanKindDismissed_e07a1 {
+        background-size: 34rem 24rem;
+    }
+    .ToggleButtonIcon_icon__vehicleGradePremium_adfb1 {
+        background-size: 20rem 17rem;
+    }
+
+.FilterToggleGroup_base_ca0b2 {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.FilterToggleGroup_title_fb295 {
+    padding-bottom: 8rem;
+}
+
+.FilterToggleGroup_content_ed6f8 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.FilterToggleGroup_toggle_d2eb0 {
+    width: 34rem;
+    height: 24rem;
+}
+
+.FilterToggleGroup_toggle_d2eb0 + .FilterToggleGroup_toggle_d2eb0 {
+        margin-left: 6rem;
+    }
+
+.FilterToggleGroup_base__inPopup_dae54 .FilterToggleGroup_toggle_d2eb0 {
+        width: 30rem;
+        height: 20rem;
+        margin: 0 12rem 14rem 0;
+    }
+
+.NumberRange_base_fab6b {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    color: #8C8C7E;
+}
+
+    .NumberRange_base__animation_d9d14 {
+        animation: NumberRange_blinkAnim_b6c7e cubic-bezier(.45, .05, .55, .95) infinite 2s;
+    }
+
+.NumberRange_from_aa86f {
+    color: #E9E2BF;
+}
+
+.NumberRange_from__red_ce35d {
+        color: #FF2717;
+    }
+
+.NumberRange_separator_fd341 {
+    padding: 0 2rem;
+}
+
+@keyframes NumberRange_blinkAnim_b6c7e {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.NumberRangeWithLabel_base_e56d6 {
+    display: flex;
+}
+
+.NumberRangeWithLabel_title_ea468 {
+    padding-right: 4rem;
+}
+
+.NumberRangeWithLabel_counter_cf012 {
+    position: relative;
+}
+
+.NumberRangeWithLabel_counterGlow_bb198 {
+    width: 74rem;
+    height: 57rem;
+    background: url('R.images.gui.maps.icons.crew.filter.glow') no-repeat 50%/ 74rem 57rem;
+}
+
+.AlertCounter_base_cc416 {
+    position: relative;
+}
+
+.AlertCounter_counter_a3aba {
+    position: relative;
+    top: 1rem;
+}
+
+.AlertCounter_label_da728 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    color: #FFFFFF;
+    font-size: 12rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PopupButton_base_fe996 {
+    display: flex;
+    align-items: center;
+}
+
+.PopupButton_popupButtonLabel_ee82d {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    padding: 2rem 8rem 0 15rem;
+    position: relative;
+    top: -1rem;
+}
+
+.PopupButton_buttonIconWrapper_d7915 {
+    position: relative;
+}
+
+.PopupButton_buttonIcon_cd266 {
+    width: 34rem;
+    height: 24rem;
+    background: url('R.images.gui.maps.icons.buttons.filter') no-repeat center / 20rem 20rem;
+}
+
+.PopupButton_buttonIcon__isHighlighted_b114e {
+        filter: drop-shadow(0 0 15rem #ee5003) drop-shadow(0 0 6rem rgba(255, 42, 0, .5));
+    }
+
+.PopupButton_discountAlert_b70fd {
+    position: absolute;
+    top: -7rem;
+    right: -7rem;
+    pointer-events: none;
+}
+
+.ResetButton_base_a7ac3 {
+    display: flex;
+}
+
+.ResetButton_button_a7da1 {
+    width: 20rem;
+    height: 20rem;
+    padding: 0;
+    border-radius: 1rem;
+    position: relative;
+    top: 2rem;
+}
+
+.ResetButton_icon_bcd22 {
+    width: 12rem;
+    height: 12rem;
+    background: url('R.images.gui.maps.icons.components.input.close_medium') no-repeat center / 12rem;
+    position: relative;
+    top: 1rem;
+}
+
+.InputControl_base_f4ab4 {
+    display: flex;
+    align-items: center;
+    min-width: 100%;
+    height: 100%;
+    border: 1rem solid #464538;
+    border-radius: 2rem;
+    box-shadow: inset 0 0 1rem #000, inset 0 0 8rem #000;
+    position: relative;
+    transition: border .3s ease-in-out;
+    cursor: text;
+}
+
+    .InputControl_base__focused_ba7b6 {
+        border-color: #626156;
+    }
+
+    .InputControl_base__alert_cb1b2 {
+        border-color: #EE7000;
+        box-shadow: inset 0 0 1rem #000, inset 0 0 8rem #000,
+            inset 0 0 6rem #8d0d03;
+    }
+
+    .InputControl_base__error_e4c3f {
+        border-color: #FF2717;
+        box-shadow: inset 0 0 1rem #000, inset 0 0 8rem #000,
+            inset 0 0 6rem #8d0d03;
+    }
+
+    .InputControl_base__done_cc223 {
+        border-color: #7AB300;
+    }
+
+    .InputControl_base__disabled_e78dc {
+        cursor: default;
+    }
+
+.InputControl_input_e57f3 {
+    flex: 1;
+    border: none;
+    background-color: transparent;
+    color: #8C8C7E;
+    position: relative;
+    z-index: 1;
+}
+
+.InputControl_base__small_cabee .InputControl_input_e57f3 {
+    font-size: 12rem;
+        padding: 1rem 4rem 2rem 8rem;
+    }
+
+.InputControl_base__medium_eeb01 .InputControl_input_e57f3 {
+    font-size: 14rem;
+        padding: 1rem 4rem 2rem 8rem;
+    }
+
+.InputControl_base__large_edb9f .InputControl_input_e57f3 {
+    font-size: 16rem;
+        padding: 4rem 6rem 5rem 12rem;
+    }
+
+.InputControl_base__withIcon_e7c92.InputControl_base__small_cabee .InputControl_input__search_a32c2 {
+            padding-left: 20rem;
+        }
+
+.InputControl_base__withIcon_e7c92.InputControl_base__medium_eeb01 .InputControl_input__search_a32c2 {
+            padding-left: 24rem;
+        }
+
+.InputControl_base__withIcon_e7c92.InputControl_base__large_edb9f .InputControl_input__search_a32c2 {
+            padding-left: 36rem;
+        }
+
+.InputControl_base__disabled_e78dc .InputControl_input_e57f3 {
+        color: #37362E;
+        pointer-events: none;
+    }
+
+.InputControl_input_e57f3::selection {
+        background-color: #8C8C7E;
+        color: #37362E;
+    }
+
+.InputControl_disabled_bf6b4 {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.library.disabled_pattern') center / 9rem;
+    opacity: .8;
+    position: absolute;
+}
+
+.InputControl_placeholder_d9002 {
+    color: #595950;
+    position: absolute;
+    left: 8rem;
+    pointer-events: none;
+}
+
+.InputControl_base__small_cabee .InputControl_placeholder_d9002 {
+    font-size: 12rem;
+    }
+
+.InputControl_base__medium_eeb01 .InputControl_placeholder_d9002 {
+    font-size: 14rem;
+    }
+
+.InputControl_base__large_edb9f .InputControl_placeholder_d9002 {
+    font-size: 16rem;
+        left: 12rem;
+    }
+
+.InputControl_base__withIcon_e7c92.InputControl_base__small_cabee .InputControl_placeholder__search_aa544 {
+            left: 20rem;
+        }
+
+.InputControl_base__withIcon_e7c92.InputControl_base__medium_eeb01 .InputControl_placeholder__search_aa544 {
+            left: 24rem;
+        }
+
+.InputControl_base__withIcon_e7c92.InputControl_base__large_edb9f .InputControl_placeholder__search_aa544 {
+            left: 36rem;
+        }
+
+.InputControl_base__disabled_e78dc .InputControl_placeholder_d9002 {
+        color: #37362E;
+    }
+
+.InputControl_icon_c3178 {
+    background: no-repeat center / contain;
+    position: absolute;
+    left: 8rem;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.InputControl_base__small_cabee .InputControl_icon__search_ee1cf {
+            width: 8rem;
+            height: 8rem;
+        }
+
+.InputControl_base__medium_eeb01 .InputControl_icon__search_ee1cf {
+            width: 10rem;
+            height: 10rem;
+        }
+
+.InputControl_base__large_edb9f .InputControl_icon__search_ee1cf {
+            width: 16rem;
+            height: 16rem;
+            left: 12rem;
+        }
+
+.InputControl_base__disabled_e78dc .InputControl_icon_c3178 {
+        opacity: .5;
+    }
+
+.InputControl_clear_b919e {
+    opacity: .6;
+    position: absolute;
+    right: 4rem;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.InputControl_clear_b919e:hover {
+        opacity: 1;
+    }
+
+.InputControl_base__small_cabee .InputControl_clear_b919e {
+        width: 12rem;
+        height: 12rem;
+        background: url('R.images.gui.maps.icons.components.input.close_small') no-repeat center / 8rem;
+    }
+
+.InputControl_base__medium_eeb01 .InputControl_clear_b919e {
+        width: 14rem;
+        height: 14rem;
+        background: url('R.images.gui.maps.icons.components.input.close_medium') no-repeat center / 10rem;
+    }
+
+.InputControl_base__large_edb9f .InputControl_clear_b919e {
+        width: 20rem;
+        height: 20rem;
+        background: url('R.images.gui.maps.icons.components.input.close_large') no-repeat center / 16rem;
+        right: 6rem;
+    }
+
+.HelperMessage_base_eb8f7 {
+    display: flex;
+    width: 100%;
+    opacity: 0;
+    transition: opacity ease .2s;
+    pointer-events: none;
+}
+
+    .HelperMessage_base__shown_cb0a1 {
+        opacity: 1;
+    }
+
+.HelperMessage_icon_f1876 {
+    width: 16rem;
+    height: 16rem;
+    margin-right: 5rem;
+    background: no-repeat center / contain;
+}
+
+.HelperMessage_message_b8293 {
+    flex: 1;
+}
+
+.HelperMessage_message__alert_a0180 {
+        color: #EE7000;
+    }
+
+.HelperMessage_message__error_d77b3 {
+        color: #FF2717;
+    }
+
+.HelperMessage_message__done_d0460 {
+        color: #7AB300;
+    }
+
+.Input_base_a5987 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem rgba(0,0,0, .6);
+    background-color: rgba(23,23,15, .8);
+    position: relative;
+}
+
+    .Input_base__small_faf1a {
+        height: 18rem;
+    }
+
+    .Input_base__medium_fb2c5 {
+        height: 24rem;
+    }
+
+    .Input_base__large_c8881 {
+        height: 32rem;
+    }
+
+.Input_helper_c00ba {
+    height: 100%;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    transform: translateY(100%);
+}
+
+.FilterPanelWidgetApp_base_c3c94 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10rem;
+    border-bottom: 1rem solid rgba(255,255,255, .1);
+}
+
+.FilterPanelWidgetApp_titleWrapper_f2134 {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.FilterPanelWidgetApp_title_a5b63 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-right: 5rem;
+    opacity: .9;
+}
+
+.FilterPanelWidgetApp_filters_ec3a2 {
+    display: flex;
+    height: 24rem;
+}
+
+.FilterPanelWidgetApp_counterGlow_a40bb {
+    position: absolute;
+    bottom: -41rem;
+    left: 0;
+    z-index: 1;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.FilterPanelWidgetApp_separator_d1b73 {
+    width: 1rem;
+    height: 24rem;
+    margin: 0 15rem;
+    background: linear-gradient(180deg, transparent 0%, #d9d9d9 50%, transparent 100%);
+    opacity: .35;
+}
+
+.FilterPanelWidgetApp_filterLabel_f517c {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    padding: 2rem 8rem 0;
+    position: relative;
+    top: 1rem;
+}
+
+.FilterPanelWidgetApp_base__tankChange_d8ee7 .FilterPanelWidgetApp_filterLabel_f517c {
+        padding-left: 30rem;
+    }
+
+.FilterPanelWidgetApp_base__memberChange_ef6c6 .FilterPanelWidgetApp_popupButtonWrapper_a5f4f,
+    .FilterPanelWidgetApp_base__personalData_ba789 .FilterPanelWidgetApp_popupButtonWrapper_a5f4f,
+    .FilterPanelWidgetApp_base__tankChange_d8ee7 .FilterPanelWidgetApp_popupButtonWrapper_a5f4f {
+        padding-left: 15rem;
+    }
+
+.FilterPanelWidgetApp_search_ef05b {
+    width: 162rem;
+}
+
+.FilterPanelWidgetApp_base__tankChange_d8ee7 .FilterPanelWidgetApp_search_ef05b {
+        width: 198rem;
+    }
+
+.ListHeader_base_f9ba1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 18rem;
+}
+
+.ListHeader_title_ddc9a {
+    color: #FEFEEC;
+    font-size: 36rem;
+    font-weight: 700;
+    line-height: 1.1;
+    display: flex;
+    align-items: flex-end;
+    height: 40rem;
+    position: relative;
+    bottom: -4rem;
+}
+
+.ListHeader_base__memberChange_d549b .ListHeader_title_ddc9a {
+        font-size: 24rem;
+        bottom: -3rem;
+    }
+
+.mediaMedium .ListHeader_base__memberChange_d549b .ListHeader_title_ddc9a {
+            font-size: 28rem;
+            bottom: -4rem;
+}
+
+.ListHeader_base__tankChange_b1ea3 .ListHeader_title_ddc9a,
+    .ListHeader_base__personalData_fc99c .ListHeader_title_ddc9a {
+        font-size: 28rem;
+    }
+
+.Header_base_e24d6 {
+    display: flex;
+    height: 24rem;
+}
+
+.Header_button_c9753 {
+    min-width: 105rem;
+    height: 24rem;
+}
+
+.WarningText_base_c7790 {
+    display: flex;
+    align-items: center;
+}
+
+.WarningText_icon_b02da {
+    width: 24rem;
+    height: 24rem;
+    background: url('R.images.gui.maps.icons.library.alertBigIcon') no-repeat 50% / 24rem 24rem;
+    position: relative;
+    top: 1rem;
+}
+
+.WarningText_label_d81cc {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    padding-left: 7rem;
+}
+
+.ListEmptyState_base_cec9b {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ListEmptyState_content_b4ddc {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.ListEmptyState_shadow_b58c7 {
+    width: 486rem;
+    height: 138rem;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, .7) 0%, transparent 100%);
+    opacity: .5;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ListEmptyState_buttonWrapper_c43ed {
+    display: flex;
+    justify-content: center;
+    padding-top: 14rem;
+}
+
+.ListEmptyState_button_ad234 {
+    min-width: 162rem;
+    height: 24rem;
+}
+
+.Content_base_bfd91 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15rem 20rem 14rem;
+    pointer-events: none;
+}
+
+    .Content_base__disabled_e88c3 {
+        opacity: .5;
+    }
+.Content_content_cabfb {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+.Content_name_d57b6 {
+    color: #E9E2BF;
+    font-size: 15rem;
+    font-weight: 700;
+    line-height: 1.15;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.Content_name__postProgression_f38df {
+        color: #FFFFFF;
+        text-shadow: 0 0 4rem rgba(251, 120, 0, .5), 0 0 14rem rgba(255, 153, 0, .8);
+    }
+.Content_specializationInfo_e1af4 {
+    display: flex;
+    height: 18rem;
+    margin: 5rem 0 9rem;
+}
+.Content_recruitLabel_e3b22 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.DisabledLayer_base_d54c7 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.DisabledLayer_disabledContent_ac345 {
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: -6rem;
+}
+
+.DisabledLayer_disabledIcon_a5ec6 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / cover;
+}
+
+.DisabledLayer_disabledTitle_cb254 {
+    color: #E9E2BF;
+    font-size: 15rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-left: 2rem;
+}
+
+.Icon_base_ab99f {
+    display: flex;
+    justify-content: center;
+    width: 300rem;
+    height: 122rem;
+    padding-top: 4rem;
+    background: no-repeat top / cover;
+    overflow: hidden;
+    position: relative;
+}
+
+    .Icon_base__disabled_e8581 {
+        opacity: .5;
+    }
+.Icon_flag_dfe65 {
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+}
+
+.DismissedCountdown_base_c7f76 {
+    display: flex;
+    align-items: center;
+    height: 32rem;
+    position: relative;
+    top: -5rem;
+}
+
+.DismissedCountdown_icon_ecfaa {
+    width: 32rem;
+    height: 32rem;
+    background: url('R.images.gui.maps.icons.components.countdown.clock') no-repeat center / contain;
+}
+
+.DismissedCountdown_label_f9f78 {
+    color: #FFDD99;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-left: -2rem;
+}
+
+.Location_base_c5057 {
+    display: flex;
+}
+
+.Location_icon_a6a72 {
+    width: 34rem;
+    height: 24rem;
+    background: no-repeat center / cover;
+}
+
+.Role_base_a5dbf {
+    width: 24rem;
+    height: 24rem;
+    display: flex;
+    background: no-repeat center / cover;
+}
+
+    .Role_base__disabled_a2f52 {
+        opacity: .5;
+    }
+
+.TankmanCard_base_cabc1 {
+    display: flex;
+    flex-direction: column;
+    width: 300rem;
+    height: 247rem;
+    border-radius: 6rem;
+    background-color: rgba(255,255,255, .05);
+    position: relative;
+    cursor: pointer;
+}
+
+    .TankmanCard_base__default_ef7f9:hover {
+            background-color: rgba(255,255,255, .1);
+        }
+
+    .TankmanCard_base__disabled_e988b {
+        background-color: rgba(0,0,0, .1);
+        cursor: default;
+    }
+
+    .TankmanCard_base__disabled_e988b .TankmanCard_icon_e6a71 {
+            z-index: -1;
+        }
+.TankmanCard_cardContent_b430e {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 6rem;
+}
+.TankmanCard_base__disabled_e988b .TankmanCard_cardContent_b430e {
+        background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    }
+.TankmanCard_disabledLayer_accb4 {
+    z-index: 1;
+}
+.TankmanCard_role_b5154 {
+    position: absolute;
+    top: 8rem;
+    left: 10rem;
+}
+.TankmanCard_location_ebece {
+    position: absolute;
+    top: 10rem;
+    right: 10rem;
+}
+.TankmanCard_separatorWrapper_ea0bc {
+    display: flex;
+    flex-direction: column;
+    margin-top: -1rem;
+}
+.TankmanCard_separator_d777f {
+    height: 1rem;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255, .2) 50%, transparent 100%);
+}
+.TankmanCard_separator__top_ba554 {
+        background: linear-gradient(90deg, transparent 0%, rgba(0,0,0, .5) 48.96%, transparent 100%);
+    }
+.TankmanCard_actions_c6aa6 {
+    display: flex;
+    position: absolute;
+    right: 10rem;
+    bottom: 10rem;
+}
+.TankmanCard_newMark_fb5e9 {
+    position: absolute;
+    top: -6rem;
+    right: 20rem;
+}
+
+.VirtualGrid_base_f1a9b {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.VirtualGridWithFade_scrollAreaFade_c5d53 {
+    mask-image: linear-gradient(0deg, transparent 14rem, #d9d9d9 100rem);
+    mask-repeat: no-repeat;
+}
+
+.TankmanVirtualList_grid_df9a8 {
+    margin: 0 -9rem;
+}
+
+.VoiceOverButton_base_ae533 {
+    width: 36rem;
+    height: 24rem;
+    margin-left: 6rem;
+    padding: 0;
+}
+
+.VoiceOverButton_soundIcon_d35a2 {
+    width: 19rem;
+    height: 16rem;
+    background: url('R.images.gui.maps.icons.buttons.sound') no-repeat 50% / cover;
+}
+
+.MemberChangeTankman_base__selected_c3c07 {
+        border: 1rem solid #ff7a00;
+        box-shadow: inset 0 0 30rem rgba(255, 122, 0, .3);
+        background: linear-gradient(0deg, rgba(255,92,0, .1), rgba(255,92,0, .1)), rgba(0,0,0, .6);
+        cursor: default;
+    }
+    .MemberChangeTankman_base__error_b04d9 {
+        background-image: radial-gradient(150% 100% at 0% 100%, rgba(177, 0, 21, 0.25) 0%, rgba(177, 0, 21, 0) 50%);
+    }
+    .MemberChangeTankman_base__default_c5cf6.MemberChangeTankman_sameVehicle_d6f31 {
+            border: 1rem solid rgba(255,255,255, .5);
+            box-shadow: 0 0 14rem 0 rgba(255,255,255, .5);
+            background-color: rgba(255,255,255, .1);
+        }
+    .MemberChangeTankman_base__default_c5cf6.MemberChangeTankman_sameVehicle_d6f31:hover {
+                border-color: rgba(255,255,255, .8);
+                background-color: rgba(255,255,255, .15);
+            }
+
+.MemberChangeTankman_iconBackground_e136a {
+    width: 300rem;
+    height: 122rem;
+    background: url('R.images.gui.maps.icons.tankmen.card.icon_back_shadow') no-repeat center / contain;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.MemberChangeTankmanList_base_ce777 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.MemberChangeTankmanList_gridWrapper_cbab7 {
+    flex: 1;
+    width: 641rem;
+    margin-right: -23rem;
+}
+.mediaSmallWidth .MemberChangeTankmanList_gridWrapper_cbab7 {
+        width: 963rem;
+        margin-right: -27rem;
+}
+.mediaExtraLargeWidth .MemberChangeTankmanList_gridWrapper_cbab7 {
+        width: 1281rem;
+}
+.mediaExtraLargeWidth .MemberChangeTankmanList_gridWrapper__qHDWidth_f89e2 {
+            width: 1599rem;
+        }
+.MemberChangeTankmanList_emptyState_db88c {
+    flex: 1;
+}
+.MemberChangeTankmanList_item_fb9ec {
+    margin: 9rem;
+}
+.MemberChangeTankmanList_item__withoutTopMargin_c13eb {
+        margin: 0 9rem 18rem;
+    }
+
+.MemberChangeApp_base_bce77 {
+    --view-padding-left: 375rem;
+    --view-align-items: flex-start;
+}
+    .mediaSmallWidth .MemberChangeApp_base_bce77 {
+        --left-view-paddingt: 385rem;
+}
+    .mediaMediumWidth .MemberChangeApp_base_bce77 {
+        --view-padding-left: 415rem;
+}
+    .mediaLargeWidth .MemberChangeApp_base_bce77 {
+        --view-padding-left: 0;
+        --view-align-items: center;
+}
+    .MemberChangeApp_base_bce77 {
+    display: flex;
+    flex-direction: column;
+    align-items: var(--view-align-items);
+    width: 100%;
+    height: 100%;
+    padding-left: var(--view-padding-left);
+    background: url('R.images.gui.maps.icons.windows.background') no-repeat center / cover;
+    position: relative;
+}
+.MemberChangeApp_flagIcon_dbb8f {
+    width: 570rem;
+    height: 238rem;
+    position: absolute;
+    top: 0;
+    left: 50vw;
+    transform: translateX(-50%);
+}
+.mediaMediumWidth .MemberChangeApp_flagIcon_dbb8f {
+        width: 1080rem;
+        height: 454rem;
+}
+.MemberChangeApp_widget_d9573 {
+    width: 370rem;
+    position: absolute;
+    top: calc(var(--external-padding-top) + 5rem);
+    left: 5rem;
+}
+.MemberChangeApp_base__externalPaddings_a5fbb .MemberChangeApp_widget_d9573 {
+        top: 100rem;
+    }
+.mediaMediumWidth .MemberChangeApp_widget_d9573 {
+        top: calc(var(--external-padding-top) + 8rem);
+}
+.mediaLargeWidth .MemberChangeApp_widget_d9573 {
+        top: calc(var(--external-padding-top) + 10rem);
+}
+.mediaExtraLargeWidth .MemberChangeApp_widget_d9573 {
+        top: calc(var(--external-padding-top) + 12rem);
+}
+.MemberChangeApp_ttc_f7aa5 {
+    display: none;
+    width: 415rem;
+    max-height: calc(100vh - 170rem);
+    position: absolute;
+    top: 60rem;
+    right: 0;
+    bottom: 60rem;
+}
+.mediaLargeWidth .MemberChangeApp_ttc_f7aa5 {
+        display: flex;
+}
+.MemberChangeApp_base__externalPaddings_a5fbb .MemberChangeApp_ttc_f7aa5 {
+        top: 100rem;
+    }
+.MemberChangeApp_discount_d6585 {
+    color: #FFDD99;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 34rem;
+    margin: 10rem 0;
+    background: linear-gradient(
+            270deg,
+            rgba(63, 34, 0, 0) 0%,
+            rgba(63, 34, 0, .48) 30%,
+            rgba(63, 34, 0, .52) 50%,
+            rgba(63, 34, 0, .48) 70%,
+            rgba(63, 34, 0, 0) 100%
+    );
+    text-shadow: 0 0 4rem rgba(255, 127, 0, .25), 0 0 8rem #ff2a00, 0 0 15rem #e52;
+}
+.mediaMedium .MemberChangeApp_discount_d6585 {
+        color: #FFDD99;
+        font-size: 16rem;
+        font-weight: 400;
+        line-height: 1.25;
+        height: 38rem;
+}
+.MemberChangeApp_content_b3ce6 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 618rem;
+    padding-top: calc(var(--external-padding-top) - 3rem);
+    padding-bottom: var(--external-padding-bottom);
+    position: relative;
+}
+.mediaSmallWidth .MemberChangeApp_content_b3ce6 {
+        width: 936rem;
+}
+.mediaMediumWidth .MemberChangeApp_content_b3ce6 {
+        padding-top: calc(var(--external-padding-top) - 1rem);
+}
+.mediaLargeWidth .MemberChangeApp_content_b3ce6 {
+        padding-top: calc(var(--external-padding-top) + 1rem);
+}
+.mediaExtraLargeWidth .MemberChangeApp_content_b3ce6 {
+        width: 1254rem;
+        padding-top: calc(var(--external-padding-top) + 3rem);
+}
+.MemberChangeApp_base__qHDWidth_edf46 .MemberChangeApp_content_b3ce6 {
+        width: 1572rem;
+    }
+

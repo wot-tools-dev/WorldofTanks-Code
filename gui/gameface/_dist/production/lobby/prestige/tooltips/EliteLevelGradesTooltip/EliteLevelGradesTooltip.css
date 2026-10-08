@@ -1,0 +1,454 @@
+.TooltipDecorator_base_bf61f {
+    display: flex;
+    position: absolute;
+}
+
+.TooltipDecorator_base__theme-default_bf8f8 .TooltipDecorator_decorator_f4de8 {
+        padding: 4rem 6rem 8rem;
+        border-image-source: url('R.atlases.components.tooltip_background');
+        border-image-slice: 24 fill;
+        border-image-width: 24rem;
+        position: relative;
+    }
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.App_base_bd5f2 {
+    display: flex;
+    flex-direction: column;
+    width: 428rem;
+    padding: 24rem;
+    overflow: hidden;
+}
+
+.App_extended_fcbc6 {
+    width: 450rem;
+}
+
+.App_header_d8f24 {
+    color: #E9E2BF;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 8rem;
+}
+
+.App_body_a40c8 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.App_progress_a24ba {
+    margin-top: 102rem;
+}
+
+.App_extended_fcbc6 .App_progress_a24ba {
+        margin: 102rem 11rem 0;
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBar_base_c37bf {
+    width: 100%;
+    height: var(--progress-bg-height);
+    position: relative;
+}
+.ProgressBar_base__small_af6d6 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_background_a4e18 {
+    width: 100%;
+    max-width: 8001px;
+    height: 100%;
+    background-image: var(--progress-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ProgressBar_background__small_e2b95 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_lineWrapper_e670c {
+    display: flex;
+    flex: 1;
+}
+
+
+.ProgressBarBlink_base_d7125 {
+    width: var(--progress-glow-width);
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    pointer-events: none;
+}
+
+    .ProgressBarBlink_base__small_b92f8 {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressLineImpose_base_a3558 {
+    max-width: 8001px;
+    height: 100%;
+    background-color: var(--progress-line-base);
+    filter: var(--progress-line-filter);
+    position: relative;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressLineImpose_base__disabled_a9e8e {
+        background-color: var(--progress-line-disabled);
+    }
+.ProgressLineImpose_base__finished_f889e {
+        background-color: var(--progress-line-finished);
+    }
+.ProgressLineImpose_base__withoutBounce_c0ff9 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressLineImpose_pattern_a4023 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: var(--progress-pattern-border-size);
+    bottom: var(--progress-pattern-border-size);
+    left: var(--progress-pattern-border-size);
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_pattern_a4023 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-disabled);
+        left: 0;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-finished);
+    }
+.ProgressLineImpose_gradient_f73c0 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-gradient);
+    mix-blend-mode: var(--progress-pattern-gradient-mixBlendMode);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: 0;
+    bottom: var(--progress-pattern-border-size);
+    left: 0;
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_gradient_f73c0 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_gradient_f73c0 {
+        display: none;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_gradient_f73c0 {
+        background-image: var(--progress-pattern-gradient-finished);
+    }
+.ProgressLineImpose_glow_f237a {
+    width: var(--progress-glow-width);
+    max-width: 8001px;
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.ProgressLineImpose_glow__left_b7ffa {
+        left: var(--progress-pattern-border-size);
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_glow_f237a,
+    .ProgressLineImpose_base__finished_f889e .ProgressLineImpose_glow_f237a {
+        display: none;
+    }
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_glow_f237a {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaGrow_base_f4d46 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressBarDeltaGrow_glow_c912d {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 .ProgressBarDeltaGrow_glow_c912d {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaSimple_base_cfcd3 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.ProgressBarDeltaSimple_delta_dc2b6 {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1), cubic-bezier(.21, .61, .35, 1);
+    transition-property: width, transform;
+}
+
+.PrestigeProgressLabel_base_d20b4 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+.PrestigeProgressLabel_letter_bb96d {
+    background: no-repeat center / contain;
+}
+.PrestigeProgressLabel_base__extraSmall_f0184 .PrestigeProgressLabel_letter_bb96d {
+        width: 6rem;
+        height: 12rem;
+    }
+.PrestigeProgressLabel_base__extraSmall_f0184 .PrestigeProgressLabel_letter__s1_e5dc5 {
+            width: 5rem;
+        }
+.PrestigeProgressLabel_base__small_a0690 .PrestigeProgressLabel_letter_bb96d {
+        width: 9rem;
+        height: 19rem;
+    }
+.PrestigeProgressLabel_base__small_a0690 .PrestigeProgressLabel_letter__s1_e5dc5 {
+            width: 8rem;
+        }
+.PrestigeProgressLabel_base__small_a0690 .PrestigeProgressLabel_letter__s4_b5297 {
+            width: 10rem;
+        }
+.PrestigeProgressLabel_base__smallExtended_e3726 .PrestigeProgressLabel_letter_bb96d {
+        width: 16rem;
+        height: 33rem;
+    }
+.PrestigeProgressLabel_base__smallExtended_e3726 .PrestigeProgressLabel_letter__s1_e5dc5 {
+            width: 12rem;
+        }
+.PrestigeProgressLabel_base__medium_abb7c .PrestigeProgressLabel_letter_bb96d {
+        width: 23rem;
+        height: 48rem;
+    }
+.PrestigeProgressLabel_base__medium_abb7c .PrestigeProgressLabel_letter__s1_e5dc5 {
+            width: 17rem;
+        }
+.PrestigeProgressLabel_base__mediumExtended_dfd6b .PrestigeProgressLabel_letter_bb96d {
+        width: 39rem;
+        height: 88rem;
+    }
+.PrestigeProgressLabel_base__mediumExtended_dfd6b .PrestigeProgressLabel_letter__s1_e5dc5 {
+            width: 32rem;
+        }
+.PrestigeProgressLabel_base__large_b7efa .PrestigeProgressLabel_letter_bb96d {
+        width: 53rem;
+        height: 120rem;
+    }
+.PrestigeProgressLabel_base__large_b7efa .PrestigeProgressLabel_letter__s1_e5dc5 {
+            width: 43rem;
+        }
+.PrestigeProgressLabel_base__extraLarge_e4d2f .PrestigeProgressLabel_letter_bb96d {
+        width: 77rem;
+        height: 176rem;
+    }
+.PrestigeProgressLabel_base__extraLarge_e4d2f .PrestigeProgressLabel_letter__s1_e5dc5 {
+            width: 62rem;
+        }
+
+.PrestigeProgressSymbol_base_c598c {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+    .PrestigeProgressSymbol_base__extraSmall_e5f6c {
+        width: 48rem;
+        height: 48rem;
+    }
+
+    .PrestigeProgressSymbol_base__small_a98a3 {
+        width: 72rem;
+        height: 72rem;
+    }
+
+    .PrestigeProgressSymbol_base__smallExtended_c0441 {
+        width: 115rem;
+        height: 84rem;
+    }
+
+    .PrestigeProgressSymbol_base__medium_d727f {
+        width: 170rem;
+        height: 124rem;
+    }
+
+    .PrestigeProgressSymbol_base__mediumExtended_a60fa {
+        width: 296rem;
+        height: 222rem;
+    }
+
+    .PrestigeProgressSymbol_base__large_bb145 {
+        width: 400rem;
+        height: 300rem;
+    }
+
+    .PrestigeProgressSymbol_base__extraLarge_c0053 {
+        width: 600rem;
+        height: 450rem;
+    }
+.PrestigeProgressSymbol_icon_c3990 {
+    background: no-repeat center / contain;
+    position: absolute;
+}
+.PrestigeProgressSymbol_base__extraSmall_e5f6c .PrestigeProgressSymbol_icon_c3990 {
+        width: 48rem;
+        height: 48rem;
+    }
+.PrestigeProgressSymbol_base__small_a98a3 .PrestigeProgressSymbol_icon_c3990 {
+        width: 72rem;
+        height: 72rem;
+    }
+.PrestigeProgressSymbol_base__smallExtended_c0441 .PrestigeProgressSymbol_icon_c3990 {
+        width: 115rem;
+        height: 84rem;
+    }
+.PrestigeProgressSymbol_base__medium_d727f .PrestigeProgressSymbol_icon_c3990 {
+        width: 170rem;
+        height: 124rem;
+    }
+.PrestigeProgressSymbol_base__mediumExtended_a60fa .PrestigeProgressSymbol_icon_c3990 {
+        width: 296rem;
+        height: 222rem;
+    }
+.PrestigeProgressSymbol_base__large_bb145 .PrestigeProgressSymbol_icon_c3990 {
+        width: 400rem;
+        height: 300rem;
+    }
+.PrestigeProgressSymbol_base__extraLarge_c0053 .PrestigeProgressSymbol_icon_c3990 {
+        width: 600rem;
+        height: 450rem;
+    }
+
+.Progress_base_e24a4 {
+    padding: 0 16rem 38rem;
+}
+
+.Progress_wrapper_b7309 {
+    position: relative;
+}
+
+.Progress_emblem_ea642 {
+    position: absolute;
+    top: -17rem;
+    z-index: 1;
+    transform: translate(-50%, -100%);
+}
+
+.Progress_reached_e8d0b .Progress_emblem_ea642 {
+        opacity: .3;
+    }
+
+.Progress_lastReached_efcc0 .Progress_emblem_ea642 {
+        opacity: 1;
+        top: -9rem;
+    }
+
+.Progress_glow_e060d {
+    width: 179rem;
+    height: 179rem;
+    background: url('swf://gui/flash/animations/glows/rays.swf') no-repeat center / contain;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+}
+
+.Progress_level_b8324 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    position: absolute;
+    transform: translate(-50%, 10rem);
+}
+
+.Progress_reached_e8d0b .Progress_level_b8324 {
+        color: #FEAB34;
+    }
+
+.Progress_notch_fa340 {
+    width: 1rem;
+    height: 6rem;
+    background-color: #E9E2BF;
+    position: absolute;
+    top: -2rem;
+}
+
+.Progress_reached_e8d0b .Progress_notch_fa340 {
+        background-color: #fec94d;
+    }
+

@@ -1,0 +1,86 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "particles/Environment/Battle_Royal/Loot_Area/br_loot_area_end.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::AttachToTerrainComponent": {
+						"OverTerrainHeight": 0.5,
+						"YCutOffDistance": "2",
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::DistToTerrainComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"transfromLink": "3de6ede4-566a-4c8e-8931-a9a2d05fc86e"
+					},
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "particles/Environment/Battle_Royal/Loot_Area/br_area.model"
+					},
+					"cgf::TransformComponent": {
+						"scale": {
+							"x": 2.4000000953674316,
+							"y": 1.0,
+							"z": 2.4000000953674316
+						}
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "Effect_Model_with_Settings",
+				"uuid": "3de6ede4-566a-4c8e-8931-a9a2d05fc86e"
+			}
+		],
+		"components": {
+			"BW::RemoveGoDelayedComponent": {
+				"delay": 1.0,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"flags": [
+			"Static"
+		],
+		"name": "br_loot_area_end",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

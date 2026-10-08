@@ -1,0 +1,462 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"dynamicModelLinkType": "Self",
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "hit",
+										"lodScale": 1,
+										"path": "particles/Tank/customization/Ch47_BZ_176_KS_3Dst/Ch47_BZ_176_KS_3Dst_hit.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "0",
+											"loopCount": "0",
+											"speed": "1"
+										},
+										"weight": 1
+									}
+								]
+							},
+							"BW::ComponentsVisibilityController": {
+								"castShadows": "0",
+								"visibleInArcadeMode": "1",
+								"visibleInArtyMode": "1",
+								"visibleInDeathFreeCamMode": "1",
+								"visibleInDualGunMode": "0",
+								"visibleInKillCamMode": "1",
+								"visibleInLookAtKillerMode": "1",
+								"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+								"visibleInMapCaseArcadeMode": "1",
+								"visibleInMapCaseMode": true,
+								"visibleInPostmortemMode": "1",
+								"visibleInRespawnDeathMode": "1",
+								"visibleInSmEntityViewMode": "1",
+								"visibleInSmStrategicMode": "1",
+								"visibleInSniperMode": "0",
+								"visibleInStrategicMode": "1",
+								"visibleInTwinGunMode": "0"
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 0,
+									"y": 180,
+									"z": 0
+								}
+							}
+						},
+						"name": "Turret_glow",
+						"uuid": "a288a4d4-a7e2-4f39-a3b7-95f3e2f1024a"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Ch47_Attachment_Turret_01"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Turret_hit",
+				"uuid": "2c8ace07-e26a-4276-a689-bae7db272095"
+			},
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"castShadows": "0",
+										"visibleInArcadeMode": "1",
+										"visibleInArtyMode": "1",
+										"visibleInDeathFreeCamMode": "1",
+										"visibleInDualGunMode": "0",
+										"visibleInKillCamMode": "1",
+										"visibleInLookAtKillerMode": "1",
+										"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+										"visibleInMapCaseArcadeMode": "1",
+										"visibleInMapCaseMode": true,
+										"visibleInPostmortemMode": "1",
+										"visibleInRespawnDeathMode": "1",
+										"visibleInSmEntityViewMode": "1",
+										"visibleInSmStrategicMode": "1",
+										"visibleInSniperMode": "0",
+										"visibleInStrategicMode": "1",
+										"visibleInTwinGunMode": "0"
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Tank/customization/Ch47_BZ_176_KS_3Dst/ch47_bz_176_ks_3dst_smoke_idle.eff",
+										"emissionRate": 1,
+										"emissionSize": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"epicenterOffset": {
+											"x": 0,
+											"y": 0,
+											"z": 0
+										},
+										"fps": 1,
+										"gravity": 1,
+										"opacity": 1,
+										"startSpeed": {
+											"x": 1,
+											"y": 1
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 0,
+											"y": 0.15768,
+											"z": 3.1986
+										}
+									}
+								},
+								"name": "idle_particles",
+								"uuid": "a2994413-516c-449e-94a8-244a6e70c6ad"
+							}
+						],
+						"components": {
+							"BW::SequenceComponent": {
+								"activeLayer": 1,
+								"autoStart": true,
+								"layers": [
+									{
+										"alwaysEnabled": false,
+										"duration": 5,
+										"loop": true,
+										"pauseOnEnd": false,
+										"tracks": [
+											{
+												"endTime": 5,
+												"object": "a2994413-516c-449e-94a8-244a6e70c6ad",
+												"parameters": [
+													{
+														"component": "BW::Particle",
+														"keys": [
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 1e-06,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 1.9984,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 2.0984,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 4.9,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"tangents": {
+																	"left": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	},
+																	"right": {
+																		"x": 1.5708,
+																		"y": 1.5708,
+																		"z": 1.5708
+																	}
+																},
+																"time": 5,
+																"type": "Linear",
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "emissionRate"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											}
+										]
+									}
+								],
+								"speed": "1"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Hull_idle_particles",
+						"uuid": "6c351b0c-3bfa-3f8d-b7e4-33956bc3ef27"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"castShadows": "0",
+								"visibleInArcadeMode": "1",
+								"visibleInArtyMode": "1",
+								"visibleInDeathFreeCamMode": "1",
+								"visibleInDualGunMode": "0",
+								"visibleInKillCamMode": "1",
+								"visibleInLookAtKillerMode": "1",
+								"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+								"visibleInMapCaseArcadeMode": "1",
+								"visibleInMapCaseMode": true,
+								"visibleInPostmortemMode": "1",
+								"visibleInRespawnDeathMode": "1",
+								"visibleInSmEntityViewMode": "1",
+								"visibleInSmStrategicMode": "1",
+								"visibleInSniperMode": "0",
+								"visibleInStrategicMode": "1",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": "0",
+								"modelName": "particles/Tank/customization/Ch47_BZ_176_KS_3Dst/Ch47_BZ_176_KS_3Dst_glow.model"
+							},
+							"cgf::TransformComponent": {
+								"rotation": {
+									"x": 0,
+									"y": 180,
+									"z": 0
+								}
+							}
+						},
+						"name": "Hull_idle",
+						"uuid": "8f8a9557-9a83-4ff6-99e8-12fb0c639294"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Animator": {
+										"autoStart": false,
+										"disabledDomains": [
+											"Server"
+										],
+										"dynamicModelLinkType": "Self",
+										"layers": [
+											{
+												"autoStart": true,
+												"clip": "<Default Clip>",
+												"graphicsPreset": "TYPE_NULL_SHADING",
+												"layerName": "shot",
+												"lodScale": 1,
+												"path": "particles/Tank/customization/Ch47_BZ_176_KS_3Dst/Ch47_BZ_176_KS_3Dst_shot.seq",
+												"properties": {
+													"delay": "0",
+													"loop": "0",
+													"loopCount": "0",
+													"speed": "1"
+												},
+												"weight": 1
+											}
+										]
+									},
+									"BW::ComponentsVisibilityController": {
+										"castShadows": "0",
+										"visibleInArcadeMode": "1",
+										"visibleInArtyMode": "1",
+										"visibleInDeathFreeCamMode": "1",
+										"visibleInDualGunMode": "0",
+										"visibleInKillCamMode": "1",
+										"visibleInLookAtKillerMode": "1",
+										"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+										"visibleInMapCaseArcadeMode": "1",
+										"visibleInMapCaseMode": true,
+										"visibleInPostmortemMode": "1",
+										"visibleInRespawnDeathMode": "1",
+										"visibleInSmEntityViewMode": "1",
+										"visibleInSmStrategicMode": "1",
+										"visibleInSniperMode": "0",
+										"visibleInStrategicMode": "1",
+										"visibleInTwinGunMode": "0"
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "Hull_shot",
+								"uuid": "a2b021c6-041c-395b-be01-dc9020125797"
+							}
+						],
+						"components": {
+							"BW::SequenceComponent": {
+								"activeLayer": 1,
+								"autoStart": true,
+								"layers": [
+									{
+										"alwaysEnabled": false,
+										"duration": 2.5,
+										"tracks": [
+											{
+												"endTime": 2.5,
+												"object": "a2b021c6-041c-395b-be01-dc9020125797",
+												"parameters": [
+													{
+														"component": "BW::Animator",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 2.5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 2.5
+																}
+															}
+														],
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "time"
+															}
+														]
+													}
+												]
+											}
+										]
+									}
+								],
+								"speed": "1"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Hull_shot",
+						"uuid": "6151f959-177a-4fe3-86d1-ed0cd4427a74"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Ch47_Attachment_Hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "2b94d6a5-60dc-4e2f-9921-64b66c07bb64"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"decorType": "0",
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"isOverlayEnabled": "0",
+				"modelName": "vehicles/chinese/Ch47_BZ_176/_skins/Ch47_BZ_176_KS_3Dst/normal/lod0/Hull.model"
+			},
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"path": "vscript/plans/VFX/Ch47_BZ_176_KS_3Dst/Ch47_shoot_hit.xml"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "Ch47_BZ_176_KS_3Dst",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

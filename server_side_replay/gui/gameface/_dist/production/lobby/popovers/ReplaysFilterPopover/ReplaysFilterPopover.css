@@ -1,0 +1,1699 @@
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Counter_base_b457c {
+    display: flex;
+    min-width: 14rem;
+    height: 14rem;
+    position: relative;
+    z-index: 0;
+    animation: Counter_show_a62c2 ease-in-out forwards;
+}
+
+    .Counter_base__big_d6a57 {
+        min-width: 21rem;
+        height: 21rem;
+    }
+
+    .Counter_base__small_ea547 {
+        min-width: 13rem;
+        height: 13rem;
+    }
+
+    .Counter_base__empty_c2ad2 {
+        min-width: 6rem;
+        height: 6rem;
+    }
+
+    .Counter_base__animated_fb5ef {
+        animation-duration: .2s;
+    }
+
+    .Counter_base__hidden_b1e71 {
+        animation-name: Counter_hide_d1bf0;
+    }
+.Counter_bg_f25ac {
+    border: 1rem solid #fe4e0f;
+    border-radius: 7rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, .3),
+            0 0 6rem rgba(254,103,0, .2),
+            0 0 12rem 4rem rgba(249,0,0, .3);
+    background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+.Counter_base__big_d6a57 .Counter_bg_f25ac {
+        border-radius: 11rem;
+    }
+.Counter_base__small_ea547 .Counter_bg_f25ac {
+        border-radius: 7rem;
+    }
+.Counter_value_d1de3 {
+    display: flex;
+    padding: 0 4rem;
+    color: #fefeec;
+    font-size: 11rem;
+    line-height: 13rem;
+    white-space: nowrap;
+}
+.Counter_base__big_d6a57 .Counter_value_d1de3 {
+        padding: 0 7rem;
+        font-size: 14rem;
+        line-height: 20rem;
+    }
+.Counter_base__small_ea547 .Counter_value_d1de3 {
+        font-size: 9rem;
+        line-height: 12rem;
+    }
+.Counter_value__text_bb007 {
+        padding: 0 7rem;
+    }
+.Counter_base__big_d6a57 .Counter_value__text_bb007 {
+            padding: 0 10rem;
+        }
+.Counter_base__small_ea547 .Counter_value__text_bb007 {
+            padding: 0 5rem;
+            font-size: 10rem;
+        }
+.Counter_base__pattern_d1fff .Counter_value_d1de3 {
+        display: none;
+    }
+.Counter_plus_a405c {
+    position: relative;
+    top: -1rem;
+}
+.Counter_pattern_a4be2 {
+    display: none;
+}
+.Counter_base__pattern_d1fff .Counter_pattern_a4be2 {
+        display: block;
+        border-radius: 50%;
+        background-image: url('R.images.gui.maps.icons.components.counter.pattern');
+        opacity: .8;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+@keyframes Counter_show_a62c2 {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes Counter_hide_d1bf0 {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+.ToggleButton_base_caa17 {
+    border-radius: 2rem;
+    position: relative;
+}
+
+.ToggleButton_overlay_e42cd {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 2rem;
+    pointer-events: none;
+}
+
+.ToggleButton_base__active_ecc98 .ToggleButton_overlay_e42cd {
+        border: 1rem solid rgba(255, 195, 99, .75);
+        box-shadow: 0 0 0 1rem rgba(0, 0, 0, .6), 0 0 7px rgba(238, 112, 0, .5);
+        background: linear-gradient(
+            180deg,
+            rgba(255, 42, 0, .1) 0%,
+            rgba(255, 42, 0, 0) .01%,
+            rgba(255, 127, 0, .1) 100%
+        );
+    }
+
+.ToggleButton_button_ba83a {
+    padding: 0;
+}
+
+.ToggleButton_indicator_e7096 {
+    width: 40rem;
+    height: 29rem;
+    background: url('R.images.gui.maps.icons.buttons.toggle_indicator') no-repeat center / contain;
+    position: absolute;
+    bottom: -14rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    pointer-events: none;
+}
+
+.ToggleButton_base__active_ecc98 .ToggleButton_indicator_e7096 {
+        background-image: url('R.images.gui.maps.icons.buttons.toggle_indicator_active');
+    }
+
+.ToggleButton_counter_a5fc7 {
+    position: absolute;
+    top: -6rem;
+    right: -3rem;
+    pointer-events: none;
+}
+
+.FilterTitle_base_f1f54 {
+    display: flex;
+}
+
+.FilterTitle_label_bcb2f {
+    color: #595950;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+}
+
+.FilterTitle_discount_b0038 {
+    height: 18rem;
+    position: relative;
+}
+
+.FilterTitle_discountIcon_ae8ba {
+    width: 48rem;
+    height: 34rem;
+    background: url('R.images.server_side_replay.gui.maps.icons.discount') no-repeat center / contain;
+    mix-blend-mode: screen;
+    position: absolute;
+    top: -6rem;
+    left: -23rem;
+    pointer-events: none;
+}
+
+.ToggleIcon_base_c64a5 {
+    width: 34rem;
+    height: 24rem;
+}
+
+    .ToggleIcon_base__small_cd05f {
+        width: 30rem;
+        height: 20rem;
+    }
+
+.ToggleIcon_icon_d4ac4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: no-repeat 50% / 34rem 24rem;
+}
+
+.VehicleTier_base_ff2d2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 34rem;
+    height: 24rem;
+    color: #FEFEEC;
+    font-size: 11rem;
+    font-weight: 400;
+}
+
+    .VehicleTier_base__small_c25f5 {
+        width: 30rem;
+        height: 20rem;
+    }
+
+.ToggleButtonIcon_icon__vehicleType_becc4 {
+        background-size: 9rem 12rem;
+    }
+    .ToggleButtonIcon_icon__nation_d1c93,
+    .ToggleButtonIcon_icon__vehicleGradePrimary_ca811 {
+        background-size: 26rem 16rem;
+    }
+    .ToggleButtonIcon_icon__tankmanRole_fa2b1 {
+        background-size: 14rem 14rem;
+        opacity: .6;
+    }
+    .ToggleButtonIcon_icon__selected_efb26 .ToggleButtonIcon_icon__tankmanRole_fa2b1 {
+            opacity: 1;
+        }
+    .ToggleButtonIcon_icon__tankmanKind_d078c,
+    .ToggleButtonIcon_icon__vehicleGradeElite_f745f,
+    .ToggleButtonIcon_icon__locationRecruit_b6372,
+    .ToggleButtonIcon_icon__locationTankman_f7feb {
+        background-size: 24rem 24rem;
+    }
+    .ToggleButtonIcon_icon__personalDataType_c9484,
+    .ToggleButtonIcon_icon__tankmanKindDismissed_be3f8 {
+        background-size: 34rem 24rem;
+    }
+    .ToggleButtonIcon_icon__vehicleGradePremium_ffb9b {
+        background-size: 20rem 17rem;
+    }
+
+.FilterToggleGroup_base_ea2bf {
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.FilterToggleGroup_title_c000e {
+    padding-bottom: 8rem;
+}
+
+.FilterToggleGroup_content_cbefc {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.FilterToggleGroup_toggle_d1d6c {
+    width: 34rem;
+    height: 24rem;
+}
+
+.FilterToggleGroup_toggle_d1d6c + .FilterToggleGroup_toggle_d1d6c {
+        margin-left: 6rem;
+    }
+
+.FilterToggleGroup_base__inPopup_cb935 .FilterToggleGroup_toggle_d1d6c {
+        width: 30rem;
+        height: 20rem;
+        margin: 0 15rem 14rem 0;
+    }
+
+.PopoverDecorator_base_d0107 {
+    display: flex;
+    position: absolute;
+}
+
+.PopoverDecorator_decorator_b4f33 {
+    padding: 58rem;
+    border-image-source: url('R.images.gui.maps.icons.popovers.popover_bg');
+    border-image-slice: 90 fill;
+    border-image-width: 90rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+.PopoverDecorator_arrow_ef5d0 {
+    background: no-repeat 0 0 / contain;
+    position: absolute;
+}
+
+.PopoverDecorator_arrow__bottom_ebbbc,
+    .PopoverDecorator_arrow__top_bb330 {
+        width: 301rem;
+        height: 90rem;
+        margin: 0 58rem;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_top');
+        left: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2,
+    .PopoverDecorator_arrow__right_ffef7 {
+        width: 84rem;
+        height: 181rem;
+        margin: 58rem 0;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_left');
+        top: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2 {
+        right: 10rem;
+        transform: scaleX(-1) translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__right_ffef7 {
+        left: 10rem;
+        transform: translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__top_bb330 {
+        bottom: 8rem;
+        transform: scaleY(-1) translateX(-150rem);
+    }
+
+.PopoverDecorator_arrow__bottom_ebbbc {
+        top: 8rem;
+        transform: translateX(-150rem);
+    }
+
+.PopoverDecorator_closeBtn_dbed5 {
+    width: 18rem;
+    height: 18rem;
+    background: url('R.images.gui.maps.icons.popovers.close_button_slim_up') no-repeat 0 0 / contain;
+    position: absolute;
+    top: 6rem;
+    right: 6rem;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.PopoverDecorator_closeBtn_dbed5:hover {
+        filter: brightness(160%);
+    }
+
+.PopoverDecorator_closeBtn_dbed5:active {
+        background-image: url('R.images.gui.maps.icons.popovers.close_button_slim_press');
+        filter: brightness(100%);
+    }
+
+.PopoverDecorator_content_bc28d {
+    position: relative;
+    z-index: 2;
+}
+
+.Checkbox_base_cffc9 {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    cursor: pointer;
+}
+
+    .Checkbox_base__disabled_dc60b {
+        pointer-events: none;
+    }
+
+    .Checkbox_base__center_bcbc0 {
+        align-items: center;
+    }
+
+    .Checkbox_base__bottom_b8113 {
+        align-items: flex-end;
+    }
+
+.Checkbox_input_bdf00 {
+    border: 1rem solid rgba(190, 190, 190, .45);
+    border-radius: 2rem;
+    background-color: rgba(0, 0, 0, .3);
+    opacity: .6;
+    position: relative;
+    transition: background-color .1s linear;
+}
+
+.Checkbox_base__mouseDown_f0077 .Checkbox_input_bdf00 {
+        background-color: rgba(0, 0, 0, .4);
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_input_bdf00 {
+        width: 12rem;
+        height: 12rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_input_bdf00 {
+        width: 18rem;
+        height: 18rem;
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_input_bdf00 {
+        width: 24rem;
+        height: 24rem;
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_input_bdf00 {
+        width: 32rem;
+        height: 32rem;
+    }
+
+.Checkbox_alertOverlay_a1e3f {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    border: 1rem solid #feab34;
+    border-radius: 2rem;
+    box-shadow: inset 0 0 9rem rgba(0, 0, 0, .25);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Checkbox_base__alert_aa5f2 .Checkbox_alertOverlay_a1e3f {
+        animation: Checkbox_blink_f903e 2s ease-in-out infinite;
+    }
+
+.Checkbox_base__alert_aa5f2.Checkbox_base__checked_eac7a .Checkbox_alertOverlay_a1e3f,
+    .Checkbox_base__alert_aa5f2.Checkbox_base__disabled_dc60b .Checkbox_alertOverlay_a1e3f {
+        opacity: 0;
+        animation: initial;
+    }
+
+.Checkbox_inputHoverOverlay_f1bb9 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to top, #201f1c, #494741);
+    opacity: 0;
+    transition: opacity .1s linear;
+    pointer-events: none;
+}
+
+.Checkbox_base_cffc9:hover .Checkbox_inputHoverOverlay_f1bb9 {
+        opacity: .8;
+    }
+
+.Checkbox_base_cffc9.Checkbox_base__mouseDown_f0077:hover .Checkbox_inputHoverOverlay_f1bb9 {
+        opacity: 0;
+    }
+
+.Checkbox_highlight_bdfa7 {
+    background: no-repeat 50% / contain;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .1s linear;
+    pointer-events: none;
+}
+
+.Checkbox_base__checked_eac7a .Checkbox_highlight_bdfa7 {
+        opacity: 1;
+    }
+
+.Checkbox_base__checked_eac7a.Checkbox_base__disabled_dc60b .Checkbox_highlight_bdfa7 {
+        opacity: 0;
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        width: 34rem;
+        height: 34rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        width: 40rem;
+        height: 40rem;
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        width: 46rem;
+        height: 46rem;
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        width: 54rem;
+        height: 54rem;
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_s');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_m');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_l');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_xl');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_s_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_m_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_l_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_xl_green');
+    }
+
+.Checkbox_checkmark_e1fc6 {
+    background: center / contain no-repeat;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
+
+.Checkbox_base__checked_eac7a .Checkbox_checkmark_e1fc6 {
+        /* Using a transition causes the image to blink on appear */
+        animation: Checkbox_fadeIn_c9675 .1s linear 0 normal forwards;
+    }
+
+.Checkbox_base__checked_eac7a.Checkbox_base__disabled_dc60b .Checkbox_checkmark_e1fc6 {
+        opacity: .5;
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        width: 11rem;
+        height: 11rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        width: 19rem;
+        height: 20rem;
+        transform: translate(1rem, -4rem);
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        width: 23rem;
+        height: 24rem;
+        transform: translate(3rem, -3rem);
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        width: 36rem;
+        height: 36rem;
+        transform: translate(2rem, -8rem);
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_s');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_m');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_l');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_xl');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_s_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_m_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_l_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_xl_green');
+    }
+
+.Checkbox_label_bd63c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    padding-left: 10rem;
+    position: relative;
+}
+
+.Checkbox_labelContent_ae1ba {
+    color: #8c8c7e;
+    font-size: 14rem;
+    line-height: 1.15;
+    transition: color .1s linear;
+}
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_labelContent_ae1ba {
+        font-size: 16rem;
+    }
+
+.Checkbox_base_cffc9:hover .Checkbox_labelContent_ae1ba {
+        color: #c8c8b6;
+    }
+
+.Checkbox_base__disabled_dc60b .Checkbox_labelContent_ae1ba,
+    .Checkbox_base__disabled_dc60b:hover .Checkbox_labelContent_ae1ba {
+        color: #37362e;
+    }
+
+@keyframes Checkbox_fadeIn_c9675 {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes Checkbox_blink_f903e {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.CheckboxesList_base_c1cee {
+    position: relative;
+}
+
+.ApplyButton_base_ac55c {
+    min-width: 160rem;
+    height: 20rem;
+}
+
+.ResetButton_base_e4cda {
+    min-width: 160rem;
+    height: 20rem;
+}
+
+.Footer_base_c8d87 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20rem 0 0;
+    background: no-repeat url('R.images.server_side_replay.gui.maps.icons.dots') top / 264rem 9rem;
+}
+
+.Footer_button_b4e47 + .Footer_button_b4e47 {
+        margin-top: 10rem;
+    }
+
+.TextOverflow_base_f252d {
+    max-width: 100%;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.DropDownControl_base_b4a04 {
+    display: flex;
+    height: 100%;
+    border: 1rem solid #464538;
+    border-radius: 2rem;
+    box-shadow: inset 0 0 1rem #000, inset 0 0 8rem #000;
+    position: relative;
+    cursor: pointer;
+}
+
+    .DropDownControl_base__extraSmall_f9669 {
+        height: 20rem;
+    }
+
+    .DropDownControl_base__small_b66da {
+        height: 24rem;
+    }
+
+    .DropDownControl_base__medium_cd1f8 {
+        height: 32rem;
+    }
+
+    .DropDownControl_base__disabled_c50f0 {
+        cursor: default;
+    }
+
+    .DropDownControl_base__focused_b2d01 {
+        border-color: #75552c;
+    }
+
+    .DropDownControl_base__selected_e3330 {
+        border-color: #7AB300;
+    }
+.DropDownControl_stateHighlight_aecfa {
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+    background: linear-gradient(180deg, rgba(255,255,255, 0.1) 0%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+.DropDownControl_base__over_af801 .DropDownControl_stateHighlight_aecfa {
+        background: linear-gradient(180deg, rgba(255,255,255, 0.1) 0%, rgba(255,255,255, 0) 100%);
+        opacity: 1;
+    }
+.DropDownControl_base__down_d7067 .DropDownControl_stateHighlight_aecfa,
+    .DropDownControl_base__open_addb3 .DropDownControl_stateHighlight_aecfa {
+        background: linear-gradient(180deg, rgba(0,0,0, 0.5) 0%, rgba(0,0,0, 0.4) 100%);
+        opacity: 1;
+    }
+.DropDownControl_label_dfe67 {
+    display: flex;
+    align-items: flex-end;
+    flex: 1;
+    padding: 0 8rem;
+    color: #8C8C7E;
+}
+.DropDownControl_label__extraSmall_cd94c {
+        padding-bottom: 2rem;
+        font-size: 14rem;
+    }
+.DropDownControl_label__small_a7347 {
+        padding-bottom: 2rem;
+        font-size: 14rem;
+    }
+.DropDownControl_label__medium_afe3f {
+        padding-bottom: 5rem;
+        font-size: 16rem;
+    }
+.DropDownControl_label__placeholder_d00b0 {
+        color: #595950;
+    }
+.DropDownControl_base__down_d7067 .DropDownControl_label_dfe67,
+    .DropDownControl_base__open_addb3 .DropDownControl_label_dfe67 {
+        opacity: 0.8;
+    }
+.DropDownControl_base__disabled_c50f0 .DropDownControl_label_dfe67 {
+        color: #37362E;
+    }
+.DropDownControl_button_d1dad {
+    display: flex;
+    background: url('R.images.gui.maps.icons.components.dropdown.button') no-repeat center / 100%;
+    position: relative;
+    top: 1rem;
+    right: 1rem;
+    pointer-events: none;
+}
+.DropDownControl_button__extraSmall_ea0a6 {
+        width: 22rem;
+        height: 16rem;
+    }
+.DropDownControl_button__small_fb40c {
+        width: 22rem;
+        height: 20rem;
+    }
+.DropDownControl_button__medium_f5f3a {
+        width: 28rem;
+        height: 28rem;
+    }
+.DropDownControl_base__down_d7067 .DropDownControl_button_d1dad {
+        opacity: 0.6;
+    }
+.DropDownControl_base__open_addb3 .DropDownControl_button_d1dad {
+        opacity: 0.8;
+    }
+.DropDownControl_base__disabled_c50f0 .DropDownControl_button_d1dad {
+        opacity: 0.8;
+    }
+.DropDownControl_gradient_f7581 {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(255,255,255, 0.1) 0%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: opacity 0.25s ease-in-out;
+}
+.DropDownControl_base__over_af801 .DropDownControl_gradient_f7581 {
+        opacity: 1;
+    }
+.DropDownControl_disabled_f371f {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.library.disabled_pattern') center / 9rem;
+    opacity: 0.8;
+    position: absolute;
+}
+.DropDownControl_arrow_f088c {
+    background: no-repeat center / contain;
+    position: absolute;
+}
+.DropDownControl_arrow__extraSmall_f6f8e {
+        width: 9rem;
+        height: 6rem;
+        background-image: url('R.images.gui.maps.icons.components.dropdown.arrow_small');
+        top: 6rem;
+        left: 7rem;
+    }
+.DropDownControl_arrow__small_ac1fd {
+        width: 9rem;
+        height: 6rem;
+        background-image: url('R.images.gui.maps.icons.components.dropdown.arrow_small');
+        top: 7rem;
+        left: 7rem;
+    }
+.DropDownControl_arrow__medium_dc557 {
+        width: 13rem;
+        height: 7rem;
+        background-image: url('R.images.gui.maps.icons.components.dropdown.arrow_medium');
+        top: 11rem;
+        left: 8rem;
+    }
+.DropDownControl_base__open_addb3 .DropDownControl_arrow_f088c {
+        transform: rotate(180deg);
+    }
+.DropDownControl_alert_aeaa3 {
+    border: 1rem solid #EE7000;
+    border-radius: 2rem;
+    box-shadow: inset 0 0 6rem rgba(141,13,3, 0.1);
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    z-index: 1;
+    animation: DropDownControl_blink_e0aa7 2s ease-in-out infinite;
+    pointer-events: none;
+}
+@keyframes DropDownControl_blink_e0aa7 {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.HorizontalBar_base_fa517 {
+    display: flex;
+    width: 100%;
+    height: 13rem;
+    visibility: hidden;
+    position: relative;
+}
+
+    .HorizontalBar_base__active_ad89b {
+        visibility: visible;
+    }
+
+    .HorizontalBar_base_fa517 .disable,
+    .HorizontalBar_base_fa517 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.HorizontalBar_leftButton_eb8c3,
+.HorizontalBar_rightButton_f5116 {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transform: rotate(-90deg);
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_leftButton_eb8c3:hover, .HorizontalBar_rightButton_f5116:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_leftButton_eb8c3 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.HorizontalBar_rightButton_f5116 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.HorizontalBar_track_fd3af {
+    flex: 1;
+    margin: 0 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0 {
+    display: none;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 20rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb_horizontal') no-repeat center / 8rem 7rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_rail_a3d9e {
+    height: 0;
+    border-top: 1rem solid #2f2e24;
+    position: absolute;
+    top: 6rem;
+    right: 5rem;
+    left: 5rem;
+}
+
+.HorizontalBar_rail_a3d9e:hover {
+        opacity: .7;
+    }
+
+
+.HorizontalScroll_base_a33a9 {
+    width: 100%;
+}
+
+.HorizontalScroll_wrapper_b622e {
+    display: flex;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.HorizontalScroll_defaultScrollArea_a2315 {
+    width: 100%;
+    margin-bottom: 7rem;
+}
+
+.VerticalBar_base_b5610 {
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    height: 100%;
+    visibility: hidden;
+    position: relative;
+}
+
+    .VerticalBar_base__active_be260 {
+        visibility: visible;
+    }
+
+    .VerticalBar_base_b5610 .disable,
+    .VerticalBar_base_b5610 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.VerticalBar_topButton_c2227,
+.VerticalBar_bottomButton_ef09b {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_topButton_c2227:hover, .VerticalBar_bottomButton_ef09b:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_topButton_c2227 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.VerticalBar_bottomButton_ef09b {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.VerticalBar_track_e3345 {
+    flex: 1;
+    margin: 1rem 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7 {
+    display: none;
+    flex: 0 0 13rem;
+    width: 13rem;
+    height: 100%;
+    min-height: 20rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb') no-repeat center / 7rem 8rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_rail_ff232 {
+    width: 0;
+    height: 100%;
+    border-left: 1rem solid #2f2e24;
+    border-top: 5rem solid transparent;
+    border-bottom: 5rem solid transparent;
+    position: absolute;
+    top: 0;
+    left: 6rem;
+    z-index: 0;
+}
+
+.VerticalBar_rail_ff232:hover {
+        opacity: .7;
+    }
+
+
+.VerticalScroll_content_fe263 {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.VerticalScroll_defaultScroll_e27f5 {
+    display: flex;
+}
+
+.VerticalScroll_bar_b8700 {
+    flex: 1;
+    margin-left: 7rem;
+}
+
+.VerticalScroll_area_b5a82 {
+    flex: 1;
+}
+
+/* bugfix WOTD-242261: due to using Chat as Subview in MembersWindow in platoon feature
+2 bundles (Chat.css and MembersWindow.css) start to conflict with each other
+
+for example, provided selectors as css mixClasses for Scroll component can be overwritten by basic css classes of Scroll component
+because both in Chat.tsx and MembersWindow.tsx <Scroll> component is used
+
+so we just add specificity to css classes here
+*/
+
+.VerticalAutoScroll_base_b085b .VerticalAutoScroll_content_ed66c {
+        height: auto;
+        min-height: 1rem;
+        max-height: 100%;
+    }
+
+.VerticalAutoScroll_base_b085b .VerticalAutoScroll_barBase_a0d4b {
+        position: absolute;
+        right: 0;
+    }
+
+.DropDownItem_base_b1872 {
+    padding-left: 8rem;
+    padding-right: 8rem;
+    color: #8C8C7E;
+    cursor: pointer;
+}
+
+    .DropDownItem_base_b1872:hover {
+        background-color: #1c1b12;
+    }
+
+    .DropDownItem_base__extraSmall_b4968 {
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+    }
+
+    .DropDownItem_base__small_ee688 {
+        padding-top: 3rem;
+        padding-bottom: 5rem;
+    }
+
+    .DropDownItem_base__medium_e9dad {
+        padding-top: 6rem;
+        padding-bottom: 8rem;
+    }
+
+    .DropDownItem_base__selected_e32c1 {
+        color: #CBAC77;
+    }
+
+    .DropDownItem_base__disabled_f1cca {
+        color: #37362E;
+        pointer-events: none;
+    }
+
+.DropDownItems_base__withScroll_f8e4b {
+        padding-right: 15rem;
+    }
+
+.DropDownList_base_f9f72 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 198rem;
+    position: relative;
+}
+
+    .DropDownList_base__extraSmall_c6e48 {
+        font-size: 14rem;
+        line-height: 16rem;
+    }
+
+    .DropDownList_base__small_c57cf {
+        font-size: 14rem;
+        line-height: 16rem;
+    }
+
+    .DropDownList_base__medium_a87a8 {
+        font-size: 16rem;
+        line-height: 18rem;
+    }
+
+.PureDropDown_base_b17b1 {
+    display: flex;
+    flex-direction: column;
+    width: 200rem;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem rgba(0,0,0, .6);
+    background-color: rgba(23,23,15, .8);
+    position: relative;
+}
+
+    .PureDropDown_base__extraSmall_eb920 {
+        height: 20rem;
+    }
+
+    .PureDropDown_base__small_c0569 {
+        height: 24rem;
+    }
+
+    .PureDropDown_base__medium_b4a93 {
+        height: 32rem;
+    }
+.PureDropDown_control__down_ed9e5 {
+        z-index: 3;
+    }
+.PureDropDown_list_b86f7 {
+    display: flex;
+    width: 100%;
+    border: 1rem solid #464538;
+    border-radius: 2rem;
+    background-color: #090906;
+    position: absolute;
+    left: 0;
+    transition: opacity .25s;
+}
+.PureDropDown_list__up_d0a7b {
+        opacity: 0;
+        z-index: -1;
+        pointer-events: none;
+    }
+.PureDropDown_list__down_c3239 {
+        opacity: 1;
+        z-index: 2;
+    }
+.PureDropDown_list__under_ae95e {
+        margin-top: -1rem;
+        top: 100%;
+    }
+.PureDropDown_list__above_a75a6 {
+        top: 1rem;
+        transform: translateY(-100%);
+    }
+
+.VirtualGrid_base_b299d {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.EmptyState_base_b8bdc {
+    color: #595950;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+    white-space: pre;
+}
+
+.SortButton_base_acf43 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+    .SortButton_base__disabled_cdf76 {
+        cursor: default;
+    }
+
+.SortButton_sortDirection_ed36d {
+    display: none;
+    width: 29rem;
+    height: 14rem;
+    background: no-repeat url('R.images.server_side_replay.gui.maps.icons.arrow_down') top / cover;
+    position: absolute;
+    bottom: -5rem;
+    left: 50%;
+    transform: translateX(-15rem);
+}
+
+.SortButton_base__current_d83ba .SortButton_sortDirection_ed36d {
+        display: flex;
+    }
+
+.SortButton_base__isAscending_a6e65 .SortButton_sortDirection_ed36d {
+        height: 11rem;
+        background-image: url('R.images.server_side_replay.gui.maps.icons.arrow_up');
+        bottom: -2rem;
+    }
+
+.SortButtonContent_icon_a4994 {
+    width: 27rem;
+    height: 17rem;
+    background: no-repeat top / cover;
+}
+
+    .SortButtonContent_icon__type_d5b55 {
+        background-image: url('R.images.gui.maps.icons.filters.tanks.all');
+    }
+
+    .SortButtonContent_icon__tier_ac663 {
+        background-image: url('R.images.gui.maps.icons.filters.levels.level_all');
+    }
+
+.SortButtonContent_name_c45a4 {
+    color: #595950;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.Header_base_dfea2 {
+    display: flex;
+    width: 100%;
+    height: 30rem;
+    position: relative;
+}
+
+.Header_divider_b11c0 {
+    width: 280rem;
+    height: 80rem;
+    background: no-repeat url('R.images.server_side_replay.gui.maps.icons.lip') center / cover;
+    position: absolute;
+    top: -10rem;
+    left: -18rem;
+    pointer-events: none;
+}
+
+.Header_button_b8135 {
+    display: flex;
+    position: relative;
+    z-index: 1;
+}
+
+.Header_button__tier_f0b29,
+    .Header_button__type_d6038 {
+        width: 45rem;
+    }
+
+.Header_button__name_cda92 {
+        flex: 1;
+    }
+
+.Header_button_b8135 + .Header_button_b8135 {
+        background: no-repeat url('R.images.server_side_replay.gui.maps.icons.separator') left / 3rem 32rem;
+    }
+
+.VehicleTypeIcon_base_d5daa {
+    background: no-repeat center / contain;
+}
+
+    .VehicleTypeIcon_base__big_c04e4 {
+        width: 83rem;
+        height: 74rem;
+    }
+
+    .VehicleTypeIcon_base__c_44x44_ee95b {
+        width: 44rem;
+        height: 44rem;
+    }
+
+    .VehicleTypeIcon_base__c_48x48_specSlot_dd006 {
+        width: 48rem;
+        height: 48rem;
+    }
+
+    .VehicleTypeIcon_base__c_60x54_a620f {
+        width: 60rem;
+        height: 54rem;
+    }
+
+.Content_base_ecb61 {
+    display: flex;
+    width: 100%;
+    height: 33rem;
+    border-top: 1rem solid transparent;
+    color: #8C8C7E;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+    .Content_base__selected_d950b {
+        box-shadow: inset 0 0 10rem rgba(242, 242, 230, .05);
+        background: linear-gradient(
+            270deg,
+            rgba(242, 242, 230, 0) 0%,
+            rgba(242, 242, 230, .05) 15%,
+            rgba(242, 242, 230, .05) 85%,
+            rgba(242, 242, 230, 0) 100%
+        );
+    }
+
+    .Content_base_ecb61 + .Content_base_ecb61 {
+        border-top: 1rem solid;
+        border-image: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(255, 255, 255, .05) 15%,
+            rgba(255, 255, 255, .05) 85%,
+            rgba(0, 0, 0, 0) 100%
+        ) 1;
+    }
+
+.Content_selectedFrame_a3bef {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1rem solid #7a3f00;
+    pointer-events: none;
+}
+
+.Content_tier_a116d,
+.Content_type_cc0f6 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45rem;
+    position: relative;
+}
+
+.Content_typeIcon_a9764 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-22rem, -22rem);
+}
+
+.Content_name_b55c9 {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    padding-left: 65rem;
+    background: no-repeat top left / 124rem 31rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.VehicleList_base_ee1a1 {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+    height: 164rem;
+}
+.VehicleList_gridWrapper_ccc25 {
+    flex: 1;
+    width: 257rem;
+    margin-right: -27rem;
+}
+
+.ReplaysFilterPopoverApp_base_d4bcd {
+    display: flex;
+    flex-direction: column;
+    width: 294rem;
+}
+.ReplaysFilterPopoverApp_title_ce81b {
+    color: #E9E2BF;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 1.1;
+    padding: 18rem 26rem 12rem;
+    position: relative;
+}
+.ReplaysFilterPopoverApp_divider_b758b {
+    width: 262rem;
+    height: 80rem;
+    background: no-repeat url('R.images.server_side_replay.gui.maps.icons.lip') center / 280rem 80rem;
+    position: absolute;
+    top: 13rem;
+    left: 1rem;
+}
+.ReplaysFilterPopoverApp_base__withVehicleFilter_dda04 .ReplaysFilterPopoverApp_divider_b758b {
+        width: 280rem;
+        left: 7rem;
+    }
+.ReplaysFilterPopoverApp_content_db98c {
+    display: flex;
+    flex-direction: column;
+    padding: 20rem 26rem;
+}
+.ReplaysFilterPopoverApp_filterGroup_ed7fa {
+    margin-right: -15rem;
+}
+.ReplaysFilterPopoverApp_filterGroup_ed7fa + .ReplaysFilterPopoverApp_filterGroup_ed7fa {
+        margin-top: 8rem;
+    }
+.ReplaysFilterPopoverApp_vehicles_c602f,
+.ReplaysFilterPopoverApp_filtersSection_e4119 {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+}
+.ReplaysFilterPopoverApp_lastDaysDropdown_f9da5 {
+    width: 100%;
+}
+

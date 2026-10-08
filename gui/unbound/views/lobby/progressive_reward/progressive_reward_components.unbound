@@ -1,0 +1,232 @@
+(def layout ProgressiveRewardProgressBlock(delay:number=0.1)
+    (scope
+        (event evStepsAnimationComplete)
+        (var progress_steps:array = [])
+    )
+    (block
+        (style
+            (width = 100%)
+            (height = 70px)
+            (align = "center|bottom")
+        )
+        (element LootAnimation 'ProgressiveRewardStepRenderer' "delay" true
+            (scope
+                (bind renderer_array "progress_steps")
+                (dispatch evStepsAnimationComplete dir=1 init=false on='evOnEndAnimation')
+            )
+        )
+    )
+)
+
+(def layout ProgressiveRewardStepRenderer(model:dict)
+    (macro ProgressiveRewardStepModel)
+    (scope
+        (event evShowComplete)
+        (var isBig:bool = false)
+        (bind isBig "model.rewardType == PR_TYPE_BIG || model.rewardType == PR_TYPE_BIG_HIDDEN")
+        (var isNotAchived:bool = false)
+        (bind isNotAchived "model.stepState == PR_STATE_NOT_RECEIVED")
+        (var isShowStarted:bool = false)
+    )
+    (style
+        (alpha = 0)
+    )
+    (mouseChildren = false)
+    (image
+        (style
+            (bind alpha "isNotAchived ? 0.2 : 1")
+            (marginLeft = -23px)
+        )
+        (source  = "R.images.gui.maps.icons.progressiveReward.separator_rewards()")
+        (bind visible "model.hasPreviousStep")
+    )
+    (image
+        (style
+            (bind marginTop "isBig ? -36px : -33px")
+            (marginRight = -10px)
+            (bind alpha "isNotAchived ? 0.3 : 1")
+        )
+        (dispatch evShowComplete on='complete')
+        (bind source "R.images.gui.maps.icons.progressiveReward.gifts[isBig ? 'big' : 'normal'][model.stepState]()")
+    )
+
+    (controller $Animation
+        (bindcall play to={alpha:1} duration=0.3
+            (bind enabled "isShowStarted")
+        )
+    )
+)
+
+
+(def layout BlueprintProgressBar()
+    (macro BlueprintScreenTooltips)
+    (scope
+        (var isEnabled:bool = false)
+        (var glowEnabled:bool = false)
+        (var fragments:number = 0)
+        (var fragmentsTotal:number = 1)
+		(var canConvert:bool = true)
+        (var vehicleCD:number = 0)
+        (var btnWidth:number = 163)
+        (var btnHeight:number = 31)
+
+        (event evBtnLeftClickEvent)
+        (event evBtnUpEvent)
+        (event evBtnDownEvent)
+        (event evBtnOverEvent)
+        (event evBtnOutEvent)
+
+        (var progressValue:number = "fragments/max(fragmentsTotal, 1)")
+        (var label:str = '')
+        (bind label "TextFormat(
+                        R.strings.blueprints.blueprintProgressBar.inProgress(),
+                        {values: htmlTextStyle(TextFormat(
+                                R.strings.blueprints.blueprintProgressBar.inProgress.values(),
+                                {current:htmlTextStyle(fragments, 'CreditsTextStyle'), total:fragmentsTotal}
+                            ),
+                            'MainTextStyle'
+                        )}
+                    )"
+            (bind enabled "progressValue < 1")
+        )
+        (bind label "R.strings.menu.contextMenu.goToBlueprint()"
+            (bind enabled "progressValue >= 1")
+        )
+
+        (var alphaGridOffset:number = 0)
+        (controller $Animation
+            (bindcall stop
+                (event "evBtnOutEvent")
+            )
+            (bindcall play duration=0.2 to={alphaGridOffset:20}
+                (event "evBtnOverEvent")
+            )
+            (bindcall play duration=0.2 to={alphaGridOffset:0}
+                (event "evBtnOutEvent")
+            )
+            (bindcall play duration=0.2 to={alphaGridOffset:-10}
+                (event "evBtnDownEvent")
+            )
+            (bindcall play duration=0.2 to={alphaGridOffset:0}
+                (event "evBtnUpEvent")
+            )
+        )
+    )
+
+    (dispatch evBtnLeftClickEvent on='click' dir=1 (enabled="isEnabled && $event.buttonIdx == MOUSE.LEFT"))
+    (dispatch evBtnUpEvent on='mouseUp' (enabled="isEnabled && $event.buttonIdx == MOUSE.LEFT"))
+    (dispatch evBtnDownEvent on='mouseDown' (enabled="isEnabled && $event.buttonIdx == MOUSE.LEFT"))
+    (dispatch evBtnOverEvent on='rollOver' (enabled="isEnabled"))
+    (dispatch evBtnOutEvent on='rollOut' (enabled="isEnabled"))
+
+    (style
+        (bind width "btnWidth")
+        (bind height "btnHeight")
+    )
+    (block
+        (name = 'progressBar')
+        (buttonMode = true)
+        (mouseChildren = false)
+        (style
+            (position = "absolute")
+            (width = 100%)
+            (height = 100%)
+            (backgroundColor = 0x4d006fb0)
+        )
+        (image
+            (name = 'border')
+            (style
+                (position = "absolute")
+                (hcenter = 0px)
+                (vcenter = 0px)
+                (width = "btnWidth + 24px")
+                (height = "btnHeight + 24px")
+                (scale9grid = "Rect(15, 15, 290, 5)")
+            )
+            (source = "R.atlases.components.button_slot_normal()")
+        )
+        (image
+            (name = 'glowBG')
+            (style
+                (position = "absolute")
+                (width = 100%)
+                (height = 100%)
+                (blendMode = 'add')
+            )
+            (source = "R.images.gui.maps.icons.blueprints.slot_glow()")
+            (bind visible "glowEnabled")
+        )
+        (image
+            (name = 'gridBG')
+            (style
+                (position = "absolute")
+                (width = 100%)
+                (height = 100%)
+                (blendMode = 'add')
+            )
+            (source = "R.images.gui.maps.icons.blueprints.grid_slot()")
+            (bind colorTransform "{alphaOffset:alphaGridOffset}")
+        )
+        (block
+            (name = 'progressBlock')
+            (style
+                (position = "absolute")
+                (backgroundColor = 0x7f0471D6)
+                (width = 100%)
+                (height = 100%)
+                (blendMode = 'add')
+            )
+            (bind scaleX "progressValue")
+        )
+        (block
+            (name = 'overlayBG')
+            (style
+                (position = "absolute")
+                (width = 100%)
+                (height = 100%)
+                (blendMode = 'overlay')
+                (backgroundImage = "R.images.gui.maps.icons.blueprints.progressBarGrdnt()")
+                (backgroundSize = "fill")
+            )
+        )
+        (tf
+            (bind htmlText "htmlTextStyle(label, 'CreditsTextStyle', 'center')")
+            (style
+                (position = "absolute")
+                (width = 100%)
+                (blendMode = 'add')
+                (vcenter = 0)
+            )
+        )
+
+        (controller $ToolTip
+            (bindcall args tooltipId="TOOLTIP_BLUEPRINT" vehicleCD="vehicleCD" init=true)
+            (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+            (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            (bind enabled "vehicleCD > 0")
+        )
+    )
+    (block
+        (name = 'plus')
+        (buttonMode = true)
+        (mouseChildren = false)
+        (bind visible "canConvert && progressValue < 1")
+        (style
+            (position = "absolute")
+            (vcenter = -50%)
+            (hcenter = 50%)
+        )
+        (image
+            (source = "R.images.gui.maps.icons.blueprints.plus()")
+        )
+
+        (controller $ToolTip
+            (args tooltipId="TOOLTIP_BLUEPRINT_CONVERT_COUNT" vehicleCD="vehicleCD")
+            (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+            (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            (bind enabled "vehicleCD > 0")
+        )
+    )
+    
+    (macro ButtonSounds)
+)

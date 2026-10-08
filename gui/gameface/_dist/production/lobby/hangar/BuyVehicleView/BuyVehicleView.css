@@ -1,0 +1,1588 @@
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.Waiting_waiting_e0758 {
+    color: #FFC363;
+}
+
+.Waiting_alertIcon_f8a6e {
+    width: 20rem;
+    height: 16rem;
+    background: url('R.images.gui.maps.icons.library.alertIcon') no-repeat 100% 1rem / contain;
+    position: relative;
+    right: 5rem;
+    left: 2rem;
+}
+
+.Waiting_frame1_ab1b7 {
+    animation: Waiting_colors_b4c61 3s linear infinite;
+    animation-delay: .1s;
+}
+
+.Waiting_frame2_d50db {
+    animation: Waiting_colors_b4c61 3s linear infinite;
+    animation-delay: .2s;
+}
+
+.Waiting_frame3_d202d {
+    animation: Waiting_colors_b4c61 3s linear infinite;
+    animation-delay: .3s;
+}
+
+@keyframes Waiting_colors_b4c61 {
+    0%,
+    10%,
+    20%,
+    30%,
+    40% {
+        opacity: .5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    60%,
+    70%,
+    80%,
+    90%,
+    100% {
+        opacity: .5;
+    }
+}
+
+.CurrencyItem_base_b4958 {
+    height: 20rem;
+    margin-left: 20rem;
+    padding-left: 20rem;
+    color: #C9C9B6;
+    font-size: 14rem;
+    line-height: 1.3;
+    position: relative;
+}
+
+    .CurrencyItem_base__credits_e2bf8 {
+        color: #CED9D9;
+    }
+
+    .CurrencyItem_base__gold_f660b {
+        color: #FFC363;
+    }
+.CurrencyItem_icon_faaff {
+    width: 16rem;
+    height: 16rem;
+    background: no-repeat 0 0 / contain;
+    position: absolute;
+    top: 2rem;
+    left: 0;
+}
+.CurrencyItem_base__credits_e2bf8 .CurrencyItem_icon_faaff {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+        top: 3rem;
+    }
+.CurrencyItem_base__gold_f660b .CurrencyItem_icon_faaff {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+    }
+.CurrencyItem_base__crystal_bc26b .CurrencyItem_icon_faaff {
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+    }
+.CurrencyItem_base__freeXP_adee5 .CurrencyItem_icon_faaff {
+        width: 18rem;
+        height: 18rem;
+        background-image: url('R.images.gui.maps.icons.library.FreeXpIcon_2');
+        top: 1rem;
+        left: -1rem;
+    }
+.CurrencyItem_base__equipCoin_fd3b6 .CurrencyItem_icon_faaff {
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_1');
+    }
+
+.MoneyBalanceApp_base_f8d3a {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 100rem;
+    height: 40rem;
+    padding-right: 10rem;
+    background: url('R.images.gui.maps.icons.library.top_balance_bg') no-repeat 0 100% / contain;
+    position: relative;
+    z-index: 1;
+}
+
+.Currency_base_ed02c {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.Currency_icon_d34e3 {
+    width: 16rem;
+    height: 16rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: relative;
+    z-index: 1;
+}
+.Currency_base__small_af876 .Currency_icon_d34e3,
+    .Currency_base__big_f6388 .Currency_icon_d34e3,
+    .Currency_base__large_fb228 .Currency_icon_d34e3,
+    .Currency_base__extraLarge_d0b11 .Currency_icon_d34e3 {
+        transform: translateY(3rem);
+    }
+.Currency_icon__credits-small_cb645 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_2');
+    }
+.Currency_icon__credits-big_bb614 {
+        background-image: url('R.images.gui.maps.icons.library.CreditsIcon_1');
+    }
+.Currency_icon__credits-large_b65af {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_silver');
+    }
+.Currency_base__large_fb228 .Currency_icon__credits-large_b65af {
+            transform: translateY(4rem);
+        }
+.Currency_icon__credits-extraLarge_a4a53 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.credits_icon_80x80');
+    }
+.Currency_icon__gold-small_eee32 {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__gold-small_eee32 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__gold-big_e419a {
+        background-image: url('R.images.gui.maps.icons.library.GoldIcon_1');
+    }
+.Currency_base__big_f6388 .Currency_icon__gold-big_e419a {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-large_c3a99 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_gold');
+    }
+.Currency_base__large_fb228 .Currency_icon__gold-large_c3a99 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__gold-extraLarge_f2852 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.gold_icon_80x80');
+    }
+.Currency_icon__crystal-small_d8644 {
+        background-image: url('R.images.gui.maps.icons.library.CrystalIcon_2');
+    }
+.Currency_base__small_af876 .Currency_icon__crystal-small_d8644 {
+            transform: translateY(2rem);
+        }
+.Currency_icon__crystal-big_f2873 {
+        width: 23rem;
+        height: 22rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__crystal-big_f2873 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__crystal-large_cf068 {
+        width: 48rem;
+        height: 48rem;
+        margin-left: -1rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.money_bonds');
+    }
+.Currency_icon__crystal-extraLarge_a9843 {
+        width: 80rem;
+        height: 80rem;
+        background-image: url('R.images.gui.maps.icons.library.crystal_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__crystal-extraLarge_a9843 {
+            transform: translateY(7rem);
+        }
+.Currency_icon__xp-small_f3b46 {
+        background-image: url('R.images.gui.maps.icons.library.NormalXpIcon');
+    }
+.Currency_base__small_af876 .Currency_icon__xp-small_f3b46 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__xp-big_c984a {
+        width: 23rem;
+        height: 22rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xpIcon_23x22');
+    }
+.Currency_base__big_f6388 .Currency_icon__xp-big_c984a {
+            transform: translateY(2rem);
+        }
+.Currency_icon__xp-large_e9a09 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.exp');
+    }
+.Currency_icon__xp-extraLarge_f90f7 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.xp_tank_icon_80x80');
+    }
+.Currency_icon__freeXP-small_bcda1 {
+        background-image: url('R.images.gui.maps.icons.library.freeXPIcon16x16');
+    }
+.Currency_base__small_af876 .Currency_icon__freeXP-small_bcda1 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__freeXP-big_eb64e {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.freeXPIconBig24x24');
+    }
+.Currency_icon__freeXP-large_e46b0 {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.freeExp');
+    }
+.Currency_icon__freeXP-extraLarge_e41b1 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.free_xp_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__freeXP-extraLarge_e41b1 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__eliteXP-small_c4a51 {
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIcon-2');
+    }
+.Currency_base__small_af876 .Currency_icon__eliteXP-small_c4a51 {
+            transform: translateY(1rem);
+        }
+.Currency_icon__eliteXP-big_eceb0 {
+        width: 24rem;
+        height: 24rem;
+        margin-left: -5rem;
+        background-image: url('R.images.gui.maps.icons.library.EliteXpIconBig');
+    }
+.Currency_icon__eliteXP-large_e35ab {
+        width: 48rem;
+        height: 48rem;
+        margin: 0 -5rem 0 -6rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_48x48');
+    }
+.Currency_icon__eliteXP-extraLarge_a17d5 {
+        width: 80rem;
+        height: 80rem;
+        margin: 0 -5rem;
+        background-image: url('R.images.gui.maps.icons.library.elite_exp_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__eliteXP-extraLarge_a17d5 {
+            transform: translateY(4rem);
+        }
+.Currency_icon__equipCoin-small_d3b9a {
+        width: 16rem;
+        height: 16rem;
+        margin-right: -2rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_1');
+    }
+.Currency_base__small_af876 .Currency_icon__equipCoin-small_d3b9a {
+            transform: translateX(-1rem) translateY(1rem);
+        }
+.Currency_icon__equipCoin-big_c34e1 {
+        width: 24rem;
+        height: 24rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoinBig');
+    }
+.Currency_base__big_f6388 .Currency_icon__equipCoin-big_c34e1 {
+            transform: translateX(-5rem) translateY(3rem);
+        }
+.Currency_icon__equipCoin-large_b1b5e {
+        width: 48rem;
+        height: 48rem;
+        margin-right: 2rem;
+        background-image: url('R.images.gui.maps.shop.rewards.c_48x48.equipCoin');
+    }
+.Currency_icon__equipCoin-extraLarge_a7b90 {
+        width: 80rem;
+        height: 80rem;
+        margin-right: 8rem;
+        background-image: url('R.images.gui.maps.icons.library.equipCoin_icon_80x80');
+    }
+.Currency_base__extraLarge_d0b11 .Currency_icon__equipCoin-extraLarge_a7b90 {
+            transform: translateX(2rem) translateY(4rem);
+        }
+.Currency_value_bb176 {
+    /* font-size inherit does not work here, so 1em means the size does not change */
+    /* stylelint-disable-next-line */
+    font-size: 1em;
+    position: relative;
+    z-index: 2;
+}
+.Currency_base__small_af876 .Currency_value_bb176 {
+        padding-right: 2rem;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 {
+        padding-right: 5rem;
+        font-size: 24rem;
+        font-weight: 700;
+    }
+.Currency_base__big_f6388 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 24rem;
+        }
+.Currency_base__large_fb228 .Currency_value_bb176 {
+        font-size: 36rem;
+        font-weight: 700;
+    }
+.Currency_base__large_fb228 .Currency_value_bb176 + .Currency_icon_d34e3 {
+            font-size: 36rem;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value_bb176 {
+        font-size: 56rem;
+        font-weight: 700;
+    }
+.Currency_value__freeXP_db401 {
+        color: #F2F2F7;
+    }
+.Currency_value__credits_c98c5 {
+        color: #CED9D9;
+    }
+.Currency_value__gold_b8214 {
+        color: #FFC363;
+    }
+.Currency_value__xp_eda0a,
+    .Currency_value__crystal_cf72e,
+    .Currency_value__equipCoin_cb08d,
+    .Currency_value__eliteXP_de450 {
+        color: #C9C9B6;
+    }
+.Currency_base__small_af876 .Currency_value__notEnough_db10a {
+            color: #FF2717;
+        }
+.Currency_base__big_f6388 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__large_fb228 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_base__extraLarge_d0b11 .Currency_value__notEnough_db10a {
+            color: #B70000;
+        }
+.Currency_stock_bffbc {
+    height: 13rem;
+    color: #FFDD99;
+    font-size: 13rem;
+    line-height: 1;
+    position: relative;
+    z-index: 0;
+    pointer-events: none;
+}
+.Currency_stock__indent_c4c0d {
+        margin-left: 2rem;
+    }
+.Currency_base__small_af876 .Currency_stock_bffbc {
+        transform: translateY(0rem);
+    }
+.Currency_base__big_f6388 .Currency_stock_bffbc {
+        transform: translateY(4rem);
+    }
+.Currency_base__large_fb228 .Currency_stock_bffbc {
+        transform: translateY(10rem);
+    }
+.Currency_base__extraLarge_d0b11 .Currency_stock_bffbc {
+        transform: translateY(18rem);
+    }
+.Currency_stock__interactive_e78a9 {
+        pointer-events: auto;
+    }
+.Currency_stockBackground_c8ab1 {
+    width: 80rem;
+    height: 45rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    right: -27rem;
+    bottom: 0;
+    z-index: -1;
+    transform: translateY(17rem);
+}
+
+.CompoundPrice_base_d71b5 {
+    display: flex;
+}
+
+    .CompoundPrice_base__withDiscount_bc64f {
+        padding-right: 25rem;
+    }
+
+.CompoundPrice_freePrice_de48a {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.CompoundPrice_currencyWrapper_c7558 {
+    position: relative;
+}
+
+.CompoundPrice_currency_bb869 {
+    z-index: 0;
+}
+
+.CompoundPrice_currencyHitArea_b67a0 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.CompoundPrice_currencyHitArea__withDiscount_e1cf6 {
+        right: -25rem;
+    }
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.PopoverDecorator_base_d0107 {
+    display: flex;
+    position: absolute;
+}
+
+.PopoverDecorator_decorator_b4f33 {
+    padding: 58rem;
+    border-image-source: url('R.images.gui.maps.icons.popovers.popover_bg');
+    border-image-slice: 90 fill;
+    border-image-width: 90rem;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+.PopoverDecorator_arrow_ef5d0 {
+    background: no-repeat 0 0 / contain;
+    position: absolute;
+}
+
+.PopoverDecorator_arrow__bottom_ebbbc,
+    .PopoverDecorator_arrow__top_bb330 {
+        width: 301rem;
+        height: 90rem;
+        margin: 0 58rem;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_top');
+        left: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2,
+    .PopoverDecorator_arrow__right_ffef7 {
+        width: 84rem;
+        height: 181rem;
+        margin: 58rem 0;
+        background-image: url('R.images.gui.maps.icons.popovers.popover_arrow_left');
+        top: 50%;
+    }
+
+.PopoverDecorator_arrow__left_d50c2 {
+        right: 10rem;
+        transform: scaleX(-1) translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__right_ffef7 {
+        left: 10rem;
+        transform: translateY(-90rem);
+    }
+
+.PopoverDecorator_arrow__top_bb330 {
+        bottom: 8rem;
+        transform: scaleY(-1) translateX(-150rem);
+    }
+
+.PopoverDecorator_arrow__bottom_ebbbc {
+        top: 8rem;
+        transform: translateX(-150rem);
+    }
+
+.PopoverDecorator_closeBtn_dbed5 {
+    width: 18rem;
+    height: 18rem;
+    background: url('R.images.gui.maps.icons.popovers.close_button_slim_up') no-repeat 0 0 / contain;
+    position: absolute;
+    top: 6rem;
+    right: 6rem;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.PopoverDecorator_closeBtn_dbed5:hover {
+        filter: brightness(160%);
+    }
+
+.PopoverDecorator_closeBtn_dbed5:active {
+        background-image: url('R.images.gui.maps.icons.popovers.close_button_slim_press');
+        filter: brightness(100%);
+    }
+
+.PopoverDecorator_content_bc28d {
+    position: relative;
+    z-index: 2;
+}
+
+.BuyButton_base_b998c {
+    min-width: 160rem;
+    padding: 6rem 20rem 8rem;
+}
+
+.ExtendedText_base_d9fc1 {
+    display: flex;
+    line-height: 1.2;
+    position: relative;
+}
+
+    .ExtendedText_base__zeroPadding_d1a1c {
+        padding: 0;
+    }
+
+    .ExtendedText_base__isTruncationAvailable_cb880 {
+        width: 100%;
+    }
+
+.ExtendedText_truncated_a4268 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.ExtendedText_truncated__hide_d75b4 {
+        opacity: 0;
+    }
+
+.ExtendedText_unTruncated_ff478 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-content: flex-start;
+    color: #FF2717;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.ExtendedText_tooltip_b5abd {
+    display: flex;
+}
+
+.ExtendedText_tooltip__justify-flex-start_ade81 {
+        justify-content: flex-start;
+    }
+
+.ExtendedText_tooltip__justify-center_aa541 {
+        justify-content: center;
+    }
+
+.ExtendedText_tooltip__justify-flex-end_af6c3 {
+        justify-content: flex-end;
+    }
+
+.ExtendedText_tooltip__align-flex-start_fbfc0 {
+        align-content: flex-start;
+    }
+
+.ExtendedText_tooltip__align-center_d5b4a {
+        align-content: center;
+    }
+
+.ExtendedText_tooltip__align-flex-end_fc0e0 {
+        align-content: flex-end;
+    }
+
+.colors_blackReal_a68be {
+    color: #000000;
+}
+
+.colors_whiteReal_f79f8 {
+    color: #FFFFFF;
+}
+
+.colors_white_b5c87 {
+    color: #F2F2F7;
+}
+
+.colors_whiteOrange_ba58d {
+    color: #FEFEEC;
+}
+
+.colors_whiteSpanish_fd764 {
+    color: #E9E2BF;
+}
+
+.colors_par_e836f {
+    color: #8C8C7E;
+}
+
+.colors_parSecondary_f260a {
+    color: #595950;
+}
+
+.colors_parTertiary_d47f7 {
+    color: #37362E;
+}
+
+.colors_red_c02cb {
+    color: #FF2717;
+}
+
+.colors_redDark_cdd63 {
+    color: #B70000;
+}
+
+.colors_yellow_ec93b {
+    color: #FEAB34;
+}
+
+.colors_orange_bbde2 {
+    color: #EE7000;
+}
+
+.colors_cream_e3bb8 {
+    color: #FFDD99;
+}
+
+.colors_brown_bcb6a {
+    color: #CBAC77;
+}
+
+.colors_greenBright_e6055 {
+    color: #80D43A;
+}
+
+.colors_green_b6f21 {
+    color: #7AB300;
+}
+
+.colors_greenDark_ce9bf {
+    color: #497212;
+}
+
+.colors_blueBooster_b2848 {
+    color: #CCFFFF;
+}
+
+.colors_blueTeamkiller_e7dd8 {
+    color: #09E2FF;
+}
+
+.colors_cred_ddb07 {
+    color: #CED9D9;
+}
+
+.colors_gold_c405a {
+    color: #FFC363;
+}
+
+.colors_bond_bb139 {
+    color: #C9C9B6;
+}
+
+.colors_prom_d1186 {
+    color: #A29B70;
+}
+
+.renderers_noBreakWrapper_d986b {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.renderers_lineBreak_f90ed {
+    width: 100%;
+    height: 0;
+}
+
+.renderers_newLine_ee778 {
+    flex: 1;
+    width: 100%;
+}
+
+.renderers_word_ac32d {
+    white-space: pre;
+    overflow-wrap: normal;
+}
+
+.Disclaimer_base_a91f2 {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.Disclaimer_link_d5903 {
+    display: flex;
+    color: #E9E2BF;
+    position: relative;
+    cursor: pointer;
+}
+
+.Disclaimer_linkIcon_fd377 {
+    width: 12rem;
+    height: 12rem;
+    margin: 5rem;
+    background-image: url('R.images.gui.maps.icons.account_completion.external_icon');
+}
+
+.Disclaimer_link_d5903:hover .Disclaimer_linkIcon_fd377 {
+        background-image: url('R.images.gui.maps.icons.account_completion.external_icon_hovered');
+    }
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.OptionCard_base_fc60f {
+    display: flex;
+    align-items: center;
+}
+
+.OptionCard_iconWrapper_feee9 {
+    width: 58rem;
+    height: 58rem;
+    display: flex;
+    border: 1rem solid rgba(255,255,255, .2);
+    border-radius: 4rem;
+    position: relative;
+    transition: background-color .2s ease-in-out;
+    cursor: pointer;
+}
+
+.OptionCard_iconWrapper__selected_eef5c {
+        border-color: #ffb266;
+        box-shadow: 0 0 30rem 0 rgba(255, 122, 0, .3) inset;
+        background: linear-gradient(0deg, rgba(255, 92, 0, .05) 0%, rgba(255, 92, 0, .05) 100%), rgba(0, 0, 0, .7);
+    }
+
+.OptionCard_iconWrapper__selected_eef5c:hover {
+            background-color: rgba(255,255,255, .04);
+        }
+
+.OptionCard_iconWrapper__default_a4984:hover {
+        background-color: rgba(255,255,255, .1);
+    }
+
+.OptionCard_iconWrapper__disabled_affff {
+        background: url('R.images.gui.maps.icons.library.disabled_pattern') center / 9rem;
+        cursor: default;
+    }
+
+.OptionCard_icon_a95ea {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: no-repeat center / cover;
+}
+
+.OptionCard_iconWrapper__disabled_affff .OptionCard_icon_a95ea,
+    .OptionCard_iconWrapper__warning_a2476 .OptionCard_icon_a95ea {
+        opacity: .4;
+    }
+
+.OptionCard_warning_d3be0 {
+    width: 32rem;
+    height: 32rem;
+    background: url('R.images.gui.maps.icons.library.icon_alert_32x32') no-repeat center / contain;
+    position: absolute;
+    top: 13rem;
+    left: 13rem;
+}
+
+.OptionCard_glow_eee0a {
+    width: 58rem;
+    height: 68rem;
+    background: url('R.images.gui.maps.icons.hangar.buyVehicle.glow') no-repeat center / cover;
+    mix-blend-mode: screen;
+    position: absolute;
+    bottom: -1rem;
+    left: -1rem;
+}
+
+.OptionCard_check_e1195 {
+    width: 64rem;
+    height: 32rem;
+    background: url('R.atlases.store.icon_tree_selected_093') no-repeat center / cover;
+    position: absolute;
+    bottom: -17rem;
+    left: -3rem;
+}
+
+.OptionCard_content_fe592 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15rem;
+}
+
+.OptionCard_title_d1b7f {
+    color: #8C8C7E;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    max-width: 120rem;
+}
+
+.mediaMedium .OptionCard_title_d1b7f {
+        max-width: auto;
+}
+
+.OptionCard_price_a6081 {
+    margin-top: 2rem;
+}
+
+.OptionList_base_b9342 {
+    display: flex;
+}
+
+.OptionList_option_a177f + .OptionList_option_a177f {
+        margin-left: 41rem;
+    }
+
+.RentButton_base_af78d {
+    padding: 4rem 20rem 6rem;
+}
+
+.RentButton_content_c88b3 {
+    display: flex;
+    align-items: center;
+    padding-top: 3rem;
+}
+
+.RentButton_icon_d7cc0 {
+    width: 19rem;
+    height: 19rem;
+    margin-right: 4rem;
+    background: url('R.images.gui.maps.icons.library.rent_ico_big') no-repeat center / cover;
+}
+
+.RentButton_label_efad3 {
+    color: #E9E2BF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    display: flex;
+}
+
+.SelectButton_base_fb2e0 {
+    display: flex;
+    min-width: 160rem;
+    background: url('R.images.gui.maps.icons.hangar.buyVehicle.emptyVehicle') no-repeat right / 80rem 31rem;
+}
+
+.SelectButton_content_ec7c7 {
+    display: flex;
+    align-items: center;
+}
+
+.SelectButton_icon_b8e34 {
+    width: 36rem;
+    height: 36rem;
+    margin: -9rem 0 -10rem -10rem;
+    background: url('R.images.gui.maps.icons.library.trade_in') no-repeat center / cover;
+}
+
+.SelectButton_label_b4f21 {
+    color: #FFDD99;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    text-shadow: 0 0 15rem #e52, 0 0 8rem #ff2a00, 0 0 4rem rgba(255, 127, 0, .25);
+}
+
+.TankName_base_e9676 {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    line-height: 1.3;
+}
+
+    .TankName_base__sizeMedium_be079 {
+        color: #FEFEEC;
+        font-size: 24rem;
+        font-weight: 400;
+        line-height: 1.2;
+    }
+
+    .TankName_base__sizBig_b71dc {
+        color: #F2F2F7;
+        font-size: 36rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    .TankName_base__typeWhite_af1ba {
+        color: #F2F2F7;
+    }
+
+    .TankName_base__typeWhiteSpanish_c7979 {
+        color: #E9E2BF;
+    }
+
+    .TankName_base__typeWhiteOrange_eb635 {
+        color: #FEFEEC;
+    }
+
+.TankName_base__typeColored_efc8d .TankName_level_fb3d0 {
+        color: #E9E2BF;
+    }
+
+.TankName_type_f3426 {
+    width: 42rem;
+    height: 38rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+.TankName_type__extraSmall_a1019 {
+        margin: 0 -9rem;
+        top: -8rem;
+    }
+
+.TankName_type__medium_ad9e8 {
+        top: -16rem;
+    }
+
+.TankName_type__big_cbcfe {
+        top: -10rem;
+    }
+
+.TankName_type__medium_ad9e8,
+    .TankName_type__big_cbcfe {
+        width: 83rem;
+        height: 73rem;
+        margin: 0 -23rem;
+    }
+
+.TankName_type__eliteExtraSmall_af236 {
+        margin: 0 -6rem;
+    }
+
+.TankName_type__eliteMedium_b273d {
+        margin: 0 -16rem;
+    }
+
+.TankName_type__eliteBig_a7f6c {
+        margin: 0 -13rem;
+    }
+
+.TankName_base__typeColored_efc8d .TankName_name_e6ffb {
+        color: #8C8C7E;
+    }
+
+.TankName_premiumIGR_bd935 {
+    width: 10rem;
+    height: 10rem;
+    margin: 0 3rem 0 -2rem;
+    background: url('R.images.gui.maps.icons.library.premium_igr_ico') no-repeat center / contain;
+    position: relative;
+    top: 5rem;
+}
+
+.VehicleButton_base_e16b2 {
+    display: flex;
+}
+.VehicleButton_vehicleButton_ac020 {
+    width: 162rem;
+    height: 32rem;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+.VehicleButton_content_aee68 {
+    display: flex;
+    width: 162rem;
+    height: 32rem;
+}
+.VehicleButton_tankName_da616 {
+    color: #E9E2BF;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    margin: 6rem 0 0 8rem;
+    z-index: 1;
+}
+.VehicleButton_nationFlag_c86ea {
+    width: 106rem;
+    height: 32rem;
+    background: no-repeat center / cover;
+    position: absolute;
+    top: 1rem;
+    left: 0;
+}
+.VehicleButton_vehicleIcon_e0be5 {
+    width: 124rem;
+    height: 31rem;
+    background: no-repeat center / cover;
+    position: absolute;
+    top: 1rem;
+    right: -47rem;
+}
+.VehicleButton_resetButton_bbbdf {
+    width: 32rem;
+    height: 32rem;
+    margin-left: 6rem;
+}
+.VehicleButton_resetIcon_ce8d4 {
+    width: 18rem;
+    height: 18rem;
+    background: url('R.images.gui.maps.icons.popovers.close_button_slim_up') no-repeat center / cover;
+}
+
+.TradeIn_base_dcaa0 {
+    display: flex;
+}
+
+.Footer_base_cc63e {
+    display: flex;
+    justify-content: center;
+    width: 1300rem;
+    height: 106rem;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 0, 0, .07) 12%,
+        rgba(0, 0, 0, .35) 50%,
+        rgba(0, 0, 0, .07) 88%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    position: relative;
+}
+
+.Footer_separator_cb77e {
+    height: 1rem;
+    background: linear-gradient(270deg, rgba(255,255,255, 0) 0%, #FFFFFF 50%, rgba(255,255,255, 0) 100%);
+    opacity: .15;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.Footer_separator__bottom_a85a6 {
+        top: auto;
+        bottom: 0;
+    }
+
+.Footer_options_fabaf {
+    margin-right: auto;
+}
+
+.Footer_totalsWrapper_abcbe {
+    display: flex;
+    justify-content: flex-end;
+    min-width: 320rem;
+}
+
+.Footer_totals_e2433 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    margin-right: 15rem;
+}
+
+.Footer_totals__currencyAtBottom_d3b12 {
+        justify-content: flex-end;
+        padding-bottom: 21rem;
+    }
+
+.Footer_totalsCurrency_bfa2b {
+    display: flex;
+    justify-content: flex-end;
+    height: 32rem;
+}
+
+.Footer_actions_e9aa2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.Footer_rentButton_a2a97 {
+    margin-bottom: 8rem;
+}
+
+.Footer_disclaimer_aa263 {
+    position: absolute;
+    right: 138rem;
+    bottom: -5rem;
+    left: 138rem;
+    transform: translateY(100%);
+}
+
+.Footer_tradeInWrapper_ed080 {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.Footer_tradeIn_e6f5c {
+    transform: translateY(-50%);
+}
+
+.Title_base_a0e4c {
+    display: flex;
+    justify-content: center;
+    height: 40rem;
+}
+
+.Title_label_f1339 {
+    color: #F2F2F7;
+    font-size: 36rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.Title_vehicleWrapper_f2534 {
+    position: relative;
+}
+
+.Title_vehicleTooltipHitArea_febcf {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.Title_vehicle_c39be {
+    color: #E9E2BF;
+    font-size: 36rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-left: 10rem;
+}
+
+.VehicleImage_base_cac39 {
+    width: 600rem;
+    height: 450rem;
+    background: no-repeat center / cover;
+}
+
+.BuyVehicleViewApp_base_fc801 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: #1b1a1c;
+    position: relative;
+}
+
+.BuyVehicleViewApp_background_e6e5a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('R.images.gui.maps.icons.hangar.buyVehicle.bg') no-repeat center / cover;
+}
+
+.BuyVehicleViewApp_topRight_b197d {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.BuyVehicleViewApp_closeBtn_bfe00 {
+    position: absolute;
+    top: 51rem;
+    right: 8rem;
+    z-index: 1;
+}
+
+.mediaSmall .BuyVehicleViewApp_closeBtn_bfe00 {
+        top: 71rem;
+        right: 28rem;
+}
+
+.BuyVehicleViewApp_flag_a356a {
+    width: 750rem;
+    height: 413rem;
+    background: no-repeat center / cover;
+    position: absolute;
+    top: 60rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.BuyVehicleViewApp_wrapper_a2bfe {
+    display: flex;
+    flex-direction: column;
+}
+
+.BuyVehicleViewApp_content_e86d2 {
+    display: flex;
+    justify-content: center;
+    padding: 47rem 0 36rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.mediaMedium .BuyVehicleViewApp_content_e86d2 {
+        padding: 127rem 0 106rem;
+}
+
+.BuyVehicleViewApp_vehicleImage_b76a4 {
+    position: relative;
+    top: 50rem;
+}
+

@@ -1,0 +1,129 @@
+(def element TextButton(name:str = '') layout=true
+    (macro AbstractComponent "TEXT_BTN")
+    (scope
+        (var isIconLabel:bool = false)
+        (var iconLabel:str = "R.atlases.components.tab_flags_ussa()")
+        (var arrowIcon:str = "R.atlases.components.botton_back_arrow()")
+        (var diasableArrowIcon:str = "R.atlases.components.arrow_disable()")
+        (var additionalLabel:str = '')
+        (var tooltipBodyTextBtn:str = '')
+        (var flagDisableTexture:str = 'bitmap:BtnDisableTexture')
+    )
+    (style
+        (width = 100px)
+        (height = 32px)
+    )
+    (macro TextBtnGlowBg)
+    (view_holder_content 'contentTop'
+        (name = 'contentTopVH')
+        (hblock
+            (style
+                (position = "absolute")
+                (width = 100%)
+                (height = 100%)
+                (align = "middle")
+            )
+            (block
+                (name = 'arrow image')
+                (image
+                    (style
+                        (marginRight = -7px)
+                        (marginTop = 1px)
+
+                    )
+                    (bind source "_isEnabled? arrowIcon : diasableArrowIcon")
+                )
+            )
+            (block
+                (tf
+                    (style
+                        (bind marginLeft "isIconLabel ? 0:-2")
+                    )
+                    (bind visible "!isIconLabel")
+                    (bind class "_isEnabled ? 'TextButtonMainTextStyle':'TextButtonAdditionalTextStyle'" )
+                    (bind text "label")
+                )
+            )
+            (block
+                (tf
+                    (bind visible "!isIconLabel")
+                    (class TextButtonAdditionalTextStyle)
+                    (bind text "additionalLabel")
+                    (controller $Animation
+                        (bindcall stop (event "evBtnOutEvent"))
+                        (bindcall play duration=0.2 to={alpha:0.8} (event "evBtnOverEvent")(bind enabled "!_isPressed"))
+                        (bindcall play duration=0.2 to={alpha:0.6} (event "evBtnOutEvent"))
+                        (bindcall play duration=0.2 to={alpha:0.6} (event "evBtnDownEvent"))
+                        (bindcall play duration=0.2 to={alpha:0.8} (event "evBtnUpEvent"))
+                    )
+                )
+            )
+            (block
+                (image
+                    (style
+                        (alpha = 0.7)
+                        (position = "absolute")
+                    )
+                    (bind visible "isIconLabel")
+                    (bind source "iconLabel")
+
+                    (controller $Animation
+                        (bindcall stop (event "evBtnOutEvent"))
+                        (bindcall play duration=0.2 to={alpha:1} (event "evBtnOverEvent"))
+                        (bindcall play duration=0.2 to={alpha:0.7} (event "evBtnOutEvent"))
+                        (bindcall play duration=0.1 to={alpha:1} (event "evBtnUpEvent"))
+                    )
+                )
+                (image
+                    (bind visible "isIconLabel")
+                    (source = "R.atlases.components.text_btn_stroke()")
+                )
+                (block
+                    (name = 'disable')
+                    (style
+                        (position = "absolute")
+                        (width = 100%)
+                        (height = 100%)
+                        (bind backgroundImage "flagDisableTexture" (bind enabled "!_isEnabled"))
+                        (bind backgroundSize "repeat" (bind enabled "!_isEnabled"))
+                    )
+                )
+            )
+
+        )
+    )
+    (controller $ToolTip
+        (delay = "0.4")
+        (bindcall args header='' body="tooltipBodyTextBtn" init=true)
+        (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+        (bind enabled "tooltipBodyTextBtn!= ''")
+    )
+    (bind buttonMode "_isEnabled")
+    (macro ButtonSounds)
+
+)
+
+(def macro TextBtnGlowBg()
+    (view_holder_content 'background'
+        (name = 'textBtn backgr')
+        (image
+            (name = 'back shine')
+            (style
+                (position = "absolute")
+                (height = 25px)
+                (alpha = 0)
+            )
+            (bind source "R.atlases.components.botton_back_shine()")
+            (controller $Animation
+                (bindcall stop (event "evBtnOutEvent"))
+                (bindcall play duration=0.2 to={alpha:1} (event "evBtnOverEvent"))
+                (bindcall play duration=0.2 to={alpha:0} (event "evBtnOutEvent"))
+                (bindcall play duration=0.2 to={alpha:0} (event "evBtnDownEvent"))
+                (bindcall play duration=0.2 to={alpha:1} (event "evBtnUpEvent"))
+            )
+        )
+
+        (mouseEnabled = false)
+    )
+)

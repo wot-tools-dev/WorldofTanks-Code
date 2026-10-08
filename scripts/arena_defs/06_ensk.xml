@@ -1,0 +1,188 @@
+<06_ensk.xml>
+  <name>	#arenas:06_ensk/name	</name>
+  <description>	#arenas:06_ensk/description	</description>
+  <geometry>	spaces/06_ensk	</geometry>
+  <estimatedLoad>	0.3	</estimatedLoad>
+  <boundingBox>
+    <bottomLeft>	-300.000000 -300.000000	</bottomLeft>
+    <upperRight>	300.000000 300.000000	</upperRight>
+  </boundingBox>
+  <roundLength>	900	</roundLength>
+  <minimap>	spaces/06_ensk/mmap.dds	</minimap>
+  <vehicleCamouflageKind>	summer	</vehicleCamouflageKind>
+  <defaultGroundEffect>	None	</defaultGroundEffect>
+  <umbraEnabled>	1	</umbraEnabled>
+  <batchingEnabled>	0	</batchingEnabled>
+  <wwmusicSetup>
+    <wwmusicLoading>	music_ensk_loading_screen	</wwmusicLoading>
+    <wwmusicIntensive>	music_ensk_dron_intensive	</wwmusicIntensive>
+    <wwmusicRelaxed>	music_ensk_dron_relaxed	</wwmusicRelaxed>
+    <wwmusicStop>	music_dron_stop	</wwmusicStop>
+    <wwmusicEndbattleStop>	music_dron_endbattle_stop	</wwmusicEndbattleStop>
+    <wwmusicResultWin>	music_ensk_result_win	</wwmusicResultWin>
+    <wwmusicResultDrawn>	music_ensk_result_drawn	</wwmusicResultDrawn>
+    <wwmusicResultDefeat>	music_ensk_result_defeat	</wwmusicResultDefeat>
+  </wwmusicSetup>
+  <wwambientSound>	ambient_wind_autumn_01	</wwambientSound>
+  <gameplayTypes>
+    <ctf>
+      <teamBasePositions>
+        <team1>
+          <position1>	20.299936 249.699921	</position1>
+        </team1>
+        <team2>
+          <position1>	19.099901 -248.700485	</position1>
+        </team2>
+      </teamBasePositions>
+    </ctf>
+    <domination>
+      <teamSpawnPoints>
+        <team1>
+          <position>	17.000000 255.000000	</position>
+        </team1>
+        <team2>
+          <position>	111.000000 -263.000000	</position>
+        </team2>
+      </teamSpawnPoints>
+      <controlPoint>	-82.768745 0.675796	</controlPoint>
+    </domination>
+    <maps_training>
+      <teamBasePositions>
+        <team1>
+          <position1>	20.299936 249.699921	</position1>
+        </team1>
+        <team2>
+          <position1>	19.099901 -248.700485	</position1>
+        </team2>
+      </teamBasePositions>
+    </maps_training>
+    <comp7>
+      <teamSpawnPoints>
+        <team1>
+          <position>	38.167999 270.420990	</position>
+        </team1>
+        <team2>
+          <position>	77.943001 -265.811005	</position>
+        </team2>
+      </teamSpawnPoints>
+      <visualScript>
+        <server>
+          <plan>	PointsOfInterest/pointsOfInterest	</plan>
+        </server>
+      </visualScript>
+      <recon>
+        <flyDirections>
+          <flyDirection>
+            <team>	1	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+          <flyDirection>
+            <team>	2	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+        </flyDirections>
+      </recon>
+      <minimap>	spaces/06_ensk/mmap_comp7.dds	</minimap>
+      <pointsOfInterestUDO>
+        <point>
+          <position>	-186.742996 -37.199001	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	137.205292 12.792684	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	-270.384918 -34.889957	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	236.219727 18.827833	</position>
+          <type>	2	</type>
+        </point>
+      </pointsOfInterestUDO>
+      <controlPoint>	5.873001 10.181000	</controlPoint>
+    </comp7>
+  </gameplayTypes>
+  <mapActivities>
+    <scenario>
+      <startTime>	15.000000 15.000000	</startTime>
+      <possibility>	100.000000	</possibility>
+      <interval>	0.000000	</interval>
+      <arenaPeriod>	3	</arenaPeriod>
+      <name>	ensk_airplane	</name>
+      <trajectories>
+        <warplane>
+          <preset>	ensk_airplane_fly	</preset>
+          <position>	0.000000 0.000000 0.000000	</position>
+          <yaw>	0.000000	</yaw>
+          <possibility>	1.000000	</possibility>
+          <startTime>	0.000000 0.000000	</startTime>
+        </warplane>
+      </trajectories>
+    </scenario>
+  </mapActivities>
+  <modules>
+    <common>
+      <module>	BW::CgfCameraModule	</module>
+      <module>	BW::CollisionSceneModule	</module>
+      <module>	cgf::network::ClientNetworkModule	</module>
+      <module>	BW::CompoundModule	</module>
+      <module>	cgf::network::NetworkModule	</module>
+      <module>	vehicle::hierarchy::EntityHelpersModule	</module>
+      <module>	vehicle::hierarchy::VehicleHierarchyModule	</module>
+      <module>	BW::EffectsDebugModule	</module>
+      <module>	BW::ControlPointModule	</module>
+      <module>	BW::EntityFiltersModule	</module>
+      <module>	BW::EffectHandlersModule	</module>
+      <module>	BW::EffectsModule	</module>
+      <module>	BW::ArmorFlashlight::ArmorFlashlightModule	</module>
+      <module>	BW::VisibilityTunnelModule	</module>
+      <module>	BW::input::InputModule	</module>
+      <module>	BW::RompModule	</module>
+      <module>	cgf::events::EventsModule	</module>
+      <module>	cgf::FoundationModule	</module>
+      <module>	cgf::TriggersModule	</module>
+      <module>	BW::ConstraintsModule	</module>
+      <module>	BW::CGF::GenericComponentsModule	</module>
+      <module>	BW::tags::TagsModule	</module>
+      <module>	BW::variables::VariablesModule	</module>
+      <module>	vehicle::hierarchy::HierarchyModule	</module>
+      <module>	BW::DebugSoundRenderModule	</module>
+      <module>	cgf_debug_render::Module	</module>
+      <module>	BW::VisualScriptModule	</module>
+      <module>	BW::GameLogicModule	</module>
+      <module>	BW::SoundModule	</module>
+      <module>	BW::SoundSpatialModule	</module>
+      <module>	wot_physics::Module	</module>
+      <module>	BW::GpuDecalsModule	</module>
+      <module>	BW::WotRenderModule	</module>
+      <module>	BW::WULF::Module	</module>
+      <module>	BW::VehicleBasicModule	</module>
+      <module>	BW::VehicleCommonModule	</module>
+      <module>	BW::VehicleDrivetrainModule	</module>
+      <module>	BW::VehicleAudioModule	</module>
+      <module>	BW::VehicleTracksModule	</module>
+      <module>	BW::VehicleGunModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::ClientCommonModule	</module>
+      <module>	script::ClientUiModule	</module>
+      <module>	script::VehicleAppearanceModule	</module>
+      <module>	BW::SpaceZonesModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::CommonServerModule	</module>
+      <module>	script::VehicleRuleModule	</module>
+      <module>	script::ClientKillCamModule	</module>
+      <module>	script::ClientAbilitiesModule	</module>
+      <module>	script::RamDebugModule	</module>
+      <module>	script::VehicleSystemsModule	</module>
+      <module>	script::CommonScriptsModule	</module>
+      <module>	BW::ServerModule	</module>
+      <module>	BW::VehicleStatusesModule	</module>
+      <module>	BW::VehicleTriggersModule	</module>
+    </common>
+    <comp7>
+      <module>	script::PointsOfInterestModule	</module>
+    </comp7>
+  </modules>
+</06_ensk.xml>

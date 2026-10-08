@@ -1,0 +1,406 @@
+from __future__ import absolute_import
+from constants import SHELL_TYPES
+from gui.Scaleform.genConsts.BLOCKS_TOOLTIP_TYPES import BLOCKS_TOOLTIP_TYPES
+from gui.Scaleform.genConsts.FITTING_TYPES import FITTING_TYPES
+from gui.Scaleform.genConsts.STORE_CONSTANTS import STORE_CONSTANTS
+from gui.Scaleform.locale.ITEM_TYPES import ITEM_TYPES
+from gui.Scaleform.locale.RES_ICONS import RES_ICONS
+from gui.Scaleform.locale.TOOLTIPS import TOOLTIPS
+from gui.goodies.goodie_items import DemountKit
+from gui.impl import backport
+from gui.impl.backport.backport_tooltip import DecoratedTooltipWindow
+from gui.impl.gen import R
+from gui.prb_control.settings import PREBATTLE_ACTION_NAME
+from gui.shared.formatters import text_styles
+from gui.shared.gui_items.artefacts import OptionalDevice
+from gui.shared.tooltips import formatters, ToolTipBaseData
+from gui.shared.tooltips.common import BlocksTooltipData
+from helpers import dependency
+from helpers import i18n
+from skeletons.account_helpers.settings_core import ISettingsCore
+from vehicles.mechanics.mechanic_constants import VehicleMechanic
+DISABLED_ITEMS_ID = 12793
+CHASSIS_TRACK_WITHIN_TRACK = 'vehicleTrackWithinTrackChassis'
+
+class ComplexTooltip(BlocksTooltipData):
+    __settingsCore = dependency.descriptor(ISettingsCore)
+
+    def __init__(self, context, disableAnim):
+        super(ComplexTooltip, self).__init__(context, None)
+        self._setMargins(11, 14)
+        self._setWidth(520)
+        self._disableAnim = disableAnim
+        return
+
+    def _packBlocks(self, *args, **kwargs):
+        items = super(ComplexTooltip, self)._packBlocks(*args, **kwargs)
+        strs = args[0].split('<br/>')
+        items.append(formatters.packImageTextBlockData(title=strs[0], desc=strs[1]))
+        block = formatters.packImageTextBlockData(img=RES_ICONS.MAPS_ICONS_LOBBY_ICONBTNALT, txtOffset=40, padding=formatters.packPadding(bottom=-7, top=-5, left=20 - self._getContentMargin()['left']), desc=text_styles.main(TOOLTIPS.ADVANCED_INFO), linkage=BLOCKS_TOOLTIP_TYPES.TOOLTIP_ADVANCED_KEY_BLOCK_LINKAGE)
+        block['data']['animated'] = not self._disableAnim
+        items.append(block)
+        return items
+
+
+class BaseAdvancedTooltip(BlocksTooltipData):
+
+    def __init__(self, context):
+        super(BaseAdvancedTooltip, self).__init__(context, None)
+        self._setContentMargin(top=2, left=3, bottom=3, right=3)
+        self._setMargins(afterBlock=0)
+        self._setWidth(415)
+        self._item = None
+        return
+
+    @staticmethod
+    def getMovieAnimationPath(moviename):
+        return 'animations/advancedHints/%s.swf' % moviename
+
+    def _packBlocks(self, *args, **kwargs):
+        from debug_utils import LOG_DEBUG
+        LOG_DEBUG('packBlocks::', args, kwargs, self.context)
+        self._item = self.context.buildItem(*args, **kwargs)
+        items = super(BaseAdvancedTooltip, self)._packBlocks()
+        disabledForWheeled = False
+        if self._item is not None:
+            if isinstance(self._item, OptionalDevice):
+                disabledForWheeled = self._item.intCD == DISABLED_ITEMS_ID
+        if disabledForWheeled:
+            return []
+        else:
+            items.extend(self._getBlocksList(*args, **kwargs))
+            return items
+
+    def _getBlocksList(self, *args, **kwargs):
+        pass
+
+    def _getDescrText(self, description, descReady=False):
+        tokens = description.split('|')
+        if len(tokens) == 2:
+            description = tokens[1]
+        if not descReady:
+            descrTextR = R.strings.tooltips.advanced.dyn(description)
+            if descrTextR and descrTextR.isValid():
+                descrText = backport.text(descrTextR())
+            else:
+                descrText = '#tooltips:advanced/' + description
+        else:
+            descrText = description
+        return descrText
+
+    def _packAdvancedBlocks(self, movie, header, description, descReady=False):
+        descrText = self._getDescrText(description, descReady)
+        items = [formatters.packTextBlockData(text=text_styles.highTitle(header), padding=formatters.packPadding(left=20, top=20))]
+        if movie is not None:
+            items.append(formatters.packImageBlockData(BaseAdvancedTooltip.getMovieAnimationPath(movie), BLOCKS_TOOLTIP_TYPES.ALIGN_LEFT, padding=5, linkage=BLOCKS_TOOLTIP_TYPES.TOOLTIP_ADVANCED_CLIP_BLOCK_LINKAGE))
+        items.append(formatters.packTextBlockData(text=text_styles.main(descrText), padding=formatters.packPadding(left=20, top=10, bottom=20)))
+        return items
+
+
+class AdvancedTooltipWithMechanics(BaseAdvancedTooltip):
+
+    def _hasMechanic(self, vehicle, mechanicName):
+        return mechanicName in vehicle.getMechanics()
+
+    def _getDescrText(self, description, descReady=False):
+        descrText = super(AdvancedTooltipWithMechanics, self)._getDescrText(description, descReady)
+        statsConfig = self.context.getStatsConfiguration(self._item)
+        vehicle = statsConfig.vehicle
+        if vehicle is not None and self._hasMechanic(vehicle, VehicleMechanic.LOW_CHARGE_SHOT):
+            descrText = text_styles.concatStylesToMultiLine(text_styles.concatStylesToMultiLine(descrText, ''), i18n.makeString(TOOLTIPS.ADVANCED_LOW_CHARGE_SHOT_FOOTER, fireMode=text_styles.stats(TOOLTIPS.ADVANCED_LOW_CHARGE_SHOT_FIREMODE), fireRate=text_styles.stats(TOOLTIPS.ADVANCED_LOW_CHARGE_SHOT_FIRERATE)))
+        return descrText
+
+
+class FakeAdvancedTooltip(BaseAdvancedTooltip):
+
+    def _getBlocksList(self, *args, **kwargs):
+        return []
+
+
+class ComplexAdvanced(BaseAdvancedTooltip):
+
+    def _getBlocksList(self, item, *args, **kwargs):
+        text, linkage = item
+        headerKey = '#tooltips:advanced/{}/header'.format(text)
+        if headerKey in TOOLTIPS.ADVANCED_ENUM:
+            header = headerKey
+        else:
+            header = linkage + '/header'
+        return self._packAdvancedBlocks(text, header, text)
+
+
+class HangarShellAdvanced(AdvancedTooltipWithMechanics):
+    _MODERN_SUFFIX = '_MODERN'
+    _NOT_PIERCING_DAMAGE = '_NOT_PIERCING_DAMAGE'
+    _TRAY = '_TRAY'
+
+    def _getBlocksList(self, *args, **kwargs):
+        movie = SHELL_MOVIES.get(self._item.getAdvancedTooltipKey())
+        header = backport.text(R.strings.tooltips.advanced.header.shellType.dyn(self._item.type, default=R.invalid)())
+        description = self._item.type + self._getDescriptionSuffix()
+        return self._packAdvancedBlocks(movie, header, description)
+
+    def _getDescriptionSuffix(self):
+        suffix = ''
+        if self._item.isModernMechanics:
+            suffix = self._MODERN_SUFFIX
+        elif self._item.isNonPiercingDamageMechanics:
+            suffix = self._NOT_PIERCING_DAMAGE
+        elif self._item.isDamageMutable():
+            suffix = self._TRAY
+        return suffix
+
+
+class HangarBoosterAdvanced(BaseAdvancedTooltip):
+
+    def _getBlocksList(self, *args, **kwargs):
+        item = self._item
+        itemId = item.getGUIEmblemID()
+        header = self._item.userName
+        descReady = False
+        if 'crewSkillBattleBooster' in item.tags:
+            movie = SKILL_MOVIES[itemId]
+            affectedSkillName = item.getAffectedSkillName()
+            skillLocales = R.strings.crew_perks.dyn(affectedSkillName)
+            itemId = backport.text(skillLocales.shortDescription()) if skillLocales.isValid() else affectedSkillName
+            descReady = True
+        else:
+            movie = MODULE_MOVIES[itemId]
+        return self._packAdvancedBlocks(movie, header, itemId, descReady)
+
+
+class HangarModuleAdvanced(AdvancedTooltipWithMechanics):
+
+    def _hasMechanic(self, vehicle, mechanicName):
+        mechanics = self._item.getMechanics(vehicle.descriptor) or ()
+        return mechanicName in mechanics
+
+    def _getBlocksList(self, *args, **kwargs):
+        item = self._item
+        itemId = item.getGUIEmblemID()
+        movieKey = itemId
+        descrKey = itemId
+        isEquipment = item.itemTypeName == STORE_CONSTANTS.EQUIPMENT
+        isOptionalDevice = item.itemTypeName == STORE_CONSTANTS.OPTIONAL_DEVICE
+        if isEquipment or isOptionalDevice:
+            header = self._item.shortUserName
+        else:
+            header = self._item.userType
+        if itemId == FITTING_TYPES.VEHICLE_CHASSIS and item.isTrackWithinTrack():
+            movieKey = CHASSIS_TRACK_WITHIN_TRACK
+            descrKey = CHASSIS_TRACK_WITHIN_TRACK
+        elif isEquipment and item.isStimulator:
+            descrKey = 'ration'
+        statsConfig = self.context.getStatsConfiguration(self._item)
+        vehicle = statsConfig.vehicle
+        mechanics = item.getMechanics(vehicle.descriptor) if vehicle is not None else ()
+        movieModule = None
+        for mechanicName in mechanics:
+            movieModule = MODULE_MOVIES.get('%s_%s' % (movieKey, mechanicName.value))
+            if movieModule:
+                break
+
+        if not movieModule:
+            movieModule = MODULE_MOVIES.get(movieKey)
+        return self._packAdvancedBlocks(movieModule, header, descrKey)
+
+
+class TankmanPreviewTooltipAdvanced(BaseAdvancedTooltip):
+
+    def _packBlocks(self, role, *args, **kwargs):
+        return self._packAdvancedBlocks(TANKMAN_MOVIES[role], ITEM_TYPES.tankman_roles(role), role)
+
+
+class VehicleParametersAdvanced(ToolTipBaseData):
+    _movies = {'relativePower': 'statFirepower',
+     'relativeArmor': 'statSurvivability',
+     'relativeMobility': 'statMobility',
+     'relativeCamouflage': 'statConcealment',
+     'relativeVisibility': 'statSpotting'}
+
+    def __init__(self, context):
+        super(VehicleParametersAdvanced, self).__init__(context, None)
+        return
+
+    def getDisplayableData(self, paramName, *args, **kwargs):
+        from gui.impl.lobby.crew.tooltips.advanced_tooltip_view import AdvancedTooltipView
+        return DecoratedTooltipWindow(AdvancedTooltipView(self._movies[paramName], backport.text(R.strings.menu.tank_params.dyn(paramName)()), backport.text(R.strings.tooltips.advanced.dyn(paramName)())), useDecorator=False)
+
+
+class MoneyAndXpAdvanced(BaseAdvancedTooltip):
+    _moviesOrDescriptions = {'crystal': 'economyBonds',
+     'credits': 'economyCredits',
+     'gold': 'economyGold',
+     'freeXP': 'economyConvertExp'}
+
+    def _getBlocksList(self, *args, **kwargs):
+        _type = args[0]
+        movie = self._moviesOrDescriptions[_type]
+        header = TOOLTIPS.getHeaderBtnTitle(_type)
+        description = self._moviesOrDescriptions[_type]
+        return self._packAdvancedBlocks(movie, header, description)
+
+
+class RankedAdvanced(BaseAdvancedTooltip):
+
+    def _getBlocksList(self, *args, **kwargs):
+        return self._packAdvancedBlocks('gamemodeRanked', i18n.makeString(TOOLTIPS.BATTLETYPES_RANKED + '/header'), PREBATTLE_ACTION_NAME.RANKED)
+
+
+class DemountKitTooltipAdvanced(BaseAdvancedTooltip):
+
+    def _packBlocks(self, *args, **kwargs):
+        demountKit = self.context.buildItem(*args, **kwargs)
+        dkType = demountKit.demountKitGuiType
+        return self._packAdvancedBlocks('demountKit', demountKit.userName, 'demountKit/{}'.format(dkType))
+
+
+SKILL_MOVIES = {'repair': 'skillRepairs',
+ 'camouflage': 'skillConcealment',
+ 'naturalCover': 'skillConcealment',
+ 'fireFighting': 'skillFirefighting',
+ 'brotherhood': 'skillBrothersInArms',
+ 'armorPatching': 'skillArmorPatching',
+ 'commander_tutor': 'skillCommanderTutor',
+ 'commander_eagleEye': 'skillEagleEye',
+ 'commander_universalist': 'skillJackOfAllTrades',
+ 'commander_coordination': 'skillCommanderCoordination',
+ 'commander_sixthSense': 'skillSixthSense',
+ 'commander_enemyShotPredictor': 'skillCommanderEnemyShotPredictor',
+ 'commander_practical': 'skillCommanderPractical',
+ 'commander_emergency': 'skillCommanderEmergency',
+ 'commander_holdLine': 'skillHoldLine',
+ 'commander_staySharp': 'skillStaySharp',
+ 'gunner_rancorous': 'skillDesignatedTarget',
+ 'gunner_armorer': 'skillGunnerArmorer',
+ 'gunner_sniper': 'skillSniper',
+ 'gunner_smoothTurret': 'skillSnapShot',
+ 'gunner_focus': 'skillGunnerFocus',
+ 'gunner_quickAiming': 'skillGunnerQuickAiming',
+ 'gunner_pointBlast': 'skillPointBlast',
+ 'gunner_loneWolf': 'skillGunnerLoneWolf',
+ 'driver_rammingMaster': 'skillDriverRammingMaster',
+ 'driver_badRoadsKing': 'skillOffRoadDriving',
+ 'driver_tidyPerson': 'skillPreventativeMaintenance',
+ 'driver_virtuoso': 'skillClutchBraking',
+ 'driver_smoothDriving': 'skillSmoothRide',
+ 'driver_motorExpert': 'skillDriverMotorExpert',
+ 'driver_reliablePlacement': 'skillDriverReliablePlacement',
+ 'driver_suspensionRepair': 'skillSuspensionRepair',
+ 'driver_bulletproof': 'skillBulletproof',
+ 'radioman_finder': 'skillSituationalAwareness',
+ 'radioman_expert': 'skillRadiomanExpert',
+ 'radioman_sideBySide': 'skillRadiomanSideBySide',
+ 'radioman_interference': 'skillRadiomanInterference',
+ 'radioman_signalInterception': 'skillRadiomanSignalInterception',
+ 'radioman_battleTempered': 'skillBattleTempered',
+ 'radioman_threatSearch': 'skillThreatSearch',
+ 'loader_desperado': 'skillAdrenalineRush',
+ 'loader_pedant': 'skillSafeStowage',
+ 'loader_intuition': 'skillIntuition',
+ 'loader_ambushMaster': 'skillAmbushMaster',
+ 'loader_ammunitionImprove': 'skillLoaderAmmunitionImprove',
+ 'loader_melee': 'skillLoaderMelee',
+ 'loader_magMastery': 'skillMagMastery',
+ 'loader_perfectCharge': 'skillLoaderPerfectCharge',
+ 'loader_secondChance': 'skillSecondChance'}
+MODULE_MOVIES = {'largeRepairkit': 'consumablesRepairKitBig',
+ 'smallRepairkit': 'consumablesRepairKitSmall',
+ 'largeMedkit': 'consumablesFirstAidBig',
+ 'smallMedkit': 'consumablesFirstAidSmall',
+ 'autoExtinguishers': 'consumablesExtinguisherBig',
+ 'handExtinguishers': 'consumablesExtinguisherSmall',
+ 'qualityFuel': 'consumablesQualityFuel',
+ 'excellentFuel': 'consumablesExcellentFuel',
+ 'removedRpmLimiter': 'consumablesSpeedGovernorRemoved',
+ 'aimingStabilizer': 'equipmentVerticalStabilizer',
+ 'enhancedAimDrives': 'equipmentGunLayingDrive',
+ 'coatedOptics': 'equipmentCoatedOptics',
+ 'stereoscope': 'equipmentBinocularTelescope',
+ 'camouflageNet': 'equipmentCamouflageNet',
+ 'antifragmentationLining': 'equipmentLightSpallLiner',
+ 'improvedVentilation': 'equipmentImprovedVentilation',
+ 'rammer': 'equipmentMediumCaliberTankGunRammer',
+ 'vehicleGun': 'moduleGun',
+ 'vehicleGun_lowChargeShot': 'moduleGun_lowChargeShot',
+ 'vehicleDualGun': 'moduleDualGun',
+ 'vehicleRadio': 'moduleRadio',
+ 'vehicleEngine': 'moduleEngine',
+ 'vehicleChassis': 'moduleSuspension',
+ 'vehicleWheeledChassis': 'moduleWheel',
+ 'vehicleTrackWithinTrackChassis': 'moduleTrackWithinTrack',
+ 'vehicleTurret': 'moduleTurret',
+ 'cocacola': 'consumablesCola',
+ 'chocolate': 'consumablesChocolate',
+ 'ration': 'consumablesExtraCombatRations',
+ 'hotCoffee': 'consumablesStrongCoffee',
+ 'ration_china': 'consumablesImprovedCombatRations',
+ 'ration_uk': 'consumablesPuddingAndTea',
+ 'ration_japan': 'consumablesOnigiri',
+ 'ration_czech': 'consumablesBuchty',
+ 'ration_sweden': 'consumablesCoffeeWithCinnamonBuns',
+ 'ration_poland': 'consumablesBreadWithSchmaltz',
+ 'ration_italy': 'consumablesSpaghetti',
+ 'grousers': 'equipmentAdditionalGrousers',
+ 'artillery': 'artillery',
+ 'bomber': 'bomber',
+ 'inspire': 'inspire',
+ 'arcade_minefield': 'minefield',
+ 'stealthRadar': 'patrol',
+ 'recon': 'recon',
+ 'regenerationKit': 'resuply',
+ 'passive_engineering': 'sabotageSquad',
+ 'smoke': 'smokeCloud',
+ 'commandersView': 'equipmentCommandersVisionSystem',
+ 'modernizedImprovedSightsEnhancedAimDrives': 'equipmentExperimentalAccuracy',
+ 'modernizedAimDrivesAimingStabilizer': 'equipmentExperimentalAiming',
+ 'modernizedExtraHealthReserveAntifragmentationLining': 'equipmentExperimentalHardening',
+ 'modernizedTurbochargerRotationMechanism': 'equipmentExperimentalTurbocharger',
+ 'improvedSights': 'equipmentImprovedAiming',
+ 'extraHealthReserve': 'equipmentImprovedHardening',
+ 'improvedRadioCommunication': 'equipmentImprovedRadioSet',
+ 'improvedRotationMechanism': 'equipmentImprovedRotationMechanism',
+ 'additionalInvisibilityDevice': 'equipmentLowNoiseExhaustSystem',
+ 'improvedConfiguration': 'equipmentModifiedConfiguration',
+ 'turbocharger': 'equipmentTurbocharger'}
+TANKMAN_MOVIES = {'commander': 'crewCommander',
+ 'driver': 'crewDriver',
+ 'gunner': 'crewGunner',
+ 'loader': 'crewLoader',
+ 'radioman': 'crewRadioOperator'}
+SHELL_MOVIES = {(SHELL_TYPES.ARMOR_PIERCING,
+ False,
+ False,
+ False): 'bulletAP',
+ (SHELL_TYPES.HOLLOW_CHARGE,
+ False,
+ False,
+ False): 'bulletHEAT',
+ (SHELL_TYPES.HIGH_EXPLOSIVE,
+ False,
+ False,
+ False): 'bulletHE',
+ (SHELL_TYPES.ARMOR_PIERCING_CR,
+ False,
+ False,
+ False): 'bulletAPCR',
+ (SHELL_TYPES.HIGH_EXPLOSIVE,
+ True,
+ False,
+ False): 'bulletHEModern',
+ (SHELL_TYPES.ARMOR_PIERCING,
+ False,
+ True,
+ False): 'bulletAP',
+ (SHELL_TYPES.ARMOR_PIERCING_CR,
+ False,
+ True,
+ False): 'bulletAPCR',
+ (SHELL_TYPES.ARMOR_PIERCING,
+ False,
+ False,
+ True): 'bulletAPMutable',
+ (SHELL_TYPES.ARMOR_PIERCING_CR,
+ False,
+ False,
+ True): 'bulletAPCRMutable'}

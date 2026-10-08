@@ -1,0 +1,38 @@
+from enum import Enum
+from gui.impl.gen.view_models.views.lobby.crew.common.skill.skill_extended_model import SkillExtendedModel
+
+class AnimationType(Enum):
+    NONE = 'none'
+    UNLOCKED = 'unlocked'
+    SELECTED = 'selected'
+
+
+class TankmanSkillModel(SkillExtendedModel):
+    __slots__ = ()
+
+    def __init__(self, properties=12, commands=0):
+        super(TankmanSkillModel, self).__init__(properties=properties, commands=commands)
+
+    def getIsDisabled(self):
+        return self._getBool(9)
+
+    def setIsDisabled(self, value):
+        self._setBool(9, value)
+
+    def getIsLocked(self):
+        return self._getBool(10)
+
+    def setIsLocked(self, value):
+        self._setBool(10, value)
+
+    def getAnimationType(self):
+        return AnimationType(self._getString(11))
+
+    def setAnimationType(self, value):
+        self._setString(11, value.value)
+
+    def _initialize(self):
+        super(TankmanSkillModel, self)._initialize()
+        self._addBoolProperty('isDisabled', False)
+        self._addBoolProperty('isLocked', False)
+        self._addStringProperty('animationType', AnimationType.NONE.value)

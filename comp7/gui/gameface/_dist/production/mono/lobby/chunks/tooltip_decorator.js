@@ -1,0 +1,1 @@
+import{j as r,a3 as o}from"./vendor.js";import{et as e}from"./lib.js";const a="TooltipDecorator_decorator_81525906",s="TooltipDecorator_decoratorInner_ed88e863";function c({children:c,classNames:n}){return r.jsx(e,{children:r.jsx("div",{className:o(a,n?.decoratorInner),children:r.jsx("div",{className:o(s,n?.decoratorInner),children:c})})})}export{c as T};

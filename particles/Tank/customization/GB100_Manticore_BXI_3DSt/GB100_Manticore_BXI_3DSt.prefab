@@ -1,0 +1,233 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "shot",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/GB100_Manticore_BXI_3DSt/gun_lights_shot.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "idle",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/GB100_Manticore_BXI_3DSt/gun_lights_idle.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_GB100_Manticore_attachment_gun"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "shotState",
+				"uuid": "4991ab78-2330-42d2-8996-ca3ae80caf10"
+			},
+			{
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_GB100_Manticore_attachment_hull"
+					},
+					"BW::VSEComponent": {
+						"autoStart": true,
+						"path": "vscript/plans/VFX/GB100_Manticore_BXI_3DSt/GB100_Manticore_BXI_3DSt_control.xml"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "1276937f-5d40-401c-ba5b-32f0127a5bd6"
+			},
+			{
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "GB100_Manticore_BXI_3DSt_gun"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Gun",
+				"uuid": "16f2cfb8-ed50-405c-93ca-f95b33debcbd"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "brake",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/GB100_Manticore_BXI_3DSt/brake_stop_lights.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "notBrake",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/GB100_Manticore_BXI_3DSt/brake_stop_lights_idle.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_GB100_Manticore_attachment_hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "brakeState",
+				"uuid": "b54eacdf-1305-4bce-a40d-0614fef096fa"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "inSniperMode",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/GB100_Manticore_BXI_3DSt/empty.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_GB100_Manticore_attachment_hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "sniperModeState",
+				"uuid": "2483a96a-4e8f-4e3c-8abf-f22c225a20df"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "eye_anim",
+						"lodScale": 1.0,
+						"path": "particles/Tank/customization/GB100_Manticore_BXI_3DSt/eye_anim.seq",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					},
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "Receive_Hit",
+						"lodScale": 1.0,
+						"path": "particles/Tank/customization/BXI_3DSt_Uni/receive_hit.ssm",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"castShadows": true,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/british/GB100_Manticore/_skins/GB100_Manticore_BXI_3DSt/normal/lod0/Hull.model"
+			},
+			"BW::ProjectileHitsReceivedAnimatorTriggerComponent": {
+				"ignorePeriod": 2.6700000762939453,
+				"triggerName": "Hit",
+				"triggerSource": "00000000-0000-0000-0000-000000000000"
+			},
+			"cgf::TransformComponent": {},
+			"script::VehicleCustomEffectsSettings": {
+				"additionalEngineSoundNPC": "style_cust_GB100_Manticore_BXI_NPC",
+				"additionalEngineSoundPC": "style_cust_GB100_Manticore_BXI_PC",
+				"disableDefaultChassis": "0",
+				"disableDefaultHull": "0",
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			}
+		},
+		"name": "GB100_Manticore_BXI_3DSt",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,1360 @@
+body {
+    margin: 0;
+    line-height: normal;
+}
+
+.App_base_ee76c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0, .6);
+    position: relative;
+}
+
+.App_contentWrapper_e9760 {
+    flex: 1;
+    width: 100%;
+}
+
+.App_offset_f1be5 {
+    width: 100%;
+    height: 33rem;
+}
+
+.HorizontalBar_base_fa517 {
+    display: flex;
+    width: 100%;
+    height: 13rem;
+    visibility: hidden;
+    position: relative;
+}
+
+    .HorizontalBar_base__active_ad89b {
+        visibility: visible;
+    }
+
+    .HorizontalBar_base_fa517 .disable,
+    .HorizontalBar_base_fa517 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.HorizontalBar_leftButton_eb8c3,
+.HorizontalBar_rightButton_f5116 {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transform: rotate(-90deg);
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_leftButton_eb8c3:hover, .HorizontalBar_rightButton_f5116:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_leftButton_eb8c3 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.HorizontalBar_rightButton_f5116 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.HorizontalBar_track_fd3af {
+    flex: 1;
+    margin: 0 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0 {
+    display: none;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 20rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb_horizontal') no-repeat center / 8rem 7rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_rail_a3d9e {
+    height: 0;
+    border-top: 1rem solid #2f2e24;
+    position: absolute;
+    top: 6rem;
+    right: 5rem;
+    left: 5rem;
+}
+
+.HorizontalBar_rail_a3d9e:hover {
+        opacity: .7;
+    }
+
+
+.HorizontalScroll_base_a33a9 {
+    width: 100%;
+}
+
+.HorizontalScroll_wrapper_b622e {
+    display: flex;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.HorizontalScroll_defaultScrollArea_a2315 {
+    width: 100%;
+    margin-bottom: 7rem;
+}
+
+.VerticalBar_base_b5610 {
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    height: 100%;
+    visibility: hidden;
+    position: relative;
+}
+
+    .VerticalBar_base__active_be260 {
+        visibility: visible;
+    }
+
+    .VerticalBar_base_b5610 .disable,
+    .VerticalBar_base_b5610 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.VerticalBar_topButton_c2227,
+.VerticalBar_bottomButton_ef09b {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_topButton_c2227:hover, .VerticalBar_bottomButton_ef09b:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_topButton_c2227 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.VerticalBar_bottomButton_ef09b {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.VerticalBar_track_e3345 {
+    flex: 1;
+    margin: 1rem 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7 {
+    display: none;
+    flex: 0 0 13rem;
+    width: 13rem;
+    height: 100%;
+    min-height: 20rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb') no-repeat center / 7rem 8rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_rail_ff232 {
+    width: 0;
+    height: 100%;
+    border-left: 1rem solid #2f2e24;
+    border-top: 5rem solid transparent;
+    border-bottom: 5rem solid transparent;
+    position: absolute;
+    top: 0;
+    left: 6rem;
+    z-index: 0;
+}
+
+.VerticalBar_rail_ff232:hover {
+        opacity: .7;
+    }
+
+
+.VerticalScroll_content_fe263 {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.VerticalScroll_defaultScroll_e27f5 {
+    display: flex;
+}
+
+.VerticalScroll_bar_b8700 {
+    flex: 1;
+    margin-left: 7rem;
+}
+
+.VerticalScroll_area_b5a82 {
+    flex: 1;
+}
+
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.ProgressionHeader_base_d6fd1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: #fefeec;
+    font-size: 20rem;
+}
+
+    .ProgressionHeader_base__large_b814e {
+        font-size: 24rem;
+    }
+
+.ProgressionHeader_line_ad3d4 {
+    flex: 1;
+    height: 2rem;
+    background-color: rgba(254,254,236, .2);
+}
+
+.ProgressionHeader_title_dc4fc {
+    padding: 0 20rem 8rem;
+}
+
+.HoverContent_base_eade7 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fd9;
+    font-size: 14rem;
+    text-shadow: 0 0 12rem rgba(255,0,0, 1),
+    0 0 12rem rgba(255,0,0, .6),
+    0 0 12rem rgba(255,0,0, .6),
+    0 0 10rem rgba(255,0,0, .6),
+    0 0 8rem rgba(255,0,0, .6);
+}
+
+.HoverContent_icon_c533d {
+    width: 100rem;
+    height: 100rem;
+    margin-top: -40rem;
+    background: url('R.images.gui.maps.icons.customization.progeression_screen.decal_preview') no-repeat center / cover;
+}
+
+.HoverContent_text_e8397 {
+    margin-top: -35rem;
+    background: url('R.images.gui.maps.icons.customization.progeression_screen.shadow') no-repeat 100% 100% / cover;
+}
+
+.Icon_base_ca216 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+    .Icon_base__placeholder_dbae1 {
+        width: 20rem;
+        height: 20rem;
+        border: 3rem solid;
+        border-color: #fff #fff #fff transparent;
+        border-radius: 80%;
+        opacity: .3;
+        animation: Icon_rotating_b6098 1.2s linear infinite;
+    }
+
+.Icon_imageTemp_e664b {
+    display: none;
+}
+
+@keyframes Icon_rotating_b6098 {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.Item_base_b0242 {
+    display: flex;
+    width: 25%;
+}
+
+    .Item_base__first_e2f7c {
+        width: 130rem;
+    }
+
+    .Item_base__firstSmall_c6782 {
+        width: 200rem;
+    }
+
+    .Item_base__firstLarge_b5f0b {
+        width: 230rem;
+    }
+.Item_content_c1ced {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 130rem;
+}
+.Item_content__small_d3db9 {
+        width: 200rem;
+    }
+.Item_content__large_e48d9 {
+        width: 230rem;
+    }
+.Item_image_abfed {
+    width: 110rem;
+    height: 110rem;
+    transform: scale(1);
+    transition: transform .2s;
+    cursor: pointer;
+}
+.Item_image__small_a3d06 {
+        width: 160rem;
+        height: 160rem;
+    }
+.Item_image__large_e9489 {
+        width: 190rem;
+        height: 190rem;
+    }
+.Item_image__locked_fee76 {
+        opacity: .35;
+        cursor: default;
+        pointer-events: none;
+    }
+.Item_image__progress_f953b {
+        opacity: .6;
+        cursor: default;
+        pointer-events: none;
+    }
+.Item_image_abfed:hover {
+        transform: scale(1.15);
+    }
+.Item_imageContainer_ef956 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 130rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+.Item_imageContainer__small_b74df {
+        width: 200rem;
+        margin-bottom: 3rem;
+    }
+.Item_imageContainer__large_d96b7 {
+        width: 230rem;
+        margin-bottom: 15rem;
+    }
+.Item_hoverContent_c6018 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .2s;
+    pointer-events: none;
+}
+.Item_imageContainer_ef956:hover .Item_hoverContent_c6018 {
+        opacity: 1;
+    }
+.Item_itemProgression_d65ea {
+    margin-top: 1rem;
+}
+.Item_itemProgression__small_fccbd {
+        margin-top: 7rem;
+    }
+.Item_itemProgression__large_d8165 {
+        margin-top: 0;
+    }
+.Item_itemProgressionWithBar_f17cf {
+    margin-top: 6rem;
+}
+.Item_itemProgressionWithBar__small_bc4ec {
+        margin-top: 11rem;
+    }
+.Item_itemProgressionWithBar__large_a0877 {
+        margin-top: 5rem;
+    }
+.Item_itemSeparator_b11fa {
+    flex: 1;
+    height: 110rem;
+}
+.Item_itemSeparator__small_b1a5f {
+        height: 160rem;
+    }
+.Item_itemSeparator__large_e5390 {
+        height: 190rem;
+    }
+
+.ItemBlockDone_base_de429 {
+    color: #80d43a;
+    font-size: 14rem;
+}
+
+    .ItemBlockDone_base__large_a2b46 {
+        font-size: 16rem;
+    }
+
+.ItemBlockDone_contentContainer_c2750 {
+    margin-left: -11rem;
+    margin-top: 6rem;
+    padding-left: 22rem;
+    background: url('R.images.gui.maps.icons.library.done') no-repeat left / 22rem;
+}
+
+.ItemBlockDone_contentContainer__small_c0c0a {
+        margin-top: 12rem;
+    }
+
+.ItemBlockDone_contentContainer__large_ffaf1 {
+        margin-top: 5rem;
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBar_base_c37bf {
+    width: 100%;
+    height: var(--progress-bg-height);
+    position: relative;
+}
+.ProgressBar_base__small_af6d6 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_background_a4e18 {
+    width: 100%;
+    max-width: 8001px;
+    height: 100%;
+    background-image: var(--progress-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.ProgressBar_background__small_e2b95 {
+        height: var(--progress-bg-height-small);
+    }
+.ProgressBar_lineWrapper_e670c {
+    display: flex;
+    flex: 1;
+}
+
+
+.ProgressBarBlink_base_d7125 {
+    width: var(--progress-glow-width);
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+    pointer-events: none;
+}
+
+    .ProgressBarBlink_base__small_b92f8 {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressLineImpose_base_a3558 {
+    max-width: 8001px;
+    height: 100%;
+    background-color: var(--progress-line-base);
+    filter: var(--progress-line-filter);
+    position: relative;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressLineImpose_base__disabled_a9e8e {
+        background-color: var(--progress-line-disabled);
+    }
+.ProgressLineImpose_base__finished_f889e {
+        background-color: var(--progress-line-finished);
+    }
+.ProgressLineImpose_base__withoutBounce_c0ff9 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressLineImpose_pattern_a4023 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-base);
+    background-repeat: repeat;
+    background-position: 0 50%;
+    background-size: var(--progress-pattern-size);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: var(--progress-pattern-border-size);
+    bottom: var(--progress-pattern-border-size);
+    left: var(--progress-pattern-border-size);
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_pattern_a4023 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-disabled);
+        left: 0;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_pattern_a4023 {
+        background-image: var(--progress-pattern-finished);
+    }
+.ProgressLineImpose_gradient_f73c0 {
+    max-width: 8001px;
+    background-image: var(--progress-pattern-gradient);
+    mix-blend-mode: var(--progress-pattern-gradient-mixBlendMode);
+    position: absolute;
+    top: var(--progress-pattern-border-size);
+    right: 0;
+    bottom: var(--progress-pattern-border-size);
+    left: 0;
+}
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_gradient_f73c0 {
+        top: 0;
+        bottom: 0;
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_gradient_f73c0 {
+        display: none;
+    }
+.ProgressLineImpose_base__finished_f889e .ProgressLineImpose_gradient_f73c0 {
+        background-image: var(--progress-pattern-gradient-finished);
+    }
+.ProgressLineImpose_glow_f237a {
+    width: var(--progress-glow-width);
+    max-width: 8001px;
+    height: var(--progress-glow-height);
+    background-image: var(--progress-glow);
+    background-size: contain;
+    mix-blend-mode: var(--progress-glow-mixBlendMode);
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.ProgressLineImpose_glow__left_b7ffa {
+        left: var(--progress-pattern-border-size);
+    }
+.ProgressLineImpose_base__disabled_a9e8e .ProgressLineImpose_glow_f237a,
+    .ProgressLineImpose_base__finished_f889e .ProgressLineImpose_glow_f237a {
+        display: none;
+    }
+.ProgressLineImpose_base__small_da260 .ProgressLineImpose_glow_f237a {
+        width: var(--progress-glow-small-width);
+        height: var(--progress-glow-small-height);
+        background-image: var(--progress-glow-small);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaGrow_base_f4d46 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+.ProgressBarDeltaGrow_glow_c912d {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1);
+    transition-property: width;
+}
+.ProgressBarDeltaGrow_base__withoutBounce_b1398 .ProgressBarDeltaGrow_glow_c912d {
+        transition-timing-function: cubic-bezier(1, 0, .75, .75);
+    }
+
+/*
+    Gameface can't calculate gradient biggest than 8128px
+    in JS 8000 reserved like anchor for start optimization
+*/
+/* stylelint-disable-line */
+.ProgressBarDeltaSimple_base_cfcd3 {
+    width: 0;
+    height: 100%;
+    position: absolute;
+    top: 0;
+}
+.ProgressBarDeltaSimple_delta_dc2b6 {
+    width: 0;
+    max-width: 8001px;
+    height: 100%;
+    box-shadow: var(--progress-delta-shadow);
+    background-color: var(--progress-delta-color);
+    position: absolute;
+    bottom: 0;
+    transform-origin: right center;
+    transition-timing-function: cubic-bezier(1, 0, .92, 1), cubic-bezier(.21, .61, .35, 1);
+    transition-property: width, transform;
+}
+
+.ItemBlockProgression_base_fa852 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-bottom: 0;
+}
+
+    .ItemBlockProgression_base__small_e51a5 {
+        padding-bottom: 10rem;
+    }
+
+.ItemBlockProgression_text_a1395 {
+    color: #8c8c7e;
+    font-size: 14rem;
+}
+
+.ItemBlockProgression_text__large_a0476 {
+        font-size: 16rem;
+    }
+
+.ItemBlockProgression_text__score_bcaae {
+        margin-right: 3rem;
+        color: #c9c9b6;
+    }
+
+.ItemBlockProgression_count_a7f6f {
+    margin-bottom: 5rem;
+}
+
+.ItemBlockProgression_description_b84d7 {
+    margin-top: 5rem;
+}
+
+.Separator_base_c3c58 {
+    display: flex;
+    flex: 1;
+    position: relative;
+}
+
+.Separator_lock_fd3a0 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.Separator_lockImage_cbf13 {
+    width: 10rem;
+    height: 15rem;
+    transform: translate(-50%, -60%);
+}
+
+.Separator_arrow_e9daf {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.customization.progeression_screen.arrowx2') no-repeat right;
+    background-size: 100rem 13rem;
+}
+
+.List_base_d8cbe {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+}
+
+.ProgressionSequence_base_ab74e {
+    padding-bottom: 12rem;
+}
+
+    .ProgressionSequence_base__small_cd0a5 {
+        padding-bottom: 20rem;
+    }
+
+    .ProgressionSequence_base__large_af71b {
+        padding-bottom: 35rem;
+    }
+
+.ProgressionSequence_header_c99af {
+    width: 100%;
+    margin-bottom: 20rem;
+}
+
+.Grid_base_fa105 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Grid_content_cfe1d {
+    display: flex;
+    flex-direction: column;
+    width: 810rem;
+}
+
+.Grid_content__small_a34d2 {
+        width: 1240rem;
+    }
+
+.Grid_content__large_c40ab {
+        width: 1550rem;
+    }
+
+.Header_base_b1690 {
+    color: #fefeec;
+    font-size: 24rem;
+}
+
+.Header_tankTypeIcon_caac9 {
+    width: 83rem;
+    height: 74rem;
+    margin: 0 -12rem 0 -18rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.Header_contentContainer_bc362 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -6rem;
+}
+
+.Header_spaceAtTheEnd_ad475 {
+    margin-right: 6rem;
+}
+
+.ProgressiveItemsViewContent_base_e25cf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    position: relative;
+    animation: ProgressiveItemsViewContent_fadeIn_d53a1 .2s ease-in .1s forwards;
+}
+
+.ProgressiveItemsViewContent_overlay_a69c7 {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .15;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.ProgressiveItemsViewContent_overlay__lowSettings_b5200 {
+        opacity: .4;
+    }
+
+.ProgressiveItemsViewContent_closeBtn_d9ebd {
+    position: absolute;
+    top: 55rem;
+    right: 28rem;
+}
+
+.ProgressiveItemsViewContent_infoBtn_da94c {
+    position: absolute;
+    top: 55rem;
+    left: 26rem;
+}
+
+.ProgressiveItemsViewContent_infoBtn__externalPaddings_bd742 {
+        top: 10rem;
+        right: 30rem;
+        left: auto;
+    }
+
+.ProgressiveItemsViewContent_header_eabdc {
+    margin: 20rem 0;
+}
+
+.ProgressiveItemsViewContent_grid_de396 {
+    padding: 40rem 0;
+}
+
+.ProgressiveItemsViewContent_scroll_ea48a {
+    flex: 1;
+    width: 100%;
+    padding-bottom: 2rem;
+}
+
+.ProgressiveItemsViewContent_lip_df29c {
+    width: 100%;
+    height: 320rem;
+    background: url('R.images.gui.maps.icons.customization.gf_customization_cart.lip') 50% 0 / 100% 100rem no-repeat;
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 63rem;
+    z-index: 1;
+    transition: visibility 0s linear 1s, opacity .2s linear;
+    pointer-events: none;
+}
+
+.ProgressiveItemsViewContent_lip__show_c4878 {
+        opacity: 1;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+@keyframes ProgressiveItemsViewContent_fadeIn_d53a1 {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* TODO: media break points should be removed and taken from common folder when it's ready.*/
+
+/*
+@mixin media-xxl {
+    @media (min-width: 2560px) and (min-height: 1440px) {
+        @content;
+    }
+}
+
+@mixin media-xl {
+    @media (min-width: 1920px) and (min-height: 1080px) {
+        @content;
+    }
+}
+*/
+
+/*
+@mixin media-m {
+    @media (min-width: 1440px) and (min-height: 776px) {
+        @content;
+    }
+}
+*/
+
+.Tutorial_base_a84c2 {
+    width: 100%;
+    height: 100%;
+}
+
+.Tutorial_overlay_ec0d2 {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: .15;
+}
+
+.Tutorial_overlay__lowSettings_a7d6a {
+        opacity: .4;
+    }
+
+.Tutorial_scroll_f7f47 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.Tutorial_goBackContainer_ae9cb {
+    display: flex;
+    position: absolute;
+    top: 40rem;
+    left: 0;
+}
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.PlayVideoButton_base_e3b2d {
+    width: 172rem;
+    height: 96rem;
+    background: url('R.images.gui.maps.icons.customization.progression_tutorial.play') no-repeat center / cover;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+    .PlayVideoButton_base_e3b2d:hover {
+        background-image: url('R.images.gui.maps.icons.customization.progression_tutorial.play_hover');
+    }
+/* Workaround for fix https://jira.wargaming.net/browse/WOTD-158651. Bad solution, but wasn't any other for current GF version*/
+.PlayVideoButton_hoverPreload_edb53 {
+    display: none;
+    background-image: url('R.images.gui.maps.icons.customization.progression_tutorial.play_hover');
+}
+
+/* TODO: media break points should be removed and taken from common folder when it's ready.*/
+
+/*
+@mixin media-xxl {
+    @media (min-width: 2560px) and (min-height: 1440px) {
+        @content;
+    }
+}
+
+@mixin media-xl {
+    @media (min-width: 1920px) and (min-height: 1080px) {
+        @content;
+    }
+}
+*/
+
+/*
+@mixin media-m {
+    @media (min-width: 1440px) and (min-height: 776px) {
+        @content;
+    }
+}
+*/
+
+.TutorialElement_base__small_bf071 {
+        width: 277rem;
+    }
+
+@media (min-width: 1366px) and (min-height: 768px) {
+
+.TutorialElement_base__small_bf071 {
+            width: 300rem
+    }
+    }
+
+.TutorialElement_base__medium_fc992 {
+        width: 430rem;
+    }
+
+@media (min-width: 1366px) and (min-height: 768px) {
+
+.TutorialElement_base__medium_fc992 {
+            width: 460rem
+    }
+    }
+
+.TutorialElement_icon__small_ef953 {
+        width: 277rem;
+        height: 170rem;
+        background: no-repeat center / cover;
+    }
+
+@media (min-width: 1366px) and (min-height: 768px) {
+
+.TutorialElement_icon__small_ef953 {
+            width: 300rem;
+            height: 170rem
+    }
+    }
+
+.TutorialElement_icon__medium_c986d {
+        width: 430rem;
+        height: 200rem;
+        background: no-repeat center / cover;
+    }
+
+@media (min-width: 1366px) and (min-height: 768px) {
+
+.TutorialElement_icon__medium_c986d {
+            width: 460rem;
+            height: 200rem
+    }
+    }
+
+.TutorialElement_elementTitle_b540a {
+    color: #e9e2bf;
+    font-size: 18rem;
+    font-weight: 700;
+}
+
+.TutorialElement_elementTitle_container_d976c {
+        display: flex;
+        margin-top: 4rem;
+        margin-bottom: 10rem;
+    }
+
+.TutorialElement_elementDescription_b81f8 {
+    color: #8c8c7e;
+    font-size: 14rem;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialElement_elementDescription_b81f8 {
+        font-size: 16rem
+}
+    }
+
+/* TODO: media break points should be removed and taken from common folder when it's ready.*/
+
+/*
+@mixin media-xxl {
+    @media (min-width: 2560px) and (min-height: 1440px) {
+        @content;
+    }
+}
+
+@mixin media-xl {
+    @media (min-width: 1920px) and (min-height: 1080px) {
+        @content;
+    }
+}
+*/
+
+/*
+@mixin media-m {
+    @media (min-width: 1440px) and (min-height: 776px) {
+        @content;
+    }
+}
+*/
+
+.TutorialContent_base_e2055 {
+    display: flex;
+    justify-content: center;
+}
+
+.TutorialContent_main_fb18a {
+    display: flex;
+    flex-direction: column;
+    width: 860rem;
+    height: 100%;
+    padding: 25rem 0 40rem;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialContent_main_fb18a {
+        width: 960rem
+}
+    }
+
+.TutorialContent_mainTitle_c5c6c {
+    color: #f2f2f7;
+    font-size: 36rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialContent_mainTitle_c5c6c {
+        font-size: 56rem
+}
+    }
+
+.TutorialContent_mainTitleContainer_e8b75 {
+    display: flex;
+    justify-content: center;
+    margin: 14rem 0 13rem;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialContent_mainTitleContainer_e8b75 {
+        margin: 14rem 20rem 0
+}
+    }
+
+.TutorialContent_mainDescription_ffbb7 {
+    max-width: 650rem;
+    color: #e9e2bf;
+    font-size: 16rem;
+    line-height: 24rem;
+    text-align: center;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialContent_mainDescription_ffbb7 {
+        max-width: 880rem;
+        color: #fefeec;
+        font-size: 24rem;
+        line-height: 32rem
+}
+    }
+
+.TutorialContent_mainDescriptionContainer_d943f {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40rem;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialContent_mainDescriptionContainer_d943f {
+        margin: 20rem 20rem 44rem
+}
+    }
+
+.TutorialContent_videoBlock_af700 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 880rem;
+    max-height: 528rem;
+    margin-bottom: 48rem;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialContent_videoBlock_af700 {
+        width: 960rem;
+        max-height: 576rem
+}
+    }
+
+.TutorialContent_videoContainer_eb327 {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background: url('R.images.gui.maps.icons.customization.progression_tutorial.videoPreview') no-repeat center / cover;
+}
+
+.TutorialContent_playBtn_c319a {
+    position: relative;
+    top: 50%;
+    left: 50%;
+}
+
+.TutorialContent_elementsBlock_dc4f8 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 60rem;
+}
+
+.TutorialContent_elementsTitle_f69aa {
+    color: #f2f2e7;
+    font-size: 24rem;
+    font-weight: 700;
+}
+
+.TutorialContent_elementsTitleContainer_d21d7 {
+    display: flex;
+    margin: 4rem 0 18rem;
+}
+
+.TutorialContent_elementsDescription_bd592 {
+    color: #8c8c7e;
+    font-size: 14rem;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialContent_elementsDescription_bd592 {
+        font-size: 16rem
+}
+    }
+
+.TutorialContent_elementsDescriptionContainer_de355 {
+    margin-bottom: 20rem;
+}
+
+.TutorialContent_elementsContainer_d4b68 {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.TutorialContent_elementContainer__small_aee04 {
+        margin-right: 30rem;
+    }
+
+.TutorialContent_elementContainer__medium_b43a5 {
+        margin-right: 20rem;
+    }
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.TutorialContent_elementContainer__medium_b43a5 {
+            margin-right: 40rem
+    }
+    }
+

@@ -1,0 +1,458 @@
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Button_base_a06e6 {
+    width: 18rem;
+    height: 18rem;
+    margin-top: 6rem;
+    background: center / contain no-repeat;
+    cursor: pointer;
+}
+
+    .Button_base__close_aca44 {
+        background-image: url('R.images.gui.maps.icons.windows.controls.Window_CloseButton_UpBitmap');
+    }
+
+    .Button_base__close_aca44:hover {
+            background-image: url('R.images.gui.maps.icons.windows.controls.Window_CloseButton_OverBitmap'),
+            url('R.images.gui.maps.icons.windows.controls.Window_CloseButton_UpBitmap');
+        }
+
+    .Button_base__close_aca44:active {
+            background-image: url('R.images.gui.maps.icons.windows.controls.Window_CloseButton_PressBitmap'),
+            url('R.images.gui.maps.icons.windows.controls.Window_CloseButton_UpBitmap');
+        }
+
+    .Button_base__minimize_f6b02 {
+        margin-right: 2rem;
+        background-image: url('R.images.gui.maps.icons.windows.controls.minimize_up');
+    }
+
+    .Button_base__minimize_f6b02:hover {
+            background-image: url('R.images.gui.maps.icons.windows.controls.minimize_over'),
+            url('R.images.gui.maps.icons.windows.controls.minimize_up');
+        }
+
+    .Button_base__minimize_f6b02:active {
+            background-image: url('R.images.gui.maps.icons.windows.controls.minimize_press'),
+            url('R.images.gui.maps.icons.windows.controls.minimize_up');
+        }
+
+.Info_base_eebdb {
+    width: 16rem;
+    height: 16rem;
+    margin: 6rem 0 0 8rem;
+    background: url('R.images.gui.maps.icons.library.InformationIcon') center / contain no-repeat;
+}
+
+.Title_base_c47fc {
+    display: flex;
+    flex: 1;
+    margin-top: 1rem;
+    margin-right: 20rem;
+    color: #FEFEEC;
+    font-size: 18rem;
+    font-weight: 700;
+    line-height: 120%;
+    text-shadow: #000000 0 -1rem;
+}
+
+.Header_base_f8211 {
+    display: flex;
+    width: 100%;
+    height: 28rem;
+    padding-left: 10rem;
+    padding-right: 6rem;
+    position: relative;
+    cursor: grab;
+}
+
+    .Header_base__grabbing_d3f4e {
+        cursor: grabbing;
+    }
+
+.Header_icon_db58d {
+    width: 23rem;
+    height: 20rem;
+    background: no-repeat center;
+}
+
+.Header_icon__reload_b270e {
+        background-image: url('R.images.gui.maps.icons.library.refresh');
+    }
+
+.Header_reloadButton_fad08 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 10rem;
+    padding: 0;
+}
+
+.WindowDecorator_base_c1549 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* stylelint-disable declaration-block-no-redundant-longhand-properties */
+    padding-left: var(--outer-shadow-width);
+    padding-top: var(--outer-shadow-width);
+    padding-right: var(--outer-shadow-width);
+    padding-bottom: var(--outer-shadow-width);
+    /* stylelint-enable declaration-block-no-redundant-longhand-properties */
+    overflow: hidden;
+    position: relative;
+}
+
+.WindowDecorator_frame_a8c42 {
+    border: transparent solid;
+    border-width: 30rem 27rem 43rem 24rem;
+    border-image: url('R.images.gui.maps.icons.windows.window_bg.centered') 30 27 43 24 fill;
+    opacity: .85;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.WindowDecorator_frame__focused_cfdc3 {
+        opacity: 1;
+    }
+
+.WindowDecorator_container_f5ea4 {
+    position: relative;
+}
+
+.WindowDecorator_contentDecorations_cef73 {
+    border: transparent solid;
+    border-width: 9rem 13rem 11rem;
+    border-image: url('R.images.gui.maps.icons.windows.window_bg.window_form_bg_new') 9 13 11 fill;
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+    bottom: -2rem;
+    left: -2rem;
+}
+
+.WindowDecorator_content_fb099 {
+    position: absolute;
+}
+
+.TaggedText_paragraph_ab02c {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+    .TaggedText_paragraph__left_ea956 {
+        justify-content: flex-start;
+    }
+
+    .TaggedText_paragraph__right_ea60d {
+        justify-content: flex-end;
+    }
+
+    .TaggedText_paragraph__center_ddf99 {
+        justify-content: center;
+    }
+
+.TaggedText_neutral_e32ec {
+    color: #cbac77;
+}
+
+.TaggedText_expTag_f2c1f {
+    color: #e9e2bf;
+}
+
+.TaggedText_stats_a142d {
+    color: #e9e2bf;
+}
+
+.TaggedText_colorTag_edf66 {
+    color: #80d43a;
+}
+
+.OfferBannerContent_base_f0c02 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 446rem;
+    background: url('R.images.gui.maps.icons.offers.banner_background') 0 0 / 446rem 305rem no-repeat;
+}
+
+.OfferBannerContent_icon_c786d {
+    width: 250rem;
+    height: 130rem;
+    margin-top: 23rem;
+    background: no-repeat 50% / contain;
+}
+
+.OfferBannerContent_arrow_c2360 {
+    width: 300rem;
+    height: 80rem;
+    margin-top: 19rem;
+    background: url('R.images.gui.maps.icons.offers.icon_arrow_current_step') 0 0 / contain no-repeat;
+    z-index: 1;
+}
+
+.OfferBannerContent_lip_f3b49 {
+    width: 446rem;
+    height: 20rem;
+    margin-top: 306rem;
+    background: url('R.images.gui.maps.icons.offers.lip_small') 0 0 / contain no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.OfferBannerContent_giftText_ddf7c {
+    padding-top: 45rem;
+    color: #f2f2e7;
+    font-size: 24rem;
+    font-weight: 700;
+}
+
+.OfferBannerContent_offerText_ecd0f {
+    margin: 15rem 32rem 0;
+    line-height: 22rem;
+    text-align: center;
+}
+
+.OfferBannerContent_descriptionText_b0db4 {
+    margin: 15rem 12rem 0;
+    color: #fefeec;
+    text-align: center;
+}
+
+.OfferBannerContent_storageText_eab5b {
+    margin: 5rem 12rem 0;
+    text-align: center;
+}
+
+.OfferBannerContent_button_d4f24 {
+    padding: 20rem 0;
+}
+
+.OfferBannerContent_cButton_f4201 {
+    min-width: 157rem;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    flex: 1;
+    height: 100%;
+    margin: 0;
+    color: #8c8c7c;
+    font-size: 14rem;
+    line-height: 1;
+}
+

@@ -1,0 +1,101 @@
+import typing
+from PlayerEvents import g_playerEvents
+from constants import PREMIUM_TYPE
+from gui.ClientUpdateManager import g_clientUpdateManager
+from gui.game_control.wot_plus.utils import getMaxGoldReserveCapacityFromAllTiers
+from gui.impl.lobby.account_dashboard.features.base import FeatureItem
+from gui.impl.lobby.premacc.premacc_helpers import PiggyBankConstants, getOpenTimeHelper
+from gui.impl.wrappers.function_helpers import replaceNoneKwargsModel
+from gui.shared.event_dispatcher import showPiggyBankView
+from helpers import dependency
+from renewable_subscription_common.schema import renewableSubscriptionsConfigSchema
+from renewable_subscription_common.settings_constants import RS_TIER
+from skeletons.gui.game_control import IGameSessionController, IWotPlusController
+from skeletons.gui.lobby_context import ILobbyContext
+from skeletons.gui.shared import IItemsCache
+from uilogging.wot_plus.loggers import WotPlusAccountDashboardWidgetLogger
+from uilogging.wot_plus.logging_constants import AccountDashboardFeature
+if typing.TYPE_CHECKING:
+    from typing import Dict
+    from gui.impl.gen.view_models.views.lobby.account_dashboard.reserve_stock_model import ReserveStockModel
+
+class ReserveStockFeature(FeatureItem):
+    _itemsCache = dependency.descriptor(IItemsCache)
+    _lobbyContext = dependency.descriptor(ILobbyContext)
+    _gameSession = dependency.descriptor(IGameSessionController)
+    _wotPlus = dependency.descriptor(IWotPlusController)
+
+    def initialize(self, *args, **kwargs):
+        super(ReserveStockFeature, self).initialize(*args, **kwargs)
+        g_clientUpdateManager.addCallbacks({PiggyBankConstants.PIGGY_BANK: self._onPiggyBankChanged,
+         PiggyBankConstants.PIGGY_BANK_CREDITS: self._updateCredits,
+         PiggyBankConstants.PIGGY_BANK_GOLD: self._updateGold,
+         PiggyBankConstants.PIGGY_BANK_SMASH_TIMESTAMP_CREDITS: self._updateLastSmashTimestamp,
+         PiggyBankConstants.PIGGY_BANK_SMASH_TIMESTAMP_GOLD: self._updateLastSmashTimestamp})
+        self._gameSession.onPremiumNotify += self._onPremiumNotify
+        self._wotPlus.onDataChanged += self._onWotPlusChanged
+        g_playerEvents.onConfigModelUpdated += self._onConfigModelUpdated
+        self._viewModel.reserveStock.onClick += self.__onClick
+
+    def finalize(self):
+        g_clientUpdateManager.removeObjectCallbacks(self)
+        self._gameSession.onPremiumNotify -= self._onPremiumNotify
+        self._wotPlus.onDataChanged -= self._onWotPlusChanged
+        self._viewModel.reserveStock.onClick -= self.__onClick
+        g_playerEvents.onConfigModelUpdated -= self._onConfigModelUpdated
+        super(ReserveStockFeature, self).finalize()
+
+    def _fillModel(self, model):
+        self._update(model=model)
+
+    def _updateCredits(self, credits=None):
+        self._update(credits=credits)
+
+    def _updateGold(self, gold=None):
+        self._update(gold=gold)
+
+    def _onPremiumNotify(self, *_):
+        self._update()
+
+    def _onWotPlusChanged(self, data):
+        if RS_TIER in data:
+            self._update()
+
+    def _updateLastSmashTimestamp(self, _):
+        self._update()
+
+    def _onPiggyBankChanged(self, _):
+        self._update()
+
+    def _onConfigModelUpdated(self, gpKey):
+        if renewableSubscriptionsConfigSchema.gpKey == gpKey:
+            self._update()
+
+    @replaceNoneKwargsModel
+    def _update(self, credits=None, gold=None, model=None):
+        submodel = model.reserveStock
+        config = self._lobbyContext.getServerSettings().getPiggyBankConfig()
+        data = self._itemsCache.items.stats.piggyBank
+        storage = self._wotPlus.getSettingsStorage()
+        submodel.setIsCreditReserveEnabled(config.get('enabled', False))
+        submodel.setIsGoldReserveEnabled(storage.isGoldReserveFeatureEnabled())
+        submodel.setCreditCurrentAmount(credits or data.get('credits', 0))
+        submodel.setCreditMaxAmount(config.get('creditsThreshold', PiggyBankConstants.MAX_AMOUNT))
+        submodel.setGoldCurrentAmount(gold or data.get('gold', 0))
+        submodel.setGoldMaxAmount(getMaxGoldReserveCapacityFromAllTiers())
+        submodel.setIsPremiumActive(self.__isTankPremiumActive())
+        submodel.setIsWotPlusActive(self.__isWotPlusActive())
+        submodel.setOpeningSoonThreshold(config.get('openSoonThreshold', PiggyBankConstants.OPEN_SOON_THRESHOLD_DEFAULT))
+        submodel.setOpeningTime(getOpenTimeHelper(config, data))
+
+    def __onClick(self):
+        WotPlusAccountDashboardWidgetLogger().logWidgetClickEvent(AccountDashboardFeature.RESERVE_WIDGET)
+        isEnabled = self._lobbyContext.getServerSettings().getPiggyBankConfig().get('enabled', False) or self._wotPlus.isWotPlusVisible()
+        if isEnabled:
+            showPiggyBankView()
+
+    def __isTankPremiumActive(self):
+        return self._itemsCache.items.stats.isActivePremium(PREMIUM_TYPE.PLUS)
+
+    def __isWotPlusActive(self):
+        return self._wotPlus.hasSubscription()

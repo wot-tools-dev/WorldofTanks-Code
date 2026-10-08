@@ -1,0 +1,217 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/MilitaryEnvironment/hd_mle_UNI_001_Pillbox_Bunker150mm/normal/lod0/hd_mle_UNI_001_Pillbox_Bunker150mm_Tent.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/MilitaryEnvironment/hd_mle_UNI_001_Pillbox_Bunker150mm/normal/lod0/hd_mle_UNI_001_Pillbox_Bunker150mm_Tent.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 63.26026916503906,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "10388778-dddd-475a-bbd1-304ed6bd0f13",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"name": "bunker_normal",
+				"uuid": "10388778-dddd-475a-bbd1-304ed6bd0f13"
+			},
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/MilitaryEnvironment/hd_mle_UNI_001_Pillbox_Bunker150mm/normal/lod0/hd_mle_UNI_001_Pillbox_Bunker150mm_crash.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/MilitaryEnvironment/hd_mle_UNI_001_Pillbox_Bunker150mm/normal/lod0/hd_mle_UNI_001_Pillbox_Bunker150mm_crash.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 63.26026916503906,
+							"z": 0.0
+						}
+					},
+					"script::ShootingObstacle": {
+						"colliders": "4914370b-4e0b-4863-b200-12c07c0ffe48",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "bunker_destroyed",
+				"uuid": "4914370b-4e0b-4863-b200-12c07c0ffe48"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "0",
+										"lodScale": 1.0,
+										"path": "particles/eff_sequence/Onboarding/14_siegfried_line_bunker_bombing.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "0",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -15.916999816894531,
+									"y": -0.5338019728660583,
+									"z": -5.456940174102783
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "oneshot",
+						"uuid": "b7690484-a2a4-44be-896b-e0cef447e803"
+					},
+					{
+						"components": {
+							"BW::Animator": {
+								"autoStart": false,
+								"disabledDomains": [
+									"Server"
+								],
+								"layers": [
+									{
+										"autoStart": true,
+										"clip": "<Default Clip>",
+										"graphicsPreset": "TYPE_NULL_SHADING",
+										"layerName": "0",
+										"lodScale": 1.0,
+										"path": "particles/eff_sequence/Onboarding/14_siegfried_line_bunker_bombing_looped.seq",
+										"properties": {
+											"delay": "0",
+											"loop": "1",
+											"loopCount": "-1",
+											"speed": "1"
+										},
+										"weight": 1.0
+									}
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": -15.916999816894531,
+									"y": -0.5338019728660583,
+									"z": -5.456940174102783
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "looped",
+						"uuid": "9051c354-094d-35c8-ae62-5ac6289fbf0a"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "effects",
+				"uuid": "06d03e63-5c9a-4f53-a7f0-f9ca07e7b191"
+			}
+		],
+		"components": {
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"path": "story_mode/vscript/plans/Onboarding_vfx_scenarios/14_bunker_busting.xml"
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "Bunker_busted",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

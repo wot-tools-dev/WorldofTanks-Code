@@ -1,0 +1,64 @@
+(def layout BlueprintVehicleAvailable()
+    (scope
+        (event rootWidthChanged)
+        (event rootHeightChanged)
+        (var rootWidth:number = "$event.value" init=false
+            (event "rootWidthChanged")
+        )
+        (var rootHeight:number = "$event.value" init=false
+            (event "rootHeightChanged")
+        )
+    )
+
+    (style
+        (position = "absolute")
+        (align = "center|middle")
+        (rotation = -1)
+        (hcenter = 0px)
+        (vcenter = 0px)
+        (alpha = 0.25)
+        (blendMode = 'add')
+        (filters
+            (glow
+                (blurX = 20)
+                (blurY = 20)
+                (strength = 1)
+                (color = 0x0099FF)
+                (quality = 2)
+                (alpha = 1)
+            )
+        )
+        (paddingTop = 5px)
+        (paddingBottom = 5px)
+        (paddingLeft = 15px)
+        (paddingRight = 15px)
+    )
+
+    (dispatch rootWidthChanged on='hLayout_size_Changed')
+    (dispatch rootHeightChanged on='vLayout_size_Changed')
+
+    (.graphics
+        (bindcall clear 
+            (event "rootWidthChanged")
+            (event "rootHeightChanged")
+        )
+        (bindcall lineStyle 8 0xF2F2F7 1 false 'normal' null 'miter'
+            (event "rootWidthChanged")
+            (event "rootHeightChanged")
+        )
+        (bindcall drawRect 0 0 "rootWidth" "rootHeight" init=true watch=false
+            (event "rootWidthChanged")
+            (event "rootHeightChanged")
+        )
+        (bindcall endFill
+            (event "rootWidthChanged")
+            (event "rootHeightChanged")
+        )
+    )
+
+    (tf
+        (name = 'label')
+        (class HeroTitleTextStyle)
+        (text = "R.strings.blueprints.blueprintScreen.research()")
+    )
+)

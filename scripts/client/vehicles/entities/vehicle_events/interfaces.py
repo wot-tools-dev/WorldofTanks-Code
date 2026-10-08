@@ -1,0 +1,75 @@
+from __future__ import absolute_import
+import typing
+from events_containers.common.containers import IClientEventsContainer, IClientEventsContainerListener
+if typing.TYPE_CHECKING:
+    from gui.battle_control.components_states.ammo import IComponentAmmoState
+    from items.components.gun_installation_components import GunInstallationSlot
+    from vehicles.entities import ShotParams
+
+class IVehicleEventsLogic(object):
+    onAppearanceReady = None
+    onAppearanceReset = None
+    onSiegeStateUpdated = None
+    onVehicleDestroyed = None
+    onObserverVehicleDataUpdated = None
+    onCollectAmmoStates = None
+    onCollectShotParams = None
+    onCurrentShellChanged = None
+    onDynamicComponentCreated = None
+    onDynamicComponentDestroyed = None
+    onDiscreteShotDone = None
+    onShowDamageFromShot = None
+    onVehicleHealthChanged = None
+
+    def collectAmmoStates(self):
+        raise NotImplementedError
+
+
+class IVehicleEvents(IClientEventsContainer, IVehicleEventsLogic):
+    pass
+
+
+class IVehicleEventsListenerLogic(object):
+
+    def onAppearanceReady(self):
+        pass
+
+    def onAppearanceReset(self):
+        pass
+
+    def onSiegeStateUpdated(self, newState, timeToNextMode):
+        pass
+
+    def onVehicleDestroyed(self):
+        pass
+
+    def onObserverVehicleDataUpdated(self):
+        pass
+
+    def onCollectAmmoStates(self, ammoStates):
+        pass
+
+    def onCollectShotParams(self, shotParamsList):
+        pass
+
+    def onCurrentShellChanged(self, intCD):
+        pass
+
+    def onDynamicComponentCreated(self, component):
+        pass
+
+    def onDynamicComponentDestroyed(self, component):
+        pass
+
+    def onDiscreteShotDone(self, gunInstallationSlot):
+        pass
+
+    def onShowDamageFromShot(self, attackerID, hitPoints, effectsIndex, damageFactor, lastMaterialIsShield):
+        pass
+
+    def onVehicleHealthChanged(self, vehicleID, newHealth, oldHealth):
+        pass
+
+
+class IVehicleEventsListener(IClientEventsContainerListener, IVehicleEventsListenerLogic):
+    pass

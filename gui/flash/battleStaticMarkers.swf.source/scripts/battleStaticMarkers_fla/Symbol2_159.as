@@ -1,0 +1,21 @@
+package battleStaticMarkers_fla
+{
+   import flash.display.MovieClip;
+   
+   [Embed(source="/_assets/assets.swf", symbol="symbol46")]
+   public dynamic class Symbol2_159 extends MovieClip
+   {
+      
+      public function Symbol2_159()
+      {
+         super();
+         addFrameScript(49,this.frame50);
+      }
+      
+      internal function frame50() : *
+      {
+         stop();
+      }
+   }
+}
+

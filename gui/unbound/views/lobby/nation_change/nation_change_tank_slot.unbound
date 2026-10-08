@@ -1,0 +1,297 @@
+(def layout NationChangeTankSlot(name:str)
+    (name = "name")
+    (macro NationChangeTankSlotModel)
+    (macro NationChangeTooltips)
+    (scope
+        (event playChangeNationAnim)
+        (event onChangeNationAnimComplete)
+        (event onDogClick)
+
+        (var equipBlockHeight:number = 0px)
+        (var flagAlpha:number = 1)
+        (var hideAllAlpha:number = 1)
+        (var tankSlotWidth:number = 512px)
+        (var tankSlotHeight:number = 450px)
+        (var isBigFlag:bool = false)
+        (var isResizeEnable:bool = true)
+        (var isHitAreaEnable:bool = true)
+        (var finalTankShiftX:number = 0px)
+        (var finalTankShiftY:number = 0px)
+
+        (bind isResizeEnable "false" init=false 
+            (event "playChangeNationAnim")
+        )
+        (bind isHitAreaEnable "false" init=false 
+            (event "playChangeNationAnim")
+        )
+        (bind finalTankShiftX "isBigFlag ? -153px : -101px" 
+            (bind enabled "isResizeEnable")
+        )
+        (bind finalTankShiftY "isBigFlag ? 7px : 48px" 
+            (bind enabled "isResizeEnable")
+        )
+    ) 
+    (block
+        (name = 'tankSlot') 
+        (style 
+            (bind width "tankSlotWidth")
+            (bind height "tankSlotHeight")
+        )
+        (block
+            (name = 'tankFlagIcon')
+            (style
+                (width = 565px)
+                (height = 100%) 
+                (position = "absolute")
+                (align = "middle|center")
+                (bind alpha "flagAlpha")
+                (marginLeft = -30px)
+            )
+            (image 
+                (style
+                    (bind scaleX "isBigFlag ? 1 : 0.7" 
+                        (bind enabled "isResizeEnable")
+                    )
+                    (bind scaleY "isBigFlag ? 1 : 0.7" 
+                        (bind enabled "isResizeEnable")
+                    )
+                    (align = "middle|center")
+                )
+                (bind source "R.images.gui.maps.icons.nationChange.flags[tankNation]()" init = false)
+                (controller $Animation
+                    (bindcall play
+                        to={scaleX:1, scaleY:1}
+                        duration=0.6
+                        delay=1.0
+                        easing="Easing.quint_out"
+                        (event "playChangeNationAnim")
+                    )
+                )
+            )
+        )
+        (block
+            (name = 'tankIcon')
+            (style
+                (width = 100%)
+                (height = 100%)
+                (align = "middle|center")
+                (position = "absolute")
+            )
+            (image
+                (style
+                    (bind scaleX "isBigFlag ? 0.6 : 0.48" 
+                        (bind enabled "isResizeEnable")
+                    )
+                    (bind scaleY "isBigFlag ? 0.6 : 0.48" 
+                        (bind enabled "isResizeEnable")
+                    )
+                    (align = "middle|center")
+                    (marginLeft = -22px)
+                )
+                (bind source "tankImage")
+                (controller $Animation
+                    (bindcall play
+                        to={scaleX:1, scaleY:1}
+                        duration=0.6
+                        delay=1.0
+                        easing="Easing.quint_out"
+                        (event "playChangeNationAnim")
+                    )
+                )
+            )
+            (controller $Animation
+                (bindcall play
+                    to="{marginLeft:finalTankShiftX + 0.1, marginTop:finalTankShiftY}"
+                    duration=0.6
+                    watch=false
+                    delay=1.0
+                    easing="Easing.quint_out"
+                    callbacks="{onComplete:onChangeNationAnimComplete}"
+                    (event "playChangeNationAnim")
+                )
+                (bindcall play
+                    to="{marginLeft:finalTankShiftX, marginTop:finalTankShiftY}"
+                    watch=false
+                    duration=0.6
+                    easing="Easing.quint_out"
+                    (event "onChangeNationAnimComplete")
+                )
+            )
+            (controller $ToolTip
+                (args 
+                    tooltipId = "TOOLTIP_NC_VEHICLE"
+                    vehicleIntCD = "vehicleIntCD"
+                )
+                (bind enabled "isHitAreaEnable")
+                (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+                (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            )
+        )
+    )
+    (block
+        (name = 'crewTitle')
+            (style
+                (width = 100%)
+                (height = 100%)
+                (bind marginTop "isBigFlag ? -33px : -84px")
+                (align = "middle|center")
+                (bind alpha "hideAllAlpha")
+            )
+            (tf
+                (class MiddleTitleTextStyle)
+                (style
+                    (bind fontSize "isBigFlag ? 16px : 15px")
+                )
+                (bind text "R.strings.multinational_vehicles.changeScreen.nation[tankNation]()")
+            )
+    )
+    (block
+        (name = 'crew')
+        (style
+            (width = 100%)
+           
+            (bind marginTop "isBigFlag ? 36px : 36px")
+            (bind alpha "hideAllAlpha")
+        )
+        (image
+            (name = 'crewBg')
+            (style
+                (bind width "isBigFlag ? 648px : 538px")
+                (bind marginLeft "isBigFlag ? -68px : -15px")
+                (height = 62px)
+                (alpha = 0.8)
+            )
+            (source = "R.images.gui.maps.icons.store.panel()")
+        )
+        (hblock
+            (bind visible "noCrew")
+            (style
+                (align = "center|middle")
+                (width = 100%)
+                (height = 100%)
+                (position = "absolute")
+                (marginLeft = -18px)
+            )
+            (image
+                (name = 'noEquipment')
+                (source = "R.images.gui.maps.icons.tankmen.icons.barracks.silhouette_mask()")
+            )
+            (tf
+                (class MainTextStyle)
+                (style
+                    (bind maxWidth "isBigFlag ? 480px : 320px")
+                    (bind fontSize "isBigFlag ? 16px : 14px")
+                    (marginLeft = -14px)
+                )
+                (text = "R.strings.multinational_vehicles.changeScreen.emptyCrew()")
+            )
+        )
+        (hblock
+            (bind visible "!noCrew")
+            (style
+                (marginRight = 24)
+                (align = "center|middle") 
+                (width = 100%)
+                (height = 100%)
+                (position = "absolute")
+            ) 
+            (controller $Repeat layout=true 
+                (bind count "crewList.length")
+                (exprs
+                    (block
+                        (dispatch onDogClick on='click' dir=1 
+                            (bind enabled "crewList[$index].isDog")
+                        )
+                        (image
+                            (style
+                                (bind marginLeft "isBigFlag ? 2px : -8px")
+                            )
+                            (bind source "crewList[$index].image") 
+                        )
+                        (controller $ToolTip
+                            (args 
+                                tooltipId = "TOOLTIP_NC_TANKMAN"
+                                vehicleIntCD = "vehicleIntCD"
+                                intCD = "crewList[$index].invID"
+                                header = "crewList[$index].simpleTooltipHeader"
+                                body = "crewList[$index].simpleTooltipBody" 
+                            ) 
+                            (bind enabled "isHitAreaEnable")
+                            (bind content "crewList[$index].isSimpleTooltip ? R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId : 
+                                                                                R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId"
+                            )
+                            (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId") 
+                        )
+                    )
+                ) 
+            )
+        )
+    )
+
+    (block
+        (name = 'setupsBlock')
+        (style
+            (width = 100%)
+            (bind marginTop "isBigFlag ? 30px : 12px")
+            (bind alpha "hideAllAlpha")
+        )
+        (image
+            (name = 'setupsBg')
+            (style
+                (bind width "isBigFlag ? 648px : 538px")
+                (bind marginLeft "isBigFlag ? -68px : -15px")
+                (bind height "equipBlockHeight")
+                (alpha = 0.8)
+            )
+            (source = "R.images.gui.maps.icons.store.panel()")
+        )
+        (hblock
+            (name = 'noSlot')
+            (bind visible "noEquipment")
+            (style
+                (align = "center|middle")
+                (width = 100%)
+                (height = 100%)
+                (position = "absolute")
+            )
+            (image
+                (source = "R.images.gui.maps.icons.nationChange.empty_slot_icon()")
+            )
+            (tf
+                (class MainTextStyle)
+                (style
+                    (bind maxWidth "isBigFlag ? 480px : 350px")
+                    (bind fontSize "isBigFlag ? 16px : 14px")
+                    (marginLeft = 10px)
+                )
+                (bind text "R.strings.multinational_vehicles.changeScreen.emptyAssets()")
+            )
+        )
+        (block
+            (name = 'slots')
+            (bind visible "!noEquipment")
+            (style
+                (align = "center|middle")
+                (width = 100%)
+                (height = 100%)
+                (position = "absolute")
+            )
+            (controller $Repeat renderer=NationChangeTankSetup layout=true
+                (bind count "setups.length")
+                (args renderer_model="setups[$index]")
+                (exprs
+                    (style
+                        (flow = "Flow.HORIZONTAL")
+                        (height = 55px)
+                    )
+                    (scope
+                        (bind hideAllAlpha "hideAllAlpha")
+                        (bind isBigFlag "isBigFlag")
+                        (bind isHitAreaEnable "isHitAreaEnable")
+                        (bind vehicleIntCD "vehicleIntCD")
+                    )
+                )
+            )
+        )
+    )
+)

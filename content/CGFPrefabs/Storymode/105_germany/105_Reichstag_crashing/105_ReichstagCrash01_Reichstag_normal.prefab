@@ -1,0 +1,127 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::MeshColliderDesc",
+								"__cvalue__": {
+									"modelName": "content/Buildings/hd_bld_EU_483_ReichstagCrash/normal/lod0/hd_bld_EU_483_ReichstagCrash_01.model",
+									"moduleName": "default"
+								}
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Buildings/hd_bld_EU_483_ReichstagCrash/normal/lod0/hd_bld_EU_483_ReichstagCrash_01.model"
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "PUSH_OUT"
+					},
+					"cgf::TransformComponent": {},
+					"script::ShootingObstacle": {
+						"colliders": "0f98e1ed-bb1e-4bdf-a21a-8497b76285a2",
+						"disabledDomains": [
+							"Client"
+						],
+						"receiver": "00000000-0000-0000-0000-000000000000"
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "hd_bld_EU_483_ReichstagCrash_01",
+				"uuid": "0f98e1ed-bb1e-4bdf-a21a-8497b76285a2"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/hd_env_EU_478_ReichstagDecor/normal/lod0/hd_env_EU_478_ReichstagDecor_11.model"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -8.8677396774292,
+							"y": 27.52989959716797,
+							"z": 6.3023200035095215
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": 179.99986267089844,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"Static"
+				],
+				"name": "Statue",
+				"uuid": "c7723eed-317a-4206-a955-08f552ee9f3d"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 17.329999923706055,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 17.329999923706055,
+								"object": "0f98e1ed-bb1e-4bdf-a21a-8497b76285a2",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 17.329999923706055,
+								"object": "c7723eed-317a-4206-a955-08f552ee9f3d",
+								"parameters": [],
+								"startTime": 0.0
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "105_ReichstagCrash01_Reichstag_normal",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

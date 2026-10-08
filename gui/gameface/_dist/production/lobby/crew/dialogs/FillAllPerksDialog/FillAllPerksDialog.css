@@ -1,0 +1,983 @@
+.SubView_base_aaf70 {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.TextOverflow_base_f252d {
+    max-width: 100%;
+    line-height: 1.3;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.DialogTemplateButton_base_aad71 {
+    min-width: 160rem;
+}
+
+    .DialogTemplateButton_base_aad71 + .DialogTemplateButton_base_aad71 {
+        margin-left: 14rem;
+    }
+
+.DialogTemplateButton_label_e6dd2 {
+    line-height: 1.2;
+    text-align: center;
+}
+
+.DialogTemplateButton_label__noTooltip_b14f4 {
+        pointer-events: none;
+    }
+
+.DialogTemplateButtonList_base_c60dd {
+    display: flex;
+}
+
+.DialogTemplateWrapper_base_f47eb {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / cover;
+    position: relative;
+}
+
+    .DialogTemplateWrapper_base__hidden_ab046 {
+        visibility: hidden;
+    }
+
+.DialogTemplateWrapper_subView_f8c79 {
+    height: auto;
+}
+
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.DefaultDialogTemplate_base_d84ce {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.DefaultDialogTemplate_topRight_dbb60 {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.DefaultDialogTemplate_center_d9442 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 720rem;
+    opacity: 0;
+    position: relative;
+}
+
+.DefaultDialogTemplate_center__shown_cc2b1 {
+        animation-name: DefaultDialogTemplate_windowIn_faf19;
+        animation-duration: .5s;
+        animation-fill-mode: both;
+    }
+
+.DefaultDialogTemplate_center__withIcon_e030f {
+        margin-top: -164rem;
+    }
+
+.DefaultDialogTemplate_base__extraSmallHeight_fb083 .DefaultDialogTemplate_center__withIcon_e030f.DefaultDialogTemplate_center__responsive_eaa36,
+            .DefaultDialogTemplate_base__smallHeight_a78da .DefaultDialogTemplate_center__withIcon_e030f.DefaultDialogTemplate_center__responsive_eaa36 {
+                margin-top: -82rem;
+            }
+
+.DefaultDialogTemplate_icon_b6bcb {
+    margin-bottom: 32rem;
+    z-index: 1;
+}
+
+.DefaultDialogTemplate_base__extraSmallHeight_fb083 .DefaultDialogTemplate_icon__responsive_b5c3a,
+        .DefaultDialogTemplate_base__smallHeight_a78da .DefaultDialogTemplate_icon__responsive_b5c3a {
+            margin-bottom: 43rem;
+        }
+
+.DefaultDialogTemplate_title_e9c1e {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #F2F2F7;
+    font-size: 36rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 17rem;
+    z-index: 2;
+}
+
+.DefaultDialogTemplate_base__extraSmallHeight_fb083 .DefaultDialogTemplate_title__responsive_a5dc7,
+        .DefaultDialogTemplate_base__smallHeight_a78da .DefaultDialogTemplate_title__responsive_a5dc7 {
+            color: #F2F2F7;
+            font-size: 24rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+.DefaultDialogTemplate_content_bb554 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    z-index: 3;
+}
+
+.DefaultDialogTemplate_footer_c1ddd {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    color: #C9C9B6;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 14rem;
+}
+
+.DefaultDialogTemplate_buttons_c3948 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+.DefaultDialogTemplate_divider_fda36 {
+    width: 100%;
+    height: 1rem;
+    margin: 25rem 0 27rem;
+    background-color: #FFFFFF;
+    opacity: .1;
+}
+
+.DefaultDialogTemplate_divider__noContent_f9b0d {
+        margin-top: 23rem;
+    }
+
+.DefaultDialogTemplate_divider__noFooter_f69e3 {
+        margin-bottom: 29rem;
+    }
+
+.DefaultDialogTemplate_closeBtn_b0612 {
+    align-self: flex-end;
+    margin: 31rem 28rem 0 0;
+}
+
+.DefaultDialogTemplate_base__extraSmallHeight_fb083 .DefaultDialogTemplate_closeBtn__responsive_bae67,
+        .DefaultDialogTemplate_base__smallHeight_a78da .DefaultDialogTemplate_closeBtn__responsive_bae67 {
+            margin: 11rem 8rem 0 0;
+        }
+
+@keyframes DefaultDialogTemplate_windowIn_faf19 {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.Checkbox_base_cffc9 {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    cursor: pointer;
+}
+
+    .Checkbox_base__disabled_dc60b {
+        pointer-events: none;
+    }
+
+    .Checkbox_base__center_bcbc0 {
+        align-items: center;
+    }
+
+    .Checkbox_base__bottom_b8113 {
+        align-items: flex-end;
+    }
+
+.Checkbox_input_bdf00 {
+    border: 1rem solid rgba(190, 190, 190, .45);
+    border-radius: 2rem;
+    background-color: rgba(0, 0, 0, .3);
+    opacity: .6;
+    position: relative;
+    transition: background-color .1s linear;
+}
+
+.Checkbox_base__mouseDown_f0077 .Checkbox_input_bdf00 {
+        background-color: rgba(0, 0, 0, .4);
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_input_bdf00 {
+        width: 12rem;
+        height: 12rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_input_bdf00 {
+        width: 18rem;
+        height: 18rem;
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_input_bdf00 {
+        width: 24rem;
+        height: 24rem;
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_input_bdf00 {
+        width: 32rem;
+        height: 32rem;
+    }
+
+.Checkbox_alertOverlay_a1e3f {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    border: 1rem solid #feab34;
+    border-radius: 2rem;
+    box-shadow: inset 0 0 9rem rgba(0, 0, 0, .25);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Checkbox_base__alert_aa5f2 .Checkbox_alertOverlay_a1e3f {
+        animation: Checkbox_blink_f903e 2s ease-in-out infinite;
+    }
+
+.Checkbox_base__alert_aa5f2.Checkbox_base__checked_eac7a .Checkbox_alertOverlay_a1e3f,
+    .Checkbox_base__alert_aa5f2.Checkbox_base__disabled_dc60b .Checkbox_alertOverlay_a1e3f {
+        opacity: 0;
+        animation: initial;
+    }
+
+.Checkbox_inputHoverOverlay_f1bb9 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to top, #201f1c, #494741);
+    opacity: 0;
+    transition: opacity .1s linear;
+    pointer-events: none;
+}
+
+.Checkbox_base_cffc9:hover .Checkbox_inputHoverOverlay_f1bb9 {
+        opacity: .8;
+    }
+
+.Checkbox_base_cffc9.Checkbox_base__mouseDown_f0077:hover .Checkbox_inputHoverOverlay_f1bb9 {
+        opacity: 0;
+    }
+
+.Checkbox_highlight_bdfa7 {
+    background: no-repeat 50% / contain;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .1s linear;
+    pointer-events: none;
+}
+
+.Checkbox_base__checked_eac7a .Checkbox_highlight_bdfa7 {
+        opacity: 1;
+    }
+
+.Checkbox_base__checked_eac7a.Checkbox_base__disabled_dc60b .Checkbox_highlight_bdfa7 {
+        opacity: 0;
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        width: 34rem;
+        height: 34rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        width: 40rem;
+        height: 40rem;
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        width: 46rem;
+        height: 46rem;
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        width: 54rem;
+        height: 54rem;
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_s');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_m');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_l');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_xl');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_s_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_m_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_l_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_xl_green');
+    }
+
+.Checkbox_checkmark_e1fc6 {
+    background: center / contain no-repeat;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
+
+.Checkbox_base__checked_eac7a .Checkbox_checkmark_e1fc6 {
+        /* Using a transition causes the image to blink on appear */
+        animation: Checkbox_fadeIn_c9675 .1s linear 0 normal forwards;
+    }
+
+.Checkbox_base__checked_eac7a.Checkbox_base__disabled_dc60b .Checkbox_checkmark_e1fc6 {
+        opacity: .5;
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        width: 11rem;
+        height: 11rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        width: 19rem;
+        height: 20rem;
+        transform: translate(1rem, -4rem);
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        width: 23rem;
+        height: 24rem;
+        transform: translate(3rem, -3rem);
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        width: 36rem;
+        height: 36rem;
+        transform: translate(2rem, -8rem);
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_s');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_m');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_l');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_xl');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_s_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_m_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_l_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_xl_green');
+    }
+
+.Checkbox_label_bd63c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    padding-left: 10rem;
+    position: relative;
+}
+
+.Checkbox_labelContent_ae1ba {
+    color: #8c8c7e;
+    font-size: 14rem;
+    line-height: 1.15;
+    transition: color .1s linear;
+}
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_labelContent_ae1ba {
+        font-size: 16rem;
+    }
+
+.Checkbox_base_cffc9:hover .Checkbox_labelContent_ae1ba {
+        color: #c8c8b6;
+    }
+
+.Checkbox_base__disabled_dc60b .Checkbox_labelContent_ae1ba,
+    .Checkbox_base__disabled_dc60b:hover .Checkbox_labelContent_ae1ba {
+        color: #37362e;
+    }
+
+@keyframes Checkbox_fadeIn_c9675 {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes Checkbox_blink_f903e {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.FooterComponent_base_b51c2 {
+    margin: 20rem 0 5rem;
+}
+
+    .mediaSmallWidth .FooterComponent_base_b51c2 {
+        margin: 19rem 0 5rem -4rem;
+}
+
+    .mediaMediumWidth .FooterComponent_base_b51c2 {
+        margin: 29rem 0 15rem -4rem;
+}
+
+.RoleIcon_base_dfff1 {
+    background: no-repeat center / contain;
+}
+
+    .RoleIcon_base__small_a4262 {
+        width: 13rem;
+        height: 13rem;
+    }
+
+    .RoleIcon_base__c_14x14_f9e09 {
+        width: 14rem;
+        height: 14rem;
+    }
+
+    .RoleIcon_base__c_18x18_a626e {
+        width: 18rem;
+        height: 18rem;
+    }
+
+    .RoleIcon_base__c_24x24_new_bcf57,
+    .RoleIcon_base__c_24x24_acd19 {
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .RoleIcon_base__c_30x30_red_b2d4c,
+    .RoleIcon_base__c_30x30_bb8b2 {
+        width: 30rem;
+        height: 30rem;
+    }
+
+    .RoleIcon_base__c_40x40_b7c41 {
+        width: 40rem;
+        height: 40rem;
+    }
+
+    .RoleIcon_base__medium_c4adb {
+        width: 33rem;
+        height: 33rem;
+    }
+
+    .RoleIcon_base__white_edcf3 {
+        width: 44rem;
+        height: 44rem;
+    }
+
+    .RoleIcon_base__big_eccb9 {
+        width: 60rem;
+        height: 60rem;
+    }
+
+.SkillIcon_base_a1c9a {
+    display: flex;
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+    .SkillIcon_base__c_22x22_dcf9f {
+        width: 22rem;
+        height: 22rem;
+    }
+
+    .SkillIcon_base__medium_d67ae {
+        width: 24rem;
+        height: 24rem;
+    }
+
+    .SkillIcon_base__c_36x36_flat_e0291 {
+        width: 36rem;
+        height: 36rem;
+    }
+
+    .SkillIcon_base__big_b5b33 {
+        width: 52rem;
+        height: 52rem;
+    }
+
+    .SkillIcon_base__c_80x80_ee59c {
+        width: 80rem;
+        height: 80rem;
+    }
+
+    .SkillIcon_base__c_120x90_cc537 {
+        width: 120rem;
+        height: 90rem;
+    }
+
+    .SkillIcon_base__dialogs_a9262 {
+        width: 180rem;
+        height: 135rem;
+    }
+
+.SkillRow_base_ee285 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16rem 0;
+    position: relative;
+    right: 16rem;
+}
+
+    .SkillRow_base_ee285:nth-child(odd) {
+        background: linear-gradient(90deg, rgba(255,255,255, 0) 0%, rgba(255,255,255, 0.1) 33%, rgba(255,255,255, 0.1) 66%, rgba(255,255,255, 0) 100%);
+    }
+
+.SkillRow_roleIcon_f73ad {
+    margin-right: 50rem;
+    opacity: .3;
+}
+
+.SkillRow_skillIcon_b8f8a {
+    margin-right: 45rem;
+}
+
+.MainContent_base_fc8b6 {
+    margin-top: 9rem;
+}
+
+.TitleContent_base_ca7b5 {
+    text-align: center;
+}
+
+.TitleContent_heading_a403d {
+    color: #F2F2F7;
+    font-size: 36rem;
+    font-weight: 700;
+    line-height: 1.1;
+    width: 110%;
+    margin-bottom: 20rem;
+}
+
+.TitleContent_subtitle_bdaa2 {
+    color: #E9E2BF;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 9rem;
+}
+
+.TitleContent_description_f9237 {
+    color: #8C8C7E;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+}
+
+.FillAllPerksApp_divider_d6d24 {
+    display: none;
+}
+

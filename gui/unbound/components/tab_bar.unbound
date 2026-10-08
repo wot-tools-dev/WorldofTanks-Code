@@ -1,0 +1,50 @@
+(def element TabBar(rendererName:str) layout=true
+    (scope
+        (event evTabBarIndexChanged)
+        (event evRendererCountChanged)
+        (event evTabBarDisabledEvent)
+        (event __evSelectedIndexChanged)
+
+        (var rendererCount:number = 0
+            (dispatch evRendererCountChanged args="{count:rendererCount, index:selectedIndex}" on='evChanged')
+        )
+
+        (var selectedIndex:number = -1
+            (dispatch evTabBarIndexChanged args="{index:selectedIndex}" on='evChanged')
+        )
+        (bind selectedIndex "$event.index" init=false (event "__evSelectedIndexChanged"))
+        (bind selectedIndex "$event.index > $event.count - 1 ? $event.count - 1 : $event.index" init=false (event "evRendererCountChanged"))
+
+        (var isEnabled:bool = true
+            (dispatch evTabBarDisabledEvent on='evChanged' (bind enabled "!isEnabled"))
+        )
+    )
+
+    (controller $Repeat renderer="rendererName"
+        (bind count "rendererCount")
+        (exprs
+            (name = "'tabRenderer_' + $index")
+            (scope
+                (dispatch __evSelectedIndexChanged args="{index:$index}" on='evBtnLeftClickEvent')
+                (bind selected "$index == selectedIndex" init=false)
+                (bind isEnabled "isEnabled" (event "evTabBarDisabledEvent"))
+            )
+        )
+    )
+)
+
+(def element TabBarRenderer() layout=true
+    (scope
+        (var isEnabled:bool = true)
+    )
+    (macro ComponentStateBase "TAB_BAR_SIMPLE_CONTENT")
+    (bind buttonMode "!selected")
+    (mouseChildren = false)
+    (view_holder 'content')
+    (view_holder 'selectedBlock'
+        (style
+            (width = 100%)
+            (height = 100%)
+        )
+    )
+)

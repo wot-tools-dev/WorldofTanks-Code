@@ -1,0 +1,1 @@
+import{r as e}from"./vendor.js";const t=t=>{const[r,n]=e.useState(!1);return e.useLayoutEffect(()=>{let e=0;t.forEach(r=>{const o=new Image;o.src=r,o.addEventListener("load",()=>{e++,e===t.length&&n(!0)}),o.addEventListener("error",()=>{console.warn(`${r} image wasn't loaded`)})})},[t]),r};export{t as u};

@@ -1,0 +1,158 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_DEFERRED_SHADING",
+								"layerName": "static",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/R169_ST_II_BXI_3DSt/hull_static.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "VehicleStop",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/R169_ST_II_BXI_3DSt/vehicle_stop.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "StopFadeIn",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/R169_ST_II_BXI_3DSt/vehicle_stop_fadein.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": false,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "StopFadeOut",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/R169_ST_II_BXI_3DSt/vehicle_stop_fadeout.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_FORWARD_SHADING",
+								"layerName": "static_FWD",
+								"lodScale": 1.0,
+								"path": "particles/Tank/customization/R169_ST_II_BXI_3DSt/hull_static_FWD.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_R169_attachment_hull"
+					},
+					"BW::VSEComponent": {
+						"autoStart": true,
+						"path": "vscript/plans/VFX/R169_ST_II_BXI_3DSt/r169_move_control.xml"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "2d6591d3-7a1e-4e46-86da-a6ea2bdc99fa"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"layerName": "Receive_Hit",
+						"lodScale": 1.0,
+						"path": "particles/Tank/customization/BXI_3DSt_Uni/receive_hit.ssm",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/russian/R169_ST_II/_skins/R169_ST_II_BXI_3DSt/normal/lod0/Hull.model"
+			},
+			"BW::ProjectileHitsReceivedAnimatorTriggerComponent": {
+				"ignorePeriod": 2.6700000762939453,
+				"triggerName": "Hit",
+				"triggerSource": "00000000-0000-0000-0000-000000000000"
+			},
+			"cgf::TransformComponent": {},
+			"script::VehicleCustomEffectsSettings": {
+				"additionalEngineSoundNPC": "style_cust_R169_ST_II_BXI_NPC",
+				"additionalEngineSoundPC": "style_cust_R169_ST_II_BXI_PC",
+				"disableDefaultChassis": "0",
+				"disableDefaultHull": "0",
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				]
+			}
+		},
+		"name": "R169_ST_II_BXI_3DSt",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

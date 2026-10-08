@@ -1,0 +1,510 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::DynamicModel": {
+										"castShadows": false,
+										"decorType": "0",
+										"disabledDomains": [
+											"Server"
+										],
+										"isOverlayEnabled": "0",
+										"modelName": "particles/Environment/fall_tanks/fall_tanks_saw.model"
+									},
+									"BW::ModelPropertyChanger": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {
+										"rotation": {
+											"x": 90.00020599365234,
+											"y": 4.829667886951938e-06,
+											"z": 0.0
+										},
+										"scale": {
+											"x": 10.0,
+											"y": 10.0,
+											"z": 10.0
+										}
+									}
+								},
+								"name": "saw_disc_l",
+								"uuid": "9cebde4f-63cd-48c6-9061-b54b32566d6c"
+							},
+							{
+								"components": {
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Environment/fall_tanks/fall_tanks_saw.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 9.742429733276367,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"rotation": {
+											"x": -1.3660344848176464e-05,
+											"y": 179.99986267089844,
+											"z": 0.0
+										}
+									}
+								},
+								"name": "saw_particles_l",
+								"uuid": "86bcd46b-980e-3385-b7c4-66aca674ee55"
+							},
+							{
+								"components": {
+									"BW::DynamicModel": {
+										"castShadows": false,
+										"decorType": "0",
+										"disabledDomains": [
+											"Server"
+										],
+										"isOverlayEnabled": "0",
+										"modelName": "particles/Environment/fall_tanks/fall_tanks_saw_blade.model"
+									},
+									"BW::ModelPropertyChanger": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"cgf::TransformComponent": {
+										"rotation": {
+											"x": 90.0277099609375,
+											"y": -1.3660403055837378e-05,
+											"z": -1.3660403055837378e-05
+										},
+										"scale": {
+											"x": 10.0,
+											"y": 10.0,
+											"z": 10.0
+										}
+									}
+								},
+								"name": "saw_blade_l",
+								"uuid": "f657ddf2-882d-36cd-ac01-defde19f247e"
+							},
+							{
+								"components": {
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/Environment/fall_tanks/fall_tanks_saw.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 9.742429733276367,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"rotation": {
+											"x": 0.0001366040378343314,
+											"y": 0.0,
+											"z": 179.99986267089844
+										}
+									}
+								},
+								"name": "saw_particles_r",
+								"uuid": "9dd436ee-1130-369f-bfe0-dedda8a07e2a"
+							}
+						],
+						"components": {
+							"BW::Sound3DComponent": {
+								"AutoStart": true,
+								"Event name": "ev_fep_fall_saw",
+								"Fade time": 0.0,
+								"Fade type": 4,
+								"Object name": "141_dead_laser_moving_visual_sfx",
+								"Volume": 1.0,
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "141_dead_laser_moving_visual",
+						"uuid": "f275a5ca-a89e-434e-9088-2b3883ef35a7"
+					}
+				],
+				"components": {
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::BoxColliderDesc",
+								"__cvalue__": {
+									"transform": "(( 16.4275,       0,       0,       0), (       0, 15.0329,       0,       0), (       0,       0,       1,       0), (-0.000274658,       0,       0,       1))"
+								}
+							}
+						],
+						"disabledDomains": [
+							"Client"
+						]
+					},
+					"BW::DamageOnCollisionComponent": {
+						"cameraName": "",
+						"destroyingTime": -1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"isDestroying": false,
+						"killResolveType": "Push",
+						"killSpeed": 100.0,
+						"onBodyCollision": true,
+						"onSimulationObjectCollision": false,
+						"onVehicleCollision": true
+					},
+					"cgf::network::NetworkKinematicTransformComponent": {
+						"disabledDomains": [
+							"Client",
+							"Editor"
+						]
+					},
+					"BW::RigidBodyComponent": {
+						"bodiesFrictionFactor": 0.30000001192092896,
+						"centerOfMass": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"collideWithBodies": true,
+						"collideWithDestructibles": false,
+						"collideWithOnlyLeavesTrees": false,
+						"collideWithSimulationObjects": false,
+						"collideWithStatics": false,
+						"collideWithTerrain": false,
+						"collideWithVehicles": true,
+						"destructiblesFrictionFactor": 1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"generateVelocities": false,
+						"inertiaFactors": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						},
+						"isTrigger": true,
+						"mass": 100.0,
+						"simulationObjectsFrictionFactor": 0.30000001192092896,
+						"state": "Kinematic",
+						"staticsFrictionFactor": 1.0,
+						"terrainFrictionFactor": 1.0,
+						"vehiclesFrictionFactors": 0.30000001192092896
+					},
+					"cgf::TransformComponent": {},
+					"cgf::network::NetworkComponent": {
+						"disabledDomains": [
+							"Editor"
+						]
+					},
+					"cgf::network::NetworkEntity": {
+						"disabledDomains": [
+							"Editor"
+						]
+					},
+					"cgf::network::NetworkTransformComponent": {
+						"detailed": false,
+						"disabledDomains": [
+							"Editor"
+						],
+						"filterType": "LINEAR_FILTER"
+					}
+				},
+				"name": "141_dead_laser_moving_controller",
+				"uuid": "b3b63583-2053-4c2d-ae62-f2f158110e61"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 10.0,
+						"loop": true,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 10.0,
+								"object": "b3b63583-2053-4c2d-ae62-f2f158110e61",
+								"parameters": [
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 0.8620970249176025,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 0.8620970249176025,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 0.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10.434300422668457
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 0.0,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 0.0,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 5.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 110.0
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.5707999467849731,
+														"z": 1.5707999467849731
+													}
+												},
+												"time": 10.0,
+												"type": "CubicBezier",
+												"value": {
+													"__ctype__": "float",
+													"__cvalue__": 10.0
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "position"
+											},
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "x"
+											}
+										]
+									},
+									{
+										"component": "cgf::TransformComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													}
+												},
+												"time": 0.011756399646401405,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													}
+												},
+												"time": 4.996029853820801,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													}
+												},
+												"time": 5.005129814147949,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": -180.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													}
+												},
+												"time": 9.999420166015625,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": -180.0
+													}
+												}
+											},
+											{
+												"tangents": {
+													"left": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													},
+													"right": {
+														"x": 1.1754900067970481e-38,
+														"y": 1.1754900067970481e-38,
+														"z": 1.1754900067970481e-38
+													}
+												},
+												"time": 10.0,
+												"type": "SpecialRotation",
+												"value": {
+													"__ctype__": "BW::Vector3",
+													"__cvalue__": {
+														"x": 0.0,
+														"y": 0.0,
+														"z": 0.0
+													}
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "rotation"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							}
+						]
+					}
+				],
+				"speed": "1"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "141_dead_laser_moving",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,80 @@
+(def layout BlueprintDiscount()
+    (macro BlueprintScreenTooltips)
+    (style
+        (flow = "Flow.HORIZONTAL")
+        (align = "middle")
+        (gap = 5)
+    )
+
+    (scope
+        (var discount:number = 0)
+        (var discountAbs:str = '')
+        (var filledCount:number = 0)
+    )
+    
+    (hblock
+        (name = 'discountPercent')
+        (style
+            (gap = 5)
+            (align = "middle")
+        )
+        (tf
+            (class MainBigTextStyle)
+            (text = "R.strings.blueprints.blueprintScreen.researchSale.label()")
+        )
+        (block
+            (image
+                (name = 'dicountIcon')
+                (style
+                    (position = "absolute")
+                    (hcenter = 2)
+                    (vcenter = 0)
+                )
+                (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.discountShine()")
+            )
+            (tf
+                (name = 'dicountTf')
+                (style
+                    (marginTop = 3)
+                )
+                (class HighlightTextStyle)
+                (bind text "'' + discount + R.strings.common.common.percent()")
+            )
+        )
+    )
+    (hblock
+        (name = 'discountAbs')
+        (bind visible "filledCount > 0")
+
+        (tf
+            (name = 'or')
+            (class MainBigTextStyle)
+            (text = "R.strings.blueprints.blueprintScreen.or()")
+        )
+
+        (hblock
+            (name = 'discountAbsolute')
+            (style
+                (align = "middle")
+            )
+            (tf
+                (name = 'costTf')
+                (style
+                    (marginLeft = 2px)
+                )
+                (class HighlightTextStyle)
+                (bind text "discountAbs")
+            )
+            (image
+                (name = 'currencyIcon')
+                (source = "R.atlases.components.XpIcon_1()")
+            )
+        )
+        (controller $ToolTip
+            (args tooltipId="TOOLTIP_XP_DISCOUNT")
+            (content = "R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent.resId")
+            (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            (bind enabled "discount > 0")
+        )
+    )
+)

@@ -1,0 +1,1 @@
+import{j as e,e as t}from"./vendor.js";import"./lib.js";const s="Vignette_496c9d28",i="Vignette_gradient_f5571371",a="Vignette_gradient__top_54bd5800",d="Vignette_gradient__bottom_a779d3c8",_=()=>e.jsxs("div",{className:s,children:[e.jsx("div",{className:t(i,a)}),e.jsx("div",{className:t(i,d)})]});export{_ as V};

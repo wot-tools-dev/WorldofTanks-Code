@@ -1,0 +1,127 @@
+<101_dday_flak_shooting_01.xml>
+  <info>
+    <name>	StoryMode_vfx_scenarios/101_dday_flak_shooting_01	</name>
+    <isMacro>	false	</isMacro>
+    <version>	0	</version>
+    <aspect>
+      <compatibles>	CLIENT	</compatibles>
+    </aspect>
+    <blocks>
+      <block>
+        <class>	VariableUDO	</class>
+        <id>	VariableUDO_2	</id>
+        <params>
+          <param>	AreaTrigger_346C	  <name>	Variable Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	AreaTriggerT	  <name>	Variable Type	</name>
+            <type>	TypeT	</type>
+          </param>
+          <param>	false	  <name>	External Init	</name>
+            <type>	BoolT	</type>
+          </param>
+          <param>	62029818.49D8C4FF.FBE05082.DCDE346C	  <name>	Guid	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	false	  <name>	Is Const	</name>
+            <type>	BoolT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	default	</name>
+            <const>	\00000000.00000000.00000000.00000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	Timer	</class>
+        <id>	Timer_1	</id>
+        <params>
+          <param>	1	  <name>	Timer Count	</name>
+            <type>	IntT	</type>
+          </param>
+        </params>
+        <slots>
+          <slot>
+            <name>	time0	</name>
+            <const>	\5.000000\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	DeactivateGameObject	</class>
+        <id>	DeactivateGameObject_2	</id>
+        <params></params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	TriggerExternal	</class>
+        <id>	TriggerExternal_12	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	eventID	</name>
+            <const>	\DDAY_firstTanksEscape\	</const>
+          </slot>
+        </slots>
+      </block>
+      <block>
+        <class>	ContextGetSelf	</class>
+        <id>	ContextGetSelf_1	</id>
+        <params>
+          <param>	CGFGameObjectContext	  <name>	Context Name	</name>
+            <type>	StringT	</type>
+          </param>
+          <param>	getSelf	  <name>	Member Name	</name>
+            <type>	StringT	</type>
+          </param>
+        </params>
+        <slots></slots>
+      </block>
+      <block>
+        <class>	FindFirstNode	</class>
+        <id>	FindFirstNode_2	</id>
+        <params></params>
+        <slots>
+          <slot>
+            <name>	name	</name>
+            <const>	\flak_shooting\	</const>
+          </slot>
+          <slot>
+            <name>	includingInactive	</name>
+            <const>	\true\	</const>
+          </slot>
+        </slots>
+      </block>
+    </blocks>
+    <connections>
+      <connection>
+        <from>	TriggerExternal_12	</from>
+        <input>	windup	</input>
+        <to>	Timer_1	</to>
+        <output>	out	</output>
+      </connection>
+      <connection>
+        <from>	Timer_1	</from>
+        <input>	in	</input>
+        <to>	DeactivateGameObject_2	</to>
+        <output>	event0	</output>
+      </connection>
+      <connection>
+        <from>	FindFirstNode_2	</from>
+        <input>	gameObject	</input>
+        <to>	DeactivateGameObject_2	</to>
+        <output>	node	</output>
+      </connection>
+      <connection>
+        <from>	ContextGetSelf_1	</from>
+        <input>	gameObject	</input>
+        <to>	FindFirstNode_2	</to>
+        <output>	value	</output>
+      </connection>
+    </connections>
+    <macros></macros>
+    <curves></curves>
+  </info>
+</101_dday_flak_shooting_01.xml>

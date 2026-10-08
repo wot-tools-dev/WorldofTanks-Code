@@ -1,0 +1,64 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent": {},
+					"script::TemperatureGunRTPCComponent": {
+						"RTPCName": "RTPC_ext_gun_temperature_global",
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						]
+					}
+				},
+				"name": "temperatureGunRTPC",
+				"uuid": "98a3efcd-14e8-40cd-b10a-10fc810269e6"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent": {},
+					"script::TemperatureGunRTPCComponent": {
+						"RTPCName": "RTPC_ext_gun_temperature_slew_global",
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						]
+					}
+				},
+				"name": "temperatureGunRTPC_slew",
+				"uuid": "70861d50-b536-3e89-970b-f334060ec19e"
+			}
+		],
+		"components": {
+			"BW::VSEComponent": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"path": "vscript/plans/vehicles/mechanic_effects/overheat_gun_vfx.xml"
+			},
+			"cgf::TransformComponent": {},
+			"script::OverheatGunEffects": {
+				"disabledDomains": [
+					"Server",
+					"Editor"
+				],
+				"soundCooled": "gui_abl_overheat_gun_block_off",
+				"soundCooling": "gui_abl_overheat_gun_cooling",
+				"soundHeating": "gui_abl_overheat_gun_heating",
+				"soundIdle": "gui_abl_overheat_gun_cooling_stop",
+				"soundOverheatWarning": "gui_abl_overheat_gun_block_on_pre",
+				"soundOverheated": "gui_abl_overheat_gun_block_on",
+				"soundPreCooled": "gui_abl_overheat_gun_block_off_pre",
+				"soundUtilityStop": "gui_abl_overheat_gun_utility_stop"
+			}
+		},
+		"name": "overheat_gun_vfx",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

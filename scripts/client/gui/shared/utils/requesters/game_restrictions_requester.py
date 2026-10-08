@@ -1,0 +1,30 @@
+from __future__ import absolute_import
+import typing
+import BigWorld
+from constants import RESTRICTION_KEY
+from gui.shared.utils.requesters.abstract import AbstractSyncDataRequester
+from skeletons.gui.shared.utils.requesters import IGameRestrictionsRequester
+
+class GameRestrictionsRequester(AbstractSyncDataRequester, IGameRestrictionsRequester):
+
+    @property
+    def session(self):
+        return self.getCacheValue(RESTRICTION_KEY.SESSION) or {}
+
+    @property
+    def hasSessionLimit(self):
+        return len(self.session) > 0
+
+    def getKickAt(self):
+        return self.session.get('kick_at', 0)
+
+    @property
+    def settings(self):
+        return self.getCacheValue(RESTRICTION_KEY.SETTINGS) or {}
+
+    @property
+    def privateChat(self):
+        return self.getCacheValue(RESTRICTION_KEY.PRIVATE_CHAT) or {}
+
+    def _requestCache(self, callback=None):
+        BigWorld.player().gameRestrictions.getCache(lambda resID, value: self._response(resID, value, callback))

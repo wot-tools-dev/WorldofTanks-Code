@@ -1,0 +1,29 @@
+<WheeledDashController.def>
+  <Properties>
+    <status>
+      <Type>	WHEELED_DASH_STATUS	</Type>
+      <Flags>	ALL_CLIENTS	</Flags>
+      <DetailLevel>	MY_VEHICLE	</DetailLevel>
+    </status>
+    <publicStatus>
+      <Type>	UINT8	</Type>
+      <Flags>	ALL_CLIENTS	</Flags>
+    </publicStatus>
+  </Properties>
+  <CellMethods>
+    <tryActivate>
+      <Exposed>	OWN_CLIENT	</Exposed>
+    </tryActivate>
+  </CellMethods>
+  <ClientMethods>
+    <onImpulseStarted>
+      <Args>
+        <direction>	UINT8	</direction>
+      </Args>
+    </onImpulseStarted>
+  </ClientMethods>
+  <ofEntity>
+    <Vehicle></Vehicle>
+  </ofEntity>
+  <DefaultKeyName>	wheeledDashController	</DefaultKeyName>
+</WheeledDashController.def>

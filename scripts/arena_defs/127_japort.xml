@@ -1,0 +1,167 @@
+<127_japort.xml>
+  <name>	#arenas:127_japort/name	</name>
+  <description>	#arenas:127_japort/description	</description>
+  <geometry>	spaces/127_japort	</geometry>
+  <estimatedLoad>	0.55	</estimatedLoad>
+  <boundingBox>
+    <bottomLeft>	-500.0 -500.0	</bottomLeft>
+    <upperRight>	500.0 500.0	</upperRight>
+  </boundingBox>
+  <roundLength>	900	</roundLength>
+  <minimap>	spaces/127_japort/mmap.dds	</minimap>
+  <minimapLayers>
+    <layer>
+      <layerId>	layer1	</layerId>
+      <layerType>	base	</layerType>
+      <path>	spaces/127_japort/mmap_bunker_crash01_destroyed.dds	</path>
+    </layer>
+  </minimapLayers>
+  <vehicleCamouflageKind>	summer	</vehicleCamouflageKind>
+  <maxPlayersInTeam>	15	</maxPlayersInTeam>
+  <wwmusicSetup>
+    <wwmusicLoading>	music_japort_loading_screen	</wwmusicLoading>
+    <wwmusicIntensive>	music_japort_dron_intensive	</wwmusicIntensive>
+    <wwmusicRelaxed>	music_japort_dron_relaxed	</wwmusicRelaxed>
+    <wwmusicStop>	music_dron_stop	</wwmusicStop>
+    <wwmusicEndbattleStop>	music_dron_endbattle_stop	</wwmusicEndbattleStop>
+    <wwmusicResultWin>	music_japort_result_win	</wwmusicResultWin>
+    <wwmusicResultDrawn>	music_japort_result_drawn	</wwmusicResultDrawn>
+    <wwmusicResultDefeat>	music_japort_result_defeat	</wwmusicResultDefeat>
+  </wwmusicSetup>
+  <wwambientSound>	ambient_wind_spring_01	</wwambientSound>
+  <soundRemapping>
+    <loadBanks>
+      <bank>
+        <name>	destructible_objects.bnk	</name>
+      </bank>
+      <bank>
+        <name>	destructible_objects.pck	</name>
+      </bank>
+    </loadBanks>
+  </soundRemapping>
+  <water>
+    <texScale>	0	</texScale>
+    <freqX>	0	</freqX>
+    <freqZ>	0	</freqZ>
+  </water>
+  <gameplayTypes>
+    <ctf>
+      <teamBasePositions>
+        <team1>
+          <position1>	-367.279236 156.182098	</position1>
+        </team1>
+        <team2>
+          <position1>	337.413452 152.013916	</position1>
+        </team2>
+      </teamBasePositions>
+    </ctf>
+    <comp7>
+      <visualScript>
+        <server>
+          <plan>	PointsOfInterest/pointsOfInterest	</plan>
+        </server>
+      </visualScript>
+      <recon>
+        <flyDirections>
+          <flyDirection>
+            <team>	1	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+          <flyDirection>
+            <team>	2	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+        </flyDirections>
+      </recon>
+      <minimap>	spaces/127_japort/mmap_comp7.dds	</minimap>
+      <pointsOfInterestUDO>
+        <point>
+          <position>	28.278803 82.847275	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	37.165329 -282.248108	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	38.335007 -445.018524	</position>
+          <type>	1	</type>
+        </point>
+      </pointsOfInterestUDO>
+      <teamSpawnPoints>
+        <team1>
+          <position>	-284.022766 -319.192963	</position>
+        </team1>
+        <team2>
+          <position>	320.944946 -250.263641	</position>
+        </team2>
+      </teamSpawnPoints>
+      <controlPoint>	46.284744 -98.335007	</controlPoint>
+    </comp7>
+  </gameplayTypes>
+  <roadMap></roadMap>
+  <mapActivities></mapActivities>
+  <wwambientSound></wwambientSound>
+  <modules>
+    <common>	VehicleBasicModule	  <module>	BW::CgfCameraModule	</module>
+      <module>	BW::CollisionSceneModule	</module>
+      <module>	cgf::network::ClientNetworkModule	</module>
+      <module>	BW::CompoundModule	</module>
+      <module>	cgf::network::NetworkModule	</module>
+      <module>	vehicle::hierarchy::EntityHelpersModule	</module>
+      <module>	vehicle::hierarchy::VehicleHierarchyModule	</module>
+      <module>	BW::EffectsDebugModule	</module>
+      <module>	BW::ControlPointModule	</module>
+      <module>	BW::EntityFiltersModule	</module>
+      <module>	BW::EffectHandlersModule	</module>
+      <module>	BW::EffectsModule	</module>
+      <module>	BW::ArmorFlashlight::ArmorFlashlightModule	</module>
+      <module>	BW::VisibilityTunnelModule	</module>
+      <module>	BW::input::InputModule	</module>
+      <module>	BW::RompModule	</module>
+      <module>	cgf::events::EventsModule	</module>
+      <module>	cgf::FoundationModule	</module>
+      <module>	cgf::TriggersModule	</module>
+      <module>	BW::ConstraintsModule	</module>
+      <module>	BW::CGF::GenericComponentsModule	</module>
+      <module>	BW::tags::TagsModule	</module>
+      <module>	BW::variables::VariablesModule	</module>
+      <module>	vehicle::hierarchy::HierarchyModule	</module>
+      <module>	BW::DebugSoundRenderModule	</module>
+      <module>	cgf_debug_render::Module	</module>
+      <module>	BW::VisualScriptModule	</module>
+      <module>	BW::GameLogicModule	</module>
+      <module>	BW::SoundModule	</module>
+      <module>	BW::SoundSpatialModule	</module>
+      <module>	wot_physics::Module	</module>
+      <module>	BW::GpuDecalsModule	</module>
+      <module>	BW::WotRenderModule	</module>
+      <module>	BW::WULF::Module	</module>
+      <module>	BW::VehicleBasicModule	</module>
+      <module>	BW::VehicleCommonModule	</module>
+      <module>	BW::VehicleDrivetrainModule	</module>
+      <module>	BW::VehicleAudioModule	</module>
+      <module>	BW::VehicleTracksModule	</module>
+      <module>	BW::VehicleGunModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::ClientCommonModule	</module>
+      <module>	script::ClientUiModule	</module>
+      <module>	script::VehicleAppearanceModule	</module>
+      <module>	BW::SpaceZonesModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::CommonServerModule	</module>
+      <module>	script::VehicleRuleModule	</module>
+      <module>	script::ClientKillCamModule	</module>
+      <module>	script::ClientAbilitiesModule	</module>
+      <module>	script::RamDebugModule	</module>
+      <module>	script::VehicleSystemsModule	</module>
+      <module>	script::CommonScriptsModule	</module>
+      <module>	BW::ServerModule	</module>
+      <module>	BW::VehicleStatusesModule	</module>
+      <module>	BW::VehicleTriggersModule	</module>
+    </common>
+    <comp7>
+      <module>	script::PointsOfInterestModule	</module>
+    </comp7>
+  </modules>
+</127_japort.xml>

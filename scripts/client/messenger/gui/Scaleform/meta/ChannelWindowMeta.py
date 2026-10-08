@@ -1,0 +1,12 @@
+from gui.Scaleform.framework.entities.abstract.AbstractWindowView import AbstractWindowView
+
+class ChannelWindowMeta(AbstractWindowView):
+
+    def showFAQWindow(self):
+        self._printOverrideError('showFAQWindow')
+
+    def as_setTitleS(self, title):
+        return self.flashObject.as_setTitle(title) if self._isDAAPIInited() else None
+
+    def as_setCloseEnabledS(self, enabled):
+        return self.flashObject.as_setCloseEnabled(enabled) if self._isDAAPIInited() else None

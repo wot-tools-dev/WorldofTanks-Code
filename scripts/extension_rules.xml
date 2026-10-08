@@ -1,0 +1,210 @@
+<extension_rules.xml>
+  <xml_whitelist>
+    <rule>
+      <pattern>	.*/item_defs/arena_vscripts\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/hints/battle_hints\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/customization/.*/list(\.[A-Z]{2})?\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/vehicles/common/supply_slot_types\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	slots	</params>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/vehicles/common/exhaust_effects\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	*	</params>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/vehicles/.*/.*\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/static_quests/.*\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/vehicles/.*/components/.*\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/bonus_caps_config\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/fairplay_violation_types\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/item_defs/[^/]+\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	system/debug_ui/dbgui_console_actions\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/python_macroses\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/html_templates\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/messenger\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/gui_colors\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/gui_settings\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/hangars\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/avatar_input_handler\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/component_marker_items\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/sound_notifications\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/vehicle_errors_panel\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	messages	</params>
+    </rule>
+    <rule>
+      <pattern>	gui/vehicle_messages_panel\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	messages	</params>
+    </rule>
+    <rule>
+      <pattern>	gui/player_messages_panel\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	messages	</params>
+    </rule>
+    <rule>
+      <pattern>	gui/postmortem_panel\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	messages	</params>
+    </rule>
+    <rule>
+      <pattern>	.*/development/test_xml/.*/.*\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/battle_modifiers/.*\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/deathzones_config\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	zoneTypes zonesOnBattleStart	</params>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/postmortem_settings_config\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	engine_config\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	soundMgr/*/*	</params>
+    </rule>
+    <rule>
+      <pattern>	system/data/particles\.xml$	</pattern>
+      <type>	include	</type>
+      <extensionsFilterType>	enabledOnly	</extensionsFilterType>
+    </rule>
+    <rule>
+      <pattern>	scripts/arena_defs/_default_\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	extraSoundRemapping	</params>
+    </rule>
+    <rule>
+      <pattern>	.*/arena_defs/.*\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	scripts/dynamic_objects\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/sound_notifications\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/gui_sounds\.xml$	</pattern>
+      <type>	merge	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/fairplay\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	newbieBattles/arenaBonusTypes violations	</params>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/economics\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/ai/weakspots/.*\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/ai/params/formations/.*\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/event_notifications\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/gui_colors\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	gui/tutorial-lobby-gui\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	gui-items	</params>
+    </rule>
+    <rule>
+      <pattern>	scripts/tutorial_docs/once-only-hints\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	hints	</params>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/system_channels\.xml$	</pattern>
+      <type>	includeByPath	</type>
+      <params>	systemChannels	</params>
+    </rule>
+    <rule>
+      <pattern>	.*/server_xml/unit_assembler_config\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	input_profiles/input_profiles\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+    <rule>
+      <pattern>	scripts/command_mapping\.xml$	</pattern>
+      <type>	include	</type>
+    </rule>
+  </xml_whitelist>
+</extension_rules.xml>

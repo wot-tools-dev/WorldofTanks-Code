@@ -1,0 +1,60 @@
+(def element CommonCongratsView(preloadSwf:array=['./ub_congrats.swf']) layout = true isReadyTracked=true entrance=true loadOrder="LoadOrder.NOT_WAITING_FIRST"
+    (name = 'commonCongratsView')
+    (macro CommonCongratsViewModel)
+    (scope
+        (event onResizeAnim)
+        (event loadComplete)
+
+        (var isLoaded: bool = false)
+        (bind isLoaded true init=false (event "loadComplete"))
+
+        (var initData:dict = null)
+        (bind initData "{
+            title: title,
+            description: description,
+            image: image,
+            imageAlt: imageAlt,
+            confirmLbl: confirmLbl,
+            backLbl: backLbl
+        }")
+    )
+    (style
+        (bind width "viewSize.width" (event "viewResized"))
+        (bind height "viewSize.height" (event "viewResized"))
+        (align = "center|middle")
+    )
+    (image
+        (style
+            (position="absolute")
+            (bind width "viewSize.width" (event "viewResized"))
+            (bind height "viewSize.height" (event "viewResized"))
+        )
+        (bind source "background")
+    )
+    (view_holder 'swfAnim')
+    (view_holder_content 'swfAnim' "isLoaded"
+        (mc 'CongratulationAnimationUI'
+            (name = 'congratulationAnimation')
+            (dispatch onResizeAnim args="{width: $target.width, height: $target.height}" on='resize')
+            (dispatch onConfirmClick args="{}" on='confirm' dir=1)
+            (dispatch onBackClick args="{}" on='back' dir=1)
+            (bindcall setData "initData" init=true)
+            (bindcall 'dispose' (bind enabled "needReset"))
+        )
+    )
+    (dispatch onCloseClick on='escPressed')
+    (text_button 'closeBtn'
+        (tabIndex = -1)
+        (macro ButtonCloseStyle)
+        (style
+            (position = "absolute")
+            (right = 40px)
+            (top = 37px)
+        )
+        (label = "R.strings.menu.viewHeader.closeBtn.label()")
+        (dispatch onCloseClick on='clicked')
+    )
+    (exec "playSound(R.sounds.shop_buy_tank())"
+        (bind enabled "isLoaded")
+    )
+)

@@ -1,0 +1,77 @@
+(def element BlueprintVehicleUnavailable() layout=true
+    (scope
+        (event onSubmitUnavailableConfirm)
+        (event onHideVehicleUnavailableConfirm)
+        (event onSubmitComplete)
+        (var buttonVisible:bool = true)
+        (var title:str = '')
+        (var description:str = '')
+        (var setFocus:bool = false)
+    )
+
+    (style
+        (backgroundColor = 0x01000000)
+        (align = "middle")
+    )
+
+    (image
+        (name = 'tos_bg')
+        (style
+            (width = 100%)
+        )
+        (source = "R.images.gui.maps.icons.blueprints.blueprintScreen.tos_bg()")
+    )
+
+        
+    (block
+        (name = 'researchBlock')
+        (style
+            (width = 100%)
+            (height = 100%)
+            (align = "center|middle")
+            (position = "absolute")
+        )
+
+        (tf
+            (name = 'title')
+            (style
+                (width = 100%)
+                (textAlign = "center")
+                (backgroundColor = 0xff000000)
+            )
+            (class GrandTitleTextStyle)
+            (bind text "title")
+        )
+
+        (tf
+            (name = 'description')
+            (style
+                (textAlign = "center")
+                (width = 540px)
+            )
+            (class HighlightTextStyle)
+            (bind text "description")
+        )
+
+        (button
+            (name = 'submitBtn')
+            (macro ButtonStylePrimary "BUTTON_SIZE_LARGE") 
+            (style
+                (marginTop = 10px)
+                (width = 150px)
+            )
+            (label = "R.strings.blueprints.blueprintScreen.confirmation.submitBtn()")
+            (dispatch onSubmitUnavailableConfirm dir=1 on='clicked')
+            (bindcall setFocus (bind enabled "setFocus"))
+            (bind visible "buttonVisible")
+        )
+    )
+
+    (controller $Animation
+        (bindcall play duration=0.5 from={alpha:1} to={alpha:0.0} callbacks="{onComplete:onSubmitComplete}" 
+            (event "onSubmitUnavailableConfirm")
+        )
+    )
+
+    (dispatch onHideVehicleUnavailableConfirm dir=1 (event "onSubmitComplete"))
+)

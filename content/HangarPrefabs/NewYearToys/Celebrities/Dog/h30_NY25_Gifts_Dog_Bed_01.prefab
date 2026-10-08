@@ -1,0 +1,226 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Particle": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server"
+										],
+										"effect": "particles/environment/hangar/ny_bed_appear.eff",
+										"emissionRate": 1.0,
+										"emissionSize": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"epicenterOffset": {
+											"x": 0.0,
+											"y": 0.0,
+											"z": 0.0
+										},
+										"fps": 1.0,
+										"gravity": 1.0,
+										"opacity": 1.0,
+										"startSpeed": {
+											"x": 1.0,
+											"y": 1.0
+										},
+										"tintColor": {
+											"value": 4294967295
+										},
+										"windWeight": 1.0
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "hangEffect",
+								"uuid": "c6ed9215-7952-3b27-b819-d6e5847fb884"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": 1.9073499970545527e-06,
+									"y": -0.0032396300230175257,
+									"z": -1.9073499970545527e-06
+								},
+								"rotation": {
+									"x": -1.944040197918162e-12,
+									"y": 122.24513244628906,
+									"z": 2.593482069726538e-12
+								},
+								"scale": {
+									"x": 1.2558000087738037,
+									"y": 1.0,
+									"z": 0.8376590013504028
+								}
+							},
+							"script::HangEffectsOwner": {
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "hangEffectOwner",
+						"uuid": "1c957792-7c54-3bca-a215-be769873dcdb"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::Animator": {
+										"autoStart": false,
+										"disabledDomains": [
+											"Server"
+										],
+										"layers": [
+											{
+												"autoStart": false,
+												"clip": "<Default Clip>",
+												"graphicsPreset": "TYPE_NULL_SHADING",
+												"layerName": "onclick",
+												"lodScale": 1.0,
+												"path": "particles/eff_sequence/New_Year/NY25_Gifts_Dog_Bed_01_onclick.seq",
+												"properties": {
+													"delay": "0",
+													"loop": "0",
+													"loopCount": "-1",
+													"speed": "1"
+												},
+												"weight": 1.0
+											}
+										]
+									},
+									"BW::DynamicModel": {
+										"castShadows": true,
+										"decorType": "0",
+										"disabledDomains": [
+											"Server"
+										],
+										"modelName": "content/Hangars/h_newyear/perscustomization/normal/lod0/h30_NY25_Gifts_Dog_Bed_01.model"
+									},
+									"BW::VSEComponent": {
+										"autoStart": true,
+										"disabledDomains": [
+											"Server",
+											"Editor"
+										],
+										"path": "holiday_ops/vscript/plans/holiday_ops/Bike.xml"
+									},
+									"cgf::TransformComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"position": {
+											"x": 0.48573699593544006,
+											"y": 9.536739753457368e-07,
+											"z": 0.2174219936132431
+										},
+										"rotation": {
+											"x": -0.0006503014010377228,
+											"y": 74.64437103271484,
+											"z": 4.218264439259656e-05
+										}
+									},
+									"script::HighlightComponent": {
+										"color": {
+											"w": 0.800000011920929,
+											"x": 1.0,
+											"y": 0.6901959776878357,
+											"z": 0.019607799127697945
+										},
+										"colorIndex": "4",
+										"disabledDomains": [
+											"Server"
+										],
+										"drawerMode": "0",
+										"groupName": "dogHouse",
+										"overridenHighlightModel": "ffffffff-ffff-ffff-ffff-ffffffffffff"
+									},
+									"script::SelectionComponent": {
+										"disabledDomains": [
+											"Server",
+											"Editor"
+										],
+										"highlight": "1"
+									}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "Visual",
+								"uuid": "30afc143-71a6-3cd3-891b-62d7a4c8ac85"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"position": {
+									"x": 1.9073499970545527e-06,
+									"y": -0.0032401098869740963,
+									"z": -1.9073499970545527e-06
+								}
+							},
+							"script::AppearanceDelayComponent": {
+								"delay": 0.5,
+								"disabledDomains": [
+									"Server"
+								]
+							}
+						},
+						"name": "appearanceDelayOwner",
+						"uuid": "6d6faa46-79cb-3cb7-b4f0-4d7d032b9c2a"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": 0.055206298828125,
+							"y": -0.027146300300955772,
+							"z": -0.34126099944114685
+						},
+						"rotation": {
+							"x": -0.0,
+							"y": -75.3473892211914,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Transform",
+				"uuid": "03c40953-5315-4922-83b7-0a68a928dab6"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "Game Object",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

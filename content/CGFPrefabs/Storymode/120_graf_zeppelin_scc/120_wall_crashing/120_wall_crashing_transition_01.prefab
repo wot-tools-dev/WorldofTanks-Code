@@ -1,0 +1,420 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "Animation",
+								"lodScale": 1.0,
+								"path": "content/Environment/hd_env_UNI_199_WallCrash/animation/hd_env_UNI_199_WallCrash_anim_01.fbx",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/hd_env_UNI_199_WallCrash/normal/lod0/hd_env_UNI_199_WallCrash_anim_01.model"
+					},
+					"cgf::TransformComponent": {
+						"rotation": {
+							"x": -0.0,
+							"y": 179.99986267089844,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "hd_env_UNI_199_WallCrash_anim_01",
+				"uuid": "2f43d8c7-3b41-4a89-b5f4-4cec0e481052"
+			},
+			{
+				"components": {
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Environment/Storymode/120_graf_zeppelin_wall_crashing_dust.eff",
+						"emissionRate": 1.0,
+						"emissionSize": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"epicenterOffset": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"fps": 1.0,
+						"gravity": 1.0,
+						"opacity": 1.0,
+						"startSpeed": {
+							"x": 1.0,
+							"y": 1.0
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1.0
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Dust_01",
+				"uuid": "9bb1bd46-a584-4a40-9991-23b3fa4e9fca"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_stonel_object_breakdown",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "dstrct_stonel_object_breakdown",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "stone_impact_sfx",
+				"uuid": "d001aafc-bed3-4233-8106-24985f7988ee"
+			},
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "dust_first",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/Storymode/120_graf_zeppelin_scc/120_graf_zeppelin_falling_dust_small.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": -1.9271800518035889,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Dust_Falling_first",
+				"uuid": "2e811568-45fa-354f-bded-54b8b495136a"
+			},
+			{
+				"components": {
+					"BW::AnimationTimeSyncComponent": {},
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/Storymode/120_graf_zeppelin_scc/120_graf_zeppelin_falling_dust_small.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "0",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 6.0,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Dust_Falling_last",
+				"uuid": "1a5b67d7-28d1-3d36-9706-c086cccb7078"
+			},
+			{
+				"components": {
+					"BW::CameraCollideComponent": {
+						"becomeTransparent": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"distance": 5.0
+					},
+					"BW::Colliders": {
+						"colliders": [
+							{
+								"__ctype__": "BW::BoxColliderDesc",
+								"__cvalue__": {
+									"transform": "((       5,       0,       0,       0), (       0,       5,       0,       0), (       0,       0,      20,       0), (       0,       0,       0,       1))"
+								}
+							}
+						]
+					},
+					"BW::DamageOnCollisionComponent": {
+						"cameraName": "",
+						"destroyingTime": -1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"isDestroying": false,
+						"killResolveType": "Freeze",
+						"killSpeed": 0.0,
+						"onBodyCollision": true,
+						"onSimulationObjectCollision": true,
+						"onVehicleCollision": true
+					},
+					"BW::RigidBodyComponent": {
+						"bodiesFrictionFactor": 0.30000001192092896,
+						"centerOfMass": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						},
+						"collideWithBodies": true,
+						"collideWithDestructibles": false,
+						"collideWithOnlyLeavesTrees": false,
+						"collideWithSimulationObjects": true,
+						"collideWithStatics": false,
+						"collideWithTerrain": false,
+						"collideWithVehicles": true,
+						"destructiblesFrictionFactor": 1.0,
+						"disabledDomains": [
+							"Client"
+						],
+						"generateVelocities": false,
+						"inertiaFactors": {
+							"x": 1.0,
+							"y": 1.0,
+							"z": 1.0
+						},
+						"isTrigger": false,
+						"mass": 100.0,
+						"simulationObjectsFrictionFactor": 0.30000001192092896,
+						"state": "Kinematic",
+						"staticsFrictionFactor": 1.0,
+						"terrainFrictionFactor": 1.0,
+						"vehiclesFrictionFactors": 0.30000001192092896
+					},
+					"BW::StaticObstacleComponent": {
+						"disabledDomains": [
+							"Client"
+						],
+						"spawnResolveType": "KILL_AND_FREEZE"
+					},
+					"BW::TrajectoryComponent": {
+						"positionCurve": {
+							"data": [
+								{
+									"inTangent": {
+										"x": 0.0,
+										"y": -5.462979793548584,
+										"z": 0.0
+									},
+									"outTangent": {
+										"x": 0.0,
+										"y": -5.462979793548584,
+										"z": 0.0
+									},
+									"tangentMode": "0",
+									"time": 0.0,
+									"value": {
+										"x": 0.0,
+										"y": 0.0,
+										"z": 0.0
+									}
+								},
+								{
+									"inTangent": {
+										"x": -0.0,
+										"y": -5.462979793548584,
+										"z": -0.0
+									},
+									"outTangent": {
+										"x": -0.0,
+										"y": -5.462979793548584,
+										"z": -0.0
+									},
+									"tangentMode": "0",
+									"time": 2.5,
+									"value": {
+										"x": 0.0,
+										"y": -12.0,
+										"z": 0.0
+									}
+								}
+							]
+						},
+						"rotationCurve": {
+							"data": []
+						},
+						"scaleCurve": {
+							"data": []
+						},
+						"shift": {
+							"x": 0.0,
+							"y": 0.0,
+							"z": 0.0
+						}
+					},
+					"BW::TrajectoryMoverComponent": {
+						"autoStart": false,
+						"looped": false,
+						"serverTime": false
+					},
+					"BW::TrajectoryTimeSyncComponent": {},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 13.657899856567383,
+							"z": 0.0
+						}
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "120_wall_crashing_transition_01_killing_collisions",
+				"uuid": "82e4e57f-6f0e-4a29-933a-4bcad8f4c8e9"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "dstrct_stone_big",
+						"Fade time": 0.0,
+						"Fade type": 4,
+						"Object name": "dstrct_stone_big",
+						"Volume": 1.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "stone_fall_sfx",
+				"uuid": "514cb471-b35c-4dfc-a84a-d871fde08c2d"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": true,
+				"layers": [
+					{
+						"alwaysEnabled": false,
+						"duration": 10.0,
+						"loop": false,
+						"pauseOnEnd": false,
+						"tracks": [
+							{
+								"endTime": 10.0,
+								"object": "2f43d8c7-3b41-4a89-b5f4-4cec0e481052",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 3.0,
+								"object": "2e811568-45fa-354f-bded-54b8b495136a",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 4.51101016998291,
+								"object": "1a5b67d7-28d1-3d36-9706-c086cccb7078",
+								"parameters": [],
+								"startTime": 1.5110100507736206
+							},
+							{
+								"endTime": 10.0,
+								"object": "82e4e57f-6f0e-4a29-933a-4bcad8f4c8e9",
+								"parameters": [],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 10.0,
+								"object": "514cb471-b35c-4dfc-a84a-d871fde08c2d",
+								"parameters": [],
+								"startTime": 0.009999999776482582
+							},
+							{
+								"endTime": 10.0,
+								"object": "d001aafc-bed3-4233-8106-24985f7988ee",
+								"parameters": [],
+								"startTime": 1.7999999523162842
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::ShotsReceiver": {}
+		},
+		"name": "120_wall_crashing_transition_01",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

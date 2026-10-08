@@ -1,0 +1,37 @@
+(def element MissionsTabBarView() layout = true entrance=true
+    (macro MissionsTabBarViewModel)
+    (macro StageSizeConstant)
+	(scope
+        (var isMenuSmall:bool = "viewSize.width < 1300"
+            (event "viewResized")
+        )
+        (var isSmall:bool = "viewSize.width < 1800 || viewSize.height < HEIGHT_900"
+            (event "viewResized")
+        )
+        (event evPreSwitchContent)
+    )
+	(style
+		(bind width "viewSize.width"
+            (event "viewResized")
+        )
+		(bind height "viewSize.height"
+            (event "viewResized")
+        )
+	)
+
+    (element SideTabBar 'SideTabBarRenderer' 'TabBarSelectedBlockRenderer' "MENU_ITEM_SIZE"
+        (style
+            (position = "absolute")
+            (vcenter = -45px)
+            (backgroundColor = 0x70000000)
+            (bind left "isMenuSmall ? 10px : -120px")
+        )
+        (scope
+            (bind selectedIndex "startIndex")
+            (bind renderers "views")
+            (bind isSmall "isMenuSmall") 
+            (horizontal = false)
+            (dispatch onTabSelectionChanged on='evTabBarIndexChanged')
+        )
+    )
+)

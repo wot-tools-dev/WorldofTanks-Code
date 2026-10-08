@@ -1,0 +1,4 @@
+class OTG_OP_TYPES(object):
+    RESEARCH = 200
+    ACCRUAL = 201
+    RENT_REMOVAL = 202

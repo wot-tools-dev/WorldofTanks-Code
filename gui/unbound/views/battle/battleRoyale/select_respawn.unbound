@@ -1,0 +1,367 @@
+(def constant BR_MINI_MAP_LARGE 700)
+(def constant BR_MINI_MAP_SMALL 500)
+(def constant BR_BREAK_POINT_X 1024)
+(def constant BR_BREAK_POINT_Y 1000)
+(def constant BR_POINT_SIZE 22)
+
+(def element SelectRespawn() layout = true entrance=true
+    (macro SelectRespawnViewModel)
+    (scope
+        (event deselectAllPoints)
+        (event deselectEachPoint)
+        (event currentPointSelected)
+
+        (var br_mini_map_size:number = BR_MINI_MAP_SMALL)
+        (bind br_mini_map_size "(viewSize.width > BR_BREAK_POINT_X && viewSize.height > BR_BREAK_POINT_Y) ? BR_MINI_MAP_LARGE : BR_MINI_MAP_SMALL" (event "viewResized"))
+        (var br_mini_map_grid:str = '')
+        (var imageName:str = 'mapGrid')
+        (bind imageName "(viewSize.width > BR_BREAK_POINT_X && viewSize.height > BR_BREAK_POINT_Y) ? 'mapGrid' : 'mapGridSmall'" (event "viewResized"))
+        (bind br_mini_map_grid "R.images.gui.maps.icons.battleRoyale[imageName]()" init=true)
+        (bind selectedPointID "$event.id" init=false (event "currentPointSelected"))
+    )
+
+    (dispatch onSelectPoint args={} init=false (event "currentPointSelected"))
+    (dispatch deselectEachPoint dir=2 init=false (event "deselectAllPoints"))
+
+    (bind mouseChildren "!isReplay" init=false)
+    (bind mouseEnabled "!isReplay" init=false)
+
+    (block
+        (style
+            (bind backgroundImage "background")
+            (backgroundSize = "cover")
+            (bind width "viewSize.width" (event "viewResized"))
+            (bind height "viewSize.height" (event "viewResized"))
+            (align = "middle|center")
+        )
+        (block
+            (name = 'header')
+            (style
+                (width = 100%)
+                (align = "center")
+                (marginBottom = 35px)
+            )
+            (tf
+                (class PromoTitleTextStyle)
+                (text = "R.strings.battle_royale.selectRespawn.title.selectRespawn()")
+                (bind class "(viewSize.width > BR_BREAK_POINT_X && viewSize.height > BR_BREAK_POINT_Y) ? 'GrandTitleTextStyle' : 'PromoTitleTextStyle'" (event "viewResized"))
+            )
+            (tf
+                (style
+                    (bind maxWidth "br_mini_map_size")
+                    (marginBottom = 15px)
+                    (textAlign = "center")
+                )
+                (class MainTextStyle)
+                (text = "R.strings.battle_royale.selectRespawn.text.selectRespawn()")
+                (bind class "(viewSize.width > BR_BREAK_POINT_X && viewSize.height > BR_BREAK_POINT_Y) ? 'MainBigTextStyle' : 'MainTextStyle'" (event "viewResized"))
+            )
+            (block 
+                (style
+                    (height = 33px)
+                    (align = "center|middle")
+                )
+                (tf
+                    (style
+                        (bind alpha "isWaitingPlayers ? 0.4 : 0.7")
+                        (fontFamily = $FieldFont)
+                        (bind fontSize "isWaitingPlayers ? 14 : 23")
+                        (bind textColor "isTimeRunningOut ? 0xff2717 : 0xffffff")
+                    )
+                    (antiAliasType = 'advanced')
+                    (bind text "leftTime")
+                )
+            )
+        )
+        (block
+            (name = 'minimap')
+            (style
+                (bind width "br_mini_map_size")
+                (bind height "br_mini_map_size")
+                (backgroundColor = 0xff080706)
+                (bind backgroundImage "minimapBG" (bind enabled "minimapBG != ''"))
+                (backgroundSize = cover)
+                (alpha = 0.75)
+            )
+            (image
+                (style
+                    (position="absolute")
+                    (bottom = 0)
+                    (right = 0)
+                )
+                (bind source "br_mini_map_grid" init=true)
+            )
+            (controller $Repeat renderer='BrSpawnPoint'
+                (bind count "points.length")
+                (exprs
+                    (scope
+                        (bind coordX "points[$index].coordX")
+                        (bind coordY "points[$index].coordY")
+                        (bind playerName1 "points[$index]['playerName1'] == null ? '' : points[$index]['playerName1']")
+                        (bind playerName2 "points[$index]['playerName2'] == null ? '' : points[$index]['playerName2']")
+                        (bind selected "points[$index].selected")
+                        (bind pointID "points[$index].pointID")
+                        (bind map_size "mapSize")
+                    )
+                )
+            )
+        )
+        (button
+            (name = 'footer')
+            (macro ButtonStylePrimaryGreen "BUTTON_SIZE_MEDIUM")
+            (scope
+                (var enableBtn:bool = false)
+                (bind enableBtn true init=false (event "deselectAllPoints"))
+            )
+            (dispatch onCompleteBtnClick on='clicked' init=false
+                (bind enabled "enableBtn" init=false)
+            )
+            (style
+                (marginTop = "30px")
+                (minWidth = 160px)
+                (height = 35px)
+            )
+            (label = "R.strings.battle_royale.selectRespawn.button.land()")
+            (bind enabled "enableBtn")
+            (controller $ToolTip
+                (args
+                    body="enableBtn ? R.strings.tooltips.battle_royale.select_respawn.press_to_start.header() : R.strings.tooltips.battle_royale.select_respawn.have_to_select.header()"
+                )
+                (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+                (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+            )
+            (block
+                (mc 'Btn_Blink')
+                (style
+                    (macro AbsPositionFullSize)
+                )
+                (bind visible "enableBtn")
+                (macro EmptyHitAreaMacro)
+                (mouseEnabled = false)
+                (mouseChildren = false)
+            )
+        )
+    )
+)
+
+(def element BrSpawnPoint() layout = true
+    (macro RespawnPointViewModel)
+    (name = 'pointer')
+    (scope
+        (event currentPointSelected)
+        (event deselectAllPoints)
+        (event deselectEachPoint)
+        (event currentPointRollOver)
+        (event currentPointRollOut)
+
+        (var map_size:number = 0)
+        (var br_mini_map_size:number = BR_MINI_MAP_SMALL)
+        (bind selected true init=false (event "currentPointSelected"))
+        (bind selected false init=false (event "deselectEachPoint"))
+        (bind br_mini_map_size "(viewSize.width > BR_BREAK_POINT_X && viewSize.height > BR_BREAK_POINT_Y) ? BR_MINI_MAP_LARGE : BR_MINI_MAP_SMALL" (event "viewResized"))
+    )
+    (exec "playSound(R.sounds.play())" on='click' (enabled = "!selected"))
+    (exec "playSound(R.sounds.highlight())" on='rollOver' (enabled = "!selected"))
+    (dispatch deselectAllPoints dir=1 init=false on='click' (enabled = "!selected"))
+    (dispatch currentPointSelected args="{id: pointID}" dir=1 init=false on='click' (enabled = "!selected"))
+    (dispatch currentPointRollOver init=false on='rollOver' (enabled = "!selected"))
+    (dispatch currentPointRollOut init=false on='rollOut' (enabled = "!selected"))
+    (style
+        (position = absolute)
+        (bind bottom "coordY*br_mini_map_size/map_size" (enabled = "map_size > 0"))
+        (bind left "coordX*br_mini_map_size/map_size" (enabled = "map_size > 0"))
+        (marginBottom = "-BR_POINT_SIZE")
+        (marginRight = "-BR_POINT_SIZE")
+    )
+    (element HitArea
+        (name = 'hitElement')
+        (style
+            (position = absolute)
+            (width = 26px)
+            (height = 26px)
+            (vcenter = -50%)
+            (hcenter = -50%)
+        )
+    )
+    (hitArea = "$target.hitElement")
+    (buttonMode = true)
+    (mouseChildren = false)
+
+    (block
+        (style
+            (width = "BR_POINT_SIZE")
+            (height = "BR_POINT_SIZE")
+        )
+        (bind alpha "1" init=false (event "deselectEachPoint"))
+        (bind alpha "0" init=false (event "currentPointSelected"))
+        (controller $Animation
+            (bindcall play from={alpha:1} to={alpha:0} duration=0.3 easing="Easing.cubic_in"
+                (event "currentPointRollOver")
+            )
+            (bindcall play from={alpha:0} to={alpha:1} duration=0.3 easing="Easing.cubic_in"
+                (event "currentPointRollOut")
+            )
+        )
+        (element DrawCircle 11 0xffdd99 alpha=0.7
+            (class PointRedShadow)
+            (controller $Animation
+                (playSeq "[
+                    {duration:0.2, to:{scaleX:1.0, scaleY:1.0}, easing:Easing.line},
+                    {duration:1, to:{scaleX:1.5, scaleY:1.5}, easing:Easing.line},
+                    {duration:0.8, to:{scaleX:1.1, scaleY:1.1}, easing:Easing.line}
+                ]" repeatCount="-1")
+            )
+        )
+        (element DrawCircle 7 0xffdd99 alpha=0.7
+            (class PointRedShadow)
+            (controller $Animation
+                (playSeq "[
+                    {duration:0.2, to:{scaleX:1.1, scaleY:1.1}, easing:Easing.line},
+                    {duration:0.8, to:{scaleX:1.5, scaleY:1.5}, easing:Easing.line},
+                    {duration:1, to:{scaleX:1.0, scaleY:1.0}, easing:Easing.line}
+                ]" repeatCount="-1")
+            )
+        )
+        (element DrawCircle 3 0xffdd99
+            (class PointRedShadow)
+            (controller $Animation
+                (playSeq "[
+                    {duration:0.2, to:{scaleX:1.2, scaleY:1.2}, easing:Easing.line},
+                    {duration:0.6, to:{scaleX:1.5, scaleY:1.5}, easing:Easing.line},
+                    {duration:1, to:{scaleX:1.0, scaleY:1.0}, easing:Easing.line},
+                    {duration:0.2, to:{scaleX:1.1, scaleY:1.1}, easing:Easing.line}
+                ]" repeatCount="-1")
+            )
+        )
+    )
+    (block
+        (bind alpha "0" init=false (event "deselectEachPoint"))
+        (bind alpha "1" init=false (event "currentPointSelected"))
+        (controller $Animation
+            (bindcall play from={alpha:0} to={alpha:1} duration=0.3 easing="Easing.cubic_in"
+                (event "currentPointRollOver")
+            )
+            (bindcall play from={alpha:1} to={alpha:0} duration=0.3 easing="Easing.cubic_in"
+                (event "currentPointRollOut")
+            )
+        )
+        (style
+            (alpha = 0)
+            (width = "BR_POINT_SIZE")
+            (height = "BR_POINT_SIZE")
+            (marginTop = "-BR_POINT_SIZE")
+        )
+        (element DrawCircle 11 0x44983b 0xb4ff87 line=2 alpha=0.7
+            (style
+                (filters
+                    (dropShadow
+                        (distance = 0)
+                        (angle = 90)
+                        (color = 0x54ff00)
+                        (alpha = 0.6)
+                        (blurX = 27)
+                        (blurY = 27)
+                        (strength = 2)
+                        (quality = 2)
+                        (inner = false)
+                        (knockout = false)
+                        (hideObject  = false)
+                    )
+                )
+            )
+        )
+        (element DrawCircle 3 0xb3ff9f alpha=1
+            (style
+                (filters
+                    (dropShadow
+                        (distance = 1)
+                        (angle = 90)
+                        (color = 0x000000)
+                        (alpha = 0.5)
+                        (blurX = 1)
+                        (blurY = 1)
+                        (strength = 1)
+                        (quality = 1)
+                        (inner = false)
+                        (knockout = false)
+                        (hideObject  = false)
+                    )
+                )
+            )
+        )
+    )
+    (block
+        (class = 'NickRight')
+        (tf
+            (class ExpTextStyle)
+            (style
+                (textColor = 0xccff66)
+            )
+            (text = "R.strings.battle_royale.selectRespawn.text.startHere()")
+            (bind visible true init=false (event "currentPointSelected"))
+            (bind visible false init=true (event "deselectEachPoint"))
+            (controller $Animation
+                (bindcall play name='AnimNickname' from={x:-5px, alpha:0} to={x:0px, alpha:1} duration=0.1 easing="Easing.cubic_in"
+                    (event "currentPointSelected")
+                )
+            )
+        )
+        (tf
+            (class ExpTextStyle)
+            (style
+                (textColor = 0xccff66)
+            )
+            (bind text "playerName1")
+            (bind visible "playerName1 != ''")
+        )
+        (tf
+            (class ExpTextStyle)
+            (style
+                (textColor = 0xccff66)
+            )
+            (bind text "playerName2")
+            (bind visible "playerName2 != ''")
+        )
+    )
+)
+
+(def layout DrawCircle(radius:number, color:number, lineColor:number = 0xfff, line:number = null, alpha:number = 1, fill:bool = true)
+    (.graphics
+        (lineStyle "line" "lineColor" $enabled="line")
+        (beginFill "color" "alpha" $enabled="fill")
+        (drawCircle 0 0 "radius")
+        (endFill  $enabled="fill")
+    )
+)
+
+(def css NickRight()
+    (position= absolute)
+    (zindex = 1)
+    (left = 20px)
+    (vcenter = -50%)
+)
+
+(def css NickLeft()
+    (position= absolute)
+    (zindex = 1)
+    (right = 40px)
+    (vcenter = -50%)
+)
+
+(def css PointRedShadow()
+    (filters
+        (dropShadow
+            (distance = 0)
+            (angle = 90)
+            (color = 0xff0000)
+            (alpha = 0.6)
+            (blurX = 17)
+            (blurY = 17)
+            (strength = 2)
+            (quality = 2)
+            (inner = false)
+            (knockout = false)
+            (hideObject  = false)
+        )
+    )
+)

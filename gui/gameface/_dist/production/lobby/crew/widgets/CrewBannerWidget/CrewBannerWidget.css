@@ -1,0 +1,470 @@
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Countdown_base_d0c0c {
+    display: flex;
+    align-items: center;
+}
+
+.Countdown_icon_a453a {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+}
+
+.Countdown_description_ee2e0 {
+    color: #FFDD99;
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+}
+
+.ExtendedText_base_d9fc1 {
+    display: flex;
+    line-height: 1.2;
+    position: relative;
+}
+
+    .ExtendedText_base__zeroPadding_d1a1c {
+        padding: 0;
+    }
+
+    .ExtendedText_base__isTruncationAvailable_cb880 {
+        width: 100%;
+    }
+
+.ExtendedText_truncated_a4268 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.ExtendedText_truncated__hide_d75b4 {
+        opacity: 0;
+    }
+
+.ExtendedText_unTruncated_ff478 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    align-content: flex-start;
+    color: #FF2717;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+}
+
+.ExtendedText_tooltip_b5abd {
+    display: flex;
+}
+
+.ExtendedText_tooltip__justify-flex-start_ade81 {
+        justify-content: flex-start;
+    }
+
+.ExtendedText_tooltip__justify-center_aa541 {
+        justify-content: center;
+    }
+
+.ExtendedText_tooltip__justify-flex-end_af6c3 {
+        justify-content: flex-end;
+    }
+
+.ExtendedText_tooltip__align-flex-start_fbfc0 {
+        align-content: flex-start;
+    }
+
+.ExtendedText_tooltip__align-center_d5b4a {
+        align-content: center;
+    }
+
+.ExtendedText_tooltip__align-flex-end_fc0e0 {
+        align-content: flex-end;
+    }
+
+.colors_blackReal_a68be {
+    color: #000000;
+}
+
+.colors_whiteReal_f79f8 {
+    color: #FFFFFF;
+}
+
+.colors_white_b5c87 {
+    color: #F2F2F7;
+}
+
+.colors_whiteOrange_ba58d {
+    color: #FEFEEC;
+}
+
+.colors_whiteSpanish_fd764 {
+    color: #E9E2BF;
+}
+
+.colors_par_e836f {
+    color: #8C8C7E;
+}
+
+.colors_parSecondary_f260a {
+    color: #595950;
+}
+
+.colors_parTertiary_d47f7 {
+    color: #37362E;
+}
+
+.colors_red_c02cb {
+    color: #FF2717;
+}
+
+.colors_redDark_cdd63 {
+    color: #B70000;
+}
+
+.colors_yellow_ec93b {
+    color: #FEAB34;
+}
+
+.colors_orange_bbde2 {
+    color: #EE7000;
+}
+
+.colors_cream_e3bb8 {
+    color: #FFDD99;
+}
+
+.colors_brown_bcb6a {
+    color: #CBAC77;
+}
+
+.colors_greenBright_e6055 {
+    color: #80D43A;
+}
+
+.colors_green_b6f21 {
+    color: #7AB300;
+}
+
+.colors_greenDark_ce9bf {
+    color: #497212;
+}
+
+.colors_blueBooster_b2848 {
+    color: #CCFFFF;
+}
+
+.colors_blueTeamkiller_e7dd8 {
+    color: #09E2FF;
+}
+
+.colors_cred_ddb07 {
+    color: #CED9D9;
+}
+
+.colors_gold_c405a {
+    color: #FFC363;
+}
+
+.colors_bond_bb139 {
+    color: #C9C9B6;
+}
+
+.colors_prom_d1186 {
+    color: #A29B70;
+}
+
+.renderers_noBreakWrapper_d986b {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.renderers_lineBreak_f90ed {
+    width: 100%;
+    height: 0;
+}
+
+.renderers_newLine_ee778 {
+    flex: 1;
+    width: 100%;
+}
+
+.renderers_word_ac32d {
+    white-space: pre;
+    overflow-wrap: normal;
+}
+
+.CrewBannerWidgetApp_base_ae9c3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    padding: 20rem 10rem 15rem;
+    position: relative;
+}
+
+.CrewBannerWidgetApp_background_b4032 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1rem solid rgba(255, 255, 255, .25);
+    background-color: #23231c;
+    transition: background-color .3s;
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, #000000 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.CrewBannerWidgetApp_base__hovered_df6f7 .CrewBannerWidgetApp_background_b4032 {
+        background-color: #2e2e28;
+    }
+
+.CrewBannerWidgetApp_backgroundImage_b4642 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: url('R.images.gui.maps.icons.crew.npsBanner') repeat-x center / 1920rem 72rem;
+    opacity: .2;
+}
+
+.CrewBannerWidgetApp_text_ca5b6 {
+    color: #E9E2BF;
+    font-size: 16rem;
+    font-weight: 400;
+    line-height: 1.25;
+    flex: 0;
+    position: relative;
+    bottom: 2rem;
+}
+
+.CrewBannerWidgetApp_countdown_b1533 {
+    position: relative;
+}
+
+.CrewBannerWidgetApp_button_aa679 {
+    margin-left: 15rem;
+    padding: 0;
+    position: relative;
+}
+
+.CrewBannerWidgetApp_buttonText_aac56 {
+    color: #E9E2BF;
+    font-size: 15rem;
+    font-weight: 700;
+    line-height: 1.15;
+    padding: 6rem 15rem 8rem;
+}
+

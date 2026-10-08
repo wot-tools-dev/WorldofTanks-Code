@@ -1,0 +1,17 @@
+from __future__ import absolute_import
+from frameworks.wulf import ViewSettings
+from gui.impl.gen import R
+from gui.impl.gen.view_models.views.lobby.battle_pass.tooltips.battle_pass_coin_tooltip_view_model import BattlePassCoinTooltipViewModel
+from gui.impl.pub import ViewImpl
+
+class BattlePassCoinTooltipView(ViewImpl):
+    __slots__ = ()
+
+    def __init__(self):
+        settings = ViewSettings(R.views.mono.battle_pass.tooltips.bpcoin())
+        settings.model = BattlePassCoinTooltipViewModel()
+        super(BattlePassCoinTooltipView, self).__init__(settings)
+
+    @property
+    def viewModel(self):
+        return super(BattlePassCoinTooltipView, self).getViewModel()

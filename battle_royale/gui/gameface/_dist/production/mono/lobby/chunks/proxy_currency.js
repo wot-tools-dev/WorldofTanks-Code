@@ -1,0 +1,1 @@
+import{j as s,f as a}from"./vendor.js";import"./lib.js";const e="ProxyCurrency_7a6e909e";var r=(s=>(s.x48="small",s.x80="big",s))(r||{});const i={small:48,big:80};function m({type:r,className:m,size:o="small"}){return s.jsx("div",{className:a(e,m),style:{backgroundImage:`url(R.images.gui.maps.icons.quests.bonuses.${o}.${r})`,"--imageSize":`${i[o]}rem`}})}export{m as P,r as a};

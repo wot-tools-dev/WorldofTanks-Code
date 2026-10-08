@@ -1,0 +1,18 @@
+# This file was generated using wgpygen
+#   template: configs/templates/view_model.unbound.jinja2
+#   source: configs/definitions/views/lobby/premacc/piggybank_view_model.yaml
+# Please, don't edit this file manually.
+(def macro PiggybankModel()
+    (macro PiggybankBaseModel)
+    (scope
+        (event onPremAccProlong)
+        (event onGoToContentPage)
+        (event onBackBtnClicked)
+
+        (var periodInDays:number = 0)
+        (var piggyIsFull:bool = false)
+        (var isPremUsed:bool = false)
+        (var backBtnLabel:str = '')
+        (var percentDiscount:number = 0)
+    )
+)

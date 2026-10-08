@@ -1,0 +1,192 @@
+<114_czech.xml>
+  <name>	#arenas:114_czech/name	</name>
+  <description>	#arenas:114_czech/description	</description>
+  <geometry>	spaces/114_czech	</geometry>
+  <estimatedLoad>	0.55	</estimatedLoad>
+  <boundingBox>
+    <bottomLeft>	-500.000000 -500.000000	</bottomLeft>
+    <upperRight>	500.000000 500.000000	</upperRight>
+  </boundingBox>
+  <roundLength>	900	</roundLength>
+  <minimap>	spaces/114_czech/mmap.dds	</minimap>
+  <minimapLayers>
+    <layer>
+      <layerId>	layer1	</layerId>
+      <layerType>	base	</layerType>
+      <path>	spaces/114_czech/mmap_crash01_bombing_zone.dds	</path>
+    </layer>
+    <layer>
+      <layerId>	layer2	</layerId>
+      <layerType>	base	</layerType>
+      <path>	spaces/114_czech/mmap_crash01_bombing_destroyed.dds	</path>
+    </layer>
+  </minimapLayers>
+  <vehicleCamouflageKind>	summer	</vehicleCamouflageKind>
+  <maxPlayersInTeam>	15	</maxPlayersInTeam>
+  <wwmusicSetup>
+    <wwmusicLoading>	music_pilsen_loading_screen	</wwmusicLoading>
+    <wwmusicIntensive>	music_pilsen_dron_intensive	</wwmusicIntensive>
+    <wwmusicRelaxed>	music_pilsen_dron_relaxed	</wwmusicRelaxed>
+    <wwmusicStop>	music_dron_stop	</wwmusicStop>
+    <wwmusicEndbattleStop>	music_dron_endbattle_stop	</wwmusicEndbattleStop>
+    <wwmusicResultWin>	music_pilsen_result_win	</wwmusicResultWin>
+    <wwmusicResultDrawn>	music_pilsen_result_drawn	</wwmusicResultDrawn>
+    <wwmusicResultDefeat>	music_pilsen_result_defeat	</wwmusicResultDefeat>
+  </wwmusicSetup>
+  <wwambientSound>	ambient_wind_summer_01	</wwambientSound>
+  <soundRemapping>
+    <loadBanks>
+      <bank>
+        <name>	destructible_objects.bnk	</name>
+      </bank>
+      <bank>
+        <name>	destructible_objects.pck	</name>
+      </bank>
+    </loadBanks>
+  </soundRemapping>
+  <umbraEnabled>	1	</umbraEnabled>
+  <batchingEnabled>	0	</batchingEnabled>
+  <water>
+    <texScale>	0	</texScale>
+    <freqX>	0	</freqX>
+    <freqZ>	0	</freqZ>
+  </water>
+  <gameplayTypes>
+    <ctf>
+      <teamBasePositions>
+        <team1>
+          <position1>	-69.499863 406.306885	</position1>
+        </team1>
+        <team2>
+          <position1>	-72.140900 -413.104523	</position1>
+        </team2>
+      </teamBasePositions>
+    </ctf>
+    <domination>
+      <teamSpawnPoints>
+        <team1>
+          <position>	-51.653999 406.415009	</position>
+        </team1>
+        <team2>
+          <position>	-75.448997 -404.036011	</position>
+        </team2>
+      </teamSpawnPoints>
+      <controlPoint>	-183.412262 -3.482437	</controlPoint>
+    </domination>
+    <comp7>
+      <teamSpawnPoints>
+        <team1>
+          <position>	-47.346001 374.540009	</position>
+        </team1>
+        <team2>
+          <position>	-67.586998 -363.131989	</position>
+        </team2>
+      </teamSpawnPoints>
+      <visualScript>
+        <server>
+          <plan>	PointsOfInterest/pointsOfInterest	</plan>
+        </server>
+      </visualScript>
+      <recon>
+        <flyDirections>
+          <flyDirection>
+            <team>	1	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+          <flyDirection>
+            <team>	2	</team>
+            <direction>	0 0 1	</direction>
+          </flyDirection>
+        </flyDirections>
+      </recon>
+      <minimap>	spaces/114_czech/mmap_comp7.dds	</minimap>
+      <pointsOfInterestUDO>
+        <point>
+          <position>	127.985001 -160.921997	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	125.328995 132.875000	</position>
+          <type>	2	</type>
+        </point>
+        <point>
+          <position>	-489.058990 19.809000	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	-119.398003 -8.463000	</position>
+          <type>	1	</type>
+        </point>
+        <point>
+          <position>	317.895081 34.919456	</position>
+          <type>	1	</type>
+        </point>
+      </pointsOfInterestUDO>
+      <controlPoint>	-240.387161 -11.232643	</controlPoint>
+    </comp7>
+  </gameplayTypes>
+  <roadMap></roadMap>
+  <modules>
+    <common>
+      <module>	BW::CgfCameraModule	</module>
+      <module>	BW::CollisionSceneModule	</module>
+      <module>	cgf::network::ClientNetworkModule	</module>
+      <module>	BW::CompoundModule	</module>
+      <module>	cgf::network::NetworkModule	</module>
+      <module>	vehicle::hierarchy::EntityHelpersModule	</module>
+      <module>	vehicle::hierarchy::VehicleHierarchyModule	</module>
+      <module>	BW::EffectsDebugModule	</module>
+      <module>	BW::ControlPointModule	</module>
+      <module>	BW::EntityFiltersModule	</module>
+      <module>	BW::EffectHandlersModule	</module>
+      <module>	BW::EffectsModule	</module>
+      <module>	BW::ArmorFlashlight::ArmorFlashlightModule	</module>
+      <module>	BW::VisibilityTunnelModule	</module>
+      <module>	BW::input::InputModule	</module>
+      <module>	BW::RompModule	</module>
+      <module>	cgf::events::EventsModule	</module>
+      <module>	cgf::FoundationModule	</module>
+      <module>	cgf::TriggersModule	</module>
+      <module>	BW::ConstraintsModule	</module>
+      <module>	BW::CGF::GenericComponentsModule	</module>
+      <module>	BW::tags::TagsModule	</module>
+      <module>	BW::variables::VariablesModule	</module>
+      <module>	vehicle::hierarchy::HierarchyModule	</module>
+      <module>	BW::DebugSoundRenderModule	</module>
+      <module>	cgf_debug_render::Module	</module>
+      <module>	BW::VisualScriptModule	</module>
+      <module>	BW::GameLogicModule	</module>
+      <module>	BW::SoundModule	</module>
+      <module>	BW::SoundSpatialModule	</module>
+      <module>	wot_physics::Module	</module>
+      <module>	BW::GpuDecalsModule	</module>
+      <module>	BW::WotRenderModule	</module>
+      <module>	BW::WULF::Module	</module>
+      <module>	BW::VehicleBasicModule	</module>
+      <module>	BW::VehicleCommonModule	</module>
+      <module>	BW::VehicleDrivetrainModule	</module>
+      <module>	BW::VehicleAudioModule	</module>
+      <module>	BW::VehicleTracksModule	</module>
+      <module>	BW::VehicleGunModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::ClientCommonModule	</module>
+      <module>	script::ClientUiModule	</module>
+      <module>	script::VehicleAppearanceModule	</module>
+      <module>	BW::SpaceZonesModule	</module>
+      <module>	script::AfterburningModule	</module>
+      <module>	script::CommonServerModule	</module>
+      <module>	script::VehicleRuleModule	</module>
+      <module>	script::ClientKillCamModule	</module>
+      <module>	script::ClientAbilitiesModule	</module>
+      <module>	script::RamDebugModule	</module>
+      <module>	script::VehicleSystemsModule	</module>
+      <module>	script::CommonScriptsModule	</module>
+      <module>	BW::ServerModule	</module>
+      <module>	BW::VehicleStatusesModule	</module>
+      <module>	BW::VehicleTriggersModule	</module>
+    </common>
+    <comp7>
+      <module>	script::PointsOfInterestModule	</module>
+    </comp7>
+  </modules>
+</114_czech.xml>

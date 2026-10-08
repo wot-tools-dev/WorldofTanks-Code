@@ -1,0 +1,153 @@
+(def layout MarathonRewardView() entrance=true hideBeforeResolve=true
+    (macro MarathonRewardViewModel)
+    (style
+        (bind width "viewSize.width"
+            (event "viewResized")
+        )
+        (bind height "viewSize.height"
+            (event "viewResized")
+        )
+        (backgroundColor = 0xff000000)
+    )
+
+    (scope
+        (var videoFinished:bool = false)
+        (bind videoFinished "true" init=false
+            (event "onVideoStopped")
+        )
+        (var videoStarted:bool = false)
+        (bind videoStarted "true" init=false
+            (event "onVideoStarted")
+        )  
+        (event evDelayComplete)
+        (event evMetaDataChanged)
+        (var showGuiDelay:number = 0)
+        (bind showGuiDelay "$event.duration-0.001-4.5" init=false (event "evMetaDataChanged"))
+    )
+
+    (dispatch onCloseBtnClick on='escPressed'
+        (enabled = "videoFinished")
+    )
+
+    (block
+        (name = 'Video')
+        (style 
+            (width = 100%)
+            (height = 100%)
+            (align = "center|middle")
+            (alpha = 0)
+        )
+
+        (element VideoComponent
+            (name = 'specialRewardVideo')
+            (scope
+                (canEscape = true)
+                (canClick = false)
+                (isVideoPlaying = false)
+                (seekToEnd = true)
+                (bind isVideoPlaying "true" init=false
+                    (event "evDelayComplete")
+                )                              
+                (bind sourceName "'video://videos/vehicle/'+videoSource+ '.usm'" init=false)
+                (dispatch onVideoStarted on='evOnPlaybackStarted')
+                (dispatch onVideoStopped on='evOnPlaybackStopped')
+            )           
+        )
+        
+        (controller $Animation
+            (bindcall play duration=0.7 to={alpha:1} callbacks="{onComplete: evDelayComplete}" init=true)
+        )
+    )
+    (element VignetteBlock
+    )
+
+    (block
+        (name = 'UILayer')
+        (style 
+            (position = "absolute")
+            (width  = 100%)
+            (height = 100%)
+            (alpha = 0)
+        )
+
+        (controller $Animation
+            (bindcall play delay="videoFinished? 0: showGuiDelay" duration="0.3" to={alpha:1} init=false
+                (enabled = "videoFinished? videoFinished:showGuiDelay > 0")
+                (event "onVideoStarted")
+            )
+        )
+
+        (text_button 'closeBtn'
+            (macro ButtonCloseStyle)
+            (style
+                (position = "absolute")
+                (right = 20px)
+                (top = 28px)
+            )
+            (label = "R.strings.menu.viewHeader.closeBtn.label()")
+            (dispatch onCloseBtnClick on='click'
+                (enabled="$event.buttonIdx == MOUSE.LEFT")
+            )
+            (tabIndex = 3)
+        )
+
+        (block 
+            (name = 'controls')
+            (style
+                (position = "absolute")
+                (bind top "viewSize.height * 0.75 - 100" 
+                    (event "viewResized")
+                )
+                (width = 100%)
+                (height = 234px)
+                (align = "center|bottom")
+            )
+
+            (tf
+                (name = 'title')
+                (class SuperPromoTitleTextStyle)
+                (text = "R.strings.marathon.reward.title()")
+                (antiAliasType = 'normal')
+                (style
+                    (marginBottom = -10px)
+                )
+            )
+
+            (element VehicleNameBlock
+                (scope
+                    (bind name "vehicleName")
+                    (bind level "vehicleLvl")
+                    (bind type "vehicleType")
+                    (bind isElite "vehicleIsElite")
+                    (cssClass = 'SuperPromoTitleTextStyle')
+                )
+            )
+
+            (hblock 
+                (name = 'buttons')
+                (style
+                    (marginTop = 10px)
+                    (gap = 20px)
+                )
+
+                (element Button name='goToVehicleBtn'
+                    (macro Primary)
+                    (scope
+                        (label = "R.strings.marathon.reward.goToVehicleBtn()")
+                        (bind isEnabled "isGoToVehicleBtnEnabled")
+                        (dispatch onGoToVehicleBtnClick on='evBtnLeftClickEvent')
+                    )
+                    (tabIndex = 2)
+                )
+                (element Button name='viewRewardsBtn'
+                    (macro Secondary)
+                    (scope
+                        (label = "R.strings.marathon.reward.viewRewardsBtn()")
+                        (dispatch onViewRewardsBtnClick on='evBtnLeftClickEvent')
+                    )
+                    (tabIndex = 1)
+                )
+            )
+        )
+    )
+)

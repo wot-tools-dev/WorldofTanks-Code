@@ -1,0 +1,38 @@
+from __future__ import absolute_import
+from fun_random.gui.feature.util.fun_mixins import FunAssetPacksMixin, FunSubModesWatcher
+from fun_random.gui.feature.util.fun_wrappers import hasDesiredSubMode
+from gui.Scaleform.daapi.view.lobby.battle_queue.battle_queue import RandomQueueProvider
+from gui.impl import backport
+
+class FunRandomQueueProvider(RandomQueueProvider, FunAssetPacksMixin, FunSubModesWatcher):
+
+    def getIconPath(self, iconlabel):
+        return backport.image(self.getModeIconsResRoot().battleTypes.c_136x136.fun_random())
+
+    def getTitle(self, guiType):
+        return self.__getTitle() or self.getModeUserName()
+
+    def processQueueInfo(self, qInfo):
+        super(FunRandomQueueProvider, self).processQueueInfo(qInfo or {})
+
+    @hasDesiredSubMode(defReturn=False)
+    def needAdditionalInfo(self):
+        if self._needAdditionalInfo is not None:
+            return self._needAdditionalInfo
+        else:
+            hasBattleQueueWarning = self.getDesiredSubMode().getConfigurationModel().subMode.hasBattleQueueWarning
+            if not hasBattleQueueWarning:
+                self._needAdditionalInfo = False
+            return super(FunRandomQueueProvider, self).needAdditionalInfo()
+
+    @hasDesiredSubMode()
+    def _doRequestQueueInfo(self, currPlayer):
+        super(FunRandomQueueProvider, self)._doRequestQueueInfo(currPlayer)
+
+    def _getRequestQueueInfoParams(self):
+        return (self._queueType, self.getDesiredSubMode().getSubModeID())
+
+    @hasDesiredSubMode(defReturn='')
+    def __getTitle(self):
+        subModeName = backport.text(self.getDesiredSubMode().getLocalsResRoot().userName())
+        return self.getModeDetailedUserName(subModeName=subModeName)

@@ -1,0 +1,893 @@
+body {
+    flex: 1;
+    height: 100vh;
+    margin: 0;
+    color: #8c8c7c;
+    font-size: 14rem;
+    line-height: 1;
+    overflow: hidden;
+}
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+@keyframes YearLeaderboardPosition_fade-in_bc85a {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes YearLeaderboardPosition_bottom-top-small_ca5b9 {
+    0% {
+        transform: translateY(10rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes YearLeaderboardPosition_bottom-top_c2c2f {
+    0% {
+        transform: translateY(20rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes YearLeaderboardPosition_bottom-top-big_f47bc {
+    0% {
+        transform: translateY(30rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes YearLeaderboardPosition_bottom-top-huge_df7f0 {
+    0% {
+        transform: translateY(40rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes YearLeaderboardPosition_zoom-in_f68df {
+    0% {
+        transform: scale(.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes YearLeaderboardPosition_zoom-in-width_f9162 {
+    0% {
+        transform: scaleX(.5);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.YearLeaderboardPosition_base_cb400 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.YearLeaderboardPosition_lightEffect_d435c {
+    width: 1860rem;
+    height: 898rem;
+    margin-top: -170rem;
+    background: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.light_effect') no-repeat center / cover;
+    opacity: 0;
+    mix-blend-mode: screen;
+    transform: scale(.7);
+    animation: YearLeaderboardPosition_fade-in_bc85a .5s cubic-bezier(.07, .82, .17, 1) 1.4s forwards;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_lightEffect_d435c {
+        margin-top: -110rem;
+        transform: scale(1)
+}
+    }
+
+.YearLeaderboardPosition_godRays_b9cbe {
+    opacity: 0;
+    mix-blend-mode: screen;
+    position: absolute;
+    animation: YearLeaderboardPosition_fade-in_bc85a 2.5s cubic-bezier(.07, .82, .17, 1) .8s forwards, YearLeaderboardPosition_zoom-in_f68df 2.5s cubic-bezier(.07, .82, .17, 1) .8s;
+}
+
+.YearLeaderboardPosition_godRaysSwf_d3388 {
+    width: 540rem;
+    height: 540rem;
+    transform: scale(1.5);
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_godRaysSwf_d3388 {
+        transform: scale(2)
+}
+    }
+
+.YearLeaderboardPosition_leavesTop_bab96 {
+    width: 462rem;
+    height: 144rem;
+    margin-top: -748rem;
+    background-image: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.leaves_top_small');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    animation: YearLeaderboardPosition_fade-in_bc85a 1s cubic-bezier(.07, .82, .17, 1) 1.2s forwards, YearLeaderboardPosition_bottom-top-big_f47bc 1s cubic-bezier(.07, .82, .17, 1) 1.2s;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_leavesTop_bab96 {
+        width: 659rem;
+        height: 205rem;
+        margin-top: -868rem;
+        background-image: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.leaves_top')
+}
+    }
+
+.YearLeaderboardPosition_ribbon_c24db {
+    width: 1250rem;
+    height: 168rem;
+    margin-top: -18rem;
+    background-image: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.ribbon_small');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    z-index: 1;
+    animation: YearLeaderboardPosition_fade-in_bc85a .5s cubic-bezier(.07, .82, .17, 1) .8s forwards, YearLeaderboardPosition_zoom-in-width_f9162 .5s cubic-bezier(.07, .82, .17, 1) .8s;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_ribbon_c24db {
+        width: 1785rem;
+        height: 240rem;
+        margin-top: -33rem;
+        background-image: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.ribbon')
+}
+    }
+
+.YearLeaderboardPosition_position_fdacb {
+    margin-top: -225rem;
+    color: #ffc363;
+    font-size: 210rem;
+    font-weight: 700;
+    opacity: 0;
+    z-index: 2;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_position_fdacb {
+        margin-top: -328rem;
+        font-size: 300rem
+}
+    }
+
+.YearLeaderboardPosition_position__show_e92c5 {
+        animation: YearLeaderboardPosition_fade-in_bc85a 1s cubic-bezier(.07, .82, .17, 1) forwards, YearLeaderboardPosition_bottom-top-huge_df7f0 1s cubic-bezier(.07, .82, .17, 1);
+    }
+
+.YearLeaderboardPosition_ribbonPosition_a7899 {
+    width: 1250rem;
+    height: 90rem;
+    margin-top: -75rem;
+    background-image: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.ribbon_position_small');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    z-index: 3;
+    animation: YearLeaderboardPosition_fade-in_bc85a 0s cubic-bezier(.07, .82, .17, 1) .8s forwards;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_ribbonPosition_a7899 {
+        width: 1785rem;
+        height: 166rem;
+        margin-top: -138rem;
+        background-image: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.ribbon_position')
+}
+    }
+
+.YearLeaderboardPosition_positionWrapper_dfbe0 {
+    z-index: 5;
+}
+
+.YearLeaderboardPosition_positionDescr_d89cb {
+    margin-top: -48rem;
+    color: #e9e2bf;
+    font-size: 20rem;
+    opacity: 0;
+    animation: YearLeaderboardPosition_fade-in_bc85a 1s cubic-bezier(.07, .82, .17, 1) 1s forwards, YearLeaderboardPosition_bottom-top-small_ca5b9 1s cubic-bezier(.07, .82, .17, 1) 1s;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_positionDescr_d89cb {
+        margin-top: -58rem;
+        font-size: 24rem
+}
+    }
+
+.YearLeaderboardPosition_leavesBottom_d0fb1 {
+    width: 520rem;
+    height: 237rem;
+    margin-top: -151rem;
+    background-image: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.leaves_bottom_small');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    z-index: 4;
+    animation: YearLeaderboardPosition_fade-in_bc85a 1s cubic-bezier(.07, .82, .17, 1) 1s forwards, YearLeaderboardPosition_bottom-top_c2c2f 1s cubic-bezier(.07, .82, .17, 1) 1s;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_leavesBottom_d0fb1 {
+        width: 743rem;
+        height: 340rem;
+        margin-top: -197rem;
+        background-image: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.leaves_bottom')
+}
+    }
+
+.YearLeaderboardPosition_reward_ce35b {
+    margin-top: -69rem;
+    z-index: 6;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardPosition_reward_ce35b {
+        margin-top: -115rem
+}
+    }
+
+@media (min-width: 1920px) and (min-height: 1080px) {
+
+.YearLeaderboardPosition_reward_ce35b {
+        margin-top: -84rem
+}
+    }
+
+.FormatText_base_f27a4 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@keyframes YearLeaderboardReward_fade-in_ca3fc {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes YearLeaderboardReward_bottom-top-small_ca57f {
+    0% {
+        transform: translateY(10rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes YearLeaderboardReward_bottom-top_a16c2 {
+    0% {
+        transform: translateY(20rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes YearLeaderboardReward_bottom-top-big_a9b0b {
+    0% {
+        transform: translateY(30rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes YearLeaderboardReward_bottom-top-huge_d8fe2 {
+    0% {
+        transform: translateY(40rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes YearLeaderboardReward_zoom-in_fd1eb {
+    0% {
+        transform: scale(.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes YearLeaderboardReward_zoom-in-width_e941a {
+    0% {
+        transform: scaleX(.5);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+.YearLeaderboardReward_base_ee24e {
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    mix-blend-mode: screen;
+    animation: YearLeaderboardReward_fade-in_ca3fc .5s cubic-bezier(.07, .82, .17, 1) 2s forwards;
+}
+.YearLeaderboardReward_descr_ad39e {
+    max-width: 800rem;
+    margin-top: -3rem;
+    z-index: 1;
+}
+.YearLeaderboardReward_descrText_f9dfc {
+    color: #8c8c7e;
+    font-size: 16rem;
+}
+.YearLeaderboardReward_rewardName_ae32e {
+    color: #e9e2bf;
+    font-size: 16rem;
+}
+.YearLeaderboardReward_stripImage_ff3c6 {
+    width: 100rem;
+    height: 40rem;
+    margin-left: -75rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.YearLeaderboardReward_image_df87c {
+    width: 48rem;
+    height: 48rem;
+    margin-left: -16rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+@keyframes YearLeaderboardViewContent_fade-in_a04bb {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes YearLeaderboardViewContent_bottom-top-small_cbd2b {
+    0% {
+        transform: translateY(10rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes YearLeaderboardViewContent_bottom-top_a4420 {
+    0% {
+        transform: translateY(20rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes YearLeaderboardViewContent_bottom-top-big_cad65 {
+    0% {
+        transform: translateY(30rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes YearLeaderboardViewContent_bottom-top-huge_cc2f5 {
+    0% {
+        transform: translateY(40rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes YearLeaderboardViewContent_zoom-in_fa745 {
+    0% {
+        transform: scale(.5);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes YearLeaderboardViewContent_zoom-in-width_e3e3c {
+    0% {
+        transform: scaleX(.5);
+    }
+
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+.YearLeaderboardViewContent_base_f1933 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.YearLeaderboardViewContent_glass_c5833 {
+    width: 100%;
+    height: 100%;
+    background: url('R.images.gui.maps.icons.rankedBattles.yearLeaderboardReward.glass_texture') no-repeat center / cover;
+    mix-blend-mode: screen;
+    position: absolute;
+}
+
+.YearLeaderboardViewContent_closeBtn_b23b3 {
+    position: absolute;
+    top: 40rem;
+    right: 40rem;
+    z-index: 1;
+}
+
+.YearLeaderboardViewContent_header_cafb4 {
+    position: absolute;
+    top: 39rem;
+    z-index: 1;
+}
+
+@media (min-width: 1600px) and (min-height: 900px) {
+
+.YearLeaderboardViewContent_header_cafb4 {
+        top: 50rem
+}
+    }
+
+@media (min-width: 1920px) and (min-height: 1080px) {
+
+.YearLeaderboardViewContent_header_cafb4 {
+        top: 83rem
+}
+    }
+
+.YearLeaderboardViewContent_battleType_d7fe6 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: -4rem;
+    opacity: 0;
+    animation: YearLeaderboardViewContent_fade-in_a04bb .5s cubic-bezier(.07, .82, .17, 1) forwards, YearLeaderboardViewContent_bottom-top_a4420 .5s cubic-bezier(.07, .82, .17, 1);
+}
+
+.YearLeaderboardViewContent_battleTypeIcon_d3d40 {
+    width: 40rem;
+    height: 40rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.YearLeaderboardViewContent_battleTypeLabel_de443 {
+    margin: 6rem 0 0 4rem;
+    color: #fefeec;
+    font-size: 24rem;
+}
+
+.YearLeaderboardViewContent_title_b2dd3 {
+    margin-top: -3rem;
+    color: #fff;
+    font-size: 85rem;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -2rem;
+    opacity: 0;
+}
+
+.YearLeaderboardViewContent_title__show_e0f5e {
+        animation: YearLeaderboardViewContent_fade-in_a04bb .5s cubic-bezier(.07, .82, .17, 1) forwards, YearLeaderboardViewContent_bottom-top_a4420 .5s cubic-bezier(.07, .82, .17, 1);
+    }
+
+.YearLeaderboardViewContent_leaderboardBtn_f6c97 {
+    opacity: 0;
+    position: absolute;
+    bottom: 80rem;
+    animation: YearLeaderboardViewContent_fade-in_a04bb .5s cubic-bezier(.07, .82, .17, 1) 2.2s forwards, YearLeaderboardViewContent_bottom-top_a4420 .5s cubic-bezier(.07, .82, .17, 1) 2.2s;
+}
+
+@media (min-width: 1920px) and (min-height: 1080px) {
+
+.YearLeaderboardViewContent_leaderboardBtn_f6c97 {
+        bottom: 120rem
+}
+    }
+
+.YearLeaderboardViewContentWrapper_base_a49d0 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / cover;
+}
+

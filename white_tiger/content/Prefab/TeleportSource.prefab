@@ -1,0 +1,88 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"script::WTConditionalSound3D": {
+						"conditions": "hunter_player",
+						"disabledDomains": [
+							"Server"
+						],
+						"onEnterSound": "ev_white_tiger_gameplay_wt_teleportation_npc"
+					},
+					"script::WTSoundNotification": {
+						"conditions": "eos_one_in",
+						"disabledDomains": [
+							"Server"
+						],
+						"isUnique": "0",
+						"onEnterNotification": "wt_both_vo_teleport_start_eos_one",
+						"onlyForPlayerVehicle": "0"
+					}
+				},
+				"name": "SoundsGO",
+				"uuid": "7b1280fb-36ef-4380-803d-fb536599baee"
+			}
+		],
+		"components": {
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"graphicsPreset": "TYPE_NULL_SHADING",
+						"lodScale": 1.0,
+						"path": "particles/Environment/event_white_tiger/enemies/Waffentrager_E100_teleport/Teleport_source.seq",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "1",
+							"speed": "1"
+						},
+						"weight": 1.0
+					}
+				]
+			},
+			"BW::RemoveGoDelayedComponent": {
+				"delay": 10.0,
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::WTConditionalSound2D": {
+				"conditions": "boss_player",
+				"disabledDomains": [
+					"Server"
+				],
+				"onEnterSound": "ev_white_tiger_gameplay_wt_teleportation_pc"
+			},
+			"script::WTSoundNotification": {
+				"conditions": "eos_one_out",
+				"disabledDomains": [
+					"Server"
+				],
+				"isUnique": "0",
+				"onEnterNotification": "wt23_both_vo_teleport_start",
+				"onlyForPlayerVehicle": "0"
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

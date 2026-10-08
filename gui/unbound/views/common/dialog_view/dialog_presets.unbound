@@ -1,0 +1,105 @@
+# type of scale backgroundImage 
+(def constant NO_SCALE 0)
+(def constant FIT_TO_SCREEN 1)
+(def constant PROPORTIONAL_FIT_TO_SCREEN 2)
+
+(def properties DEFAULT_DIALOG_PRESET {
+        yOffset: 0px, 
+        backgroundColor: 0x7F131210,
+        contentWidth: 720px,
+        iconHighlight: '',
+        animationHighlight: '',
+        icon: '',
+        title: '',
+        titleArgs: [],
+        titleFmtArgs: [],
+        isTitleFmtArgsNamed: true,
+        hasCloseButton: true,
+        backgroundImage: '',
+        backgroundImageScale: "NO_SCALE",
+        showSoundId: ''
+    }
+)
+
+(def properties INFO_DIALOG_PRESET {
+        backgroundColor: 0x7F000000
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+(def properties WARNING_DIALOG_PRESET {
+        backgroundColor: 0x7F000000,
+        iconHighlight: "R.images.gui.maps.uiKit.dialogs.highlights.yellow()",
+        icon: "R.images.gui.maps.uiKit.dialogs.icons.alert()"
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+(def properties ERROR_DIALOG_PRESET {
+        backgroundColor: 0x7F000000,
+        icon: "R.images.gui.maps.uiKit.dialogs.icons.error()"
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+(def properties QUIT_GAME_DIALOG_PRESET {
+        yOffset: 218px,
+        backgroundColor: 0xFF000000,
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+(def properties BLUEPRINTS_CONVERSION_DIALOG_PRESET {
+        backgroundColor: 0x7F131210,
+        backgroundImage: "R.images.gui.maps.uiKit.dialogs.noize_bg()",
+        backgroundImageScale: "FIT_TO_SCREEN"
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+(def properties MAPS_BLACKLIST_DIALOG_PRESET {
+        backgroundColor: 0x7F000000
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+
+(def properties BUY_BATTLE_PASS_DIALOG_PRESET {
+        backgroundColor: 0x7F000000,
+        backgroundImage: "R.images.gui.maps.icons.battlePass.Battle_pass_bg_gold()",
+        backgroundImageScale: "PROPORTIONAL_FIT_TO_SCREEN"
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+(def properties TROPHY_DEVICE_UPGRADE_PRESET {
+        backgroundColor: 0x7F000000,
+        backgroundImage: "R.images.gui.maps.uiKit.dialogs.noize_bg()",
+        backgroundImageScale: "PROPORTIONAL_FIT_TO_SCREEN",
+        
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+(def properties CUSTOMIZATION_INSTALL_BOUND_DIALOG_PRESET {
+        backgroundColor: 0x7F000000,
+        iconHighlight: "R.images.gui.maps.uiKit.dialogs.highlights.blue()",
+        icon: "R.images.gui.maps.uiKit.dialogs.icons.info()"
+    }
+    extends=DEFAULT_DIALOG_PRESET
+)
+
+
+(def constant DIALOG_PRESETS "{
+        quitGame: QUIT_GAME_DIALOG_PRESET,
+        info: INFO_DIALOG_PRESET,
+        warning: WARNING_DIALOG_PRESET,
+        error: ERROR_DIALOG_PRESET,
+        blueprintsConversion: BLUEPRINTS_CONVERSION_DIALOG_PRESET,
+        mapsBlacklist: MAPS_BLACKLIST_DIALOG_PRESET,
+        buyBattlePass: BUY_BATTLE_PASS_DIALOG_PRESET,
+        trophyDeviceUpgrade: TROPHY_DEVICE_UPGRADE_PRESET,
+        customizationInstallBound: CUSTOMIZATION_INSTALL_BOUND_DIALOG_PRESET,
+        default: DEFAULT_DIALOG_PRESET
+    }"
+)

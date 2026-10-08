@@ -1,0 +1,1618 @@
+.TextButton_base_a231c {
+    display: flex;
+    align-items: center;
+    padding: 0 3rem;
+    font-size: 12rem;
+    position: relative;
+    cursor: pointer;
+}
+
+    .TextButton_base__right_bfac3 {
+        flex-direction: row-reverse;
+    }
+.TextButton_icon_cdfc0 {
+    width: 32rem;
+    height: 32rem;
+    background: no-repeat center / contain;
+    position: relative;
+}
+.TextButton_icon__back_fc1bb,
+    .TextButton_icon__forward_efa2d {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.back');
+        transform: translateY(1rem);
+    }
+.TextButton_icon__forward_efa2d {
+        transform: rotate(180deg) translateY(1rem);
+    }
+.TextButton_icon__close_e2f0f {
+        margin: -1rem 0;
+        background-image: url('R.images.gui.maps.icons.components.text_button.close');
+    }
+.TextButton_icon__info_e32c0 {
+        margin: -1rem -5rem;
+        background-image: url('R.images.gui.maps.icons.components.text_button.info');
+    }
+.TextButton_glow_d6e04 {
+    width: 100%;
+    height: 100%;
+    background: no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity .16s;
+}
+.TextButton_icon__back_fc1bb .TextButton_glow_d6e04,
+    .TextButton_icon__forward_efa2d .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.back_hover');
+    }
+.TextButton_icon__close_e2f0f .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.close_hover');
+    }
+.TextButton_icon__info_e32c0 .TextButton_glow_d6e04 {
+        background-image: url('R.images.gui.maps.icons.components.text_button.info_hover');
+    }
+.TextButton_base_a231c:hover .TextButton_glow_d6e04 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_glow_d6e04 {
+        opacity: 0;
+    }
+.TextButton_caption_f4e8d {
+    position: relative;
+    transition: color .16s, text-shadow .16s;
+}
+.TextButton_caption__back_d358d,
+    .TextButton_caption__forward_ff93d,
+    .TextButton_caption__close_fc554 {
+        color: #FFDD99;
+        text-shadow: 0 0 10rem rgba(255,42,0, 1),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 10rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4),
+            0 0 2rem rgba(255,42,0, .4),
+            0 0 1rem rgba(255,42,0, .4);
+    }
+.TextButton_base_a231c:hover .TextButton_caption__back_d358d, .TextButton_base_a231c:hover .TextButton_caption__forward_ff93d, .TextButton_base_a231c:hover .TextButton_caption__close_fc554 {
+            color: #fffa9f;
+        }
+.TextButton_base_a231c:active .TextButton_caption__back_d358d, .TextButton_base_a231c:active .TextButton_caption__forward_ff93d, .TextButton_base_a231c:active .TextButton_caption__close_fc554 {
+            color: #FFDD99;
+        }
+.TextButton_caption__info_c263a {
+        padding: 0 5rem;
+        color: #CCFFFF;
+        text-shadow: 0 0 12rem rgba(31,68,255, .8),
+            0 0 8rem #00eaff;
+    }
+.TextButton_base_a231c:hover .TextButton_caption__info_c263a {
+            color: #e3ffff;
+            text-shadow: 0 0 12rem rgba(31,68,255, .8),
+                0 0 12rem rgba(0,234,255, 1),
+                0 0 8rem #00eaff;
+        }
+.TextButton_base_a231c:active .TextButton_caption__info_c263a {
+            color: #CCFFFF;
+            text-shadow: 0 0 12rem rgba(31,68,255, .6),
+                0 0 8rem #00eaff;
+        }
+.TextButton_goto_d3960 {
+    color: #7c7c6c;
+}
+.TextButton_base__left_ec79d .TextButton_goto_d3960 {
+        margin-left: 8rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_goto_d3960 {
+        margin-right: 8rem;
+    }
+.TextButton_shine_f8873 {
+    width: 90rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.text_button.shine') no-repeat center / contain;
+    opacity: 0;
+    position: absolute;
+    top: -4rem;
+    transition: opacity .16s;
+    pointer-events: none;
+}
+.TextButton_base__left_ec79d .TextButton_shine_f8873 {
+        left: -4rem;
+    }
+.TextButton_base__right_bfac3 .TextButton_shine_f8873 {
+        right: -4rem;
+        transform: rotate(180deg);
+    }
+.TextButton_base_a231c:hover .TextButton_shine_f8873 {
+        opacity: 1;
+    }
+.TextButton_base_a231c:active .TextButton_shine_f8873 {
+        opacity: 0;
+    }
+
+.HorizontalBar_base_fa517 {
+    display: flex;
+    width: 100%;
+    height: 13rem;
+    visibility: hidden;
+    position: relative;
+}
+
+    .HorizontalBar_base__active_ad89b {
+        visibility: visible;
+    }
+
+    .HorizontalBar_base_fa517 .disable,
+    .HorizontalBar_base_fa517 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.HorizontalBar_leftButton_eb8c3,
+.HorizontalBar_rightButton_f5116 {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transform: rotate(-90deg);
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_leftButton_eb8c3:hover, .HorizontalBar_rightButton_f5116:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_leftButton_eb8c3 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.HorizontalBar_rightButton_f5116 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.HorizontalBar_track_fd3af {
+    flex: 1;
+    margin: 0 1rem;
+    position: relative;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0 {
+    display: none;
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 20rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb_horizontal') no-repeat center / 8rem 7rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.HorizontalBar_thumb_bb7e0:hover {
+        opacity: 1;
+    }
+
+.HorizontalBar_rail_a3d9e {
+    height: 0;
+    border-top: 1rem solid #2f2e24;
+    position: absolute;
+    top: 6rem;
+    right: 5rem;
+    left: 5rem;
+}
+
+.HorizontalBar_rail_a3d9e:hover {
+        opacity: .7;
+    }
+
+
+.HorizontalScroll_base_a33a9 {
+    width: 100%;
+}
+
+.HorizontalScroll_wrapper_b622e {
+    display: flex;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.HorizontalScroll_defaultScrollArea_a2315 {
+    width: 100%;
+    margin-bottom: 7rem;
+}
+
+.VerticalBar_base_b5610 {
+    display: flex;
+    flex-direction: column;
+    width: 13rem;
+    height: 100%;
+    visibility: hidden;
+    position: relative;
+}
+
+    .VerticalBar_base__active_be260 {
+        visibility: visible;
+    }
+
+    .VerticalBar_base_b5610 .disable,
+    .VerticalBar_base_b5610 .disable:hover {
+        opacity: .3;
+        cursor: default;
+    }
+
+.VerticalBar_topButton_c2227,
+.VerticalBar_bottomButton_ef09b {
+    width: 13rem;
+    height: 13rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: no-repeat center / 7rem 5rem;
+    opacity: .5;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_topButton_c2227:hover, .VerticalBar_bottomButton_ef09b:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_topButton_c2227 {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_top');
+}
+
+.VerticalBar_bottomButton_ef09b {
+    background-image: url('R.images.gui.maps.icons.components.scroll_area.arrow_down');
+}
+
+.VerticalBar_track_e3345 {
+    flex: 1;
+    margin: 1rem 0;
+    position: relative;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7 {
+    display: none;
+    flex: 0 0 13rem;
+    width: 13rem;
+    height: 100%;
+    min-height: 20rem;
+    border: 1rem solid #7e7b68;
+    box-shadow: inset 0 0 1rem rgba(255,255,190, .3);
+    background: #26241b url('R.images.gui.maps.icons.components.scroll_area.thumb') no-repeat center / 7rem 8rem;
+    opacity: .5;
+    position: absolute;
+    z-index: 1;
+    transition: opacity 130ms linear;
+    cursor: pointer;
+}
+
+.VerticalBar_thumb_a34e7:hover {
+        opacity: 1;
+    }
+
+.VerticalBar_rail_ff232 {
+    width: 0;
+    height: 100%;
+    border-left: 1rem solid #2f2e24;
+    border-top: 5rem solid transparent;
+    border-bottom: 5rem solid transparent;
+    position: absolute;
+    top: 0;
+    left: 6rem;
+    z-index: 0;
+}
+
+.VerticalBar_rail_ff232:hover {
+        opacity: .7;
+    }
+
+
+.VerticalScroll_content_fe263 {
+    height: 100%;
+    overflow-y: hidden;
+}
+
+.VerticalScroll_defaultScroll_e27f5 {
+    display: flex;
+}
+
+.VerticalScroll_bar_b8700 {
+    flex: 1;
+    margin-left: 7rem;
+}
+
+.VerticalScroll_area_b5a82 {
+    flex: 1;
+}
+
+.AchievementList_base_e7002 {
+    display: flex;
+}
+
+.AchievementList_scrollArea_e874d {
+    display: flex;
+    flex: 1;
+}
+
+.AchievementList_scroll_de55c {
+    width: 100%;
+    mask-image: linear-gradient(0deg, transparent, #000 5%, #000 95%, transparent);
+    mask-repeat: no-repeat;
+}
+
+.AchievementList_scroll__top_ab2be {
+        mask-image: linear-gradient(0deg, transparent, #000 5%, #000);
+    }
+
+.AchievementList_bar_d55d3 {
+    padding-bottom: 5rem;
+    right: -12rem;
+}
+
+.mediaMedium .AchievementList_bar_d55d3 {
+        right: -18rem;
+}
+
+.AchievementList_section_ebcc9 {
+    margin-bottom: 25rem;
+}
+
+.mediaMedium .AchievementList_section_ebcc9 {
+        margin-bottom: 55rem;
+}
+
+.mediaExtraLarge .AchievementList_section_ebcc9 {
+        margin-bottom: 55rem;
+}
+
+.AchievementTooltip_base_a134e {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.Achievement_base_b03ee {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Achievement_image_b665c {
+    width: 67rem;
+    height: 71rem;
+}
+
+.Achievement_base__small_d9142 .Achievement_image_b665c {
+        width: 100rem;
+        height: 100rem;
+    }
+
+.Achievement_base__medium_c89d0 .Achievement_image_b665c {
+        width: 120rem;
+        height: 120rem;
+    }
+
+.Achievement_base__large_a03e8 .Achievement_image_b665c {
+        width: 150rem;
+        height: 150rem;
+    }
+
+.Achievement_base__extraLarge_f4218 .Achievement_image_b665c {
+        width: 180rem;
+        height: 180rem;
+    }
+
+.Achievement_image_b665c {
+    background: no-repeat center / contain;
+    position: relative;
+}
+
+.Achievement_counter_d5d39 {
+    position: absolute;
+    right: -4rem;
+    bottom: 4rem;
+}
+
+.Achievement_base__small_d9142 .Achievement_counter_d5d39 {
+        right: 15rem;
+        bottom: 15rem;
+    }
+
+.Achievement_base__medium_c89d0 .Achievement_counter_d5d39 {
+        right: 10rem;
+        bottom: 12rem;
+    }
+
+.Achievement_base__large_a03e8 .Achievement_counter_d5d39 {
+        right: 24rem;
+        bottom: 24rem;
+    }
+
+.Achievement_base__extraLarge_f4218 .Achievement_counter_d5d39 {
+        right: 28rem;
+        bottom: 28rem;
+    }
+
+.Counter_base_f1889 {
+    height: 16rem;
+    z-index: 0;
+}
+
+    .Counter_base__medium_ae63f {
+        height: 20rem;
+    }
+
+    .Counter_base__large_f344c {
+        height: 24rem;
+    }
+
+.Counter_background_d9e04 {
+    height: 100%;
+    border: 1rem solid;
+    border-image: url('R.images.gui.maps.icons.achievements.counter.simple') 1 fill;
+}
+
+.Counter_base__series_e7ac0 .Counter_background_d9e04 {
+        border-image-source: url('R.images.gui.maps.icons.achievements.counter.series');
+    }
+
+.Counter_base__stages_d9126 .Counter_background_d9e04 {
+        border-image-source: url('R.images.gui.maps.icons.achievements.counter.stages');
+    }
+
+.Counter_arrow_f8ecf {
+    width: 17rem;
+    height: 16rem;
+    background: url('R.images.gui.maps.icons.achievements.counter.arrow_small') no-repeat center / contain;
+    position: absolute;
+    top: 1rem;
+    right: -9rem;
+    z-index: -1;
+}
+
+.Counter_base__medium_ae63f .Counter_arrow_f8ecf {
+        width: 20rem;
+        height: 20rem;
+        background-image: url('R.images.gui.maps.icons.achievements.counter.arrow');
+        top: 2rem;
+        right: -10rem;
+    }
+
+.Counter_base__large_f344c .Counter_arrow_f8ecf {
+        width: 21rem;
+        height: 24rem;
+        background-image: url('R.images.gui.maps.icons.achievements.counter.arrow_big');
+        top: 2rem;
+        right: -11rem;
+    }
+
+.Counter_arrow__left_cac38 {
+        left: -9rem;
+        transform: scaleX(-1);
+    }
+
+.Counter_base__medium_ae63f .Counter_arrow__left_cac38 {
+            left: -10rem;
+        }
+
+.Counter_base__large_f344c .Counter_arrow__left_cac38 {
+            left: -11rem;
+        }
+
+.Counter_count_fd47f {
+    color: #E9E2BF;
+    font-size: 12rem;
+    font-weight: 400;
+    line-height: 1.3;
+    min-width: 24rem;
+    padding: 0 4rem 2rem;
+    line-height: 14rem;
+    text-align: center;
+    text-shadow: 0 1rem 1rem rgba(0,0,0, .5);
+    position: relative;
+    bottom: 1rem;
+}
+
+.Counter_base__medium_ae63f .Counter_count_fd47f {
+        color: #E9E2BF;
+        font-size: 14rem;
+        font-weight: 400;
+        line-height: 1.3;
+        min-width: 28rem;
+        line-height: 18rem;
+    }
+
+.Counter_base__large_f344c .Counter_count_fd47f {
+        color: #E9E2BF;
+        font-size: 18rem;
+        font-weight: 400;
+        line-height: 1.25;
+        min-width: 34rem;
+        line-height: 20rem;
+    }
+
+.Cell_base_de9f4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem;
+}
+
+    .Cell_base__normal_e46b9:hover {
+        background-color: rgba(255,255,255, .03);
+    }
+
+    .Cell_base__active_dab8a {
+        border: 1rem solid rgba(255,178,102, .4);
+        background-color: rgba(255,255,255, .05);
+        cursor: pointer;
+    }
+
+    .Cell_base__active_dab8a:hover {
+            border-color: #ffb266;
+            box-shadow: 0 0 4rem rgba(255,0,0, .5);
+            background-color: rgba(255,140,109, .1);
+        }
+
+.Cell_dot_a1bf1 {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: rgba(255,255,255, .1);
+}
+
+.Section_base_b3863 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Section_header_d8489 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 16rem;
+}
+
+.mediaExtraLarge .Section_header_d8489 {
+        font-size: 22rem;
+}
+
+.Section_line_d7b0a {
+    flex: 1;
+    height: 1rem;
+    background-color: rgba(255,255,255, .1);
+}
+
+.Section_text_f7677 {
+    display: flex;
+    padding: 0 24rem;
+}
+
+.mediaExtraLarge .Section_text_f7677 {
+        padding: 0 30rem;
+}
+
+.Section_name_d9f5b {
+    color: rgba(242,242,247, .5);
+    font-weight: 700;
+}
+
+.Section_counter_aa02c {
+    margin-left: 6rem;
+    color: rgba(242,242,247, .3);
+    font-weight: 700;
+}
+
+.Section_list_f3a58 {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -7rem;
+}
+
+.mediaMedium .Section_list_f3a58 {
+        margin-left: -22rem;
+        margin-top: 8rem;
+}
+
+.mediaExtraLarge .Section_list_f3a58 {
+        margin-left: -44rem;
+        margin-top: 10rem;
+}
+
+.Section_item_f246d {
+    width: 100rem;
+    height: 100rem;
+    margin-left: 7rem;
+    margin-top: 22rem;
+}
+
+.mediaMedium .Section_item_f246d {
+        margin-left: 22rem;
+}
+
+.mediaExtraLarge .Section_item_f246d {
+        width: 120rem;
+        height: 120rem;
+        margin-left: 44rem;
+        margin-top: 30rem;
+}
+
+.CButton_base_bb13f {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2rem;
+    box-shadow: 0 0 0 1rem rgba(0,0,0, 0.6);
+    position: relative;
+    cursor: pointer;
+}
+
+    .CButton_base__main_dd05d,
+    .CButton_base__primary_c75a2,
+    .CButton_base__primaryGreen_ae65b,
+    .CButton_base__primaryRed_b1341,
+    .CButton_base__secondary_f2c20 {
+        background-size: 100% 100%;
+    }
+
+    .CButton_base__main_dd05d {
+        background-image: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+
+    .CButton_base__primary_c75a2 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+
+    .CButton_base__primaryGreen_ae65b {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+
+    .CButton_base__primaryRed_b1341 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+
+    .CButton_base__secondary_f2c20 {
+        background-image: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+
+    .CButton_base__ghost_f452b {
+        border-radius: 3rem;
+        box-shadow: 0 0 0 1rem rgba(0,0,0, 0.3), 0 0 0 1rem rgba(255,255,255, 0.15) inset;
+        background-color: rgba(0,0,0, 0.15);
+    }
+
+    .CButton_base__extraSmall_e1273 {
+        min-height: 17rem;
+        padding: 0 16rem;
+    }
+
+    .CButton_base__small_c20a3,
+    .CButton_base__medium_ef59a {
+        padding: 0 20rem;
+    }
+
+    .CButton_base__small_c20a3 {
+        min-height: 18rem;
+    }
+
+    .CButton_base__medium_ef59a {
+        min-height: 32rem;
+    }
+
+    .CButton_base__large_bafd5 {
+        min-height: 48rem;
+    }
+
+    .CButton_base__disabled_eef7a {
+        cursor: default;
+    }
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.CButton_back_e957b {
+    border-image-slice: 4 fill;
+    border-image-width: 4rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_base__main_dd05d .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_main');
+    }
+.CButton_base__primary_c75a2 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary');
+    }
+.CButton_base__primaryGreen_ae65b .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_green');
+    }
+.CButton_base__primaryRed_b1341 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_primary_red');
+    }
+.CButton_base__secondary_f2c20 .CButton_back_e957b {
+        border-image-source: url('R.images.gui.maps.icons.components.button.back_secondary');
+    }
+.CButton_texture_ccd7e {
+    background: url('R.images.gui.maps.icons.components.button.standard_texture_file');
+    background-size: 155rem 31rem;
+    mix-blend-mode: soft-light;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_state_f2bb4 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transition: box-shadow 0.16s ease-in-out;
+}
+.CButton_base__focus_b0875 .CButton_state_f2bb4 {
+        border-radius: 2rem;
+        box-shadow: inset 0 0 2rem 1rem rgba(255,85,0, 0.2);
+    }
+.CButton_stateHighlightHover_bd0cb,
+.CButton_stateHighlightActive_e9a8a,
+.CButton_stateDisabled_ed209 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.CButton_stateHighlightHover_bd0cb {
+    background-image: linear-gradient(180deg, rgba(252,248,235, 0.25) 0%, rgba(252,248,235, 0.1) 50%, rgba(255,255,255, 0) 100%);
+    opacity: 0;
+}
+.CButton_base_bb13f:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 1;
+    }
+.CButton_base_bb13f:active .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__disabled_eef7a:hover .CButton_stateHighlightHover_bd0cb {
+        opacity: 0;
+    }
+.CButton_base__ghost_f452b .CButton_stateHighlightHover_bd0cb {
+        box-shadow: 0 15rem 12rem 0 rgba(242,242,230, 0.11) inset;
+        background-color: rgba(8,6,0, 0.18);
+        background-image: none;
+    }
+.CButton_stateHighlightActive_e9a8a {
+    background-image: linear-gradient(180deg, rgba(0,0,0, 0.3) 0%, rgba(0,0,0, 0.15) 100%);
+    opacity: 0;
+}
+.CButton_base__highlightActive_db27d .CButton_stateHighlightActive_e9a8a {
+        opacity: 1;
+    }
+.CButton_stateDisabled_ed209 {
+    background-color: rgba(0,0,0, 0.25);
+    background-image: url('R.images.gui.maps.icons.components.button.texture_disable');
+    background-size: 15rem 15rem;
+    visibility: hidden;
+}
+.CButton_base__disabled_eef7a .CButton_stateDisabled_ed209 {
+        visibility: inherit;
+    }
+.CButton_content_a99fc {
+    display: flex;
+    align-items: center;
+    color: #f2f2e6;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 -1rem 1rem #000;
+    letter-spacing: 0.03em;
+    transform: translateY(-1rem);
+}
+.CButton_content_a99fc[lang='ja'],
+    .CButton_content_a99fc[lang='ko'],
+    .CButton_content_a99fc[lang='zh_tw'],
+    .CButton_content_a99fc[lang='zh_sg'],
+    .CButton_content_a99fc[lang='zh_cn'],
+    .CButton_content_a99fc[lang='th'] {
+        font-weight: 400;
+    }
+.CButton_base__main_dd05d .CButton_content_a99fc,
+    .CButton_base__primaryRed_b1341 .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #600;
+    }
+.CButton_base__secondary_f2c20 .CButton_content_a99fc {
+        color: rgba(254,254,236, 0.75);
+    }
+.CButton_base__primaryGreen_ae65b .CButton_content_a99fc {
+        text-shadow: 0 -1rem 1rem #1c2502;
+    }
+.CButton_base__extraSmall_e1273 .CButton_content_a99fc {
+        font-size: 12rem;
+    }
+.CButton_base__small_c20a3 .CButton_content_a99fc {
+        font-size: 14rem;
+    }
+.CButton_base__medium_ef59a .CButton_content_a99fc {
+        font-size: 15rem;
+    }
+.CButton_base__large_bafd5 .CButton_content_a99fc {
+        font-size: 18rem;
+    }
+.CButton_base__disabled_eef7a .CButton_content_a99fc {
+        opacity: 0.6;
+    }
+
+.Footer_base_ddb6a {
+    display: flex;
+    justify-content: center;
+    padding-top: 30rem;
+    padding-bottom: 40rem;
+    border-top: 1rem solid rgba(255,255,255, .1);
+}
+    .mediaMedium .Footer_base_ddb6a {
+        padding-bottom: 40rem;
+}
+    .mediaLarge .Footer_base_ddb6a {
+        padding-bottom: 50rem;
+}
+    .mediaExtraLarge .Footer_base_ddb6a {
+        padding-top: 40rem;
+}
+
+.Footer_button_cfb69 {
+    min-width: 180rem;
+}
+
+.Footer_button_cfb69 + .Footer_button_cfb69 {
+        margin-left: 20rem;
+    }
+
+.Checkbox_base_cffc9 {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    cursor: pointer;
+}
+
+    .Checkbox_base__disabled_dc60b {
+        pointer-events: none;
+    }
+
+    .Checkbox_base__center_bcbc0 {
+        align-items: center;
+    }
+
+    .Checkbox_base__bottom_b8113 {
+        align-items: flex-end;
+    }
+
+.Checkbox_input_bdf00 {
+    border: 1rem solid rgba(190, 190, 190, .45);
+    border-radius: 2rem;
+    background-color: rgba(0, 0, 0, .3);
+    opacity: .6;
+    position: relative;
+    transition: background-color .1s linear;
+}
+
+.Checkbox_base__mouseDown_f0077 .Checkbox_input_bdf00 {
+        background-color: rgba(0, 0, 0, .4);
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_input_bdf00 {
+        width: 12rem;
+        height: 12rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_input_bdf00 {
+        width: 18rem;
+        height: 18rem;
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_input_bdf00 {
+        width: 24rem;
+        height: 24rem;
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_input_bdf00 {
+        width: 32rem;
+        height: 32rem;
+    }
+
+.Checkbox_alertOverlay_a1e3f {
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    bottom: -1rem;
+    left: -1rem;
+    border: 1rem solid #feab34;
+    border-radius: 2rem;
+    box-shadow: inset 0 0 9rem rgba(0, 0, 0, .25);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.Checkbox_base__alert_aa5f2 .Checkbox_alertOverlay_a1e3f {
+        animation: Checkbox_blink_f903e 2s ease-in-out infinite;
+    }
+
+.Checkbox_base__alert_aa5f2.Checkbox_base__checked_eac7a .Checkbox_alertOverlay_a1e3f,
+    .Checkbox_base__alert_aa5f2.Checkbox_base__disabled_dc60b .Checkbox_alertOverlay_a1e3f {
+        opacity: 0;
+        animation: initial;
+    }
+
+.Checkbox_inputHoverOverlay_f1bb9 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to top, #201f1c, #494741);
+    opacity: 0;
+    transition: opacity .1s linear;
+    pointer-events: none;
+}
+
+.Checkbox_base_cffc9:hover .Checkbox_inputHoverOverlay_f1bb9 {
+        opacity: .8;
+    }
+
+.Checkbox_base_cffc9.Checkbox_base__mouseDown_f0077:hover .Checkbox_inputHoverOverlay_f1bb9 {
+        opacity: 0;
+    }
+
+.Checkbox_highlight_bdfa7 {
+    background: no-repeat 50% / contain;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity .1s linear;
+    pointer-events: none;
+}
+
+.Checkbox_base__checked_eac7a .Checkbox_highlight_bdfa7 {
+        opacity: 1;
+    }
+
+.Checkbox_base__checked_eac7a.Checkbox_base__disabled_dc60b .Checkbox_highlight_bdfa7 {
+        opacity: 0;
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        width: 34rem;
+        height: 34rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        width: 40rem;
+        height: 40rem;
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        width: 46rem;
+        height: 46rem;
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        width: 54rem;
+        height: 54rem;
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_s');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_m');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_l');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_xl');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__small_deb05 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_s_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__medium_eeb1f .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_m_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__large_e2605 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_l_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__extraLarge_bec62 .Checkbox_highlight_bdfa7 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_xl_green');
+    }
+
+.Checkbox_checkmark_e1fc6 {
+    background: center / contain no-repeat;
+    opacity: 0;
+    position: absolute;
+    left: 0;
+}
+
+.Checkbox_base__checked_eac7a .Checkbox_checkmark_e1fc6 {
+        /* Using a transition causes the image to blink on appear */
+        animation: Checkbox_fadeIn_c9675 .1s linear 0 normal forwards;
+    }
+
+.Checkbox_base__checked_eac7a.Checkbox_base__disabled_dc60b .Checkbox_checkmark_e1fc6 {
+        opacity: .5;
+    }
+
+.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        width: 11rem;
+        height: 11rem;
+    }
+
+.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        width: 19rem;
+        height: 20rem;
+        transform: translate(1rem, -4rem);
+    }
+
+.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        width: 23rem;
+        height: 24rem;
+        transform: translate(3rem, -3rem);
+    }
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        width: 36rem;
+        height: 36rem;
+        transform: translate(2rem, -8rem);
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_s');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_m');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_l');
+    }
+
+.Checkbox_base__main_dc26d.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_xl');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__small_deb05 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_s_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__medium_eeb1f .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_m_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__large_e2605 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_l_green');
+    }
+
+.Checkbox_base__primary_a8575.Checkbox_base__extraLarge_bec62 .Checkbox_checkmark_e1fc6 {
+        background-image: url('R.images.gui.maps.icons.components.checkbox.icon_checked_xl_green');
+    }
+
+.Checkbox_label_bd63c {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    height: 100%;
+    padding-left: 10rem;
+    position: relative;
+}
+
+.Checkbox_labelContent_ae1ba {
+    color: #8c8c7e;
+    font-size: 14rem;
+    line-height: 1.15;
+    transition: color .1s linear;
+}
+
+.Checkbox_base__extraLarge_bec62 .Checkbox_labelContent_ae1ba {
+        font-size: 16rem;
+    }
+
+.Checkbox_base_cffc9:hover .Checkbox_labelContent_ae1ba {
+        color: #c8c8b6;
+    }
+
+.Checkbox_base__disabled_dc60b .Checkbox_labelContent_ae1ba,
+    .Checkbox_base__disabled_dc60b:hover .Checkbox_labelContent_ae1ba {
+        color: #37362e;
+    }
+
+@keyframes Checkbox_fadeIn_c9675 {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes Checkbox_blink_f903e {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.Header_base_f926a {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+.Header_checkbox_e61ff {
+    position: absolute;
+    bottom: 2rem;
+    left: 0;
+}
+.Header_text_a50e5 {
+    color: rgba(254,254,236, .4);
+    font-size: 14rem;
+    font-weight: 400;
+    line-height: 1.3;
+    position: relative;
+    bottom: 2rem;
+    transition: color .1s linear;
+}
+.mediaMedium .Header_text_a50e5 {
+        color: rgba(254,254,236, .4);
+        font-size: 16rem;
+        font-weight: 400;
+        line-height: 1.25;
+}
+.mediaExtraLarge .Header_text_a50e5 {
+        color: rgba(254,254,236, .4);
+        font-size: 18rem;
+        font-weight: 400;
+        line-height: 1.25;
+}
+.Header_checkbox__active_bd21f:hover .Header_text_a50e5 {
+        color: #E9E2BF;
+    }
+.Header_title_b44f6 {
+    color: rgba(254,254,236, .8);
+    font-size: 24rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.mediaMedium .Header_title_b44f6 {
+        color: rgba(254,254,236, .8);
+        font-size: 28rem;
+        font-weight: 700;
+        line-height: 1.1;
+}
+.mediaExtraLarge .Header_title_b44f6 {
+        color: rgba(254,254,236, .8);
+        font-size: 36rem;
+        font-weight: 700;
+        line-height: 1.1;
+}
+.Header_frame_e7642 {
+    width: 40rem;
+    height: 40rem;
+    background: url('R.images.gui.maps.icons.components.checkbox.checkbox_m') no-repeat 50% / contain;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-27%, -30%);
+}
+.mediaLarge .Header_frame_e7642 {
+        width: 46rem;
+        height: 46rem;
+        background-image: url('R.images.gui.maps.icons.components.checkbox.checkbox_l');
+        transform: translate(-24%, -23%);
+}
+.Header_frame__animate_d3430 {
+        animation: Header_scaleFrame_d6e6d .4s cubic-bezier(.33, 1, .68, 1);
+    }
+@keyframes Header_scaleFrame_d6e6d {
+    0% {
+        opacity: 0;
+        transform: translate(-25%, -25%) scale(1);
+    }
+
+    10% {
+        opacity: 1;
+        transform: translate(-25%, -25%) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(-25%, -25%) scale(5);
+    }
+}
+
+.Ribbon_base_f5440 {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.Ribbon_ribbon_c3a2e {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1366rem;
+    height: 224rem;
+    padding-top: 27rem;
+    padding-bottom: 39rem;
+    background: url('R.images.gui.maps.icons.achievements.edit.ribbon_small') no-repeat center / 100% 100%;
+}
+
+.mediaMedium .Ribbon_ribbon_c3a2e {
+        width: 1920rem;
+        height: 294rem;
+        padding-top: 35rem;
+        padding-bottom: 57rem;
+        background-image: url('R.images.gui.maps.icons.achievements.edit.ribbon');
+}
+
+.mediaExtraLarge .Ribbon_ribbon_c3a2e {
+        width: 2560rem;
+        height: 394rem;
+        padding-top: 50rem;
+        padding-bottom: 70rem;
+        background-image: url('R.images.gui.maps.icons.achievements.edit.ribbon_large');
+}
+
+.Ribbon_list_b5b52 {
+    display: flex;
+    position: absolute;
+    top: 0;
+}
+
+.Ribbon_item_e16bf {
+    opacity: 1;
+    position: absolute;
+    top: 42rem;
+    left: 0;
+}
+
+.mediaMedium .Ribbon_item_e16bf {
+        top: 50rem;
+}
+
+.mediaExtraLarge .Ribbon_item_e16bf {
+        top: 65rem;
+}
+
+.Slot_base_cc694 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: var(--size);
+    height: var(--size);
+    padding-top: 12rem;
+    border-radius: 2rem;
+    position: relative;
+    cursor: pointer;
+}
+    .mediaMedium .Slot_base_cc694 {
+        padding-top: 14rem;
+}
+    .mediaExtraLarge .Slot_base_cc694 {
+        padding-top: 26rem;
+}
+    .Slot_base__normal_fda1e:hover,
+    .Slot_base__active_b9fbe:hover {
+        box-shadow: 0 0 4rem rgba(255,0,0, .5);
+    }
+
+.Slot_background_faab0 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255,255,255, .03);
+}
+
+.Slot_base_cc694:hover .Slot_background_faab0 {
+        background-color: rgba(255,140,109, .15);
+    }
+
+.Slot_base__selected_ec405 .Slot_background_faab0 {
+        background-color: transparent;
+    }
+
+.Slot_base__selected_ec405:hover .Slot_background_faab0 {
+        background-color: rgba(255,140,109, .1);
+    }
+
+.Slot_background_faab0 .Slot_base__active_b9fbe {
+        background-color: rgba(255,140,109, .1);
+    }
+
+.Slot_border_f283e {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border: 1rem solid rgba(255,255,255, .2);
+    border-radius: 2rem;
+}
+
+.Slot_base_cc694:hover .Slot_border_f283e {
+        border-color: #ffb266;
+    }
+
+.Slot_base__selected_ec405 .Slot_border_f283e {
+        border: none;
+        background: url('R.images.gui.maps.icons.achievements.edit.dashed_border.small') no-repeat center / contain;
+    }
+
+.mediaMedium .Slot_base__selected_ec405 .Slot_border_f283e {
+            background-image: url('R.images.gui.maps.icons.achievements.edit.dashed_border.medium');
+}
+
+.mediaExtraLarge .Slot_base__selected_ec405 .Slot_border_f283e {
+            background-image: url('R.images.gui.maps.icons.achievements.edit.dashed_border.large');
+}
+
+.Slot_base__active_b9fbe .Slot_border_f283e {
+        border-color: rgba(255,178,102, .5);
+    }
+
+.Slot_achievement_cf20c {
+    padding: 0 2rem;
+}
+
+.mediaMedium .Slot_achievement_cf20c {
+        padding: 0 12rem;
+}
+
+.Slot_base__selected_ec405 .Slot_achievement_cf20c {
+        opacity: .3;
+    }
+
+.Slot_controlsContainer_c536c {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    padding-bottom: 20rem;
+    position: relative;
+}
+
+.mediaExtraLarge .Slot_controlsContainer_c536c {
+        padding-bottom: 30rem;
+}
+
+.Slot_tip_a9738 {
+    display: flex;
+    align-items: center;
+    color: rgba(255,221,153, .8);
+    font-size: 14rem;
+    line-height: 24rem;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mediaMedium .Slot_tip_a9738 {
+        font-size: 16rem;
+}
+
+.mediaExtraLarge .Slot_tip_a9738 {
+        font-size: 20rem;
+}
+
+.Slot_base__normal_fda1e:hover .Slot_tip_a9738 {
+        opacity: 1;
+    }
+
+.Slot_tipIcon_ffda3 {
+    width: 18rem;
+    height: 18rem;
+    margin-right: 4rem;
+    background: url('R.images.gui.maps.icons.achievements.edit.tip') no-repeat center / contain;
+}
+
+.mediaExtraLarge .Slot_tipIcon_ffda3 {
+        width: 24rem;
+        height: 24rem;
+        margin-right: 6rem;
+        background-image: url('R.images.gui.maps.icons.achievements.edit.tip_large');
+}
+
+.Slot_cancelText_eb6f3 {
+    color: rgba(255,221,153, .8);
+}
+
+.Slot_cancelButton_a8ff4 {
+    width: 110rem;
+    min-height: 28rem;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.mediaMedium .Slot_cancelButton_a8ff4 {
+        width: 120rem;
+        min-height: 32rem;
+}
+
+.mediaExtraLarge .Slot_cancelButton_a8ff4 {
+        width: 140rem;
+        min-height: 36rem;
+}
+
+.Slot_base__selected_ec405 .Slot_cancelButton_a8ff4 {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+@keyframes App_fadeIn_cbc05 {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.App_base_f2b9b {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 24rem;
+    background: url('R.images.gui.maps.icons.achievements.bg') no-repeat center / cover;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.mediaMedium .App_base_f2b9b {
+        padding-top: 28rem;
+}
+
+.mediaLarge .App_base_f2b9b {
+        padding-top: 40rem;
+}
+
+.mediaExtraLarge .App_base_f2b9b {
+        padding-top: 56rem;
+}
+
+.App_base__loaded_a7349 {
+        animation: App_fadeIn_cbc05 .3s forwards;
+    }
+
+.App_close_a345c {
+    position: absolute;
+    top: 26rem;
+    right: 34rem;
+    z-index: 4;
+}
+
+.mediaSmall .App_close_a345c {
+        right: 26rem;
+}
+
+.mediaMedium .App_close_a345c {
+        top: 34rem;
+}
+
+.mediaLarge .App_close_a345c {
+        top: 46rem;
+        right: 30rem;
+}
+
+.mediaExtraLarge .App_close_a345c {
+        top: 72rem;
+}
+
+.App_content_a9a48 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    width: 956rem;
+    max-width: 95%;
+}
+
+.mediaMedium .App_content_a9a48 {
+        width: 1442rem;
+}
+
+.mediaExtraLarge .App_content_a9a48 {
+        width: 1924rem;
+}
+
+.App_base__disabled_e1f02 .App_title_c17c1 {
+        z-index: 3;
+    }
+
+.App_ribbon_f453f {
+    width: 100%;
+    margin-top: -4rem;
+}
+
+.mediaMedium .App_ribbon_f453f {
+        margin-top: 4rem;
+}
+
+.mediaLarge .App_ribbon_f453f {
+        margin-top: 10rem;
+}
+
+.App_base__disabled_e1f02 .App_ribbon_f453f {
+        z-index: 2;
+    }
+
+.App_achievementList_f5c7b {
+    flex: 1;
+    width: 100%;
+    margin-top: -10rem;
+}
+
+.mediaMedium .App_achievementList_f5c7b {
+        margin-top: -12rem;
+}
+
+.mediaMedium .App_achievementList_f5c7b {
+        margin-top: -6rem;
+}
+
+.App_footer_ac9af {
+    width: 100%;
+}
+
+.App_disabled_e2ff1 {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(7,11,26, .6);
+    z-index: 1;
+}
+

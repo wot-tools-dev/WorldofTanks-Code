@@ -1,0 +1,159 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Gun::AuditionComponent": {
+						"activationSoundNPC": "ev_fep_fall_impulsegun_85_99_NPC_single_shot",
+						"activationSoundPC": "ev_fep_fall_impulsegun_85_99_PC_single_shot",
+						"disabledDomains": [
+							"Server"
+						],
+						"isPlayer": "0"
+					},
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "3"
+					}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "single_shot_sound_event",
+				"uuid": "cfce6ae9-a470-4925-8052-a82d46b5a8a9"
+			}
+		],
+		"components": {
+			"BW::Gun::RemainingAmmoClipPercentGetterComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::RTPCComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"rtpcs": {
+					"RTPC_ext_auto_shoot_burst_shot_duration": {
+						"type": 0,
+						"value": 0.0
+					},
+					"RTPC_ext_auto_shoot_shell_remain": {
+						"type": 3,
+						"value": 0.0
+					},
+					"RTPC_ext_gun_temperature": {
+						"type": 0,
+						"value": 0.0
+					},
+					"RTPC_ext_gun_temperature_slew": {
+						"type": 0,
+						"value": 0.0
+					},
+					"RTPC_ext_weapon_energy": {
+						"type": 0,
+						"value": 0.0
+					}
+				}
+			},
+			"BW::SoundObject3DComponent": {
+				"aux": "1",
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::variables::PropertyOnChangeCalculatorComponent": {
+				"calcs": [
+					{
+						"componentPropertyCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/caliber"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/gunLength"
+									}
+								}
+							}
+						},
+						"componentPropertyDest/component": "BW::RTPCComponent",
+						"componentPropertyDest/propertyPath": "rtpcs/RTPC_ext_weapon_energy/value"
+					},
+					{
+						"componentPropertyCalcExpr/expression": {
+							"__ctype__": "BW::variables::VariableExpression",
+							"__cvalue__": {
+								"variable/variableName": "vehicle/gun/intervalBetweenShots"
+							}
+						},
+						"componentPropertyDest/component": "BW::RTPCComponent",
+						"componentPropertyDest/propertyPath": "rtpcs/RTPC_ext_auto_shoot_burst_shot_duration/value"
+					},
+					{
+						"componentPropertyCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/temperature"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 100.0
+									}
+								}
+							}
+						},
+						"componentPropertyDest/component": "BW::RTPCComponent",
+						"componentPropertyDest/propertyPath": "rtpcs/RTPC_ext_gun_temperature/value"
+					},
+					{
+						"componentPropertyCalcExpr/expression": {
+							"__ctype__": "BW::variables::MultiplyExpression",
+							"__cvalue__": {
+								"arg0/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "vehicle/gun/temperature"
+									}
+								},
+								"arg1/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 100.0
+									}
+								}
+							}
+						},
+						"componentPropertyDest/component": "BW::RTPCComponent",
+						"componentPropertyDest/propertyPath": "rtpcs/RTPC_ext_gun_temperature_slew/value"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "sound_main_ac",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

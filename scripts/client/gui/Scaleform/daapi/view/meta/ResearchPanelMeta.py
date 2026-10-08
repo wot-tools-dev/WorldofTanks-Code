@@ -1,0 +1,33 @@
+from gui.Scaleform.framework.entities.BaseDAAPIComponent import BaseDAAPIComponent
+
+class ResearchPanelMeta(BaseDAAPIComponent):
+
+    def goToResearch(self):
+        self._printOverrideError('goToResearch')
+
+    def goToPostProgression(self):
+        self._printOverrideError('goToPostProgression')
+
+    def addVehToCompare(self):
+        self._printOverrideError('addVehToCompare')
+
+    def as_updateCurrentVehicleS(self, data):
+        return self.flashObject.as_updateCurrentVehicle(data) if self._isDAAPIInited() else None
+
+    def as_setEarnedXPS(self, earnedXP):
+        return self.flashObject.as_setEarnedXP(earnedXP) if self._isDAAPIInited() else None
+
+    def as_setEliteS(self, isElite):
+        return self.flashObject.as_setElite(isElite) if self._isDAAPIInited() else None
+
+    def as_setIGRLabelS(self, visible, value):
+        return self.flashObject.as_setIGRLabel(visible, value) if self._isDAAPIInited() else None
+
+    def as_actionIGRDaysLeftS(self, visible, value):
+        return self.flashObject.as_actionIGRDaysLeft(visible, value) if self._isDAAPIInited() else None
+
+    def as_setNavigationEnabledS(self, value):
+        return self.flashObject.as_setNavigationEnabled(value) if self._isDAAPIInited() else None
+
+    def as_setModuleUpdateAvailableS(self, value):
+        return self.flashObject.as_setModuleUpdateAvailable(value) if self._isDAAPIInited() else None

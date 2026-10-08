@@ -1,0 +1,102 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {},
+				"name": "105_bridgeCrash01_bridge_normal.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_bridge_crashing/105_bridgeCrash01_bridge_normal.prefab",
+				"uuid": "83d48cf3-612d-42fa-b7eb-370f535bb5c4"
+			},
+			{
+				"components": {},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_bridgeCrash01_bridge_transition.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_bridge_crashing/105_bridgeCrash01_bridge_transition.prefab",
+				"uuid": "430b565a-f4d1-456b-9c03-dd5dbd2287be"
+			},
+			{
+				"components": {},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "105_bridgeCrash01_bridge_destroyed.prefab",
+				"prefab": "content/CGFPrefabs/Storymode/105_germany/105_bridge_crashing/105_bridgeCrash01_bridge_destroyed.prefab",
+				"uuid": "92d19e8c-1cee-4583-a17e-85daaf232e73"
+			}
+		],
+		"components": {
+			"BW::SequenceComponent": {
+				"activeLayer": 1,
+				"autoStart": false,
+				"layers": [
+					{
+						"alwaysEnabled": true,
+						"duration": 20.0,
+						"loop": false,
+						"pauseOnEnd": true,
+						"tracks": [
+							{
+								"endTime": 16.899999618530273,
+								"object": "83d48cf3-612d-42fa-b7eb-370f535bb5c4",
+								"parameters": [
+									{
+										"component": "BW::SequenceComponent",
+										"keys": [
+											{
+												"tangents": {
+													"left": {
+														"x": 1.5707999467849731,
+														"y": 0.0,
+														"z": 0.0
+													},
+													"right": {
+														"x": 1.5707999467849731,
+														"y": 0.0,
+														"z": 0.0
+													}
+												},
+												"time": 0.009999999776482582,
+												"type": "Linear",
+												"value": {
+													"__ctype__": "bool",
+													"__cvalue__": true
+												}
+											}
+										],
+										"property": [
+											{
+												"__ctype__": "std::string",
+												"__cvalue__": "autoStart"
+											}
+										]
+									}
+								],
+								"startTime": 0.0
+							},
+							{
+								"endTime": 20.0,
+								"object": "430b565a-f4d1-456b-9c03-dd5dbd2287be",
+								"parameters": [],
+								"startTime": 16.399999618530273
+							},
+							{
+								"endTime": 20.0,
+								"object": "92d19e8c-1cee-4583-a17e-85daaf232e73",
+								"parameters": [],
+								"startTime": 16.399999618530273
+							}
+						]
+					}
+				]
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "105_BridgeCrash01_complete",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,517 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true
+									},
+									"BW::DynamicModel": {
+										"castShadows": false,
+										"modelName": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/battle_start_vertigo.model"
+									},
+									"BW::ModelPropertyChanger": {},
+									"cgf::TransformComponent": {
+										"position/y": -0.39931
+									}
+								},
+								"name": "Vertigo",
+								"uuid": "d44329d8-ed73-4d5a-993d-2b116482bc42"
+							},
+							{
+								"components": {
+									"BW::Sound3DComponent": {
+										"AutoStart": true,
+										"Event name": "style_cust_Ch74_Waffentrager_15_3Dst",
+										"Object name": "Ch74_Waffentrager_15_3Dst_sfx"
+									},
+									"cgf::TransformComponent": {}
+								},
+								"flags": [
+									"SelfInactive"
+								],
+								"name": "Ch74_Waffentrager_15_3Dst_sfx",
+								"uuid": "a6ae1dd1-cb20-4d0a-9660-70c71f123e85"
+							}
+						],
+						"components": {
+							"BW::SequenceComponent": {
+								"autoStart": true,
+								"layers": [
+									{
+										"duration": 4,
+										"tracks": [
+											{
+												"endTime": 10,
+												"object": "d44329d8-ed73-4d5a-993d-2b116482bc42",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1
+																}
+															},
+															{
+																"time": 4,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.7
+																}
+															}
+														],
+														"object": "d44329d8-ed73-4d5a-993d-2b116482bc42",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "scale"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "x"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1
+																}
+															},
+															{
+																"time": 4,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.7
+																}
+															}
+														],
+														"object": "d44329d8-ed73-4d5a-993d-2b116482bc42",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "scale"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "y"
+															}
+														]
+													},
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 1
+																}
+															},
+															{
+																"time": 4,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.7
+																}
+															}
+														],
+														"object": "d44329d8-ed73-4d5a-993d-2b116482bc42",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "scale"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "z"
+															}
+														]
+													},
+													{
+														"component": "BW::ModelPropertyChanger",
+														"keys": [
+															{
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"time": 1.3435,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {
+																		"x": 4,
+																		"y": 1,
+																		"z": 0.5
+																	}
+																}
+															},
+															{
+																"time": 2.6397,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {
+																		"x": 4,
+																		"y": 1,
+																		"z": 0.5
+																	}
+																}
+															},
+															{
+																"time": 4,
+																"type": "Hermite",
+																"value": {
+																	"__ctype__": "BW::Vector4",
+																	"__cvalue__": {}
+																}
+															}
+														],
+														"object": "d44329d8-ed73-4d5a-993d-2b116482bc42",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "properties"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "mt_vertigo"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "Common Properties"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "HDR Multiplier"
+															},
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "value"
+															}
+														]
+													}
+												]
+											},
+											{
+												"endTime": 4,
+												"object": "a6ae1dd1-cb20-4d0a-9660-70c71f123e85",
+												"startTime": 0.01
+											}
+										]
+									}
+								]
+							},
+							"cgf::TransformComponent": {
+								"position/y": 0
+							}
+						},
+						"name": "Start_Battle",
+						"uuid": "9f7be196-fed5-4bb6-9463-3f7b5dfc5db0"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true,
+								"visibleInSniperMode": "0",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"disabledDomains": [],
+								"modelName": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/ch74_hull.model"
+							},
+							"cgf::TransformComponent": {
+								"position/y": -1.162
+							}
+						},
+						"name": "Hull_Idle",
+						"uuid": "47ee5165-98a1-4bf3-bb9d-4b5492d71cfd"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true,
+										"visibleInSniperMode": "0",
+										"visibleInTwinGunMode": "0"
+									},
+									"BW::Particle": {
+										"effect": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/shot_lightning.eff",
+										"emissionSize/x": 2,
+										"emissionSize/y": 1,
+										"emissionSize/z": 2.5,
+										"tintColor/value": 4286216826
+									},
+									"cgf::TransformComponent": {
+										"position/y": -0.15424,
+										"rotation/y": -180
+									}
+								},
+								"name": "Lightnings",
+								"uuid": "bee45eaf-3f26-45e4-9f60-277f81047e62"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {}
+						},
+						"name": "Hull_Shot",
+						"uuid": "00f46029-af7f-4e70-a2fc-cd38d8f3c1bb"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Ch74_Attachment_Hull"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "e34e84de-87ac-45c6-8cd4-63d53f475113"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true,
+								"visibleInSniperMode": "0",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/ch74_turret.model"
+							},
+							"cgf::TransformComponent": {
+								"position/y": -1.383,
+								"position/z": 1.969
+							}
+						},
+						"name": "Turret_Idle",
+						"uuid": "4408ef11-64ec-487c-9148-6fcb80648fa9"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true
+									},
+									"BW::Particle": {
+										"effect": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/shot_lightning.eff",
+										"emissionSize/x": 0.5,
+										"emissionSize/y": 0.5,
+										"emissionSize/z": 0.5,
+										"tintColor/value": 4286216826
+									},
+									"cgf::TransformComponent": {
+										"position/y": 0.81348,
+										"position/z": -0.69842,
+										"rotation/y": -180
+									}
+								},
+								"name": "Lightnings",
+								"uuid": "6265416c-31c6-43d8-94bb-0b12b8f9f8e9"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {}
+						},
+						"name": "Turret_Shot",
+						"uuid": "8a3b601b-c93f-4090-b315-81e980b858c6"
+					}
+				],
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"disabledDomains": [
+							"Client",
+							"Editor"
+						],
+						"modelName": "vehicles/chinese/Ch74_Waffentrager_15/_skins/Ch74_Waffentrager_15_3Dst/normal/lod0/Turret_01.model"
+					},
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Ch74_Attachment_Turret_01"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Turret",
+				"uuid": "68e32de2-b581-497f-94c7-46c86aa09fb4"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true,
+								"visibleInSniperMode": "0",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/ch74_gun.model"
+							},
+							"cgf::TransformComponent": {
+								"position/y": -2.807,
+								"position/z": 2.683
+							}
+						},
+						"name": "Gun_Idle",
+						"uuid": "8e79a657-0bb1-4fd4-be41-8ce88cf28774"
+					}
+				],
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"disabledDomains": [
+							"Client"
+						],
+						"modelName": "vehicles/chinese/Ch74_Waffentrager_15/_skins/Ch74_Waffentrager_15_3Dst/normal/lod0/Gun_01.model"
+					},
+					"BW::NodeFollowerComponent": {
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Ch74_Attachment_Gun_01"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Gun",
+				"uuid": "be2f2dc8-79b2-4e50-828b-0953e00c7d67"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true,
+								"visibleInSniperMode": "0",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/ch74_gunmask.model"
+							},
+							"cgf::TransformComponent": {
+								"position/y": -2.807,
+								"position/z": 2.683
+							}
+						},
+						"name": "GunTower_Idle",
+						"uuid": "0b4edc05-09b5-4867-a882-d5530f4cb263"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true,
+								"visibleInSniperMode": "0",
+								"visibleInTwinGunMode": "0"
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/ch74_lightbeam.model"
+							},
+							"cgf::TransformComponent": {
+								"position/y": 0.24324,
+								"position/z": 2.5502,
+								"rotation/y": -180,
+								"rotation/z": 40,
+								"scale/x": 1.3058,
+								"scale/y": 1.3058,
+								"scale/z": 3.2953
+							}
+						},
+						"name": "Gun_projector",
+						"uuid": "bb7c6cd0-a64f-49f4-8419-d7e225206936"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true
+									},
+									"BW::Particle": {
+										"effect": "particles/Tank/customization/Ch74_Waffentrager_15_3Dst/shot_lightning.eff",
+										"emissionSize/x": 0.1,
+										"emissionSize/y": 0.1,
+										"emissionSize/z": 1,
+										"tintColor/value": 4286216826
+									},
+									"cgf::TransformComponent": {
+										"position/z": 1.3243,
+										"rotation/y": -180
+									}
+								},
+								"name": "Lightnings",
+								"uuid": "e98153df-ce9c-469c-a574-89c7be0704ea"
+							}
+						],
+						"components": {
+							"cgf::TransformComponent": {}
+						},
+						"name": "Gun_Shot",
+						"uuid": "7b148a8c-9fda-4372-8b26-e6e6a9e45bc3"
+					}
+				],
+				"components": {
+					"BW::NodeFollowerComponent": {
+						"disabledDomains": [],
+						"modelLink": "00000000-0000-0000-0000-000000000000",
+						"nodeName": "HP_Ch74_Attachment_Gun_01_Tower"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "GunTower",
+				"uuid": "cf1f6871-12c9-4e47-ada4-0f2b2e9b745e"
+			}
+		],
+		"components": {
+			"BW::ComponentsVisibilityController": {
+				"visibleInDualGunMode": false,
+				"visibleInMapCaseMode": true,
+				"visibleInSniperMode": "0",
+				"visibleInTwinGunMode": "0"
+			},
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Editor"
+				],
+				"modelName": "vehicles/chinese/Ch74_Waffentrager_15/_skins/Ch74_Waffentrager_15_3Dst/normal/lod0/Hull.model"
+			},
+			"BW::VSEComponent": {
+				"path": "vscript/plans/VFX/Ch74_Waffentrager_15_3Dst/Ch74_shot_hit_start.xml"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "Ch74_Waffentrager_15_3Dst",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

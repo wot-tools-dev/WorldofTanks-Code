@@ -1,0 +1,192 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::RandomTransformComponent": {
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						],
+						"rotation": {
+							"xRange": {
+								"max": "0",
+								"min": "0"
+							},
+							"yRange": {
+								"max": 3.141590118408203,
+								"min": -3.141590118408203
+							},
+							"zRange": {
+								"max": "0",
+								"min": "0"
+							}
+						},
+						"translation": {
+							"xRange": {
+								"max": "0",
+								"min": "0"
+							},
+							"yRange": {
+								"max": "0",
+								"min": "0"
+							},
+							"zRange": {
+								"max": "0",
+								"min": "0"
+							}
+						}
+					},
+					"BW::RemoveGoDelayedComponent": {
+						"delay": 16.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::SpawnRandomPrefabComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"spawnDelay": {
+							"max": 0.30000001192092896,
+							"min": "0"
+						},
+						"spawnToWorld": "0",
+						"weightedPaths": [
+							{
+								"path": "content/CGFPrefabs/steel_hunter/abilities/fire_ring/segment_influence_zone_center.prefab",
+								"weight": "1"
+							},
+							{
+								"path": "content/CGFPrefabs/steel_hunter/abilities/fire_ring/segment_influence_zone_center_alt.prefab",
+								"weight": "1"
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Center",
+				"uuid": "6de01e15-e97a-448f-8dbb-2e6af6d7d0f2"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/Battle_Royal/Fire_Ring/fire_small_influence_zone.eff",
+								"emissionRate": 1.0
+							},
+							"cgf::TransformComponent": {}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "particles_alt",
+						"uuid": "e0399254-9c37-49d3-be89-8490f4221e8b"
+					},
+					{
+						"components": {
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/Environment/Battle_Royal/Fire_Ring/fire_small_influence_zone.eff",
+								"emissionRate": 1.0
+							},
+							"cgf::TransformComponent": {}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "particles",
+						"uuid": "2044a5d1-2974-45f7-9629-dd72bafe8b40"
+					},
+					{
+						"components": {
+							"BW::RandomTransformComponent": {
+								"disabledDomains": [
+									"Server",
+									"Editor"
+								],
+								"rotation": {
+									"xRange": {
+										"max": "0",
+										"min": "0"
+									},
+									"yRange": {
+										"max": 3.140000104904175,
+										"min": -3.140000104904175
+									},
+									"zRange": {
+										"max": "0",
+										"min": "0"
+									}
+								},
+								"translation": {
+									"xRange": {
+										"max": "0",
+										"min": "0"
+									},
+									"yRange": {
+										"max": "0",
+										"min": "0"
+									},
+									"zRange": {
+										"max": "0",
+										"min": "0"
+									}
+								}
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "static_decal",
+						"uuid": "bf9c77e3-ed1d-45cd-8e0c-7a7dc30abd39"
+					}
+				],
+				"components": {
+					"BW::RemoveGoDelayedComponent": {
+						"delay": 16.0,
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::VSEComponent": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						],
+						"path": "battle_royale/vscript/plans/VFX/Fire_ring/fire_ring_influence_zone.xml"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					}
+				},
+				"name": "Border",
+				"uuid": "d84b02e7-a5ef-4d65-976d-82fd532d853d"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

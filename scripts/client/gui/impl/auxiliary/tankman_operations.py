@@ -1,0 +1,382 @@
+from __future__ import absolute_import
+import json
+import typing
+from builtins import range
+from future.utils import iteritems
+from typing import TYPE_CHECKING
+from frameworks.wulf import Array
+from gui.customization.shared import getPurchaseMoneyState, isTransactionValid, MoneyForPurchase
+from gui.goodies import IGoodiesCache
+from gui.impl import backport
+from gui.impl.gen import R
+from gui.impl.gen.view_models.views.dialogs.dialog_template_generic_tooltip_view_model import TooltipType
+from gui.impl.gen.view_models.views.dialogs.sub_views.currency_view_model import CurrencyType, CurrencySize
+from gui.impl.gen.view_models.views.lobby.crew.common.crew_skill_model import CrewSkillModel
+from gui.impl.gen.view_models.views.lobby.crew.common.dynamic_tooltip_model import DynamicTooltipModel
+from gui.impl.gen.view_models.views.lobby.crew.crew_constants import CrewConstants
+from gui.impl.gen.view_models.views.lobby.crew.dialogs.dialog_tankman_model import DialogTankmanModel
+from gui.impl.gen.view_models.views.lobby.crew.dialogs.price_card_model import PriceCardModel, CardType, CardState
+from gui.impl.lobby.crew.crew_helpers.skill_model_setup import skillModelSetup
+from gui.shared.gui_items.gui_item_economics import ItemPrice
+from gui.shared.money import Currency, Money, MONEY_ZERO_CREDITS, MONEY_ZERO_GOLD
+from helpers import dependency
+from items.tankmen import TankmanDescr, MAX_SKILL_LEVEL, MAX_SKILLS_EFFICIENCY
+import Settings
+if TYPE_CHECKING:
+    from gui.impl.gen.view_models.views.lobby.crew.common.crew_skill_list_model import CrewSkillListModel
+    from gui.impl.gen.view_models.views.lobby.crew.dialogs.dialog_tankman_base_model import DialogTankmanBaseModel
+    from gui.shared.gui_items import Tankman
+    from gui.shared.gui_items.tankman_skill import TankmanSkill
+_DEFAULT_TITLE_LOC = R.strings.dialogs.priceCard
+_RESET_LOC = R.strings.dialogs.perksReset.priceCard
+_RETRAIN_LOC = R.strings.dialogs.retrain.priceCard
+_IMAGE = R.images.gui.maps.icons.common.components.price_card
+_LEVEL_TO_HIGHLIGHT = 100
+_MINIMUM_TO_HIGHLIGHT = 1
+FREE = 'free'
+MONEY_FREE = Money(credits=0, gold=0)
+ITEM_PRICE_FREE = ItemPrice(price=MONEY_FREE, defPrice=MONEY_FREE)
+
+def _toPercents(value):
+    return int(value * 100)
+
+
+def getPriceData(itemPrice, rIconPath, rTitlePath, isFreeReset):
+    if itemPrice.defPrice > MONEY_ZERO_GOLD:
+        return (backport.image(rIconPath.gold()), backport.text(rTitlePath.gold.title()), Currency.GOLD)
+    if itemPrice.defPrice > MONEY_ZERO_CREDITS:
+        return (backport.image(rIconPath.credit()), backport.text(rTitlePath.credits.title()), Currency.CREDITS)
+    return (backport.image(rIconPath.free()), backport.text(rTitlePath.free.title()), FREE) if itemPrice == ITEM_PRICE_FREE or isFreeReset else ('', '', '')
+
+
+def getOperationCardState(itemPrice):
+    purchaseMoneyState = getPurchaseMoneyState(itemPrice.price)
+    cardState = CardState.DISABLED if not isTransactionValid(purchaseMoneyState, itemPrice.price) else CardState.DEFAULT
+    return (cardState, purchaseMoneyState)
+
+
+def getPriceDescriptionData(itemPrice, value, descLoc, isHighlight=False, **kwargs):
+    isFreeReset = kwargs.get('isFreeReset')
+    defaultKwargs = {'value': value,
+     'isHighlight': isHighlight}
+    defaultKwargs.update(kwargs)
+    args = json.dumps(defaultKwargs, True)
+    if itemPrice.defPrice > MONEY_ZERO_GOLD:
+        return (str(backport.text(descLoc.freeGold.description() if isFreeReset else descLoc.gold.description())), args)
+    if itemPrice.defPrice > MONEY_ZERO_CREDITS:
+        return (str(backport.text(descLoc.credits.description())), args)
+    return (str(backport.text(descLoc.free.description())), args) if itemPrice == ITEM_PRICE_FREE or isFreeReset else ('', '')
+
+
+def getSkillResetPriceDescriptionData(itemPrice, xpReuseFractionPerc, descLoc, isHighlight=False, **kwargs):
+    isFreeReset = kwargs.get('isFreeReset')
+    defaultKwargs = {'value': xpReuseFractionPerc,
+     'isHighlight': isHighlight}
+    defaultKwargs.update(kwargs)
+    args = json.dumps(defaultKwargs, True)
+    if itemPrice.defPrice > MONEY_ZERO_CREDITS:
+        if xpReuseFractionPerc >= 100:
+            if isFreeReset:
+                return (str(backport.text(descLoc.freeGold.description())), args)
+            return (str(backport.text(descLoc.gold.description())), args)
+        return (str(backport.text(descLoc.credits.description())), args)
+    return (str(backport.text(descLoc.free.description())), args) if itemPrice == ITEM_PRICE_FREE or isFreeReset else ('', '')
+
+
+@dependency.replace_none_kwargs(goodiesCache=IGoodiesCache)
+def packRecertificationForm(wulfList, goodiesCache=None, isFreeReset=False):
+    form = goodiesCache.getRecertificationForm(currency='credits')
+    formsCount = form.count
+    cardModel = PriceCardModel()
+    cardModel.setIcon(backport.image(_IMAGE.perk_reset.recertification()))
+    cardModel.setTitle(backport.text(_DEFAULT_TITLE_LOC.recertification.title()))
+    cardModel.setCardState(CardState.DISABLED if formsCount == 0 or isFreeReset else CardState.DEFAULT)
+    if isFreeReset:
+        cardModel.cardTooltip.setHeader(R.strings.dialogs.perksReset.discountTooltip.header())
+        cardModel.cardTooltip.setBody(R.strings.dialogs.perksReset.discountTooltip.body())
+    else:
+        cardModel.cardTooltip.setContentId(R.views.common.tooltip_window.backport_tooltip_content.BackportTooltipContent())
+        cardModel.cardTooltip.setTargetId(R.views.lobby.crew.widgets.PriceList())
+    cardModel.setKwargs(json.dumps({'value': 100,
+     'storageCount': formsCount,
+     'isHighlight': True,
+     'isRecertificationCard': True,
+     'optionIndex': 3}, True))
+    cardModel.setCardType(CardType.RESET)
+    cardModel.setDescription(str(backport.text(_RESET_LOC.recertification.description())))
+    wulfList.addViewModel(cardModel)
+
+
+def packPriceList(wulfList, priceData, packCustomValues=None, rIconPath=_IMAGE.default, rTitlePath=_DEFAULT_TITLE_LOC):
+    for priceDataItem in priceData:
+        cardVM = packPriceCard(priceDataItem, packCustomValues=packCustomValues, rIconPath=rIconPath, rTitlePath=rTitlePath)
+        packPrice(cardVM.price, priceDataItem, rIconPath=rIconPath, rTitlePath=rTitlePath)
+        wulfList.addViewModel(cardVM)
+
+
+def packPriceCard(priceDataItem, packCustomValues=None, rIconPath=_IMAGE.default, rTitlePath=_DEFAULT_TITLE_LOC):
+    itemPrice, customData, key = priceDataItem
+    price = itemPrice.price
+    isFreeReset = price.get('isFreeReset')
+    isDiscount = False if isFreeReset else itemPrice.isActionPrice()
+    icon, title, currency = getPriceData(itemPrice, rIconPath, rTitlePath, isFreeReset)
+    cardState, purchaseMoneyState = getOperationCardState(itemPrice)
+    isEnough = purchaseMoneyState == MoneyForPurchase.ENOUGH
+    cardModel = PriceCardModel()
+    cardModel.setId(str(key))
+    cardModel.setIcon(icon)
+    cardModel.setTitle(title)
+    if isFreeReset and currency != Currency.GOLD:
+        cardModel.setCardState(CardState.DISABLED)
+    else:
+        cardModel.setCardState(cardState)
+    cardModel.priceTooltip.setType(TooltipType.BACKPORT if isDiscount or not isEnough else TooltipType.ABSENT)
+    cardModel.setCardType(CardType.DEFAULT)
+    if packCustomValues:
+        packCustomValues(cardModel, (itemPrice, customData, key))
+    return cardModel
+
+
+def packPrice(priceModel, priceDataItem, rIconPath=_IMAGE.default, rTitlePath=_DEFAULT_TITLE_LOC):
+    itemPrice, _customData, _key = priceDataItem
+    price = itemPrice.price
+    isFreeReset = price.get('isFreeReset')
+    isDiscount = False if isFreeReset else itemPrice.isActionPrice()
+    _icon, _title, currency = getPriceData(itemPrice, rIconPath, rTitlePath, isFreeReset)
+    _cardState, purchaseMoneyState = getOperationCardState(itemPrice)
+    isEnough = purchaseMoneyState == MoneyForPurchase.ENOUGH
+    if Currency.hasValue(currency):
+        priceModel.setType(CurrencyType(currency))
+        if isFreeReset and currency == Currency.GOLD:
+            priceModel.setValue(0)
+            priceModel.setIsDiscount(False)
+        else:
+            priceModel.setValue(int(price.get(currency, 0)))
+            priceModel.setIsDiscount(isDiscount)
+        priceModel.setSize(CurrencySize.BIG)
+        priceModel.setIsEnough(isEnough)
+
+
+def packSkillResetPrice(priceModel, priceDataItem, rIconPath=_IMAGE.default, rTitlePath=_DEFAULT_TITLE_LOC):
+    itemPrice, customData, _key = priceDataItem
+    price = itemPrice.price
+    isFreeReset = price.get('isFreeReset')
+    isDiscount = False if isFreeReset else itemPrice.isActionPrice()
+    _icon, _title, currency = getPriceData(itemPrice, rIconPath, rTitlePath, isFreeReset)
+    _cardState, purchaseMoneyState = getOperationCardState(itemPrice)
+    isEnough = purchaseMoneyState == MoneyForPurchase.ENOUGH
+    xpReuseFraction, _xpLoss, _skillsLoss = customData
+    if Currency.hasValue(currency):
+        priceModel.setType(CurrencyType(currency))
+        if isFreeReset and xpReuseFraction >= 1.0:
+            priceModel.setValue(0)
+            priceModel.setIsDiscount(False)
+        else:
+            priceModel.setValue(int(price.get(currency, 0)))
+            priceModel.setIsDiscount(isDiscount)
+        priceModel.setSize(CurrencySize.BIG)
+        priceModel.setIsEnough(isEnough)
+
+
+def packTooltipModel(model, data):
+    if not data:
+        return
+    contentId = data.get('contentId', 0)
+    header = data.get('header', R.invalid)
+    body = data.get('body', R.invalid)
+    model.setContentId(contentId)
+    model.setHeader(header)
+    model.setBody(body)
+
+
+def getUserPrefsDropSkills():
+    return Settings.g_instance.userPrefs.readInt(Settings.DROP_SKILLS, 0)
+
+
+def setUserPrefsDropSkills(val):
+    Settings.g_instance.userPrefs.writeInt(Settings.DROP_SKILLS, val)
+
+
+def packSkillReset(wulfList, priceData):
+    commonKwargs = {'rIconPath': _IMAGE.perk_reset,
+     'rTitlePath': _DEFAULT_TITLE_LOC}
+    freeCard = packSkillResetPriceCard(priceData[0], **commonKwargs)
+    packSkillResetPrice(freeCard.price, priceData[0], **commonKwargs)
+    wulfList.addViewModel(freeCard)
+    creditsCard = packSkillResetPriceCard(priceData[1], **commonKwargs)
+    packSkillResetPrice(creditsCard.price, priceData[1], **commonKwargs)
+    wulfList.addViewModel(creditsCard)
+    priceCard = packSkillResetPriceCard(priceData[4], **commonKwargs)
+    packSkillResetPrice(priceCard.price, priceData[4], **commonKwargs)
+    priceCard.setKwargs(json.dumps({'optionIndex': 4}, True))
+    wulfList.addViewModel(priceCard)
+    retrainingOrderPriceData = priceData.get(3)
+    if retrainingOrderPriceData is not None:
+        itemPrice, _customData, _key = retrainingOrderPriceData
+        isFreeReset = itemPrice.price.get('isFreeReset')
+        packRecertificationForm(wulfList, isFreeReset=isFreeReset)
+    return
+
+
+def packSkillResetPriceCard(priceDataItem, rIconPath=_IMAGE.default, rTitlePath=_DEFAULT_TITLE_LOC):
+    itemPrice, customData, key = priceDataItem
+    price = itemPrice.price
+    isFreeReset = price.get('isFreeReset')
+    xpReuseFraction, _xpLoss, _skillsLoss = customData
+    isDiscount = False if isFreeReset else itemPrice.isActionPrice()
+    if itemPrice.defPrice > MONEY_ZERO_CREDITS and xpReuseFraction >= 1.0:
+        icon = backport.image(rIconPath.gold())
+        title = backport.text(rTitlePath.gold.title())
+    else:
+        icon, title, _currency = getPriceData(itemPrice, rIconPath, rTitlePath, isFreeReset)
+    cardState, purchaseMoneyState = getOperationCardState(itemPrice)
+    isEnough = purchaseMoneyState == MoneyForPurchase.ENOUGH
+    cardModel = PriceCardModel()
+    cardModel.setId(str(key))
+    cardModel.setIcon(icon)
+    cardModel.setTitle(title)
+    if isFreeReset and xpReuseFraction < 1.0:
+        cardModel.setCardState(CardState.DISABLED)
+    else:
+        cardModel.setCardState(cardState)
+    cardModel.priceTooltip.setType(TooltipType.BACKPORT if isDiscount or not isEnough else TooltipType.ABSENT)
+    cardModel.setCardType(CardType.DEFAULT)
+    packSkillResetCustomValues(cardModel, (itemPrice, customData, key))
+    return cardModel
+
+
+def packSkillResetCustomValues(cardVM, customData):
+    itemPrice, (xpReuseFraction, xpLossAmount, _), key = customData
+    isGoldCard = itemPrice.defPrice > MONEY_ZERO_CREDITS and xpReuseFraction >= 1.0
+    isFreeReset = itemPrice.price.get('isFreeReset')
+    withSpecialDiscount = isGoldCard and isFreeReset
+    description, kwargs = getSkillResetPriceDescriptionData(itemPrice, _toPercents(xpReuseFraction), _RESET_LOC, bool(xpLossAmount), xpLossAmount=xpLossAmount, withSpecialDiscount=withSpecialDiscount, isFreeReset=isFreeReset, optionIndex=key)
+    cardVM.setDescription(description)
+    cardVM.setKwargs(kwargs)
+    cardVM.setCardType(CardType.RESET)
+    if isFreeReset:
+        if isGoldCard:
+            cardVM.setCardState(CardState.SELECTED)
+        else:
+            cardVM.cardTooltip.setHeader(R.strings.dialogs.perksReset.discountTooltip.header())
+            cardVM.cardTooltip.setBody(R.strings.dialogs.perksReset.discountTooltip.body())
+
+
+def packBaseTankman(vmTankman, tankman):
+    descr = tankman.descriptor
+    vmTankman.setInvId(tankman.invID)
+    vmTankman.setRole(tankman.role)
+    vmTankman.setIconName(tankman.getExtensionLessIconWithSkin())
+    vmTankman.setIsInSkin(tankman.isInSkin)
+    vmTankman.setIsFemale(descr.isFemale)
+
+
+def packRetrainTankman(vmTankman, tankman, skillEfficiency=None):
+    descr = tankman.descriptor
+    packBaseTankman(vmTankman, tankman)
+    vmTankman.setSkillEfficiency(tankman.currentVehicleSkillsEfficiency if skillEfficiency is None else skillEfficiency)
+    vmTankman.setFullSkillsCount(descr.getFullSkillsCount())
+    return
+
+
+def packSkills(skillsData, tankman, skillEfficiency=None):
+    skillsData.setSkillsEfficiency(tankman.currentVehicleSkillsEfficiency if skillEfficiency is None else skillEfficiency)
+    packMajorSkills(skillsData, tankman)
+    packBonusSkills(skillsData, tankman)
+    return
+
+
+def packMajorSkills(skillsData, tankman, customGetters=None):
+    notFullEarnedSkillMdl = None
+    majorSkills = skillsData.getMajorSkills()
+    majorSkills.clear()
+    for skill in tankman.skills:
+        skillModel = getSkillModel(tankman, skill, tankman.role, customGetters)
+        if skill.isMaxLevel:
+            majorSkills.addViewModel(skillModel)
+        notFullEarnedSkillMdl = skillModel
+
+    for _ in range(tankman.newFreeSkillsCount):
+        majorSkills.addViewModel(getNewSkillModel())
+
+    if notFullEarnedSkillMdl:
+        majorSkills.addViewModel(notFullEarnedSkillMdl)
+    else:
+        count, lastSkillLevel = tankman.newSkillsCount
+        maxAvailbleSkillsNum = tankman.maxSkillsCount
+        lastIdx = count - 1
+        for idx in range(count):
+            if idx == lastIdx >= maxAvailbleSkillsNum and not lastSkillLevel:
+                break
+            majorSkills.addViewModel(getNewSkillModel(level=lastSkillLevel if idx == lastIdx else MAX_SKILL_LEVEL))
+
+    majorSkills.invalidate()
+    return
+
+
+def packBonusSkills(skillsData, tankman):
+    bonusSkills = skillsData.getBonusSkills()
+    bonusSkills.clear()
+    skillModels = []
+    for role, skills in iteritems(tankman.bonusSkills):
+        for skill, level in zip(skills, tankman.bonusSlotsLevels):
+            if level is None:
+                continue
+            if skill is None:
+                skillModels.append(getNewSkillModel(level))
+            skillModels.append(getSkillModel(tankman, skill, role))
+
+    skillModels.sort(key=lambda sm: MAX_SKILL_LEVEL - sm.getLevel() + int(sm.getName() == CrewConstants.NEW_SKILL))
+    for model in skillModels:
+        bonusSkills.addViewModel(model)
+
+    bonusSkills.invalidate()
+    return
+
+
+def getSkillModel(tman, skill, role, customGetters=None):
+    skillModel = CrewSkillModel()
+    skillModelSetup(skillModel, customGetters, skill=skill, tankman=tman, role=role)
+    return skillModel
+
+
+def getNewSkillModel(level=MAX_SKILL_LEVEL):
+    skillModel = CrewSkillModel()
+    skillModel.setLevel(level)
+    skillModel.setName(CrewConstants.NEW_SKILL)
+    skillModel.setIconName(CrewConstants.NEW_SKILL)
+    return skillModel
+
+
+def packMassRetrain(wulfList, priceData):
+
+    def _packCustomValues(cardVM, customData):
+        itemPrice, itemData, _ = customData
+        efficiency = itemData['cost']['skillsEfficiency']
+        description, kwargs = getPriceDescriptionData(itemPrice, _toPercents(efficiency), _RETRAIN_LOC, efficiency == _MINIMUM_TO_HIGHLIGHT)
+        cardVM.setDescription(description)
+        cardVM.setKwargs(kwargs)
+        cardVM.setCardType(CardType.RETRAIN)
+        if all(itemData['isCardDisabled']):
+            cardVM.setCardState(CardState.DISABLED)
+
+    packPriceList(wulfList, priceData, _packCustomValues, _IMAGE.retrain, _RETRAIN_LOC)
+
+
+def packSingleRetrain(wulfList, priceData):
+
+    def _packCustomValues(cardVM, customData):
+        itemPrice, (isOperationDisable, skillEfficiency, cost, tooltipData), _ = customData
+        debuffValue = _toPercents(cost['skillsEfficiencyWithRoleChange'])
+        if cost['skillsEfficiencyWithRoleChange'] < 0 or cost['skillsEfficiencyWithRoleChange'] == cost['skillsEfficiency'] or skillEfficiency == MAX_SKILLS_EFFICIENCY:
+            debuffValue = None
+        description, kwargs = getPriceDescriptionData(itemPrice, _toPercents(skillEfficiency), _RETRAIN_LOC, skillEfficiency == _MINIMUM_TO_HIGHLIGHT, debuffValue=debuffValue)
+        cardVM.setDescription(description)
+        cardVM.setKwargs(kwargs)
+        cardVM.setCardType(CardType.RETRAIN)
+        packTooltipModel(cardVM.cardTooltip, tooltipData)
+        if isOperationDisable:
+            cardVM.setCardState(CardState.DISABLED)
+        return
+
+    packPriceList(wulfList, priceData, _packCustomValues, _IMAGE.retrain, _RETRAIN_LOC)

@@ -1,0 +1,179 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"components": {
+											"BW::Particle": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"effect": "particles/3D_Customization/Cus_103_A15_Mouse_Mascot/Cus_103_killed_5.eff",
+												"emissionRate": 1.0,
+												"emissionSize": {
+													"x": 0.0,
+													"y": 0.0,
+													"z": 0.0
+												},
+												"epicenterOffset": {
+													"x": 0.0,
+													"y": 0.0,
+													"z": 0.0
+												},
+												"fps": 1.0,
+												"gravity": 1.0,
+												"opacity": 1.0,
+												"startSpeed": {
+													"x": 1.0,
+													"y": 1.0
+												},
+												"tintColor": {
+													"value": 4294967295
+												},
+												"windWeight": 1.0
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0.012001000344753265,
+													"y": 0.6375529766082764,
+													"z": 0.4389269948005676
+												}
+											}
+										},
+										"name": "eff",
+										"uuid": "ffbe80e8-a60c-429b-9156-dae455a20d63"
+									},
+									{
+										"components": {
+											"BW::DynamicModel": {
+												"castShadows": false,
+												"disabledDomains": [
+													"Server"
+												],
+												"modelName": "content/3D_Customization/Cus_103_A15_Mouse_mascot/normal/lod0/Cus_103_A15_Mouse_Sword_03.model"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "sword_emission",
+										"uuid": "208132c6-3195-4d22-b86e-bb9ade4846b7"
+									},
+									{
+										"components": {
+											"BW::DynamicModel": {
+												"castShadows": false,
+												"disabledDomains": [
+													"Server"
+												],
+												"modelName": "content/3D_Customization/Cus_103_A15_Mouse_mascot/normal/lod0/Cus_103_A15_Mouse_Sword_02.model"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "sword_hot",
+										"uuid": "e14ae4cc-b894-4828-93d3-ca32b84caace"
+									}
+								],
+								"components": {
+									"BW::SequenceComponent": {
+										"activeLayer": 1,
+										"autoStart": true,
+										"layers": [
+											{
+												"alwaysEnabled": false,
+												"duration": 10.0,
+												"loop": false,
+												"pauseOnEnd": true,
+												"tracks": []
+											}
+										],
+										"speed": "1"
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "sword_state_3",
+								"uuid": "8869e923-0911-42b7-bbca-724511b9b39b"
+							}
+						],
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"modelName": "content/3D_Customization/Cus_103_A15_Mouse_mascot/normal/lod0/Mouse_Body_Shield_anim.model"
+							},
+							"BW::Particle": {
+								"autoStart": true,
+								"disabledDomains": [
+									"Server"
+								],
+								"effect": "particles/3D_Customization/Cus_103_A15_Mouse_Mascot/cus_103_idle.eff",
+								"emissionRate": 1.0,
+								"emissionSize": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"epicenterOffset": {
+									"x": 0.0,
+									"y": 0.0,
+									"z": 0.0
+								},
+								"fps": 1.0,
+								"gravity": 1.0,
+								"opacity": 1.0,
+								"startSpeed": {
+									"x": 1.0,
+									"y": 1.0
+								},
+								"tintColor": {
+									"value": 4294967295
+								},
+								"windWeight": 1.0
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "model",
+						"uuid": "c2745aab-2b5f-49da-925c-78f96f4f8ede"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "normal",
+				"uuid": "73fd4201-01fa-4ca1-ba89-087791b19928"
+			}
+		],
+		"components": {
+			"BW::StateSwitcherComponent": {
+				"critical": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"damaged": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"disabledDomains": [
+					"Server"
+				],
+				"normal": "73fd4201-01fa-4ca1-ba89-087791b19928",
+				"preview": 1
+			},
+			"cgf::TransformComponent": {},
+			"script::VehicleHealthObserverComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"state": "1"
+			}
+		},
+		"name": "Cus_103_A15_Mouse_mascot_hangar",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

@@ -1,0 +1,184 @@
+from __future__ import absolute_import
+from collections import defaultdict, namedtuple
+from future.utils import viewitems, viewvalues
+from constants import ARENA_GUI_TYPE
+from gui.battle_control.arena_info import settings
+from soft_exception import SoftException
+from gui.shared.system_factory import registerSquadFinder, collectSquadFinder
+from unit_roster_config import SquadRoster, EventRoster, EpicRoster, BattleRoyaleRoster, MapBoxRoster
+
+class ISquadFinder(object):
+    __slots__ = ()
+
+    def clear(self):
+        raise NotImplementedError
+
+    def addVehicleInfo(self, team, prebattleID, vehicleID):
+        raise NotImplementedError
+
+    def getNumberOfSquadmen(self, team, prebattleID):
+        raise NotImplementedError
+
+    def getNumberOfSquads(self):
+        raise NotImplementedError
+
+    def findSquads(self):
+        raise NotImplementedError
+
+    def findSquadSizes(self):
+        raise NotImplementedError
+
+
+class EmptySquadFinder(ISquadFinder):
+    __slots__ = ()
+
+    def clear(self):
+        pass
+
+    def addVehicleInfo(self, team, prebattleID, vehicleID):
+        pass
+
+    def getNumberOfSquadmen(self, team, prebattleID):
+        pass
+
+    def getNumberOfSquads(self):
+        pass
+
+    def findSquads(self):
+        return []
+
+    def findSquadSizes(self):
+        return []
+
+
+class _SquadFinder(ISquadFinder):
+    __slots__ = ('_prbStats',)
+
+    def __init__(self, teams):
+        super(_SquadFinder, self).__init__()
+        self._prbStats = {team:defaultdict(set) for team in teams}
+
+    def clear(self):
+        for stats in viewvalues(self._prbStats):
+            stats.clear()
+
+    def addVehicleInfo(self, team, prebattleID, vehicleID):
+        if not prebattleID:
+            return
+        self._prbStats[team][prebattleID].add(vehicleID)
+
+    def getNumberOfSquadmen(self, team, prebattleID):
+        return len(self._prbStats[team][prebattleID])
+
+    def getNumberOfSquads(self):
+        raise NotImplementedError
+
+    def findSquads(self):
+        raise NotImplementedError
+
+    def findSquadSizes(self):
+        raise NotImplementedError
+
+    @classmethod
+    def _getSquadRange(cls):
+        return settings.SQUAD_RANGE_TO_SHOW
+
+
+SquadSizeDescription = namedtuple('SquadSizeDescription', ('teamID', 'squadID', 'squadSize'))
+
+class TeamScopeNumberingFinder(_SquadFinder):
+    __slots__ = ('_teamsSquadIndices',)
+
+    def __init__(self, teams):
+        super(TeamScopeNumberingFinder, self).__init__(teams)
+        self._teamsSquadIndices = {team:{} for team in teams}
+
+    def clear(self):
+        for indices in viewvalues(self._teamsSquadIndices):
+            indices.clear()
+
+        super(TeamScopeNumberingFinder, self).clear()
+
+    def getNumberOfSquads(self):
+        return sum((max(viewvalues(indices)) for indices in viewvalues(self._teamsSquadIndices) if indices))
+
+    def findSquadSizes(self):
+        squadRange = self._getSquadRange()
+        for teamID, team in viewitems(self._prbStats):
+            squadIndices = self._teamsSquadIndices[teamID]
+            squads = [ item for item in viewitems(team) if len(item[1]) in squadRange ]
+            if not squads:
+                continue
+            squads = sorted(squads, key=lambda item: item[0])
+            for prebattleID, vehiclesIDs in squads:
+                if prebattleID not in squadIndices:
+                    if squadIndices:
+                        squadIndices[prebattleID] = max(viewvalues(squadIndices)) + 1
+                    else:
+                        squadIndices[prebattleID] = 1
+                yield SquadSizeDescription(teamID, squadIndices[prebattleID], len(vehiclesIDs))
+
+    def findSquads(self):
+        squadRange = self._getSquadRange()
+        for teamID, team in viewitems(self._prbStats):
+            squadIndices = self._teamsSquadIndices[teamID]
+            squads = [ item for item in viewitems(team) if len(item[1]) in squadRange ]
+            if not squads:
+                continue
+            squads = sorted(squads, key=lambda item: item[0])
+            for prebattleID, vehiclesIDs in squads:
+                if prebattleID not in squadIndices:
+                    if squadIndices:
+                        squadIndices[prebattleID] = max(viewvalues(squadIndices)) + 1
+                    else:
+                        squadIndices[prebattleID] = 1
+                for vehicleID in vehiclesIDs:
+                    yield (vehicleID, squadIndices[prebattleID])
+
+
+class ContinuousNumberingFinder(_SquadFinder):
+    __slots__ = ('_squadIndices',)
+
+    def __init__(self, teams):
+        super(ContinuousNumberingFinder, self).__init__(teams)
+        self._squadIndices = {}
+
+    def clear(self):
+        self._squadIndices.clear()
+        super(ContinuousNumberingFinder, self).clear()
+
+    def getNumberOfSquads(self):
+        return max(viewvalues(self._squadIndices)) if self._squadIndices else 0
+
+    def findSquads(self):
+        squadRange = self._getSquadRange()
+        for team in viewvalues(self._prbStats):
+            for prebattleID, vehiclesIDs in viewitems(team):
+                if not vehiclesIDs or len(vehiclesIDs) not in squadRange:
+                    continue
+                if prebattleID not in self._squadIndices:
+                    if self._squadIndices:
+                        self._squadIndices[prebattleID] = max(viewvalues(self._squadIndices)) + 1
+                    else:
+                        self._squadIndices[prebattleID] = 1
+                for vehicleID in vehiclesIDs:
+                    yield (vehicleID, self._squadIndices[prebattleID])
+
+    def findSquadSizes(self):
+        raise SoftException('Deprecated class method called - code should not be reached')
+
+
+registerSquadFinder(ARENA_GUI_TYPE.RANDOM, TeamScopeNumberingFinder, SquadRoster)
+registerSquadFinder(ARENA_GUI_TYPE.EPIC_RANDOM, TeamScopeNumberingFinder, SquadRoster)
+registerSquadFinder(ARENA_GUI_TYPE.EVENT_BATTLES, TeamScopeNumberingFinder, EventRoster)
+registerSquadFinder(ARENA_GUI_TYPE.EPIC_BATTLE, TeamScopeNumberingFinder, EpicRoster)
+registerSquadFinder(ARENA_GUI_TYPE.BATTLE_ROYALE, TeamScopeNumberingFinder, BattleRoyaleRoster)
+registerSquadFinder(ARENA_GUI_TYPE.MAPBOX, TeamScopeNumberingFinder, MapBoxRoster)
+registerSquadFinder(ARENA_GUI_TYPE.FALLOUT_MULTITEAM, ContinuousNumberingFinder, SquadRoster)
+
+def createSquadFinder(arenaVisitor):
+    teams = arenaVisitor.type.getTeamsOnArenaRange()
+    guiVisitor = arenaVisitor.gui
+    squadFinderClass, _ = collectSquadFinder(guiVisitor.guiType)
+    finder = squadFinderClass(teams) if squadFinderClass else EmptySquadFinder()
+    return finder

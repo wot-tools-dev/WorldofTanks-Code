@@ -1,0 +1,83 @@
+(def layout TooltipWindow() entrance=true isReadyTracked=true
+    (macro WindowModel)
+    (scope
+        (var content:object = null)
+    )
+
+    (style
+        (paddingLeft = 20px)
+        (paddingRight = 20px)
+        (paddingTop = 18px)
+        (paddingBottom = 22px)
+
+        (alpha = 0)
+    )
+
+    (element HitArea
+        (style
+            (hcenter = 0)
+            (vcenter = 0)
+        )
+    )
+    (hitArea = "$target.hitElement")
+
+    # Stretched window background
+    (image
+        (source = 'bitmap:FWToolTipBgBmp')
+        (name = 'bg')
+        (style
+            (position = "absolute")
+            (scale9grid = "Rect(24, 18, 184, 170)")
+            (width=100%)
+            (height=100%)
+        )
+    )
+
+    (view_holder
+        (name = 'View holder')
+        (bind content "content" init=false)
+    )
+
+    (controller $Animation
+        (bindcall play duration=0.1 from={alpha:0} to={alpha:1} init=false 
+            (event "$evReadyChanged")
+        )
+    )
+)
+
+# Set advanced infotip for current block. It consists of two views: normal and advanced (which is shown when Alt-key is pressed).
+(def macro SetAdvancedToolTip(normalContentId:expression, advancedContentId:expression)
+    (controller $ToolTip
+        (delay = "0.4")
+        (content = "R.views.common.tooltip_window.advanced_tooltip_content.AdvandcedTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+        (args
+            normalContent="normalContentId"
+            advancedContent="advancedContentId"
+        )
+    )
+)
+
+# Set simple tooltip (with header/body/alert/note text blocks) for current block
+(def macro SetSimpleToolTip(header:expression='', body:expression='', alert:expression='', note:expression='')
+    (controller $ToolTip
+        (delay = "0.4")
+        (args
+            header="header"
+            body="body"
+            alert="alert"
+            note="note"
+        )
+        (content = "R.views.common.tooltip_window.simple_tooltip_content.SimpleTooltipContent.resId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+    )
+)
+
+# Set custom infotip with specified view
+(def macro SetCustomToolTip(contentId:expression)
+    (controller $ToolTip
+        (delay = "0.4")
+        (content = "contentId")
+        (decorator = "R.views.common.tooltip_window.tooltip_window.TooltipWindow.resId")
+    )
+)
