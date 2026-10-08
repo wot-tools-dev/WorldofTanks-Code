@@ -98,9 +98,7 @@ VALUE = 1
 
     def test_manifest_cannot_claim_protected_updater_files(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
-            root = Path(folder)
-            repository = root / "repository"
-            repository.mkdir()
+            repository = Path(folder)
             manifest = {
                 "format": 1,
                 "files": {"tools/update_repository.py": {"sha256": "invalid"}},
@@ -110,21 +108,16 @@ VALUE = 1
             )
             with self.assertRaises(update_repository.UpdateError):
                 update_repository.load_manifest(repository)
-            self.assertFalse((repository / update_repository.MANIFEST_NAME).exists())
-            self.assertTrue(update_repository.manifest_path(repository).is_file())
 
-    def test_manifest_is_written_to_sibling_state_directory(self):
+    def test_manifest_is_written_locally_for_gitignore_to_exclude(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
-            root = Path(folder)
-            repository = root / "WorldofTanks-Code"
-            repository.mkdir()
+            repository = Path(folder)
             update_repository.write_manifest(
                 repository, "2.4.0.2", "966", {}, {"bytecode": {}, "swf": {}}
             )
             path = update_repository.manifest_path(repository)
-            self.assertEqual(root / ".WorldofTanks-Code-state" / "manifest.json", path)
+            self.assertEqual(repository / update_repository.MANIFEST_NAME, path)
             self.assertTrue(path.is_file())
-            self.assertFalse((repository / update_repository.MANIFEST_NAME).exists())
 
     def test_root_launcher_is_a_protected_repository_file(self):
         with self.assertRaises(update_repository.UpdateError):
