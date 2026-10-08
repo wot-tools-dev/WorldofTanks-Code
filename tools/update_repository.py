@@ -41,6 +41,7 @@ load_local_env(Path(__file__).resolve().parents[1] / ".env")
 
 MANIFEST_NAME = ".wot-repository-manifest.json"
 MANIFEST_FORMAT = 1
+STATE_DIRECTORY_SUFFIX = "-state"
 RECOVERY_FORMAT = 1
 RECOVERY_STATE_NAME = "recovery-state.json"
 DEFAULT_CLIENT = os.environ.get("WOT_CLIENT_ROOT")
@@ -300,8 +301,24 @@ def validate_layout(client: Path, repository: Path) -> None:
         raise UpdateError("Client and repository paths must not overlap")
 
 
+def repository_state_directory(repository: Path) -> Path:
+    return repository.parent / (".%s%s" % (repository.name, STATE_DIRECTORY_SUFFIX))
+
+
+def manifest_path(repository: Path) -> Path:
+    state = repository_state_directory(repository)
+    if state.exists() and (state.is_symlink() or not state.is_dir()):
+        raise UpdateError("Repository state path is not a normal directory: %s" % state)
+    return state / "manifest.json"
+
+
 def load_manifest(repository: Path) -> dict:
-    path = repository / MANIFEST_NAME
+    path = manifest_path(repository)
+    legacy = repository / MANIFEST_NAME
+    if not path.is_file() and legacy.is_file():
+        path.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(legacy), str(path))
+        print("Moved repository manifest outside the worktree: %s" % path, flush=True)
     if not path.is_file():
         return {"format": MANIFEST_FORMAT, "files": {}, "inputs": {}}
     try:
@@ -789,7 +806,8 @@ def write_manifest(repository: Path, version: str, build: str, files: dict, inpu
         "files": files,
         "inputs": inputs,
     }
-    path = repository / MANIFEST_NAME
+    path = manifest_path(repository)
+    path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     os.replace(str(temporary), str(path))
