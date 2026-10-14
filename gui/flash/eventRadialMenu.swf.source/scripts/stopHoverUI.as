@@ -2,7 +2,7 @@ package
 {
    import flash.display.Sprite;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol97")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol92")]
    public dynamic class stopHoverUI extends Sprite
    {
       

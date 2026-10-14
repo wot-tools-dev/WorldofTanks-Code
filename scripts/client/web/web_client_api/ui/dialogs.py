@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from past.builtins import basestring
 import adisp
 import wg_async
 from gui.impl.pub.dialog_window import DialogButtons

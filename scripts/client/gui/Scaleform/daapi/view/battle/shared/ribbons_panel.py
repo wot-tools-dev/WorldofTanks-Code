@@ -252,7 +252,7 @@ class BattleRibbonsPanel(RibbonsPanelMeta, IArenaVehiclesController):
         self.__isVisible = True
         self.__arenaDP = self.sessionProvider.getCtx().getArenaDP()
         self._ribbonsAggregator = ribbonsAggregator or ribbons_aggregator.createRibbonsAggregator()
-        self.__delayedRibbons = []
+        self._delayedRibbons = []
 
     @property
     def userPreferences(self):
@@ -311,7 +311,7 @@ class BattleRibbonsPanel(RibbonsPanelMeta, IArenaVehiclesController):
 
     def _dispose(self):
         self.sessionProvider.removeArenaCtrl(self)
-        self.__delayedRibbons = []
+        self._delayedRibbons = []
         self._ribbonsAggregator.onRibbonAdded -= self.__onRibbonAdded
         self._ribbonsAggregator.onRibbonUpdated -= self.__onRibbonUpdated
         g_eventBus.removeListener(GameEvent.GUI_VISIBILITY, self.__onGUIVisibilityChanged, scope=EVENT_BUS_SCOPE.BATTLE)
@@ -351,10 +351,15 @@ class BattleRibbonsPanel(RibbonsPanelMeta, IArenaVehiclesController):
         return
 
     def _processDelayedRibbons(self):
-        for ribbon, method in ((self._ribbonsAggregator.getRibbon(ribbonID), method) for ribbonID, method in self.__delayedRibbons):
+        for ribbonID, method in self._delayedRibbons[:]:
+            ribbon = self._ribbonsAggregator.getRibbon(ribbonID)
+            if ribbon is None:
+                self._delayedRibbons.remove((ribbonID, method))
             if self._canBeShown(ribbon):
                 self.__invalidateRibbon(ribbon, method)
-                self.__delayedRibbons.remove((ribbon.getID(), method))
+                self._delayedRibbons.remove((ribbonID, method))
+
+        return
 
     def __playSound(self, eventName):
         if not self.__isVisible or not _RIBBON_SOUNDS_ENABLED:
@@ -376,7 +381,7 @@ class BattleRibbonsPanel(RibbonsPanelMeta, IArenaVehiclesController):
     def __invalidateRibbon(self, ribbon, method):
         if not self._canBeShown(ribbon):
             _logger.debug('Delaying ribbon processing %s', ribbon)
-            self.__delayedRibbons.append((ribbon.getID(), method))
+            self._delayedRibbons.append((ribbon.getID(), method))
             return
         if self._shouldShowRibbon(ribbon):
             ribbonType = ribbon.getType()

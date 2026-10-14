@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import enumerations
 BTMS_COMMANDS = enumerations.Enumeration('Battle messenger commands', [('ChannelsInit', lambda : 'Messenger.Battle.ChannelsInit'),
  ('CheckCooldownPeriod', lambda : 'Messenger.Battle.CheckCooldownPeriod'),

@@ -1,1 +1,1 @@
-var s=(s=>(s.MISSIONS="missions",s.ASSIST="assist",s.KILLS="kills",s.DAMAGE="damage",s.ARMOR_USE="armorUse",s))(s||{});export{s as S};
+var s=function(s){return s.MISSIONS="missions",s.ASSIST="assist",s.KILLS="kills",s.DAMAGE="damage",s.ARMOR_USE="armorUse",s}({});export{s as t};

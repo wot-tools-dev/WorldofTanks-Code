@@ -409,6 +409,11 @@ package net.wg.infrastructure.managers.impl
          return _loc3_ >= 0 ? _loc2_.length - _loc3_ - 1 : 0;
       }
       
+      public function getLayerIndex(param1:String) : int
+      {
+         return LAYER_ORDER.indexOf(param1);
+      }
+      
       public function getManageSize(param1:uint = 0) : Boolean
       {
          return this.getContainer(param1).manageSize;

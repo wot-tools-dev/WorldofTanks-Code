@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from CurrentVehicle import g_currentVehicle
 from constants import BATTLE_MODE_VEH_TAGS_EXCEPT_EPIC
 from gui.prb_control.entities.base.actions_validator import ActionsValidatorComposite

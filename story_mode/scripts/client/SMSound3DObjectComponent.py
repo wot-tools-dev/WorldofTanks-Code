@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import typing
 import SoundGroups
 from script_component.DynamicScriptComponent import DynamicScriptComponent

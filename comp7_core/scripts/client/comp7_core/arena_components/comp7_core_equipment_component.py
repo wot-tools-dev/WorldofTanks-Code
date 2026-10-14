@@ -1,9 +1,11 @@
-from collections import defaultdict
+from __future__ import absolute_import
 import typing
 import logging
-import GenericComponents
+from collections import defaultdict
+from future.utils import viewvalues
 import BigWorld
 import CGF
+import GenericComponents
 import Math
 import math_utils
 from arena_component_system.client_arena_component_system import ClientArenaComponent
@@ -39,8 +41,8 @@ class Comp7CoreEquipmentComponent(ClientArenaComponent):
         return
 
     def __clear(self):
-        for effects in self.__effects.itervalues():
-            for effect in effects.itervalues():
+        for effects in viewvalues(self.__effects):
+            for effect in viewvalues(effects):
                 effect.destroy()
 
             effects.clear()

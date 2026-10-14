@@ -43,6 +43,7 @@ from helpers.EffectsList import SoundStartParam
 from helpers.prefab_effects import resolveShotPrefabEffect
 from items import vehicles
 from items.components.component_constants import DEFAULT_TRACK_HIT_VECTOR, DEFAULT_GUN_BURST
+from items.vehicle_mechanics_types import VehicleMechanicKeys
 from material_kinds import EFFECT_MATERIAL_INDEXES_BY_NAMES, EFFECT_MATERIALS
 from PlayerEvents import g_playerEvents
 from shared_utils import nextTick
@@ -57,7 +58,6 @@ from TriggersManager import TRIGGER_TYPE
 from VehicleEffects import DamageFromShotDecoder
 from helpers.StubCollisionComponent import StubCollisionComponent
 from vehicles.entities.vehicle_events import createVehicleEvents
-from vehicles.mechanics.mechanic_constants import VehicleMechanic
 from vehicles.mechanics.mechanic_helpers import getVehicleMechanicComponent, getVehicleDescrMechanicParams
 from vehicle_systems.components.shot_damage_components import ShotDamageComponent
 from vehicle_systems.components import vehicle_variable_storage as var_storage
@@ -68,6 +68,7 @@ from vehicle_systems.instant_status_helpers import invokeInstantStatusForVehicle
 from visual_script.misc import ASPECT
 if typing.TYPE_CHECKING:
     import OwnVehicle
+    from items.vehicle_mechanics_types import VehicleMechanicKey
     from vehicles.entities.vehicle_events import IVehicleEvents
     from vehicle_systems.CompoundAppearance import CompoundAppearance
 _logger = logging.getLogger(__name__)
@@ -152,7 +153,7 @@ class Vehicle(BigWorld.Entity, BWEntitiyComponentTracker, BattleAbilitiesCompone
 
     @property
     def twinGunIndexes(self):
-        ctrl = self.getVehicleMechanicComponent(VehicleMechanic.TWIN_GUN)
+        ctrl = self.getVehicleMechanicComponent(VehicleMechanicKeys.TWIN_GUN)
         return ctrl.getActiveGunIndexes() if ctrl is not None else ()
 
     @property
@@ -979,7 +980,7 @@ class Vehicle(BigWorld.Entity, BWEntitiyComponentTracker, BattleAbilitiesCompone
             return
         else:
             effectName = 'rammingCollisionLight'
-            improvedRammingParams = getVehicleDescrMechanicParams(self.typeDescriptor, VehicleMechanic.IMPROVED_RAMMING)
+            improvedRammingParams = getVehicleDescrMechanicParams(self.typeDescriptor, VehicleMechanicKeys.IMPROVED_RAMMING)
             if improvedRammingParams is not None:
                 if speedDiff > improvedRammingParams.effectSpeedThreshold:
                     effectName = 'rammingCollisionHeavy'
@@ -1036,8 +1037,8 @@ class Vehicle(BigWorld.Entity, BWEntitiyComponentTracker, BattleAbilitiesCompone
                 self.__logVehicle(_logger.error, 'onSiegeStateUpdated is called for not siege or None typeDescriptor')
             return
 
-    def getVehicleMechanicComponent(self, mechanicName):
-        return getVehicleMechanicComponent(self, mechanicName)
+    def getVehicleMechanicComponent(self, mechanicKey):
+        return getVehicleMechanicComponent(self, mechanicKey)
 
     def getSiegeSwitchTimeLeft(self):
         ownVehicle = self.dynamicComponents.get('ownVehicle')
@@ -1422,7 +1423,7 @@ class Vehicle(BigWorld.Entity, BWEntitiyComponentTracker, BattleAbilitiesCompone
         return BigWorld.player().arena.getVseContextInstance(contextName)
 
     def getGunBurstParams(self, gunDescr):
-        chargeableBurst = self.getVehicleMechanicComponent(VehicleMechanic.CHARGEABLE_BURST)
+        chargeableBurst = self.getVehicleMechanicComponent(VehicleMechanicKeys.CHARGEABLE_BURST)
         return DEFAULT_GUN_BURST if chargeableBurst is not None and not chargeableBurst.isBurstActive else gunDescr.burst
 
     def updateTimeBetweenShots(self, newValue):

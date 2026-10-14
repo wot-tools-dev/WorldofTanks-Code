@@ -1,6 +1,7 @@
-import BigWorld
+from __future__ import absolute_import
 import typing
 import logging
+import BigWorld
 from helpers import dependency
 from wotdecorators import noexcept
 from uilogging.constants import DEFAULT_LOGGER_NAME

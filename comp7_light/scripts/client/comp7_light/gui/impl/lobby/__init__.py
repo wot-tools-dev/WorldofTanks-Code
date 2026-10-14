@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 def registerComp7LightLobby():
     from comp7_light_constants import PREBATTLE_TYPE
     from comp7_light.gui.comp7_light_constants import SELECTOR_BATTLE_TYPES

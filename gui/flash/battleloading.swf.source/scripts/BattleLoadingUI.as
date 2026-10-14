@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.battleloading.BattleLoading;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol11")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol16")]
    public dynamic class BattleLoadingUI extends BattleLoading
    {
       

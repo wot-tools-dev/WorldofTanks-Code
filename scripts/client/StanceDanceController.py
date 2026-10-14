@@ -5,11 +5,12 @@ import math_utils
 from constants import STANCE_DANCE_STATE
 from gui.shared.utils.decorators import ReprInjector
 from items.components.shared_components import StanceDanceParams
+from items.vehicle_mechanics_types import VehicleMechanicKey, VehicleMechanicKeys
 from vehicles.components.vehicle_component import VehicleDynamicComponent
 from vehicles.components.vehicle_prefabs import createMechanicPrefabSpawner
 from vehicles.mechanics.common import IMechanicComponent
 from vehicles.mechanics.mechanic_commands import createMechanicCommandsEvents, IMechanicCommandsComponent
-from vehicles.mechanics.mechanic_constants import VehicleMechanic, VehicleMechanicCommand
+from vehicles.mechanics.mechanic_constants import VehicleMechanicCommand
 from vehicles.mechanics.mechanic_helpers import getVehicleDescrMechanicParams
 from vehicles.mechanics.mechanic_states import createMechanicStatesEvents, IMechanicStatesComponent, IMechanicState
 if typing.TYPE_CHECKING:
@@ -129,8 +130,8 @@ class StanceDanceController(VehicleDynamicComponent, IMechanicComponent, IMechan
         return
 
     @property
-    def vehicleMechanic(self):
-        return VehicleMechanic.STANCE_DANCE
+    def vehicleMechanicKey(self):
+        return VehicleMechanicKeys.STANCE_DANCE
 
     @property
     def commandsEvents(self):
@@ -181,4 +182,4 @@ class StanceDanceController(VehicleDynamicComponent, IMechanicComponent, IMechan
 
     def _collectComponentParams(self, typeDescriptor):
         super(StanceDanceController, self)._collectComponentParams(typeDescriptor)
-        self.__params = getVehicleDescrMechanicParams(typeDescriptor, self.vehicleMechanic)
+        self.__params = getVehicleDescrMechanicParams(typeDescriptor, self.vehicleMechanicKey)

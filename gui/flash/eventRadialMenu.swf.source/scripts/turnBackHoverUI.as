@@ -2,7 +2,7 @@ package
 {
    import flash.display.Sprite;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol94")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol89")]
    public dynamic class turnBackHoverUI extends Sprite
    {
       

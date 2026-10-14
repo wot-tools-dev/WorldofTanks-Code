@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 def getUILoggingConfig(manager):
     from uilogging.core.integration import UILoggingListener
     from uilogging.core.logger import UILoggingCore

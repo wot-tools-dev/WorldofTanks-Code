@@ -2,7 +2,7 @@ package
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol299")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol293")]
    public dynamic class reload extends MovieClip
    {
       

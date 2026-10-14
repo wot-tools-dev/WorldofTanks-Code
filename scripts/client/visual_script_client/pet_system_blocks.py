@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import typing
 import skeletons.gui.pet_system
 from pet_system_common.pet_constants import AnimationStateName, PetHangarObject, PetStateBehavior, PetStaticTrigger, PetTrigger, StorageStaticTrigger

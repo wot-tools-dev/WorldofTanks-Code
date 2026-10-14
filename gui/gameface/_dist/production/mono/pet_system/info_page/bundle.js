@@ -1,0 +1,1 @@
+import{r as s}from"../chunks/rolldown-runtime.js";import{Ct as t,J as n,St as r,jt as o,lt as a}from"../chunks/lib.js";import"../chunks/global.js";o();var e="App_b6dc3403",l=a();function m(){return(0,l.jsx)("div",{className:e,children:"APP!"})}n((0,l.jsx)(m,{})).then(()=>t(document.getElementById("root"))).then(()=>r());

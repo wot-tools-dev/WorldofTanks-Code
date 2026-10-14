@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.epicRandom.battleloading.EpicRandomBattleLoadingForm;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol13")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol18")]
    public dynamic class epicRandomBattleLoadingForm extends EpicRandomBattleLoadingForm
    {
       

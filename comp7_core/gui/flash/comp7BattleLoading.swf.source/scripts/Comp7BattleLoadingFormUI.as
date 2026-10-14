@@ -2,7 +2,7 @@ package
 {
    import net.wg.comp7_core.battle.battleloading.Comp7BattleLoadingForm;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol13")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol16")]
    public dynamic class Comp7BattleLoadingFormUI extends Comp7BattleLoadingForm
    {
       

@@ -9,8 +9,6 @@ package net.wg.infrastructure.base.meta
       
       function isVivoxS() : Boolean;
       
-      function isYYS() : Boolean;
-      
       function isVOIPEnabledS() : Boolean;
       
       function isVOIPAvailableS() : Boolean;

@@ -98,11 +98,6 @@ package net.wg.mock
       {
       }
       
-      public function tryFocusView(param1:IView) : Boolean
-      {
-         return false;
-      }
-      
       public function updateFocus(param1:Object = null) : void
       {
       }

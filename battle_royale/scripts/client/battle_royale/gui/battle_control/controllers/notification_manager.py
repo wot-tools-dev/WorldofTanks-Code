@@ -84,6 +84,8 @@ class RespawnMessage(CallbackDelayer):
         return
 
     def __hide(self):
+        if self.__postDelayCallbackID is not None:
+            BigWorld.cancelCallback(self.__postDelayCallbackID)
         self.__postDelayCallbackID = None
         self.hideCallback()
         return

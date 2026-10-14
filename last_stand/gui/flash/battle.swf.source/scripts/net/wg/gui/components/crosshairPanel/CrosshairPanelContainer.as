@@ -23,7 +23,10 @@ package net.wg.gui.components.crosshairPanel
    import net.wg.gui.components.crosshairPanel.components.speedometer.Speedometer;
    import net.wg.gui.components.crosshairPanel.constants.CrosshairConsts;
    import net.wg.infrastructure.base.meta.impl.CrosshairPanelContainerMeta;
+   import net.wg.infrastructure.interfaces.ILayoutPart;
    import net.wg.infrastructure.interfaces.entity.IDisposable;
+   import net.wg.infrastructure.layoutPart.algorithms.LayoutPartAbsolute;
+   import scaleform.clik.constants.InvalidationType;
    import scaleform.clik.motion.Tween;
    
    public class CrosshairPanelContainer extends CrosshairPanelContainerMeta implements ICrosshairPanelContainer
@@ -207,6 +210,8 @@ package net.wg.gui.components.crosshairPanel
       
       private var _fadeTween:Tween = null;
       
+      private var _layoutPart:ILayoutPart;
+      
       public function CrosshairPanelContainer()
       {
          super();
@@ -218,51 +223,6 @@ package net.wg.gui.components.crosshairPanel
       {
          var _loc2_:Class = Class(getDefinitionByName(param1));
          return new _loc2_();
-      }
-      
-      public function as_setReloadBoost(param1:Boolean) : void
-      {
-         this._isReloadBoost = param1;
-         if(this._currentCrosshair)
-         {
-            this._currentCrosshair.reloadBoost = this._isReloadBoost;
-         }
-      }
-      
-      public function as_setReloadBoostBorder(param1:Boolean, param2:Boolean) : void
-      {
-         this._isReloadBoostBorder = param1;
-         this._isReloadBoostBorderActive = param2;
-         if(this._currentCrosshair)
-         {
-            this._currentCrosshair.setReloadBoostBorderVisible(this._isReloadBoostBorder,this._isReloadBoostBorderActive,false);
-         }
-      }
-      
-      public function as_setReloadBoostBorderBlink() : void
-      {
-         if(this._currentCrosshair)
-         {
-            this._currentCrosshair.setReloadBoostBorderBlink();
-         }
-      }
-      
-      public function as_setAlternateZoomPosition(param1:Boolean) : void
-      {
-         this._isAlternateZoomPosition = param1;
-         if(this._currentCrosshair)
-         {
-            this._currentCrosshair.isUseAlternateZoomPosition = this._isAlternateZoomPosition;
-         }
-      }
-      
-      public function as_setAutoreloaderSurgeState(param1:Boolean) : void
-      {
-         this._autoreloaderSurgeActive = param1;
-         if(this._currentCrosshair)
-         {
-            this._currentCrosshair.setAutoreloaderSurgeState(this._autoreloaderSurgeActive);
-         }
       }
       
       override protected function configUI() : void
@@ -279,6 +239,7 @@ package net.wg.gui.components.crosshairPanel
          this.clearAutoloaderReloadTimer();
          this.clearAutoloaderAnimationTimer();
          this.clearExtraShotClipTimer();
+         this.clearShellCalibrationClipTimer();
          this.clearTweens();
          this._gunMarkersContainer.dispose();
          this._gunMarkersContainer = null;
@@ -288,7 +249,17 @@ package net.wg.gui.components.crosshairPanel
             this._speedometer = null;
          }
          this._speedometerBg = null;
-         this._currentCrosshair = null;
+         if(Boolean(this._currentCrosshair) && Boolean(this._layoutPart))
+         {
+            this._currentCrosshair.disconnectLayout(this._layoutPart);
+            this._currentCrosshair = null;
+         }
+         if(this._layoutPart)
+         {
+            CoreApp.sharedLayoutMgr.unregisterLayout(this._layoutPart);
+            this._layoutPart.dispose();
+            this._layoutPart = null;
+         }
          this._settings = null;
          for each(_loc1_ in this._crosshairs)
          {
@@ -320,6 +291,15 @@ package net.wg.gui.components.crosshairPanel
          if(this._currentCrosshair is CrosshairStrategic)
          {
             (this._currentCrosshair as CrosshairStrategic).setShotFlyTimesData(param1);
+         }
+      }
+      
+      override protected function draw() : void
+      {
+         super.draw();
+         if(Boolean(this._layoutPart) && isInvalid(InvalidationType.LAYOUT))
+         {
+            this._layoutPart.resendPositions();
          }
       }
       
@@ -378,22 +358,6 @@ package net.wg.gui.components.crosshairPanel
          if(this._gunMarkersContainer != null)
          {
             this._gunMarkersContainer.cancelDualGunCharge();
-         }
-      }
-      
-      public function as_setChargeGunActive(param1:Boolean) : void
-      {
-         if(this._gunMarkersContainer != null)
-         {
-            this._gunMarkersContainer.setChargeGunActive(param1);
-         }
-      }
-      
-      public function as_setChargeGunState(param1:Number, param2:uint, param3:Boolean) : void
-      {
-         if(this._gunMarkersContainer != null)
-         {
-            this._gunMarkersContainer.setChargeGunState(param1,param2,param3);
          }
       }
       
@@ -481,6 +445,7 @@ package net.wg.gui.components.crosshairPanel
             _loc3_.x = param1;
             _loc3_.y = param2;
          }
+         invalidate(InvalidationType.LAYOUT);
       }
       
       public function as_removeSpeedometer() : void
@@ -516,6 +481,15 @@ package net.wg.gui.components.crosshairPanel
          if(this._gunMarkersContainer != null)
          {
             this._gunMarkersContainer.setAimDamageStage(param1);
+         }
+      }
+      
+      public function as_setAlternateZoomPosition(param1:Boolean) : void
+      {
+         this._isAlternateZoomPosition = param1;
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.isUseAlternateZoomPosition = this._isAlternateZoomPosition;
          }
       }
       
@@ -572,6 +546,23 @@ package net.wg.gui.components.crosshairPanel
          this.applyAutoloaderAnimationState();
       }
       
+      public function as_setAutoreloaderSurgeState(param1:Boolean) : void
+      {
+         this._autoreloaderSurgeActive = param1;
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.setAutoreloaderSurgeState(this._autoreloaderSurgeActive);
+         }
+      }
+      
+      public function as_setAuxiliaryRocketLauncherActive(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setAuxiliaryRocketLauncherActive(param1);
+         }
+      }
+      
       public function as_setAverageDamage(param1:String) : void
       {
          this._averageDamageStr = param1;
@@ -599,6 +590,22 @@ package net.wg.gui.components.crosshairPanel
          }
       }
       
+      public function as_setChargeGunActive(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setChargeGunActive(param1);
+         }
+      }
+      
+      public function as_setChargeGunState(param1:Number, param2:uint, param3:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setChargeGunState(param1,param2,param3);
+         }
+      }
+      
       public function as_setChargeableBurstMode(param1:Boolean) : void
       {
          if(this._gunMarkersContainer != null)
@@ -618,6 +625,14 @@ package net.wg.gui.components.crosshairPanel
          }
       }
       
+      public function as_setDispersionCircleThickness(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setDispersionCircleThickness(param1);
+         }
+      }
+      
       public function as_setDistance(param1:String) : void
       {
          this._distanceStr = param1;
@@ -625,22 +640,6 @@ package net.wg.gui.components.crosshairPanel
          if(this._currentCrosshair != null)
          {
             this._currentCrosshair.setDistance(this._distanceStr);
-         }
-      }
-      
-      public function as_setSecondaryGunMarkerActive(param1:Boolean) : void
-      {
-         if(this._gunMarkersContainer != null)
-         {
-            this._gunMarkersContainer.setSecondaryActive(param1);
-         }
-      }
-      
-      public function as_setDispersionCircleThickness(param1:Boolean) : void
-      {
-         if(this._gunMarkersContainer != null)
-         {
-            this._gunMarkersContainer.setDispersionCircleThickness(param1);
          }
       }
       
@@ -680,12 +679,19 @@ package net.wg.gui.components.crosshairPanel
          }
       }
       
-      public function as_setShellCalibrationState(param1:uint) : void
+      public function as_setLowChargeInitialTime(param1:Number, param2:Number, param3:Number, param4:Number) : void
       {
-         this._shellCalibrationState = param1;
-         if(this._currentCrosshair != null)
+         if(this._gunMarkersContainer != null)
          {
-            this._currentCrosshair.setShellCalibrationState(param1);
+            this._gunMarkersContainer.setLowChargeInitialTime(param1,param2,param3,param4);
+         }
+      }
+      
+      public function as_setLowChargeTimeLeft(param1:Number, param2:Number, param3:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setLowChargeTimeLeft(param1,param2,param3);
          }
       }
       
@@ -730,6 +736,33 @@ package net.wg.gui.components.crosshairPanel
          if(this._currentCrosshair != null)
          {
             this._currentCrosshair.setVisibleNet(this._visibleNet);
+         }
+      }
+      
+      public function as_setReloadBoost(param1:Boolean) : void
+      {
+         this._isReloadBoost = param1;
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.reloadBoost = this._isReloadBoost;
+         }
+      }
+      
+      public function as_setReloadBoostBorder(param1:Boolean, param2:Boolean) : void
+      {
+         this._isReloadBoostBorder = param1;
+         this._isReloadBoostBorderActive = param2;
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.setReloadBoostBorderVisible(this._isReloadBoostBorder,this._isReloadBoostBorderActive,false);
+         }
+      }
+      
+      public function as_setReloadBoostBorderBlink() : void
+      {
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.setReloadBoostBorderBlink();
          }
       }
       
@@ -849,6 +882,15 @@ package net.wg.gui.components.crosshairPanel
          {
             this._gunMarkersContainer.setScale(this._scale);
          }
+         invalidate(InvalidationType.LAYOUT);
+      }
+      
+      public function as_setSecondaryGunMarkerActive(param1:Boolean) : void
+      {
+         if(this._gunMarkersContainer != null)
+         {
+            this._gunMarkersContainer.setSecondaryActive(param1);
+         }
       }
       
       public function as_setSettings(param1:Object) : void
@@ -864,6 +906,25 @@ package net.wg.gui.components.crosshairPanel
             }
          }
          this.applySettings();
+      }
+      
+      public function as_setSharedLayout(param1:uint) : void
+      {
+         this._layoutPart = new LayoutPartAbsolute(param1);
+         CoreApp.sharedLayoutMgr.registerLayout(this._layoutPart);
+         if(this._currentCrosshair)
+         {
+            this._currentCrosshair.connectLayout(this._layoutPart);
+         }
+      }
+      
+      public function as_setShellCalibrationState(param1:uint) : void
+      {
+         this._shellCalibrationState = param1;
+         if(this._currentCrosshair != null)
+         {
+            this._currentCrosshair.setShellCalibrationState(param1);
+         }
       }
       
       public function as_setShellChangeTime(param1:Boolean, param2:String) : void
@@ -885,6 +946,7 @@ package net.wg.gui.components.crosshairPanel
          this._width = param1;
          this._height = param2;
          this._currentCrosshair.setSize(param1,param2);
+         invalidate(InvalidationType.LAYOUT);
       }
       
       public function as_setSpeedMode(param1:Boolean) : void
@@ -893,14 +955,6 @@ package net.wg.gui.components.crosshairPanel
          {
             this._speedMode = param1;
             this._speedometer.changeState(param1);
-         }
-      }
-      
-      public function as_setAuxiliaryRocketLauncherActive(param1:Boolean) : void
-      {
-         if(this._gunMarkersContainer != null)
-         {
-            this._gunMarkersContainer.setAuxiliaryRocketLauncherActive(param1);
          }
       }
       
@@ -917,22 +971,6 @@ package net.wg.gui.components.crosshairPanel
          if(this._gunMarkersContainer != null)
          {
             this._gunMarkersContainer.setTwinGunMarkerState(param1);
-         }
-      }
-      
-      public function as_setLowChargeInitialTime(param1:Number, param2:Number, param3:Number, param4:Number) : void
-      {
-         if(this._gunMarkersContainer != null)
-         {
-            this._gunMarkersContainer.setLowChargeInitialTime(param1,param2,param3,param4);
-         }
-      }
-      
-      public function as_setLowChargeTimeLeft(param1:Number, param2:Number, param3:Boolean) : void
-      {
-         if(this._gunMarkersContainer != null)
-         {
-            this._gunMarkersContainer.setLowChargeTimeLeft(param1,param2,param3);
          }
       }
       
@@ -955,8 +993,16 @@ package net.wg.gui.components.crosshairPanel
             {
                this._currentCrosshair.visible = false;
             }
+            if(this._layoutPart)
+            {
+               this._currentCrosshair.disconnectLayout(this._layoutPart);
+            }
             _loc3_ = this._currentCrosshair.autoloaderBoostParams;
             this._currentCrosshair = this._crosshairs[this._viewId - 1];
+            if(this._layoutPart)
+            {
+               this._currentCrosshair.connectLayout(this._layoutPart);
+            }
             this._currentCrosshair.visible = true;
             this._currentCrosshair.setSize(this._width,this._height);
             this._currentCrosshair.setVisibleNet(this._visibleNet);
@@ -1124,6 +1170,7 @@ package net.wg.gui.components.crosshairPanel
             addChild(DisplayObject(_loc1_));
          }
          this._currentCrosshair = this._crosshairs[0];
+         invalidate(InvalidationType.LAYOUT);
       }
       
       protected function hideAll() : void
@@ -1274,8 +1321,8 @@ package net.wg.gui.components.crosshairPanel
          {
             if(this.isAutoloader)
             {
-               this.applyAutoloaderState(true);
                this.applyAutoloaderAnimationState();
+               this.applyAutoloaderState(true);
             }
             else if(this.isExtraShot)
             {
@@ -1333,7 +1380,14 @@ package net.wg.gui.components.crosshairPanel
             this._currentCrosshair.setReloadingAsPercent(this._currReloadingPercent);
             this._currentCrosshair.setReloadingState(this._currReloadingState);
          }
-         this._gunMarkersContainer.updateReloadingParams(this._currReloadingPercent,this._currReloadingState);
+         if(this.isExtraShot && this._isShotAvailable && this._currReloadingState == CrosshairConsts.RELOADING_PROGRESS)
+         {
+            this._gunMarkersContainer.updateReloadingParams(VALUE_100,CrosshairConsts.RELOADING_ENDED);
+         }
+         else
+         {
+            this._gunMarkersContainer.updateReloadingParams(this._currReloadingPercent,this._currReloadingState);
+         }
       }
       
       private function clearReloadingTimer() : void

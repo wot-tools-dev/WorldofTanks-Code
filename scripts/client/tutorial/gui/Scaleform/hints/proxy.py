@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import weakref
 import Event
 from gui.Scaleform.genConsts.TUTORIAL_TRIGGER_TYPES import TUTORIAL_TRIGGER_TYPES

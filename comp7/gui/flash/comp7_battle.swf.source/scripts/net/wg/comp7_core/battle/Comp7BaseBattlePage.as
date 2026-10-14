@@ -371,56 +371,6 @@ package net.wg.comp7_core.battle
          this.updateBansWidgetPosition();
       }
       
-      override protected function onConsumablesPanelUpdatePositionHandler(param1:ConsumablesPanelEvent) : void
-      {
-         super.onConsumablesPanelUpdatePositionHandler(param1);
-         this.updateBansWidgetPosition();
-      }
-      
-      protected function updateBansWidgetPosition() : void
-      {
-         if(!this.bansWidget)
-         {
-            return;
-         }
-         var _loc1_:Number = this.bansWidget.y;
-         this.bansWidget.x = _originalWidth - this.bansWidget.width >> 1 + MESSENGER_OFFSET;
-         if(this._isVehicleSelectConfirmed)
-         {
-            if(!prebattleAmmunitionPanel.isHidden)
-            {
-               this.bansWidget.y = prebattleAmmunitionPanel.y - BANS_WIDGET_CONFIRMED_AMMUNITION_Y_OFFSET;
-            }
-            else
-            {
-               this.bansWidget.y = consumablesPanel.y - BANS_WIDGET_CONFIRMED_CONSUMABLES_Y_OFFSET;
-            }
-         }
-         else
-         {
-            this.bansWidget.y = this.carousel.y - BANS_WIDGET_Y_OFFSET;
-         }
-         if(this.bansWidget.visible && Math.abs(this.bansWidget.y - _loc1_) > BANS_WIDGET_FLICKERING_THRESHOLD)
-         {
-            completeActiveTweens(this.bansWidget);
-            this.bansWidget.alpha = 0;
-            _tweens.push(new Tween(BANS_WIDGET_DEBOUNCE_DURATION,this.bansWidget,{"alpha":1},{
-               "ease":Linear.easeIn,
-               "delay":BANS_WIDGET_DEBOUNCE_DURATION_DELAY
-            }));
-         }
-      }
-      
-      protected function updateTimersWidgetPosition() : void
-      {
-         if(!this.bansProgress)
-         {
-            return;
-         }
-         this.bansProgress.x = _originalWidth - this.bansProgress.width >> 1;
-         this.bansProgress.y = 0;
-      }
-      
       public function as_onBattleStarted() : void
       {
          this._state = STATE_BATTLE;
@@ -472,6 +422,50 @@ package net.wg.comp7_core.battle
          notifyCursorDraggingS(true);
          this._dragOffsetX = stage.mouseX;
          this._dragOffsetY = stage.mouseY;
+      }
+      
+      protected function updateBansWidgetPosition() : void
+      {
+         if(!this.bansWidget)
+         {
+            return;
+         }
+         var _loc1_:Number = this.bansWidget.y;
+         this.bansWidget.x = _originalWidth - this.bansWidget.width >> 1 + MESSENGER_OFFSET;
+         if(this._isVehicleSelectConfirmed)
+         {
+            if(!prebattleAmmunitionPanel.isHidden)
+            {
+               this.bansWidget.y = prebattleAmmunitionPanel.y - BANS_WIDGET_CONFIRMED_AMMUNITION_Y_OFFSET;
+            }
+            else
+            {
+               this.bansWidget.y = consumablesPanel.y - BANS_WIDGET_CONFIRMED_CONSUMABLES_Y_OFFSET;
+            }
+         }
+         else
+         {
+            this.bansWidget.y = this.carousel.y - BANS_WIDGET_Y_OFFSET;
+         }
+         if(this.bansWidget.visible && Math.abs(this.bansWidget.y - _loc1_) > BANS_WIDGET_FLICKERING_THRESHOLD)
+         {
+            completeActiveTweens(this.bansWidget);
+            this.bansWidget.alpha = 0;
+            _tweens.push(new Tween(BANS_WIDGET_DEBOUNCE_DURATION,this.bansWidget,{"alpha":1},{
+               "ease":Linear.easeIn,
+               "delay":BANS_WIDGET_DEBOUNCE_DURATION_DELAY
+            }));
+         }
+      }
+      
+      protected function updateTimersWidgetPosition() : void
+      {
+         if(!this.bansProgress)
+         {
+            return;
+         }
+         this.bansProgress.x = _originalWidth - this.bansProgress.width >> 1;
+         this.bansProgress.y = 0;
       }
       
       private function updateMessengerWidth() : void
@@ -534,6 +528,12 @@ package net.wg.comp7_core.battle
       private function updateBattleTimerVisibility() : void
       {
          battleTimer.visible = this._state == STATE_BATTLE;
+      }
+      
+      override protected function onConsumablesPanelUpdatePositionHandler(param1:ConsumablesPanelEvent) : void
+      {
+         super.onConsumablesPanelUpdatePositionHandler(param1);
+         this.updateBansWidgetPosition();
       }
       
       override protected function onMinimapSizeChangedHandler(param1:MinimapEvent) : void

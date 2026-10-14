@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import time
 import typing
 from enum import Enum

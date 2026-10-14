@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from gui.ClientUpdateManager import g_clientUpdateManager
 from gui.shared import g_eventBus
 from web.client_web_api.api import C2WHandler, c2w

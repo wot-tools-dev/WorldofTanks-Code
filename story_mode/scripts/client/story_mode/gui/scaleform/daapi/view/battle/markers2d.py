@@ -1,4 +1,6 @@
+from __future__ import absolute_import, division
 import math
+from future.utils import viewitems, viewvalues
 from logging import getLogger
 import BigWorld
 import CGF
@@ -197,7 +199,7 @@ class BunkersPlugin(MarkerPluginWithOffsetInZoom):
             destructibleComponent.onDestructibleEntityStateChanged += self.__onDestructibleEntityStateChanged
             destructibleComponent.onDestructibleEntityHealthChanged += self.__onDestructibleEntityHealthChanged
             entities = destructibleComponent.destructibleEntities
-            for entity in entities.itervalues():
+            for entity in viewvalues(entities):
                 self.__onDestructibleEntityAdded(entity)
 
         return
@@ -209,7 +211,7 @@ class BunkersPlugin(MarkerPluginWithOffsetInZoom):
             destructibleComponent.onDestructibleEntityRemoved -= self.__onDestructibleEntityRemoved
             destructibleComponent.onDestructibleEntityStateChanged -= self.__onDestructibleEntityStateChanged
             destructibleComponent.onDestructibleEntityHealthChanged -= self.__onDestructibleEntityHealthChanged
-        for marker in self._markers.itervalues():
+        for marker in viewvalues(self._markers):
             self._destroyMarker(marker.getMarkerID())
 
         self._markers.clear()
@@ -226,7 +228,7 @@ class BunkersPlugin(MarkerPluginWithOffsetInZoom):
         if destructibleComponent is None:
             return
         else:
-            for entityId, marker in self._markers.iteritems():
+            for entityId, marker in viewitems(self._markers):
                 if marker.isActive():
                     self._setMarkerMatrix(marker.getMarkerID(), self.__getMarkerMatrix(destructibleComponent.getDestructibleEntity(entityId)))
 
@@ -278,7 +280,7 @@ class BunkersPlugin(MarkerPluginWithOffsetInZoom):
                 return
             entity = destructibleComponent.getDestructibleEntity(entityId)
             if entity is None:
-                _logger.error('Expected DestructibleEntity not present! Id: ' + str(entityId))
+                _logger.error('Expected DestructibleEntity not present! Id: %s', str(entityId))
                 return
             markerID = marker.getMarkerID()
             self._setMarkerMatrix(markerID, self.__getMarkerMatrix(entity))
@@ -317,7 +319,7 @@ class BunkersPlugin(MarkerPluginWithOffsetInZoom):
         bunkerLogic = bunkersSystem.findActiveBunkerDirect(destructibleEntity.destructibleEntityID)
         turretsSpotted = False
         if bunkerLogic is not None:
-            vehOffsets = list([ _calculateVehicleTurretOffset(v) + v.position.y - destructibleEntity.position.y for v in BigWorld.player().vehicles if v.id in bunkerLogic.vehicleIDs and v.isAlive ])
+            vehOffsets = [ _calculateVehicleTurretOffset(v) + v.position.y - destructibleEntity.position.y for v in BigWorld.player().vehicles if v.id in bunkerLogic.vehicleIDs and v.isAlive ]
             turretsSpotted = len(bunkerLogic.vehicleIDs) == len(vehOffsets)
         return (max(topY, *vehOffsets) if vehOffsets else topY, turretsSpotted)
 

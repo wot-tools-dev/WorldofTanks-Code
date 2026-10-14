@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.views.widgetsPanel.ShellParamsSwitcherWidget;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol336")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol338")]
    public dynamic class ShellParamsSwitcherWidgetUI extends ShellParamsSwitcherWidget
    {
       

@@ -1,3 +1,4 @@
+from __future__ import absolute_import, division
 import typing
 import sys
 from achievements20.cache import UIConfigFields, getCache, IconPositions, IconSizeMap
@@ -307,7 +308,7 @@ class CumulativeAchievement(_BaseGuiAchievement):
         order = self._getOrder()
         requiredAchievementIDs = list(self._staticData.conditions.get('requiredAchievementIDs', set()))
         if order:
-            requiredAchievementIDs.sort(key=lambda id: order.index(id) if id in order else sys.maxint)
+            requiredAchievementIDs.sort(key=lambda id: order.index(id) if id in order else sys.maxsize)
         else:
             requiredAchievementIDs.sort()
         return requiredAchievementIDs

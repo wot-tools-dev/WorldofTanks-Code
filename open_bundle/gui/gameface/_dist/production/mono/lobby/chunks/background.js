@@ -1,1 +1,1 @@
-import{j as a,e as s}from"./vendor.js";import"./lib.js";const e="Background_ab091fa7";function r({image:r,style:o={},className:t=""}){return a.jsx("div",{className:s(e,t),style:{backgroundImage:`url(${r})`,...o}})}export{r as B};
+import{ht as a,q as s}from"./lib.js";var r="Background_ab091fa7",e=s();function t({image:s,style:t={},className:l=""}){return(0,e.jsx)("div",{className:a(r,l),style:{backgroundImage:`url(${s})`,...t}})}export{t};

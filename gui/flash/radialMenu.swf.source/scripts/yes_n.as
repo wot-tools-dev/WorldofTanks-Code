@@ -2,7 +2,7 @@ package
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol104")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol100")]
    public dynamic class yes_n extends MovieClip
    {
       

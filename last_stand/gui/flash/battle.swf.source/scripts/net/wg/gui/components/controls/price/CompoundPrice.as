@@ -60,9 +60,9 @@ package net.wg.gui.components.controls.price
       
       private var _numVisibleItems:int = 0;
       
-      private var _actionMode:String = ACTION_MODE_ENABLED;
+      private var _actionMode:String = "enabled";
       
-      private var _actionState:String = ACTION_STATE_SIMPLE;
+      private var _actionState:String = "percentBG";
       
       private var _bigFonts:Boolean = false;
       
@@ -72,7 +72,7 @@ package net.wg.gui.components.controls.price
       
       private var _customActionTooltip:String = "";
       
-      private var _priceIconAlign:String = PRICE_ICON_ALIGN_RIGHT;
+      private var _priceIconAlign:String = "right";
       
       private var _priceIconOffset:Point = new Point(0,0);
       
@@ -82,7 +82,7 @@ package net.wg.gui.components.controls.price
       
       private var _itemsAnchor:String = "bottomLeft";
       
-      private var _oldPriceAlign:String = OLD_PRICE_ALIGN_BOTTOM;
+      private var _oldPriceAlign:String = "oldPriceAlignBottom";
       
       private var _oldPriceVisible:Boolean = false;
       

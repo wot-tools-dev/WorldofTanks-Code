@@ -12,6 +12,8 @@ package net.wg.infrastructure.interfaces
       function get manageSize() : Boolean;
       
       function set manageSize(param1:Boolean) : void;
+      
+      function get empty() : Boolean;
    }
 }
 

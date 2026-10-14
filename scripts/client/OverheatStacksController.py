@@ -3,11 +3,11 @@ import typing
 import BigWorld
 from constants import OVERHEAT_GAIN_STATE as STATE
 from gui.shared.utils.decorators import ReprInjector
+from items.vehicle_mechanics_types import VehicleMechanicKey, VehicleMechanicKeys
 from math_utils import clamp
 from vehicles.components.vehicle_component import VehicleDynamicComponent
 from vehicles.components.vehicle_prefabs import createMechanicPrefabSpawner
 from vehicles.mechanics.common import IMechanicComponent
-from vehicles.mechanics.mechanic_constants import VehicleMechanic
 from vehicles.mechanics.mechanic_helpers import getVehicleDescrMechanicParams
 from vehicles.mechanics.mechanic_states import createMechanicStatesEvents, IMechanicStatesComponent, IMechanicState
 if typing.TYPE_CHECKING:
@@ -72,8 +72,8 @@ class OverheatStacksController(VehicleDynamicComponent, IMechanicComponent, IMec
         return
 
     @property
-    def vehicleMechanic(self):
-        return VehicleMechanic.OVERHEAT_STACKS
+    def vehicleMechanicKey(self):
+        return VehicleMechanicKeys.OVERHEAT_STACKS
 
     @property
     def statesEvents(self):
@@ -116,4 +116,4 @@ class OverheatStacksController(VehicleDynamicComponent, IMechanicComponent, IMec
 
     def _collectComponentParams(self, typeDescriptor):
         super(OverheatStacksController, self)._collectComponentParams(typeDescriptor)
-        self.__params = getVehicleDescrMechanicParams(typeDescriptor, self.vehicleMechanic)
+        self.__params = getVehicleDescrMechanicParams(typeDescriptor, self.vehicleMechanicKey)

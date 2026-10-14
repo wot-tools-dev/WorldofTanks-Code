@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import typing
 import AccountCommands
 if typing.TYPE_CHECKING:

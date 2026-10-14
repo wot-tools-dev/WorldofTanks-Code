@@ -1,5 +1,6 @@
-from collections import namedtuple
+from __future__ import absolute_import
 import typing
+from collections import namedtuple
 import CGF
 from helpers import dependency
 from skeletons.gui.battle_session import IBattleSessionProvider

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import BigWorld
 from gui.Scaleform.lobby_entry import getLobbyStateMachine

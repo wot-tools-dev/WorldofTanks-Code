@@ -1,6 +1,8 @@
-import BigWorld
+from __future__ import absolute_import
 import logging
 import typing
+from future.utils import iteritems
+import BigWorld
 from helpers import dependency
 from skeletons.helpers.statistics import IStatisticsCollector
 from uilogging.base.logger import _BaseLogger as Logger
@@ -70,6 +72,6 @@ class BattleMetricsLogger(object):
             _logger.error('Difference in loggers and received metrics groups: %s.', diff)
             return
         clientSessionID = getClientSessionID()
-        for group, stats in data.iteritems():
+        for group, stats in iteritems(data):
             if stats:
                 self._loggers[group].log(stats, sessionID=clientSessionID)

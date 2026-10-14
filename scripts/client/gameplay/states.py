@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 import logging
 import enum
 import typing
-import BattleReplay
 import BigWorld
+import BattleReplay
 import persistent_data_cache as pdc
 import wg_async
 from gameplay.blockers import BlockableTransition, BlockingState

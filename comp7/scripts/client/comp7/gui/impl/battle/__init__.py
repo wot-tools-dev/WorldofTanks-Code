@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 def registerComp7Battle():
     from arena_component_system.assembler_helper import ARENA_BONUS_TYPE_CAP_COMPONENTS
     from arena_bonus_type_caps import ARENA_BONUS_TYPE_CAPS

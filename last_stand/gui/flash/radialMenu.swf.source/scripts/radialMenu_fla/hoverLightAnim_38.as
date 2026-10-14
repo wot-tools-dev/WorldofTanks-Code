@@ -2,7 +2,7 @@ package radialMenu_fla
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol209")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol203")]
    public dynamic class hoverLightAnim_38 extends MovieClip
    {
       

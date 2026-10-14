@@ -16,6 +16,7 @@ import shutil
 import struct
 import subprocess
 import sys
+import time
 import xml.etree.ElementTree as ET
 import zipfile
 
@@ -100,6 +101,33 @@ PJORION_FUPY_OVERRIDES = (
 
 class UpdateError(RuntimeError):
     pass
+
+
+class Progress:
+    """Print bounded, flushed progress with a file-rate estimate when available."""
+
+    def __init__(self, label: str, total: int | None = None):
+        self.label = label
+        self.total = total
+        self.started = self.last_report = time.monotonic()
+        print("%s: starting%s" % (label, " (%d files)" % total if total is not None else ""), flush=True)
+
+    def update(self, completed: int, finished: bool = False) -> None:
+        now = time.monotonic()
+        if not finished and now - self.last_report < 2.0:
+            return
+        self.last_report = now
+        elapsed = now - self.started
+        status = "%d files" % completed
+        if self.total is not None:
+            percent = 100.0 * completed / self.total if self.total else 100.0
+            status = "%d/%d files (%.1f%%)" % (completed, self.total, percent)
+            if completed and not finished:
+                remaining = elapsed * (self.total - completed) / completed
+                status += ", ETA ~%.0fs" % remaining
+        print("%s: %s, elapsed %.0fs%s" % (
+            self.label, status, elapsed, " - done" if finished else "",
+        ), flush=True)
 
 
 def clean_decompiled_source(source: str) -> str:
@@ -271,7 +299,10 @@ def remove_recovery_workspace(repository: Path, workspace: Path) -> None:
     if workspace.exists():
         if not workspace.is_dir():
             raise UpdateError("Recovery workspace is not a directory: %s" % workspace)
+        print("Removing cached update workspace (may take a while)...", flush=True)
+        started = time.monotonic()
         shutil.rmtree(str(workspace))
+        print("Cached update workspace removed in %.0fs" % (time.monotonic() - started), flush=True)
 
 
 def client_recovery_identity(client: Path, version: str, build: str) -> dict:
@@ -888,7 +919,16 @@ def export_actionscript(
 def collect_stage(stage: Path, generated: dict[str, dict]) -> dict[str, dict]:
     files = {}
     case_paths = {}
-    for path in sorted(item for item in stage.rglob("*") if item.is_file()):
+    scan = Progress("Scanning staged files")
+    paths = []
+    for item in stage.rglob("*"):
+        if item.is_file():
+            paths.append(item)
+        scan.update(len(paths))
+    scan.update(len(paths), finished=True)
+    progress = Progress("Hashing staged files", len(paths))
+    for index, path in enumerate(sorted(paths), 1):
+        progress.update(index - 1)
         relative = PurePosixPath(*path.relative_to(stage).parts).as_posix()
         if relative.startswith("."):
             continue
@@ -904,6 +944,7 @@ def collect_stage(stage: Path, generated: dict[str, dict]) -> dict[str, dict]:
         if relative in generated:
             metadata["generator"] = generated[relative]
         files[relative] = metadata
+    progress.update(len(paths), finished=True)
     return files
 
 
@@ -949,7 +990,9 @@ def plan_sync(repository: Path, stage: Path, old_manifest: dict, new_files: dict
     added = []
     updated = []
     unchanged = []
-    for relative in sorted(staged_files):
+    progress = Progress("Comparing repository files", len(staged_files))
+    for index, relative in enumerate(sorted(staged_files), 1):
+        progress.update(index - 1)
         destination = repository / Path(relative)
         if not destination.is_file():
             added.append(relative)
@@ -957,12 +1000,16 @@ def plan_sync(repository: Path, stage: Path, old_manifest: dict, new_files: dict
             updated.append(relative)
         else:
             unchanged.append(relative)
+    progress.update(len(staged_files), finished=True)
     return {"added": added, "updated": updated, "deleted": stale, "unchanged": unchanged}
 
 
 def apply_sync(repository: Path, stage: Path, plan: dict) -> None:
     repository_resolved = repository.resolve()
     possible_empty_directories = set()
+    total = len(plan["deleted"]) + len(plan["added"]) + len(plan["updated"])
+    progress = Progress("Synchronizing files", total)
+    completed = 0
     for relative in plan["deleted"]:
         path = validate_managed_relative(relative)
         target = (repository / Path(path.as_posix())).resolve()
@@ -974,6 +1021,8 @@ def apply_sync(repository: Path, stage: Path, plan: dict) -> None:
             while parent != repository:
                 possible_empty_directories.add(parent)
                 parent = parent.parent
+        completed += 1
+        progress.update(completed)
     for relative in plan["added"] + plan["updated"]:
         path = validate_managed_relative(relative)
         source = stage / Path(relative)
@@ -985,12 +1034,15 @@ def apply_sync(repository: Path, stage: Path, plan: dict) -> None:
         temporary = target.with_name(target.name + ".wot-update-tmp")
         shutil.copyfile(str(source), str(temporary))
         os.replace(str(temporary), str(target))
+        completed += 1
+        progress.update(completed)
     # Remove only empty parents of files deleted through the old manifest.
     for directory in sorted(possible_empty_directories, key=lambda path: len(path.parts), reverse=True):
         try:
             directory.rmdir()
         except OSError:
             pass
+    progress.update(completed, finished=True)
 
 
 def write_manifest(repository: Path, version: str, build: str, files: dict, inputs: dict) -> None:
@@ -1175,17 +1227,22 @@ def main(argv=None) -> int:
             )
             return 0
         apply_sync(repository, stage, plan)
+        print("Writing repository manifest...", flush=True)
         write_manifest(repository, version, build, files, extracted)
         if args.commit:
+            print("Git: staging repository changes (may take a while)...", flush=True)
             run(["git", "add", "-A"], cwd=repository)
+            print("Git: checking staged changes...", flush=True)
             changed = run(["git", "diff", "--cached", "--quiet"], cwd=repository, check=False).returncode
             if changed:
+                print("Git: committing changes...", flush=True)
                 run(["git", "commit", "-m", "%s #%s" % (version, build)], cwd=repository, capture=False)
             else:
                 print("No Git changes to commit")
         if args.push:
+            print("Git: pushing version branch to origin...", flush=True)
             run(
-                ["git", "push", "--set-upstream", "origin", branch],
+                ["git", "push", "--progress", "--set-upstream", "origin", branch],
                 cwd=repository,
                 capture=False,
             )

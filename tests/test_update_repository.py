@@ -1,4 +1,5 @@
 import importlib.util
+import io
 import json
 from pathlib import Path
 import struct
@@ -44,6 +45,42 @@ def build_mo(messages):
     return bytes(result)
 
 class UpdateRepositoryTests(unittest.TestCase):
+    def test_progress_reports_rate_estimate_and_completion_without_spamming(self):
+        with mock.patch.object(update_repository.time, "monotonic", side_effect=[0, 1, 10, 20]):
+            with mock.patch("sys.stdout", new_callable=io.StringIO) as output:
+                progress = update_repository.Progress("Hashing", 100)
+                progress.update(1)
+                progress.update(25)
+                progress.update(100, finished=True)
+        lines = output.getvalue().splitlines()
+        self.assertEqual(3, len(lines))
+        self.assertIn("25/100 files (25.0%), ETA ~30s", lines[1])
+        self.assertIn("100/100 files (100.0%), elapsed 20s - done", lines[2])
+        self.assertNotIn("ETA", lines[2])
+
+    def test_progress_handles_empty_and_unknown_totals(self):
+        with mock.patch("sys.stdout", new_callable=io.StringIO) as output:
+            update_repository.Progress("Empty", 0).update(0, finished=True)
+            update_repository.Progress("Scanning").update(5, finished=True)
+        self.assertIn("0/0 files (100.0%)", output.getvalue())
+        self.assertIn("Scanning: 5 files", output.getvalue())
+        self.assertNotIn("ETA", output.getvalue())
+
+    def test_collect_stage_progress_preserves_file_hashes_and_metadata(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
+            stage = Path(folder)
+            (stage / "example.py").write_bytes(b"VALUE = 1\n")
+            (stage / ".hidden").write_bytes(b"ignored")
+            generator = {"tool": "example"}
+            with mock.patch("sys.stdout", new_callable=io.StringIO) as output:
+                files = update_repository.collect_stage(stage, {"example.py": generator})
+            self.assertEqual({"example.py": {
+                "sha256": update_repository.sha256_file(stage / "example.py"),
+                "size": 10,
+                "generator": generator,
+            }}, files)
+            self.assertIn("Hashing staged files: 2/2 files (100.0%)", output.getvalue())
+
     def test_decompiler_banner_is_removed_without_removing_source_comments(self):
         source = """# uncompyle6 version 3.9.2
 # Python bytecode 2.7 (decompiled from Python 2.7)

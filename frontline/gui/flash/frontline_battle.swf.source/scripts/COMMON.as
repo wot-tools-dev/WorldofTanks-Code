@@ -85,6 +85,8 @@ package
       
       public static const CLOSE:String = "#common:close";
       
+      public static const UIKIT_SELECT_PLACEHOLDER:String = "#common:uikit/select/placeholder";
+      
       public function COMMON()
       {
          super();

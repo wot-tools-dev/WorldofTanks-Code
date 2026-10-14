@@ -36,7 +36,8 @@ package net.wg.gui.battle.views.widgetsPanel.common
       
       public function setSize(param1:int) : void
       {
-         var _loc2_:* = param1 - CENTRAL_SIDE_WIDTH >> 1;
+         var _loc2_:* = 0;
+         _loc2_ = param1 - CENTRAL_SIDE_WIDTH >> 1;
          this.leftSide.width = _loc2_;
          this.rightSide.width = _loc2_;
          this.centerSide.x = _loc2_;

@@ -43,7 +43,7 @@ package
          catch(e:Error)
          {
          }
-         interfaceScaleDropDown.UIID = 34603432;
+         interfaceScaleDropDown.UIID = 34603431;
          interfaceScaleDropDown.autoSize = "none";
          interfaceScaleDropDown.dropdown = "DropdownMenu_ScrollingList";
          interfaceScaleDropDown.enabled = true;
@@ -95,7 +95,7 @@ package
          catch(e:Error)
          {
          }
-         interfaceScaleLabel.UIID = 34603431;
+         interfaceScaleLabel.UIID = 34603430;
          interfaceScaleLabel.autoSize = "none";
          interfaceScaleLabel.enabled = true;
          interfaceScaleLabel.enableInitCallback = false;
@@ -120,7 +120,7 @@ package
          catch(e:Error)
          {
          }
-         fovLabel.UIID = 34603430;
+         fovLabel.UIID = 34603429;
          fovLabel.autoSize = "none";
          fovLabel.enabled = true;
          fovLabel.enableInitCallback = false;
@@ -145,7 +145,7 @@ package
          catch(e:Error)
          {
          }
-         refreshRateLabel.UIID = 34603429;
+         refreshRateLabel.UIID = 34603428;
          refreshRateLabel.autoSize = "none";
          refreshRateLabel.enabled = true;
          refreshRateLabel.enableInitCallback = false;
@@ -170,7 +170,7 @@ package
          catch(e:Error)
          {
          }
-         gammaLabel.UIID = 34603428;
+         gammaLabel.UIID = 34603427;
          gammaLabel.autoSize = "none";
          gammaLabel.enabled = true;
          gammaLabel.enableInitCallback = false;
@@ -195,7 +195,7 @@ package
          catch(e:Error)
          {
          }
-         monitorLabel.UIID = 34603427;
+         monitorLabel.UIID = 34603426;
          monitorLabel.autoSize = "none";
          monitorLabel.enabled = true;
          monitorLabel.enableInitCallback = false;
@@ -220,7 +220,7 @@ package
          catch(e:Error)
          {
          }
-         sizesLabel.UIID = 34603426;
+         sizesLabel.UIID = 34603425;
          sizesLabel.autoSize = "none";
          sizesLabel.enabled = true;
          sizesLabel.enableInitCallback = false;
@@ -245,7 +245,7 @@ package
          catch(e:Error)
          {
          }
-         screenModeLabel.UIID = 34603425;
+         screenModeLabel.UIID = 34603424;
          screenModeLabel.autoSize = "left";
          screenModeLabel.enabled = true;
          screenModeLabel.enableInitCallback = false;
@@ -270,7 +270,7 @@ package
          catch(e:Error)
          {
          }
-         igbHardwareAccelerationCheckbox.UIID = 34603424;
+         igbHardwareAccelerationCheckbox.UIID = 34603423;
          igbHardwareAccelerationCheckbox.autoSize = "none";
          igbHardwareAccelerationCheckbox.data = "";
          igbHardwareAccelerationCheckbox.disabledTextAlpha = 0.5;
@@ -305,7 +305,7 @@ package
          catch(e:Error)
          {
          }
-         tripleBufferedCheckbox.UIID = 34603423;
+         tripleBufferedCheckbox.UIID = 34603422;
          tripleBufferedCheckbox.autoSize = "none";
          tripleBufferedCheckbox.data = "";
          tripleBufferedCheckbox.disabledTextAlpha = 0.5;
@@ -340,7 +340,7 @@ package
          catch(e:Error)
          {
          }
-         dynamicFovCheckbox.UIID = 34603422;
+         dynamicFovCheckbox.UIID = 34603421;
          dynamicFovCheckbox.autoSize = "none";
          dynamicFovCheckbox.data = "";
          dynamicFovCheckbox.disabledTextAlpha = 0.5;
@@ -375,7 +375,7 @@ package
          catch(e:Error)
          {
          }
-         fovRangeSlider.UIID = 34603421;
+         fovRangeSlider.UIID = 34603420;
          fovRangeSlider.divisionLabelPostfix = "°";
          fovRangeSlider.divisionLabelStep = 10;
          fovRangeSlider.divisionPointRenderer = "SliderDivisionPointUI";
@@ -413,7 +413,7 @@ package
          catch(e:Error)
          {
          }
-         refreshRateDropDown.UIID = 34603420;
+         refreshRateDropDown.UIID = 34603419;
          refreshRateDropDown.autoSize = "none";
          refreshRateDropDown.dropdown = "DropdownMenu_ScrollingList";
          refreshRateDropDown.enabled = true;
@@ -465,7 +465,7 @@ package
          catch(e:Error)
          {
          }
-         isColorBlindCheckbox.UIID = 34603419;
+         isColorBlindCheckbox.UIID = 34603418;
          isColorBlindCheckbox.autoSize = "none";
          isColorBlindCheckbox.data = "";
          isColorBlindCheckbox.disabledTextAlpha = 0.5;
@@ -500,7 +500,7 @@ package
          catch(e:Error)
          {
          }
-         vertSyncCheckbox.UIID = 34603418;
+         vertSyncCheckbox.UIID = 34603417;
          vertSyncCheckbox.autoSize = "none";
          vertSyncCheckbox.data = "";
          vertSyncCheckbox.disabledTextAlpha = 0.5;
@@ -535,7 +535,7 @@ package
          catch(e:Error)
          {
          }
-         gammaSettingButton.UIID = 34603417;
+         gammaSettingButton.UIID = 34603416;
          gammaSettingButton.autoRepeat = false;
          gammaSettingButton.autoSize = "none";
          gammaSettingButton.data = "";
@@ -576,7 +576,7 @@ package
          catch(e:Error)
          {
          }
-         sizesDropDown.UIID = 34603416;
+         sizesDropDown.UIID = 34603415;
          sizesDropDown.autoSize = "none";
          sizesDropDown.dropdown = "DropdownMenu_ScrollingList";
          sizesDropDown.enabled = true;
@@ -628,7 +628,7 @@ package
          catch(e:Error)
          {
          }
-         screenModeDropDown.UIID = 34603415;
+         screenModeDropDown.UIID = 34603414;
          screenModeDropDown.autoSize = "none";
          screenModeDropDown.dropdown = "DropdownMenu_ScrollingList";
          screenModeDropDown.enabled = true;
@@ -680,7 +680,7 @@ package
          catch(e:Error)
          {
          }
-         monitorDropDown.UIID = 34603414;
+         monitorDropDown.UIID = 34603413;
          monitorDropDown.autoSize = "none";
          monitorDropDown.dropdown = "DropdownMenu_ScrollingList";
          monitorDropDown.enabled = true;
@@ -732,7 +732,7 @@ package
          catch(e:Error)
          {
          }
-         colorFilterImage.UIID = 34603413;
+         colorFilterImage.UIID = 34603412;
          colorFilterImage.autoSize = true;
          colorFilterImage.enableInitCallback = false;
          colorFilterImage.maintainAspectRatio = true;
@@ -757,7 +757,7 @@ package
          catch(e:Error)
          {
          }
-         colorFilterNameLabel.UIID = 34603412;
+         colorFilterNameLabel.UIID = 34603411;
          colorFilterNameLabel.autoSize = "none";
          colorFilterNameLabel.enabled = true;
          colorFilterNameLabel.enableInitCallback = false;
@@ -782,7 +782,7 @@ package
          catch(e:Error)
          {
          }
-         colorFilterButton.UIID = 34603411;
+         colorFilterButton.UIID = 34603410;
          colorFilterButton.autoRepeat = false;
          colorFilterButton.autoSize = "none";
          colorFilterButton.data = "";
@@ -823,7 +823,7 @@ package
          catch(e:Error)
          {
          }
-         colorFilterLabel.UIID = 34603410;
+         colorFilterLabel.UIID = 34603409;
          colorFilterLabel.autoSize = "none";
          colorFilterLabel.enabled = true;
          colorFilterLabel.enableInitCallback = false;

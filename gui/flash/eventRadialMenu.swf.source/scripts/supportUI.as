@@ -2,7 +2,7 @@ package
 {
    import flash.display.Sprite;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol56")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol51")]
    public dynamic class supportUI extends Sprite
    {
       

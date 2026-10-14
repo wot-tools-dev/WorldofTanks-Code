@@ -1,0 +1,1 @@
+import{Ii as s,vr as l}from"./lib.js";var e="Bullet_1228cc07",a="Bullet_b3075e1b",r=l();function t({children:l,showBullet:t=!0,classNames:c}){return(0,r.jsxs)("div",{className:s(e,c?.base),children:[t&&(0,r.jsx)("div",{className:s(a,c?.bullet)}),l]})}export{t};

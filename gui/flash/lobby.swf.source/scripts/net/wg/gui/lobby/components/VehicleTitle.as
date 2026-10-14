@@ -166,11 +166,9 @@ package net.wg.gui.lobby.components
       
       private function updateLayout() : void
       {
-         var _loc2_:Number = NaN;
-         var _loc3_:Number = NaN;
          var _loc1_:Number = this._showInfoIcon ? this.infoIcon.width + INFO_ICON_X_OFFSET : 0;
-         _loc2_ = this._tankTierStr == Values.EMPTY_STR ? 0 : (this._isElite ? ELITE_ICON_ACTUAL_WIDTH : SIMPLE_ICON_ACTUAL_WIDTH);
-         _loc3_ = this.tankTier.width + this.tankName.width + _loc2_ + _loc1_;
+         var _loc2_:Number = this._tankTierStr == Values.EMPTY_STR ? 0 : (this._isElite ? ELITE_ICON_ACTUAL_WIDTH : SIMPLE_ICON_ACTUAL_WIDTH);
+         var _loc3_:Number = this.tankTier.width + this.tankName.width + _loc2_ + _loc1_;
          this.tankTier.x = -_loc3_ >> 1;
          this.tankType.x = this.tankTier.x + this.tankTier.width - (TYPE_ICON_WIDTH - _loc2_ >> 1) | 0;
          this.tankName.x = this.tankTier.x + this.tankTier.width + _loc2_ | 0;

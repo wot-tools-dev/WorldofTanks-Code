@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import functools
 import BigWorld
 from arena_component_system.sector_base_arena_component import ID_TO_BASENAME

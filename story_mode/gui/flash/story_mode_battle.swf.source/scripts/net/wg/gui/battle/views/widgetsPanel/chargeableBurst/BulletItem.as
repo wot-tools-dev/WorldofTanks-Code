@@ -68,14 +68,13 @@ package net.wg.gui.battle.views.widgetsPanel.chargeableBurst
       
       public function anim(param1:Boolean, param2:Boolean, param3:Boolean) : void
       {
-         var _loc5_:Number = NaN;
          this.removeTween();
          if(param1)
          {
             this.resetShot(param2);
          }
          var _loc4_:Number = param1 ? Values.DEFAULT_ALPHA : Values.ZERO;
-         _loc5_ = param1 ? SHOW_SCALE : HIDE_SCALE;
+         var _loc5_:Number = param1 ? SHOW_SCALE : HIDE_SCALE;
          var _loc6_:Number = param1 ? this._posX : Values.ZERO;
          if(param3)
          {

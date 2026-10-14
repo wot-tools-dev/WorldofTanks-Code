@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.epicRandom.battleloading.components.EpicRandomStatsTable;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol5")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol10")]
    public dynamic class EpicRandomStatsTableUI extends EpicRandomStatsTable
    {
       

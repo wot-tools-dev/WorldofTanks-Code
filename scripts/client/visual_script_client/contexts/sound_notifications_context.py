@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import weakref
 import BigWorld
 from visual_script.misc import ASPECT

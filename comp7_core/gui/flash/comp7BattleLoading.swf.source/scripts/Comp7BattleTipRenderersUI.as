@@ -2,7 +2,7 @@ package
 {
    import net.wg.comp7_core.battle.battleloading.renderers.Comp7RendererContainer;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol31")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol34")]
    public dynamic class Comp7BattleTipRenderersUI extends Comp7RendererContainer
    {
       

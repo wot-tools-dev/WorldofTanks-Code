@@ -2,7 +2,6 @@ package net.wg.comp7_core.battle.battleloading
 {
    import net.wg.comp7_core.battle.battleloading.renderers.Comp7TipPlayerItemRenderer;
    import net.wg.data.constants.Linkages;
-   import net.wg.data.constants.generated.BATTLEATLAS;
    import net.wg.data.constants.generated.BATTLE_TYPES;
    import net.wg.gui.battle.battleloading.BattleLoadingForm;
    import net.wg.gui.battle.battleloading.renderers.BaseRendererContainer;
@@ -19,12 +18,8 @@ package net.wg.comp7_core.battle.battleloading
          super();
       }
       
-      override public function setFormDisplayData(param1:VisualTipInfoVO) : void
+      override public function setStateSizeBoundaries(param1:int, param2:int) : void
       {
-         super.setFormDisplayData(param1);
-         formBackgroundTable.imageName = BATTLEATLAS.BATTLE_LOADING_FORM_BG_TIPS_7X7;
-         team1Text.x = param1.leftTeamTitleLeft;
-         team2Text.x = param1.rightTeamTitleLeft;
       }
       
       override public function toString() : String
@@ -32,8 +27,10 @@ package net.wg.comp7_core.battle.battleloading
          return "[WG Comp7 BattleLoadingForm " + name + "]";
       }
       
-      override public function setStateSizeBoundaries(param1:int, param2:int) : void
+      override protected function setFormBG(param1:VisualTipInfoVO) : void
       {
+         team1Text.x = param1.leftTeamTitleLeft;
+         team2Text.x = param1.rightTeamTitleLeft;
       }
       
       override protected function getRendererClass(param1:VisualTipInfoVO) : Class

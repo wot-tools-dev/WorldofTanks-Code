@@ -18,12 +18,6 @@ package net.wg.gui.battle.views.radialMenu.components
          super();
       }
       
-      public function setLightState(param1:String) : void
-      {
-         this.light.hoverEffect.hoverEffectColor.gotoAndStop(param1);
-         this.light.hoverEffectWithShadow.hoverEffectWithShadowColor.gotoAndStop(param1);
-      }
-      
       final public function dispose() : void
       {
          this._disposed = true;
@@ -35,6 +29,12 @@ package net.wg.gui.battle.views.radialMenu.components
       public function isDisposed() : Boolean
       {
          return this._disposed;
+      }
+      
+      public function setLightState(param1:String) : void
+      {
+         this.light.hoverEffect.hoverEffectColor.gotoAndStop(param1);
+         this.light.hoverEffectWithShadow.hoverEffectWithShadowColor.gotoAndStop(param1);
       }
    }
 }

@@ -2,7 +2,7 @@ package radialMenu_fla
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol207")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol201")]
    public dynamic class hoverEffectColor_48 extends MovieClip
    {
       

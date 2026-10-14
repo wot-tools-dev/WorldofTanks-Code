@@ -1,9 +1,9 @@
+from __future__ import absolute_import
 import unicodedata
-import i18n
 from constants import ARENA_BONUS_TYPE
 from constants import LocalizableBotName, BotNamingType, IS_DEVELOPMENT
 from items import tankmen, vehicles
-from helpers import getLanguageCode
+from helpers import getLanguageCode, i18n
 _NAME_FORMAT_CREW_WINBACK = u'{0}_{1}'
 _NAME_FORMAT_CREW = ':{0} {1}:'
 _DEV_PREFIX_FORMAT_CREW = '{0}_{1}_{2} '

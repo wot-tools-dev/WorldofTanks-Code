@@ -513,6 +513,20 @@ package net.wg.data.constants.generated
       
       public static const PVE_MINIMAP_ARROW_SMALL:String = "pve_minimap_arrow_small";
       
+      public static const PVE_MINIMAP_FOG_1:String = "pve_minimap_fog_1";
+      
+      public static const PVE_MINIMAP_FOG_2:String = "pve_minimap_fog_2";
+      
+      public static const PVE_MINIMAP_FOG_3:String = "pve_minimap_fog_3";
+      
+      public static const PVE_MINIMAP_FOG_4:String = "pve_minimap_fog_4";
+      
+      public static const PVE_MINIMAP_FOG_5:String = "pve_minimap_fog_5";
+      
+      public static const PVE_MINIMAP_FOG_6:String = "pve_minimap_fog_6";
+      
+      public static const PVE_MINIMAP_FOG_7:String = "pve_minimap_fog_7";
+      
       public static const SCENARIO_MARKER_ICON:String = "scenarioMarkerIcon";
       
       public static const CONTROL_POINT_ENTRY_0:String = "ControlPointEntry_0";
@@ -2005,8 +2019,6 @@ package net.wg.data.constants.generated
       
       public static const CHINA_CH61_DZT_159:String = "china-Ch61_DZT_159";
       
-      public static const CHINA_CH61_DZT_159_CFE_A:String = "china-Ch61_DZT_159_CFE_A";
-      
       public static const CHINA_CH62_BZ_75_M:String = "china-Ch62_BZ_75_M";
       
       public static const CHINA_CH63_YONG_BING:String = "china-Ch63_Yong_Bing";
@@ -2063,8 +2075,6 @@ package net.wg.data.constants.generated
       
       public static const CZECH_CZ21_VZ_60_S_DRAVEC:String = "czech-Cz21_Vz_60S_Dravec";
       
-      public static const CZECH_CZ22_SKODA_T_15_A:String = "czech-Cz22_Skoda_T_15A";
-      
       public static const CZECH_CZ23_SKODA_T_17:String = "czech-Cz23_Skoda_T_17";
       
       public static const CZECH_CZ24_VZ_64_BLESK:String = "czech-Cz24_Vz_64_Blesk";
@@ -2082,8 +2092,6 @@ package net.wg.data.constants.generated
       public static const CZECH_CZ34_VZ_71_TESAK:String = "czech-Cz34_Vz_71_Tesak";
       
       public static const CZECH_CZ35_T56_G:String = "czech-Cz35_T56_G";
-      
-      public static const CZECH_CZ36_JEZEVEC:String = "czech-Cz36_Jezevec";
       
       public static const CZECH_CZ37_SDT_58_VLKODAV:String = "czech-Cz37_SDT_58_Vlkodav";
       
@@ -2176,8 +2184,6 @@ package net.wg.data.constants.generated
       public static const FRANCE_F135_AS_XX_40_T:String = "france-F135_AS_XX_40_t";
       
       public static const FRANCE_F136_AMX_67_IMBATTABLE:String = "france-F136_AMX_67_Imbattable";
-      
-      public static const FRANCE_F138_RENAULT_R35_FCM_36:String = "france-F138_Renault_R35_FCM_36";
       
       public static const FRANCE_F13_AMX38:String = "france-F13_AMX38";
       
@@ -2543,8 +2549,6 @@ package net.wg.data.constants.generated
       
       public static const GERMANY_G174_KPZ3_GST_TURM:String = "germany-G174_Kpz3_GST_Turm";
       
-      public static const GERMANY_G175_RHEINMETALL_BEGLEITWAGEN:String = "germany-G175_Rheinmetall_Begleitwagen";
-      
       public static const GERMANY_G176_JAGDPANZER_E90:String = "germany-G176_Jagdpanzer_E90";
       
       public static const GERMANY_G177_E65_ZWILLING:String = "germany-G177_E65_Zwilling";
@@ -2833,8 +2837,6 @@ package net.wg.data.constants.generated
       
       public static const ITALY_IT37_SERPENTE:String = "italy-It37_Serpente";
       
-      public static const ITALY_IT39_COCCODRILLO:String = "italy-It39_Coccodrillo";
-      
       public static const JAPAN_J01_NC27:String = "japan-J01_NC27";
       
       public static const JAPAN_J02_TE_KE:String = "japan-J02_Te_Ke";
@@ -2929,19 +2931,13 @@ package net.wg.data.constants.generated
       
       public static const JAPAN_J42_CHI_SE:String = "japan-J42_Chi_Se";
       
-      public static const JAPAN_J42_CHI_SE_CFE_A:String = "japan-J42_Chi_Se_CFE_A";
-      
       public static const JAPAN_J43_TYPE_4_JU_TO:String = "japan-J43_Type_4_Ju-To";
       
       public static const JAPAN_J44_TYPE_3_JU_NU:String = "japan-J44_Type_3_Ju_Nu";
       
       public static const JAPAN_J45_MITSU_108:String = "japan-J45_Mitsu_108";
       
-      public static const JAPAN_J48_SARYUDA:String = "japan-J48_Saryuda";
-      
       public static const JAPAN_J50_TYPE_1_HO_NI_II:String = "japan-J50_Type_1_Ho_Ni_II";
-      
-      public static const JAPAN_J51_ASHIGARU:String = "japan-J51_Ashigaru";
       
       public static const NO_IMAGE:String = "noImage";
       
@@ -3107,8 +3103,6 @@ package net.wg.data.constants.generated
       
       public static const SWEDEN_S36_STRV_107_12:String = "sweden-S36_Strv_107_12";
       
-      public static const SWEDEN_S39_STRV_M31:String = "sweden-S39_Strv_m31";
-      
       public static const UK_GB01_MEDIUM_MARK_I:String = "uk-GB01_Medium_Mark_I";
       
       public static const UK_GB03_CRUISER_MK_I:String = "uk-GB03_Cruiser_Mk_I";
@@ -3201,15 +3195,11 @@ package net.wg.data.constants.generated
       
       public static const UK_GB131_CRUSHER:String = "uk-GB131_Crusher";
       
-      public static const UK_GB132_TAURUS_CAT:String = "uk-gb132_taurus_cat";
-      
       public static const UK_GB133_CHARIOTEER_MK_VII:String = "uk-GB133_Charioteer_MkVII";
       
       public static const UK_GB134_GRYPHON:String = "uk-GB134_Gryphon";
       
       public static const UK_GB136_CHURCHILL_BPXIV:String = "uk-GB136_Churchill_BPXIV";
-      
-      public static const UK_GB137_CROMWELL_APPLIQUE:String = "uk-GB137_Cromwell_Applique";
       
       public static const UK_GB139_FV226_CONTRADICTIOUS:String = "uk-GB139_FV226_Contradictious";
       
@@ -3240,10 +3230,6 @@ package net.wg.data.constants.generated
       public static const UK_GB150_CHURCHILL_VII_A:String = "uk-GB150_Churchill_VII_A";
       
       public static const UK_GB152_AT_FV230_BREAKER:String = "uk-GB152_AT_FV230_Breaker";
-      
-      public static const UK_GB156_BLACK_PRINCE_II:String = "uk-GB156_Black_Prince_II";
-      
-      public static const UK_GB157_FV214T:String = "uk-GB157_FV214t";
       
       public static const UK_GB15_STUART_I:String = "uk-GB15_Stuart_I";
       
@@ -3535,8 +3521,6 @@ package net.wg.data.constants.generated
       
       public static const USA_A144_M_VI_Y:String = "usa-A144_M_VI_Y";
       
-      public static const USA_A144_M_VI_Y_CFE_R:String = "usa-A144_M_VI_Y_CFE_R";
-      
       public static const USA_A145_TS_54:String = "usa-A145_TS_54";
       
       public static const USA_A146_TL_7_120:String = "usa-A146_TL_7_120";
@@ -3601,8 +3585,6 @@ package net.wg.data.constants.generated
       
       public static const USA_A176_M103_110_CFE_R:String = "usa-A176_M103_110_CFE_R";
       
-      public static const USA_A178_SPHT:String = "usa-A178_SPHT";
-      
       public static const USA_A179_BLACK_ROCK:String = "usa-A179_Black_Rock";
       
       public static const USA_A17_M37:String = "usa-A17_M37";
@@ -3612,8 +3594,6 @@ package net.wg.data.constants.generated
       public static const USA_A183_XM69_HACKER:String = "usa-A183_XM69_Hacker";
       
       public static const USA_A18_M41:String = "usa-A18_M41";
-      
-      public static const USA_A192_M4_A4_FIREFLY_CFE_A:String = "usa-A192_M4A4_Firefly_CFE_A";
       
       public static const USA_A19_T2_LT:String = "usa-A19_T2_lt";
       
@@ -3941,8 +3921,6 @@ package net.wg.data.constants.generated
       
       public static const USSR_R172_OBJECT_752:String = "ussr-R172_Object_752";
       
-      public static const USSR_R172_OBJECT_752_CFE_T:String = "ussr-R172_Object_752_CFE_T";
-      
       public static const USSR_R173_K_91_2:String = "ussr-R173_K_91_2";
       
       public static const USSR_R174_BT_5:String = "ussr-R174_BT-5";
@@ -4018,8 +3996,6 @@ package net.wg.data.constants.generated
       public static const USSR_R20_T_44_IGR:String = "ussr-R20_T-44_IGR";
       
       public static const USSR_R217_OBJECT_KUST:String = "ussr-R217_Object_Kust";
-      
-      public static const USSR_R218_T_115:String = "ussr-R218_T_115";
       
       public static const USSR_R219_OBJECT_265_T:String = "ussr-R219_Object_265T";
       
@@ -4443,21 +4419,7 @@ package net.wg.data.constants.generated
       
       public static const BADGE_216:String = "badge_216";
       
-      public static const BADGE_217:String = "badge_217";
-      
-      public static const BADGE_218:String = "badge_218";
-      
-      public static const BADGE_219:String = "badge_219";
-      
       public static const BADGE_22:String = "badge_22";
-      
-      public static const BADGE_220:String = "badge_220";
-      
-      public static const BADGE_221:String = "badge_221";
-      
-      public static const BADGE_222:String = "badge_222";
-      
-      public static const BADGE_223:String = "badge_223";
       
       public static const BADGE_23:String = "badge_23";
       
@@ -4652,8 +4614,6 @@ package net.wg.data.constants.generated
       public static const STRIP_211:String = "strip_211";
       
       public static const STRIP_216:String = "strip_216";
-      
-      public static const STRIP_223:String = "strip_223";
       
       public static const STRIP_56:String = "strip_56";
       
@@ -5283,20 +5243,6 @@ package net.wg.data.constants.generated
       
       public static const USSR_R77_KV2_MOSQUITO_LS_BOT:String = "ussr-R77_KV2_Mosquito_LS_BOT";
       
-      public static const SM_MINIMAP_FOG_1:String = "sm_minimap_fog_1";
-      
-      public static const SM_MINIMAP_FOG_2:String = "sm_minimap_fog_2";
-      
-      public static const SM_MINIMAP_FOG_3:String = "sm_minimap_fog_3";
-      
-      public static const SM_MINIMAP_FOG_4:String = "sm_minimap_fog_4";
-      
-      public static const SM_MINIMAP_FOG_5:String = "sm_minimap_fog_5";
-      
-      public static const SM_MINIMAP_FOG_6:String = "sm_minimap_fog_6";
-      
-      public static const SM_MINIMAP_FOG_7:String = "sm_minimap_fog_7";
-      
       public static const BUNKER_BLIND:String = "BunkerBlind";
       
       public static const BUNKER_BLIND_DEAD:String = "BunkerBlindDead";
@@ -5331,8 +5277,6 @@ package net.wg.data.constants.generated
       
       public static const PRESTIGE_MARK_ALL_ENUM:Array = [PRESTIGE_MARK_10_1,PRESTIGE_MARK_10_2,PRESTIGE_MARK_10_3,PRESTIGE_MARK_11_1,PRESTIGE_MARK_11_2,PRESTIGE_MARK_11_3,PRESTIGE_MARK_12_1,PRESTIGE_MARK_12_2,PRESTIGE_MARK_12_3,PRESTIGE_MARK_13_1,PRESTIGE_MARK_13_2,PRESTIGE_MARK_13_3,PRESTIGE_MARK_14_1,PRESTIGE_MARK_14_2,PRESTIGE_MARK_14_3,PRESTIGE_MARK_15_1,PRESTIGE_MARK_15_2,PRESTIGE_MARK_15_3,PRESTIGE_MARK_16_1,PRESTIGE_MARK_16_2,PRESTIGE_MARK_16_3,PRESTIGE_MARK_17_1,PRESTIGE_MARK_17_2,PRESTIGE_MARK_17_3,PRESTIGE_MARK_18_1,PRESTIGE_MARK_18_2,PRESTIGE_MARK_18_3,PRESTIGE_MARK_19_1,PRESTIGE_MARK_19_2,PRESTIGE_MARK_19_3,PRESTIGE_MARK_1_1,PRESTIGE_MARK_1_2,PRESTIGE_MARK_1_3,PRESTIGE_MARK_20_1,PRESTIGE_MARK_20_2,PRESTIGE_MARK_20_3,PRESTIGE_MARK_21_1,PRESTIGE_MARK_21_2,PRESTIGE_MARK_21_3,PRESTIGE_MARK_2_1,PRESTIGE_MARK_2_2,PRESTIGE_MARK_2_3,PRESTIGE_MARK_3_1,PRESTIGE_MARK_3_2,PRESTIGE_MARK_3_3,PRESTIGE_MARK_4_1,PRESTIGE_MARK_4_2,PRESTIGE_MARK_4_3,PRESTIGE_MARK_5_1,PRESTIGE_MARK_5_2,PRESTIGE_MARK_5_3
       ,PRESTIGE_MARK_6_1,PRESTIGE_MARK_6_2,PRESTIGE_MARK_6_3,PRESTIGE_MARK_7_1,PRESTIGE_MARK_7_2,PRESTIGE_MARK_7_3,PRESTIGE_MARK_8_1,PRESTIGE_MARK_8_2,PRESTIGE_MARK_8_3,PRESTIGE_MARK_9_1,PRESTIGE_MARK_9_2,PRESTIGE_MARK_9_3];
-      
-      public static const DAMAGE_LOG_ALL_16X16_BLIND_ENUM:Array = [DAMAGE_LOG_AIRSTRIKE_ENEMY_16X16_BLIND,DAMAGE_LOG_AIRSTRIKE_EQ_ENEMY_16X16_BLIND,DAMAGE_LOG_ARTILLERY_ENEMY_16X16_BLIND,DAMAGE_LOG_ARTILLERY_EQ_ENEMY_16X16_BLIND,DAMAGE_LOG_BY_MINE_FIELD_16X16_BLIND,DAMAGE_LOG_CRITICAL_ENEMY_16X16_BLIND,DAMAGE_LOG_DAMAGE_ENEMY_16X16_BLIND,DAMAGE_LOG_FIRE_ENEMY_16X16_BLIND,DAMAGE_LOG_RAM_ENEMY_16X16_BLIND];
       
       public function BATTLEATLAS()
       {
@@ -5481,18 +5425,6 @@ package net.wg.data.constants.generated
             return null;
          }
          return _loc3_;
-      }
-      
-      public static function getDamageLogIconBlind(param1:String) : String
-      {
-         var _loc2_:* = null;
-         _loc2_ = "damageLog_" + param1 + "_16x16Blind";
-         if(DAMAGE_LOG_ALL_16X16_BLIND_ENUM.indexOf(_loc2_) == -1)
-         {
-            DebugUtils.LOG_WARNING("[getDamageLogIconBlind]:atlas key \"" + _loc2_ + "\" was not found");
-            return null;
-         }
-         return _loc2_;
       }
    }
 }

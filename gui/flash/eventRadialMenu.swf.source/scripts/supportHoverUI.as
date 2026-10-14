@@ -2,7 +2,7 @@ package
 {
    import flash.display.Sprite;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol91")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol86")]
    public dynamic class supportHoverUI extends Sprite
    {
       

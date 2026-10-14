@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 import typing
+from future.utils import viewvalues
 import BigWorld
 import CGF
 import Event
@@ -77,7 +79,7 @@ class Comp7EquipmentController(equipment_ctrl.EquipmentsController):
         from VisualScriptEquipment import VisualScriptEquipment
         vehicle = avatar_getter.getPlayerVehicle()
         if vehicle is not None:
-            for dynamicComponent in vehicle.dynamicComponents.itervalues():
+            for dynamicComponent in viewvalues(vehicle.dynamicComponents):
                 if isinstance(dynamicComponent, VisualScriptEquipment):
                     dynamicComponent.update()
 

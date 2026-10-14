@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import typing
 import ResMgr
 import section2dict

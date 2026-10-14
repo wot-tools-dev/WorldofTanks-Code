@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import typing
 from random import shuffle
@@ -84,7 +85,7 @@ def getStylePreviewVehicle(style, defaultVehicle=None, itemsCache=None, comp7Con
 
         styleCriteria = REQ_CRITERIA.CUSTOM(style.mayInstall)
         invVehicles = itemsCache.items.getVehicles(getComp7Criteria() | styleCriteria).values()
-        vehicles = sorted([ v for v in invVehicles ], key=lambda v: v.level, reverse=True)
+        vehicles = sorted(invVehicles, key=lambda v: v.level, reverse=True)
         if vehicles:
             return first(vehicles).intCD
         if defaultVehicle is not None:

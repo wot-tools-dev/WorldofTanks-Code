@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.epicRandom.battleloading.renderers.TipEpicRandomPlayerItemRenderer;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol18")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol23")]
    public dynamic class epicRandomLoadingTipRendererRightUI extends TipEpicRandomPlayerItemRenderer
    {
       

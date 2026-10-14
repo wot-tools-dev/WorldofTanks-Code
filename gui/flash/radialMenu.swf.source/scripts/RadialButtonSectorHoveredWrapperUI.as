@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.views.radialMenu.components.SectorHoveredWrapper;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol315")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol311")]
    public dynamic class RadialButtonSectorHoveredWrapperUI extends SectorHoveredWrapper
    {
       

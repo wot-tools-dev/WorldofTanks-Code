@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import BigWorld
 import Keys
 from constants import HAS_DEV_RESOURCES, IS_DEVELOPMENT

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import weakref
 from helpers import dependency

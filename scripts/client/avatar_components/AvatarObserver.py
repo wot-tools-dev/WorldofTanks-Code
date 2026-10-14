@@ -1,5 +1,6 @@
-from collections import defaultdict
+from __future__ import absolute_import
 import logging
+from collections import defaultdict
 import BigWorld
 import Math
 import BattleReplay

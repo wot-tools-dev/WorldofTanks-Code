@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 from functools import partial, wraps
+from past.builtins import intern
 from time import sleep, time
 import BigWorld
 from constants import IS_DEVELOPMENT

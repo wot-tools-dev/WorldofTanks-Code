@@ -2,7 +2,7 @@ package
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol245")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol241")]
    public dynamic class attack extends MovieClip
    {
       

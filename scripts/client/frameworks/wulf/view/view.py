@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import typing
 import Event
@@ -40,6 +41,14 @@ class ViewSettings(patched_typing.Generic[TViewModel]):
     @layoutID.setter
     def layoutID(self, layoutID):
         self.__proxy.layoutID = layoutID
+
+    @property
+    def sharedLayoutID(self):
+        return self.__proxy.sharedLayoutID
+
+    @sharedLayoutID.setter
+    def sharedLayoutID(self, slId):
+        self.__proxy.sharedLayoutID = slId
 
     @property
     def flags(self):
@@ -100,6 +109,10 @@ class View(PyObjectEntity, patched_typing.Generic[TViewModel]):
     @property
     def layoutID(self):
         return self.proxy.layoutID if self.proxy is not None else 0
+
+    @property
+    def sharedLayoutID(self):
+        return self.proxy.sharedLayoutID if self.proxy is not None else 0
 
     @property
     def uniqueID(self):

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import CGF
 import GenericComponents
 from cgf_components.client_worlds_helpers import clientWorldsPredicate, ClientWorld

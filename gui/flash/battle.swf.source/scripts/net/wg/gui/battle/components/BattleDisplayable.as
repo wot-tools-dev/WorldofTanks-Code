@@ -6,11 +6,11 @@ package net.wg.gui.battle.components
    public class BattleDisplayable extends BaseBattleDAAPIComponent implements IDisplayableComponent
    {
       
-      protected var _isCompVisible:Boolean = true;
-      
       public var initedWidth:Number;
       
       public var initedHeight:Number;
+      
+      protected var _isCompVisible:Boolean = true;
       
       public function BattleDisplayable()
       {
@@ -25,6 +25,11 @@ package net.wg.gui.battle.components
          this._isCompVisible = visible;
       }
       
+      public function isCompVisible() : Boolean
+      {
+         return visible;
+      }
+      
       public function setCompVisible(param1:Boolean) : void
       {
          if(this._isCompVisible != param1)
@@ -37,11 +42,6 @@ package net.wg.gui.battle.components
       protected function updateVisibility() : void
       {
          visible = this._isCompVisible;
-      }
-      
-      public function isCompVisible() : Boolean
-      {
-         return visible;
       }
    }
 }

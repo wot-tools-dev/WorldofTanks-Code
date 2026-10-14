@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import BigWorld
 import Math
 from constants import VEHICLE_SIEGE_STATE

@@ -1,0 +1,1 @@
+import{r}from"./rolldown-runtime.js";import{Cs as s,Na as t,it as a,nt as o}from"./lib.js";s();var i=r(t());function m(r){return(0,i.jsx)(o,{theme:a,...r})}export{m as t};

@@ -1,5 +1,8 @@
+from __future__ import absolute_import, division
 import logging
+from builtins import range
 from collections import namedtuple
+from future.utils import viewitems, viewvalues
 import BigWorld
 import Math
 import ResMgr
@@ -57,10 +60,10 @@ class LocationPointManager(CallbackDelayer):
 
     def __init__(self):
         super(LocationPointManager, self).__init__()
-        self.__markedAreas = dict()
+        self.__markedAreas = {}
         self.__activeLocationMarkerID = None
         self.__resources = {}
-        self.__visualisationData = dict(((k, self.__getAreaParamsConfig(v)) for k, v in _AREA_VISUAL_SECTION.iteritems()))
+        self.__visualisationData = dict(((k, self.__getAreaParamsConfig(v)) for k, v in viewitems(_AREA_VISUAL_SECTION)))
         return
 
     def activate(self):
@@ -75,13 +78,13 @@ class LocationPointManager(CallbackDelayer):
         if ctrl:
             ctrl.onReplyFeedbackReceived -= self.__onReplyFeedbackReceived
             ctrl.onRemoveCommandReceived -= self.__onRemoveCommandReceived
-        removeIDList = self.__markedAreas.keys()
+        removeIDList = list(self.__markedAreas)
         for targetID in removeIDList:
             self.__removeMarkedArea(targetID)
 
     def loadPrerequisites(self):
         prereqs = []
-        for visualData in self.__visualisationData.iteritems():
+        for visualData in viewitems(self.__visualisationData):
             if 'visual' in visualData:
                 prereqs.append(visualData['visual'])
 
@@ -104,7 +107,7 @@ class LocationPointManager(CallbackDelayer):
                 params = self.__visualisationData[commandName]
                 isServerCommand = creatorID == self.sessionProvider.arenaVisitor.getArenaUniqueID()
                 if isServerCommand and commandName == BATTLE_CHAT_COMMAND_NAMES.SHOOTING_POINT and markerText:
-                    params = dict(((k, v if k != 'radius' else float(markerText)) for k, v in params.iteritems()))
+                    params = dict(((k, v if k != 'radius' else float(markerText)) for k, v in viewitems(params)))
                     markerText = ''
                 self.__addVisualisationArea(targetID, position, params, not isServerCommand)
             if isTargetForPlayer:
@@ -117,13 +120,13 @@ class LocationPointManager(CallbackDelayer):
         return self.__markedAreas.get(targetID, None)
 
     def setGUIVisible(self, visible):
-        for _, locPointData in self.__markedAreas.iteritems():
+        for locPointData in viewvalues(self.__markedAreas):
             for area in locPointData.areas:
                 area.setGUIVisible(visible)
 
     def getRepliablePoints(self, currPlayerID):
         result = []
-        for point in self.__markedAreas.itervalues():
+        for point in viewvalues(self.__markedAreas):
             commandName = _ACTIONS.battleChatCommandFromActionID(point.commandID).name
             if point.creatorID == currPlayerID and commandName == BATTLE_CHAT_COMMAND_NAMES.ATTENTION_TO_POSITION:
                 continue
@@ -132,7 +135,7 @@ class LocationPointManager(CallbackDelayer):
         return result
 
     def __onPrereqsLoaded(self, resourceRefs):
-        for chatCmd, params in self.__visualisationData.iteritems():
+        for chatCmd, params in viewitems(self.__visualisationData):
             if params['visual'] not in resourceRefs.failedIDs:
                 self.__resources[chatCmd] = resourceRefs
             _logger.warning('Resource is not found: %s', self.__resources['visual'])
@@ -187,7 +190,7 @@ class LocationPointManager(CallbackDelayer):
 
     def __addVisualisationArea(self, targetID, position, visualisationParams, showArea=True):
         areas = []
-        for i in xrange(0, visualisationParams['areasNum']):
+        for i in range(0, visualisationParams['areasNum']):
             area = self.__createArea(position, visualisationParams, areaIndex=i)
             if area is not None:
                 area.setGUIVisible(True)

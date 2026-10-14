@@ -1,6 +1,7 @@
 from collections import namedtuple
 from copy import deepcopy
 from itertools import izip_longest
+from future.utils import listitems
 from gui.impl import backport
 from gui.impl.gen import R
 from gui.impl.gen.view_models.views.lobby.lootbox_system.reward_row_model import RewardRowModel
@@ -56,7 +57,7 @@ def getItemsFilter(conditions):
 
     def itemsFilter(items):
         filtered = {}
-        for itemCD, count in items.items():
+        for itemCD, count in listitems(items):
             itemTypeID, _, _ = parseIntCompactDescr(itemCD)
             if any((condition(itemTypeID, itemCD) for condition in conditions)):
                 filtered[itemCD] = count
@@ -71,7 +72,7 @@ def getGoodiesFilter(conditions):
 
     def goodiesFilter(goodies):
         filtered = {}
-        for goodieID, info in goodies.items():
+        for goodieID, info in listitems(goodies):
             if any((condition(int(goodieID)) for condition in conditions)):
                 filtered[goodieID] = info
                 del goodies[goodieID]
@@ -83,7 +84,7 @@ def getGoodiesFilter(conditions):
 
 def getTankmenFilter(tokens):
     filtered = {}
-    for tID, tValue in tokens.items():
+    for tID, tValue in listitems(tokens):
         if tID.startswith(RECRUIT_TMAN_TOKEN_PREFIX):
             filtered[tID] = tValue
             del tokens[tID]

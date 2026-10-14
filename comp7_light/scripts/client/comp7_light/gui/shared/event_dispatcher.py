@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 def showComp7LightNoVehiclesScreen():
     from comp7_light.gui.impl.lobby.hangar.states import Comp7LightNoVehiclesState
     Comp7LightNoVehiclesState.goTo()

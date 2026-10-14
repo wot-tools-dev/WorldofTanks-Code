@@ -1,0 +1,192 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "halloween/content/CGFPrefabs/SoulCollector/soul_collector_energy_glow.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							},
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "01",
+								"lodScale": 1.0,
+								"path": "particles/eff_sequence/halloween/volot/volot_vortex_rotation.seq",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Environment/env_null_model/null_model.model"
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": 0.0,
+							"y": 4.0,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "EnergyVortex",
+				"uuid": "91e3ba83-0c6b-4a5f-bbfd-b02a19680457"
+			},
+			{
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"modelName": "content/Halloween/Environment/hd_env_UNI_093_Harvester/normal/lod0/hd_env_UNI_093_Harvester_105.model"
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": 0.0,
+							"y": 4.0,
+							"z": 0.0
+						}
+					}
+				},
+				"name": "Harvester",
+				"uuid": "c268298f-5b21-4255-9c2d-9b156e2e70f5"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": false,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "halloween/content/CGFPrefabs/SoulCollector/soul_collector_drainer.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Drainer",
+				"uuid": "7ada79c4-3601-4e56-92f9-2ba7ae62d5f9"
+			},
+			{
+				"components": {
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"position": {
+							"x": 0.0,
+							"y": 4.199999809265137,
+							"z": 0.0
+						}
+					},
+					"script::SoulCollectorProgressComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"progressSectors": "14",
+						"progressSequence": "halloween/content/CGFPrefabs/SoulCollector/soul_collector_progress_section.ssm",
+						"sectorOffsetY": 0.41999998688697815
+					}
+				},
+				"name": "Progress",
+				"uuid": "7a0d9df4-be5d-40fb-b404-9e56a2592d54"
+			},
+			{
+				"components": {
+					"BW::Animator": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"layers": [
+							{
+								"autoStart": true,
+								"clip": "<Default Clip>",
+								"graphicsPreset": "TYPE_NULL_SHADING",
+								"layerName": "0",
+								"lodScale": 1.0,
+								"path": "halloween/content/CGFPrefabs/SoulCollector/soul_collector_aura.ssm",
+								"properties": {
+									"delay": "0",
+									"loop": "1",
+									"loopCount": "-1",
+									"speed": "1"
+								},
+								"weight": 1.0
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Aura",
+				"uuid": "234554e4-dffb-4682-9b4c-347c4b0a3794"
+			}
+		],
+		"components": {
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::SoulCollectorComponent": {
+				"auraAnimator": "234554e4-dffb-4682-9b4c-347c4b0a3794",
+				"disabledDomains": [
+					"Server"
+				],
+				"drainerAnimator": "7ada79c4-3601-4e56-92f9-2ba7ae62d5f9",
+				"energyGlowAnimator": "91e3ba83-0c6b-4a5f-bbfd-b02a19680457",
+				"loadProgressGO": "7a0d9df4-be5d-40fb-b404-9e56a2592d54"
+			}
+		},
+		"name": "root",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

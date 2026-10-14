@@ -13,8 +13,6 @@ package net.wg.gui.lobby.settings.vo
       
       public static const DEFAULT_LBL:String = "default";
       
-      private static const OPTION_DATA_KEY:String = "data";
-      
       public var defaultValue:Object = null;
       
       public var options:Array = null;
@@ -37,7 +35,7 @@ package net.wg.gui.lobby.settings.vo
       
       public var changedVal:Object = null;
       
-      private var _isDataAsSelectedIndex:Boolean = false;
+      public var isDataAsSelectedIndex:Boolean = false;
       
       private var _current:Object = null;
       
@@ -56,14 +54,14 @@ package net.wg.gui.lobby.settings.vo
          this.advanced = param8;
          this.prevVal = param9;
          this.changedVal = param1;
-         this._isDataAsSelectedIndex = param10;
+         this.isDataAsSelectedIndex = param10;
          this.extraData = param12;
          this.defaultValue = param11;
       }
       
       public function clone() : SettingsControlProp
       {
-         return new SettingsControlProp(this.current,this.options,this.type,this.hasLabel,this.hasValue,this.isDependOn,this.readOnly,this.advanced,this.prevVal,this._isDataAsSelectedIndex,this.defaultValue,this.extraData);
+         return new SettingsControlProp(this.current,this.options,this.type,this.hasLabel,this.hasValue,this.isDependOn,this.readOnly,this.advanced,this.prevVal,this.isDataAsSelectedIndex,this.defaultValue,this.extraData);
       }
       
       final public function dispose() : void
@@ -85,16 +83,6 @@ package net.wg.gui.lobby.settings.vo
          this._current = null;
       }
       
-      public function isDisposed() : Boolean
-      {
-         return this._disposed;
-      }
-      
-      public function get isDataAsSelectedIndex() : Boolean
-      {
-         return this._isDataAsSelectedIndex && this.options != null && this.options.length > 0 && Boolean(this.options[0].hasOwnProperty(OPTION_DATA_KEY));
-      }
-      
       public function get current() : Object
       {
          return this._current;
@@ -108,6 +96,11 @@ package net.wg.gui.lobby.settings.vo
             return;
          }
          this._current = param1;
+      }
+      
+      public function isDisposed() : Boolean
+      {
+         return this._disposed;
       }
    }
 }

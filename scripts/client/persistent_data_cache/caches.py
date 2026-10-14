@@ -1,5 +1,6 @@
-from functools import partial
+from __future__ import absolute_import
 import typing
+from functools import partial
 import BigWorld
 import wg_async
 from helpers.threads import ThreadPool, Job

@@ -6,13 +6,17 @@ package net.wg.app.impl
    public class App extends RootApp
    {
       
-      private static const CLASS_MANAGER_META:ClassManagerMeta;
+      private static const CLASS_MANAGER_META:Class = ClassManagerMeta;
       
       private static const LIBS_LIST:Vector.<String> = new Vector.<String>(0);
       
       public function App()
       {
          super(null,LIBS_LIST,null);
+      }
+      
+      override protected function configAppInstance() : void
+      {
       }
    }
 }

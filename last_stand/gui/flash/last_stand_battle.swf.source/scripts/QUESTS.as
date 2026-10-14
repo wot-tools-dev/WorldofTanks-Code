@@ -3401,8 +3401,6 @@ package
       
       public static const DAILYQUESTS_POSTBATTLE_GENERICTITLE_EPIC:String = "#quests:dailyQuests/postBattle/genericTitle_epic";
       
-      public static const DAILYQUESTS_POSTBATTLE_EPIC_DESCRIPTION:String = "#quests:dailyQuests/postBattle/epic/description";
-      
       public static const DAILYQUESTS_BONUSQUEST_BONUSMISSIONTITLE:String = "#quests:dailyQuests/bonusQuest/bonusMissionTitle";
       
       public static const DAILYQUESTS_BONUSQUEST_COUNTDOWN_HRS:String = "#quests:dailyQuests/bonusQuest/countDown_hrs";
@@ -3438,8 +3436,6 @@ package
       public static const DAILYQUESTS_POSTBATTLE_GENERICAMPERSAND:String = "#quests:dailyQuests/postBattle/genericAmpersand";
       
       public static const DAILYQUESTS_POSTBATTLE_CONDITIONTYPEAND:String = "#quests:dailyQuests/postBattle/conditionTypeAnd";
-      
-      public static const DAILYQUESTS_POSTBATTLE_CONDITIONTYPEOR:String = "#quests:dailyQuests/postBattle/conditionTypeOr";
       
       public static const DAILYQUESTS_TAKEREWARDSBUTTON_TEXT:String = "#quests:dailyQuests/takeRewardsButton/text";
       

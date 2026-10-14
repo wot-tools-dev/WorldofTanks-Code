@@ -44,7 +44,7 @@ package net.wg.gui.components.controls.VO
       
       private var _rentPackage:int = -1;
       
-      private var _ico:String = "credits";
+      private var _ico:String = IconsTypes.CREDITS;
       
       private var _useSign:Boolean = false;
       

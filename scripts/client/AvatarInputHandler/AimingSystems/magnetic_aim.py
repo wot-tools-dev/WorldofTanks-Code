@@ -1,6 +1,7 @@
+from __future__ import absolute_import
+import math
 from collections import namedtuple
 from itertools import chain
-import math
 import BigWorld
 from Math import Vector3, Matrix
 import math_utils
@@ -34,7 +35,7 @@ def magneticAimFindTarget():
         return
     else:
         minAngleVehicle = None
-        for vehicleID in playerAvatar.arena.vehicles.iterkeys():
+        for vehicleID in playerAvatar.arena.vehicles:
             vehicle = BigWorld.entity(vehicleID)
             if vehicle is None:
                 continue

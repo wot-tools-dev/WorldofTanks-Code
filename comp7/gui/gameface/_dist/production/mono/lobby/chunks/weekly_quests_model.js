@@ -1,1 +1,1 @@
-const a=5;var e=(a=>(a[a.Default=0]="Default",a[a.Active=1]="Active",a[a.Claimed=2]="Claimed",a))(e||{});export{e as C,a as Q};
+var e=function(e){return e[e.Default=0]="Default",e[e.Active=1]="Active",e[e.Claimed=2]="Claimed",e}({});export{e as t};

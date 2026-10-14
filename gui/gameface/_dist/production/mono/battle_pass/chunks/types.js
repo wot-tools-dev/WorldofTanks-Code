@@ -1,1 +1,1 @@
-var a=(a=>(a.RANDOMS="randoms",a.BATTLE_ROYALE="battle_royale",a.RANKED="ranked",a.FRONTLINE="epic",a.COMP7="comp7",a.COMP7_LIGHT="comp7_light",a))(a||{});export{a as B};
+var r=function(r){return r.RANDOMS="randoms",r.BATTLE_ROYALE="battle_royale",r.RANKED="ranked",r.FRONTLINE="epic",r.COMP7="comp7",r.COMP7_LIGHT="comp7_light",r}({});export{r as t};

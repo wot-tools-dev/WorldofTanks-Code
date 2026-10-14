@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 import threading
-import helpers
 import BigWorld
-import feedparser
+import helpers
+from helpers import feedparser
 from debug_utils import LOG_WARNING, LOG_CURRENT_EXCEPTION
 feedparser.PARSE_MICROFORMATS = 0
 feedparser.SANITIZE_HTML = 0
@@ -43,7 +44,7 @@ class RSSDownloader(object):
 
     def __update(self):
         self.__cbID = BigWorld.callback(self.UPDATE_INTERVAL, self.__update)
-        if self.__thread is None or self.__thread.isAlive():
+        if self.__thread is None or self.__thread.is_alive():
             return
         else:
             if self.__thread.result is not None:

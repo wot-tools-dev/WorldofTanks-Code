@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from functools import partial
 import typing
 from shared_utils import first, findFirst
@@ -121,7 +122,7 @@ class YearlyRewardsPage(PageSubModelPresenter):
         elif contentID == R.views.lobby.tooltips.AdditionalRewardsTooltip():
             fromIndex = int(event.getArgument('fromIndex'))
             index = int(event.getArgument('index'))
-            bonuses = [ bonus for bonus in self.__bonusData[index][fromIndex - 1:] ]
+            bonuses = list(self.__bonusData[index][fromIndex - 1:])
             return AdditionalRewardsTooltip(bonuses)
         else:
             return

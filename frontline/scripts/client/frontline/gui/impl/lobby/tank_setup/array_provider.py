@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import typing
 from WeakMixin import WeakMixin, Tapped
 from epic_constants import CATEGORIES_ORDER

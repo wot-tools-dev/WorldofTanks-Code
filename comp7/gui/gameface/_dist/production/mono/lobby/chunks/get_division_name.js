@@ -1,1 +1,1 @@
-import{D as i}from"./enums.js";import{cE as s}from"./lib.js";const o={[i.A]:"A",[i.B]:"B",[i.C]:"C",[i.D]:"D",[i.E]:"E"},t=i=>String(R.strings.comp7_ext.division.$dyn(o[i])),n=i=>s(R.strings.comp7_ext.division.text(),{division:t(i)});export{n as a,t as g};
+import{et as i}from"./lib.js";import{t as s}from"./enums.js";var t={[s.A]:"A",[s.B]:"B",[s.C]:"C",[s.D]:"D",[s.E]:"E"},o=i=>String(R.strings.comp7_ext.division.$dyn(t[i])),n=s=>i(R.strings.comp7_ext.division.text(),{division:o(s)});export{o as n,n as t};

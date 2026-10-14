@@ -20,6 +20,8 @@ package net.wg.story_mode.infrastructure.base.meta.impl
    import net.wg.story_mode.gui.battle.views.staticMarkers.loot.LootCapture;
    import net.wg.story_mode.gui.battle.views.staticMarkers.loot.LootMarker;
    import net.wg.story_mode.gui.battle.views.subtitles.StoryModeSubtitles;
+   import net.wg.story_mode.infrastructure.base.meta.IDelayedSixthSenseMeta;
+   import net.wg.story_mode.infrastructure.base.meta.IStoryModePenetrationPanelMeta;
    import net.wg.story_mode.infrastructure.base.meta.IStoryModeSubtitlesMeta;
    
    public class ClassManagerMeta
@@ -65,7 +67,23 @@ package net.wg.story_mode.infrastructure.base.meta.impl
       
       public static const NET_WG_STORY_MODE_GUI_BATTLE_VIEWS_SUBTITLES_STORYMODESUBTITLES:Class = StoryModeSubtitles;
       
+      public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_IDELAYEDSIXTHSENSEMETA:Class = IDelayedSixthSenseMeta;
+      
+      public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_ISTORYMODEPENETRATIONPANELMETA:Class = IStoryModePenetrationPanelMeta;
+      
       public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_ISTORYMODESUBTITLESMETA:Class = IStoryModeSubtitlesMeta;
+      
+      public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_IMPL_CLASSMANAGEREXTENSIONBATTLEDAMAGEINDICATORMETA:Class = ClassManagerExtensionBattleDamageIndicatorMeta;
+      
+      public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_IMPL_CLASSMANAGEREXTENSIONBATTLEDIRECTIONINDICATORMETA:Class = ClassManagerExtensionBattleDirectionIndicatorMeta;
+      
+      public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_IMPL_CLASSMANAGEREXTENSIONBATTLEMARKERSMETA:Class = ClassManagerExtensionBattleMarkersMeta;
+      
+      public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_IMPL_CLASSMANAGEREXTENSIONCROSSHAIRSMETA:Class = ClassManagerExtensionCrosshairsMeta;
+      
+      public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_IMPL_DELAYEDSIXTHSENSEMETA:Class = DelayedSixthSenseMeta;
+      
+      public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_IMPL_STORYMODEPENETRATIONPANELMETA:Class = StoryModePenetrationPanelMeta;
       
       public static const NET_WG_STORY_MODE_INFRASTRUCTURE_BASE_META_IMPL_STORYMODESUBTITLESMETA:Class = StoryModeSubtitlesMeta;
       

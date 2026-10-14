@@ -5,7 +5,7 @@ package lesta.unbound2.type_system
       
       public var value:Number = 0;
       
-      public var units:int = 0;
+      public var units:int = UbUnits.NONE;
       
       public function UbNumber()
       {

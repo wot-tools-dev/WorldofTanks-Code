@@ -1,5 +1,7 @@
+from __future__ import absolute_import
 import functools
 import weakref
+from future.utils import viewitems, viewvalues
 import BigWorld
 from battleground.iself_assembler import ISelfAssembler
 from components_base.component_controller import ComponentController
@@ -41,7 +43,7 @@ class CompositeLoaderMixin(object):
 
 def loadComponentSystem(componentSystem, callback, resourceMapping=None, forceForegroundLoad=False):
     componentSystem = weakref.ref(componentSystem)
-    resourceLoadingList = [ loader.resourceLoader for loader in resourceMapping.itervalues() ]
+    resourceLoadingList = [ loader.resourceLoader for loader in viewvalues(resourceMapping) ]
     if forceForegroundLoad:
         loadedRes = BigWorld.loadResourceListFG(resourceLoadingList)
         _processLoadedList(componentSystem, callback, resourceMapping, loadedRes)
@@ -54,7 +56,7 @@ def loadComponentSystem(componentSystem, callback, resourceMapping=None, forceFo
 
 
 def loadResourceMapping(resourceMapping, callback, *args, **kwargs):
-    resourceLoadingList = [ loader.resourceLoader for loader in resourceMapping.itervalues() ]
+    resourceLoadingList = [ loader.resourceLoader for loader in viewvalues(resourceMapping) ]
     BigWorld.loadResourceListBG(resourceLoadingList, stricted_loading.makeCallbackWeak(callback, *args, **kwargs))
 
 
@@ -65,7 +67,7 @@ def _processLoadedList(componentSystemWeak, callback, resourceMapping, resourceL
     elif getattr(componentSystem, 'stopLoading', False):
         return
     else:
-        for componentName, loader in resourceMapping.iteritems():
+        for componentName, loader in viewitems(resourceMapping):
             classMember = getattr(componentSystem.__class__, componentName)
             resourceLoader = loader.resourceLoader
             componentFactory = classMember.allowedType

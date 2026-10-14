@@ -15,8 +15,6 @@ package net.wg.infrastructure.base.meta
       
       function isKoreaS() : Boolean;
       
-      function isAsiaS() : Boolean;
-      
       function isTutorialRunningS(param1:String) : Boolean;
       
       function isRoamingEnabledS() : Boolean;

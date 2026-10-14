@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from future.utils import viewitems
+from future.utils import listvalues, viewitems
 import BigWorld
 import Math
 import TriggersManager
@@ -38,7 +38,7 @@ class TargetMarkersComponent(DynamicScriptComponent, TriggersManager.ITriggerLis
             return
         else:
             vehicleId = args['vehicleId']
-            for marker in self._markers.get(vehicleId, {}).values():
+            for marker in listvalues(self._markers.get(vehicleId, {})):
                 self._deleteMarker(vehicleId, marker)
 
             if triggerType == TriggersManager.TRIGGER_TYPE.VEHICLE_VISUAL_VISIBILITY_CHANGED:

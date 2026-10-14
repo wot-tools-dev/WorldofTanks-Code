@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.random.battleloading.renderers.RandomRendererContainer;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol74")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol79")]
    public dynamic class BattleTipRenderersUI extends RandomRendererContainer
    {
       

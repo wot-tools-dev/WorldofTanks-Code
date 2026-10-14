@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 import typing
+from future.utils import viewvalues
 import nations
 from gui import GUI_NATIONS
 from gui.impl import backport
@@ -155,7 +157,7 @@ def _recruit(recruitInfo):
 
 
 def _iterNationGroups(config, isPremium, groupName):
-    iterGroups = (config.premiumGroups if isPremium else config.normalGroups).itervalues()
+    iterGroups = viewvalues(config.premiumGroups if isPremium else config.normalGroups)
     return (group for group in iterGroups if group.name == groupName)
 
 

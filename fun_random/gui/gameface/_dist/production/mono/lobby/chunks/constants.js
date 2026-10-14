@@ -1,1 +1,1 @@
-const o=9999;export{o as M};
+var a=9999;export{a as t};

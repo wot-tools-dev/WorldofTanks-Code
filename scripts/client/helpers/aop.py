@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import re
 import sys
@@ -37,8 +38,7 @@ def execFunction(wrapped, args, kwargs):
             if cd._avoid:
                 cd._exception = e
                 break
-            else:
-                raise
+            raise
 
         count += 1
 

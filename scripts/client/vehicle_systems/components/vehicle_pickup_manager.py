@@ -1,6 +1,7 @@
+from __future__ import absolute_import
+import math
 import CGF
 import Math
-import math
 from vehicle_systems.components.vehicle_pickup_component import VehiclePickupComponent
 
 class VehiclePickupSystem(CGF.System):

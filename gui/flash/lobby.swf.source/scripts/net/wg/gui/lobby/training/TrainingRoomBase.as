@@ -249,10 +249,9 @@ package net.wg.gui.lobby.training
          }
          registerFlashComponentS(this.minimap,Aliases.LOBBY_MINIMAP);
          this.setTeamsInfo();
-         var _loc1_:Boolean = this._voiceChatMgr.getYY();
-         var _loc2_:Boolean = Boolean(this._voiceChatMgr.isVOIPEnabledS());
-         this.arenaVoipSettings.visible = _loc2_ || _loc1_;
-         this.arenaVOIPLabel.text = _loc2_ || _loc1_ ? MENU.TRAINING_INFO_VOICECHAT : Values.EMPTY_STR;
+         var _loc1_:Boolean = Boolean(this._voiceChatMgr.isVOIPEnabledS());
+         this.arenaVoipSettings.visible = _loc1_;
+         this.arenaVOIPLabel.text = _loc1_ ? MENU.TRAINING_INFO_VOICECHAT : Values.EMPTY_STR;
       }
       
       override protected function setOther(param1:TrainingRoomTeamBaseVO) : void

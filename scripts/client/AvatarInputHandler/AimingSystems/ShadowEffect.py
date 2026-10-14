@@ -1,5 +1,7 @@
+from __future__ import absolute_import
 import GUI
 import math_utils
+from math_common import decimal_round
 
 class ShadowEffect(object):
 
@@ -58,5 +60,5 @@ class ShadowEffect(object):
         self.__shadowDown.position[0] = positionX
 
     def update(self, coefficient):
-        shadowPositionX = round(math_utils.lerp(self.cachedPosition, -self.cachedPosition, coefficient), 1)
+        shadowPositionX = decimal_round(math_utils.lerp(self.cachedPosition, -self.cachedPosition, coefficient), 1)
         self.move(shadowPositionX)

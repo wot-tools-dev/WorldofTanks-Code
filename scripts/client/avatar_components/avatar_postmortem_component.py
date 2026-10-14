@@ -1,5 +1,6 @@
-import BattleReplay
+from __future__ import absolute_import
 import logging
+import BattleReplay
 from AvatarInputHandler.control_modes import PostMortemControlMode
 from account_helpers.settings_core.settings_constants import GAME
 from aih_constants import CTRL_MODE_NAME

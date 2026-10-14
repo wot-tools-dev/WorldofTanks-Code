@@ -1,7 +1,9 @@
+from __future__ import absolute_import
 import json
 import logging
-from datetime import datetime
 import typing
+from datetime import datetime
+from future.utils import viewitems
 import ResMgr
 from PlayerEvents import g_playerEvents
 from frameworks.wulf import ViewStatus, WindowLayer
@@ -204,7 +206,7 @@ class MissionSelectionView(BasePrbView):
         self._isParallaxEnabled = self._storyModeCtrl.settings.parallaxEnabled
         missionId = self._storyModeCtrl.selectedMissionId
         if missionId == MissionId.UNDEFINED:
-            return False
+            return
         missionConfig = self._storyModeCtrl.missions.getMission(missionId)
         self.__readParallaxConfig(missionConfig.missionId, model, self._isParallaxEnabled)
 
@@ -315,7 +317,7 @@ class MissionSelectionView(BasePrbView):
 
     def __updateTaskRewards(self, task, taskModel):
         rewards = []
-        for rewardName, rewardData in task.reward.iteritems():
+        for rewardName, rewardData in viewitems(task.reward):
             if rewardName in self._HIDDEN_REWARDS:
                 continue
             rewards.extend(getNonQuestBonuses(rewardName, rewardData))
@@ -404,8 +406,8 @@ def _toJson(inputData):
 
 
 def _getChunks(count, name, path):
-    allChunks = dict()
-    for i in xrange(count):
+    allChunks = {}
+    for i in range(count):
         chunkPath = '{0}{1}{2}.json'.format(path, name, str(i))
         chunk = _toJson(_readSection(chunkPath))
         if chunk is not None:

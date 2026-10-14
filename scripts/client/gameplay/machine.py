@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import BattleReplay
 from constants import HAS_DEV_RESOURCES

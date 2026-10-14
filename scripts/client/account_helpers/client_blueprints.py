@@ -1,6 +1,8 @@
+from __future__ import absolute_import
 import logging
 import typing
 from functools import partial
+from future.utils import viewitems
 import AccountCommands
 from gui.shared.utils.requesters.blueprints_requester import getFragmentNationID
 from helpers import dependency
@@ -71,7 +73,7 @@ class ClientBlueprints(object):
             proxy = None
         arr = [fragmentTypeCD, position, requestedCount]
         if usedNationalFragments is not None:
-            for k, v in usedNationalFragments.iteritems():
+            for k, v in viewitems(usedNationalFragments):
                 arr.append(k)
                 arr.append(v)
 

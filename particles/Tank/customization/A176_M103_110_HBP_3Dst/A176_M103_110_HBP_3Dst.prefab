@@ -15,7 +15,7 @@
 								"clip": "<Default Clip>",
 								"graphicsPreset": "TYPE_NULL_SHADING",
 								"layerName": "Headlights",
-								"lodScale": 1.0,
+								"lodScale": 1,
 								"path": "particles/Tank/customization/A176_M103_110_HBP_3Dst/Hull_Headlights.seq",
 								"properties": {
 									"delay": "0",
@@ -23,9 +23,13 @@
 									"loopCount": "-1",
 									"speed": "1"
 								},
-								"weight": 1.0
+								"weight": 1
 							}
 						]
+					},
+					"BW::ComponentsVisibilityController": {
+						"visibleInDualGunMode": false,
+						"visibleInMapCaseMode": true
 					},
 					"BW::NodeFollowerComponent": {
 						"modelLink": "00000000-0000-0000-0000-000000000000",
@@ -49,7 +53,7 @@
 								"clip": "<Default Clip>",
 								"graphicsPreset": "TYPE_NULL_SHADING",
 								"layerName": "Torch",
-								"lodScale": 1.0,
+								"lodScale": 1,
 								"path": "particles/Tank/customization/A176_M103_110_HBP_3Dst/Turret_Torch_Default.seq",
 								"properties": {
 									"delay": "0",
@@ -57,7 +61,7 @@
 									"loopCount": "-1",
 									"speed": "1"
 								},
-								"weight": 1.0
+								"weight": 1
 							}
 						]
 					},
@@ -66,17 +70,17 @@
 						"visibleInArcadeMode": "1",
 						"visibleInArtyMode": "1",
 						"visibleInDeathFreeCamMode": "1",
-						"visibleInDualGunMode": "1",
-						"visibleInKillCamMode": "0",
+						"visibleInDualGunMode": false,
+						"visibleInKillCamMode": true,
 						"visibleInLookAtKillerMode": "1",
-						"visibleInMapCaseArcadeEpicMinefieldMode": "0",
+						"visibleInMapCaseArcadeEpicMinefieldMode": true,
 						"visibleInMapCaseArcadeMode": "1",
 						"visibleInMapCaseMode": "1",
 						"visibleInPostmortemMode": "1",
 						"visibleInRespawnDeathMode": "1",
 						"visibleInSniperMode": "0",
 						"visibleInStrategicMode": "1",
-						"visibleInTwinGunMode": "1"
+						"visibleInTwinGunMode": false
 					},
 					"BW::NodeFollowerComponent": {
 						"modelLink": "00000000-0000-0000-0000-000000000000",
@@ -84,9 +88,9 @@
 					},
 					"cgf::TransformComponent": {
 						"position": {
-							"x": 0.015121500007808208,
-							"y": 0.0,
-							"z": 0.010280599817633629
+							"x": 0.015122,
+							"y": 0,
+							"z": 0.010281
 						}
 					}
 				},
@@ -100,24 +104,24 @@
 							"BW::Sound3DComponent": {
 								"AutoStart": true,
 								"Event name": "style_cust_m103_HBP_torch",
-								"Fade time": 0.0,
+								"Fade time": 0,
 								"Fade type": 4,
 								"Object name": "Turret_Torch_Sound3D",
-								"Volume": 1.0,
+								"Volume": 1,
 								"disabledDomains": [
 									"Server"
 								]
 							},
 							"cgf::TransformComponent": {
 								"position": {
-									"x": 1.2717000246047974,
-									"y": 1.30771005153656,
-									"z": -1.594939947128296
+									"x": 1.2717,
+									"y": 1.3077,
+									"z": -1.5949
 								},
 								"scale": {
-									"x": 5.0,
-									"y": 5.0,
-									"z": 5.0
+									"x": 5,
+									"y": 5,
+									"z": 5
 								}
 							}
 						},
@@ -137,7 +141,7 @@
 								"clip": "<Default Clip>",
 								"graphicsPreset": "TYPE_NULL_SHADING",
 								"layerName": "Torch",
-								"lodScale": 1.0,
+								"lodScale": 1,
 								"path": "particles/Tank/customization/A176_M103_110_HBP_3Dst/Turret_Torch_Stop-Move.ssm",
 								"properties": {
 									"delay": "0",
@@ -145,7 +149,7 @@
 									"loopCount": "-1",
 									"speed": "1"
 								},
-								"weight": 1.0
+								"weight": 1
 							}
 						]
 					},
@@ -154,17 +158,17 @@
 						"visibleInArcadeMode": "1",
 						"visibleInArtyMode": "1",
 						"visibleInDeathFreeCamMode": "1",
-						"visibleInDualGunMode": "1",
-						"visibleInKillCamMode": "0",
+						"visibleInDualGunMode": false,
+						"visibleInKillCamMode": true,
 						"visibleInLookAtKillerMode": "1",
-						"visibleInMapCaseArcadeEpicMinefieldMode": "0",
+						"visibleInMapCaseArcadeEpicMinefieldMode": true,
 						"visibleInMapCaseArcadeMode": "1",
 						"visibleInMapCaseMode": "1",
 						"visibleInPostmortemMode": "1",
 						"visibleInRespawnDeathMode": "1",
 						"visibleInSniperMode": "0",
 						"visibleInStrategicMode": "1",
-						"visibleInTwinGunMode": "1"
+						"visibleInTwinGunMode": false
 					},
 					"BW::EngineStateAnimatorTriggerComponent": {
 						"highTrigger": "Move",
@@ -184,9 +188,9 @@
 					},
 					"cgf::TransformComponent": {
 						"position": {
-							"x": 0.036392200738191605,
-							"y": 0.0,
-							"z": 0.010280599817633629
+							"x": 0.036392,
+							"y": 0,
+							"z": 0.010281
 						}
 					}
 				},

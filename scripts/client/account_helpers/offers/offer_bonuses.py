@@ -1,6 +1,7 @@
-from operator import itemgetter
-from helpers.i18n import makeString as _ms
+from __future__ import absolute_import
 import typing
+from future.utils import viewitems, viewvalues
+from operator import itemgetter
 from blueprints.BlueprintTypes import BlueprintTypes
 from blueprints.FragmentTypes import getFragmentType
 from constants import PREMIUM_ENTITLEMENTS, EVENT_TYPE as _ET
@@ -21,6 +22,7 @@ from gui.shared.money import Currency
 from gui.shared.utils.functions import stripHTMLTags
 from gui.shared.utils.requesters.blueprints_requester import getVehicleCDForIntelligence, getVehicleCDForNational
 from helpers import int2roman, dependency
+from helpers.i18n import makeString as _ms
 from skeletons.gui.customization import ICustomizationService
 if typing.TYPE_CHECKING:
     from gui.shared.gui_items.Vehicle import Vehicle
@@ -169,6 +171,8 @@ class VehiclesOfferBonus(OfferBonusMixin, VehiclesBonus):
             if vehItem is self.displayedItem:
                 return vehInfo
 
+        return None
+
     @property
     def displayedBonusData(self):
         bonusData = {}
@@ -184,7 +188,8 @@ class OfferItemsBonusMixin(OfferBonusMixin):
 
     @property
     def displayedItem(self):
-        return self._getItems()[0][0] if self._getItems else None
+        items = self._getItems()
+        return items[0][0] if items else None
 
     def getGiftCount(self):
         giftCount = 0
@@ -374,7 +379,7 @@ class CrewSkinsOfferBonusFactory(CrewSkinsBonusFactory):
 
 def blueprintsOfferBonusFactory(name, value, isCompensation=False, ctx=None):
     blueprintBonuses = []
-    for fragmentCD, fragmentCount in sorted(value.iteritems(), key=itemgetter(0)):
+    for fragmentCD, fragmentCount in sorted(viewitems(value), key=itemgetter(0)):
         fragmentType = getFragmentType(fragmentCD)
         if fragmentType == BlueprintTypes.VEHICLE:
             blueprintBonuses.append(VehicleBlueprintOfferBonus(name, (fragmentCD, fragmentCount), isCompensation, ctx))
@@ -425,7 +430,7 @@ class BoosterOfferBonus(GoodiesOfferBonus):
     @property
     def displayedItem(self):
         goodies = self.getBoosters()
-        for key in goodies.iterkeys():
+        for key in goodies:
             return key
 
         return None
@@ -445,7 +450,7 @@ class DemountKitOfferBonus(GoodiesOfferBonus):
     @property
     def displayedItem(self):
         goodies = self.getDemountKits()
-        for key in goodies.iterkeys():
+        for key in goodies:
             return key
 
         return None
@@ -464,7 +469,7 @@ class TankmenOfferBonus(OfferBonusMixin, TankmenBonus):
 
     def getOfferName(self):
         result = []
-        for group in self.getTankmenGroups().itervalues():
+        for group in viewvalues(self.getTankmenGroups()):
             if group['skills']:
                 key = 'with_skills'
             else:
@@ -475,7 +480,7 @@ class TankmenOfferBonus(OfferBonusMixin, TankmenBonus):
 
     def getOfferDescription(self):
         result = []
-        for group in self.getTankmenGroups().itervalues():
+        for group in viewvalues(self.getTankmenGroups()):
             if group['skills']:
                 key = 'with_skills'
             else:
@@ -521,7 +526,7 @@ class X5BattleTokensOfferBonus(TokensOfferBonus, X5BattleTokensBonus):
 
 def tokensOfferFactory(name, value, isCompensation=False, ctx=None):
     result = []
-    for tID, tValue in value.iteritems():
+    for tID, tValue in viewitems(value):
         if tID.startswith(BATTLE_BONUS_X5_TOKEN):
             result.append(X5BattleTokensOfferBonus({tID: tValue}, isCompensation, ctx))
         if tID.startswith(CREW_BONUS_X3_TOKEN):

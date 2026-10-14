@@ -1,8 +1,10 @@
+from __future__ import absolute_import
 import logging
 import time
 import weakref
 import threading
-from Queue import PriorityQueue, Empty as QueueEmptyError
+from future.moves.queue import PriorityQueue, Empty as QueueEmptyError
+from past.builtins import xrange
 _logger = logging.getLogger(__name__)
 INFINITE_QUEUE_SIZE = 0
 _LOW_PRIORITY = 10

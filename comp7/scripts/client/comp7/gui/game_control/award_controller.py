@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import typing
 import ArenaType
@@ -66,7 +67,10 @@ class Comp7QuestRewardHandler(MultiTypeServiceChannelHandler):
         periodicQuests = []
         isQualification = False
         if not self.__completedQuestIDs:
-            return (ranksQuests, tokensQuests, periodicQuests)
+            return (ranksQuests,
+             tokensQuests,
+             periodicQuests,
+             isQualification)
         else:
             allQuests = self.eventsCache.getAllQuests(lambda q: isComp7VisibleQuest(q.getID()))
             actualSeasonNumber = self.__comp7Ctrl.getActualSeasonNumber()

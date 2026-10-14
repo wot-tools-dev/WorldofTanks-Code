@@ -125,7 +125,7 @@ package net.wg.last_stand.gui.battle.views.vehicleMarkers
          {
             return false;
          }
-         if((param1 == HEALTH_LBL || param1 == HEALTH_BAR) && isEnemy())
+         if(param1 == HEALTH_LBL || param1 == HEALTH_BAR)
          {
             if(!this._healthBarVisible)
             {

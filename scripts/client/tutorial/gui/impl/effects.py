@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import typing
 import logging
 from gui.Scaleform.genConsts.TUTORIAL_EFFECT_TYPES import TUTORIAL_EFFECT_TYPES

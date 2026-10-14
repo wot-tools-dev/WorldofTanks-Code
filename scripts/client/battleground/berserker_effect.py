@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 import logging
+from future.utils import viewvalues
 import BigWorld
 import CGF
 import AnimationSequence
@@ -28,7 +30,7 @@ class BerserkerEffectComponent(AvatarRelatedComponent):
 
     def deactivate(self):
         super(BerserkerEffectComponent, self).deactivate()
-        for effObject in self.__loadingEffects.itervalues():
+        for effObject in viewvalues(self.__loadingEffects):
             effObject.stopLoading = True
             effObject.destroy()
 

@@ -30,6 +30,8 @@ package net.wg.gui.battle.views.minimap
       
       private static const NAME_CLICK_AREA:String = "clickAreaSpr";
       
+      private static const POINT_ZERO:Point = new Point(0,0);
+      
       public var mapHit:Sprite = null;
       
       public var fakePixel:MovieClip = null;
@@ -77,6 +79,8 @@ package net.wg.gui.battle.views.minimap
       private var _hoveredEntity:IHoverableEntity = null;
       
       private var _lastContainerChildCount:int = -1;
+      
+      private var _tempMousePoint:Point = new Point();
       
       public function Minimap()
       {
@@ -341,6 +345,7 @@ package net.wg.gui.battle.views.minimap
          this.mapHit.y = _loc5_;
          this.minimapHint.x = _loc4_;
          this.minimapHint.y = _loc5_;
+         updateLayoutProperties();
       }
       
       private function checkNewSize(param1:int) : void
@@ -447,7 +452,9 @@ package net.wg.gui.battle.views.minimap
          }
          if(this._hoveredEntity != null)
          {
-            _loc2_ = this.mapHit.localToGlobal(new Point(this.mapHit.mouseX,this.mapHit.mouseY));
+            this._tempMousePoint.x = this.mapHit.mouseX;
+            this._tempMousePoint.y = this.mapHit.mouseY;
+            _loc2_ = this.mapHit.localToGlobal(this._tempMousePoint);
             this._hoveredEntity.onClick(this._hoveredEntity.globalToLocal(_loc2_));
          }
       }
@@ -471,7 +478,7 @@ package net.wg.gui.battle.views.minimap
          }
          this._hoverableActive = false;
          this._clickAreaSpr.removeEventListener(MouseEvent.MOUSE_MOVE,this.onMouseMoveHandler);
-         this.quitHover(new Point(0,0));
+         this.quitHover(POINT_ZERO);
       }
       
       private function onMouseMoveHandler(param1:MouseEvent) : void
@@ -482,7 +489,9 @@ package net.wg.gui.battle.views.minimap
          {
             return;
          }
-         var _loc2_:Point = this.mapHit.localToGlobal(new Point(this.mapHit.mouseX,this.mapHit.mouseY));
+         this._tempMousePoint.x = this.mapHit.mouseX;
+         this._tempMousePoint.y = this.mapHit.mouseY;
+         var _loc2_:Point = this.mapHit.localToGlobal(this._tempMousePoint);
          _loc2_.x = _loc2_.x / App.appScale >> 0;
          _loc2_.y = _loc2_.y / App.appScale >> 0;
          var _loc3_:Boolean = false;

@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from collections import namedtuple
-from constants import DESTRUCTIBLE_MATKIND, IS_EDITOR
 import BigWorld
-from DestructiblesCache import DESTR_TYPE_STRUCTURE
 import material_kinds
+from constants import DESTRUCTIBLE_MATKIND, IS_EDITOR
+from DestructiblesCache import DESTR_TYPE_STRUCTURE
 if not IS_EDITOR:
     import AreaDestructibles
 SurfaceMaterial = namedtuple('SurfaceMaterial', ('point', 'surfaceNormal', 'matKind', 'effectIdx'))
@@ -57,7 +58,6 @@ def calcEffectMaterialIndex(matKind):
                     else:
                         effectIndex = arenaSpecificEffect
         return effectIndex
-        return
 
 
 def isDestructibleBroken(chunkID, itemIndex, matKind, itemFilename):

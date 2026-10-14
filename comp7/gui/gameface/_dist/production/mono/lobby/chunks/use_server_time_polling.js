@@ -1,1 +1,1 @@
-import"./vendor.js";import{dT as o}from"./lib.js";function i(i,r,s,t=950){o(()=>{s()},i<r?t:void 0)}export{i as u};
+import{ua as o}from"./lib.js";function i(i,t,a,r=950){o(()=>{a()},i<t?r:void 0)}export{i as t};

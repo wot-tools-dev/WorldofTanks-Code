@@ -1,8 +1,9 @@
+from __future__ import absolute_import, division
+import logging
 import BigWorld
 import CGF
 import DebugDrawer
 import Math
-import logging
 import math_utils
 from WeakMethod import WeakMethodProxy
 from CameraComponents import CameraComponent

@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+from future.utils import viewvalues
 from functools import partial
 import time
 import WWISE
@@ -47,13 +49,13 @@ class _FrontlineMainObjectivesTotalHealthCondition(_FrontlineCondition):
     def onDestructibleEntityHealthChanged(self, destructibleEntityID, newHealth, maxHealth, atkID, atkReason, hitFlags):
         sessionProvider = dependency.instance(IBattleSessionProvider)
         if sessionProvider is None:
-            return
+            return False
         else:
             destructibleComponent = getattr(sessionProvider.arenaVisitor.getComponentSystem(), 'destructibleEntityComponent', None)
             if destructibleComponent is None:
-                return
+                return False
             totalRemainingHealthPercentage = destructibleComponent.getTotalRemainingHealthPercentage()
-            return self._updateValidValue(True) if totalRemainingHealthPercentage <= self.criticalValue else None
+            return self._updateValidValue(True) if totalRemainingHealthPercentage <= self.criticalValue else False
 
 
 class _FrontlineMainObjectivesNumDestroyedCondition(_FrontlineCondition):
@@ -66,13 +68,13 @@ class _FrontlineMainObjectivesNumDestroyedCondition(_FrontlineCondition):
     def onDestructibleEntityHealthChanged(self, destructibleEntityID, newHealth, maxHealth, atkID, atkReason, hitFlags):
         sessionProvider = dependency.instance(IBattleSessionProvider)
         if sessionProvider is None:
-            return
+            return False
         else:
             destructibleComponent = getattr(sessionProvider.arenaVisitor.getComponentSystem(), 'destructibleEntityComponent', None)
             if destructibleComponent is None:
-                return
+                return False
             numDestroyedMainObjectives = destructibleComponent.getNumDestroyedEntities()
-            return self._updateValidValue(True) if numDestroyedMainObjectives >= self.criticalValue else None
+            return self._updateValidValue(True) if numDestroyedMainObjectives >= self.criticalValue else False
 
 
 class _FrontlineRespawnViewCondition(_FrontlineCondition):
@@ -146,7 +148,7 @@ class _FrontlineBaseCaptureCondition(_BaseCaptureCondition):
 
     def _validatePoints(self):
         criticalPointsCount, musicStopPredelay = self.criticalValue
-        for points in self._pointsToBase.itervalues():
+        for points in viewvalues(self._pointsToBase):
             if self._stopCapturingCooldown is not None and points:
                 if self._stopCapturingCooldown is not None:
                     BigWorld.cancelCallback(self._stopCapturingCooldown)

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import BigWorld
 import wg_async
 from helpers import ExitCode

@@ -1,0 +1,469 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"components": {
+															"cgf::TransformComponent": {}
+														},
+														"prefab": "content/CGFPrefabs/Vehicle/gun_effects/lights/light_large.prefab",
+														"uuid": "e8c1e8b7-d97b-0051-352f-08d2d7554280"
+													},
+													{
+														"components": {
+															"cgf::TransformComponent": {}
+														},
+														"prefab": "content/CGFPrefabs/Vehicle/gun_effects/particles/particle_large_dgr.prefab",
+														"uuid": "7427b11b-123d-4317-93b3-48bf385f2115"
+													}
+												],
+												"components": {
+													"BW::RemoveWhenPrefabEffectsAvailableComponent": {}
+												},
+												"name": "legacy_effects",
+												"uuid": "52a7de24-9796-0b34-24f4-ecd9734efdc6"
+											},
+											{
+												"children": [
+													{
+														"components": {
+															"cgf::TransformComponent": {}
+														},
+														"prefab": "content/EffectPrefabs/dualgun/shot/simple_shot_dualgun.prefab",
+														"uuid": "1fda3455-bcb3-01cd-1ca2-672dc096026b"
+													}
+												],
+												"components": {
+													"BW::RemoveWhenPrefabEffectsNotAvailableComponent": {}
+												},
+												"name": "prefab_effects",
+												"uuid": "685b9ec4-5edb-0ccc-325e-e6d8a88441f9"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunFire_R"
+											},
+											"cgf::TransformComponent": {
+												"position": {
+													"x": 0.219,
+													"y": 0.88,
+													"z": 3.2964
+												}
+											}
+										},
+										"name": "HP_gunFire_R",
+										"uuid": "61df9cf1-232e-0950-2692-00bffd469090"
+									},
+									{
+										"components": {
+											"BW::Gun::Effects::EffectComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"effectMask": "17"
+											},
+											"BW::Gun::ShotImpulseComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"impulse": 0.62
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "shot_impulse",
+										"uuid": "57bc0bad-1a04-0011-35e9-412e43cca1ce"
+									}
+								],
+								"components": {
+									"BW::Gun::Effects::CollectorComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Gun::GroupComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"firingOrder": "1"
+									},
+									"BW::Gun::RecoilComponent": {
+										"amplitude": 0.66,
+										"backoffTime": 0.05,
+										"disabledDomains": [
+											"Server"
+										],
+										"loop": "0",
+										"returnTime": "1",
+										"started": "0"
+									},
+									"BW::Gun::SingleComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::NodeLeaderComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "G_R"
+									},
+									"BW::StartAtNodeTransformComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "G_R"
+									},
+									"BW::variables::VariableStorageComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"varInitialValues": [
+											{
+												"initValExpr/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1
+													}
+												},
+												"var/variableName": "vehicle/gun/intervalBetweenShots"
+											},
+											{
+												"initValExpr/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1
+													}
+												},
+												"var/variableName": "vehicle/gun/shotsPerSecond"
+											}
+										]
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 0.001,
+											"y": 0,
+											"z": 0
+										}
+									}
+								},
+								"name": "G_R",
+								"uuid": "43039e7d-20f2-0172-26f4-95e45231d1c9"
+							},
+							{
+								"children": [
+									{
+										"children": [
+											{
+												"children": [
+													{
+														"components": {
+															"cgf::TransformComponent": {}
+														},
+														"prefab": "content/CGFPrefabs/Vehicle/gun_effects/lights/light_large.prefab",
+														"uuid": "60806e4e-05b8-0ba3-0696-a86ea8787fce"
+													},
+													{
+														"components": {
+															"cgf::TransformComponent": {}
+														},
+														"prefab": "content/CGFPrefabs/Vehicle/gun_effects/particles/particle_large_dgl.prefab",
+														"uuid": "e3415865-da1d-4b86-9600-c1ba15873d1f"
+													}
+												],
+												"components": {
+													"BW::RemoveWhenPrefabEffectsAvailableComponent": {}
+												},
+												"name": "legacy_effects",
+												"uuid": "c8fd23a3-4adb-05b8-2c50-8479f2730676"
+											},
+											{
+												"children": [
+													{
+														"components": {
+															"cgf::TransformComponent": {}
+														},
+														"prefab": "content/EffectPrefabs/dualgun/shot/simple_shot_dualgun.prefab",
+														"uuid": "ed5dc2ff-fb18-000c-19bc-27442439f77b"
+													}
+												],
+												"components": {
+													"BW::RemoveWhenPrefabEffectsNotAvailableComponent": {}
+												},
+												"name": "prefab_effects",
+												"uuid": "43c54c9c-ead8-0861-12e3-bf1f7495c3c9"
+											}
+										],
+										"components": {
+											"BW::StartAtNodeTransformComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"nodeName": "HP_gunFire_L"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"name": "HP_gunFire_L",
+										"uuid": "c1df1092-f1f1-0919-3141-c5051225097b"
+									},
+									{
+										"components": {
+											"BW::Gun::Effects::EffectComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"effectMask": "17"
+											},
+											"BW::Gun::ShotImpulseComponent": {
+												"disabledDomains": [
+													"Server"
+												],
+												"impulse": 0.62
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "shot_impulse",
+										"uuid": "4183893e-1d13-054c-384f-38a5b32ed76a"
+									}
+								],
+								"components": {
+									"BW::Gun::Effects::CollectorComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Gun::GroupComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"firingOrder": "0"
+									},
+									"BW::Gun::RecoilComponent": {
+										"amplitude": 0.66,
+										"backoffTime": 0.05,
+										"disabledDomains": [
+											"Server"
+										],
+										"loop": "0",
+										"returnTime": "1",
+										"started": "0"
+									},
+									"BW::Gun::SingleComponent": {
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::NodeLeaderComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "G_L"
+									},
+									"BW::StartAtNodeTransformComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "G_L"
+									},
+									"BW::variables::VariableStorageComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"varInitialValues": [
+											{
+												"initValExpr/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1
+													}
+												},
+												"var/variableName": "vehicle/gun/intervalBetweenShots"
+											},
+											{
+												"initValExpr/expression": {
+													"__ctype__": "BW::variables::ConstantFloatExpression",
+													"__cvalue__": {
+														"floatValue": 1
+													}
+												},
+												"var/variableName": "vehicle/gun/shotsPerSecond"
+											}
+										]
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": -0.001,
+											"y": 0,
+											"z": 0
+										}
+									}
+								},
+								"name": "G_L",
+								"uuid": "397be566-90e4-0fc4-1f60-167f4086cb6e"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"cgf::TransformComponent": {}
+										},
+										"prefab": "content/CGFPrefabs/Vehicle/gun_effects/sounds/sound_large_dg.prefab",
+										"uuid": "a08a2240-fd33-0bb4-22ca-317d2ab61b23"
+									},
+									{
+										"components": {
+											"cgf::TransformComponent": {}
+										},
+										"prefab": "content/CGFPrefabs/Vehicle/gun_effects/groundwaves/groundwave_large_dg.prefab",
+										"uuid": "df1829e7-cb7b-4769-ba04-037cd1d7faea"
+									}
+								],
+								"components": {
+									"BW::StartAtNodeTransformComponent": {
+										"disabledDomains": [
+											"Server"
+										],
+										"nodeName": "HP_gunFire"
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "HP_gunFire",
+								"uuid": "4fc26a0f-1310-040a-0d45-4594d6298f9e"
+							}
+						],
+						"components": {
+							"BW::StartAtNodeTransformComponent": {
+								"disabledDomains": [
+									"Server"
+								],
+								"nodeName": "G"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "G",
+						"uuid": "8ccb50d4-dc2c-0d29-2742-ac9010d87bfa"
+					}
+				],
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": false,
+						"disabledDomains": [
+							"Client"
+						],
+						"modelName": "vehicles/czech/Cz41_Petra/normal/lod0/Gun_01.model"
+					},
+					"BW::Gun::Effects::CollectorComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"BW::Gun::InstallationComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"shotsPerMinute": 4.8
+					},
+					"BW::LocalTransformNodeFollowerComponent": {
+						"disabledDomains": [
+							"Server",
+							"Editor"
+						],
+						"nodeName": "Gun"
+					},
+					"BW::StartAtNodeTransformComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"nodeName": "Gun"
+					},
+					"BW::variables::VariableStorageComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"varInitialValues": [
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 122
+									}
+								},
+								"var/variableName": "vehicle/gun/caliber"
+							},
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::ConstantFloatExpression",
+									"__cvalue__": {
+										"floatValue": 5.167
+									}
+								},
+								"var/variableName": "vehicle/gun/gunLength"
+							},
+							{
+								"initValExpr/expression": {
+									"__ctype__": "BW::variables::EnumExpression",
+									"__cvalue__": {
+										"enumName": "muzzleBrakeType",
+										"enumValueName": "none"
+									}
+								},
+								"var/variableName": "vehicle/gun/muzzleBrake"
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::network::ReplicableComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "normal",
+				"uuid": "d369f149-85f7-07dc-27f7-2a6e89a36a99"
+			}
+		],
+		"components": {
+			"BW::StateSwitcherComponent": {
+				"critical": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"damaged": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+				"normal": "d369f149-85f7-07dc-27f7-2a6e89a36a99",
+				"preview": 1
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::ReplicableComponent": {},
+			"script::VehicleHealthObserverComponent": {
+				"disabledDomains": [
+					"Client",
+					"Editor"
+				],
+				"state": "1"
+			}
+		},
+		"name": "gun_122mm_vz_122_2_l52_petra",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

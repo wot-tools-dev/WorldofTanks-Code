@@ -7,7 +7,7 @@ package net.wg.infrastructure.managers
    public interface IWaitingView extends IWaitingViewMeta, IUIComponentEx, IView
    {
       
-      function get isActive() : Boolean;
+      function get isOnStage() : Boolean;
       
       function get isFocusable() : Boolean;
    }

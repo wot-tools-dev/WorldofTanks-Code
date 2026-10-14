@@ -1,1 +1,1 @@
-import{d8 as o}from"./lib.js";const a=(a,s)=>a.map(a=>o(a.value)).join(s);export{a as g};
+import{ya as a}from"./lib.js";var o=(o,r)=>o.map(o=>a(o.value)).join(r);export{o as t};

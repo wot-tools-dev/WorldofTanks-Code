@@ -93,7 +93,7 @@ package net.wg.gui.battle.views.widgetsPanel
       
       public function as_setState(param1:String, param2:Boolean) : void
       {
-         if(this._state == param1 && this._targetLabel != null)
+         if(this._state == param1)
          {
             return;
          }

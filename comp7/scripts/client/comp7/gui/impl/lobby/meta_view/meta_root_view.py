@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import typing
 from shared_utils import findFirst

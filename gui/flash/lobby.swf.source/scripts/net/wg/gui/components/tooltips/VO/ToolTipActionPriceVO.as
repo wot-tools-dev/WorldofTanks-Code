@@ -20,7 +20,7 @@ package net.wg.gui.components.tooltips.VO
       
       public var actionName:String = "";
       
-      public var ico:String = "credits";
+      public var ico:String = IconsTypes.CREDITS;
       
       private var _itemType:String = "";
       

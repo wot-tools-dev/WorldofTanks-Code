@@ -1,0 +1,1 @@
+import{r as t}from"./rolldown-runtime.js";import{Ri as i,rr as r}from"./lib.js";var h=t(i()),e=(t,i)=>{const e=t.width/t.height,{width:o,height:s}=r();return(0,h.useMemo)(()=>o>=s*e?o/t.width:s>=o/e?s/t.height:i,[t.height,t.width,i,s,e,o])};export{e as t};

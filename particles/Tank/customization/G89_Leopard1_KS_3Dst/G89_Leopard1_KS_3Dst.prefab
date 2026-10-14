@@ -1,0 +1,494 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true,
+										"visibleInSniperMode": false,
+										"visibleInTwinGunMode": false
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"effect": "particles/Tank/customization/G89_Leopard1_KS_3Dst/G89_Leopard1_KS_3Dst_steam.eff"
+									},
+									"cgf::TransformComponent": {
+										"position/x": 0.39996,
+										"position/y": 0.63299,
+										"position/z": -1.684,
+										"rotation/x": -20,
+										"rotation/y": 30,
+										"rotation/z": 170
+									}
+								},
+								"name": "Steam_L",
+								"uuid": "5df31ed1-599b-4144-b3aa-f5c74e1251b1"
+							},
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true,
+										"visibleInSniperMode": false,
+										"visibleInTwinGunMode": false
+									},
+									"BW::Particle": {
+										"autoStart": true,
+										"effect": "particles/Tank/customization/G89_Leopard1_KS_3Dst/G89_Leopard1_KS_3Dst_steam.eff"
+									},
+									"cgf::TransformComponent": {
+										"position/x": -0.42664,
+										"position/y": 0.69607,
+										"position/z": -1.8384,
+										"rotation/x": 40,
+										"rotation/y": 0,
+										"rotation/z": 20
+									}
+								},
+								"name": "Steam_R",
+								"uuid": "be65ba4b-adfa-4bbc-8fb9-8c65e992786e"
+							}
+						],
+						"components": {
+							"BW::NodeFollowerComponent": {
+								"modelLink": "00000000-0000-0000-0000-000000000000",
+								"nodeName": "HP_G89_Attachment_Turret_01"
+							},
+							"BW::SequenceComponent": {
+								"autoStart": true,
+								"layers": [
+									{
+										"alwaysEnabled": false,
+										"duration": 3,
+										"name": "Shooting",
+										"pauseOnEnd": false,
+										"tracks": [
+											{
+												"endTime": 10,
+												"object": "5df31ed1-599b-4144-b3aa-f5c74e1251b1"
+											},
+											{
+												"endTime": 3,
+												"object": "be65ba4b-adfa-4bbc-8fb9-8c65e992786e"
+											}
+										]
+									}
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Shooting",
+						"uuid": "7c89926f-1edf-4f2d-a599-8d640808cedb"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true,
+										"visibleInSniperMode": false
+									},
+									"BW::DynamicModel": {
+										"castShadows": false,
+										"disabledDomains": [
+											"Server"
+										],
+										"modelName": "particles/content_deferred/GFX_models/tank_customization/HeadLight/HeadLight_01/normal/lod0/HeadLight_01.model"
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": 0.85482,
+											"y": 0.22514,
+											"z": 3.1575
+										},
+										"rotation": {
+											"x": 0,
+											"y": 180,
+											"z": 0
+										},
+										"scale/x": 1.5,
+										"scale/y": 1.5,
+										"scale/z": 1.5
+									}
+								},
+								"name": "Headlight_R",
+								"uuid": "4aa6949f-b291-482f-893b-53b3fd2a4fec"
+							},
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true,
+										"visibleInSniperMode": false
+									},
+									"BW::DynamicModel": {
+										"castShadows": false,
+										"disabledDomains": [
+											"Server"
+										],
+										"modelName": "particles/content_deferred/GFX_models/tank_customization/HeadLight/HeadLight_01/normal/lod0/HeadLight_01.model"
+									},
+									"cgf::TransformComponent": {
+										"position": {
+											"x": -0.85617,
+											"y": 0.22581,
+											"z": 3.1575
+										},
+										"rotation": {
+											"x": 0,
+											"y": 180,
+											"z": 0
+										},
+										"scale/x": 1.5,
+										"scale/y": 1.5,
+										"scale/z": 1.5
+									}
+								},
+								"name": "Headlight_L",
+								"uuid": "bac6f7b1-d9f5-4737-85e8-60c43aa6e33c"
+							}
+						],
+						"components": {
+							"BW::NodeFollowerComponent": {
+								"modelLink": "00000000-0000-0000-0000-000000000000",
+								"nodeName": "HP_G89_Attachment_Hull"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Engine_start",
+						"uuid": "95f41603-6039-4a78-ac09-5db60a6f4964"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::HeatColorComponent": {
+										"heatSpeed": 0,
+										"startHeatPercentage": 0,
+										"targetHeatPercentage": 0
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "Heating",
+								"uuid": "ccaaffae-d7b5-4501-ae8b-40bd3945abd2"
+							}
+						],
+						"components": {
+							"BW::SequenceComponent": {
+								"autoStart": true,
+								"layers": [
+									{
+										"alwaysEnabled": false,
+										"duration": 2,
+										"loop": true,
+										"name": "Heating",
+										"pauseOnEnd": false,
+										"tracks": [
+											{
+												"endTime": 2,
+												"object": "ccaaffae-d7b5-4501-ae8b-40bd3945abd2",
+												"parameters": [
+													{
+														"component": "BW::HeatColorComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.15
+																}
+															},
+															{
+																"time": 2,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.15
+																}
+															}
+														],
+														"object": "ccaaffae-d7b5-4501-ae8b-40bd3945abd2",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "startHeatPercentage"
+															}
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Heating",
+						"uuid": "2cbebbd7-ce74-4f31-a280-6803d438d678"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::HeatColorComponent": {
+										"heatSpeed": 0,
+										"startHeatPercentage": 0,
+										"targetHeatPercentage": 0
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "Fade_in",
+								"uuid": "3b1d937c-edf8-49ea-b7d8-e3085557499f"
+							}
+						],
+						"components": {
+							"BW::SequenceComponent": {
+								"autoStart": true,
+								"layers": [
+									{
+										"alwaysEnabled": false,
+										"duration": 5,
+										"name": "Fade_in",
+										"tracks": [
+											{
+												"endTime": 5,
+												"object": "3b1d937c-edf8-49ea-b7d8-e3085557499f",
+												"parameters": [
+													{
+														"component": "BW::HeatColorComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.15
+																}
+															}
+														],
+														"object": "3b1d937c-edf8-49ea-b7d8-e3085557499f",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "startHeatPercentage"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											}
+										]
+									}
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Fade_in",
+						"uuid": "db09d705-f439-43da-bbd3-cbb6b82a3435"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::HeatColorComponent": {
+										"heatSpeed": 0,
+										"startHeatPercentage": 0,
+										"targetHeatPercentage": 0
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "Fade_out",
+								"uuid": "8e1f441d-818b-43bc-b48c-3eb808b29d14"
+							}
+						],
+						"components": {
+							"BW::SequenceComponent": {
+								"autoStart": true,
+								"layers": [
+									{
+										"alwaysEnabled": false,
+										"duration": 5,
+										"name": "Fade_Out",
+										"pauseOnEnd": true,
+										"tracks": [
+											{
+												"endTime": 5,
+												"object": "8e1f441d-818b-43bc-b48c-3eb808b29d14",
+												"parameters": [
+													{
+														"component": "BW::HeatColorComponent",
+														"keys": [
+															{
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0.15
+																}
+															},
+															{
+																"time": 5,
+																"value": {
+																	"__ctype__": "float",
+																	"__cvalue__": 0
+																}
+															}
+														],
+														"object": "8e1f441d-818b-43bc-b48c-3eb808b29d14",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "startHeatPercentage"
+															}
+														]
+													}
+												],
+												"startTime": 0
+											}
+										]
+									}
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Fade_out",
+						"uuid": "6e0b0064-984a-498c-b887-1606e5cfe0be"
+					}
+				],
+				"components": {
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hull",
+				"uuid": "57eaf224-414c-46da-a781-d4327b896b07"
+			}
+		],
+		"components": {
+			"BW::AnimationSynchronizer": {
+				"ModelLink": "00000000-0000-0000-0000-000000000000",
+				"Syncs": [
+					{
+						"AnimationLayer": "left",
+						"IsAbsoluteRotation": false,
+						"SyncAxis": "X",
+						"SyncMultiplier": -1,
+						"SyncNodeName": "WD_L5"
+					},
+					{
+						"AnimationLayer": "right",
+						"IsAbsoluteRotation": false,
+						"SyncAxis": "X",
+						"SyncMultiplier": -1,
+						"SyncNodeName": "WD_R5"
+					},
+					{
+						"AnimationLayer": "gears_left",
+						"IsAbsoluteRotation": false,
+						"SyncAxis": "X",
+						"SyncMultiplier": -0.25,
+						"SyncNodeName": "WD_L5"
+					},
+					{
+						"AnimationLayer": "gears_right",
+						"IsAbsoluteRotation": false,
+						"SyncAxis": "X",
+						"SyncMultiplier": -0.25,
+						"SyncNodeName": "WD_R5"
+					}
+				],
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"BW::Animator": {
+				"autoStart": true,
+				"disabledDomains": [
+					"Server"
+				],
+				"layers": [
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"layerName": "left",
+						"path": "vehicles/german/G89_Leopard1/_skins/G89_Leopard1_KS_3Dst/normal/lod0/Chassis_lever_L.fbx",
+						"properties": {
+							"loop": "1",
+							"loopCount": "-1"
+						},
+						"weight": 1
+					},
+					{
+						"clip": "<Default Clip>",
+						"layerName": "right",
+						"path": "vehicles/german/G89_Leopard1/_skins/G89_Leopard1_KS_3Dst/normal/lod0/Chassis_lever_R.fbx",
+						"properties": {
+							"delay": "0",
+							"loop": "1",
+							"loopCount": "-1",
+							"speed": 1
+						},
+						"weight": 1
+					},
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"layerName": "gears_left",
+						"path": "vehicles/german/G89_Leopard1/_skins/G89_Leopard1_KS_3Dst/normal/lod0/Chassis_gears_L.fbx",
+						"properties": {
+							"loop": "1",
+							"loopCount": "-1"
+						},
+						"weight": 1
+					},
+					{
+						"autoStart": true,
+						"clip": "<Default Clip>",
+						"layerName": "gears_right",
+						"path": "vehicles/german/G89_Leopard1/_skins/G89_Leopard1_KS_3Dst/normal/lod0/Chassis_gears_R.fbx",
+						"properties": {
+							"loop": "1",
+							"loopCount": "-1"
+						},
+						"weight": 1
+					}
+				]
+			},
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"modelName": "vehicles/german/G89_Leopard1/_skins/G89_Leopard1_KS_3Dst/normal/lod0/Chassis.model"
+			},
+			"BW::VSEComponent": {
+				"path": "vscript/plans/VFX/G89_leopard1_KS_3DS/G89_move_shoot.xml"
+			},
+			"cgf::TransformComponent": {
+				"disabledDomains": [
+					"Server"
+				]
+			},
+			"script::VehicleCustomEffectsSettings": {
+				"additionalEngineSoundNPC": "style_cust_G89_engine_NPC",
+				"additionalEngineSoundPC": "style_cust_G89_engine_PC",
+				"disableDefaultChassis": "0",
+				"disableDefaultHull": "0",
+				"disabledDomains": [
+					"Server"
+				]
+			}
+		},
+		"name": "G89_leopard1_KS_3DS",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}

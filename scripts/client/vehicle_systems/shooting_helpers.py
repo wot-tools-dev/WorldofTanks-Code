@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import typing
 import BigWorld
 from cgf_events import gun_events

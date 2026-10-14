@@ -1,5 +1,7 @@
-from logging import getLogger
+from __future__ import absolute_import
 import typing
+from future.utils import viewitems
+from logging import getLogger
 import AccountCommands
 import BigWorld
 import Event
@@ -254,6 +256,8 @@ class StoryModeController(IStoryModeController, IGlobalListener):
             if mission.missionId == nextMissionId:
                 return mission
 
+        return None
+
     def quitBattle(self):
         player = BigWorld.player()
         _logger.debug('quitBattle')
@@ -283,10 +287,8 @@ class StoryModeController(IStoryModeController, IGlobalListener):
         _logger.debug('goToBattle')
         if not isPlayerAvatar():
             _logger.error('goToBattle method can be called only for Avatar.')
-            return None
-        else:
-            BigWorld.player().setPlayerReadyToBattle()
-            return None
+            return
+        BigWorld.player().setPlayerReadyToBattle()
 
     def goToHangar(self, guiCtx=None):
         isAccount = isPlayerAccount()
@@ -533,7 +535,7 @@ class StoryModeController(IStoryModeController, IGlobalListener):
                 oldProgress = self.__progress.copy()
                 synchronizeDicts(diff, self.__syncData)
                 if not isFullSync:
-                    self.__missionsProgressDiff = {missionId:missionProgress ^ oldProgress.get(missionId, 0) for missionId, missionProgress in self.__progress.iteritems()}
+                    self.__missionsProgressDiff = {missionId:missionProgress ^ oldProgress.get(missionId, 0) for missionId, missionProgress in viewitems(self.__progress)}
                 self.onSyncDataUpdated()
             return
 

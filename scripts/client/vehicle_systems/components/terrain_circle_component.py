@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import math
 import typing
@@ -157,4 +158,4 @@ class TerrainCircleComponent(CallbackDelayer):
         smoothFPS = BigWorld.getFPS()[1]
         if smoothFPS == 0:
             smoothFPS = 1
-        return max(1 / smoothFPS, self.__maxUpdateInterval)
+        return max(1.0 / smoothFPS, self.__maxUpdateInterval)

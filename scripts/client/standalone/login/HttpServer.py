@@ -1,7 +1,8 @@
-from BaseHTTPServer import HTTPServer
+from __future__ import absolute_import
+import sys
+from future.moves.http.server import HTTPServer
 from socket import error as SocketError
 from threading import Thread
-import sys
 
 class HttpServer(HTTPServer):
     allow_reuse_address = False
@@ -22,8 +23,7 @@ class HttpServer(HTTPServer):
                     self._currentStatus = 'Giving up.'
                     self._logStatus()
                     raise e
-                else:
-                    continue
+                continue
 
         self.__name = name
         self.__setStatus('NOT RUNNING')

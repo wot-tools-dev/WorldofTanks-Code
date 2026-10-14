@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.eventBattle.views.radialMenu.EventRadialButton;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol105")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol100")]
    public dynamic class RadialButtonUI extends EventRadialButton
    {
       

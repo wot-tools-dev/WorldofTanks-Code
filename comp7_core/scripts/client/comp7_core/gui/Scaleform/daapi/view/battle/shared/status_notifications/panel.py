@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import logging
 import BigWorld
 from arena_bonus_type_caps import ARENA_BONUS_TYPE_CAPS

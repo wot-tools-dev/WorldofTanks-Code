@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.battle.views.radialMenu.components.Content;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol364")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol358")]
    public dynamic class RadialButtonIconHoverUI extends Content
    {
       

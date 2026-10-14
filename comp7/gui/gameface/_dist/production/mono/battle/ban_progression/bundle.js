@@ -1,0 +1,1 @@
+import{F as s,h as r,m as a}from"../chunks/lib.js";import"../chunks/globals.js";import{n as i,t as n}from"../chunks/ban_progression_widget.js";var o=s();r((0,o.jsx)(a,{children:(0,o.jsx)(i,{children:(0,o.jsx)(n,{})})}));

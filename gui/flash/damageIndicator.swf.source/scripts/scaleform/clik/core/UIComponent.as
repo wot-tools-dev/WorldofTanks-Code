@@ -588,6 +588,7 @@ package scaleform.clik.core
       
       public function validateNow(param1:Event = null) : void
       {
+         var _loc2_:String = null;
          if(!this.initialized)
          {
             this.initialized = true;
@@ -600,26 +601,35 @@ package scaleform.clik.core
             return;
          }
          this.draw();
-         this._invalidHash = {};
+         for(_loc2_ in this._invalidHash)
+         {
+            delete this._invalidHash[_loc2_];
+         }
          this._invalid = false;
       }
       
-      protected function isInvalid(... rest) : Boolean
+      protected function isInvalid(param1:*) : Boolean
       {
          if(!this._invalid)
          {
             return false;
          }
          this.throwLifeCycleException();
-         var _loc2_:uint = uint(rest.length);
-         if(_loc2_ == 0)
+         return Boolean(this._invalidHash[InvalidationType.ALL]) || Boolean(this._invalidHash[param1]);
+      }
+      
+      protected function isInvalidTypes(... rest) : Boolean
+      {
+         if(!this._invalid)
          {
-            return this._invalid;
+            return false;
          }
+         this.throwLifeCycleException();
          if(Boolean(this._invalidHash[InvalidationType.ALL]))
          {
             return true;
          }
+         var _loc2_:uint = uint(rest.length);
          var _loc3_:uint = 0;
          while(_loc3_ < _loc2_)
          {

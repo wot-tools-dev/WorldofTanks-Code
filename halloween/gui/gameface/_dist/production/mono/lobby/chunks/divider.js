@@ -1,0 +1,1 @@
+import{Ii as a,vr as s}from"./lib.js";var i="Divider_a77a1582",r="Divider_cc922847",e=s();function c({className:s}){return(0,e.jsx)("div",{className:a(i,s),children:(0,e.jsx)("div",{className:r})})}export{c as t};

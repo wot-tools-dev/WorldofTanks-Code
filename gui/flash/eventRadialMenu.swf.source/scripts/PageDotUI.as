@@ -2,7 +2,7 @@ package
 {
    import flash.display.Sprite;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol12")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol7")]
    public dynamic class PageDotUI extends Sprite
    {
       

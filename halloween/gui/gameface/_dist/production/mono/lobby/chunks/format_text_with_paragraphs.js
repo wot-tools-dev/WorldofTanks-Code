@@ -1,0 +1,1 @@
+import{$t as a,Ii as s,vr as t}from"./lib.js";var r="FormatTextWithParagraphs_aae7c603",e=t();function p(t){const p=t.text.split("\n");return 1===p.length?(0,e.jsx)(a,{...t}):(0,e.jsx)("div",{className:s(r,t.className),children:p.map((s,r)=>(0,e.jsx)(a,{...t,text:s||" ",className:t.paragraphClassName},`paragraph_${r}`))})}export{p as t};

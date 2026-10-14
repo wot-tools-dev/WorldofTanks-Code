@@ -28,7 +28,7 @@ package
          catch(e:Error)
          {
          }
-         tabs.UIID = 34603409;
+         tabs.UIID = 34603408;
          tabs.autoSize = "none";
          tabs.buttonWidth = 0;
          tabs.centerTabs = true;
@@ -61,7 +61,7 @@ package
          catch(e:Error)
          {
          }
-         DRR_AUTOSCALER_ENABLEDCheckbox.UIID = 34603408;
+         DRR_AUTOSCALER_ENABLEDCheckbox.UIID = 34603407;
          DRR_AUTOSCALER_ENABLEDCheckbox.autoSize = "none";
          DRR_AUTOSCALER_ENABLEDCheckbox.data = "";
          DRR_AUTOSCALER_ENABLEDCheckbox.disabledTextAlpha = 0.5;
@@ -96,7 +96,7 @@ package
          catch(e:Error)
          {
          }
-         dynamicRendererValue.UIID = 34603407;
+         dynamicRendererValue.UIID = 34603406;
          dynamicRendererValue.autoSize = "none";
          dynamicRendererValue.enabled = true;
          dynamicRendererValue.enableInitCallback = false;
@@ -121,7 +121,7 @@ package
          catch(e:Error)
          {
          }
-         dynamicRendererSlider.UIID = 34603406;
+         dynamicRendererSlider.UIID = 34603405;
          dynamicRendererSlider.enabled = true;
          dynamicRendererSlider.enableInitCallback = false;
          dynamicRendererSlider.focusable = true;
@@ -151,7 +151,7 @@ package
          catch(e:Error)
          {
          }
-         dynamicRendererLabel.UIID = 34603405;
+         dynamicRendererLabel.UIID = 34603404;
          dynamicRendererLabel.autoSize = "none";
          dynamicRendererLabel.enabled = true;
          dynamicRendererLabel.enableInitCallback = false;
@@ -176,7 +176,7 @@ package
          catch(e:Error)
          {
          }
-         autodetectQuality.UIID = 34603404;
+         autodetectQuality.UIID = 34603403;
          autodetectQuality.autoRepeat = false;
          autodetectQuality.autoSize = "none";
          autodetectQuality.data = "";
@@ -217,7 +217,7 @@ package
          catch(e:Error)
          {
          }
-         graphicsQualityDropDown.UIID = 34603403;
+         graphicsQualityDropDown.UIID = 34603402;
          graphicsQualityDropDown.autoSize = "none";
          graphicsQualityDropDown.dropdown = "DropdownMenu_ScrollingList";
          graphicsQualityDropDown.enabled = true;
@@ -269,7 +269,7 @@ package
          catch(e:Error)
          {
          }
-         graphicsQualityLabel.UIID = 34603402;
+         graphicsQualityLabel.UIID = 34603401;
          graphicsQualityLabel.autoSize = "none";
          graphicsQualityLabel.enabled = true;
          graphicsQualityLabel.enableInitCallback = false;

@@ -23,7 +23,7 @@ package net.wg.gui.components.hintPanel
       
       private var _keyGap:int = 35;
       
-      private var _keySideOffset:int = KeyViewer.DEFAULT_KEY_SIDE_OFFSET;
+      private var _keySideOffset:int = 17;
       
       private var _disposed:Boolean = false;
       

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import BigWorld
 import typing
 from CurrentVehicle import g_currentVehicle

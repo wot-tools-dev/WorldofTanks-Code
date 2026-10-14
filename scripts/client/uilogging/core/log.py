@@ -1,5 +1,7 @@
+from __future__ import absolute_import
 import logging
 import typing
+from future.utils import viewitems
 import constants
 from helpers import time_utils
 from uilogging.core.common import getClientBuildVersion, convertEnum
@@ -12,7 +14,7 @@ class LogRecord(object):
     __slots__ = ('_properties',)
 
     def __init__(self, feature, group, action, level, params):
-        params = {k:convertEnum(v) for k, v in dict(params).iteritems()}
+        params = {k:convertEnum(v) for k, v in viewitems(dict(params))}
         _time = time_utils.getServerUTCTime()
         properties = {'client_version': getClientBuildVersion(),
          'key': convertEnum(group),

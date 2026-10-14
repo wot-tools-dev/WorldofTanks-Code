@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import BigWorld
 import Event
 from chat_shared import CHAT_ACTIONS, CHAT_RESPONSES

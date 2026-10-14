@@ -87,6 +87,21 @@ package net.wg.last_stand.infrastructure.base.meta.impl
    import net.wg.last_stand.gui.battle.views.vehicleMarkers.LSVehicleMarker;
    import net.wg.last_stand.gui.battle.views.vehicleMarkers.LSVehicleMarkerMessage;
    import net.wg.last_stand.gui.battle.views.vehicleMarkers.LSVehicleMarkersLinkages;
+   import net.wg.last_stand.infrastructure.base.meta.IBattleHintMeta;
+   import net.wg.last_stand.infrastructure.base.meta.IBattleHintProgressConvoyMeta;
+   import net.wg.last_stand.infrastructure.base.meta.IBattleHintProgressDefenceMeta;
+   import net.wg.last_stand.infrastructure.base.meta.IBattleHintProgressMeta;
+   import net.wg.last_stand.infrastructure.base.meta.IConsumablesPanelMeta;
+   import net.wg.last_stand.infrastructure.base.meta.ILSBattleStatisticDataControllerMeta;
+   import net.wg.last_stand.infrastructure.base.meta.ILSMinimapMeta;
+   import net.wg.last_stand.infrastructure.base.meta.ILSPlayersPanelMeta;
+   import net.wg.last_stand.infrastructure.base.meta.ILSRadialMenuMeta;
+   import net.wg.last_stand.infrastructure.base.meta.ILastStandBattlePageMeta;
+   import net.wg.last_stand.infrastructure.base.meta.IObeliskMeta;
+   import net.wg.last_stand.infrastructure.base.meta.IPhaseIndicatorMeta;
+   import net.wg.last_stand.infrastructure.base.meta.IPointCounterMeta;
+   import net.wg.last_stand.infrastructure.base.meta.IPostmortemPanelMeta;
+   import net.wg.last_stand.infrastructure.base.meta.ITimerPanelMeta;
    
    public class ClassManagerMeta
    {
@@ -264,6 +279,74 @@ package net.wg.last_stand.infrastructure.base.meta.impl
       public static const NET_WG_LAST_STAND_GUI_BATTLE_VIEWS_VEHICLEMARKERS_LSVEHICLEMARKERMESSAGE:Class = LSVehicleMarkerMessage;
       
       public static const NET_WG_LAST_STAND_GUI_BATTLE_VIEWS_VEHICLEMARKERS_LSVEHICLEMARKERSLINKAGES:Class = LSVehicleMarkersLinkages;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IBATTLEHINTMETA:Class = IBattleHintMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IBATTLEHINTPROGRESSCONVOYMETA:Class = IBattleHintProgressConvoyMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IBATTLEHINTPROGRESSDEFENCEMETA:Class = IBattleHintProgressDefenceMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IBATTLEHINTPROGRESSMETA:Class = IBattleHintProgressMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_ICONSUMABLESPANELMETA:Class = IConsumablesPanelMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_ILASTSTANDBATTLEPAGEMETA:Class = ILastStandBattlePageMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_ILSBATTLESTATISTICDATACONTROLLERMETA:Class = ILSBattleStatisticDataControllerMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_ILSMINIMAPMETA:Class = ILSMinimapMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_ILSPLAYERSPANELMETA:Class = ILSPlayersPanelMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_ILSRADIALMENUMETA:Class = ILSRadialMenuMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IOBELISKMETA:Class = IObeliskMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IPHASEINDICATORMETA:Class = IPhaseIndicatorMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IPOINTCOUNTERMETA:Class = IPointCounterMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IPOSTMORTEMPANELMETA:Class = IPostmortemPanelMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_ITIMERPANELMETA:Class = ITimerPanelMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_BATTLEHINTMETA:Class = BattleHintMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_BATTLEHINTPROGRESSCONVOYMETA:Class = BattleHintProgressConvoyMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_BATTLEHINTPROGRESSDEFENCEMETA:Class = BattleHintProgressDefenceMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_BATTLEHINTPROGRESSMETA:Class = BattleHintProgressMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_CLASSMANAGEREXTENSIONBATTLEDAMAGEINDICATORMETA:Class = ClassManagerExtensionBattleDamageIndicatorMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_CLASSMANAGEREXTENSIONBATTLEDIRECTIONINDICATORMETA:Class = ClassManagerExtensionBattleDirectionIndicatorMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_CLASSMANAGEREXTENSIONBATTLEMARKERSMETA:Class = ClassManagerExtensionBattleMarkersMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_CLASSMANAGEREXTENSIONCROSSHAIRSMETA:Class = ClassManagerExtensionCrosshairsMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_CONSUMABLESPANELMETA:Class = ConsumablesPanelMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_LASTSTANDBATTLEPAGEMETA:Class = LastStandBattlePageMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_LSBATTLESTATISTICDATACONTROLLERMETA:Class = LSBattleStatisticDataControllerMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_LSMINIMAPMETA:Class = LSMinimapMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_LSPLAYERSPANELMETA:Class = LSPlayersPanelMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_LSRADIALMENUMETA:Class = LSRadialMenuMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_OBELISKMETA:Class = ObeliskMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_PHASEINDICATORMETA:Class = PhaseIndicatorMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_POINTCOUNTERMETA:Class = PointCounterMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_POSTMORTEMPANELMETA:Class = PostmortemPanelMeta;
+      
+      public static const NET_WG_LAST_STAND_INFRASTRUCTURE_BASE_META_IMPL_TIMERPANELMETA:Class = TimerPanelMeta;
       
       public function ClassManagerMeta()
       {

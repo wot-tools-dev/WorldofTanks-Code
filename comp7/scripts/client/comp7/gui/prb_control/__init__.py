@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 def registerComp7OthersPrbParams():
     from comp7.gui.comp7_constants import PREBATTLE_ACTION_NAME
     from comp7.gui.impl.lobby.tooltips.progression_tooltip import ProgressionTooltip

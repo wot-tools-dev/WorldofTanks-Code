@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from gui.server_events.bonuses_wot_plus import getAvailableCoreBonuses, getAvailableProBonuses
 from helpers import dependency
 from skeletons.gui.game_control import IWotPlusController
@@ -21,7 +22,8 @@ class RenewableSubWebApiMixin(object):
          'enabled_pro_bonuses': [ bonus.getName() for bonus in getAvailableProBonuses(storage) ],
          'is_free_deluxe_demount_included': self._wotPlusCtrl.getSettingsStorage().isFreeDeluxeEquipmentDemountingAvailable(),
          'current_active_tier': _TIER_TO_STRING[self._wotPlusCtrl.getTier()],
-         'enabled_for_steam': self._wotPlusCtrl.getSettingsStorage().isEnabledForSteam()}
+         'enabled_for_steam': self._wotPlusCtrl.getSettingsStorage().isEnabledForSteam(),
+         'active_subscription_platform': self._wotPlusCtrl.getActiveSubscriptionPlatform().value}
 
     @w2c(W2CSchema, 'subscription_info_window')
     def handleSubscriptionInfoWindow(self, cmd):

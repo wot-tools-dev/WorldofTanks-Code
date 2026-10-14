@@ -1,6 +1,7 @@
-import cPickle
+from __future__ import absolute_import
 import zlib
 from functools import partial
+from future.moves import pickle
 import BigWorld
 import AccountCommands
 from debug_utils import LOG_CURRENT_EXCEPTION, LOG_CODEPOINT_WARNING, LOG_ERROR
@@ -50,7 +51,7 @@ class SyncController(object):
         if isSuccess:
             try:
                 data = zlib.decompress(data)
-                data = cPickle.loads(data)
+                data = pickle.loads(data)
             except Exception:
                 if data is None:
                     LOG_CODEPOINT_WARNING()

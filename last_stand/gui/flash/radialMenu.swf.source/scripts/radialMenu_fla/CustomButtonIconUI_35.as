@@ -2,7 +2,7 @@ package radialMenu_fla
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol162")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol156")]
    public dynamic class CustomButtonIconUI_35 extends MovieClip
    {
       

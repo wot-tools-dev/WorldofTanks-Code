@@ -1,0 +1,1 @@
+var o="option_1",t="option_2";export{t as n,o as t};

@@ -14,6 +14,10 @@ package net.wg.app.impl
       {
          super(null,LIBS_LIST,null);
       }
+      
+      override protected function configAppInstance() : void
+      {
+      }
    }
 }
 

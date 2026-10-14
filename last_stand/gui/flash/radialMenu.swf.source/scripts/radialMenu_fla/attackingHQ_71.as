@@ -2,7 +2,7 @@ package radialMenu_fla
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol260")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol254")]
    public dynamic class attackingHQ_71 extends MovieClip
    {
       

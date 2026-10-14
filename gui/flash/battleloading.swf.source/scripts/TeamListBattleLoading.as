@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.components.controls.ReadOnlyScrollingList;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol13")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol18")]
    public dynamic class TeamListBattleLoading extends ReadOnlyScrollingList
    {
       

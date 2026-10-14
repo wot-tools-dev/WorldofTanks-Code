@@ -25,7 +25,6 @@ package
          this.__setProp_showKillersDogTagCheckbox_GameSettingsContentUI_showKillersDogTagCheckbox_0();
          this.__setProp_showVictimsDogTagCheckbox_GameSettingsContentUI_showVictimsDogTagCheckbox_0();
          this.__setProp_ppShowLevelsCheckbox_GameSettingsContentUI_ppShowLevelsCheckbox_0();
-         this.__setProp_gameplay_devMapsCheckbox_GameSettingsContentUI_gameplay_devMapsCheckbox_0();
          this.__setProp_commanderCamCheckbox_GameSettingsContentUI_commanderCamCheckbox_0();
          this.__setProp_preCommanderCamCheckbox_GameSettingsContentUI_preCommanderCamCheckbox_0();
          this.__setProp_scrollSmoothingCheckbox_GameSettingsContentUI_scrollSmoothingCheckbox_0();
@@ -102,7 +101,7 @@ package
          catch(e:Error)
          {
          }
-         carouselTypeFieldSet.UIID = 34603401;
+         carouselTypeFieldSet.UIID = 34603400;
          carouselTypeFieldSet.enabled = true;
          carouselTypeFieldSet.enableInitCallback = false;
          carouselTypeFieldSet.label = "";
@@ -127,7 +126,7 @@ package
          catch(e:Error)
          {
          }
-         vehicleCarouselStatsCheckbox.UIID = 34603400;
+         vehicleCarouselStatsCheckbox.UIID = 34603399;
          vehicleCarouselStatsCheckbox.autoSize = "none";
          vehicleCarouselStatsCheckbox.data = "";
          vehicleCarouselStatsCheckbox.disabledTextAlpha = 0.5;
@@ -162,7 +161,7 @@ package
          catch(e:Error)
          {
          }
-         doubleCarouselTypeDropDown.UIID = 34603399;
+         doubleCarouselTypeDropDown.UIID = 34603398;
          doubleCarouselTypeDropDown.autoSize = "none";
          doubleCarouselTypeDropDown.dropdown = "DropdownMenu_ScrollingList";
          doubleCarouselTypeDropDown.enabled = true;
@@ -214,7 +213,7 @@ package
          catch(e:Error)
          {
          }
-         carouselTypeButtonBar.UIID = 34603398;
+         carouselTypeButtonBar.UIID = 34603397;
          carouselTypeButtonBar.autoSize = "left";
          carouselTypeButtonBar.buttonWidth = 0;
          carouselTypeButtonBar.direction = "vertical";
@@ -243,7 +242,7 @@ package
          catch(e:Error)
          {
          }
-         fieldSetChat.UIID = 34603397;
+         fieldSetChat.UIID = 34603396;
          fieldSetChat.enabled = true;
          fieldSetChat.enableInitCallback = false;
          fieldSetChat.label = "";
@@ -268,7 +267,7 @@ package
          catch(e:Error)
          {
          }
-         fieldSetBattlePanel.UIID = 34603396;
+         fieldSetBattlePanel.UIID = 34603395;
          fieldSetBattlePanel.enabled = true;
          fieldSetBattlePanel.enableInitCallback = false;
          fieldSetBattlePanel.label = "";
@@ -293,7 +292,7 @@ package
          catch(e:Error)
          {
          }
-         postmortemModeLabelControl.UIID = 34603395;
+         postmortemModeLabelControl.UIID = 34603394;
          postmortemModeLabelControl.autoSize = "none";
          postmortemModeLabelControl.enabled = true;
          postmortemModeLabelControl.enableInitCallback = false;
@@ -318,7 +317,7 @@ package
          catch(e:Error)
          {
          }
-         enableOlFilterCheckbox.UIID = 34603394;
+         enableOlFilterCheckbox.UIID = 34603393;
          enableOlFilterCheckbox.autoSize = "none";
          enableOlFilterCheckbox.data = "";
          enableOlFilterCheckbox.disabledTextAlpha = 0.5;
@@ -353,7 +352,7 @@ package
          catch(e:Error)
          {
          }
-         enableSpamFilterCheckbox.UIID = 34603393;
+         enableSpamFilterCheckbox.UIID = 34603392;
          enableSpamFilterCheckbox.autoSize = "none";
          enableSpamFilterCheckbox.data = "";
          enableSpamFilterCheckbox.disabledTextAlpha = 0.5;
@@ -388,7 +387,7 @@ package
          catch(e:Error)
          {
          }
-         showDateMessageCheckbox.UIID = 34603392;
+         showDateMessageCheckbox.UIID = 34603391;
          showDateMessageCheckbox.autoSize = "none";
          showDateMessageCheckbox.data = "";
          showDateMessageCheckbox.disabledTextAlpha = 0.5;
@@ -423,7 +422,7 @@ package
          catch(e:Error)
          {
          }
-         showTimeMessageCheckbox.UIID = 34603391;
+         showTimeMessageCheckbox.UIID = 34603390;
          showTimeMessageCheckbox.autoSize = "none";
          showTimeMessageCheckbox.data = "";
          showTimeMessageCheckbox.disabledTextAlpha = 0.5;
@@ -458,7 +457,7 @@ package
          catch(e:Error)
          {
          }
-         invitesFromFriendsOnlyCheckbox.UIID = 34603390;
+         invitesFromFriendsOnlyCheckbox.UIID = 34603389;
          invitesFromFriendsOnlyCheckbox.autoSize = "none";
          invitesFromFriendsOnlyCheckbox.data = "";
          invitesFromFriendsOnlyCheckbox.disabledTextAlpha = 0.5;
@@ -493,7 +492,7 @@ package
          catch(e:Error)
          {
          }
-         receiveFriendshipRequestCheckbox.UIID = 34603389;
+         receiveFriendshipRequestCheckbox.UIID = 34603388;
          receiveFriendshipRequestCheckbox.autoSize = "none";
          receiveFriendshipRequestCheckbox.data = "";
          receiveFriendshipRequestCheckbox.disabledTextAlpha = 0.5;
@@ -528,7 +527,7 @@ package
          catch(e:Error)
          {
          }
-         showKillersDogTagCheckbox.UIID = 34603388;
+         showKillersDogTagCheckbox.UIID = 34603387;
          showKillersDogTagCheckbox.autoSize = "none";
          showKillersDogTagCheckbox.data = "";
          showKillersDogTagCheckbox.disabledTextAlpha = 0.5;
@@ -563,7 +562,7 @@ package
          catch(e:Error)
          {
          }
-         showVictimsDogTagCheckbox.UIID = 34603387;
+         showVictimsDogTagCheckbox.UIID = 34603386;
          showVictimsDogTagCheckbox.autoSize = "none";
          showVictimsDogTagCheckbox.data = "";
          showVictimsDogTagCheckbox.disabledTextAlpha = 0.5;
@@ -598,7 +597,7 @@ package
          catch(e:Error)
          {
          }
-         ppShowLevelsCheckbox.UIID = 34603386;
+         ppShowLevelsCheckbox.UIID = 34603385;
          ppShowLevelsCheckbox.autoSize = "none";
          ppShowLevelsCheckbox.data = "";
          ppShowLevelsCheckbox.disabledTextAlpha = 0.5;
@@ -618,41 +617,6 @@ package
          try
          {
             ppShowLevelsCheckbox["componentInspectorSetting"] = false;
-         }
-         catch(e:Error)
-         {
-         }
-      }
-      
-      internal function __setProp_gameplay_devMapsCheckbox_GameSettingsContentUI_gameplay_devMapsCheckbox_0() : *
-      {
-         try
-         {
-            gameplay_devMapsCheckbox["componentInspectorSetting"] = true;
-         }
-         catch(e:Error)
-         {
-         }
-         gameplay_devMapsCheckbox.UIID = 34603385;
-         gameplay_devMapsCheckbox.autoSize = "none";
-         gameplay_devMapsCheckbox.data = "";
-         gameplay_devMapsCheckbox.disabledTextAlpha = 0.5;
-         gameplay_devMapsCheckbox.enabled = true;
-         gameplay_devMapsCheckbox.enableInitCallback = false;
-         gameplay_devMapsCheckbox.focusable = true;
-         gameplay_devMapsCheckbox.infoIcoType = "";
-         gameplay_devMapsCheckbox.label = "checkBox";
-         gameplay_devMapsCheckbox.selected = false;
-         gameplay_devMapsCheckbox.soundId = "";
-         gameplay_devMapsCheckbox.soundType = "";
-         gameplay_devMapsCheckbox.textColor = 9868935;
-         gameplay_devMapsCheckbox.textFont = "$TextFont";
-         gameplay_devMapsCheckbox.textSize = 12;
-         gameplay_devMapsCheckbox.toolTip = "";
-         gameplay_devMapsCheckbox.visible = true;
-         try
-         {
-            gameplay_devMapsCheckbox["componentInspectorSetting"] = false;
          }
          catch(e:Error)
          {

@@ -1,11 +1,12 @@
+from __future__ import absolute_import
 import weakref
 from collections import namedtuple
 import BigWorld
 import CGF
+from EdgeDrawer import EdgeHighlightComponent
 from cgf_script.registration import registerComponent
 from helpers import dependency
 from skeletons.gui.battle_session import IBattleSessionProvider
-from EdgeDrawer import EdgeHighlightComponent
 EdgeHighlightComponentArgs = namedtuple('EdgeHighlightComponentArgs', ['colorIndex',
  'drawMode',
  'filled',

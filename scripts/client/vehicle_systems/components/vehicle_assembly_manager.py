@@ -1,6 +1,7 @@
-from collections import namedtuple
+from __future__ import absolute_import
 import typing
 import logging
+from collections import namedtuple
 import CGF
 import GenericComponents
 import GpuDecals

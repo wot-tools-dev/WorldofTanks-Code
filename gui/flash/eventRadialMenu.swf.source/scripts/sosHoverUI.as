@@ -2,7 +2,7 @@ package
 {
    import flash.display.Sprite;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol85")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol80")]
    public dynamic class sosHoverUI extends Sprite
    {
       

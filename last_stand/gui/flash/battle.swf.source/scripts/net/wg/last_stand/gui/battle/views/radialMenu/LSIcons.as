@@ -7,19 +7,19 @@ package net.wg.last_stand.gui.battle.views.radialMenu
    public class LSIcons extends Icons
    {
       
-      public var lsCampIcon:MovieClip = null;
-      
       public var lsCampHelpIcon:MovieClip = null;
       
-      public var lsMagnusIcon:MovieClip = null;
+      public var lsCampIcon:MovieClip = null;
       
-      public var lsMagnusHelpIcon:MovieClip = null;
+      public var lsMagnusIcon:MovieClip = null;
       
       public var lsCancelIcon:MovieClip = null;
       
       public var lsObelisk:MovieClip = null;
       
       public var lsObeliskHelp:MovieClip = null;
+      
+      public var lsMagnusHelpIcon:MovieClip = null;
       
       public function LSIcons()
       {

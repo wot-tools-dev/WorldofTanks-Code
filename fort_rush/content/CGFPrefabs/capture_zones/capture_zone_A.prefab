@@ -1,0 +1,1046 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"components": {
+					"cgf::TransformComponent": {
+						"position/y": 25
+					},
+					"script::CapturePointMarkerAnchor": {}
+				},
+				"name": "marker_anchor",
+				"uuid": "00000000-0000-0000-0000-000000000001"
+			},
+			{
+				"components": {
+					"BW::AreaTriggerComponent": {
+						"disabledDomains": []
+					},
+					"BW::PrismArea": {
+						"curvature": 0,
+						"disabledDomains": [],
+						"douglasPeuckerEps": 0.2,
+						"height": 40,
+						"points": [
+							{
+								"x": 0,
+								"y": -1.3375
+							},
+							{
+								"x": -4.1876,
+								"y": 82.619
+							},
+							{
+								"x": 55.881,
+								"y": 86.038
+							},
+							{
+								"x": 82.459,
+								"y": -1.3375
+							}
+						],
+						"tesselationStep": 20
+					},
+					"cgf::TransformComponent": {
+						"position": {
+							"x": -21.38,
+							"y": -12.141,
+							"z": -42.019
+						}
+					}
+				},
+				"name": "area_circle",
+				"uuid": "313d6473-d2e7-4dc4-b7a7-4327a4f95f1b"
+			},
+			{
+				"children": [
+					{
+						"children": [
+							{
+								"components": {
+									"BW::AxisRotatorComponent": {
+										"AxisType": 1,
+										"CyclesPerMinute": {
+											"x": 1,
+											"y": 1
+										},
+										"OscilationAngle": "0",
+										"RandomizationDelay": {
+											"x": 1000000.0,
+											"y": 1000000.0
+										},
+										"RotationType": 0,
+										"StartingAngle": {
+											"x": 0,
+											"y": 360
+										},
+										"disabledDomains": [
+											"Server"
+										]
+									},
+									"BW::Colliders": {
+										"colliders": [
+											{
+												"__ctype__": "BW::MeshColliderDesc",
+												"__cvalue__": {
+													"modelName": "content/Environment/hd_env_UNI_258_Antenna/normal/lod0/hd_env_UNI_258_Antenna_02.model",
+													"moduleName": "default"
+												}
+											}
+										]
+									},
+									"BW::DynamicModel": {
+										"castShadows": true,
+										"decorType": "0",
+										"disabledDomains": [
+											"Server"
+										],
+										"isOverlayEnabled": "0",
+										"modelName": "content/Environment/hd_env_UNI_258_Antenna/normal/lod0/hd_env_UNI_258_Antenna_02.model"
+									},
+									"BW::StaticObstacleComponent": {
+										"disabledDomains": [
+											"Client"
+										],
+										"spawnResolveType": "PUSH_OUT"
+									},
+									"cgf::TransformComponent": {
+										"position/y": 29.468,
+										"rotation": {
+											"x": 0,
+											"y": -27.473,
+											"z": 0
+										}
+									},
+									"script::MaterialComponent": {
+										"kind": "metal"
+									},
+									"script::ShootingObstacle": {
+										"colliders": "c3bad936-177c-3c41-b43a-810d5a25abf1",
+										"disabledDomains": [
+											"Client"
+										],
+										"receiver": "c3bad936-177c-3c41-b43a-810d5a25abf1"
+									},
+									"script::ShotsReceiver": {}
+								},
+								"name": "RadioTower_top",
+								"uuid": "c3bad936-177c-3c41-b43a-810d5a25abf1"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"BW::Particle": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"effect": "particles/Environment/fort_rush/flare_green_03.eff",
+												"emissionRate": 1,
+												"emissionSize": {
+													"x": 0,
+													"y": 0,
+													"z": 0
+												},
+												"epicenterOffset": {
+													"x": 0,
+													"y": 0,
+													"z": 0
+												},
+												"fps": 1,
+												"gravity": 1,
+												"opacity": 1,
+												"startSpeed": {
+													"x": 1,
+													"y": 1
+												},
+												"tintColor": {
+													"value": 4294967295
+												},
+												"windWeight": 1
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "flare_green",
+										"uuid": "4036025f-b103-4428-bb39-130335067288"
+									},
+									{
+										"components": {
+											"BW::Animator": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"dynamicModelLinkType": "Self",
+												"layers": [
+													{
+														"autoStart": true,
+														"clip": "<Default Clip>",
+														"graphicsPreset": "TYPE_NULL_SHADING",
+														"layerName": "wave_green",
+														"lodScale": 1,
+														"path": "particles/eff_sequence/fort_rush/shock_wave_green.seq",
+														"properties": {
+															"delay": "0",
+															"loop": "0",
+															"loopCount": "-1",
+															"speed": "1"
+														},
+														"weight": 1
+													}
+												]
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "Wave_green",
+										"uuid": "ca0f298f-23e4-434c-9c88-f619b4e39c26"
+									},
+									{
+										"components": {
+											"BW::Animator": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"dynamicModelLinkType": "Self",
+												"layers": [
+													{
+														"autoStart": true,
+														"clip": "<Default Clip>",
+														"graphicsPreset": "TYPE_NULL_SHADING",
+														"layerName": "lights_green",
+														"lodScale": 1,
+														"path": "particles/eff_sequence/fort_rush/capture_zone_lights_green_murovanka.seq",
+														"properties": {
+															"delay": "0",
+															"loop": "0",
+															"loopCount": "-1",
+															"speed": "1"
+														},
+														"weight": 1
+													}
+												]
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "Lights_green",
+										"uuid": "96809989-fec1-4154-9c0b-bd6a29249e7b"
+									},
+									{
+										"components": {
+											"BW::Sound3DComponent": {
+												"AutoStart": true,
+												"Event name": "ev_fort_rush_signal_flare_green",
+												"Object name": "SFX_flare_green"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "SFX_flare_green",
+										"uuid": "3cd99d65-ffb4-4157-91cb-000eca9d648f"
+									}
+								],
+								"components": {
+									"cgf::TransformComponent": {}
+								},
+								"name": "RadioTowerLights_green",
+								"uuid": "5d9e6cf2-eec4-3542-8ebe-f4d9280ee723"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"BW::Animator": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"dynamicModelLinkType": "Self",
+												"layers": [
+													{
+														"autoStart": true,
+														"clip": "<Default Clip>",
+														"graphicsPreset": "TYPE_NULL_SHADING",
+														"layerName": "lights_neutral",
+														"lodScale": 1,
+														"path": "particles/eff_sequence/fort_rush/capture_zone_lights_neutral_murovanka.seq",
+														"properties": {
+															"delay": "0",
+															"loop": "0",
+															"loopCount": "-1",
+															"speed": "1"
+														},
+														"weight": 1
+													}
+												]
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "Lights_neutral",
+										"uuid": "2afd75ef-c668-4061-9836-02af223951a2"
+									}
+								],
+								"components": {
+									"cgf::TransformComponent": {}
+								},
+								"name": "RadioTowerLights_neutral",
+								"uuid": "7fccc600-60ce-424f-a3f6-1e2f89a4141d"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"BW::Particle": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"effect": "particles/Environment/fort_rush/flare_red_03.eff",
+												"emissionRate": 1,
+												"emissionSize": {
+													"x": 0,
+													"y": 0,
+													"z": 0
+												},
+												"epicenterOffset": {
+													"x": 0,
+													"y": 0,
+													"z": 0
+												},
+												"fps": 1,
+												"gravity": 1,
+												"opacity": 1,
+												"startSpeed": {
+													"x": 1,
+													"y": 1
+												},
+												"tintColor": {
+													"value": 4294967295
+												},
+												"windWeight": 1
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "flare_red",
+										"uuid": "c46abca4-ebb3-4eb4-acd8-e9a1a631fdb3"
+									},
+									{
+										"components": {
+											"BW::Animator": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"dynamicModelLinkType": "Self",
+												"layers": [
+													{
+														"autoStart": true,
+														"clip": "<Default Clip>",
+														"graphicsPreset": "TYPE_NULL_SHADING",
+														"layerName": "wave_red",
+														"lodScale": 1,
+														"path": "particles/eff_sequence/fort_rush/shock_wave_red.seq",
+														"properties": {
+															"delay": "0",
+															"loop": "0",
+															"loopCount": "-1",
+															"speed": "1"
+														},
+														"weight": 1
+													}
+												]
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "Wave_red",
+										"uuid": "564a399c-5ddd-36b3-af33-a70fb44d42b0"
+									},
+									{
+										"components": {
+											"BW::Animator": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"dynamicModelLinkType": "Self",
+												"layers": [
+													{
+														"autoStart": true,
+														"clip": "<Default Clip>",
+														"graphicsPreset": "TYPE_NULL_SHADING",
+														"layerName": "lights_red",
+														"lodScale": 1,
+														"path": "particles/eff_sequence/fort_rush/capture_zone_lights_red_murovanka.seq",
+														"properties": {
+															"delay": "0",
+															"loop": "0",
+															"loopCount": "-1",
+															"speed": "1"
+														},
+														"weight": 1
+													}
+												]
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "Lights_red",
+										"uuid": "aef55ca8-0448-499e-ad42-e8edb2bf2a32"
+									},
+									{
+										"components": {
+											"BW::Sound3DComponent": {
+												"AutoStart": true,
+												"Event name": "ev_fort_rush_signal_flare_red",
+												"Object name": "SFX_flare_red"
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "SFX_flare_red",
+										"uuid": "9e848110-cb96-4ef3-81ae-10bd20519f6b"
+									}
+								],
+								"components": {
+									"cgf::TransformComponent": {}
+								},
+								"name": "RadioTowerLights_red",
+								"uuid": "c7d728f1-5709-37a7-9604-e0377ccda6dd"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"BW::Animator": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"dynamicModelLinkType": "Self",
+												"layers": [
+													{
+														"autoStart": true,
+														"clip": "<Default Clip>",
+														"graphicsPreset": "TYPE_NULL_SHADING",
+														"layerName": "lights_contested",
+														"lodScale": 1,
+														"path": "particles/eff_sequence/fort_rush/capture_zone_lights_contested_murovanka.seq",
+														"properties": {
+															"delay": "0",
+															"loop": "0",
+															"loopCount": "-1",
+															"speed": "1"
+														},
+														"weight": 1
+													}
+												]
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "Lights_contested",
+										"uuid": "44a7e31b-fe1c-4a0d-ac28-a631b12ec905"
+									}
+								],
+								"components": {
+									"cgf::TransformComponent": {}
+								},
+								"name": "RadioTowerLights_green_contested",
+								"uuid": "0778b7ac-2556-3d81-b26f-b42af494637e"
+							},
+							{
+								"children": [
+									{
+										"components": {
+											"BW::Animator": {
+												"autoStart": true,
+												"disabledDomains": [
+													"Server"
+												],
+												"dynamicModelLinkType": "Self",
+												"layers": [
+													{
+														"autoStart": true,
+														"clip": "<Default Clip>",
+														"graphicsPreset": "TYPE_NULL_SHADING",
+														"layerName": "lights_contested",
+														"lodScale": 1,
+														"path": "particles/eff_sequence/fort_rush/capture_zone_lights_contested_murovanka.seq",
+														"properties": {
+															"delay": "0",
+															"loop": "0",
+															"loopCount": "-1",
+															"speed": "1"
+														},
+														"weight": 1
+													}
+												]
+											},
+											"cgf::TransformComponent": {}
+										},
+										"flags": [
+											"SelfInactive"
+										],
+										"name": "Lights_contested",
+										"uuid": "62d83829-c773-45cb-9616-6bcacd2302d5"
+									}
+								],
+								"components": {
+									"cgf::TransformComponent": {}
+								},
+								"name": "RadioTowerLights_red_contested",
+								"uuid": "21076c9e-1c39-3247-8851-79d18899a8ae"
+							}
+						],
+						"components": {
+							"BW::Colliders": {
+								"colliders": [
+									{
+										"__ctype__": "BW::MeshColliderDesc",
+										"__cvalue__": {
+											"modelName": "content/Environment/hd_env_UNI_258_Antenna/normal/lod0/hd_env_UNI_258_Antenna_01.model",
+											"moduleName": "default"
+										}
+									}
+								]
+							},
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": "0",
+								"modelName": "content/Environment/hd_env_UNI_258_Antenna/normal/lod0/hd_env_UNI_258_Antenna_01.model"
+							},
+							"BW::StaticObstacleComponent": {
+								"disabledDomains": [
+									"Client"
+								],
+								"spawnResolveType": "PUSH_OUT"
+							},
+							"cgf::TransformComponent": {},
+							"cgf::network::NetworkComponent": {},
+							"cgf::network::NetworkEntity": {},
+							"cgf::network::NetworkTransformComponent": {},
+							"script::MaterialComponent": {
+								"kind": "metal"
+							},
+							"script::ShootingObstacle": {
+								"colliders": "1e7a66ee-80bb-3523-87b3-80a3437bca95",
+								"disabledDomains": [
+									"Client"
+								],
+								"receiver": "1e7a66ee-80bb-3523-87b3-80a3437bca95"
+							},
+							"script::ShotsReceiver": {}
+						},
+						"flags": [
+							"Static"
+						],
+						"name": "RadioTower",
+						"uuid": "1e7a66ee-80bb-3523-87b3-80a3437bca95"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": false,
+								"modelName": "particles/content_deferred/GFX_models/FortRush/normal/lod0/Murovanka_ZoneA_green.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0,
+									"y": 2.861e-06,
+									"z": 4.5776e-05
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "CaptureZone_green",
+						"uuid": "b17db498-e14c-397f-b6ae-762bd9bd4b20"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": "0",
+								"modelName": "particles/content_deferred/GFX_models/FortRush/normal/lod0/Murovanka_ZoneA_red.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0,
+									"y": 2.861e-06,
+									"z": 4.5776e-05
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "CaptureZone_red",
+						"uuid": "f33301fa-28fa-34c1-8d11-a1dc39798de1"
+					},
+					{
+						"components": {
+							"BW::DynamicModel": {
+								"castShadows": true,
+								"decorType": "0",
+								"disabledDomains": [
+									"Server"
+								],
+								"isOverlayEnabled": "0",
+								"modelName": "particles/content_deferred/GFX_models/FortRush/normal/lod0/Murovanka_ZoneA.model"
+							},
+							"BW::ModelPropertyChanger": {
+								"disabledDomains": [
+									"Server"
+								]
+							},
+							"cgf::TransformComponent": {
+								"position": {
+									"x": 0,
+									"y": 2.861e-06,
+									"z": 4.5776e-05
+								}
+							}
+						},
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "CaptureZone_neutral",
+						"uuid": "7b4df13f-d5e3-4b37-a4af-2c444bd0cf8b"
+					}
+				],
+				"components": {
+					"BW::SequenceComponent": {
+						"activeLayer": 3,
+						"autoStart": false,
+						"layers": [
+							{
+								"alwaysEnabled": false,
+								"duration": 10
+							},
+							{
+								"alwaysEnabled": false,
+								"duration": 2,
+								"name": "capturezone_neutral",
+								"tracks": [
+									{
+										"endTime": 2,
+										"object": "7b4df13f-d5e3-4b37-a4af-2c444bd0cf8b"
+									},
+									{
+										"endTime": 2,
+										"object": "7fccc600-60ce-424f-a3f6-1e2f89a4141d"
+									},
+									{
+										"endTime": 2,
+										"object": "2afd75ef-c668-4061-9836-02af223951a2"
+									}
+								]
+							},
+							{
+								"alwaysEnabled": false,
+								"duration": 10,
+								"name": "capturezone_green_flare",
+								"tracks": [
+									{
+										"endTime": 10,
+										"object": "b17db498-e14c-397f-b6ae-762bd9bd4b20"
+									},
+									{
+										"endTime": 1,
+										"object": "4036025f-b103-4428-bb39-130335067288",
+										"parameters": [
+											{
+												"component": "BW::Particle",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "emissionRate"
+													}
+												]
+											}
+										],
+										"startTime": 0.01
+									},
+									{
+										"endTime": 10,
+										"object": "ca0f298f-23e4-434c-9c88-f619b4e39c26",
+										"startTime": 0.01
+									},
+									{
+										"endTime": 10,
+										"object": "96809989-fec1-4154-9c0b-bd6a29249e7b"
+									},
+									{
+										"endTime": 4.8627,
+										"object": "3cd99d65-ffb4-4157-91cb-000eca9d648f",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 20
+														}
+													},
+													{
+														"time": 0.97284,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 100
+														}
+													}
+												],
+												"object": "3cd99d65-ffb4-4157-91cb-000eca9d648f",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											}
+										],
+										"startTime": 0.01
+									}
+								]
+							},
+							{
+								"alwaysEnabled": false,
+								"duration": 10,
+								"name": "capturezone_red_flare",
+								"tracks": [
+									{
+										"endTime": 10,
+										"object": "f33301fa-28fa-34c1-8d11-a1dc39798de1"
+									},
+									{
+										"endTime": 1,
+										"object": "c46abca4-ebb3-4eb4-acd8-e9a1a631fdb3",
+										"parameters": [
+											{
+												"component": "BW::Particle",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													}
+												],
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "emissionRate"
+													}
+												]
+											}
+										],
+										"startTime": 0.01
+									},
+									{
+										"endTime": 10,
+										"object": "564a399c-5ddd-36b3-af33-a70fb44d42b0",
+										"startTime": 0.01
+									},
+									{
+										"endTime": 10,
+										"object": "aef55ca8-0448-499e-ad42-e8edb2bf2a32"
+									},
+									{
+										"endTime": 10,
+										"object": "c7d728f1-5709-37a7-9604-e0377ccda6dd"
+									},
+									{
+										"endTime": 4,
+										"object": "9e848110-cb96-4ef3-81ae-10bd20519f6b",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"time": 1,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 150
+														}
+													}
+												],
+												"object": "9e848110-cb96-4ef3-81ae-10bd20519f6b",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "position"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "y"
+													}
+												]
+											}
+										],
+										"startTime": 0.01
+									}
+								]
+							},
+							{
+								"alwaysEnabled": false,
+								"duration": 10,
+								"name": "capturezone_green_contested",
+								"tracks": [
+									{
+										"endTime": 10,
+										"object": "0778b7ac-2556-3d81-b26f-b42af494637e"
+									},
+									{
+										"endTime": 10,
+										"object": "44a7e31b-fe1c-4a0d-ac28-a631b12ec905"
+									},
+									{
+										"endTime": 10,
+										"object": "b17db498-e14c-397f-b6ae-762bd9bd4b20"
+									}
+								]
+							},
+							{
+								"alwaysEnabled": false,
+								"duration": 10,
+								"name": "capturezone_red_contested",
+								"tracks": [
+									{
+										"endTime": 10,
+										"object": "21076c9e-1c39-3247-8851-79d18899a8ae"
+									},
+									{
+										"endTime": 10,
+										"object": "62d83829-c773-45cb-9616-6bcacd2302d5"
+									},
+									{
+										"endTime": 10,
+										"object": "f33301fa-28fa-34c1-8d11-a1dc39798de1"
+									}
+								]
+							},
+							{
+								"alwaysEnabled": false,
+								"duration": 10,
+								"name": "capturezone_green",
+								"tracks": [
+									{
+										"endTime": 10,
+										"object": "5d9e6cf2-eec4-3542-8ebe-f4d9280ee723"
+									},
+									{
+										"endTime": 10,
+										"object": "96809989-fec1-4154-9c0b-bd6a29249e7b",
+										"parameters": [
+											{
+												"component": "BW::Animator",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 5
+														}
+													}
+												],
+												"object": "96809989-fec1-4154-9c0b-bd6a29249e7b",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "time"
+													}
+												]
+											},
+											{
+												"component": "BW::Animator",
+												"keys": [
+													{
+														"type": "Step",
+														"value": {
+															"__ctype__": "bool",
+															"__cvalue__": true
+														}
+													}
+												],
+												"object": "96809989-fec1-4154-9c0b-bd6a29249e7b",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "autoStart"
+													}
+												]
+											}
+										]
+									},
+									{
+										"endTime": 10,
+										"object": "b17db498-e14c-397f-b6ae-762bd9bd4b20"
+									}
+								]
+							},
+							{
+								"alwaysEnabled": false,
+								"duration": 10,
+								"name": "capturezone_red",
+								"tracks": [
+									{
+										"endTime": 10,
+										"object": "c7d728f1-5709-37a7-9604-e0377ccda6dd"
+									},
+									{
+										"endTime": 10,
+										"object": "aef55ca8-0448-499e-ad42-e8edb2bf2a32"
+									},
+									{
+										"endTime": 10,
+										"object": "f33301fa-28fa-34c1-8d11-a1dc39798de1"
+									}
+								]
+							}
+						],
+						"speed": "1"
+					},
+					"BW::SequenceLayerSwitcherComponent": {
+						"layerIdx": "2",
+						"transitionTime": "0"
+					},
+					"BW::variables::PropertyOnChangeCalculatorComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::VariableExpression",
+									"__cvalue__": {
+										"variable/variableName": "captureZone/state"
+									}
+								},
+								"componentPropertyDest/component": "BW::SequenceLayerSwitcherComponent",
+								"componentPropertyDest/propertyPath": "layerIdx"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "CaptureZone",
+				"uuid": "387b6c7a-f791-4656-bb1e-6313e322c0ae"
+			}
+		],
+		"components": {
+			"BW::variables::VariableStorageComponent": {
+				"disabledDomains": [
+					"Server"
+				],
+				"varInitialValues": [
+					{
+						"initValExpr/expression": {
+							"__ctype__": "BW::variables::ConstantIntExpression",
+							"__cvalue__": {
+								"intValue": 2
+							}
+						},
+						"var/variableName": "captureZone/state"
+					}
+				]
+			},
+			"cgf::TransformComponent": {},
+			"cgf::network::NetworkComponent": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkEntity": {
+				"disabledDomains": [
+					"Editor"
+				]
+			},
+			"cgf::network::NetworkTransformComponent": {
+				"detailed": false,
+				"disabledDomains": [
+					"Editor"
+				],
+				"filterType": "NO_SYNC"
+			},
+			"script::CapturePointComponent": {
+				"capturablePointName": "A",
+				"sequence": "387b6c7a-f791-4656-bb1e-6313e322c0ae",
+				"trigger": "313d6473-d2e7-4dc4-b7a7-4327a4f95f1b"
+			}
+		},
+		"name": "capture_zone",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}
