@@ -18,3 +18,10 @@ the version and build number published with that client.
 
 Large rendered and media assets such as textures, video, audio, and compiled
 geometry are not included.
+
+The updater caches XML conversion using the original client file's SHA-256 and
+the saved output's SHA-256. After the first applied update records these hashes,
+unchanged `.xml` files reuse their verified repository output and are kept out
+of the unpacker's scan. New or changed XML files, and files whose saved output
+is missing or modified, are processed again. This includes root metadata and
+loose resources that override packaged files; existing XML exclusions still apply.

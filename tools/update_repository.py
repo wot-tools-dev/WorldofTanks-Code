@@ -575,7 +575,43 @@ def copy_loose_resources(client: Path, stage: Path) -> None:
         shutil.copyfile(str(source), str(target))
 
 
-def run_pjorion(stage: Path, undec: Path | None, decompile_pyc: bool = True) -> None:
+def xml_input_hashes(stage: Path) -> dict[str, str]:
+    return {
+        path.relative_to(stage).as_posix(): sha256_file(path)
+        for path in stage.rglob("*")
+        if path.is_file() and path.suffix.lower() == ".xml"
+    }
+
+
+def reuse_xml_outputs(
+    repository: Path, stage: Path, inputs: dict[str, str], old_manifest: dict
+) -> set[str]:
+    reused = set()
+    old_files = old_manifest.get("files", {})
+    for relative, digest in inputs.items():
+        if relative in XML_UNPACK_EXCLUSIONS:
+            continue
+        metadata = old_files.get(relative, {})
+        generator = metadata.get("generator", {})
+        if (
+            generator.get("type") != "xml"
+            or generator.get("source") != relative
+            or generator.get("sha256") != digest
+        ):
+            continue
+        path = safe_member_path(relative)
+        existing = repository.joinpath(*path.parts)
+        if existing.is_file() and sha256_file(existing) == metadata.get("sha256"):
+            shutil.copyfile(str(existing), str(stage.joinpath(*path.parts)))
+            reused.add(relative)
+    print("XML outputs: %d unchanged files reused" % len(reused), flush=True)
+    return reused
+
+
+def run_pjorion(
+    stage: Path, undec: Path | None, decompile_pyc: bool = True,
+    reused_xml: set[str] | None = None,
+) -> None:
     if undec is None:
         raise UpdateError("WOT-UnDec/PjOrion is required for XML and Python processing")
     undec = undec.resolve(strict=True)
@@ -586,7 +622,7 @@ def run_pjorion(stage: Path, undec: Path | None, decompile_pyc: bool = True) -> 
     exclusion_root = stage.parent / ".xml-unpack-exclusions"
     if exclusion_root.exists():
         raise UpdateError("XML exclusion staging path already exists: %s" % exclusion_root)
-    for relative in sorted(XML_UNPACK_EXCLUSIONS):
+    for relative in sorted(XML_UNPACK_EXCLUSIONS | (reused_xml or set())):
         path = safe_member_path(relative)
         source = stage.joinpath(*path.parts)
         if not source.is_file():
@@ -595,7 +631,8 @@ def run_pjorion(stage: Path, undec: Path | None, decompile_pyc: bool = True) -> 
         held.parent.mkdir(parents=True, exist_ok=True)
         shutil.move(str(source), str(held))
         held_files.append((held, source))
-        print("Preserving unsupported packed XML without conversion: %s" % relative, flush=True)
+        if relative in XML_UNPACK_EXCLUSIONS:
+            print("Preserving unsupported packed XML without conversion: %s" % relative, flush=True)
 
     root_xml_files = []
     root_xml_workspace = stage.parent / ".root-xml-unpack"
@@ -656,6 +693,13 @@ unpacker_separately = []
                 raise UpdateError("Cannot restore excluded packed XML over existing file: %s" % destination)
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(str(held), str(destination))
+        if exclusion_root.exists():
+            for directory in sorted(
+                (path for path in exclusion_root.rglob("*") if path.is_dir()),
+                key=lambda path: len(path.parts), reverse=True,
+            ):
+                directory.rmdir()
+            exclusion_root.rmdir()
         for held, destination in root_xml_files:
             if not held.is_file():
                 raise UpdateError("PjOrion removed a root XML file: %s" % destination.name)
@@ -1163,10 +1207,21 @@ def main(argv=None) -> int:
                 pending_bytecode, flash_without_source,
             )
         if phase == "pjorion_pending":
+            if "xml" not in extracted:
+                extracted["xml"] = xml_input_hashes(stage)
+                checkpoint_recovery_state(
+                    workspace, recovery, phase, extracted, generated,
+                    pending_bytecode, flash_without_source,
+                )
+            reused_xml = reuse_xml_outputs(repository, stage, extracted["xml"], old_manifest)
             run_pjorion(
                 stage, optional_path(args.undec),
                 decompile_pyc=bool(pending_bytecode),
+                reused_xml=reused_xml,
             )
+            for relative, digest in extracted["xml"].items():
+                if relative not in XML_UNPACK_EXCLUSIONS:
+                    generated[relative] = {"type": "xml", "source": relative, "sha256": digest}
             phase = "pjorion_ran"
             checkpoint_recovery_state(
                 workspace, recovery, phase, extracted, generated,

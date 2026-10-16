@@ -349,6 +349,92 @@ VALUE = 1
             self.assertFalse((stage / "WOT-UnDec.exe").exists())
             self.assertFalse((stage / "WOT-UnDec.arg").exists())
 
+    def test_xml_reuse_requires_matching_input_and_intact_output(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
+            root = Path(folder)
+            repository = root / "repository"
+            stage = root / "stage"
+            repository.mkdir()
+            stage.mkdir()
+            files = {}
+            for name in ("same.xml", "changed.xml", "modified.xml", "missing.xml", "legacy.xml"):
+                (stage / name).write_bytes(b"packed")
+                (repository / name).write_bytes(b"<decoded />")
+                files[name] = {
+                    "sha256": update_repository.sha256_file(repository / name),
+                    "generator": {
+                        "type": "xml", "source": name,
+                        "sha256": update_repository.sha256_file(stage / name),
+                    },
+                }
+            inputs = update_repository.xml_input_hashes(stage)
+            inputs["changed.xml"] = "changed input hash"
+            (repository / "modified.xml").write_bytes(b"local edit")
+            (repository / "missing.xml").unlink()
+            files["legacy.xml"].pop("generator")
+            reused = update_repository.reuse_xml_outputs(repository, stage, inputs, {"files": files})
+            self.assertEqual({"same.xml"}, reused)
+            self.assertEqual(b"<decoded />", (stage / "same.xml").read_bytes())
+            for name in ("changed.xml", "modified.xml", "missing.xml", "legacy.xml"):
+                self.assertEqual(b"packed", (stage / name).read_bytes())
+            collected = update_repository.collect_stage(stage, {
+                "same.xml": files["same.xml"]["generator"],
+            })
+            self.assertEqual(files["same.xml"], {
+                key: collected["same.xml"][key] for key in ("sha256", "generator")
+            })
+
+    def test_xml_input_hashes_include_root_and_final_loose_overrides(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
+            root = Path(folder)
+            client = root / "client"
+            stage = root / "stage"
+            (client / "res" / "gui").mkdir(parents=True)
+            (stage / "gui").mkdir(parents=True)
+            (client / "version.xml").write_bytes(b"<version />")
+            (client / "res" / "gui" / "config.xml").write_bytes(b"loose override")
+            (stage / "gui" / "config.xml").write_bytes(b"package bytes")
+            (stage / "gui" / "other.txt").write_bytes(b"text")
+            update_repository.copy_loose_resources(client, stage)
+            inputs = update_repository.xml_input_hashes(stage)
+            self.assertEqual({"version.xml", "gui/config.xml"}, set(inputs))
+            self.assertEqual(
+                update_repository.sha256_file(client / "res" / "gui" / "config.xml"),
+                inputs["gui/config.xml"],
+            )
+
+    def test_reused_xml_is_hidden_from_unpacker_and_restored_after_failure(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
+            root = Path(folder)
+            stage = root / "stage"
+            (stage / "gui").mkdir(parents=True)
+            reused = {"root.xml", "gui/unchanged.xml"}
+            for relative in reused:
+                (stage / relative).write_bytes(b"<cached />")
+            changed = stage / "gui" / "changed.xml"
+            changed.write_bytes(b"packed")
+            tools = root / "external"
+            (tools / "PjOrion").mkdir(parents=True)
+            undec = tools / "WOT-UnDec.fixture"
+            undec.write_bytes(b"tool")
+            (tools / "PjOrion" / "PjOrion.exe").write_bytes(b"helper")
+
+            def fake_run(_command, **_kwargs):
+                self.assertEqual([changed], list(stage.rglob("*.xml")))
+                raise update_repository.UpdateError("simulated unpacker failure")
+
+            # A second attempt must not encounter stale exclusion directories.
+            for _attempt in range(2):
+                with mock.patch.object(update_repository, "run", side_effect=fake_run):
+                    with mock.patch.object(Path, "resolve", lambda self, strict=False: self.absolute()):
+                        with self.assertRaisesRegex(update_repository.UpdateError, "simulated"):
+                            update_repository.run_pjorion(stage, undec, False, reused)
+                for relative in reused:
+                    self.assertEqual(b"<cached />", (stage / relative).read_bytes())
+                self.assertFalse((root / ".xml-unpack-exclusions").exists())
+                self.assertFalse((stage / "WOT-UnDec.arg").exists())
+                self.assertFalse((stage / "WOT-UnDec.exe").exists())
+
     def test_root_level_xml_is_processed_in_an_isolated_pjorion_pass(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
             root = Path(folder)
