@@ -45,6 +45,56 @@ def build_mo(messages):
     return bytes(result)
 
 class UpdateRepositoryTests(unittest.TestCase):
+    def test_push_selects_highest_numeric_remote_version_and_build(self):
+        repository = Path("repository")
+        for url in ("git@github.com:wot-tools-dev/WorldofTanks-Code.git",
+                    "https://github.com/wot-tools-dev/WorldofTanks-Code.git",
+                    "ssh://git@github.com/wot-tools-dev/WorldofTanks-Code.git"):
+            with self.subTest(url=url), mock.patch.object(update_repository, "run") as run:
+                with mock.patch.object(update_repository.shutil, "which", return_value="gh"):
+                    with mock.patch.object(update_repository, "git_lines", side_effect=[
+                        [url], ["abc refs/heads/main", "abc refs/heads/2.9.0.0/999",
+                                "abc refs/heads/2.10.0.0/9", "abc refs/heads/2.10.0.0/10",
+                                "abc refs/heads/99.0.0.0/1-preview"],
+                    ]):
+                        update_repository.push_version_branch(repository, "2.9.0.0/999")
+                self.assertEqual("git", run.call_args_list[0].args[0][0])
+                self.assertEqual(
+                    ["gh", "repo", "edit", "wot-tools-dev/WorldofTanks-Code",
+                     "--default-branch", "2.10.0.0/10"], run.call_args_list[1].args[0],
+                )
+
+    def test_failed_push_does_not_change_github_settings(self):
+        with mock.patch.object(update_repository, "run", side_effect=update_repository.UpdateError("push failed")):
+            with mock.patch.object(update_repository, "git_lines") as lines:
+                with self.assertRaisesRegex(update_repository.UpdateError, "push failed"):
+                    update_repository.push_version_branch(Path("repository"), "2.4.0.2/966")
+                lines.assert_not_called()
+
+    def test_default_branch_update_can_be_disabled(self):
+        with mock.patch.object(update_repository, "run") as run:
+            with mock.patch.object(update_repository, "git_lines") as lines:
+                update_repository.push_version_branch(Path("repository"), "2.4.0.2/966", False)
+                self.assertEqual(1, run.call_count)
+                lines.assert_not_called()
+        self.assertTrue(update_repository.build_parser().parse_args(
+            ["--no-default-branch-update"]).no_default_branch_update)
+
+    def test_settings_failure_reports_that_push_succeeded(self):
+        with mock.patch.object(update_repository, "run"):
+            with mock.patch.object(update_repository.shutil, "which", return_value=None):
+                with self.assertRaisesRegex(update_repository.UpdateError, "Push succeeded.*Install GitHub CLI"):
+                    update_repository.push_version_branch(Path("repository"), "2.4.0.2/966")
+
+    def test_github_permission_failure_is_not_reported_as_push_failure(self):
+        with mock.patch.object(update_repository, "run", side_effect=[None, update_repository.UpdateError("forbidden")]):
+            with mock.patch.object(update_repository.shutil, "which", return_value="gh"):
+                with mock.patch.object(update_repository, "git_lines", side_effect=[
+                    ["git@github.com:owner/repo.git"], ["abc refs/heads/2.4.0.2/966"],
+                ]):
+                    with self.assertRaisesRegex(update_repository.UpdateError, "Push succeeded.*forbidden"):
+                        update_repository.push_version_branch(Path("repository"), "2.4.0.2/966")
+
     def test_progress_reports_rate_estimate_and_completion_without_spamming(self):
         with mock.patch.object(update_repository.time, "monotonic", side_effect=[0, 1, 10, 20]):
             with mock.patch("sys.stdout", new_callable=io.StringIO) as output:

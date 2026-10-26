@@ -4,6 +4,19 @@ This repository contains readable source and data files from the World of Tanks
 client. Each client release is stored on a branch named `X.X.X.X/BUILD`, matching
 the version and build number published with that client.
 
+After a successful push, the updater automatically sets GitHub's default branch
+to the highest numeric `X.X.X.X/BUILD` branch on the origin push destination.
+Other branch names are ignored, and uploading an older client does not select it
+over a newer remote version. This also runs when there are no new changes to commit.
+
+Install GitHub CLI (`gh`) and run `gh auth login` with an account that has
+administrator access to this repository. The automatic update supports a single
+`github.com` origin push URL. If the settings update fails, the updater reports
+an error explicitly stating that the push succeeded and retains its recovery
+workspace for retry. Pass `--no-default-branch-update` to skip the settings update,
+for example `python -B update_repository.py --apply --commit --push --no-default-branch-update`.
+Dry runs and updates without `--push` do not change GitHub settings.
+
 ## Repository contents
 
 - Python source decompiled from `.pyc`/`.pyo`, without the usual bytecode and

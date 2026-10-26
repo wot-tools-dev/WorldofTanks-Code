@@ -1131,6 +1131,45 @@ def checkpoint_recovery_state(
     save_recovery_state(workspace, state)
 
 
+def push_version_branch(repository: Path, branch: str, update_default: bool = True) -> None:
+    print("Git: pushing version branch to origin...", flush=True)
+    run(
+        ["git", "push", "--progress", "--set-upstream", "origin", branch],
+        cwd=repository, capture=False,
+    )
+    if not update_default:
+        return
+    try:
+        if not shutil.which("gh"):
+            raise UpdateError("Install GitHub CLI and authenticate with gh auth login")
+        urls = git_lines(repository, "remote", "get-url", "--push", "--all", "origin")
+        if len(urls) != 1:
+            raise UpdateError("Automatic default branch updates require one origin push URL")
+        match = re.fullmatch(
+            r"(?:https://|ssh://git@|git@)github\.com[:/]([^/]+/[^/]+?)(?:\.git)?/?",
+            urls[0],
+        )
+        if not match:
+            raise UpdateError("Automatic default branch updates require a github.com origin")
+        target = match.group(1)
+        candidates = []
+        for line in git_lines(repository, "ls-remote", "--heads", urls[0]):
+            fields = line.split()
+            if len(fields) != 2:
+                continue
+            version_match = re.fullmatch(r"refs/heads/(\d+\.\d+\.\d+\.\d+)/(\d+)", fields[1])
+            if version_match:
+                version, build = version_match.groups()
+                candidates.append((tuple(map(int, version.split("."))) + (int(build),), version + "/" + build))
+        if not candidates:
+            raise UpdateError("No version branches found on origin")
+        latest = max(candidates)[1]
+        print("GitHub: setting default branch to %s..." % latest, flush=True)
+        run(["gh", "repo", "edit", target, "--default-branch", latest], cwd=repository)
+    except (UpdateError, OSError, subprocess.SubprocessError) as exc:
+        raise UpdateError("Push succeeded, but GitHub default branch update failed: %s" % exc) from exc
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="Extract, decompile, and synchronize a clean World of Tanks source branch"
@@ -1148,6 +1187,10 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--no-git", action="store_true", help="Do not create or switch version branches")
     parser.add_argument("--commit", action="store_true", help="Stage and commit the applied import")
     parser.add_argument("--push", action="store_true", help="Push the committed version branch to origin")
+    parser.add_argument(
+        "--no-default-branch-update", action="store_true",
+        help="Skip setting GitHub's default branch to the highest remote version/build after pushing",
+    )
     return parser
 
 
@@ -1295,12 +1338,7 @@ def main(argv=None) -> int:
             else:
                 print("No Git changes to commit")
         if args.push:
-            print("Git: pushing version branch to origin...", flush=True)
-            run(
-                ["git", "push", "--progress", "--set-upstream", "origin", branch],
-                cwd=repository,
-                capture=False,
-            )
+            push_version_branch(repository, branch, not args.no_default_branch_update)
         try:
             remove_recovery_workspace(repository, workspace)
         except OSError as exc:
