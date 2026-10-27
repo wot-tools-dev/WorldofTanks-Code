@@ -45,7 +45,7 @@ load_local_env(Path(__file__).resolve().parents[1] / ".env")
 
 MANIFEST_NAME = ".wot-repository-manifest.json"
 MANIFEST_FORMAT = 1
-RECOVERY_FORMAT = 2
+RECOVERY_FORMAT = 3
 RECOVERY_STATE_NAME = "recovery-state.json"
 DEFAULT_CLIENT = os.environ.get("WOT_CLIENT_ROOT")
 DEFAULT_UNDEC = os.environ.get("WOT_UNDEC_EXE")
@@ -69,6 +69,7 @@ XML_UNPACK_EXCLUSIONS = {
     # Preserve the client bytes instead of allowing it to disrupt the XML pass.
     "story_mode/vscript/plans/SCC_GrafZeppelin_client.xml",
 }
+PACKED_XML_HEADER = b"EN\xa1\x62"
 PROTECTED_ROOTS = {
     ".git", ".idea", ".updater-venv", ".venv", ".wot-update-cache",
     ".wot-update-work", "tools", "tests",
@@ -575,12 +576,43 @@ def copy_loose_resources(client: Path, stage: Path) -> None:
         shutil.copyfile(str(source), str(target))
 
 
+def is_packed_xml(path: Path) -> bool:
+    with path.open("rb") as stream:
+        return stream.read(4) == PACKED_XML_HEADER
+
+
+def is_readable_xml(path: Path) -> bool:
+    data = path.read_bytes()
+    encoding = "utf-16" if data.startswith((b"\xff\xfe", b"\xfe\xff")) else "utf-8-sig"
+    try:
+        text = data.decode(encoding)
+    except UnicodeError:
+        return False
+    # BigWorld section names need not be legal XML names, so a strict XML
+    # parser cannot validate every otherwise readable PjOrion output.
+    return text.lstrip().startswith("<") and "\x00" not in text
+
+
 def xml_input_hashes(stage: Path) -> dict[str, str]:
     return {
         path.relative_to(stage).as_posix(): sha256_file(path)
         for path in stage.rglob("*")
-        if path.is_file() and path.suffix.lower() == ".xml"
+        if path.is_file() and (path.suffix.lower() == ".xml" or is_packed_xml(path))
     }
+
+
+def restore_xml_root_name(data: bytes, converted_name: str, original_name: str) -> bytes:
+    """Restore PjOrion's filename-derived root after extension normalization."""
+    if converted_name == original_name:
+        return data
+    converted = converted_name.encode("utf-8")
+    original = original_name.encode("utf-8")
+    opening, closing = b"<" + converted + b">", b"</" + converted + b">"
+    if opening not in data or closing not in data:
+        raise UpdateError("Unexpected XML root from unpacker: %s" % converted_name)
+    data = data.replace(opening, b"<" + original + b">", 1)
+    prefix, _separator, suffix = data.rpartition(closing)
+    return prefix + b"</" + original + b">" + suffix
 
 
 def reuse_xml_outputs(
@@ -601,11 +633,59 @@ def reuse_xml_outputs(
             continue
         path = safe_member_path(relative)
         existing = repository.joinpath(*path.parts)
-        if existing.is_file() and sha256_file(existing) == metadata.get("sha256"):
+        if (
+            existing.is_file() and is_readable_xml(existing)
+            and sha256_file(existing) == metadata.get("sha256")
+        ):
             shutil.copyfile(str(existing), str(stage.joinpath(*path.parts)))
             reused.add(relative)
     print("XML outputs: %d unchanged files reused" % len(reused), flush=True)
     return reused
+
+
+def finish_xml_outputs(stage: Path, inputs: dict[str, str], undec: Path | None) -> None:
+    """Retry silently skipped packed resources in bounded, isolated batches."""
+    pending = []
+    for relative in sorted(inputs):
+        if relative in XML_UNPACK_EXCLUSIONS:
+            continue
+        path = stage.joinpath(*safe_member_path(relative).parts)
+        if not path.is_file():
+            raise UpdateError("XML unpacker removed a resource: %s" % relative)
+        if is_packed_xml(path):
+            pending.append(relative)
+        elif not is_readable_xml(path):
+            raise UpdateError("XML output is not readable; staging was not applied: %s" % relative)
+    workspace = stage.parent / ".packed-xml-retry"
+    if pending and workspace.exists():
+        raise UpdateError("Packed XML retry path already exists: %s" % workspace)
+    for start in range(0, len(pending), 100):
+        batch = pending[start:start + 100]
+        print("Retrying packed XML: %d-%d/%d" % (
+            start + 1, start + len(batch), len(pending),
+        ), flush=True)
+        workspace.mkdir()
+        retry_stage = workspace / "stage"
+        try:
+            staged = []
+            for index, relative in enumerate(batch):
+                original = stage.joinpath(*safe_member_path(relative).parts)
+                # Normalize the extension so the unpacker's folder filters
+                # cannot skip an otherwise supported packed XML resource.
+                name = original.name if original.suffix.lower() == ".xml" else original.name + ".xml"
+                target = retry_stage / "resources" / str(index) / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(str(original), str(target))
+                staged.append((relative, target, original))
+            run_pjorion(retry_stage, undec, decompile_pyc=False)
+            for relative, target, original in staged:
+                if not target.is_file() or not is_readable_xml(target):
+                    raise UpdateError("XML conversion failed; staging was not applied: %s" % relative)
+                original.write_bytes(restore_xml_root_name(
+                    target.read_bytes(), target.name, original.name,
+                ))
+        finally:
+            shutil.rmtree(workspace)
 
 
 def run_pjorion(
@@ -1271,6 +1351,7 @@ def main(argv=None) -> int:
                 pending_bytecode, flash_without_source,
             )
         if phase == "pjorion_ran":
+            finish_xml_outputs(stage, extracted["xml"], optional_path(args.undec))
             generated = finish_pjorion_bytecode(
                 stage, pending_bytecode, generated
             )

@@ -453,6 +453,118 @@ VALUE = 1
                 inputs["gui/config.xml"],
             )
 
+    def test_xml_inputs_detect_packed_content_regardless_of_extension(self):
+        with tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
+            stage = Path(folder)
+            for name in ("turret.model", "scene.visual_processed", "effect.unknown"):
+                (stage / name).write_bytes(update_repository.PACKED_XML_HEADER + b"payload")
+            (stage / "plain.xml").write_bytes(b"<root />")
+            (stage / "geometry.model").write_bytes(b"binary geometry")
+            self.assertEqual(
+                {"turret.model", "scene.visual_processed", "effect.unknown", "plain.xml"},
+                set(update_repository.xml_input_hashes(stage)),
+            )
+
+    def test_packed_output_is_never_reused_even_with_matching_cache_hashes(self):
+        with tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
+            root = Path(folder)
+            repository, stage = root / "repository", root / "stage"
+            repository.mkdir()
+            stage.mkdir()
+            data = update_repository.PACKED_XML_HEADER + b"packed"
+            for base in (repository, stage):
+                (base / "turret.model").write_bytes(data)
+            digest = update_repository.sha256_file(stage / "turret.model")
+            manifest = {"files": {"turret.model": {
+                "sha256": digest,
+                "generator": {"type": "xml", "source": "turret.model", "sha256": digest},
+            }}}
+            self.assertEqual(set(), update_repository.reuse_xml_outputs(
+                repository, stage, {"turret.model": digest}, manifest,
+            ))
+
+    def test_xml_retry_is_bounded_preserves_names_and_does_not_decompile(self):
+        with tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
+            stage = Path(folder) / "stage"
+            inputs = {}
+            for index in range(101):
+                relative = "vehicles/%d/Turret_01.model" % index
+                target = stage / relative
+                target.parent.mkdir(parents=True)
+                target.write_bytes(update_repository.PACKED_XML_HEADER + b"packed")
+                inputs[relative] = "digest"
+            calls = []
+
+            def unpack(retry_stage, undec, decompile_pyc):
+                self.assertFalse(decompile_pyc)
+                self.assertEqual(Path("unpacker"), undec)
+                files = list(retry_stage.rglob("*.xml"))
+                calls.append(len(files))
+                for path in files:
+                    self.assertEqual("Turret_01.model.xml", path.name)
+                    path.write_bytes(b"<Turret_01.model.xml><extent>32</extent></Turret_01.model.xml>")
+
+            with mock.patch.object(update_repository, "run_pjorion", side_effect=unpack):
+                update_repository.finish_xml_outputs(stage, inputs, Path("unpacker"))
+            self.assertEqual([100, 1], calls)
+            self.assertFalse((stage.parent / ".packed-xml-retry").exists())
+            for relative in inputs:
+                self.assertFalse(update_repository.is_packed_xml(stage / relative))
+                self.assertEqual("Turret_01.model", update_repository.ET.parse(stage / relative).getroot().tag)
+
+    def test_xml_retry_rejects_skipped_or_missing_outputs_and_cleans_up(self):
+        for result in ("packed", "missing", "binary", "empty"):
+            with self.subTest(result=result), tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
+                stage = Path(folder) / "stage"
+                stage.mkdir()
+                original = stage / "turret.model"
+                packed = update_repository.PACKED_XML_HEADER + b"packed"
+                original.write_bytes(packed)
+
+                def unpack(retry_stage, *_args, **_kwargs):
+                    target = next(retry_stage.rglob("*.xml"))
+                    if result == "missing":
+                        target.unlink()
+                    elif result == "binary":
+                        target.write_bytes(b"\xffbroken")
+                    elif result == "empty":
+                        target.write_bytes(b"")
+
+                with mock.patch.object(update_repository, "run_pjorion", side_effect=unpack):
+                    with self.assertRaisesRegex(update_repository.UpdateError, "XML conversion failed"):
+                        update_repository.finish_xml_outputs(stage, {"turret.model": "digest"}, None)
+                self.assertEqual(packed, original.read_bytes())
+                self.assertFalse((stage.parent / ".packed-xml-retry").exists())
+
+    def test_xml_root_restoration_requires_expected_root(self):
+        self.assertEqual(b"<root />", update_repository.restore_xml_root_name(b"<root />", "a.xml", "a.xml"))
+        with self.assertRaisesRegex(update_repository.UpdateError, "Unexpected XML root"):
+            update_repository.restore_xml_root_name(b"<other />", "a.model.xml", "a.model")
+
+    def test_xml_output_readability_supports_bom_and_rejects_binary(self):
+        with tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
+            path = Path(folder) / "resource.model"
+            for encoding in ("utf-8", "utf-8-sig", "utf-16"):
+                path.write_bytes("<root />".encode(encoding))
+                self.assertTrue(update_repository.is_readable_xml(path))
+            for data in (b"", b"plain text", b"<root>\x00</root>", b"<root>\xff</root>"):
+                path.write_bytes(data)
+                self.assertFalse(update_repository.is_readable_xml(path))
+
+    def test_readable_resources_and_explicit_exclusions_need_no_retry(self):
+        with tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
+            stage = Path(folder)
+            relative = next(iter(update_repository.XML_UNPACK_EXCLUSIONS))
+            excluded = stage / relative
+            excluded.parent.mkdir(parents=True)
+            excluded.write_bytes(update_repository.PACKED_XML_HEADER + b"unsupported")
+            (stage / "turret.model").write_bytes(b"<Turret_01.model />")
+            with mock.patch.object(update_repository, "run_pjorion") as unpack:
+                update_repository.finish_xml_outputs(stage, {
+                    relative: "digest", "turret.model": "digest",
+                }, None)
+            unpack.assert_not_called()
+
     def test_reused_xml_is_hidden_from_unpacker_and_restored_after_failure(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
             root = Path(folder)

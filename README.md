@@ -34,7 +34,20 @@ geometry are not included.
 
 The updater caches XML conversion using the original client file's SHA-256 and
 the saved output's SHA-256. After the first applied update records these hashes,
-unchanged `.xml` files reuse their verified repository output and are kept out
+unchanged XML resources reuse their verified repository output and are kept out
 of the unpacker's scan. New or changed XML files, and files whose saved output
 is missing or modified, are processed again. This includes root metadata and
 loose resources that override packaged files; existing XML exclusions still apply.
+
+Packed XML is detected by its binary signature regardless of filename extension,
+including `.model`, `.visual_processed`, `.track`, and `.texformat` resources.
+Packed or unreadable cached outputs are never reused. After the main unpacking
+pass, remaining packed resources are retried in isolated batches of at most 100.
+Temporary `.xml` extensions prevent the unpacker's extension filters from
+skipping resources; output filenames and their XML root names are restored.
+Missing, binary, or unreadable results stop the update before synchronization.
+The known unsupported
+`story_mode/vscript/plans/SCC_GrafZeppelin_client.xml` plan remains explicitly
+excluded and preserved as client bytes. Recovery workspaces from older updater
+versions are regenerated so an earlier completed conversion phase cannot bypass
+these checks.
