@@ -138,6 +138,8 @@ package net.wg.gui.battle.views
       
       private var _containerMgr:IContainerManager;
       
+      private var _battleMessengerFocusTarget:InteractiveObject = null;
+      
       public function BaseBattlePage()
       {
          super();
@@ -423,6 +425,7 @@ package net.wg.gui.battle.views
       
       override protected function onDispose() : void
       {
+         this._battleMessengerFocusTarget = null;
          if(this._layoutPart)
          {
             this._layoutPart.dispose();
@@ -496,9 +499,8 @@ package net.wg.gui.battle.views
       
       override protected function onSetModalFocus(param1:InteractiveObject) : void
       {
-         if(!this.isElementVisible(param1))
+         if(param1 == null || param1 != this._battleMessengerFocusTarget)
          {
-            DebugUtils.LOG_DEBUG("Cannot set focus on the invisible element!");
             setFocus(this);
          }
          super.onSetModalFocus(param1);
@@ -648,6 +650,16 @@ package net.wg.gui.battle.views
          this.playerMessageList = new MessageListDAAPI(this._messagesContainer);
       }
       
+      protected function setBattleMessengerFocus(param1:InteractiveObject) : void
+      {
+         this._battleMessengerFocusTarget = param1;
+         if(!hasFocus)
+         {
+            App.containerMgr.tryFocusView(this);
+         }
+         setFocus(param1);
+      }
+      
       protected function onRegisterStatisticController() : void
       {
       }
@@ -737,11 +749,6 @@ package net.wg.gui.battle.views
       protected function updateMinimapSizeIndex(param1:Number) : void
       {
          this.minimap.setAllowedSizeIndex(this.getAllowedMinimapSizeIndex(param1));
-      }
-      
-      private function isElementVisible(param1:InteractiveObject) : Boolean
-      {
-         return param1 && param1.visible && param1.parent != this && this.isElementVisible(param1.parent);
       }
       
       private function showComponent(param1:String, param2:Boolean) : void

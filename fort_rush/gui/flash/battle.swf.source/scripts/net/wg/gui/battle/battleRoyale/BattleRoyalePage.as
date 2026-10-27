@@ -693,7 +693,7 @@ package net.wg.gui.battle.battleRoyale
       
       private function onBattleMessengerRequestFocusHandler(param1:FocusRequestEvent) : void
       {
-         setFocus(param1.focusContainer.getComponentForFocus());
+         setBattleMessengerFocus(param1.focusContainer.getComponentForFocus());
          if(this.battleMessenger.isEnterButtonPressed)
          {
             this.swapElementsByMouseInteraction(this.teamPanel,this.battleMessenger);
