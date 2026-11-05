@@ -583,14 +583,25 @@ def is_packed_xml(path: Path) -> bool:
 
 def is_readable_xml(path: Path) -> bool:
     data = path.read_bytes()
-    encoding = "utf-16" if data.startswith((b"\xff\xfe", b"\xfe\xff")) else "utf-8-sig"
+    if data.startswith((b"\xff\xfe", b"\xfe\xff")):
+        encoding = "utf-16"
+    elif data.startswith(b"\xef\xbb\xbf"):
+        encoding = "utf-8-sig"
+    else:
+        # Converted resources can retain non-UTF-8 bytes in string values.
+        # Latin-1 maps bytes losslessly for inspection, without guessing their
+        # original encoding or changing the resource bytes.
+        encoding = "latin-1"
     try:
         text = data.decode(encoding)
     except UnicodeError:
         return False
     # BigWorld section names need not be legal XML names, so a strict XML
     # parser cannot validate every otherwise readable PjOrion output.
-    return text.lstrip().startswith("<") and "\x00" not in text
+    return text.lstrip().startswith("<") and not any(
+        ord(character) < 32 and character not in "\t\r\n"
+        for character in text
+    )
 
 
 def xml_input_hashes(stage: Path) -> dict[str, str]:

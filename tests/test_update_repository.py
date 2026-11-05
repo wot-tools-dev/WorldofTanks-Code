@@ -547,9 +547,45 @@ VALUE = 1
             for encoding in ("utf-8", "utf-8-sig", "utf-16"):
                 path.write_bytes("<root />".encode(encoding))
                 self.assertTrue(update_repository.is_readable_xml(path))
-            for data in (b"", b"plain text", b"<root>\x00</root>", b"<root>\xff</root>"):
+            for data in (
+                b"", b"plain text", b"<root>\x00</root>", b"<root>\x01</root>",
+                update_repository.PACKED_XML_HEADER + b"packed",
+                b"\xef\xbb\xbf<root>\xff</root>", b"\xff\xfe<",
+            ):
                 path.write_bytes(data)
                 self.assertFalse(update_repository.is_readable_xml(path))
+
+    def test_xml_outputs_preserve_non_utf8_identifier_bytes_and_can_be_reused(self):
+        with tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
+            root = Path(folder)
+            repository = root / "repository"
+            stage = root / "stage"
+            repository.mkdir()
+            stage.mkdir()
+            relative = "hd_dec_UNI_014_Curtain_01_anim.visual_processed"
+            data = (
+                b"<hd_dec_UNI_014_Curtain_01_anim.visual_processed>\r\n"
+                b"<identifier>hd_dec_UNI_014_\xd1urtain_01_anim</identifier>\r\n"
+                b"</hd_dec_UNI_014_Curtain_01_anim.visual_processed>\r\n"
+            )
+            existing = repository / relative
+            existing.write_bytes(data)
+            packed = update_repository.PACKED_XML_HEADER + b"packed"
+            (stage / relative).write_bytes(packed)
+            inputs = update_repository.xml_input_hashes(stage)
+            manifest = {"files": {relative: {
+                "sha256": update_repository.sha256_file(existing),
+                "generator": {"type": "xml", "source": relative, "sha256": inputs[relative]},
+            }}}
+            self.assertTrue(update_repository.is_readable_xml(existing))
+            self.assertEqual({relative}, update_repository.reuse_xml_outputs(
+                repository, stage, inputs, manifest,
+            ))
+            with mock.patch.object(update_repository, "run_pjorion") as unpack:
+                update_repository.finish_xml_outputs(stage, inputs, None)
+            unpack.assert_not_called()
+            self.assertEqual(data, (stage / relative).read_bytes())
+            self.assertEqual(data, existing.read_bytes())
 
     def test_readable_resources_and_explicit_exclusions_need_no_retry(self):
         with tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
