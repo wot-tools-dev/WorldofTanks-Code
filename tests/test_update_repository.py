@@ -487,7 +487,7 @@ VALUE = 1
         with tempfile.TemporaryDirectory(dir=MODULE_PATH.parents[1]) as folder:
             stage = Path(folder) / "stage"
             inputs = {}
-            for index in range(101):
+            for index in range(update_repository.XML_RETRY_BATCH_SIZE + 1):
                 relative = "vehicles/%d/Turret_01.model" % index
                 target = stage / relative
                 target.parent.mkdir(parents=True)
@@ -501,12 +501,21 @@ VALUE = 1
                 files = list(retry_stage.rglob("*.xml"))
                 calls.append(len(files))
                 for path in files:
-                    self.assertEqual("Turret_01.model.xml", path.name)
-                    path.write_bytes(b"<Turret_01.model.xml><extent>32</extent></Turret_01.model.xml>")
+                    self.assertTrue(path.name.endswith("_Turret_01.model.xml"))
+                    path.write_bytes(("<%s><extent>32</extent></%s>" % (
+                        path.name, path.name,
+                    )).encode("utf-8"))
+                directories = {path.parent for path in files}
+                self.assertEqual(
+                    (len(files) + update_repository.XML_RETRY_FILES_PER_DIRECTORY - 1)
+                    // update_repository.XML_RETRY_FILES_PER_DIRECTORY,
+                    len(directories),
+                )
+                self.assertEqual(len(files), len({path.name for path in files}))
 
             with mock.patch.object(update_repository, "run_pjorion", side_effect=unpack):
                 update_repository.finish_xml_outputs(stage, inputs, Path("unpacker"))
-            self.assertEqual([100, 1], calls)
+            self.assertEqual([update_repository.XML_RETRY_BATCH_SIZE, 1], calls)
             self.assertFalse((stage.parent / ".packed-xml-retry").exists())
             for relative in inputs:
                 self.assertFalse(update_repository.is_packed_xml(stage / relative))

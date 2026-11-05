@@ -42,7 +42,9 @@ loose resources that override packaged files; existing XML exclusions still appl
 Packed XML is detected by its binary signature regardless of filename extension,
 including `.model`, `.visual_processed`, `.track`, and `.texformat` resources.
 Packed or unreadable cached outputs are never reused. After the main unpacking
-pass, remaining packed resources are retried in isolated batches of at most 100.
+pass, remaining packed resources are retried in isolated batches of at most 5,000,
+with up to 100 files per temporary directory to reduce process and filesystem
+overhead. Unique temporary filename prefixes prevent basename collisions.
 Temporary `.xml` extensions prevent the unpacker's extension filters from
 skipping resources; output filenames and their XML root names are restored.
 Missing, binary, or unreadable results stop the update before synchronization.

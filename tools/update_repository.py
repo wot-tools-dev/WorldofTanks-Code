@@ -70,6 +70,8 @@ XML_UNPACK_EXCLUSIONS = {
     "story_mode/vscript/plans/SCC_GrafZeppelin_client.xml",
 }
 PACKED_XML_HEADER = b"EN\xa1\x62"
+XML_RETRY_BATCH_SIZE = 5000
+XML_RETRY_FILES_PER_DIRECTORY = 100
 PROTECTED_ROOTS = {
     ".git", ".idea", ".updater-venv", ".venv", ".wot-update-cache",
     ".wot-update-work", "tools", "tests",
@@ -670,8 +672,8 @@ def finish_xml_outputs(stage: Path, inputs: dict[str, str], undec: Path | None) 
     workspace = stage.parent / ".packed-xml-retry"
     if pending and workspace.exists():
         raise UpdateError("Packed XML retry path already exists: %s" % workspace)
-    for start in range(0, len(pending), 100):
-        batch = pending[start:start + 100]
+    for start in range(0, len(pending), XML_RETRY_BATCH_SIZE):
+        batch = pending[start:start + XML_RETRY_BATCH_SIZE]
         print("Retrying packed XML: %d-%d/%d" % (
             start + 1, start + len(batch), len(pending),
         ), flush=True)
@@ -684,7 +686,12 @@ def finish_xml_outputs(stage: Path, inputs: dict[str, str], undec: Path | None) 
                 # Normalize the extension so the unpacker's folder filters
                 # cannot skip an otherwise supported packed XML resource.
                 name = original.name if original.suffix.lower() == ".xml" else original.name + ".xml"
-                target = retry_stage / "resources" / str(index) / name
+                # Share directories without colliding when resources have the
+                # same basename. The filename-derived root is restored below.
+                target = (
+                    retry_stage / "resources" / str(index // XML_RETRY_FILES_PER_DIRECTORY)
+                    / ("%d_%s" % (index, name))
+                )
                 target.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copyfile(str(original), str(target))
                 staged.append((relative, target, original))
