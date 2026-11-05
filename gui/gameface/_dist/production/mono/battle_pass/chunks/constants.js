@@ -1,1 +1,1 @@
-var a=3e3,e="new_skill";export{a as n,e as t};
+var a=3800,s="new_skill";export{a as n,s as t};

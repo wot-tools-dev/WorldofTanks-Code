@@ -96,7 +96,7 @@ package net.wg.gui.cyberSport.controls
       
       private var _multiSelection:Boolean = false;
       
-      private var _filtersMode:String = "allVehicles";
+      private var _filtersMode:String = VehicleSelectorFilter.MODE_ALL_VEHICLES;
       
       private var _selectedItemVO:VehicleSelectorItemVO;
       

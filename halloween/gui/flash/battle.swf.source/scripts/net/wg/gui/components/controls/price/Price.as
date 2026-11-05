@@ -96,7 +96,7 @@ package net.wg.gui.components.controls.price
       
       private var _actionMode:String = "enabled";
       
-      private var _actionState:String = "percentBG";
+      private var _actionState:String = ACTION_STATE_SIMPLE;
       
       private var _iconAlign:String = "right";
       

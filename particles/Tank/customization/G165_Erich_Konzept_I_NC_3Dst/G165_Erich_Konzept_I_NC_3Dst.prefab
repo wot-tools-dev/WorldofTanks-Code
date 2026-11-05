@@ -1,0 +1,1007 @@
+{
+	"__type__": "cgf::PrefabResource::RawData",
+	"objects": {
+		"children": [
+			{
+				"children": [
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/G165_Erich_Konzept_I_NC_3Dst/G165_Hull_Shield.model"
+							},
+							"BW::ModelPropertyChanger": {},
+							"BW::NodeFollowerComponent": {
+								"modelLink": "00000000-0000-0000-0000-000000000000",
+								"nodeName": "HP_G165_Attachment_Hull"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Hull_hit",
+						"uuid": "d74c2ccf-df09-40e2-9a2f-62ef5e897240"
+					},
+					{
+						"components": {
+							"BW::ComponentsVisibilityController": {
+								"visibleInDualGunMode": false,
+								"visibleInMapCaseMode": true
+							},
+							"BW::DynamicModel": {
+								"castShadows": false,
+								"modelName": "particles/Tank/customization/G165_Erich_Konzept_I_NC_3Dst/G165_Gun_Shield.model"
+							},
+							"BW::ModelPropertyChanger": {},
+							"BW::NodeFollowerComponent": {
+								"modelLink": "00000000-0000-0000-0000-000000000000",
+								"nodeName": "HP_G165_Attachment_Gun_01_Tower"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "Gun_hit",
+						"uuid": "f687a408-3f8e-4a33-b59d-0e7dd68238eb"
+					},
+					{
+						"components": {
+							"BW::Sound3DComponent": {
+								"AutoStart": true,
+								"Event name": "imp_G165_hull_hit_shield",
+								"Object name": "imp_G165_hull_hit_shield_sfx"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"disableDomains": [
+							"Server"
+						],
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "imp_G165_hull_hit_shield_sfx",
+						"uuid": "d0c8186a-c5fa-45f0-adea-fd759f4b6fd9"
+					}
+				],
+				"components": {
+					"BW::SequenceComponent": {
+						"autoStart": true,
+						"layers": [
+							{
+								"duration": 1.5,
+								"tracks": [
+									{
+										"endTime": 1,
+										"object": "d74c2ccf-df09-40e2-9a2f-62ef5e897240",
+										"parameters": [
+											{
+												"component": "BW::ModelPropertyChanger",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {}
+														}
+													},
+													{
+														"time": 0.1,
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"x": 22,
+																"y": 1,
+																"z": 0.1
+															}
+														}
+													},
+													{
+														"time": 0.7,
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {}
+														}
+													}
+												],
+												"object": "d74c2ccf-df09-40e2-9a2f-62ef5e897240",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "properties"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "mt_glow"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "Common Properties"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "Deferred Multiplier"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "value"
+													}
+												]
+											},
+											{
+												"component": "BW::ModelPropertyChanger",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"x": 0.0784,
+																"y": 0.4314,
+																"z": 1
+															}
+														}
+													},
+													{
+														"time": 0.1,
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"w": 1,
+																"x": 0.0784,
+																"y": 0.4314,
+																"z": 1
+															}
+														}
+													},
+													{
+														"time": 0.7,
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"x": 0.0784,
+																"y": 0.4314,
+																"z": 1
+															}
+														}
+													}
+												],
+												"object": "d74c2ccf-df09-40e2-9a2f-62ef5e897240",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "properties"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "mt_glow"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "Common Properties"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "TintlColor"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "value"
+													}
+												]
+											}
+										]
+									},
+									{
+										"endTime": 1,
+										"object": "f687a408-3f8e-4a33-b59d-0e7dd68238eb",
+										"parameters": [
+											{
+												"component": "BW::ModelPropertyChanger",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {}
+														}
+													},
+													{
+														"time": 0.1,
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"x": 16,
+																"y": 1,
+																"z": 0.1
+															}
+														}
+													},
+													{
+														"time": 0.7,
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {}
+														}
+													}
+												],
+												"object": "f687a408-3f8e-4a33-b59d-0e7dd68238eb",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "properties"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "mt_glow"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "Common Properties"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "Deferred Multiplier"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "value"
+													}
+												]
+											},
+											{
+												"component": "BW::ModelPropertyChanger",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"x": 0.0784,
+																"y": 0.4314,
+																"z": 1
+															}
+														}
+													},
+													{
+														"time": 0.1,
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"w": 1,
+																"x": 0.0784,
+																"y": 0.4314,
+																"z": 1
+															}
+														}
+													},
+													{
+														"time": 0.7,
+														"value": {
+															"__ctype__": "BW::Vector4",
+															"__cvalue__": {
+																"x": 0.0784,
+																"y": 0.4314,
+																"z": 1
+															}
+														}
+													}
+												],
+												"object": "f687a408-3f8e-4a33-b59d-0e7dd68238eb",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "properties"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "mt_glow"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "Common Properties"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "TintlColor"
+													},
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "value"
+													}
+												]
+											}
+										]
+									},
+									{
+										"endTime": 1.5,
+										"object": "d0c8186a-c5fa-45f0-adea-fd759f4b6fd9",
+										"startTime": 0.01
+									}
+								]
+							}
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"name": "Hit",
+				"uuid": "848e8209-a85c-483e-9f24-bfb999757824"
+			},
+			{
+				"children": [
+					{
+						"components": {
+							"BW::NodeLeaderComponent": {
+								"nodeName": "minigun"
+							},
+							"BW::StartAtNodeTransformComponent": {
+								"nodeName": "minigun"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "minigun",
+						"uuid": "ba18ba57-1650-4163-8913-6767dbb42835"
+					},
+					{
+						"components": {
+							"BW::NodeLeaderComponent": {
+								"nodeName": "minigun_circle"
+							},
+							"BW::StartAtNodeTransformComponent": {
+								"nodeName": "minigun_circle"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "minigun_circle",
+						"uuid": "f50ffc8c-eb2a-4269-92a3-e44b6782a5a8"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::NodeLeaderComponent": {
+										"nodeName": "turret_circle"
+									},
+									"BW::StartAtNodeTransformComponent": {
+										"nodeName": "turret_circle"
+									},
+									"cgf::TransformComponent": {}
+								},
+								"name": "turret_circle",
+								"uuid": "207c928e-a573-40b9-aae3-1c170cf06ef9"
+							}
+						],
+						"components": {
+							"BW::SequenceComponent": {
+								"activeLayer": 1,
+								"layers": [
+									{
+										"duration": 3
+									},
+									{
+										"alwaysEnabled": false,
+										"duration": 4,
+										"name": "anim_reload",
+										"pauseOnEnd": false,
+										"tracks": [
+											{
+												"endTime": 4,
+												"object": "207c928e-a573-40b9-aae3-1c170cf06ef9",
+												"parameters": [
+													{
+														"component": "cgf::TransformComponent",
+														"keys": [
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 3,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -360
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 3.1952,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -360
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 3.3458,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -350
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 0,
+																"tangents/left/y": 0,
+																"tangents/left/z": 0,
+																"tangents/right/x": 0,
+																"tangents/right/y": 0,
+																"tangents/right/z": 0,
+																"time": 3.7433,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -350
+																	}
+																}
+															},
+															{
+																"tangents/left/x": 1.1755e-38,
+																"tangents/left/y": 1.1755e-38,
+																"tangents/left/z": 1.1755e-38,
+																"tangents/right/x": 1.1755e-38,
+																"tangents/right/y": 1.1755e-38,
+																"tangents/right/z": 1.1755e-38,
+																"time": 3.9001,
+																"type": "SpecialRotation",
+																"value": {
+																	"__ctype__": "BW::Vector3",
+																	"__cvalue__": {
+																		"x": -360
+																	}
+																}
+															}
+														],
+														"object": "207c928e-a573-40b9-aae3-1c170cf06ef9",
+														"property": [
+															{
+																"__ctype__": "std::string",
+																"__cvalue__": "rotation"
+															}
+														]
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							"cgf::TransformComponent": {}
+						},
+						"name": "turret_reload",
+						"uuid": "d385f529-a79c-479c-a591-104f6dcc542a"
+					},
+					{
+						"children": [
+							{
+								"components": {
+									"BW::ComponentsVisibilityController": {
+										"visibleInDualGunMode": false,
+										"visibleInMapCaseMode": true
+									},
+									"BW::Particle": {
+										"effect": "particles/Tank/customization/G165_Erich_Konzept_I_NC_3Dst/g165_mgun_shooting.eff"
+									},
+									"cgf::TransformComponent": {
+										"position/z": 0.88753
+									}
+								},
+								"name": "ShootingVFX",
+								"uuid": "3b8bb62b-4c21-4f05-a3d8-6c109e7382a4"
+							}
+						],
+						"components": {
+							"BW::NodeFollowerComponent": {
+								"modelLink": "ff5bbf52-8b26-4b83-b8a5-1e5a72273c69",
+								"nodeName": "minigun"
+							},
+							"cgf::TransformComponent": {
+								"position/y": 0
+							}
+						},
+						"name": "Shooting",
+						"uuid": "408b49c2-680c-4cf2-9f6f-515e00867435"
+					},
+					{
+						"components": {
+							"BW::Sound3DComponent": {
+								"AutoStart": true,
+								"Event name": "G165_minigun",
+								"Object name": "G165_minigun_sfx"
+							},
+							"cgf::TransformComponent": {}
+						},
+						"disableDomains": [
+							"Server"
+						],
+						"flags": [
+							"SelfInactive"
+						],
+						"name": "G165_minigun_sfx",
+						"uuid": "31e6ce28-846d-4f40-9cf9-3da47b8a86c6"
+					}
+				],
+				"components": {
+					"BW::DynamicModel": {
+						"castShadows": true,
+						"disabledDomains": [
+							"Client"
+						],
+						"modelName": "vehicles/german/G165_Erich_Konzept_I/_skins/G165_Erich_Konzept_I_NC_3Dst/normal/lod0/Gun_01.model"
+					},
+					"BW::SequenceComponent": {
+						"activeLayer": 1,
+						"autoStart": true,
+						"layers": [
+							{
+								"duration": 1,
+								"tracks": [
+									{
+										"endTime": 1,
+										"object": "3b8bb62b-4c21-4f05-a3d8-6c109e7382a4",
+										"parameters": [
+											{
+												"component": "BW::Particle",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"time": 1,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													}
+												],
+												"object": "3b8bb62b-4c21-4f05-a3d8-6c109e7382a4",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "emissionRate"
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"alwaysEnabled": false,
+								"duration": 4.6,
+								"name": "minigun_burst",
+								"tracks": [
+									{
+										"endTime": 3.2,
+										"object": "ba18ba57-1650-4163-8913-6767dbb42835",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {}
+														}
+													},
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"time": 0.69895,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -15
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 1,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -15
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 1.2,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -11
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 1.6,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -11
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 1.7041,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -13
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 2,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": -13
+															}
+														}
+													},
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"time": 3.2,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {}
+														}
+													}
+												],
+												"object": "ba18ba57-1650-4163-8913-6767dbb42835",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											}
+										]
+									},
+									{
+										"endTime": 3.2,
+										"object": "f50ffc8c-eb2a-4269-92a3-e44b6782a5a8",
+										"parameters": [
+											{
+												"component": "cgf::TransformComponent",
+												"keys": [
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {}
+														}
+													},
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"time": 0.70076,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 40
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 1.0029,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 40
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 1.1968,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 28
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 1.597,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 28
+															}
+														}
+													},
+													{
+														"tangents/left/x": 0,
+														"tangents/left/y": 0,
+														"tangents/left/z": 0,
+														"tangents/right/x": 0,
+														"tangents/right/y": 0,
+														"tangents/right/z": 0,
+														"time": 1.7011,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 34
+															}
+														}
+													},
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"time": 2.0012,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {
+																"x": 34
+															}
+														}
+													},
+													{
+														"tangents/left/x": 1.1755e-38,
+														"tangents/left/y": 1.1755e-38,
+														"tangents/left/z": 1.1755e-38,
+														"tangents/right/x": 1.1755e-38,
+														"tangents/right/y": 1.1755e-38,
+														"tangents/right/z": 1.1755e-38,
+														"time": 3.2,
+														"type": "SpecialRotation",
+														"value": {
+															"__ctype__": "BW::Vector3",
+															"__cvalue__": {}
+														}
+													}
+												],
+												"object": "f50ffc8c-eb2a-4269-92a3-e44b6782a5a8",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "rotation"
+													}
+												]
+											}
+										]
+									},
+									{
+										"endTime": 3.2,
+										"object": "3b8bb62b-4c21-4f05-a3d8-6c109e7382a4",
+										"parameters": [
+											{
+												"component": "BW::Particle",
+												"keys": [
+													{
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"time": 0.87646,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"time": 0.93527,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"time": 2.0991,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 1
+														}
+													},
+													{
+														"time": 2.1316,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													},
+													{
+														"time": 3.2,
+														"value": {
+															"__ctype__": "float",
+															"__cvalue__": 0
+														}
+													}
+												],
+												"object": "3b8bb62b-4c21-4f05-a3d8-6c109e7382a4",
+												"property": [
+													{
+														"__ctype__": "std::string",
+														"__cvalue__": "emissionRate"
+													}
+												]
+											}
+										]
+									},
+									{
+										"endTime": 4.5,
+										"object": "31e6ce28-846d-4f40-9cf9-3da47b8a86c6",
+										"startTime": 0.01
+									}
+								]
+							}
+						]
+					},
+					"cgf::TransformComponent": {
+						"position/y": 0,
+						"position/z": 0
+					}
+				},
+				"name": "minigun",
+				"uuid": "ff5bbf52-8b26-4b83-b8a5-1e5a72273c69"
+			},
+			{
+				"components": {
+					"BW::Sound3DComponent": {
+						"AutoStart": true,
+						"Event name": "G165_3Dst_spawn",
+						"Object name": "G165_3Dst_spawn_sfx"
+					},
+					"cgf::TransformComponent": {}
+				},
+				"disableDomains": [
+					"Server"
+				],
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "G165_3Dst_spawn_sfx",
+				"uuid": "76e886aa-633a-4ad5-bcfa-21da1f602516"
+			}
+		],
+		"components": {
+			"BW::DynamicModel": {
+				"castShadows": false,
+				"decorType": "0",
+				"disabledDomains": [
+					"Client",
+					"Server"
+				],
+				"isOverlayEnabled": "0",
+				"modelName": "vehicles/german/G165_Erich_Konzept_I/_skins/G165_Erich_Konzept_I_NC_3Dst/normal/lod0/Hull.model"
+			},
+			"BW::VSEComponent": {
+				"disabledDomains": [
+					"Editor",
+					"Server"
+				],
+				"path": "vscript/plans/VFX/G165_Erich_Konzept_I_NC_3Dst/G165_gameplay.xml"
+			},
+			"cgf::TransformComponent": {}
+		},
+		"name": "G165_Erich_Konzept_I_NC_3Dst",
+		"uuid": "00000000-0000-0000-0000-000000000000"
+	},
+	"version": 5,
+	"versionModules": {}
+}
