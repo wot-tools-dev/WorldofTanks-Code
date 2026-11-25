@@ -365,6 +365,36 @@ VALUE = 1
             self.assertNotIn(".env", tracked)
             self.assertIn("update_repository.py", tracked)
 
+    def test_unpacker_reports_process_status_and_exit(self):
+        args = ["WOT-UnDec.exe"]
+        with mock.patch.object(update_repository.subprocess, "Popen") as launch:
+            process = launch.return_value.__enter__.return_value
+            process.pid = 123
+            process.returncode = 0
+            process.communicate.side_effect = [
+                update_repository.subprocess.TimeoutExpired(args, 10), (None, None),
+            ]
+            with mock.patch.object(update_repository, "pjorion_process_status", return_value="PjOrion.exe visible"):
+                with mock.patch("sys.stdout", new_callable=io.StringIO) as output:
+                    result = update_repository.run_unpacker(args, {}, "scripts", 60)
+
+        self.assertEqual(0, result.returncode)
+        self.assertIn("Started WOT-UnDec (PID 123) for scripts", output.getvalue())
+        self.assertIn("still running", output.getvalue())
+        self.assertIn("PjOrion.exe visible", output.getvalue())
+        self.assertIn("exited with code 0", output.getvalue())
+        process.kill.assert_not_called()
+
+    def test_pjorion_process_status_distinguishes_absent_and_unavailable(self):
+        with mock.patch.object(update_repository.os, "name", "nt"):
+            with mock.patch.object(update_repository, "run") as process_query:
+                process_query.return_value.stdout = b"456\r\n"
+                self.assertIn("PID 456", update_repository.pjorion_process_status())
+                process_query.return_value.stdout = b""
+                self.assertIn("not visible", update_repository.pjorion_process_status())
+                process_query.side_effect = update_repository.UpdateError("Access denied")
+                self.assertIn("unavailable", update_repository.pjorion_process_status())
+
     def test_xml_unpacker_runs_an_isolated_copy_against_an_absolute_stage_path(self):
         with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parents[1]) as folder:
             root = Path(folder)

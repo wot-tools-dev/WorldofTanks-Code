@@ -422,17 +422,20 @@ def retained_member(path: PurePosixPath) -> bool:
     return Path(path.name).suffix.lower() in RETAINED_EXTENSIONS
 
 
-def run(command, cwd=None, check=True, capture=True, timeout=None):
+def run(command, cwd=None, check=True, capture=True, timeout=None, unpack_target=None):
     flags = subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0
-    result = subprocess.run(
-        [str(value) for value in command],
+    args = [str(value) for value in command]
+    options = dict(
         cwd=str(cwd) if cwd else None,
         stdin=subprocess.DEVNULL,
         stdout=subprocess.PIPE if capture else None,
         stderr=subprocess.PIPE if capture else None,
         creationflags=flags,
-        timeout=timeout,
     )
+    if unpack_target is None:
+        result = subprocess.run(args, timeout=timeout, **options)
+    else:
+        result = run_unpacker(args, options, unpack_target, timeout)
     if check and result.returncode != 0:
         stdout = result.stdout.decode("utf-8", "replace")[-2000:] if result.stdout else ""
         stderr = result.stderr.decode("utf-8", "replace")[-4000:] if result.stderr else ""
@@ -441,6 +444,51 @@ def run(command, cwd=None, check=True, capture=True, timeout=None):
             % (result.returncode, " ".join(map(str, command)), stdout, stderr)
         )
     return result
+
+
+def run_unpacker(args, options, target: str, timeout: float) -> subprocess.CompletedProcess:
+    started = time.monotonic()
+    with subprocess.Popen(args, **options) as process:
+        try:
+            label = "WOT-UnDec (PID %d) for %s" % (process.pid, target)
+            print("Started %s to run PjOrion" % label, flush=True)
+            while True:
+                remaining = started + timeout - time.monotonic()
+                if remaining <= 0:
+                    raise subprocess.TimeoutExpired(args, timeout)
+                try:
+                    stdout, stderr = process.communicate(timeout=min(10, remaining))
+                    break
+                except subprocess.TimeoutExpired:
+                    if time.monotonic() >= started + timeout:
+                        raise subprocess.TimeoutExpired(args, timeout) from None
+                    print("%s still running after %.0fs. %s" % (
+                        label, time.monotonic() - started, pjorion_process_status(),
+                    ), flush=True)
+        except BaseException:
+            process.kill()
+            process.wait()
+            raise
+        print("%s exited with code %d" % (label, process.returncode), flush=True)
+        return subprocess.CompletedProcess(args, process.returncode, stdout, stderr)
+
+
+def pjorion_process_status() -> str:
+    if os.name == "nt":
+        try:
+            result = run([
+                "powershell.exe", "-NoLogo", "-NoProfile", "-NonInteractive", "-Command",
+                "$ErrorActionPreference = 'Stop'; Get-Process | "
+                "Where-Object ProcessName -eq 'PjOrion' | Select-Object -ExpandProperty Id",
+            ], timeout=5)
+        except (OSError, subprocess.TimeoutExpired, UpdateError):
+            pass
+        else:
+            pids = [line for line in result.stdout.split() if line.isdigit()]
+            if pids:
+                return "PjOrion.exe visible in Windows (PID %s)." % b", ".join(pids).decode("ascii")
+            return "PjOrion.exe was not visible at this check."
+    return "PjOrion.exe process check unavailable."
 
 
 def validate_layout(client: Path, repository: Path) -> None:
@@ -607,11 +655,17 @@ def is_readable_xml(path: Path) -> bool:
 
 
 def xml_input_hashes(stage: Path) -> dict[str, str]:
-    return {
-        path.relative_to(stage).as_posix(): sha256_file(path)
-        for path in stage.rglob("*")
-        if path.is_file() and (path.suffix.lower() == ".xml" or is_packed_xml(path))
-    }
+    progress = Progress("Scanning staged files for XML and hashing inputs")
+    inputs = {}
+    scanned = 0
+    for path in stage.rglob("*"):
+        if path.is_file():
+            if path.suffix.lower() == ".xml" or is_packed_xml(path):
+                inputs[path.relative_to(stage).as_posix()] = sha256_file(path)
+            scanned += 1
+            progress.update(scanned)
+    progress.update(scanned, finished=True)
+    return inputs
 
 
 def restore_xml_root_name(data: bytes, converted_name: str, original_name: str) -> bytes:
@@ -633,7 +687,9 @@ def reuse_xml_outputs(
 ) -> set[str]:
     reused = set()
     old_files = old_manifest.get("files", {})
-    for relative, digest in inputs.items():
+    progress = Progress("Checking cached XML outputs", len(inputs))
+    for completed, (relative, digest) in enumerate(inputs.items()):
+        progress.update(completed)
         if relative in XML_UNPACK_EXCLUSIONS:
             continue
         metadata = old_files.get(relative, {})
@@ -652,6 +708,7 @@ def reuse_xml_outputs(
         ):
             shutil.copyfile(str(existing), str(stage.joinpath(*path.parts)))
             reused.add(relative)
+    progress.update(len(inputs), finished=True)
     print("XML outputs: %d unchanged files reused" % len(reused), flush=True)
     return reused
 
@@ -659,7 +716,9 @@ def reuse_xml_outputs(
 def finish_xml_outputs(stage: Path, inputs: dict[str, str], undec: Path | None) -> None:
     """Retry silently skipped packed resources in bounded, isolated batches."""
     pending = []
-    for relative in sorted(inputs):
+    progress = Progress("Checking XML unpacker output", len(inputs))
+    for completed, relative in enumerate(sorted(inputs)):
+        progress.update(completed)
         if relative in XML_UNPACK_EXCLUSIONS:
             continue
         path = stage.joinpath(*safe_member_path(relative).parts)
@@ -669,6 +728,7 @@ def finish_xml_outputs(stage: Path, inputs: dict[str, str], undec: Path | None) 
             pending.append(relative)
         elif not is_readable_xml(path):
             raise UpdateError("XML output is not readable; staging was not applied: %s" % relative)
+    progress.update(len(inputs), finished=True)
     workspace = stage.parent / ".packed-xml-retry"
     if pending and workspace.exists():
         raise UpdateError("Packed XML retry path already exists: %s" % workspace)
@@ -720,7 +780,10 @@ def run_pjorion(
     exclusion_root = stage.parent / ".xml-unpack-exclusions"
     if exclusion_root.exists():
         raise UpdateError("XML exclusion staging path already exists: %s" % exclusion_root)
-    for relative in sorted(XML_UNPACK_EXCLUSIONS | (reused_xml or set())):
+    excluded = sorted(XML_UNPACK_EXCLUSIONS | (reused_xml or set()))
+    progress = Progress("Moving XML outputs that the unpacker should skip", len(excluded))
+    for completed, relative in enumerate(excluded):
+        progress.update(completed)
         path = safe_member_path(relative)
         source = stage.joinpath(*path.parts)
         if not source.is_file():
@@ -731,6 +794,7 @@ def run_pjorion(
         held_files.append((held, source))
         if relative in XML_UNPACK_EXCLUSIONS:
             print("Preserving unsupported packed XML without conversion: %s" % relative, flush=True)
+    progress.update(len(excluded), finished=True)
 
     root_xml_files = []
     root_xml_workspace = stage.parent / ".root-xml-unpack"
@@ -780,17 +844,20 @@ unpacker_separately = []
             # Run an isolated copy so no existing project configuration can be read.
             # Let the wrapper inherit the console so its long-running progress
             # remains visible and no detached PjOrion pipe keeps us waiting.
-            run([local_undec], cwd=stage, capture=False, timeout=6 * 60 * 60)
+            run([local_undec], cwd=stage, capture=False, timeout=6 * 60 * 60, unpack_target=label)
     finally:
         if argument_file.exists():
             argument_file.unlink()
         if local_undec.exists():
             local_undec.unlink()
-        for held, destination in held_files:
+        progress = Progress("Restoring skipped XML outputs", len(held_files))
+        for completed, (held, destination) in enumerate(held_files):
+            progress.update(completed)
             if destination.exists():
                 raise UpdateError("Cannot restore excluded packed XML over existing file: %s" % destination)
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.move(str(held), str(destination))
+        progress.update(len(held_files), finished=True)
         if exclusion_root.exists():
             for directory in sorted(
                 (path for path in exclusion_root.rglob("*") if path.is_dir()),
