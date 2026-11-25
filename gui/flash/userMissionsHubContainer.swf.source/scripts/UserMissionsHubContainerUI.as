@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.userMissions.UserMissionsHubContainerView;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol50")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol10")]
    public dynamic class UserMissionsHubContainerUI extends UserMissionsHubContainerView
    {
       
@@ -21,7 +21,7 @@ package
          catch(e:Error)
          {
          }
-         background.UIID = 58327043;
+         background.UIID = 58327041;
          background.autoSize = false;
          background.enableInitCallback = false;
          background.maintainAspectRatio = true;

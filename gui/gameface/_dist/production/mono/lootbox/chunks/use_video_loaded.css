@@ -70,6 +70,23 @@
 .mediaLarge .AnimationCheckbox_f57b04ae .AnimationCheckbox_label_6d54acd3 {
   font-size: 22rem;
   transform: translate(0);
+}@keyframes Shadow_fadeIn_8d56b15 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* stylelint-disable selector-no-qualifying-type */
+/* stylelint-disable selector-no-qualifying-type */
+.Shadow_90d42d74 {
+  border-radius: 50%;
+  background: #353638;
+  filter: blur(50px);
+  opacity: 0.7;
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }@keyframes Caption_fadeIn_4db09398 {
   from {
     opacity: 0;
@@ -153,10 +170,12 @@
 }
 /* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable selector-no-qualifying-type */
-.BoxPanel_45fc5818 {
+.BoxPanel_4ea90a11 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  z-index: 0;
 }
 
 .BoxPanel_guaranteed_d08d90be {
@@ -178,4 +197,14 @@
 }
 .BoxPanel_control_e99a2e5d:first-child {
   margin-left: 0;
+}
+
+.BoxPanel_shadow_187173ce {
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
 }

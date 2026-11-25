@@ -7,6 +7,8 @@ from gui.impl.gen.view_models.views.dialogs.mono_dialog_template_button_model im
 from gui.impl.gen.view_models.views.dialogs.mono_dialog_template_view_model import MonoDialogTemplateViewModel
 from gui.impl.lobby.dialogs.full_screen_dialog_view import FullScreenDialogBaseView
 from gui.impl.pub.dialog_window import DialogButtons
+from helpers import dependency
+from skeletons.gui.game_control import ILootBoxSystemController
 from gui.lootbox_system.base.common import getTextResource
 CLOSE_DIALOG_ACTIONS = (MonoDialogTemplateViewModel.ACTION_CLOSE, MonoDialogTemplateViewModel.ACTION_ESCAPE, MonoDialogTemplateViewModel.ACTION_CANCEL)
 
@@ -14,6 +16,7 @@ class ResetStatsDialog(FullScreenDialogBaseView):
     LAYOUT_ID = R.views.mono.dialogs.default_dialog()
     VIEW_MODEL = MonoDialogTemplateViewModel
     DEFAULT_DIMMER_ALPHA = 0.8
+    __lootBoxes = dependency.descriptor(ILootBoxSystemController)
 
     def __init__(self, *args, **kwargs):
         settings = ViewSettings(layoutID=self.LAYOUT_ID, model=self.VIEW_MODEL())
@@ -21,17 +24,19 @@ class ResetStatsDialog(FullScreenDialogBaseView):
         settings.kwargs = kwargs
         super(ResetStatsDialog, self).__init__(settings, *args, **kwargs)
         self._buttons = self.viewModel.getButtons()
+        self.__eventName = None
+        return
 
     @property
     def viewModel(self):
         return self.getViewModel()
 
     def _getEvents(self):
-        return ((self.viewModel.onAction, self._onAction),)
+        return ((self.viewModel.onAction, self._onAction), (self.__lootBoxes.onStatusChanged, self.__onAvailabilityChanged), (self.__lootBoxes.onBoxesAvailabilityChanged, self.__onAvailabilityChanged))
 
     def _onLoading(self, *args, **kwargs):
-        super(ResetStatsDialog, self)._onLoading(*args, **kwargs)
         self.__eventName = kwargs.get('eventName')
+        super(ResetStatsDialog, self)._onLoading(*args, **kwargs)
         self._resourcesParams = self._buildResourcesParams()
         self._dumpResourcesParams()
         self._setButtons()
@@ -70,3 +75,10 @@ class ResetStatsDialog(FullScreenDialogBaseView):
         descriptionPath = ['confirmResetLootBoxStatistics', 'description']
         return {'titleString': backport.text(R.strings.lootbox_system.confirmResetLootBoxStatistics.title()),
          'descriptionString': backport.text(getTextResource(descriptionPath, self.__eventName)())}
+
+    def __onAvailabilityChanged(self):
+        if not self.__isEventAvailable():
+            self._setResult(DialogButtons.CANCEL)
+
+    def __isEventAvailable(self):
+        return bool(self.__lootBoxes.isAvailable(self.__eventName) and self.__lootBoxes.getActiveBoxes(self.__eventName))

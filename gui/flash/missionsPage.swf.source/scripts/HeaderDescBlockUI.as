@@ -21,7 +21,7 @@ package
          catch(e:Error)
          {
          }
-         btnOrder.UIID = 58327057;
+         btnOrder.UIID = 58327055;
          btnOrder.autoRepeat = false;
          btnOrder.autoSize = "none";
          btnOrder.data = "";

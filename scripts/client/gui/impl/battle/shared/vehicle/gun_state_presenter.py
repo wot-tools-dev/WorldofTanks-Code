@@ -42,7 +42,7 @@ class GunStatePresenter(ViewComponent):
             if gunSettings is None or gunSettings.vehicleID == 0:
                 self.__resetModel()
                 return
-            self.__applyGunSettings(gunSettings)
+            self.__onGunSettingsSet(gunSettings)
             self.__applyReloadState(ammo.getGunReloadingState())
             if self.viewModel is None:
                 return

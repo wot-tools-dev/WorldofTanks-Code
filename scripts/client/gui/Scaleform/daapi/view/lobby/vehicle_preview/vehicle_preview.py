@@ -129,7 +129,7 @@ class VehiclePreview(LobbySelectableView, VehiclePreviewMeta):
         self.__crewTabInject = None
         self.__ctx = ctx
         self._backAlias = ctx.get('previewAlias', VIEW_ALIAS.LOBBY_HANGAR)
-        self._itemsPack = ctx.get('itemsPack')
+        self._itemsPack = deepcopy(ctx.get('itemsPack'))
         if self._backAlias == VIEW_ALIAS.LOBBY_STORE or self._itemsPack is not None:
             self._COMMON_SOUND_SPACE = SHOP_PREVIEW_SOUND_SPACE
         elif self._backAlias in (VIEW_ALIAS.LOBBY_TECHTREE,):
@@ -157,7 +157,6 @@ class VehiclePreview(LobbySelectableView, VehiclePreviewMeta):
         self.__style = ctx.get('style')
         self.__outfit = ctx.get('outfit')
         self.__subscriptions = ctx.get('subscriptions') or ()
-        self.__unmodifiedItemsPack = deepcopy(self._itemsPack)
         addBuiltInEquipment(self._itemsPack, self._itemsCache, self._vehicleCD)
         notInteractive = (VIEW_ALIAS.LOBBY_STORE,
          VIEW_ALIAS.RANKED_BATTLE_PAGE,
@@ -248,7 +247,6 @@ class VehiclePreview(LobbySelectableView, VehiclePreviewMeta):
         if self._backAlias == VIEW_ALIAS.VEHICLE_PREVIEW:
             g_currentVehicle.refreshModel()
         self._previewBackCb = None
-        self.__unmodifiedItemsPack = None
         self.__outfit = None
         super(VehiclePreview, self)._dispose()
         if not self._heroInteractive:

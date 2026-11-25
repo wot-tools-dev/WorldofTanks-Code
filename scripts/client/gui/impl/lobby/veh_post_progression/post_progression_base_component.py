@@ -242,7 +242,7 @@ class PostProgressionBaseComponentView(ViewImpl):
 
     def _fillBonusesArray(self, bonusesArray, kpiList):
         bonusesArray.clear()
-        aggregatedBonuses = aggregateKpi(kpiList)
+        aggregatedBonuses = aggregateKpi(kpiList, aggregated=True)
         uniqBonuses = set()
         for kpiName in (uniqBonuses.add(kpi.name) or kpi.name for kpi in kpiList if kpi.name not in uniqBonuses):
             kpi = aggregatedBonuses.getKpi(kpiName)

@@ -6,6 +6,8 @@ package battleVehicleMarkers_fla
    public dynamic class vehicleMarkerHoverMC_6 extends MovieClip
    {
       
+      public var hpGlow:MovieClip;
+      
       public function vehicleMarkerHoverMC_6()
       {
          super();

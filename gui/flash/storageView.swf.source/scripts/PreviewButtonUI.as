@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.components.controls.SoundButtonEx;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol197")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol194")]
    public dynamic class PreviewButtonUI extends SoundButtonEx
    {
       

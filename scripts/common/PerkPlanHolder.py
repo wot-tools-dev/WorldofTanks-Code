@@ -62,6 +62,7 @@ class PCPlanHolder(object):
 
     @wg_async
     def stop(self):
+        self._setReady(False)
 
         def asyncLoop():
             for plan in self._plans:
@@ -113,6 +114,8 @@ class PCPlanHolder(object):
     def clean(self):
         self.isAllPlansLoaded.clear()
         self._setReady(False)
+        for plan in self._plans:
+            plan.stop()
 
         def asyncLoop():
             for plan in self._plans:

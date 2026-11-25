@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.cards.BlueprintsCard;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol224")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol221")]
    public dynamic class BlueprintsCardUI extends BlueprintsCard
    {
       

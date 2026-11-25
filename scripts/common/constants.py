@@ -3736,7 +3736,8 @@ class LoadoutParams(object):
     slotIndex = 'slotIndex'
 
 
-BATTLE_MODE_VEHICLE_TAGS = {'event_battles',
+BATTLE_MODE_VEHICLE_TAGS = {'regular_battles',
+ 'event_battles',
  'fallout',
  'epic_battles',
  'bob',
@@ -3745,6 +3746,7 @@ BATTLE_MODE_VEHICLE_TAGS = {'event_battles',
  'fun_random',
  'comp7',
  'comp7_light'}
+BATTLE_MODE_VEH_TAGS_EXCEPT_REGULAR = BATTLE_MODE_VEHICLE_TAGS - {'regular_battles'}
 BATTLE_MODE_VEH_TAGS_EXCEPT_EVENT = BATTLE_MODE_VEHICLE_TAGS - {'event_battles'}
 BATTLE_MODE_VEH_TAGS_EXCEPT_EPIC = BATTLE_MODE_VEHICLE_TAGS - {'epic_battles'}
 BATTLE_MODE_VEH_TAGS_EXCEPT_CLAN = BATTLE_MODE_VEHICLE_TAGS - {'clanWarsBattles'}

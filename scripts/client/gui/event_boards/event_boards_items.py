@@ -535,7 +535,7 @@ class PrimeTimes(object):
         return self.__primeTimes
 
     def isEmpty(self):
-        return len(self.__primeTimes) is 0
+        return not self.__primeTimes
 
 
 class PrimeTime(object):

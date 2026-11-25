@@ -120,6 +120,8 @@ class BattleMessagesController(IBattleController):
                 avatar.soundNotifications.play(sound)
             if soundExt is not None:
                 avatar.soundNotifications.play(soundExt)
+            if code is None:
+                return
             self.onShowPlayerMessageByCode(code, postfix, targetID, attackerID, equipmentID, False)
             return
 

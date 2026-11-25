@@ -21,7 +21,7 @@ package
          catch(e:Error)
          {
          }
-         linkBtn.UIID = 58327049;
+         linkBtn.UIID = 58327070;
          linkBtn.autoRepeat = false;
          linkBtn.autoSize = "none";
          linkBtn.data = "";

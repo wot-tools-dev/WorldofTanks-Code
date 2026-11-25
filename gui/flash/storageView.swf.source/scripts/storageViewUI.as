@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.StorageView;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol234")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol231")]
    public dynamic class storageViewUI extends StorageView
    {
       

@@ -346,7 +346,7 @@ package net.wg.gui.lobby.hangar
             this.rendererBG.visible = true;
             if(!_loc4_ || _loc5_ != _loc12_)
             {
-               App.soundMgr.playControlsSnd(SoundManagerStates.SND_OVER,SoundTypes.ITEM_RDR,null);
+               App.soundMgr.playControlsSnd(SoundManagerStates.SND_OVER,SoundTypes.NORMAL_BTN,null);
             }
          }
          else
@@ -394,6 +394,7 @@ package net.wg.gui.lobby.hangar
          this.hideRendererBG();
          onParamClickS(VehParamVO(param1.itemData).paramID);
          invalidateSize();
+         App.soundMgr.playControlsSnd(SoundManagerStates.SND_PRESS,SoundTypes.NORMAL_BTN,null);
       }
       
       private function onDataProviderChangeHandler(param1:Event) : void

@@ -1,0 +1,1 @@
+import{vt as t,wt as a}from"./lib.js";var l=t,o=t=>l(t,a.ShortTime,!0),r=t=>l(t,a.DayMonthFull,!0),s=(t,o)=>({startDate:l(t,a.DayMonthFull,!0),endDate:l(o,a.DayMonthFull,!0)});export{s as n,o as r,r as t};

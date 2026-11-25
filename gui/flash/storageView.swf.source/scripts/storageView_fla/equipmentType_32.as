@@ -2,7 +2,7 @@ package storageView_fla
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol184")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol181")]
    public dynamic class equipmentType_32 extends MovieClip
    {
       

@@ -268,6 +268,7 @@ package net.wg.gui.lobby.training
       
       private function onRollOutHandler(param1:MouseEvent) : void
       {
+         this._isMouseOver = false;
          this.hideTooltip();
       }
       

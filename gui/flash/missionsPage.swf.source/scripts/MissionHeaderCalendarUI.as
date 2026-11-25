@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.missions.components.headerComponents.MissionHeaderCalendar;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol107")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol100")]
    public dynamic class MissionHeaderCalendarUI extends MissionHeaderCalendar
    {
       
@@ -21,7 +21,7 @@ package
          catch(e:Error)
          {
          }
-         calendarIcon.UIID = 58327047;
+         calendarIcon.UIID = 58327071;
          calendarIcon.autoSize = false;
          calendarIcon.enableInitCallback = false;
          calendarIcon.maintainAspectRatio = true;

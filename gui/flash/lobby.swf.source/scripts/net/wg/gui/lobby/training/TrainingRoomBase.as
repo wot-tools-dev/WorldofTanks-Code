@@ -207,6 +207,7 @@ package net.wg.gui.lobby.training
       override protected function onBeforeDispose() : void
       {
          this.removeListeners();
+         this.clearDragController();
          var _loc1_:IScheduler = App.utils.scheduler;
          _loc1_.cancelTask(this.finishDisable_swapButton_CoolDownHandler);
          _loc1_.cancelTask(this.finishDisable_settingsButton_CoolDownHandler);
@@ -216,7 +217,6 @@ package net.wg.gui.lobby.training
       
       override protected function onDispose() : void
       {
-         this.clearDragController();
          this.disposeComponents();
          this.comment.dispose();
          this.comment = null;

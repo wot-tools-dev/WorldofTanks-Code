@@ -15,7 +15,11 @@ _DEFAULT_BUNDLE_TYPE = 'default'
 def getTextResource(bundleID, path, openBundle=None):
     bundle = openBundle.config.getBundle(bundleID)
     customResource = _getResourceFromPath(R.strings.dyn(_TEXT_PATH_PREFIX.format(bundle.type)), path)
-    return customResource if customResource.isValid() else _getResourceFromPath(R.strings.open_bundle_lobby_default, path)
+    return customResource if customResource.isValid() else getDefaultTextResource(path)
+
+
+def getDefaultTextResource(path):
+    return _getResourceFromPath(R.strings.open_bundle_lobby_default, path)
 
 
 @dependency.replace_none_kwargs(openBundle=IOpenBundleController)

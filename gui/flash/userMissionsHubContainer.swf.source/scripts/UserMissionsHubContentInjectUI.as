@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.userMissions.components.UserMissionsHubContentInject;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol49")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol9")]
    public dynamic class UserMissionsHubContentInjectUI extends UserMissionsHubContentInject
    {
       

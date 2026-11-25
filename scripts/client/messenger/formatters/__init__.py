@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 import logging
+import re
 from collections import namedtuple
 from past.builtins import unicode
 from time import gmtime, time as getTime
@@ -147,3 +148,11 @@ class NCContextItemFormatter(object):
 
 
 SysMsgExtraData = namedtuple('SysMsgExtraData', 'type data')
+_SMILEY_TRIGGERS_RE = re.compile(u'([:;=])')
+_SMILEY_BREAK = u"\\1<font size='1'>&nbsp;</font>"
+
+def escapeSmileys(text):
+    isBytes = isinstance(text, bytes)
+    result = unicode(text, 'utf-8') if isBytes else text
+    result = _SMILEY_TRIGGERS_RE.sub(_SMILEY_BREAK, result)
+    return result.encode('utf-8') if isBytes else result

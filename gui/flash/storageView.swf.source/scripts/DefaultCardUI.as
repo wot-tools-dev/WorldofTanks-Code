@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.cards.BaseCard;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol191")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol188")]
    public dynamic class DefaultCardUI extends BaseCard
    {
       

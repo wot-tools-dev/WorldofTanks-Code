@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.cards.SelectableCard;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol129")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol126")]
    public dynamic class SelectableCardUI extends SelectableCard
    {
       

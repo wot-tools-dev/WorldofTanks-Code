@@ -21,7 +21,7 @@ package
          catch(e:Error)
          {
          }
-         btnTechnique.UIID = 58327056;
+         btnTechnique.UIID = 58327054;
          btnTechnique.autoRepeat = false;
          btnTechnique.autoSize = "none";
          btnTechnique.data = "";

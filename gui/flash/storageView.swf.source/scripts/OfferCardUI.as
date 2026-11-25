@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.cards.OfferCard;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol146")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol143")]
    public dynamic class OfferCardUI extends OfferCard
    {
       

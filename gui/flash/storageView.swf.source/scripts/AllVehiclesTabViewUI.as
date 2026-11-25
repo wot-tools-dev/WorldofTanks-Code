@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.inhangar.AllVehiclesTabView;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol233")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol230")]
    public dynamic class AllVehiclesTabViewUI extends AllVehiclesTabView
    {
       

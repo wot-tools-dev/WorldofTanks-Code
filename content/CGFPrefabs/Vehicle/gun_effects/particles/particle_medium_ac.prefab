@@ -35,28 +35,28 @@
 							"Server"
 						],
 						"effect": "particles/Tank/auto_shoot/shots/shot_50_start.eff",
-						"emissionRate": 1.0,
+						"emissionRate": 1,
 						"emissionSize": {
-							"x": 0.0,
-							"y": 0.0,
-							"z": 0.0
+							"x": 0,
+							"y": 0,
+							"z": 0
 						},
 						"epicenterOffset": {
-							"x": 0.0,
-							"y": 0.0,
-							"z": 0.0
+							"x": 0,
+							"y": 0,
+							"z": 0
 						},
-						"fps": 1.0,
-						"gravity": 1.0,
-						"opacity": 1.0,
+						"fps": 1,
+						"gravity": 1,
+						"opacity": 1,
 						"startSpeed": {
-							"x": 1.0,
-							"y": 1.0
+							"x": 1,
+							"y": 1
 						},
 						"tintColor": {
 							"value": 4294967295
 						},
-						"windWeight": 1.0
+						"windWeight": 1
 					},
 					"cgf::TransformComponent": {}
 				},
@@ -65,6 +65,162 @@
 				],
 				"name": "single_shot_particle",
 				"uuid": "00f69cdf-bebd-4029-95e0-eccb6f26f136"
+			},
+			{
+				"components": {
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInKillCamMode": "1",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSmEntityViewMode": "1",
+						"visibleInSmStrategicMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "0"
+					},
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "8"
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Tank/auto_shoot/shots/shot_50.eff",
+						"emissionRate": 0,
+						"emissionSize": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						},
+						"epicenterOffset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						},
+						"fps": 1,
+						"gravity": 1,
+						"opacity": 1,
+						"startSpeed": {
+							"x": 1,
+							"y": 1
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1
+					},
+					"BW::variables::PropertyOnChangeCalculatorComponent": {
+						"calcs": [
+							{
+								"componentPropertyCalcExpr/expression": {
+									"__ctype__": "BW::variables::MultiplyExpression",
+									"__cvalue__": {
+										"arg0/expression": {
+											"__ctype__": "BW::variables::VariableExpression",
+											"__cvalue__": {
+												"variable/variableName": "vehicle/gun/shotsPerSecond"
+											}
+										},
+										"arg1/expression": {
+											"__ctype__": "BW::variables::ConstantFloatExpression",
+											"__cvalue__": {
+												"floatValue": 10
+											}
+										}
+									}
+								},
+								"componentPropertyDest/component": "BW::Particle",
+								"componentPropertyDest/propertyPath": "emissionRate"
+							}
+						],
+						"disabledDomains": [
+							"Server"
+						]
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "continuous_burst_particle",
+				"uuid": "e4456a0a-c5ec-35a6-8e4f-478bfe9b358f"
+			},
+			{
+				"components": {
+					"BW::ComponentsVisibilityController": {
+						"castShadows": "0",
+						"visibleInArcadeMode": "1",
+						"visibleInArtyMode": "1",
+						"visibleInDeathFreeCamMode": "1",
+						"visibleInDualGunMode": "1",
+						"visibleInKillCamMode": "1",
+						"visibleInLookAtKillerMode": "1",
+						"visibleInMapCaseArcadeEpicMinefieldMode": "1",
+						"visibleInMapCaseArcadeMode": "1",
+						"visibleInMapCaseMode": "1",
+						"visibleInPostmortemMode": "1",
+						"visibleInRespawnDeathMode": "1",
+						"visibleInSmEntityViewMode": "1",
+						"visibleInSmStrategicMode": "1",
+						"visibleInSniperMode": "0",
+						"visibleInStrategicMode": "1",
+						"visibleInTwinGunMode": "0"
+					},
+					"BW::Gun::Effects::EffectComponent": {
+						"disabledDomains": [
+							"Server"
+						],
+						"effectMask": "4"
+					},
+					"BW::Particle": {
+						"autoStart": true,
+						"disabledDomains": [
+							"Server"
+						],
+						"effect": "particles/Tank/auto_shoot/shots/shot_50_end.eff",
+						"emissionRate": 1,
+						"emissionSize": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						},
+						"epicenterOffset": {
+							"x": 0,
+							"y": 0,
+							"z": 0
+						},
+						"fps": 1,
+						"gravity": 1,
+						"opacity": 1,
+						"startSpeed": {
+							"x": 1,
+							"y": 1
+						},
+						"tintColor": {
+							"value": 4294967295
+						},
+						"windWeight": 1
+					},
+					"cgf::TransformComponent": {}
+				},
+				"flags": [
+					"SelfInactive"
+				],
+				"name": "stop_continuous_burst_particle",
+				"uuid": "17a329df-6de0-30f5-b9c5-1195b8c9cc6b"
 			}
 		],
 		"components": {

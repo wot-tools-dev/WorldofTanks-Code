@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.inhangar.InHangarFilterBlock;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol232")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol229")]
    public dynamic class InHangarFilterBlockUI extends InHangarFilterBlock
    {
       

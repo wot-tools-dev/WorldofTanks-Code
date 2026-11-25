@@ -77,8 +77,7 @@ package net.wg.gui.battle.views.widgetsPanel.autoreloaderSurge
          var _loc4_:int = 0;
          while(_loc4_ < _loc2_)
          {
-            §§push(_loc4_ < _loc3_ ? Number(param1[_loc4_]) : 0);
-            _loc5_ = §§pop();
+            _loc5_ = _loc4_ < _loc3_ ? Number(param1[_loc4_]) : 0;
             this._sectors[_loc4_].setProgress(_loc5_);
             _loc4_++;
          }

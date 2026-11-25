@@ -2,7 +2,7 @@ package storageView_fla
 {
    import flash.display.MovieClip;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol210")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol207")]
    public dynamic class blueprintBg_19 extends MovieClip
    {
       

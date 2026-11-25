@@ -1659,57 +1659,195 @@ body {
   overflow: hidden;
 }
 
-.FormattedValue_item__x16x16_9eb36ff5 + .FormattedValue_item__x16x16_9eb36ff5 {
-  margin-left: 6rem;
+.Cbutton_24fc9a0c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  box-shadow: 0 0 0 1rem rgba(0, 0, 0, 0.6);
+  position: relative;
+  cursor: pointer;
 }
-.FormattedValue_item__x24x24_9eb36ff5 + .FormattedValue_item__x24x24_9eb36ff5 {
-  margin-left: 6rem;
+.Cbutton_base__main_2f199578, .Cbutton_base__primary_9da8a692, .Cbutton_base__primaryGreen_74301f4e, .Cbutton_base__primaryRed_d184ac, .Cbutton_base__secondary_22ff48c2 {
+  background-size: 100% 100%;
 }
-.FormattedValue_item__x32x32_bd66be3c + .FormattedValue_item__x32x32_bd66be3c {
-  margin-left: 8rem;
+.Cbutton_base__main_2f199578 {
+  background-image: url("R.images.gui.maps.icons.components.button.back_main");
 }
-.FormattedValue_item__x48x48_43bf6d1b + .FormattedValue_item__x48x48_43bf6d1b {
-  margin-left: 14rem;
+.Cbutton_base__primary_9da8a692 {
+  background-image: url("R.images.gui.maps.icons.components.button.back_primary");
 }
-.FormattedValue_item__x80x80_c03e8347 + .FormattedValue_item__x80x80_c03e8347 {
-  margin-left: 20rem;
+.Cbutton_base__primaryGreen_74301f4e {
+  background-image: url("R.images.gui.maps.icons.components.button.back_primary_green");
+}
+.Cbutton_base__primaryRed_d184ac {
+  background-image: url("R.images.gui.maps.icons.components.button.back_primary_red");
+}
+.Cbutton_base__secondary_22ff48c2 {
+  background-image: url("R.images.gui.maps.icons.components.button.back_secondary");
+}
+.Cbutton_base__ghost_fd3acf91 {
+  border-radius: 3rem;
+  box-shadow: 0 0 0 1rem rgba(0, 0, 0, 0.3), 0 0 0 1rem rgba(255, 255, 255, 0.15) inset;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.Cbutton_base__extraSmall_f64ebb9e {
+  min-height: 17rem;
+  padding: 0 16rem;
+}
+.Cbutton_base__small_a71bc2a9, .Cbutton_base__medium_d82a1b14 {
+  padding: 0 20rem;
+}
+.Cbutton_base__small_a71bc2a9 {
+  min-height: 18rem;
+}
+.Cbutton_base__medium_d82a1b14 {
+  min-height: 32rem;
+}
+.Cbutton_base__large_f02aee17 {
+  min-height: 48rem;
+}
+.Cbutton_base__disabled_96f239bb {
+  cursor: default;
 }
 
-.FormattedValue_part__x16x16_2186b32f + .FormattedValue_part__x16x16_2186b32f {
-  margin-left: 3rem;
+/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
+The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
+between 'border-image-width' and 'fill'.
+This bug is reproduced in Google Chrome 81.0.4044.113
+*/
+.Cbutton_back_ffaa618f {
+  border-image-slice: 4 fill;
+  border-image-width: 4rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
-.FormattedValue_part__x24x24_2186b32f + .FormattedValue_part__x24x24_2186b32f {
-  margin-left: 3rem;
+.Cbutton_base__main_2f199578 .Cbutton_back_ffaa618f {
+  border-image-source: url("R.images.gui.maps.icons.components.button.back_main");
 }
-.FormattedValue_part__x32x32_f9323fe3 + .FormattedValue_part__x32x32_f9323fe3 {
-  margin-left: 4rem;
+.Cbutton_base__primary_9da8a692 .Cbutton_back_ffaa618f {
+  border-image-source: url("R.images.gui.maps.icons.components.button.back_primary");
 }
-.FormattedValue_part__x48x48_bd002d69 + .FormattedValue_part__x48x48_bd002d69 {
-  margin-left: 7rem;
+.Cbutton_base__primaryGreen_74301f4e .Cbutton_back_ffaa618f {
+  border-image-source: url("R.images.gui.maps.icons.components.button.back_primary_green");
 }
-.FormattedValue_part__x80x80_dca9ec18 + .FormattedValue_part__x80x80_dca9ec18 {
-  margin-left: 10rem;
+.Cbutton_base__primaryRed_d184ac .Cbutton_back_ffaa618f {
+  border-image-source: url("R.images.gui.maps.icons.components.button.back_primary_red");
+}
+.Cbutton_base__secondary_22ff48c2 .Cbutton_back_ffaa618f {
+  border-image-source: url("R.images.gui.maps.icons.components.button.back_secondary");
 }
 
-.FormattedValue_detailedSeparator_30bfaeef::before {
-  color: rgba(238, 237, 233, 0.3);
-  text-shadow: 0;
-  content: "|";
+.Cbutton_texture_f462b307 {
+  background: url("R.images.gui.maps.icons.components.button.standard_texture_file");
+  background-size: 155rem 31rem;
+  mix-blend-mode: soft-light;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
-.FormattedValue_detailedSeparator__x16x16_2b8550e4 {
-  margin: -1rem 6rem 0;
+
+.Cbutton_state_bf8d0bab {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: box-shadow 0.16s ease-in-out;
 }
-.FormattedValue_detailedSeparator__x24x24_2b8550e4 {
-  margin: -1rem 6rem 0;
+.Cbutton_base__focus_180a9717 .Cbutton_state_bf8d0bab {
+  border-radius: 2rem;
+  box-shadow: inset 0 0 2rem 1rem rgba(255, 85, 0, 0.2);
 }
-.FormattedValue_detailedSeparator__x32x32_bc7822fa {
-  margin: -2rem 8rem 0;
+
+.Cbutton_stateHighlightHover_7e2b860e,
+.Cbutton_stateHighlightActive_f3d8fd6a,
+.Cbutton_stateDisabled_7b91392f {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
-.FormattedValue_detailedSeparator__x48x48_4cb1e66b {
-  margin: -3rem 14rem 0;
+
+.Cbutton_stateHighlightHover_7e2b860e {
+  background-image: linear-gradient(180deg, rgba(252, 248, 235, 0.25) 0%, rgba(252, 248, 235, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0;
 }
-.FormattedValue_detailedSeparator__x80x80_2c1c84ee {
-  margin: -4rem 20rem 0;
+.Cbutton_24fc9a0c:hover .Cbutton_stateHighlightHover_7e2b860e {
+  opacity: 1;
+}
+.Cbutton_24fc9a0c:active .Cbutton_stateHighlightHover_7e2b860e {
+  opacity: 0;
+}
+.Cbutton_base__disabled_96f239bb:hover .Cbutton_stateHighlightHover_7e2b860e {
+  opacity: 0;
+}
+.Cbutton_base__ghost_fd3acf91 .Cbutton_stateHighlightHover_7e2b860e {
+  box-shadow: 0 15rem 12rem 0 rgba(242, 242, 230, 0.11) inset;
+  background-color: rgba(8, 6, 0, 0.18);
+  background-image: none;
+}
+
+.Cbutton_stateHighlightActive_f3d8fd6a {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.15) 100%);
+  opacity: 0;
+}
+.Cbutton_base__highlightActive_180a9717 .Cbutton_stateHighlightActive_f3d8fd6a {
+  opacity: 1;
+}
+
+.Cbutton_stateDisabled_7b91392f {
+  background-color: rgba(0, 0, 0, 0.25);
+  background-image: url("R.images.gui.maps.icons.components.button.texture_disable");
+  background-size: 15rem 15rem;
+  visibility: hidden;
+}
+.Cbutton_base__disabled_96f239bb .Cbutton_stateDisabled_7b91392f {
+  visibility: inherit;
+}
+
+.Cbutton_content_faaa9067 {
+  display: flex;
+  align-items: center;
+  color: #f2f2e6;
+  font-weight: 700;
+  line-height: 1.2;
+  text-shadow: 0 -1rem 1rem #000;
+  letter-spacing: 0.03em;
+  transform: translateY(-1rem);
+}
+.Cbutton_content_faaa9067[lang=ja], .Cbutton_content_faaa9067[lang=ko], .Cbutton_content_faaa9067[lang=zh_tw], .Cbutton_content_faaa9067[lang=zh_sg], .Cbutton_content_faaa9067[lang=zh_cn], .Cbutton_content_faaa9067[lang=th] {
+  font-weight: 400;
+}
+.Cbutton_base__main_2f199578 .Cbutton_content_faaa9067, .Cbutton_base__primaryRed_d184ac .Cbutton_content_faaa9067 {
+  text-shadow: 0 -1rem 1rem #600;
+}
+.Cbutton_base__secondary_22ff48c2 .Cbutton_content_faaa9067 {
+  color: rgba(254, 254, 236, 0.75);
+}
+.Cbutton_base__primaryGreen_74301f4e .Cbutton_content_faaa9067 {
+  text-shadow: 0 -1rem 1rem #1c2502;
+}
+.Cbutton_base__extraSmall_f64ebb9e .Cbutton_content_faaa9067 {
+  font-size: 12rem;
+}
+.Cbutton_base__small_a71bc2a9 .Cbutton_content_faaa9067 {
+  font-size: 14rem;
+}
+.Cbutton_base__medium_d82a1b14 .Cbutton_content_faaa9067 {
+  font-size: 15rem;
+}
+.Cbutton_base__large_f02aee17 .Cbutton_content_faaa9067 {
+  font-size: 18rem;
+}
+.Cbutton_base__disabled_96f239bb .Cbutton_content_faaa9067 {
+  opacity: 0.6;
 }/* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable scss/dollar-variable-pattern */
@@ -1722,102 +1860,126 @@ body {
   overflow: hidden;
 }
 
-.Timer_dac0a0aa {
+.Textbutton_b1283086 {
   display: flex;
   align-items: center;
+  padding: 0 3rem;
+  font-size: 12rem;
+  position: relative;
+  cursor: pointer;
+}
+.Textbutton_base__right_78d4c03f {
+  flex-direction: row-reverse;
 }
 
-.Timer_icon_a61415df {
-  background: no-repeat center/cover;
-}
-.Timer_icon__x16x16_5bab55e2 {
-  width: 17rem;
-  height: 18rem;
-}
-.Timer_icon__accent_2cf70c3b {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x16x16.accent);
-}
-.Timer_icon__cooldown_4a26d3f {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x16x16.cooldown);
-}
-.Timer_icon__x24x24_31571381 {
-  width: 24rem;
-  height: 24rem;
-}
-.Timer_icon__accent_2cf70c3b {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x24x24.accent);
-}
-.Timer_icon__cooldown_4a26d3f {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x24x24.cooldown);
-}
-.Timer_icon__x32x32_807dde34 {
+.Textbutton_icon_9ba4c60 {
   width: 32rem;
   height: 32rem;
+  background: no-repeat center/contain;
+  position: relative;
 }
-.Timer_icon__accent_2cf70c3b {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x32x32.accent);
+.Textbutton_icon__back_599b35e4, .Textbutton_icon__forward_4ef35d4d {
+  margin: -1rem -5rem;
+  background-image: url("R.images.gui.maps.icons.components.text_button.back");
+  transform: translateY(1rem);
 }
-.Timer_icon__cooldown_4a26d3f {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x32x32.cooldown);
+.Textbutton_icon__forward_4ef35d4d {
+  transform: rotate(180deg) translateY(1rem);
 }
-.Timer_icon__x48x48_ae779a9e {
-  width: 48rem;
-  height: 48rem;
+.Textbutton_icon__close_b2af8bd5 {
+  margin: -1rem 0;
+  background-image: url("R.images.gui.maps.icons.components.text_button.close");
 }
-.Timer_icon__accent_2cf70c3b {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x48x48.accent);
-}
-.Timer_icon__cooldown_4a26d3f {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x48x48.cooldown);
-}
-.Timer_icon__x80x80_251aafea {
-  width: 80rem;
-  height: 80rem;
-}
-.Timer_icon__accent_2cf70c3b {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x80x80.accent);
-}
-.Timer_icon__cooldown_4a26d3f {
-  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x80x80.cooldown);
+.Textbutton_icon__info_6cbc7293 {
+  margin: -1rem -5rem;
+  background-image: url("R.images.gui.maps.icons.components.text_button.info");
 }
 
-.Timer_label_1565f308 {
-  display: flex;
+.Textbutton_glow_1ddc70ba {
+  width: 100%;
+  height: 100%;
+  background: no-repeat center/contain;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.16s;
 }
-.Timer_label__x16x16_e3ff224 {
-  font-size: 16rem;
-  font-weight: 400;
-  line-height: 1.3em;
+.Textbutton_icon__back_599b35e4 .Textbutton_glow_1ddc70ba, .Textbutton_icon__forward_4ef35d4d .Textbutton_glow_1ddc70ba {
+  background-image: url("R.images.gui.maps.icons.components.text_button.back_hover");
 }
-.Timer_label__x24x24_ca748cca {
-  font-size: 18rem;
-  font-weight: 400;
-  line-height: 1.3em;
+.Textbutton_icon__close_b2af8bd5 .Textbutton_glow_1ddc70ba {
+  background-image: url("R.images.gui.maps.icons.components.text_button.close_hover");
 }
-.Timer_label__x32x32_13cccf38 {
-  font-size: 22rem;
-  font-weight: 700;
-  line-height: 1.3em;
+.Textbutton_icon__info_6cbc7293 .Textbutton_glow_1ddc70ba {
+  background-image: url("R.images.gui.maps.icons.components.text_button.info_hover");
 }
-.Timer_label__x48x48_e3a9b542 {
-  font-size: 40rem;
-  font-weight: 700;
-  line-height: 1.3em;
+.Textbutton_b1283086:hover .Textbutton_glow_1ddc70ba {
+  opacity: 1;
 }
-.Timer_label__x80x80_10a84ee6 {
-  font-size: 56rem;
-  font-weight: 700;
-  line-height: 1.3em;
+.Textbutton_b1283086:active .Textbutton_glow_1ddc70ba {
+  opacity: 0;
 }
-.Timer_label__accent_ac7d4f7b {
-  color: #edcb9e;
-  font-weight: 500;
-  text-shadow: 0 0 6rem rgba(255, 228, 159, 0.16), 0 0 10rem rgba(255, 177, 86, 0.24), 0 0 12rem rgba(255, 61, 0, 0.32), 0 1rem 0 rgba(0, 0, 0, 0.3);
+
+.Textbutton_caption_4350685c {
+  position: relative;
+  transition: color 0.16s, text-shadow 0.16s;
 }
-.Timer_label__cooldown_c2349ab9 {
-  color: rgba(var(--color-general-primary-rgb), 0.9);
-  font-weight: 400;
-  opacity: 0.8;
+.Textbutton_caption__back_599b35e4, .Textbutton_caption__forward_599b35e4, .Textbutton_caption__close_c29bdb5 {
+  color: #ffdd99;
+  text-shadow: 0 0 10rem #ff2a00, 0 0 10rem rgba(255, 42, 0, 0.4), 0 0 10rem rgba(255, 42, 0, 0.4), 0 0 2rem rgba(255, 42, 0, 0.4), 0 0 1rem rgba(255, 42, 0, 0.4), 0 0 2rem rgba(255, 42, 0, 0.4), 0 0 1rem rgba(255, 42, 0, 0.4);
+}
+.Textbutton_b1283086:hover .Textbutton_caption__back_599b35e4, .Textbutton_b1283086:hover .Textbutton_caption__forward_599b35e4, .Textbutton_b1283086:hover .Textbutton_caption__close_c29bdb5 {
+  color: #fffa9f;
+}
+.Textbutton_b1283086:active .Textbutton_caption__back_599b35e4, .Textbutton_b1283086:active .Textbutton_caption__forward_599b35e4, .Textbutton_b1283086:active .Textbutton_caption__close_c29bdb5 {
+  color: #ffdd99;
+}
+.Textbutton_caption__info_ccd96b67 {
+  padding: 0 5rem;
+  color: #ccffff;
+  text-shadow: 0 0 12rem rgba(31, 68, 255, 0.8), 0 0 8rem #00eaff;
+}
+.Textbutton_b1283086:hover .Textbutton_caption__info_ccd96b67 {
+  color: #e3ffff;
+  text-shadow: 0 0 12rem rgba(31, 68, 255, 0.8), 0 0 12rem #00eaff, 0 0 8rem #00eaff;
+}
+.Textbutton_b1283086:active .Textbutton_caption__info_ccd96b67 {
+  color: #ccffff;
+  text-shadow: 0 0 12rem rgba(31, 68, 255, 0.6), 0 0 8rem #00eaff;
+}
+
+.Textbutton_goto_d2c81cbd {
+  color: #7c7c6c;
+}
+.Textbutton_base__left_599b35e4 .Textbutton_goto_d2c81cbd {
+  margin-left: 8rem;
+}
+.Textbutton_base__right_78d4c03f .Textbutton_goto_d2c81cbd {
+  margin-right: 8rem;
+}
+
+.Textbutton_shine_527e4656 {
+  width: 90rem;
+  height: 40rem;
+  background: url("R.images.gui.maps.icons.components.text_button.shine") no-repeat center/contain;
+  opacity: 0;
+  position: absolute;
+  top: -4rem;
+  transition: opacity 0.16s;
+  pointer-events: none;
+}
+.Textbutton_base__left_599b35e4 .Textbutton_shine_527e4656 {
+  left: -4rem;
+}
+.Textbutton_base__right_78d4c03f .Textbutton_shine_527e4656 {
+  right: -4rem;
+  transform: rotate(180deg);
+}
+.Textbutton_b1283086:hover .Textbutton_shine_527e4656 {
+  opacity: 1;
+}
+.Textbutton_b1283086:active .Textbutton_shine_527e4656 {
+  opacity: 0;
 }/* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable selector-no-qualifying-type */
 .Popover_border_d0a76717 {
@@ -1984,7 +2146,7 @@ body {
   left: 50%;
 }/* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable selector-no-qualifying-type */
-.Thumb_background_b893084a, .Thumb_border_5749138b {
+.Thumb_background_7f3dd6ac, .Thumb_border_5749138b {
   position: absolute;
   top: 0;
   right: 0;
@@ -2002,17 +2164,7 @@ body {
   overflow: hidden;
 }
 
-/* stylelint-disable selector-no-qualifying-type */
-/* stylelint-disable selector-no-qualifying-type */
-.Thumb_border_5749138b, .Thumb_background_b893084a {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.Thumb_border_5749138b, .Thumb_innerBorder_42bafd18, .Thumb_icon_dca8bf26, .Thumb_background_b893084a {
+.Thumb_border_5749138b, .Thumb_innerBorder_42bafd18, .Thumb_icon_dca8bf26, .Thumb_background_7f3dd6ac {
   position: absolute;
   pointer-events: none;
 }
@@ -2034,17 +2186,17 @@ body {
   transform: translateX(calc(var(--thumbOffset) + var(--bouncingCorrection)));
 }
 
-.Thumb_background_b893084a {
+.Thumb_background_7f3dd6ac {
   opacity: 0.6;
   transition: opacity 0.2s ease-in;
 }
-.Thumb_base__vertical_55a67c91 .Thumb_background_b893084a {
+.Thumb_base__vertical_55a67c91 .Thumb_background_7f3dd6ac {
   background: url(R.images.gui.maps.icons.ui_kit.scroll.vertical_texture) center/100% auto repeat-y;
 }
-.Thumb_base__horizontal_27ca7ace .Thumb_background_b893084a {
+.Thumb_base__horizontal_27ca7ace .Thumb_background_7f3dd6ac {
   background: url(R.images.gui.maps.icons.ui_kit.scroll.horizontal_texture) center/auto 100% repeat-x;
 }
-.Thumb_base__active_830942bb .Thumb_background_b893084a {
+.Thumb_base__active_830942bb .Thumb_background_7f3dd6ac {
   opacity: 1;
 }
 
@@ -3658,207 +3810,6 @@ body {
   overflow: hidden;
 }
 
-.Cbutton_24fc9a0c {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 2rem;
-  box-shadow: 0 0 0 1rem rgba(0, 0, 0, 0.6);
-  position: relative;
-  cursor: pointer;
-}
-.Cbutton_base__main_2f199578, .Cbutton_base__primary_9da8a692, .Cbutton_base__primaryGreen_74301f4e, .Cbutton_base__primaryRed_d184ac, .Cbutton_base__secondary_22ff48c2 {
-  background-size: 100% 100%;
-}
-.Cbutton_base__main_2f199578 {
-  background-image: url("R.images.gui.maps.icons.components.button.back_main");
-}
-.Cbutton_base__primary_9da8a692 {
-  background-image: url("R.images.gui.maps.icons.components.button.back_primary");
-}
-.Cbutton_base__primaryGreen_74301f4e {
-  background-image: url("R.images.gui.maps.icons.components.button.back_primary_green");
-}
-.Cbutton_base__primaryRed_d184ac {
-  background-image: url("R.images.gui.maps.icons.components.button.back_primary_red");
-}
-.Cbutton_base__secondary_22ff48c2 {
-  background-image: url("R.images.gui.maps.icons.components.button.back_secondary");
-}
-.Cbutton_base__ghost_fd3acf91 {
-  border-radius: 3rem;
-  box-shadow: 0 0 0 1rem rgba(0, 0, 0, 0.3), 0 0 0 1rem rgba(255, 255, 255, 0.15) inset;
-  background-color: rgba(0, 0, 0, 0.15);
-}
-.Cbutton_base__extraSmall_f64ebb9e {
-  min-height: 17rem;
-  padding: 0 16rem;
-}
-.Cbutton_base__small_a71bc2a9, .Cbutton_base__medium_d82a1b14 {
-  padding: 0 20rem;
-}
-.Cbutton_base__small_a71bc2a9 {
-  min-height: 18rem;
-}
-.Cbutton_base__medium_d82a1b14 {
-  min-height: 32rem;
-}
-.Cbutton_base__large_f02aee17 {
-  min-height: 48rem;
-}
-.Cbutton_base__disabled_96f239bb {
-  cursor: default;
-}
-
-/* Element .back and background-image in element .base need for fix bug in GF https://jira.wargaming.net/browse/WOTD-158525
-The bug is that under certain conditions, when using border-image, stripes appear. Strip is a single-pixel gap
-between 'border-image-width' and 'fill'.
-This bug is reproduced in Google Chrome 81.0.4044.113
-*/
-.Cbutton_back_ffaa618f {
-  border-image-slice: 4 fill;
-  border-image-width: 4rem;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-.Cbutton_base__main_2f199578 .Cbutton_back_ffaa618f {
-  border-image-source: url("R.images.gui.maps.icons.components.button.back_main");
-}
-.Cbutton_base__primary_9da8a692 .Cbutton_back_ffaa618f {
-  border-image-source: url("R.images.gui.maps.icons.components.button.back_primary");
-}
-.Cbutton_base__primaryGreen_74301f4e .Cbutton_back_ffaa618f {
-  border-image-source: url("R.images.gui.maps.icons.components.button.back_primary_green");
-}
-.Cbutton_base__primaryRed_d184ac .Cbutton_back_ffaa618f {
-  border-image-source: url("R.images.gui.maps.icons.components.button.back_primary_red");
-}
-.Cbutton_base__secondary_22ff48c2 .Cbutton_back_ffaa618f {
-  border-image-source: url("R.images.gui.maps.icons.components.button.back_secondary");
-}
-
-.Cbutton_texture_f462b307 {
-  background: url("R.images.gui.maps.icons.components.button.standard_texture_file");
-  background-size: 155rem 31rem;
-  mix-blend-mode: soft-light;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.Cbutton_state_bf8d0bab {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transition: box-shadow 0.16s ease-in-out;
-}
-.Cbutton_base__focus_180a9717 .Cbutton_state_bf8d0bab {
-  border-radius: 2rem;
-  box-shadow: inset 0 0 2rem 1rem rgba(255, 85, 0, 0.2);
-}
-
-.Cbutton_stateHighlightHover_7e2b860e,
-.Cbutton_stateHighlightActive_f3d8fd6a,
-.Cbutton_stateDisabled_7b91392f {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.Cbutton_stateHighlightHover_7e2b860e {
-  background-image: linear-gradient(180deg, rgba(252, 248, 235, 0.25) 0%, rgba(252, 248, 235, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
-  opacity: 0;
-}
-.Cbutton_24fc9a0c:hover .Cbutton_stateHighlightHover_7e2b860e {
-  opacity: 1;
-}
-.Cbutton_24fc9a0c:active .Cbutton_stateHighlightHover_7e2b860e {
-  opacity: 0;
-}
-.Cbutton_base__disabled_96f239bb:hover .Cbutton_stateHighlightHover_7e2b860e {
-  opacity: 0;
-}
-.Cbutton_base__ghost_fd3acf91 .Cbutton_stateHighlightHover_7e2b860e {
-  box-shadow: 0 15rem 12rem 0 rgba(242, 242, 230, 0.11) inset;
-  background-color: rgba(8, 6, 0, 0.18);
-  background-image: none;
-}
-
-.Cbutton_stateHighlightActive_f3d8fd6a {
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.15) 100%);
-  opacity: 0;
-}
-.Cbutton_base__highlightActive_180a9717 .Cbutton_stateHighlightActive_f3d8fd6a {
-  opacity: 1;
-}
-
-.Cbutton_stateDisabled_7b91392f {
-  background-color: rgba(0, 0, 0, 0.25);
-  background-image: url("R.images.gui.maps.icons.components.button.texture_disable");
-  background-size: 15rem 15rem;
-  visibility: hidden;
-}
-.Cbutton_base__disabled_96f239bb .Cbutton_stateDisabled_7b91392f {
-  visibility: inherit;
-}
-
-.Cbutton_content_faaa9067 {
-  display: flex;
-  align-items: center;
-  color: #f2f2e6;
-  font-weight: 700;
-  line-height: 1.2;
-  text-shadow: 0 -1rem 1rem #000;
-  letter-spacing: 0.03em;
-  transform: translateY(-1rem);
-}
-.Cbutton_content_faaa9067[lang=ja], .Cbutton_content_faaa9067[lang=ko], .Cbutton_content_faaa9067[lang=zh_tw], .Cbutton_content_faaa9067[lang=zh_sg], .Cbutton_content_faaa9067[lang=zh_cn], .Cbutton_content_faaa9067[lang=th] {
-  font-weight: 400;
-}
-.Cbutton_base__main_2f199578 .Cbutton_content_faaa9067, .Cbutton_base__primaryRed_d184ac .Cbutton_content_faaa9067 {
-  text-shadow: 0 -1rem 1rem #600;
-}
-.Cbutton_base__secondary_22ff48c2 .Cbutton_content_faaa9067 {
-  color: rgba(254, 254, 236, 0.75);
-}
-.Cbutton_base__primaryGreen_74301f4e .Cbutton_content_faaa9067 {
-  text-shadow: 0 -1rem 1rem #1c2502;
-}
-.Cbutton_base__extraSmall_f64ebb9e .Cbutton_content_faaa9067 {
-  font-size: 12rem;
-}
-.Cbutton_base__small_a71bc2a9 .Cbutton_content_faaa9067 {
-  font-size: 14rem;
-}
-.Cbutton_base__medium_d82a1b14 .Cbutton_content_faaa9067 {
-  font-size: 15rem;
-}
-.Cbutton_base__large_f02aee17 .Cbutton_content_faaa9067 {
-  font-size: 18rem;
-}
-.Cbutton_base__disabled_96f239bb .Cbutton_content_faaa9067 {
-  opacity: 0.6;
-}/* stylelint-disable selector-no-qualifying-type */
-/* stylelint-disable selector-no-qualifying-type */
-/* stylelint-disable scss/dollar-variable-pattern */
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  font-size: 14rem;
-  line-height: 1.2;
-  overflow: hidden;
-}
-
 .Error_741eaf3c {
   display: flex;
   flex-direction: column;
@@ -4515,6 +4466,177 @@ body {
   height: 100%;
   box-shadow: 0rem 0rem 5rem rgba(255, 254, 249, 0.5), 0rem 0rem 10rem rgba(255, 246, 227, 0.3), 0rem 0rem 30rem rgba(255, 230, 201, 0.4);
   background: #edebe7;
+}/* stylelint-disable selector-no-qualifying-type */
+/* stylelint-disable selector-no-qualifying-type */
+/* stylelint-disable scss/dollar-variable-pattern */
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 14rem;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.FormattedValue_item__x16x16_9eb36ff5 + .FormattedValue_item__x16x16_9eb36ff5 {
+  margin-left: 6rem;
+}
+.FormattedValue_item__x24x24_9eb36ff5 + .FormattedValue_item__x24x24_9eb36ff5 {
+  margin-left: 6rem;
+}
+.FormattedValue_item__x32x32_bd66be3c + .FormattedValue_item__x32x32_bd66be3c {
+  margin-left: 8rem;
+}
+.FormattedValue_item__x48x48_43bf6d1b + .FormattedValue_item__x48x48_43bf6d1b {
+  margin-left: 14rem;
+}
+.FormattedValue_item__x80x80_c03e8347 + .FormattedValue_item__x80x80_c03e8347 {
+  margin-left: 20rem;
+}
+
+.FormattedValue_part__x16x16_2186b32f + .FormattedValue_part__x16x16_2186b32f {
+  margin-left: 3rem;
+}
+.FormattedValue_part__x24x24_2186b32f + .FormattedValue_part__x24x24_2186b32f {
+  margin-left: 3rem;
+}
+.FormattedValue_part__x32x32_f9323fe3 + .FormattedValue_part__x32x32_f9323fe3 {
+  margin-left: 4rem;
+}
+.FormattedValue_part__x48x48_bd002d69 + .FormattedValue_part__x48x48_bd002d69 {
+  margin-left: 7rem;
+}
+.FormattedValue_part__x80x80_dca9ec18 + .FormattedValue_part__x80x80_dca9ec18 {
+  margin-left: 10rem;
+}
+
+.FormattedValue_detailedSeparator_30bfaeef::before {
+  color: rgba(238, 237, 233, 0.3);
+  text-shadow: 0;
+  content: "|";
+}
+.FormattedValue_detailedSeparator__x16x16_2b8550e4 {
+  margin: -1rem 6rem 0;
+}
+.FormattedValue_detailedSeparator__x24x24_2b8550e4 {
+  margin: -1rem 6rem 0;
+}
+.FormattedValue_detailedSeparator__x32x32_bc7822fa {
+  margin: -2rem 8rem 0;
+}
+.FormattedValue_detailedSeparator__x48x48_4cb1e66b {
+  margin: -3rem 14rem 0;
+}
+.FormattedValue_detailedSeparator__x80x80_2c1c84ee {
+  margin: -4rem 20rem 0;
+}/* stylelint-disable selector-no-qualifying-type */
+/* stylelint-disable selector-no-qualifying-type */
+/* stylelint-disable scss/dollar-variable-pattern */
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 14rem;
+  line-height: 1.2;
+  overflow: hidden;
+}
+
+.Timer_dac0a0aa {
+  display: flex;
+  align-items: center;
+}
+
+.Timer_icon_a61415df {
+  background: no-repeat center/cover;
+}
+.Timer_icon__x16x16_5bab55e2 {
+  width: 17rem;
+  height: 18rem;
+}
+.Timer_icon__accent_2cf70c3b {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x16x16.accent);
+}
+.Timer_icon__cooldown_4a26d3f {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x16x16.cooldown);
+}
+.Timer_icon__x24x24_31571381 {
+  width: 24rem;
+  height: 24rem;
+}
+.Timer_icon__accent_2cf70c3b {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x24x24.accent);
+}
+.Timer_icon__cooldown_4a26d3f {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x24x24.cooldown);
+}
+.Timer_icon__x32x32_807dde34 {
+  width: 32rem;
+  height: 32rem;
+}
+.Timer_icon__accent_2cf70c3b {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x32x32.accent);
+}
+.Timer_icon__cooldown_4a26d3f {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x32x32.cooldown);
+}
+.Timer_icon__x48x48_ae779a9e {
+  width: 48rem;
+  height: 48rem;
+}
+.Timer_icon__accent_2cf70c3b {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x48x48.accent);
+}
+.Timer_icon__cooldown_4a26d3f {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x48x48.cooldown);
+}
+.Timer_icon__x80x80_251aafea {
+  width: 80rem;
+  height: 80rem;
+}
+.Timer_icon__accent_2cf70c3b {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x80x80.accent);
+}
+.Timer_icon__cooldown_4a26d3f {
+  background-image: url(R.images.gui.maps.icons.ui_kit.datetime.x80x80.cooldown);
+}
+
+.Timer_label_1565f308 {
+  display: flex;
+}
+.Timer_label__x16x16_e3ff224 {
+  font-size: 16rem;
+  font-weight: 400;
+  line-height: 1.3em;
+}
+.Timer_label__x24x24_ca748cca {
+  font-size: 18rem;
+  font-weight: 400;
+  line-height: 1.3em;
+}
+.Timer_label__x32x32_13cccf38 {
+  font-size: 22rem;
+  font-weight: 700;
+  line-height: 1.3em;
+}
+.Timer_label__x48x48_e3a9b542 {
+  font-size: 40rem;
+  font-weight: 700;
+  line-height: 1.3em;
+}
+.Timer_label__x80x80_10a84ee6 {
+  font-size: 56rem;
+  font-weight: 700;
+  line-height: 1.3em;
+}
+.Timer_label__accent_ac7d4f7b {
+  color: #edcb9e;
+  font-weight: 500;
+  text-shadow: 0 0 6rem rgba(255, 228, 159, 0.16), 0 0 10rem rgba(255, 177, 86, 0.24), 0 0 12rem rgba(255, 61, 0, 0.32), 0 1rem 0 rgba(0, 0, 0, 0.3);
+}
+.Timer_label__cooldown_c2349ab9 {
+  color: rgba(var(--color-general-primary-rgb), 0.9);
+  font-weight: 400;
+  opacity: 0.8;
 }/* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable scss/dollar-variable-pattern */
@@ -5189,138 +5311,6 @@ body {
   bottom: -1rem;
   left: 0;
   pointer-events: none;
-}/* stylelint-disable selector-no-qualifying-type */
-/* stylelint-disable selector-no-qualifying-type */
-/* stylelint-disable scss/dollar-variable-pattern */
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  font-size: 14rem;
-  line-height: 1.2;
-  overflow: hidden;
-}
-
-.Textbutton_b1283086 {
-  display: flex;
-  align-items: center;
-  padding: 0 3rem;
-  font-size: 12rem;
-  position: relative;
-  cursor: pointer;
-}
-.Textbutton_base__right_78d4c03f {
-  flex-direction: row-reverse;
-}
-
-.Textbutton_icon_9ba4c60 {
-  width: 32rem;
-  height: 32rem;
-  background: no-repeat center/contain;
-  position: relative;
-}
-.Textbutton_icon__back_599b35e4, .Textbutton_icon__forward_4ef35d4d {
-  margin: -1rem -5rem;
-  background-image: url("R.images.gui.maps.icons.components.text_button.back");
-  transform: translateY(1rem);
-}
-.Textbutton_icon__forward_4ef35d4d {
-  transform: rotate(180deg) translateY(1rem);
-}
-.Textbutton_icon__close_b2af8bd5 {
-  margin: -1rem 0;
-  background-image: url("R.images.gui.maps.icons.components.text_button.close");
-}
-.Textbutton_icon__info_6cbc7293 {
-  margin: -1rem -5rem;
-  background-image: url("R.images.gui.maps.icons.components.text_button.info");
-}
-
-.Textbutton_glow_1ddc70ba {
-  width: 100%;
-  height: 100%;
-  background: no-repeat center/contain;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  transition: opacity 0.16s;
-}
-.Textbutton_icon__back_599b35e4 .Textbutton_glow_1ddc70ba, .Textbutton_icon__forward_4ef35d4d .Textbutton_glow_1ddc70ba {
-  background-image: url("R.images.gui.maps.icons.components.text_button.back_hover");
-}
-.Textbutton_icon__close_b2af8bd5 .Textbutton_glow_1ddc70ba {
-  background-image: url("R.images.gui.maps.icons.components.text_button.close_hover");
-}
-.Textbutton_icon__info_6cbc7293 .Textbutton_glow_1ddc70ba {
-  background-image: url("R.images.gui.maps.icons.components.text_button.info_hover");
-}
-.Textbutton_b1283086:hover .Textbutton_glow_1ddc70ba {
-  opacity: 1;
-}
-.Textbutton_b1283086:active .Textbutton_glow_1ddc70ba {
-  opacity: 0;
-}
-
-.Textbutton_caption_4350685c {
-  position: relative;
-  transition: color 0.16s, text-shadow 0.16s;
-}
-.Textbutton_caption__back_599b35e4, .Textbutton_caption__forward_599b35e4, .Textbutton_caption__close_c29bdb5 {
-  color: #ffdd99;
-  text-shadow: 0 0 10rem #ff2a00, 0 0 10rem rgba(255, 42, 0, 0.4), 0 0 10rem rgba(255, 42, 0, 0.4), 0 0 2rem rgba(255, 42, 0, 0.4), 0 0 1rem rgba(255, 42, 0, 0.4), 0 0 2rem rgba(255, 42, 0, 0.4), 0 0 1rem rgba(255, 42, 0, 0.4);
-}
-.Textbutton_b1283086:hover .Textbutton_caption__back_599b35e4, .Textbutton_b1283086:hover .Textbutton_caption__forward_599b35e4, .Textbutton_b1283086:hover .Textbutton_caption__close_c29bdb5 {
-  color: #fffa9f;
-}
-.Textbutton_b1283086:active .Textbutton_caption__back_599b35e4, .Textbutton_b1283086:active .Textbutton_caption__forward_599b35e4, .Textbutton_b1283086:active .Textbutton_caption__close_c29bdb5 {
-  color: #ffdd99;
-}
-.Textbutton_caption__info_ccd96b67 {
-  padding: 0 5rem;
-  color: #ccffff;
-  text-shadow: 0 0 12rem rgba(31, 68, 255, 0.8), 0 0 8rem #00eaff;
-}
-.Textbutton_b1283086:hover .Textbutton_caption__info_ccd96b67 {
-  color: #e3ffff;
-  text-shadow: 0 0 12rem rgba(31, 68, 255, 0.8), 0 0 12rem #00eaff, 0 0 8rem #00eaff;
-}
-.Textbutton_b1283086:active .Textbutton_caption__info_ccd96b67 {
-  color: #ccffff;
-  text-shadow: 0 0 12rem rgba(31, 68, 255, 0.6), 0 0 8rem #00eaff;
-}
-
-.Textbutton_goto_d2c81cbd {
-  color: #7c7c6c;
-}
-.Textbutton_base__left_599b35e4 .Textbutton_goto_d2c81cbd {
-  margin-left: 8rem;
-}
-.Textbutton_base__right_78d4c03f .Textbutton_goto_d2c81cbd {
-  margin-right: 8rem;
-}
-
-.Textbutton_shine_527e4656 {
-  width: 90rem;
-  height: 40rem;
-  background: url("R.images.gui.maps.icons.components.text_button.shine") no-repeat center/contain;
-  opacity: 0;
-  position: absolute;
-  top: -4rem;
-  transition: opacity 0.16s;
-  pointer-events: none;
-}
-.Textbutton_base__left_599b35e4 .Textbutton_shine_527e4656 {
-  left: -4rem;
-}
-.Textbutton_base__right_78d4c03f .Textbutton_shine_527e4656 {
-  right: -4rem;
-  transform: rotate(180deg);
-}
-.Textbutton_b1283086:hover .Textbutton_shine_527e4656 {
-  opacity: 1;
-}
-.Textbutton_b1283086:active .Textbutton_shine_527e4656 {
-  opacity: 0;
 }/* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable selector-no-qualifying-type */
 /* stylelint-disable scss/dollar-variable-pattern */

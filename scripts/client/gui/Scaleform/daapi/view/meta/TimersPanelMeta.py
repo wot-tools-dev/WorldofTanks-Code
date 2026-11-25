@@ -29,8 +29,8 @@ class TimersPanelMeta(BaseDAAPIComponent):
     def as_setTimerTextS(self, timerID, title, description=''):
         return self.flashObject.as_setTimerText(timerID, title, description) if self._isDAAPIInited() else None
 
-    def as_showSecondaryTimerS(self, secTimerID, totalSeconds, currentTime, secondInRow):
-        return self.flashObject.as_showSecondaryTimer(secTimerID, totalSeconds, currentTime, secondInRow) if self._isDAAPIInited() else None
+    def as_showSecondaryTimerS(self, secTimerID, totalSeconds, currentTime, secondInRow, isRestored):
+        return self.flashObject.as_showSecondaryTimer(secTimerID, totalSeconds, currentTime, secondInRow, isRestored) if self._isDAAPIInited() else None
 
     def as_hideSecondaryTimerS(self, secTimerID):
         return self.flashObject.as_hideSecondaryTimer(secTimerID) if self._isDAAPIInited() else None

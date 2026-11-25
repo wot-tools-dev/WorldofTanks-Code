@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.cards.RentVehicleCard;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol136")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol133")]
    public dynamic class RentVehicleCardUI extends RentVehicleCard
    {
       

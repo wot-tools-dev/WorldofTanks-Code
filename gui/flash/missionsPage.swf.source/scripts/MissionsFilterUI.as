@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.userMissions.components.MissionsFilter;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol135")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol117")]
    public dynamic class MissionsFilterUI extends MissionsFilter
    {
       
@@ -21,7 +21,7 @@ package
          catch(e:Error)
          {
          }
-         filterButton.UIID = 58327066;
+         filterButton.UIID = 58327064;
          filterButton.autoRepeat = false;
          filterButton.autoSize = "none";
          filterButton.caps = true;

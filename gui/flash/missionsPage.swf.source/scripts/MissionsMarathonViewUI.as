@@ -21,7 +21,7 @@ package
          catch(e:Error)
          {
          }
-         browser.UIID = 58327069;
+         browser.UIID = 58327067;
          browser.enabled = true;
          browser.enableInitCallback = false;
          browser.visible = true;

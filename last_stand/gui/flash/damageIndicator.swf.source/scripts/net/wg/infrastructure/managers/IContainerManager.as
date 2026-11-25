@@ -26,8 +26,6 @@ package net.wg.infrastructure.managers
       
       function getFocusPriority(param1:int) : Number;
       
-      function getLayerIndex(param1:String) : int;
-      
       function set loader(param1:ILoaderManager) : void;
       
       function get lastFocusedView() : IView;

@@ -82,6 +82,11 @@ package net.wg.gui.battle.views.destroyTimers
          resetAnimState();
       }
       
+      public function restoreTimer() : void
+      {
+         this.showTimer(false);
+      }
+      
       public function tweenToX(param1:int) : void
       {
          if(x != param1)

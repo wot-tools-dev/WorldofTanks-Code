@@ -4,6 +4,7 @@ from builtins import range
 from collections import defaultdict
 from collections import namedtuple
 import BigWorld
+from future.utils import viewitems, viewvalues
 import BattleReplay
 import Event
 from ReplayEvents import g_replayEvents
@@ -103,7 +104,7 @@ class EpicMissionsController(IViewComponentsController):
         self.__overTimeEnd = None
         self.__isRegisterEpicMissionPanel = False
         self.__missionPanelDelayQueue = set()
-        self.__orderBattleAbilities = []
+        self.__orderBattleAbilities = {}
         self.__isLaneContested = [False, False, False]
         self.__contestedEndTime = [0, 0, 0]
         self.__lastTimeHQDamaged = defaultdict(lambda : 0)
@@ -792,11 +793,15 @@ class EpicMissionsController(IViewComponentsController):
 
     def __onEquipmentAdded(self, intCD, item):
         if item and item.isAvatar():
-            self.__orderBattleAbilities.append(intCD)
+            normalizeIdx = item.index - 1
+            self.__orderBattleAbilities[normalizeIdx] = intCD
 
     def __onEquipmentReset(self, oldIntCD, newIntCD, _):
-        if oldIntCD in self.__orderBattleAbilities:
-            self.__orderBattleAbilities[self.__orderBattleAbilities.index(oldIntCD)] = newIntCD
+        if oldIntCD in viewvalues(self.__orderBattleAbilities):
+            for idx, intCD in viewitems(self.__orderBattleAbilities):
+                if intCD == oldIntCD:
+                    self.__orderBattleAbilities[idx] = newIntCD
+                    break
 
     def __onEquipmentsCleared(self):
-        self.__orderBattleAbilities = []
+        self.__orderBattleAbilities = {}

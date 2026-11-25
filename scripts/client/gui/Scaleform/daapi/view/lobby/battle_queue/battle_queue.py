@@ -104,8 +104,8 @@ class QueueProvider(object):
         titleRes = R.strings.menu.loading.battleTypes.num(guiType)
         return backport.text(titleRes()) if titleRes.exists() else ''
 
-    def getIconPath(self, iconLabel):
-        return backport.image(R.images.gui.maps.icons.battleTypes.c_136x136.dyn(iconLabel)())
+    def getIconPath(self, iconlabel):
+        return backport.image(R.images.gui.maps.icons.battleTypes.c_136x136.dyn(iconlabel)())
 
     def getTankInfoLabel(self):
         return makeString(MENU.PREBATTLE_TANKLABEL)

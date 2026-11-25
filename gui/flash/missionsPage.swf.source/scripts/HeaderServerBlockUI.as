@@ -24,7 +24,7 @@ package
          catch(e:Error)
          {
          }
-         btn4.UIID = 58327061;
+         btn4.UIID = 58327059;
          btn4.autoRepeat = false;
          btn4.autoSize = "none";
          btn4.data = "";
@@ -65,7 +65,7 @@ package
          catch(e:Error)
          {
          }
-         btn3.UIID = 58327060;
+         btn3.UIID = 58327058;
          btn3.autoRepeat = false;
          btn3.autoSize = "none";
          btn3.data = "";
@@ -106,7 +106,7 @@ package
          catch(e:Error)
          {
          }
-         btn2.UIID = 58327059;
+         btn2.UIID = 58327057;
          btn2.autoRepeat = false;
          btn2.autoSize = "none";
          btn2.data = "";
@@ -147,7 +147,7 @@ package
          catch(e:Error)
          {
          }
-         btn1.UIID = 58327058;
+         btn1.UIID = 58327056;
          btn1.autoRepeat = false;
          btn1.autoSize = "none";
          btn1.data = "";

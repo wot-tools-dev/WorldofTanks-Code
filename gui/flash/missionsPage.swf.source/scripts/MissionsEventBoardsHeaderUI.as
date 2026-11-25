@@ -22,7 +22,7 @@ package
          catch(e:Error)
          {
          }
-         btnRegistration.UIID = 58327063;
+         btnRegistration.UIID = 58327061;
          btnRegistration.autoRepeat = false;
          btnRegistration.autoSize = "none";
          btnRegistration.data = "";
@@ -63,7 +63,7 @@ package
          catch(e:Error)
          {
          }
-         btnParticipate.UIID = 58327062;
+         btnParticipate.UIID = 58327060;
          btnParticipate.autoRepeat = false;
          btnParticipate.autoSize = "none";
          btnParticipate.data = "";

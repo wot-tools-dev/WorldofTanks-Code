@@ -1,8 +1,10 @@
 from __future__ import absolute_import
 import logging
 import typing
+from future.utils import viewitems
 import BigWorld
 import Event
+from PlayerEvents import g_playerEvents
 from gui.battle_control.arena_info import vos_collections
 from gui.battle_control.arena_info.interfaces import IBattleFieldController, IVehiclesAndPositionsController
 from gui.battle_control.arena_info.settings import ARENA_LISTENER_SCOPE as _SCOPE, VehicleSpottedStatus, INVALIDATE_OP
@@ -31,6 +33,7 @@ class BattleFieldCtrl(IBattleFieldController, IVehiclesAndPositionsController, V
     def __init__(self):
         super(BattleFieldCtrl, self).__init__()
         self.__battleCtx = None
+        self.__playerTeam = None
         self._aliveAllies = {}
         self._aliveEnemies = {}
         self.__alliesHealth = 0
@@ -58,9 +61,11 @@ class BattleFieldCtrl(IBattleFieldController, IVehiclesAndPositionsController, V
 
     def startControl(self, battleCtx, arenaVisitor):
         self.__battleCtx = battleCtx
+        g_playerEvents.onTeamChanged += self.__onTeamChanged
 
     def stopControl(self):
         super(BattleFieldCtrl, self).stopControl()
+        g_playerEvents.onTeamChanged -= self.__onTeamChanged
         self.clearViewComponents()
         self.__clear()
         if self.__eManager is not None:
@@ -154,10 +159,40 @@ class BattleFieldCtrl(IBattleFieldController, IVehiclesAndPositionsController, V
     def getAliveVehicles(self):
         return (self._aliveAllies, self._aliveEnemies)
 
+    def __onTeamChanged(self, teamID):
+        if self.__battleCtx is None or teamID == self.__playerTeam:
+            return
+        else:
+            arenaDP = self.__battleCtx.getArenaDP()
+            aliveVehicles = self._aliveAllies.copy()
+            aliveVehicles.update(self._aliveEnemies)
+            deadVehicles = self.__deadAllies | self.__deadEnemies
+            self.__clear()
+            self.__playerTeam = teamID
+            for vehicleID, healthInfo in viewitems(aliveVehicles):
+                currentHealth, maxHealth = healthInfo
+                if arenaDP.isEnemyTeam(arenaDP.getVehicleInfo(vehicleID).team):
+                    self._aliveEnemies[vehicleID] = healthInfo
+                    self.__enemiesHealth += currentHealth
+                    self.__totalEnemiesHealth += maxHealth
+                self._aliveAllies[vehicleID] = healthInfo
+                self.__alliesHealth += currentHealth
+                self.__totalAlliesHealth += maxHealth
+
+            for vehicleID in deadVehicles:
+                if arenaDP.isEnemyTeam(arenaDP.getVehicleInfo(vehicleID).team):
+                    self.__deadEnemies.add(vehicleID)
+                self.__deadAllies.add(vehicleID)
+
+            self.__updateDeadVehicles()
+            self.__updateVehiclesHealth()
+            return
+
     def __initializeVehiclesInfo(self):
         arenaDP = self.__battleCtx.getArenaDP()
         collection = vos_collections.VehiclesInfoCollection()
         self.__clear()
+        self.__playerTeam = arenaDP.getNumberOfTeam()
         for vInfoVO in collection.iterator(arenaDP):
             if vInfoVO.isObserver():
                 continue
@@ -287,6 +322,7 @@ class BattleFieldCtrl(IBattleFieldController, IVehiclesAndPositionsController, V
             return
 
     def __clear(self):
+        self.__playerTeam = None
         self.__deadAllies.clear()
         self.__deadEnemies.clear()
         self._aliveAllies = {}
@@ -295,3 +331,4 @@ class BattleFieldCtrl(IBattleFieldController, IVehiclesAndPositionsController, V
         self.__enemiesHealth = 0
         self.__totalAlliesHealth = 0
         self.__totalEnemiesHealth = 0
+        return

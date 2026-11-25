@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.missions.MissionsPage;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol139")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol121")]
    public dynamic class MissionsPageUI extends MissionsPage
    {
       

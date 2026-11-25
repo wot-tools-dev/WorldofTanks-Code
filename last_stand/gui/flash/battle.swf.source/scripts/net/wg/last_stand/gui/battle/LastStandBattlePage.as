@@ -104,9 +104,9 @@ package net.wg.last_stand.gui.battle
       
       private static const MESSAGE_LISTS_CONTAINER:String = "messageListsContainer";
       
-      private static const PERKS_PANEL_OFFSET_Y:int = 155;
+      private static const PERKS_PANEL_OFFSET_Y:int = 195;
       
-      private static const PERKS_PANEL_OFFSET_Y_SMALL:int = 149;
+      private static const PERKS_PANEL_OFFSET_Y_SMALL:int = 190;
       
       public var lsPlayersPanel:LSPlayersPanel = null;
       

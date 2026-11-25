@@ -380,6 +380,10 @@ class StatTrackerItem(with_metaclass(ReflectionMetaclass, AttachmentItem)):
         cls._StatTrackerItem__prohibitedNumbers = frozenset(int(number) for number in prohibitedNumbers)
 
     @classmethod
+    def getProhibitedNumbers(cls):
+        return cls._StatTrackerItem__prohibitedNumbers
+
+    @classmethod
     def adjustToAllowedNumber(cls, number):
         while number in cls._StatTrackerItem__prohibitedNumbers:
             number = number - 1
@@ -598,7 +602,7 @@ class Font(with_metaclass(ReflectionMetaclass, object)):
         return items.makeIntCompactDescrByID('customizationItem', self.itemType, self.id)
 
 if IS_EDITOR:
-    CUSTOMIZATION_TYPES = {CustomizationType.MODIFICATION: ModificationItem, CustomizationType.DECAL: DecalItem, CustomizationType.STYLE: StyleItem, CustomizationType.FONT: Font, CustomizationType.INSIGNIA: InsigniaItem, CustomizationType.PROJECTION_DECAL: ProjectionDecalItem, CustomizationType.PERSONAL_NUMBER: PersonalNumberItem, CustomizationType.PAINT: PaintItem, CustomizationType.SEQUENCE: SequenceItem, CustomizationType.CAMOUFLAGE: CamouflageItem, CustomizationType.STAT_TRACKER: StatTrackerItem, CustomizationType.ATTACHMENT: AttachmentItem}
+    CUSTOMIZATION_TYPES = {CustomizationType.CAMOUFLAGE: CamouflageItem, CustomizationType.PAINT: PaintItem, CustomizationType.FONT: Font, CustomizationType.STAT_TRACKER: StatTrackerItem, CustomizationType.MODIFICATION: ModificationItem, CustomizationType.SEQUENCE: SequenceItem, CustomizationType.STYLE: StyleItem, CustomizationType.DECAL: DecalItem, CustomizationType.PROJECTION_DECAL: ProjectionDecalItem, CustomizationType.ATTACHMENT: AttachmentItem, CustomizationType.PERSONAL_NUMBER: PersonalNumberItem, CustomizationType.INSIGNIA: InsigniaItem}
     CUSTOMIZATION_CLASSES = {v : k for k, v in CUSTOMIZATION_TYPES.items()}
 class _Filter(object):
     __slots__ = ('include', 'exclude')
@@ -756,6 +760,9 @@ class QuestProgressForCustomization(object):
     def getGroupTokens(self):
         return list(self._groupTokens)
 
+    def isGroupKnown(self, token):
+        return token in self._groupTokens
+
     def isGroupConcurrent(self, token):
         return self._groupTokens[token][2]
 
@@ -827,7 +834,7 @@ class CustomizationCache(with_metaclass(ReflectionMetaclass, object)):
         self._CustomizationCache__questStyles = None
         self.itemGroupByProgressionBonusType = {arenaTypeID : [] for arenaTypeID in ARENA_BONUS_TYPE_NAMES.values() if ARENA_BONUS_TYPE_CAPS.checkAny(arenaTypeID, ARENA_BONUS_TYPE_CAPS.CUSTOMIZATION_PROGRESSION)}
         self.topVehiclesByNation = {}
-        self.itemTypes = {CustomizationType.STAT_TRACKER: self.stat_trackers, CustomizationType.STYLE: self.styles, CustomizationType.CAMOUFLAGE: self.camouflages, CustomizationType.SEQUENCE: self.sequences, CustomizationType.DECAL: self.decals, CustomizationType.ATTACHMENT: self.attachments, CustomizationType.PERSONAL_NUMBER: self.personal_numbers, CustomizationType.MODIFICATION: self.modifications, CustomizationType.PAINT: self.paints, CustomizationType.INSIGNIA: self.insignias, CustomizationType.PROJECTION_DECAL: self.projection_decals}
+        self.itemTypes = {CustomizationType.PAINT: self.paints, CustomizationType.PROJECTION_DECAL: self.projection_decals, CustomizationType.STYLE: self.styles, CustomizationType.INSIGNIA: self.insignias, CustomizationType.DECAL: self.decals, CustomizationType.MODIFICATION: self.modifications, CustomizationType.CAMOUFLAGE: self.camouflages, CustomizationType.STAT_TRACKER: self.stat_trackers, CustomizationType.PERSONAL_NUMBER: self.personal_numbers, CustomizationType.SEQUENCE: self.sequences, CustomizationType.ATTACHMENT: self.attachments}
         super(CustomizationCache, self).__init__()
 
     def getQuestProgressionStyles(self):
@@ -1246,7 +1253,7 @@ def _validateDependencies(outfit, usedStyle, vehDescr, season):
         emblemRegions, inscriptionRegions = getAvailableDecalRegions(vehDescr)
         decalRegions = emblemRegions | inscriptionRegions
         modifiedOutfit = baseSeasonOutfit.applyDiff(outfit)
-        outfitToCheckDependencies = {CustomizationType.MODIFICATION: set(modifiedOutfit.modifications), CustomizationType.PAINT: {paint.id for paint in modifiedOutfit.paints if paint.appliedTo & paintRegions}, CustomizationType.PERSONAL_NUMBER: {number.id for number in modifiedOutfit.personal_numbers if number.appliedTo & inscriptionRegions}, CustomizationType.PROJECTION_DECAL: {projectionDecal.id for projectionDecal in modifiedOutfit.projection_decals}, CustomizationType.DECAL: {decal.id for decal in modifiedOutfit.decals if decal.appliedTo & decalRegions}}
+        outfitToCheckDependencies = {CustomizationType.MODIFICATION: set(modifiedOutfit.modifications), CustomizationType.PAINT: {paint.id for paint in modifiedOutfit.paints if paint.appliedTo & paintRegions}, CustomizationType.PERSONAL_NUMBER: {number.id for number in modifiedOutfit.personal_numbers if number.appliedTo & inscriptionRegions}, CustomizationType.DECAL: {decal.id for decal in modifiedOutfit.decals if decal.appliedTo & decalRegions}, CustomizationType.PROJECTION_DECAL: {projectionDecal.id for projectionDecal in modifiedOutfit.projection_decals}}
         for itemType, itemIDs in viewitems(outfitToCheckDependencies):
             camouflageItemTypeDependencies = usedStyle.dependencies.get(camouflageID, {}).get(itemType, {})
             alternateItems = usedStyle.alternateItems.get(itemType, ())

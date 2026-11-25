@@ -22,7 +22,7 @@ package
          catch(e:Error)
          {
          }
-         uiDecoration.UIID = 58327071;
+         uiDecoration.UIID = 58327069;
          uiDecoration.autoSize = true;
          uiDecoration.enableInitCallback = false;
          uiDecoration.maintainAspectRatio = true;
@@ -47,7 +47,7 @@ package
          catch(e:Error)
          {
          }
-         buttonDetails.UIID = 58327070;
+         buttonDetails.UIID = 58327068;
          buttonDetails.autoRepeat = false;
          buttonDetails.autoSize = "none";
          buttonDetails.data = "";

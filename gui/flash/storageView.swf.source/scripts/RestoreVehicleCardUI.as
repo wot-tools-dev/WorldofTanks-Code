@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.cards.RestoreVehicleCard;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol133")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol130")]
    public dynamic class RestoreVehicleCardUI extends RestoreVehicleCard
    {
       

@@ -22,7 +22,7 @@ package
          catch(e:Error)
          {
          }
-         bgLoader.UIID = 58327051;
+         bgLoader.UIID = 58327049;
          bgLoader.autoSize = false;
          bgLoader.enableInitCallback = false;
          bgLoader.maintainAspectRatio = true;
@@ -47,7 +47,7 @@ package
          catch(e:Error)
          {
          }
-         scrollBar.UIID = 58327050;
+         scrollBar.UIID = 58327048;
          scrollBar.enableInitCallback = false;
          scrollBar.minThumbSize = 20;
          scrollBar.offsetBottom = 0;

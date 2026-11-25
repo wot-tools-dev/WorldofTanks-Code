@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.missions.CurrentVehicleMissionsView;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol132")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol114")]
    public dynamic class CurrentVehicleMissionsViewUI extends CurrentVehicleMissionsView
    {
       

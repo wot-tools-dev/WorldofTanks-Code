@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.missions.components.MissionPackCurrentVehicleHeader;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol119")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol111")]
    public dynamic class MissionPackCurrentVehicleHeaderUI extends MissionPackCurrentVehicleHeader
    {
       

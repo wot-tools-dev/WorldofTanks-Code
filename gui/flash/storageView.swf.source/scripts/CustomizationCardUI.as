@@ -2,7 +2,7 @@ package
 {
    import net.wg.gui.lobby.storage.categories.cards.CustomizationCard;
    
-   [Embed(source="/_assets/assets.swf", symbol="symbol205")]
+   [Embed(source="/_assets/assets.swf", symbol="symbol202")]
    public dynamic class CustomizationCardUI extends CustomizationCard
    {
       

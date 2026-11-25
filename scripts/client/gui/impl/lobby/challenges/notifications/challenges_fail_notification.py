@@ -24,3 +24,4 @@ class ChallengesFailNotification(NotificationBase):
 
     def __onClick(self):
         showChallenges(self._getPayload().get('challengeID'))
+        self._closeNotificationCenter()

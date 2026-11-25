@@ -23,7 +23,7 @@ package
          catch(e:Error)
          {
          }
-         uiDecoration.UIID = 58327054;
+         uiDecoration.UIID = 58327052;
          uiDecoration.autoSize = true;
          uiDecoration.enableInitCallback = false;
          uiDecoration.maintainAspectRatio = true;
@@ -48,7 +48,7 @@ package
          catch(e:Error)
          {
          }
-         btnRating.UIID = 58327053;
+         btnRating.UIID = 58327051;
          btnRating.autoRepeat = false;
          btnRating.autoSize = "none";
          btnRating.data = "";
@@ -89,7 +89,7 @@ package
          catch(e:Error)
          {
          }
-         btnRegistration.UIID = 58327052;
+         btnRegistration.UIID = 58327050;
          btnRegistration.autoRepeat = false;
          btnRegistration.autoSize = "none";
          btnRegistration.data = "";
